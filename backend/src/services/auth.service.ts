@@ -1,6 +1,6 @@
 import prisma from '../prisma/client';
 import jwt from 'jsonwebtoken';
-import AfricasTalking from 'africastalking';
+import AfricasTalking = require('africastalking');
 import { config } from '../config';
 import { createError } from '../utils/errors';
 import { Role, BusinessType } from '../prisma/generated-client';
