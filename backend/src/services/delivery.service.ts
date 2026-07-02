@@ -3,6 +3,7 @@ import { calculateDistanceKm } from '../utils/distance';
 import { LogisticsConfig } from '../config/logistics.config';
 import { createError } from '../utils/errors';
 import { randomUUID } from 'crypto';
+import { NotificationService } from './notification.service';
 import {
   DeliveryStatus,
   OrderStatus,
@@ -462,22 +463,22 @@ export class DeliveryService {
 
       for (const r of activeRequests) {
         // Farmer Alert
-        await tx.notification.create({
-          data: {
-            userId: r.order.listing.farmerId,
-            type: 'DELIVERY_MATCHED',
-            message: `A transport provider has accepted delivery of your ${r.order.listing.cropType}`,
-          },
-        });
+        await NotificationService.createNotification(
+          r.order.listing.farmerId,
+          'DELIVERY_MATCHED',
+          `A transport provider has accepted delivery of your ${r.order.listing.cropType}`,
+          false,
+          tx
+        );
         
         // Buyer Alert
-        await tx.notification.create({
-          data: {
-            userId: r.order.buyerId,
-            type: 'DELIVERY_MATCHED',
-            message: 'Your order is matched with a transport provider',
-          },
-        });
+        await NotificationService.createNotification(
+          r.order.buyerId,
+          'DELIVERY_MATCHED',
+          'Your order is matched with a transport provider',
+          false,
+          tx
+        );
       }
 
       return { success: true, requestsUpdated: requestsToUpdate.length };
@@ -576,13 +577,13 @@ export class DeliveryService {
         });
 
         // Notify Buyer
-        await tx.notification.create({
-          data: {
-            userId: req.order.buyerId,
-            type: 'DELIVERY_PICKED_UP',
-            message: 'Your order has been picked up and is on the way',
-          },
-        });
+        await NotificationService.createNotification(
+          req.order.buyerId,
+          'DELIVERY_PICKED_UP',
+          'Your order has been picked up and is on the way',
+          false,
+          tx
+        );
       }
 
       if (newStatus === DeliveryStatus.DELIVERED) {
@@ -613,38 +614,38 @@ export class DeliveryService {
         // High priority notifications (SMS log & alerts)
         console.log(`[SMS - DELIVERED] Delivery completed for order ${req.orderId.slice(0, 8)}`);
         
-        await tx.notification.create({
-          data: {
-            userId: req.order.buyerId,
-            type: 'DELIVERY_COMPLETED',
-            message: 'Delivery completed',
-          },
-        });
+        await NotificationService.createNotification(
+          req.order.buyerId,
+          'DELIVERY_COMPLETED',
+          'Delivery completed',
+          true, // high-priority, send SMS!
+          tx
+        );
 
-        await tx.notification.create({
-          data: {
-            userId: req.order.listing.farmerId,
-            type: 'DELIVERY_COMPLETED',
-            message: 'Delivery completed',
-          },
-        });
+        await NotificationService.createNotification(
+          req.order.listing.farmerId,
+          'DELIVERY_COMPLETED',
+          'Delivery completed',
+          true, // high-priority, send SMS!
+          tx
+        );
 
         // Trigger Review Prompts
-        await tx.notification.create({
-          data: {
-            userId: req.order.buyerId,
-            type: 'REVIEW_PROMPT',
-            message: `Please review your delivery of ${req.order.listing.cropType} from ${req.order.listing.farmer.name}`,
-          },
-        });
+        await NotificationService.createNotification(
+          req.order.buyerId,
+          'REVIEW_PROMPT',
+          `Please review your delivery of ${req.order.listing.cropType} from ${req.order.listing.farmer.name}`,
+          false,
+          tx
+        );
 
-        await tx.notification.create({
-          data: {
-            userId: req.order.listing.farmerId,
-            type: 'REVIEW_PROMPT',
-            message: `Please review buyer ${req.order.buyer.name} for order ${req.orderId.slice(0, 8)}`,
-          },
-        });
+        await NotificationService.createNotification(
+          req.order.listing.farmerId,
+          'REVIEW_PROMPT',
+          `Please review buyer ${req.order.buyer.name} for order ${req.orderId.slice(0, 8)}`,
+          false,
+          tx
+        );
       }
 
       return updatedRequest;

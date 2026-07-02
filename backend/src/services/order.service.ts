@@ -1,6 +1,7 @@
 import prisma from '../prisma/client';
 import { createError } from '../utils/errors';
 import { DeliveryService } from './delivery.service';
+import { NotificationService } from './notification.service';
 import {
   Role,
   OrderStatus,
@@ -94,14 +95,13 @@ export class OrderService {
       });
 
       // 6. Push Farmer Notification
-      await tx.notification.create({
-        data: {
-          userId: listing.farmerId,
-          type: 'NEW_ORDER',
-          message: `New order: ${quantityKg}kg of ${listing.cropType} from a buyer`,
-          isRead: false,
-        },
-      });
+      await NotificationService.createNotification(
+        listing.farmerId,
+        'NEW_ORDER',
+        `New order: ${quantityKg}kg of ${listing.cropType} from a buyer`,
+        false,
+        tx
+      );
 
       return order;
     });
@@ -258,14 +258,13 @@ export class OrderService {
       });
 
       // 4. Notify farmer
-      await tx.notification.create({
-        data: {
-          userId: order.listing.farmerId,
-          type: 'ORDER_CANCELLED',
-          message: `An order for your ${order.listing.cropType} was cancelled`,
-          isRead: false,
-        },
-      });
+      await NotificationService.createNotification(
+        order.listing.farmerId,
+        'ORDER_CANCELLED',
+        `An order for your ${order.listing.cropType} was cancelled`,
+        false,
+        tx
+      );
 
       return updatedOrder;
     });
@@ -300,14 +299,13 @@ export class OrderService {
       await DeliveryService.createDeliveryRequest(orderId);
 
       // 3. Send Notification to Farmer
-      await tx.notification.create({
-        data: {
-          userId: order.listing.farmerId,
-          type: 'ORDER_CONFIRMED',
-          message: `Payment confirmed. Your ${order.listing.cropType} has been sold.`,
-          isRead: false,
-        },
-      });
+      await NotificationService.createNotification(
+        order.listing.farmerId,
+        'ORDER_CONFIRMED',
+        `Payment confirmed. Your ${order.listing.cropType} has been sold.`,
+        true, // high-priority, send SMS!
+        tx
+      );
 
       return confirmedOrder;
     });
