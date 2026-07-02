@@ -7,6 +7,7 @@ import deliveryRoutes from './delivery.routes';
 import { traceRouter, adminTraceRouter } from './trace.routes';
 import notificationRoutes from './notification.routes';
 import messageRoutes from './message.routes';
+import reviewRoutes from './review.routes';
 
 const router = Router();
 
@@ -19,5 +20,6 @@ router.use('/trace', traceRouter);
 router.use('/admin/trace', adminTraceRouter);
 router.use('/notifications', notificationRoutes);
 router.use('/messages', messageRoutes);
+router.use('/reviews', reviewRoutes);
 
 export default router;
