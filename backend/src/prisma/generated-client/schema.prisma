@@ -1,0 +1,339 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "./generated-client"
+}
+
+enum Role {
+  FARMER
+  BUYER
+  TRANSPORT
+  ADMIN
+}
+
+enum CropType {
+  TOMATO
+  PEPPER
+  GARDEN_EGG
+  OKRA
+  LEAFY_GREENS
+  OTHER
+}
+
+enum ListingStatus {
+  AVAILABLE
+  RESERVED
+  SOLD_OUT
+  EXPIRED
+}
+
+enum QualityGrade {
+  A
+  B
+  C
+  UNGRADED
+}
+
+enum OrderStatus {
+  PENDING
+  CONFIRMED
+  IN_TRANSIT
+  DELIVERED
+  CANCELLED
+}
+
+enum PaymentStatus {
+  UNPAID
+  PAID
+  REFUNDED
+}
+
+enum DeliveryStatus {
+  REQUESTED
+  MATCHED
+  PICKED_UP
+  DELIVERED
+}
+
+enum BusinessType {
+  RETAILER
+  RESTAURANT
+  PROCESSOR
+  EXPORTER
+  HOUSEHOLD
+}
+
+enum TraceEventType {
+  HARVESTED
+  LISTED
+  QUALITY_CHECKED
+  RESERVED
+  PICKED_UP
+  IN_TRANSIT
+  DELIVERED
+}
+
+// User: unified table for all system users
+model User {
+  id         String   @id @default(uuid())
+  phone      String   @unique
+  name       String
+  role       Role
+  latitude   Float?
+  longitude  Float?
+  region     String?
+  district   String?
+  isVerified Boolean  @default(false)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  // 1:1 Profiles
+  farmerProfile    FarmerProfile?
+  buyerProfile     BuyerProfile?
+  transportProfile TransportProfile?
+
+  // Relations
+  listings            ProduceListing[]
+  orders              Order[]           @relation("BuyerOrders")
+  deliveries          DeliveryRequest[] @relation("TransporterDeliveries")
+  sentReviews         Review[]          @relation("SentReviews")
+  receivedReviews     Review[]          @relation("ReceivedReviews")
+  notifications       Notification[]
+  sentMessages        Message[]         @relation("SentMessages")
+  receivedMessages    Message[]         @relation("ReceivedMessages")
+  recordedTraceEvents TraceEvent[]      @relation("RecordedEvents")
+
+  @@index([role])
+  @@index([latitude, longitude])
+}
+
+// Profile linked to Farmers
+model FarmerProfile {
+  id            String   @id @default(uuid())
+  userId        String   @unique
+  user          User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  farmSizeAcres Float?
+  primaryCrops  String[]
+  avgRating     Float    @default(0)
+  totalReviews  Int      @default(0)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
+
+// Profile linked to Buyers
+model BuyerProfile {
+  id           String       @id @default(uuid())
+  userId       String       @unique
+  user         User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  businessType BusinessType
+  avgRating    Float        @default(0)
+  totalReviews Int          @default(0)
+  createdAt    DateTime     @default(now())
+  updatedAt    DateTime     @updatedAt
+}
+
+// Profile linked to Transporters
+model TransportProfile {
+  id              String   @id @default(uuid())
+  userId          String   @unique
+  user            User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  vehicleType     String
+  capacityKg      Float
+  serviceRadiusKm Float    @default(15)
+  isAvailable     Boolean  @default(true)
+  avgRating       Float    @default(0)
+  totalReviews    Int      @default(0)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+}
+
+// ProduceListing: listings created by Farmers
+model ProduceListing {
+  id                 String              @id @default(uuid())
+  farmerId           String
+  farmer             User                @relation(fields: [farmerId], references: [id], onDelete: Cascade)
+  cropType           CropType
+  quantityKg         Float
+  remainingKg        Float
+  pricePerKg         Float
+  images             String[]
+  harvestDate        DateTime
+  expiryEstimate     DateTime?
+  qualityGrade       QualityGrade        @default(UNGRADED)
+  qualityGradeSource String              @default("UNGRADED") // "AI" or "MANUAL"
+  status             ListingStatus       @default(AVAILABLE)
+  latitude           Float
+  longitude          Float
+  batchCode          String              @unique
+  createdAt          DateTime            @default(now())
+  updatedAt          DateTime            @updatedAt
+  orders             Order[]
+  traceability       TraceabilityRecord?
+  traceEvents        TraceEvent[]
+
+  @@index([cropType, status])
+  @@index([latitude, longitude])
+  @@index([farmerId])
+  @@index([status])
+}
+
+// TraceabilityRecord: 1:1 details for quality audits
+model TraceabilityRecord {
+  id                 String         @id @default(uuid())
+  listingId          String         @unique
+  listing            ProduceListing @relation(fields: [listingId], references: [id], onDelete: Cascade)
+  plantingDate       DateTime?
+  inputsUsed         String[]
+  qualityCheckImages String[]
+  createdAt          DateTime       @default(now())
+  updatedAt          DateTime       @updatedAt
+}
+
+// TraceEvent: append-only ledger for listing logs
+model TraceEvent {
+  id               String         @id @default(uuid())
+  listingId        String
+  listing          ProduceListing @relation(fields: [listingId], references: [id], onDelete: Cascade)
+  eventType        TraceEventType
+  latitude         Float?
+  longitude        Float?
+  recordedByUserId String?
+  recordedByUser   User?          @relation("RecordedEvents", fields: [recordedByUserId], references: [id], onDelete: SetNull)
+  notes            String?
+  timestamp        DateTime       @default(now())
+  createdAt        DateTime       @default(now())
+  updatedAt        DateTime       @updatedAt
+
+  @@index([listingId])
+  @@index([timestamp])
+}
+
+// Order: purchase transactions
+model Order {
+  id              String           @id @default(uuid())
+  buyerId         String
+  buyer           User             @relation("BuyerOrders", fields: [buyerId], references: [id], onDelete: Cascade)
+  listingId       String
+  listing         ProduceListing   @relation(fields: [listingId], references: [id], onDelete: Cascade)
+  quantityKg      Float
+  totalPrice      Float
+  status          OrderStatus      @default(PENDING)
+  paymentStatus   PaymentStatus    @default(UNPAID)
+  createdAt       DateTime         @default(now())
+  updatedAt       DateTime         @updatedAt
+  deliveryRequest DeliveryRequest?
+  reviews         Review[]
+  messages        Message[]
+
+  @@index([buyerId])
+  @@index([listingId])
+  @@index([status])
+}
+
+// DeliveryRequest: transporter matchings
+model DeliveryRequest {
+  id                  String         @id @default(uuid())
+  orderId             String         @unique
+  order               Order          @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  transportProviderId String?
+  transportProvider   User?          @relation("TransporterDeliveries", fields: [transportProviderId], references: [id], onDelete: SetNull)
+  pickupLatitude      Float
+  pickupLongitude     Float
+  dropoffLatitude     Float
+  dropoffLongitude    Float
+  scheduledPickup     DateTime?
+  scheduledDropoff    DateTime?
+  estimatedCost       Float?
+  status              DeliveryStatus @default(REQUESTED)
+  routeGroupId        String?
+  createdAt           DateTime       @default(now())
+  updatedAt           DateTime       @updatedAt
+
+  @@index([status])
+  @@index([routeGroupId])
+  @@index([transportProviderId])
+  @@index([pickupLatitude, pickupLongitude])
+  @@index([dropoffLatitude, dropoffLongitude])
+}
+
+// Review: feedback between platform users
+model Review {
+  id         String   @id @default(uuid())
+  fromUserId String
+  fromUser   User     @relation("SentReviews", fields: [fromUserId], references: [id], onDelete: Cascade)
+  toUserId   String
+  toUser     User     @relation("ReceivedReviews", fields: [toUserId], references: [id], onDelete: Cascade)
+  orderId    String
+  order      Order    @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  rating     Int
+  comment    String?
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  @@unique([fromUserId, orderId])
+  @@index([toUserId])
+  @@index([fromUserId])
+  @@index([orderId])
+}
+
+// Notification: direct operational logs
+model Notification {
+  id        String   @id @default(uuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  type      String
+  message   String
+  isRead    Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([userId, isRead])
+}
+
+// Message: unified text chats
+model Message {
+  id         String   @id @default(uuid())
+  fromUserId String
+  fromUser   User     @relation("SentMessages", fields: [fromUserId], references: [id], onDelete: Cascade)
+  toUserId   String
+  toUser     User     @relation("ReceivedMessages", fields: [toUserId], references: [id], onDelete: Cascade)
+  orderId    String?
+  order      Order?   @relation(fields: [orderId], references: [id], onDelete: SetNull)
+  content    String
+  isRead     Boolean  @default(false)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  @@index([fromUserId, toUserId])
+  @@index([orderId])
+}
+
+// OtpCode: validation pins
+model OtpCode {
+  id        String   @id @default(uuid())
+  phone     String
+  code      String
+  expiresAt DateTime
+  isUsed    Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([phone, isUsed])
+}
+
+// UssdSession: interactive session state machine
+model UssdSession {
+  id          String   @id @default(uuid())
+  sessionId   String   @unique
+  phone       String
+  currentStep String
+  tempData    Json?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([sessionId])
+}

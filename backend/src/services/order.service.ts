@@ -1,0 +1,315 @@
+import prisma from '../prisma/client';
+import { createError } from '../utils/errors';
+import { DeliveryService } from './delivery.service';
+import {
+  Role,
+  OrderStatus,
+  PaymentStatus,
+  ListingStatus,
+  TraceEventType,
+  Prisma
+} from '../prisma/generated-client';
+
+export interface OrderFilters {
+  status?: OrderStatus;
+  page?: number;
+  limit?: number;
+}
+
+export class OrderService {
+  /**
+   * Create an order in a transaction. Validates stock availability,
+   * decrements inventory, generates trace events, and alerts the farmer.
+   */
+  public static async createOrder(buyerId: string, listingId: string, quantityKg: number) {
+    return await prisma.$transaction(async (tx) => {
+      // 1. Fetch listing and check availability
+      const listing = await tx.produceListing.findUnique({
+        where: { id: listingId },
+      });
+
+      if (!listing) {
+        throw createError('Produce listing not found', 'LISTING_NOT_FOUND', 404);
+      }
+
+      if (listing.status !== ListingStatus.AVAILABLE) {
+        throw createError('Listing is no longer available for orders', 'LISTING_UNAVAILABLE', 400);
+      }
+
+      // 2. Decrement listing stock atomically
+      const updatedListing = await tx.produceListing.update({
+        where: { id: listingId },
+        data: {
+          remainingKg: { decrement: quantityKg },
+        },
+      });
+
+      // 3. Assert stock sufficiency (roll back if negative result)
+      if (updatedListing.remainingKg < 0) {
+        throw createError(
+          `Insufficient stock. Requested: ${quantityKg}kg, Available: ${updatedListing.remainingKg + quantityKg}kg.`,
+          'INSUFFICIENT_STOCK',
+          400
+        );
+      }
+
+      // 4. Update status to SOLD_OUT if inventory hits 0
+      const newRemaining = parseFloat(updatedListing.remainingKg.toFixed(2));
+      if (newRemaining <= 0) {
+        await tx.produceListing.update({
+          where: { id: listingId },
+          data: {
+            status: ListingStatus.SOLD_OUT,
+          },
+        });
+      }
+
+      // 5. Create Order
+      const totalPrice = parseFloat((quantityKg * listing.pricePerKg).toFixed(2));
+      const order = await tx.order.create({
+        data: {
+          buyerId,
+          listingId,
+          quantityKg,
+          totalPrice,
+          status: OrderStatus.PENDING,
+          paymentStatus: PaymentStatus.UNPAID,
+        },
+        include: {
+          listing: true,
+          buyer: true,
+        },
+      });
+
+      // 5. Append RESERVED trace event log
+      await tx.traceEvent.create({
+        data: {
+          listingId,
+          eventType: TraceEventType.RESERVED,
+          latitude: listing.latitude,
+          longitude: listing.longitude,
+          recordedByUserId: buyerId,
+          notes: `Order placed. ${quantityKg}kg reserved for buyer.`,
+        },
+      });
+
+      // 6. Push Farmer Notification
+      await tx.notification.create({
+        data: {
+          userId: listing.farmerId,
+          type: 'NEW_ORDER',
+          message: `New order: ${quantityKg}kg of ${listing.cropType} from a buyer`,
+          isRead: false,
+        },
+      });
+
+      return order;
+    });
+  }
+
+  /**
+   * Queries orders scoped by user role.
+   */
+  public static async getOrdersForUser(userId: string, role: Role, filters: OrderFilters) {
+    const page = Math.max(1, filters.page || 1);
+    const limit = Math.min(100, Math.max(1, filters.limit || 20));
+    const skip = (page - 1) * limit;
+
+    const whereClause: Prisma.OrderWhereInput = {
+      ...(filters.status ? { status: filters.status } : {}),
+      ...(role === Role.FARMER
+        ? { listing: { farmerId: userId } }
+        : { buyerId: userId }),
+    };
+
+    const [data, total] = await Promise.all([
+      prisma.order.findMany({
+        where: whereClause,
+        include: {
+          listing: {
+            select: {
+              cropType: true,
+              batchCode: true,
+              farmer: {
+                select: {
+                  name: true,
+                },
+              },
+            },
+          },
+          buyer: {
+            select: {
+              name: true,
+            },
+          },
+          deliveryRequest: {
+            select: {
+              status: true,
+            },
+          },
+        },
+        orderBy: { createdAt: 'desc' },
+        skip,
+        take: limit,
+      }),
+      prisma.order.count({ where: whereClause }),
+    ]);
+
+    return {
+      data,
+      total,
+      page,
+      totalPages: Math.ceil(total / limit),
+    };
+  }
+
+  /**
+   * Fetch single order and enforce access checks.
+   */
+  public static async getOrderById(id: string, requestingUserId: string) {
+    const order = await prisma.order.findUnique({
+      where: { id },
+      include: {
+        listing: {
+          include: {
+            farmer: {
+              select: {
+                id: true,
+                name: true,
+                phone: true,
+              },
+            },
+          },
+        },
+        buyer: {
+          select: {
+            id: true,
+            name: true,
+            phone: true,
+          },
+        },
+        deliveryRequest: true,
+      },
+    });
+
+    if (!order) {
+      throw createError('Order not found', 'ORDER_NOT_FOUND', 404);
+    }
+
+    // Access control: only buyer or farmer can view details
+    if (order.buyerId !== requestingUserId && order.listing.farmerId !== requestingUserId) {
+      throw createError('Access forbidden: view permissions required', 'FORBIDDEN_ORDER_ACCESS', 403);
+    }
+
+    return order;
+  }
+
+  /**
+   * Cancel a pending order, refund listing inventory stock, delete RESERVED trace, and notify farmer.
+   */
+  public static async cancelOrder(orderId: string, requestingUserId: string) {
+    const order = await prisma.order.findUnique({
+      where: { id: orderId },
+      include: {
+        listing: true,
+      },
+    });
+
+    if (!order) {
+      throw createError('Order not found', 'ORDER_NOT_FOUND', 404);
+    }
+
+    // Enforce ownership: only buyer can cancel
+    if (order.buyerId !== requestingUserId) {
+      throw createError('Access forbidden: cancellation permissions required', 'FORBIDDEN_CANCELLATION', 403);
+    }
+
+    if (order.status !== OrderStatus.PENDING) {
+      throw createError('Only PENDING orders can be cancelled', 'INVALID_CANCELLATION_STATE', 400);
+    }
+
+    return await prisma.$transaction(async (tx) => {
+      // 1. Update order status
+      const updatedOrder = await tx.order.update({
+        where: { id: orderId },
+        data: {
+          status: OrderStatus.CANCELLED,
+        },
+      });
+
+      // 2. Restore inventory
+      const restoredRemaining = parseFloat((order.listing.remainingKg + order.quantityKg).toFixed(2));
+      
+      await tx.produceListing.update({
+        where: { id: order.listingId },
+        data: {
+          remainingKg: restoredRemaining,
+          status: ListingStatus.AVAILABLE, // revert status to AVAILABLE
+        },
+      });
+
+      // 3. Remove reservation trace event to clean audit timeline
+      await tx.traceEvent.deleteMany({
+        where: {
+          listingId: order.listingId,
+          eventType: TraceEventType.RESERVED,
+          recordedByUserId: requestingUserId,
+        },
+      });
+
+      // 4. Notify farmer
+      await tx.notification.create({
+        data: {
+          userId: order.listing.farmerId,
+          type: 'ORDER_CANCELLED',
+          message: `An order for your ${order.listing.cropType} was cancelled`,
+          isRead: false,
+        },
+      });
+
+      return updatedOrder;
+    });
+  }
+
+  /**
+   * Confirms payment for order, updates status, registers delivery logistics, and alerts the farmer.
+   */
+  public static async confirmOrder(orderId: string) {
+    return await prisma.$transaction(async (tx) => {
+      const order = await tx.order.findUnique({
+        where: { id: orderId },
+        include: {
+          listing: true,
+        },
+      });
+
+      if (!order) {
+        throw createError('Order not found', 'ORDER_NOT_FOUND', 404);
+      }
+
+      // 1. Update order payment statuses
+      const confirmedOrder = await tx.order.update({
+        where: { id: orderId },
+        data: {
+          status: OrderStatus.CONFIRMED,
+          paymentStatus: PaymentStatus.PAID,
+        },
+      });
+
+      // 2. Generate delivery requests
+      await DeliveryService.createDeliveryRequest(orderId);
+
+      // 3. Send Notification to Farmer
+      await tx.notification.create({
+        data: {
+          userId: order.listing.farmerId,
+          type: 'ORDER_CONFIRMED',
+          message: `Payment confirmed. Your ${order.listing.cropType} has been sold.`,
+          isRead: false,
+        },
+      });
+
+      return confirmedOrder;
+    });
+  }
+}
