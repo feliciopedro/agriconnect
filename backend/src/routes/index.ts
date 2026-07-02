@@ -16,6 +16,7 @@ import preorderRoutes from './preorder.routes';
 import demandRoutes from './demand.routes';
 import farmRoutes from './farm.routes';
 import invoiceRoutes from './invoice.routes';
+import analyticsRoutes from './analytics.routes';
 import { authenticateToken, requireRole } from '../middleware/auth.middleware';
 import { Role } from '../prisma/generated-client';
 import { DeliveryController } from '../controllers/delivery.controller';
@@ -39,6 +40,7 @@ router.use('/preorders', preorderRoutes);
 router.use('/demand', demandRoutes);
 router.use('/farm', farmRoutes);
 router.use('/orders', invoiceRoutes);
+router.use('/', analyticsRoutes);
 router.use('/', smsRoutes);
 
 // Backwards compatibility endpoint for manual grouping run triggers
