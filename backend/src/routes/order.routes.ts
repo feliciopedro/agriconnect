@@ -2,7 +2,7 @@ import { Router } from 'express';
 import { OrderController } from '../controllers/order.controller';
 import { authenticateToken, requireRole } from '../middleware/auth.middleware';
 import { validate } from '../middleware/validation.middleware';
-import { CreateOrderSchema } from '../types/order.schema';
+import { CreateOrderSchema, OrderIdParamSchema } from '../types/order.schema';
 import { Role } from '../prisma/generated-client';
 
 const router = Router();
@@ -22,12 +22,13 @@ router.post(
 router.get('/', OrderController.getOrders);
 
 // Get order details
-router.get('/:id', OrderController.getOrderById);
+router.get('/:id', validate(OrderIdParamSchema, 'params'), OrderController.getOrderById);
 
 // Cancel order (Only BUYER allowed)
 router.patch(
   '/:id/cancel',
   requireRole(Role.BUYER),
+  validate(OrderIdParamSchema, 'params'),
   OrderController.cancelOrder
 );
 

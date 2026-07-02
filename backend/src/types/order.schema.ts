@@ -10,3 +10,16 @@ export const CreateOrderSchema = z.object({
     z.number().positive('Quantity must be greater than zero')
   ),
 });
+
+export const OrderIdParamSchema = z.object({
+  id: z.string().uuid('Invalid order identifier. Must be a valid UUID.'),
+});
+
+// Used by payment routes that use :orderId as the param key
+export const PaymentOrderParamSchema = z.object({
+  orderId: z.string().uuid('Invalid order identifier. Must be a valid UUID.'),
+});
+
+export const InitializePaymentSchema = z.object({
+  orderId: z.string().uuid('Invalid order identifier. Must be a valid UUID.'),
+});

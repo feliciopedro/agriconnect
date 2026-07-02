@@ -64,3 +64,7 @@ export const UpdateListingSchema = z.object({
   qualityGrade: QualityGradeEnum.optional(),
   qualityGradeSource: z.string().optional(),
 });
+
+export const ListingIdParamSchema = z.object({
+  id: z.string().uuid('Invalid listing identifier. Must be a valid UUID.'),
+});

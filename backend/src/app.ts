@@ -7,6 +7,7 @@ import apiRoutes from './routes';
 import { errorHandler } from './middleware/error.middleware';
 import { config } from './config';
 import { PaymentController } from './controllers/payment.controller';
+import { rateLimit } from 'express-rate-limit';
 
 const app = express();
 
@@ -18,6 +19,27 @@ app.use(
     credentials: true,
   })
 );
+
+// Global rate limiter (100 requests per 15 minutes)
+const globalLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  limit: 100,
+  standardHeaders: 'draft-7',
+  legacyHeaders: false,
+  message: { error: 'Too many requests, please try again later.' },
+});
+
+// Stricter rate limiter for requesting OTPs (5 requests per 15 minutes)
+const otpLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  limit: 5,
+  standardHeaders: 'draft-7',
+  legacyHeaders: false,
+  message: { error: 'Too many OTP verification requests. Try again in 15 minutes.' },
+});
+
+app.use(globalLimiter);
+app.use('/api/auth/request-otp', otpLimiter);
 
 // CRITICAL: Mount Paystack webhook before express.json() body parser middleware.
 // This is because we need access to the unmodified, raw body Buffer of the webhook

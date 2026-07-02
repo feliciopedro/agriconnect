@@ -145,6 +145,16 @@ async function main() {
   }
   console.log(`🚚 Created ${transporters.length} Transporters and profiles.`);
 
+  // Admin user
+  const adminUser = await prisma.user.create({
+    data: {
+      phone: '+233241112223',
+      name: 'System Admin',
+      role: Role.ADMIN,
+      isVerified: true,
+    }
+  });
+
   // 3. Create Produce Listings (20 listings spread crops, prices, statuses)
   const cropsSetup = [
     { crop: CropType.TOMATO, price: 4.5, qty: 150, remaining: 150, status: ListingStatus.AVAILABLE, grade: QualityGrade.A, farmerIdx: 0, batch: 'BAT-TOM-001' },
@@ -171,8 +181,16 @@ async function main() {
 
   const listings: any[] = [];
   const harvestBase = new Date();
-  for (const c of cropsSetup) {
+  for (let i = 0; i < cropsSetup.length; i++) {
+    const c = cropsSetup[i];
     const farmer = farmers[c.farmerIdx];
+
+    // Guarantee at least 3 listings have expiryEstimate within 48 hours
+    let expiry = new Date(harvestBase.getTime() + 10 * 24 * 60 * 60 * 1000);
+    if (i === 0 || i === 4 || i === 8) {
+      expiry = new Date(Date.now() + 24 * 60 * 60 * 1000); // Expires in 24 hours
+    }
+
     const listing = await prisma.produceListing.create({
       data: {
         farmerId: farmer.id,
@@ -182,7 +200,7 @@ async function main() {
         pricePerKg: c.price,
         images: ['https://example.com/crop.jpg'],
         harvestDate: new Date(harvestBase.getTime() - 2 * 24 * 60 * 60 * 1000),
-        expiryEstimate: new Date(harvestBase.getTime() + 10 * 24 * 60 * 60 * 1000),
+        expiryEstimate: expiry,
         qualityGrade: c.grade,
         qualityGradeSource: c.grade === QualityGrade.UNGRADED ? 'UNGRADED' : 'AI',
         status: c.status,
@@ -215,7 +233,7 @@ async function main() {
   }
   console.log(`🍅 Seeded ${listings.length} Produce Listings and Traceability details.`);
 
-  // 4. Create Orders (8 orders, mixed statuses, linking listings and buyers)
+  // 4. Create Orders (Including 5 DELIVERED completed flow orders, and 2 IN_TRANSIT orders)
   const ordersSetup = [
     { buyerIdx: 0, listingIdx: 0, qty: 50, status: OrderStatus.PENDING, payment: PaymentStatus.UNPAID },
     { buyerIdx: 1, listingIdx: 1, qty: 200, status: OrderStatus.DELIVERED, payment: PaymentStatus.PAID },
@@ -225,6 +243,9 @@ async function main() {
     { buyerIdx: 0, listingIdx: 9, qty: 180, status: OrderStatus.DELIVERED, payment: PaymentStatus.PAID },
     { buyerIdx: 2, listingIdx: 12, qty: 110, status: OrderStatus.DELIVERED, payment: PaymentStatus.PAID },
     { buyerIdx: 1, listingIdx: 15, qty: 100, status: OrderStatus.DELIVERED, payment: PaymentStatus.PAID },
+    // 2 orders in IN_TRANSIT status
+    { buyerIdx: 0, listingIdx: 3, qty: 40, status: OrderStatus.IN_TRANSIT, payment: PaymentStatus.PAID },
+    { buyerIdx: 1, listingIdx: 7, qty: 50, status: OrderStatus.IN_TRANSIT, payment: PaymentStatus.PAID },
   ];
 
   const orders: any[] = [];
@@ -245,7 +266,11 @@ async function main() {
     });
 
     // Create TraceEvents for status changes
-    if (o.status === OrderStatus.CONFIRMED || o.status === OrderStatus.DELIVERED) {
+    if (
+      o.status === OrderStatus.CONFIRMED ||
+      o.status === OrderStatus.IN_TRANSIT ||
+      o.status === OrderStatus.DELIVERED
+    ) {
       await prisma.traceEvent.create({
         data: {
           listingId: listing.id,
@@ -258,7 +283,7 @@ async function main() {
       });
     }
 
-    if (o.status === OrderStatus.DELIVERED) {
+    if (o.status === OrderStatus.IN_TRANSIT || o.status === OrderStatus.DELIVERED) {
       // Picked up
       await prisma.traceEvent.create({
         data: {
@@ -267,10 +292,12 @@ async function main() {
           latitude: listing.latitude,
           longitude: listing.longitude,
           recordedByUserId: transporters[0].id,
-          notes: `Cargo picked up by courier`,
+          notes: `Cargo picked up by courier (in transit)`,
         }
       });
+    }
 
+    if (o.status === OrderStatus.DELIVERED) {
       // Delivered
       await prisma.traceEvent.create({
         data: {
@@ -285,7 +312,7 @@ async function main() {
     }
 
     // Set up Delivery Request
-    if (o.status !== OrderStatus.PENDING && o.status !== OrderStatus.CANCELLED) {
+    if (o.status === OrderStatus.DELIVERED || o.status === OrderStatus.CONFIRMED) {
       const transporter = transporters[o.buyerIdx % transporters.length];
       await prisma.deliveryRequest.create({
         data: {
@@ -300,6 +327,22 @@ async function main() {
           estimatedCost: 120.0,
           status: o.status === OrderStatus.DELIVERED ? DeliveryStatus.DELIVERED : DeliveryStatus.MATCHED,
           routeGroupId: 'rg-' + order.id.slice(0, 8),
+        }
+      });
+    } else if (o.status === OrderStatus.IN_TRANSIT) {
+      const transporter = transporters[o.buyerIdx % transporters.length];
+      await prisma.deliveryRequest.create({
+        data: {
+          orderId: order.id,
+          transportProviderId: transporter.id,
+          pickupLatitude: listing.latitude,
+          pickupLongitude: listing.longitude,
+          dropoffLatitude: buyer.latitude!,
+          dropoffLongitude: buyer.longitude!,
+          scheduledPickup: new Date(harvestBase.getTime() + 1 * 24 * 60 * 60 * 1000),
+          scheduledDropoff: new Date(harvestBase.getTime() + 2 * 24 * 60 * 60 * 1000),
+          estimatedCost: 110.0,
+          status: DeliveryStatus.PICKED_UP,
         }
       });
     } else if (o.status === OrderStatus.PENDING) {
@@ -318,7 +361,7 @@ async function main() {
 
     orders.push(order);
   }
-  console.log(`📦 Seeded ${orders.length} Orders and associated DeliveryRequests/TraceEvents.`);
+  console.log(`📦 Seeded ${orders.length} Orders (including 5 DELIVERED and 2 IN_TRANSIT) and associated DeliveryRequests.`);
 
   // 5. Create Reviews (5 reviews, only on DELIVERED orders)
   const deliveredOrders = orders.filter((o) => o.status === OrderStatus.DELIVERED);
@@ -352,6 +395,21 @@ async function main() {
     }
   }
   console.log(`⭐ Seeded ${reviewCount} Reviews on completed orders.`);
+
+  // 6. Print database summary counts
+  const totalUsers = await prisma.user.count();
+  const totalListings = await prisma.produceListing.count();
+  const totalOrders = await prisma.order.count();
+  const totalTraceEvents = await prisma.traceEvent.count();
+
+  console.log('\n=============================================');
+  console.log('📊 AGRICONNECT SEED DATA SUMMARY REPORT');
+  console.log('=============================================');
+  console.log(`👤 Total Users Registered:      ${totalUsers}`);
+  console.log(`🍅 Total Produce Listings:      ${totalListings}`);
+  console.log(`📦 Total Customer Orders:       ${totalOrders}`);
+  console.log(`📋 Total Trace Timeline Events:  ${totalTraceEvents}`);
+  console.log('=============================================\n');
 
   console.log('🎉 Seeding completed successfully!');
 }

@@ -1,0 +1,19 @@
+{
+  "preset": "ts-jest",
+  "testEnvironment": "node",
+  "roots": ["<rootDir>/src/tests"],
+  "testMatch": ["**/*.test.ts"],
+  "moduleNameMapper": {
+    "^@/(.*)$": "<rootDir>/src/$1"
+  },
+  "transform": {
+    "^.+\\.ts$": ["ts-jest", { "tsconfig": "tsconfig.json" }]
+  },
+  "coverageDirectory": "coverage",
+  "collectCoverageFrom": [
+    "src/**/*.ts",
+    "!src/prisma/generated-client/**",
+    "!src/prisma/seed.ts",
+    "!src/server.ts"
+  ]
+}
