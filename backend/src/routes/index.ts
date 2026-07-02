@@ -12,6 +12,8 @@ import ussdRoutes from './ussd.routes';
 import smsRoutes from './sms.routes';
 import paymentRoutes from './payment.routes';
 import adminRoutes from './admin.routes';
+import preorderRoutes from './preorder.routes';
+import demandRoutes from './demand.routes';
 import { authenticateToken, requireRole } from '../middleware/auth.middleware';
 import { Role } from '../prisma/generated-client';
 import { DeliveryController } from '../controllers/delivery.controller';
@@ -31,6 +33,8 @@ router.use('/reviews', reviewRoutes);
 router.use('/ussd', ussdRoutes);
 router.use('/payments', paymentRoutes);
 router.use('/admin', adminRoutes);
+router.use('/preorders', preorderRoutes);
+router.use('/demand', demandRoutes);
 router.use('/', smsRoutes);
 
 // Backwards compatibility endpoint for manual grouping run triggers

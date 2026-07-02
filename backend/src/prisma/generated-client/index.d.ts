@@ -83,6 +83,11 @@ export type OtpCode = $Result.DefaultSelection<Prisma.$OtpCodePayload>
  * 
  */
 export type UssdSession = $Result.DefaultSelection<Prisma.$UssdSessionPayload>
+/**
+ * Model PreOrder
+ * 
+ */
+export type PreOrder = $Result.DefaultSelection<Prisma.$PreOrderPayload>
 
 /**
  * Enums
@@ -183,6 +188,18 @@ export const DeliveryStatus: {
 
 export type DeliveryStatus = (typeof DeliveryStatus)[keyof typeof DeliveryStatus]
 
+
+export const PreOrderStatus: {
+  DEPOSIT_PENDING: 'DEPOSIT_PENDING',
+  OPEN: 'OPEN',
+  MATCHED: 'MATCHED',
+  FULFILLED: 'FULFILLED',
+  CANCELLED: 'CANCELLED',
+  EXPIRED: 'EXPIRED'
+};
+
+export type PreOrderStatus = (typeof PreOrderStatus)[keyof typeof PreOrderStatus]
+
 }
 
 export type Role = $Enums.Role
@@ -220,6 +237,10 @@ export const PaymentStatus: typeof $Enums.PaymentStatus
 export type DeliveryStatus = $Enums.DeliveryStatus
 
 export const DeliveryStatus: typeof $Enums.DeliveryStatus
+
+export type PreOrderStatus = $Enums.PreOrderStatus
+
+export const PreOrderStatus: typeof $Enums.PreOrderStatus
 
 /**
  * ##  Prisma Client ʲˢ
@@ -483,6 +504,16 @@ export class PrismaClient<
     * ```
     */
   get ussdSession(): Prisma.UssdSessionDelegate<ExtArgs>;
+
+  /**
+   * `prisma.preOrder`: Exposes CRUD operations for the **PreOrder** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more PreOrders
+    * const preOrders = await prisma.preOrder.findMany()
+    * ```
+    */
+  get preOrder(): Prisma.PreOrderDelegate<ExtArgs>;
 }
 
 export namespace Prisma {
@@ -937,7 +968,8 @@ export namespace Prisma {
     Notification: 'Notification',
     Message: 'Message',
     OtpCode: 'OtpCode',
-    UssdSession: 'UssdSession'
+    UssdSession: 'UssdSession',
+    PreOrder: 'PreOrder'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -953,7 +985,7 @@ export namespace Prisma {
 
   export type TypeMap<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, ClientOptions = {}> = {
     meta: {
-      modelProps: "user" | "farmerProfile" | "buyerProfile" | "transportProfile" | "produceListing" | "traceabilityRecord" | "traceEvent" | "order" | "deliveryRequest" | "review" | "notification" | "message" | "otpCode" | "ussdSession"
+      modelProps: "user" | "farmerProfile" | "buyerProfile" | "transportProfile" | "produceListing" | "traceabilityRecord" | "traceEvent" | "order" | "deliveryRequest" | "review" | "notification" | "message" | "otpCode" | "ussdSession" | "preOrder"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1937,6 +1969,76 @@ export namespace Prisma {
           }
         }
       }
+      PreOrder: {
+        payload: Prisma.$PreOrderPayload<ExtArgs>
+        fields: Prisma.PreOrderFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.PreOrderFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PreOrderPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.PreOrderFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PreOrderPayload>
+          }
+          findFirst: {
+            args: Prisma.PreOrderFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PreOrderPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.PreOrderFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PreOrderPayload>
+          }
+          findMany: {
+            args: Prisma.PreOrderFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PreOrderPayload>[]
+          }
+          create: {
+            args: Prisma.PreOrderCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PreOrderPayload>
+          }
+          createMany: {
+            args: Prisma.PreOrderCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.PreOrderCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PreOrderPayload>[]
+          }
+          delete: {
+            args: Prisma.PreOrderDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PreOrderPayload>
+          }
+          update: {
+            args: Prisma.PreOrderUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PreOrderPayload>
+          }
+          deleteMany: {
+            args: Prisma.PreOrderDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.PreOrderUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.PreOrderUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PreOrderPayload>
+          }
+          aggregate: {
+            args: Prisma.PreOrderAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregatePreOrder>
+          }
+          groupBy: {
+            args: Prisma.PreOrderGroupByArgs<ExtArgs>
+            result: $Utils.Optional<PreOrderGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.PreOrderCountArgs<ExtArgs>
+            result: $Utils.Optional<PreOrderCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -2107,6 +2209,7 @@ export namespace Prisma {
     sentMessages: number
     receivedMessages: number
     recordedTraceEvents: number
+    preOrders: number
   }
 
   export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -2119,6 +2222,7 @@ export namespace Prisma {
     sentMessages?: boolean | UserCountOutputTypeCountSentMessagesArgs
     receivedMessages?: boolean | UserCountOutputTypeCountReceivedMessagesArgs
     recordedTraceEvents?: boolean | UserCountOutputTypeCountRecordedTraceEventsArgs
+    preOrders?: boolean | UserCountOutputTypeCountPreOrdersArgs
   }
 
   // Custom InputTypes
@@ -2195,6 +2299,13 @@ export namespace Prisma {
     where?: TraceEventWhereInput
   }
 
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountPreOrdersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: PreOrderWhereInput
+  }
+
 
   /**
    * Count Type ProduceListingCountOutputType
@@ -2203,11 +2314,13 @@ export namespace Prisma {
   export type ProduceListingCountOutputType = {
     orders: number
     traceEvents: number
+    preOrders: number
   }
 
   export type ProduceListingCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     orders?: boolean | ProduceListingCountOutputTypeCountOrdersArgs
     traceEvents?: boolean | ProduceListingCountOutputTypeCountTraceEventsArgs
+    preOrders?: boolean | ProduceListingCountOutputTypeCountPreOrdersArgs
   }
 
   // Custom InputTypes
@@ -2233,6 +2346,13 @@ export namespace Prisma {
    */
   export type ProduceListingCountOutputTypeCountTraceEventsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: TraceEventWhereInput
+  }
+
+  /**
+   * ProduceListingCountOutputType without action
+   */
+  export type ProduceListingCountOutputTypeCountPreOrdersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: PreOrderWhereInput
   }
 
 
@@ -2542,6 +2662,7 @@ export namespace Prisma {
     sentMessages?: boolean | User$sentMessagesArgs<ExtArgs>
     receivedMessages?: boolean | User$receivedMessagesArgs<ExtArgs>
     recordedTraceEvents?: boolean | User$recordedTraceEventsArgs<ExtArgs>
+    preOrders?: boolean | User$preOrdersArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
@@ -2586,6 +2707,7 @@ export namespace Prisma {
     sentMessages?: boolean | User$sentMessagesArgs<ExtArgs>
     receivedMessages?: boolean | User$receivedMessagesArgs<ExtArgs>
     recordedTraceEvents?: boolean | User$recordedTraceEventsArgs<ExtArgs>
+    preOrders?: boolean | User$preOrdersArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type UserIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -2605,6 +2727,7 @@ export namespace Prisma {
       sentMessages: Prisma.$MessagePayload<ExtArgs>[]
       receivedMessages: Prisma.$MessagePayload<ExtArgs>[]
       recordedTraceEvents: Prisma.$TraceEventPayload<ExtArgs>[]
+      preOrders: Prisma.$PreOrderPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -2994,6 +3117,7 @@ export namespace Prisma {
     sentMessages<T extends User$sentMessagesArgs<ExtArgs> = {}>(args?: Subset<T, User$sentMessagesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MessagePayload<ExtArgs>, T, "findMany"> | Null>
     receivedMessages<T extends User$receivedMessagesArgs<ExtArgs> = {}>(args?: Subset<T, User$receivedMessagesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MessagePayload<ExtArgs>, T, "findMany"> | Null>
     recordedTraceEvents<T extends User$recordedTraceEventsArgs<ExtArgs> = {}>(args?: Subset<T, User$recordedTraceEventsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TraceEventPayload<ExtArgs>, T, "findMany"> | Null>
+    preOrders<T extends User$preOrdersArgs<ExtArgs> = {}>(args?: Subset<T, User$preOrdersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PreOrderPayload<ExtArgs>, T, "findMany"> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3570,6 +3694,26 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: TraceEventScalarFieldEnum | TraceEventScalarFieldEnum[]
+  }
+
+  /**
+   * User.preOrders
+   */
+  export type User$preOrdersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PreOrder
+     */
+    select?: PreOrderSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PreOrderInclude<ExtArgs> | null
+    where?: PreOrderWhereInput
+    orderBy?: PreOrderOrderByWithRelationInput | PreOrderOrderByWithRelationInput[]
+    cursor?: PreOrderWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: PreOrderScalarFieldEnum | PreOrderScalarFieldEnum[]
   }
 
   /**
@@ -6938,6 +7082,7 @@ export namespace Prisma {
     orders?: boolean | ProduceListing$ordersArgs<ExtArgs>
     traceability?: boolean | ProduceListing$traceabilityArgs<ExtArgs>
     traceEvents?: boolean | ProduceListing$traceEventsArgs<ExtArgs>
+    preOrders?: boolean | ProduceListing$preOrdersArgs<ExtArgs>
     _count?: boolean | ProduceListingCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["produceListing"]>
 
@@ -6987,6 +7132,7 @@ export namespace Prisma {
     orders?: boolean | ProduceListing$ordersArgs<ExtArgs>
     traceability?: boolean | ProduceListing$traceabilityArgs<ExtArgs>
     traceEvents?: boolean | ProduceListing$traceEventsArgs<ExtArgs>
+    preOrders?: boolean | ProduceListing$preOrdersArgs<ExtArgs>
     _count?: boolean | ProduceListingCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type ProduceListingIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -7000,6 +7146,7 @@ export namespace Prisma {
       orders: Prisma.$OrderPayload<ExtArgs>[]
       traceability: Prisma.$TraceabilityRecordPayload<ExtArgs> | null
       traceEvents: Prisma.$TraceEventPayload<ExtArgs>[]
+      preOrders: Prisma.$PreOrderPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -7387,6 +7534,7 @@ export namespace Prisma {
     orders<T extends ProduceListing$ordersArgs<ExtArgs> = {}>(args?: Subset<T, ProduceListing$ordersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$OrderPayload<ExtArgs>, T, "findMany"> | Null>
     traceability<T extends ProduceListing$traceabilityArgs<ExtArgs> = {}>(args?: Subset<T, ProduceListing$traceabilityArgs<ExtArgs>>): Prisma__TraceabilityRecordClient<$Result.GetResult<Prisma.$TraceabilityRecordPayload<ExtArgs>, T, "findUniqueOrThrow"> | null, null, ExtArgs>
     traceEvents<T extends ProduceListing$traceEventsArgs<ExtArgs> = {}>(args?: Subset<T, ProduceListing$traceEventsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TraceEventPayload<ExtArgs>, T, "findMany"> | Null>
+    preOrders<T extends ProduceListing$preOrdersArgs<ExtArgs> = {}>(args?: Subset<T, ProduceListing$preOrdersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PreOrderPayload<ExtArgs>, T, "findMany"> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -7803,6 +7951,26 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: TraceEventScalarFieldEnum | TraceEventScalarFieldEnum[]
+  }
+
+  /**
+   * ProduceListing.preOrders
+   */
+  export type ProduceListing$preOrdersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PreOrder
+     */
+    select?: PreOrderSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PreOrderInclude<ExtArgs> | null
+    where?: PreOrderWhereInput
+    orderBy?: PreOrderOrderByWithRelationInput | PreOrderOrderByWithRelationInput[]
+    cursor?: PreOrderWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: PreOrderScalarFieldEnum | PreOrderScalarFieldEnum[]
   }
 
   /**
@@ -9836,11 +10004,13 @@ export namespace Prisma {
   export type OrderAvgAggregateOutputType = {
     quantityKg: number | null
     totalPrice: number | null
+    depositCredit: number | null
   }
 
   export type OrderSumAggregateOutputType = {
     quantityKg: number | null
     totalPrice: number | null
+    depositCredit: number | null
   }
 
   export type OrderMinAggregateOutputType = {
@@ -9852,6 +10022,7 @@ export namespace Prisma {
     status: $Enums.OrderStatus | null
     paymentStatus: $Enums.PaymentStatus | null
     paystackReference: string | null
+    depositCredit: number | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -9865,6 +10036,7 @@ export namespace Prisma {
     status: $Enums.OrderStatus | null
     paymentStatus: $Enums.PaymentStatus | null
     paystackReference: string | null
+    depositCredit: number | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -9878,6 +10050,7 @@ export namespace Prisma {
     status: number
     paymentStatus: number
     paystackReference: number
+    depositCredit: number
     createdAt: number
     updatedAt: number
     _all: number
@@ -9887,11 +10060,13 @@ export namespace Prisma {
   export type OrderAvgAggregateInputType = {
     quantityKg?: true
     totalPrice?: true
+    depositCredit?: true
   }
 
   export type OrderSumAggregateInputType = {
     quantityKg?: true
     totalPrice?: true
+    depositCredit?: true
   }
 
   export type OrderMinAggregateInputType = {
@@ -9903,6 +10078,7 @@ export namespace Prisma {
     status?: true
     paymentStatus?: true
     paystackReference?: true
+    depositCredit?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -9916,6 +10092,7 @@ export namespace Prisma {
     status?: true
     paymentStatus?: true
     paystackReference?: true
+    depositCredit?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -9929,6 +10106,7 @@ export namespace Prisma {
     status?: true
     paymentStatus?: true
     paystackReference?: true
+    depositCredit?: true
     createdAt?: true
     updatedAt?: true
     _all?: true
@@ -10029,6 +10207,7 @@ export namespace Prisma {
     status: $Enums.OrderStatus
     paymentStatus: $Enums.PaymentStatus
     paystackReference: string | null
+    depositCredit: number
     createdAt: Date
     updatedAt: Date
     _count: OrderCountAggregateOutputType | null
@@ -10061,6 +10240,7 @@ export namespace Prisma {
     status?: boolean
     paymentStatus?: boolean
     paystackReference?: boolean
+    depositCredit?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     buyer?: boolean | UserDefaultArgs<ExtArgs>
@@ -10068,6 +10248,7 @@ export namespace Prisma {
     deliveryRequest?: boolean | Order$deliveryRequestArgs<ExtArgs>
     reviews?: boolean | Order$reviewsArgs<ExtArgs>
     messages?: boolean | Order$messagesArgs<ExtArgs>
+    preOrder?: boolean | Order$preOrderArgs<ExtArgs>
     _count?: boolean | OrderCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["order"]>
 
@@ -10080,6 +10261,7 @@ export namespace Prisma {
     status?: boolean
     paymentStatus?: boolean
     paystackReference?: boolean
+    depositCredit?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     buyer?: boolean | UserDefaultArgs<ExtArgs>
@@ -10095,6 +10277,7 @@ export namespace Prisma {
     status?: boolean
     paymentStatus?: boolean
     paystackReference?: boolean
+    depositCredit?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
@@ -10105,6 +10288,7 @@ export namespace Prisma {
     deliveryRequest?: boolean | Order$deliveryRequestArgs<ExtArgs>
     reviews?: boolean | Order$reviewsArgs<ExtArgs>
     messages?: boolean | Order$messagesArgs<ExtArgs>
+    preOrder?: boolean | Order$preOrderArgs<ExtArgs>
     _count?: boolean | OrderCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type OrderIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -10120,6 +10304,7 @@ export namespace Prisma {
       deliveryRequest: Prisma.$DeliveryRequestPayload<ExtArgs> | null
       reviews: Prisma.$ReviewPayload<ExtArgs>[]
       messages: Prisma.$MessagePayload<ExtArgs>[]
+      preOrder: Prisma.$PreOrderPayload<ExtArgs> | null
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -10130,6 +10315,7 @@ export namespace Prisma {
       status: $Enums.OrderStatus
       paymentStatus: $Enums.PaymentStatus
       paystackReference: string | null
+      depositCredit: number
       createdAt: Date
       updatedAt: Date
     }, ExtArgs["result"]["order"]>
@@ -10501,6 +10687,7 @@ export namespace Prisma {
     deliveryRequest<T extends Order$deliveryRequestArgs<ExtArgs> = {}>(args?: Subset<T, Order$deliveryRequestArgs<ExtArgs>>): Prisma__DeliveryRequestClient<$Result.GetResult<Prisma.$DeliveryRequestPayload<ExtArgs>, T, "findUniqueOrThrow"> | null, null, ExtArgs>
     reviews<T extends Order$reviewsArgs<ExtArgs> = {}>(args?: Subset<T, Order$reviewsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ReviewPayload<ExtArgs>, T, "findMany"> | Null>
     messages<T extends Order$messagesArgs<ExtArgs> = {}>(args?: Subset<T, Order$messagesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MessagePayload<ExtArgs>, T, "findMany"> | Null>
+    preOrder<T extends Order$preOrderArgs<ExtArgs> = {}>(args?: Subset<T, Order$preOrderArgs<ExtArgs>>): Prisma__PreOrderClient<$Result.GetResult<Prisma.$PreOrderPayload<ExtArgs>, T, "findUniqueOrThrow"> | null, null, ExtArgs>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -10538,6 +10725,7 @@ export namespace Prisma {
     readonly status: FieldRef<"Order", 'OrderStatus'>
     readonly paymentStatus: FieldRef<"Order", 'PaymentStatus'>
     readonly paystackReference: FieldRef<"Order", 'String'>
+    readonly depositCredit: FieldRef<"Order", 'Float'>
     readonly createdAt: FieldRef<"Order", 'DateTime'>
     readonly updatedAt: FieldRef<"Order", 'DateTime'>
   }
@@ -10910,6 +11098,21 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: MessageScalarFieldEnum | MessageScalarFieldEnum[]
+  }
+
+  /**
+   * Order.preOrder
+   */
+  export type Order$preOrderArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PreOrder
+     */
+    select?: PreOrderSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PreOrderInclude<ExtArgs> | null
+    where?: PreOrderWhereInput
   }
 
   /**
@@ -16816,6 +17019,1167 @@ export namespace Prisma {
 
 
   /**
+   * Model PreOrder
+   */
+
+  export type AggregatePreOrder = {
+    _count: PreOrderCountAggregateOutputType | null
+    _avg: PreOrderAvgAggregateOutputType | null
+    _sum: PreOrderSumAggregateOutputType | null
+    _min: PreOrderMinAggregateOutputType | null
+    _max: PreOrderMaxAggregateOutputType | null
+  }
+
+  export type PreOrderAvgAggregateOutputType = {
+    quantityKg: number | null
+    maxPricePerKg: number | null
+    depositAmount: number | null
+  }
+
+  export type PreOrderSumAggregateOutputType = {
+    quantityKg: number | null
+    maxPricePerKg: number | null
+    depositAmount: number | null
+  }
+
+  export type PreOrderMinAggregateOutputType = {
+    id: string | null
+    buyerId: string | null
+    cropType: $Enums.CropType | null
+    quantityKg: number | null
+    maxPricePerKg: number | null
+    preferredRegion: string | null
+    harvestWindowStart: Date | null
+    harvestWindowEnd: Date | null
+    notes: string | null
+    depositAmount: number | null
+    depositPaid: boolean | null
+    paystackReference: string | null
+    status: $Enums.PreOrderStatus | null
+    matchedListingId: string | null
+    fulfilledOrderId: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type PreOrderMaxAggregateOutputType = {
+    id: string | null
+    buyerId: string | null
+    cropType: $Enums.CropType | null
+    quantityKg: number | null
+    maxPricePerKg: number | null
+    preferredRegion: string | null
+    harvestWindowStart: Date | null
+    harvestWindowEnd: Date | null
+    notes: string | null
+    depositAmount: number | null
+    depositPaid: boolean | null
+    paystackReference: string | null
+    status: $Enums.PreOrderStatus | null
+    matchedListingId: string | null
+    fulfilledOrderId: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type PreOrderCountAggregateOutputType = {
+    id: number
+    buyerId: number
+    cropType: number
+    quantityKg: number
+    maxPricePerKg: number
+    preferredRegion: number
+    harvestWindowStart: number
+    harvestWindowEnd: number
+    notes: number
+    depositAmount: number
+    depositPaid: number
+    paystackReference: number
+    status: number
+    matchedListingId: number
+    fulfilledOrderId: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type PreOrderAvgAggregateInputType = {
+    quantityKg?: true
+    maxPricePerKg?: true
+    depositAmount?: true
+  }
+
+  export type PreOrderSumAggregateInputType = {
+    quantityKg?: true
+    maxPricePerKg?: true
+    depositAmount?: true
+  }
+
+  export type PreOrderMinAggregateInputType = {
+    id?: true
+    buyerId?: true
+    cropType?: true
+    quantityKg?: true
+    maxPricePerKg?: true
+    preferredRegion?: true
+    harvestWindowStart?: true
+    harvestWindowEnd?: true
+    notes?: true
+    depositAmount?: true
+    depositPaid?: true
+    paystackReference?: true
+    status?: true
+    matchedListingId?: true
+    fulfilledOrderId?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type PreOrderMaxAggregateInputType = {
+    id?: true
+    buyerId?: true
+    cropType?: true
+    quantityKg?: true
+    maxPricePerKg?: true
+    preferredRegion?: true
+    harvestWindowStart?: true
+    harvestWindowEnd?: true
+    notes?: true
+    depositAmount?: true
+    depositPaid?: true
+    paystackReference?: true
+    status?: true
+    matchedListingId?: true
+    fulfilledOrderId?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type PreOrderCountAggregateInputType = {
+    id?: true
+    buyerId?: true
+    cropType?: true
+    quantityKg?: true
+    maxPricePerKg?: true
+    preferredRegion?: true
+    harvestWindowStart?: true
+    harvestWindowEnd?: true
+    notes?: true
+    depositAmount?: true
+    depositPaid?: true
+    paystackReference?: true
+    status?: true
+    matchedListingId?: true
+    fulfilledOrderId?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type PreOrderAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which PreOrder to aggregate.
+     */
+    where?: PreOrderWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PreOrders to fetch.
+     */
+    orderBy?: PreOrderOrderByWithRelationInput | PreOrderOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: PreOrderWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PreOrders from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PreOrders.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned PreOrders
+    **/
+    _count?: true | PreOrderCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: PreOrderAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: PreOrderSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: PreOrderMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: PreOrderMaxAggregateInputType
+  }
+
+  export type GetPreOrderAggregateType<T extends PreOrderAggregateArgs> = {
+        [P in keyof T & keyof AggregatePreOrder]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregatePreOrder[P]>
+      : GetScalarType<T[P], AggregatePreOrder[P]>
+  }
+
+
+
+
+  export type PreOrderGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: PreOrderWhereInput
+    orderBy?: PreOrderOrderByWithAggregationInput | PreOrderOrderByWithAggregationInput[]
+    by: PreOrderScalarFieldEnum[] | PreOrderScalarFieldEnum
+    having?: PreOrderScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: PreOrderCountAggregateInputType | true
+    _avg?: PreOrderAvgAggregateInputType
+    _sum?: PreOrderSumAggregateInputType
+    _min?: PreOrderMinAggregateInputType
+    _max?: PreOrderMaxAggregateInputType
+  }
+
+  export type PreOrderGroupByOutputType = {
+    id: string
+    buyerId: string
+    cropType: $Enums.CropType
+    quantityKg: number
+    maxPricePerKg: number
+    preferredRegion: string | null
+    harvestWindowStart: Date
+    harvestWindowEnd: Date
+    notes: string | null
+    depositAmount: number
+    depositPaid: boolean
+    paystackReference: string | null
+    status: $Enums.PreOrderStatus
+    matchedListingId: string | null
+    fulfilledOrderId: string | null
+    createdAt: Date
+    updatedAt: Date
+    _count: PreOrderCountAggregateOutputType | null
+    _avg: PreOrderAvgAggregateOutputType | null
+    _sum: PreOrderSumAggregateOutputType | null
+    _min: PreOrderMinAggregateOutputType | null
+    _max: PreOrderMaxAggregateOutputType | null
+  }
+
+  type GetPreOrderGroupByPayload<T extends PreOrderGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<PreOrderGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof PreOrderGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], PreOrderGroupByOutputType[P]>
+            : GetScalarType<T[P], PreOrderGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type PreOrderSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    buyerId?: boolean
+    cropType?: boolean
+    quantityKg?: boolean
+    maxPricePerKg?: boolean
+    preferredRegion?: boolean
+    harvestWindowStart?: boolean
+    harvestWindowEnd?: boolean
+    notes?: boolean
+    depositAmount?: boolean
+    depositPaid?: boolean
+    paystackReference?: boolean
+    status?: boolean
+    matchedListingId?: boolean
+    fulfilledOrderId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    buyer?: boolean | UserDefaultArgs<ExtArgs>
+    matchedListing?: boolean | PreOrder$matchedListingArgs<ExtArgs>
+    fulfilledOrder?: boolean | PreOrder$fulfilledOrderArgs<ExtArgs>
+  }, ExtArgs["result"]["preOrder"]>
+
+  export type PreOrderSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    buyerId?: boolean
+    cropType?: boolean
+    quantityKg?: boolean
+    maxPricePerKg?: boolean
+    preferredRegion?: boolean
+    harvestWindowStart?: boolean
+    harvestWindowEnd?: boolean
+    notes?: boolean
+    depositAmount?: boolean
+    depositPaid?: boolean
+    paystackReference?: boolean
+    status?: boolean
+    matchedListingId?: boolean
+    fulfilledOrderId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    buyer?: boolean | UserDefaultArgs<ExtArgs>
+    matchedListing?: boolean | PreOrder$matchedListingArgs<ExtArgs>
+    fulfilledOrder?: boolean | PreOrder$fulfilledOrderArgs<ExtArgs>
+  }, ExtArgs["result"]["preOrder"]>
+
+  export type PreOrderSelectScalar = {
+    id?: boolean
+    buyerId?: boolean
+    cropType?: boolean
+    quantityKg?: boolean
+    maxPricePerKg?: boolean
+    preferredRegion?: boolean
+    harvestWindowStart?: boolean
+    harvestWindowEnd?: boolean
+    notes?: boolean
+    depositAmount?: boolean
+    depositPaid?: boolean
+    paystackReference?: boolean
+    status?: boolean
+    matchedListingId?: boolean
+    fulfilledOrderId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type PreOrderInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    buyer?: boolean | UserDefaultArgs<ExtArgs>
+    matchedListing?: boolean | PreOrder$matchedListingArgs<ExtArgs>
+    fulfilledOrder?: boolean | PreOrder$fulfilledOrderArgs<ExtArgs>
+  }
+  export type PreOrderIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    buyer?: boolean | UserDefaultArgs<ExtArgs>
+    matchedListing?: boolean | PreOrder$matchedListingArgs<ExtArgs>
+    fulfilledOrder?: boolean | PreOrder$fulfilledOrderArgs<ExtArgs>
+  }
+
+  export type $PreOrderPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "PreOrder"
+    objects: {
+      buyer: Prisma.$UserPayload<ExtArgs>
+      matchedListing: Prisma.$ProduceListingPayload<ExtArgs> | null
+      fulfilledOrder: Prisma.$OrderPayload<ExtArgs> | null
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      buyerId: string
+      cropType: $Enums.CropType
+      quantityKg: number
+      maxPricePerKg: number
+      preferredRegion: string | null
+      harvestWindowStart: Date
+      harvestWindowEnd: Date
+      notes: string | null
+      depositAmount: number
+      depositPaid: boolean
+      paystackReference: string | null
+      status: $Enums.PreOrderStatus
+      matchedListingId: string | null
+      fulfilledOrderId: string | null
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["preOrder"]>
+    composites: {}
+  }
+
+  type PreOrderGetPayload<S extends boolean | null | undefined | PreOrderDefaultArgs> = $Result.GetResult<Prisma.$PreOrderPayload, S>
+
+  type PreOrderCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<PreOrderFindManyArgs, 'select' | 'include' | 'distinct'> & {
+      select?: PreOrderCountAggregateInputType | true
+    }
+
+  export interface PreOrderDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['PreOrder'], meta: { name: 'PreOrder' } }
+    /**
+     * Find zero or one PreOrder that matches the filter.
+     * @param {PreOrderFindUniqueArgs} args - Arguments to find a PreOrder
+     * @example
+     * // Get one PreOrder
+     * const preOrder = await prisma.preOrder.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends PreOrderFindUniqueArgs>(args: SelectSubset<T, PreOrderFindUniqueArgs<ExtArgs>>): Prisma__PreOrderClient<$Result.GetResult<Prisma.$PreOrderPayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
+
+    /**
+     * Find one PreOrder that matches the filter or throw an error with `error.code='P2025'` 
+     * if no matches were found.
+     * @param {PreOrderFindUniqueOrThrowArgs} args - Arguments to find a PreOrder
+     * @example
+     * // Get one PreOrder
+     * const preOrder = await prisma.preOrder.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends PreOrderFindUniqueOrThrowArgs>(args: SelectSubset<T, PreOrderFindUniqueOrThrowArgs<ExtArgs>>): Prisma__PreOrderClient<$Result.GetResult<Prisma.$PreOrderPayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
+
+    /**
+     * Find the first PreOrder that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PreOrderFindFirstArgs} args - Arguments to find a PreOrder
+     * @example
+     * // Get one PreOrder
+     * const preOrder = await prisma.preOrder.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends PreOrderFindFirstArgs>(args?: SelectSubset<T, PreOrderFindFirstArgs<ExtArgs>>): Prisma__PreOrderClient<$Result.GetResult<Prisma.$PreOrderPayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
+
+    /**
+     * Find the first PreOrder that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PreOrderFindFirstOrThrowArgs} args - Arguments to find a PreOrder
+     * @example
+     * // Get one PreOrder
+     * const preOrder = await prisma.preOrder.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends PreOrderFindFirstOrThrowArgs>(args?: SelectSubset<T, PreOrderFindFirstOrThrowArgs<ExtArgs>>): Prisma__PreOrderClient<$Result.GetResult<Prisma.$PreOrderPayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
+
+    /**
+     * Find zero or more PreOrders that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PreOrderFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all PreOrders
+     * const preOrders = await prisma.preOrder.findMany()
+     * 
+     * // Get first 10 PreOrders
+     * const preOrders = await prisma.preOrder.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const preOrderWithIdOnly = await prisma.preOrder.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends PreOrderFindManyArgs>(args?: SelectSubset<T, PreOrderFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PreOrderPayload<ExtArgs>, T, "findMany">>
+
+    /**
+     * Create a PreOrder.
+     * @param {PreOrderCreateArgs} args - Arguments to create a PreOrder.
+     * @example
+     * // Create one PreOrder
+     * const PreOrder = await prisma.preOrder.create({
+     *   data: {
+     *     // ... data to create a PreOrder
+     *   }
+     * })
+     * 
+     */
+    create<T extends PreOrderCreateArgs>(args: SelectSubset<T, PreOrderCreateArgs<ExtArgs>>): Prisma__PreOrderClient<$Result.GetResult<Prisma.$PreOrderPayload<ExtArgs>, T, "create">, never, ExtArgs>
+
+    /**
+     * Create many PreOrders.
+     * @param {PreOrderCreateManyArgs} args - Arguments to create many PreOrders.
+     * @example
+     * // Create many PreOrders
+     * const preOrder = await prisma.preOrder.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends PreOrderCreateManyArgs>(args?: SelectSubset<T, PreOrderCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many PreOrders and returns the data saved in the database.
+     * @param {PreOrderCreateManyAndReturnArgs} args - Arguments to create many PreOrders.
+     * @example
+     * // Create many PreOrders
+     * const preOrder = await prisma.preOrder.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many PreOrders and only return the `id`
+     * const preOrderWithIdOnly = await prisma.preOrder.createManyAndReturn({ 
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends PreOrderCreateManyAndReturnArgs>(args?: SelectSubset<T, PreOrderCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PreOrderPayload<ExtArgs>, T, "createManyAndReturn">>
+
+    /**
+     * Delete a PreOrder.
+     * @param {PreOrderDeleteArgs} args - Arguments to delete one PreOrder.
+     * @example
+     * // Delete one PreOrder
+     * const PreOrder = await prisma.preOrder.delete({
+     *   where: {
+     *     // ... filter to delete one PreOrder
+     *   }
+     * })
+     * 
+     */
+    delete<T extends PreOrderDeleteArgs>(args: SelectSubset<T, PreOrderDeleteArgs<ExtArgs>>): Prisma__PreOrderClient<$Result.GetResult<Prisma.$PreOrderPayload<ExtArgs>, T, "delete">, never, ExtArgs>
+
+    /**
+     * Update one PreOrder.
+     * @param {PreOrderUpdateArgs} args - Arguments to update one PreOrder.
+     * @example
+     * // Update one PreOrder
+     * const preOrder = await prisma.preOrder.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends PreOrderUpdateArgs>(args: SelectSubset<T, PreOrderUpdateArgs<ExtArgs>>): Prisma__PreOrderClient<$Result.GetResult<Prisma.$PreOrderPayload<ExtArgs>, T, "update">, never, ExtArgs>
+
+    /**
+     * Delete zero or more PreOrders.
+     * @param {PreOrderDeleteManyArgs} args - Arguments to filter PreOrders to delete.
+     * @example
+     * // Delete a few PreOrders
+     * const { count } = await prisma.preOrder.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends PreOrderDeleteManyArgs>(args?: SelectSubset<T, PreOrderDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more PreOrders.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PreOrderUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many PreOrders
+     * const preOrder = await prisma.preOrder.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends PreOrderUpdateManyArgs>(args: SelectSubset<T, PreOrderUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one PreOrder.
+     * @param {PreOrderUpsertArgs} args - Arguments to update or create a PreOrder.
+     * @example
+     * // Update or create a PreOrder
+     * const preOrder = await prisma.preOrder.upsert({
+     *   create: {
+     *     // ... data to create a PreOrder
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the PreOrder we want to update
+     *   }
+     * })
+     */
+    upsert<T extends PreOrderUpsertArgs>(args: SelectSubset<T, PreOrderUpsertArgs<ExtArgs>>): Prisma__PreOrderClient<$Result.GetResult<Prisma.$PreOrderPayload<ExtArgs>, T, "upsert">, never, ExtArgs>
+
+
+    /**
+     * Count the number of PreOrders.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PreOrderCountArgs} args - Arguments to filter PreOrders to count.
+     * @example
+     * // Count the number of PreOrders
+     * const count = await prisma.preOrder.count({
+     *   where: {
+     *     // ... the filter for the PreOrders we want to count
+     *   }
+     * })
+    **/
+    count<T extends PreOrderCountArgs>(
+      args?: Subset<T, PreOrderCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], PreOrderCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a PreOrder.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PreOrderAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends PreOrderAggregateArgs>(args: Subset<T, PreOrderAggregateArgs>): Prisma.PrismaPromise<GetPreOrderAggregateType<T>>
+
+    /**
+     * Group by PreOrder.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PreOrderGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends PreOrderGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: PreOrderGroupByArgs['orderBy'] }
+        : { orderBy?: PreOrderGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, PreOrderGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetPreOrderGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the PreOrder model
+   */
+  readonly fields: PreOrderFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for PreOrder.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__PreOrderClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    buyer<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
+    matchedListing<T extends PreOrder$matchedListingArgs<ExtArgs> = {}>(args?: Subset<T, PreOrder$matchedListingArgs<ExtArgs>>): Prisma__ProduceListingClient<$Result.GetResult<Prisma.$ProduceListingPayload<ExtArgs>, T, "findUniqueOrThrow"> | null, null, ExtArgs>
+    fulfilledOrder<T extends PreOrder$fulfilledOrderArgs<ExtArgs> = {}>(args?: Subset<T, PreOrder$fulfilledOrderArgs<ExtArgs>>): Prisma__OrderClient<$Result.GetResult<Prisma.$OrderPayload<ExtArgs>, T, "findUniqueOrThrow"> | null, null, ExtArgs>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the PreOrder model
+   */ 
+  interface PreOrderFieldRefs {
+    readonly id: FieldRef<"PreOrder", 'String'>
+    readonly buyerId: FieldRef<"PreOrder", 'String'>
+    readonly cropType: FieldRef<"PreOrder", 'CropType'>
+    readonly quantityKg: FieldRef<"PreOrder", 'Float'>
+    readonly maxPricePerKg: FieldRef<"PreOrder", 'Float'>
+    readonly preferredRegion: FieldRef<"PreOrder", 'String'>
+    readonly harvestWindowStart: FieldRef<"PreOrder", 'DateTime'>
+    readonly harvestWindowEnd: FieldRef<"PreOrder", 'DateTime'>
+    readonly notes: FieldRef<"PreOrder", 'String'>
+    readonly depositAmount: FieldRef<"PreOrder", 'Float'>
+    readonly depositPaid: FieldRef<"PreOrder", 'Boolean'>
+    readonly paystackReference: FieldRef<"PreOrder", 'String'>
+    readonly status: FieldRef<"PreOrder", 'PreOrderStatus'>
+    readonly matchedListingId: FieldRef<"PreOrder", 'String'>
+    readonly fulfilledOrderId: FieldRef<"PreOrder", 'String'>
+    readonly createdAt: FieldRef<"PreOrder", 'DateTime'>
+    readonly updatedAt: FieldRef<"PreOrder", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * PreOrder findUnique
+   */
+  export type PreOrderFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PreOrder
+     */
+    select?: PreOrderSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PreOrderInclude<ExtArgs> | null
+    /**
+     * Filter, which PreOrder to fetch.
+     */
+    where: PreOrderWhereUniqueInput
+  }
+
+  /**
+   * PreOrder findUniqueOrThrow
+   */
+  export type PreOrderFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PreOrder
+     */
+    select?: PreOrderSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PreOrderInclude<ExtArgs> | null
+    /**
+     * Filter, which PreOrder to fetch.
+     */
+    where: PreOrderWhereUniqueInput
+  }
+
+  /**
+   * PreOrder findFirst
+   */
+  export type PreOrderFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PreOrder
+     */
+    select?: PreOrderSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PreOrderInclude<ExtArgs> | null
+    /**
+     * Filter, which PreOrder to fetch.
+     */
+    where?: PreOrderWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PreOrders to fetch.
+     */
+    orderBy?: PreOrderOrderByWithRelationInput | PreOrderOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for PreOrders.
+     */
+    cursor?: PreOrderWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PreOrders from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PreOrders.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of PreOrders.
+     */
+    distinct?: PreOrderScalarFieldEnum | PreOrderScalarFieldEnum[]
+  }
+
+  /**
+   * PreOrder findFirstOrThrow
+   */
+  export type PreOrderFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PreOrder
+     */
+    select?: PreOrderSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PreOrderInclude<ExtArgs> | null
+    /**
+     * Filter, which PreOrder to fetch.
+     */
+    where?: PreOrderWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PreOrders to fetch.
+     */
+    orderBy?: PreOrderOrderByWithRelationInput | PreOrderOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for PreOrders.
+     */
+    cursor?: PreOrderWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PreOrders from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PreOrders.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of PreOrders.
+     */
+    distinct?: PreOrderScalarFieldEnum | PreOrderScalarFieldEnum[]
+  }
+
+  /**
+   * PreOrder findMany
+   */
+  export type PreOrderFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PreOrder
+     */
+    select?: PreOrderSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PreOrderInclude<ExtArgs> | null
+    /**
+     * Filter, which PreOrders to fetch.
+     */
+    where?: PreOrderWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PreOrders to fetch.
+     */
+    orderBy?: PreOrderOrderByWithRelationInput | PreOrderOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing PreOrders.
+     */
+    cursor?: PreOrderWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PreOrders from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PreOrders.
+     */
+    skip?: number
+    distinct?: PreOrderScalarFieldEnum | PreOrderScalarFieldEnum[]
+  }
+
+  /**
+   * PreOrder create
+   */
+  export type PreOrderCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PreOrder
+     */
+    select?: PreOrderSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PreOrderInclude<ExtArgs> | null
+    /**
+     * The data needed to create a PreOrder.
+     */
+    data: XOR<PreOrderCreateInput, PreOrderUncheckedCreateInput>
+  }
+
+  /**
+   * PreOrder createMany
+   */
+  export type PreOrderCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many PreOrders.
+     */
+    data: PreOrderCreateManyInput | PreOrderCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * PreOrder createManyAndReturn
+   */
+  export type PreOrderCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PreOrder
+     */
+    select?: PreOrderSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * The data used to create many PreOrders.
+     */
+    data: PreOrderCreateManyInput | PreOrderCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PreOrderIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * PreOrder update
+   */
+  export type PreOrderUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PreOrder
+     */
+    select?: PreOrderSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PreOrderInclude<ExtArgs> | null
+    /**
+     * The data needed to update a PreOrder.
+     */
+    data: XOR<PreOrderUpdateInput, PreOrderUncheckedUpdateInput>
+    /**
+     * Choose, which PreOrder to update.
+     */
+    where: PreOrderWhereUniqueInput
+  }
+
+  /**
+   * PreOrder updateMany
+   */
+  export type PreOrderUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update PreOrders.
+     */
+    data: XOR<PreOrderUpdateManyMutationInput, PreOrderUncheckedUpdateManyInput>
+    /**
+     * Filter which PreOrders to update
+     */
+    where?: PreOrderWhereInput
+  }
+
+  /**
+   * PreOrder upsert
+   */
+  export type PreOrderUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PreOrder
+     */
+    select?: PreOrderSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PreOrderInclude<ExtArgs> | null
+    /**
+     * The filter to search for the PreOrder to update in case it exists.
+     */
+    where: PreOrderWhereUniqueInput
+    /**
+     * In case the PreOrder found by the `where` argument doesn't exist, create a new PreOrder with this data.
+     */
+    create: XOR<PreOrderCreateInput, PreOrderUncheckedCreateInput>
+    /**
+     * In case the PreOrder was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<PreOrderUpdateInput, PreOrderUncheckedUpdateInput>
+  }
+
+  /**
+   * PreOrder delete
+   */
+  export type PreOrderDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PreOrder
+     */
+    select?: PreOrderSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PreOrderInclude<ExtArgs> | null
+    /**
+     * Filter which PreOrder to delete.
+     */
+    where: PreOrderWhereUniqueInput
+  }
+
+  /**
+   * PreOrder deleteMany
+   */
+  export type PreOrderDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which PreOrders to delete
+     */
+    where?: PreOrderWhereInput
+  }
+
+  /**
+   * PreOrder.matchedListing
+   */
+  export type PreOrder$matchedListingArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProduceListing
+     */
+    select?: ProduceListingSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProduceListingInclude<ExtArgs> | null
+    where?: ProduceListingWhereInput
+  }
+
+  /**
+   * PreOrder.fulfilledOrder
+   */
+  export type PreOrder$fulfilledOrderArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Order
+     */
+    select?: OrderSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: OrderInclude<ExtArgs> | null
+    where?: OrderWhereInput
+  }
+
+  /**
+   * PreOrder without action
+   */
+  export type PreOrderDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PreOrder
+     */
+    select?: PreOrderSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PreOrderInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -16950,6 +18314,7 @@ export namespace Prisma {
     status: 'status',
     paymentStatus: 'paymentStatus',
     paystackReference: 'paystackReference',
+    depositCredit: 'depositCredit',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
   };
@@ -17043,6 +18408,29 @@ export namespace Prisma {
   };
 
   export type UssdSessionScalarFieldEnum = (typeof UssdSessionScalarFieldEnum)[keyof typeof UssdSessionScalarFieldEnum]
+
+
+  export const PreOrderScalarFieldEnum: {
+    id: 'id',
+    buyerId: 'buyerId',
+    cropType: 'cropType',
+    quantityKg: 'quantityKg',
+    maxPricePerKg: 'maxPricePerKg',
+    preferredRegion: 'preferredRegion',
+    harvestWindowStart: 'harvestWindowStart',
+    harvestWindowEnd: 'harvestWindowEnd',
+    notes: 'notes',
+    depositAmount: 'depositAmount',
+    depositPaid: 'depositPaid',
+    paystackReference: 'paystackReference',
+    status: 'status',
+    matchedListingId: 'matchedListingId',
+    fulfilledOrderId: 'fulfilledOrderId',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type PreOrderScalarFieldEnum = (typeof PreOrderScalarFieldEnum)[keyof typeof PreOrderScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -17285,6 +18673,20 @@ export namespace Prisma {
    */
   export type JsonFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Json'>
     
+
+
+  /**
+   * Reference to a field of type 'PreOrderStatus'
+   */
+  export type EnumPreOrderStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'PreOrderStatus'>
+    
+
+
+  /**
+   * Reference to a field of type 'PreOrderStatus[]'
+   */
+  export type ListEnumPreOrderStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'PreOrderStatus[]'>
+    
   /**
    * Deep Input Types
    */
@@ -17317,6 +18719,7 @@ export namespace Prisma {
     sentMessages?: MessageListRelationFilter
     receivedMessages?: MessageListRelationFilter
     recordedTraceEvents?: TraceEventListRelationFilter
+    preOrders?: PreOrderListRelationFilter
   }
 
   export type UserOrderByWithRelationInput = {
@@ -17343,6 +18746,7 @@ export namespace Prisma {
     sentMessages?: MessageOrderByRelationAggregateInput
     receivedMessages?: MessageOrderByRelationAggregateInput
     recordedTraceEvents?: TraceEventOrderByRelationAggregateInput
+    preOrders?: PreOrderOrderByRelationAggregateInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -17372,6 +18776,7 @@ export namespace Prisma {
     sentMessages?: MessageListRelationFilter
     receivedMessages?: MessageListRelationFilter
     recordedTraceEvents?: TraceEventListRelationFilter
+    preOrders?: PreOrderListRelationFilter
   }, "id" | "phone">
 
   export type UserOrderByWithAggregationInput = {
@@ -17656,6 +19061,7 @@ export namespace Prisma {
     orders?: OrderListRelationFilter
     traceability?: XOR<TraceabilityRecordNullableRelationFilter, TraceabilityRecordWhereInput> | null
     traceEvents?: TraceEventListRelationFilter
+    preOrders?: PreOrderListRelationFilter
   }
 
   export type ProduceListingOrderByWithRelationInput = {
@@ -17680,6 +19086,7 @@ export namespace Prisma {
     orders?: OrderOrderByRelationAggregateInput
     traceability?: TraceabilityRecordOrderByWithRelationInput
     traceEvents?: TraceEventOrderByRelationAggregateInput
+    preOrders?: PreOrderOrderByRelationAggregateInput
   }
 
   export type ProduceListingWhereUniqueInput = Prisma.AtLeast<{
@@ -17707,6 +19114,7 @@ export namespace Prisma {
     orders?: OrderListRelationFilter
     traceability?: XOR<TraceabilityRecordNullableRelationFilter, TraceabilityRecordWhereInput> | null
     traceEvents?: TraceEventListRelationFilter
+    preOrders?: PreOrderListRelationFilter
   }, "id" | "batchCode">
 
   export type ProduceListingOrderByWithAggregationInput = {
@@ -17919,6 +19327,7 @@ export namespace Prisma {
     status?: EnumOrderStatusFilter<"Order"> | $Enums.OrderStatus
     paymentStatus?: EnumPaymentStatusFilter<"Order"> | $Enums.PaymentStatus
     paystackReference?: StringNullableFilter<"Order"> | string | null
+    depositCredit?: FloatFilter<"Order"> | number
     createdAt?: DateTimeFilter<"Order"> | Date | string
     updatedAt?: DateTimeFilter<"Order"> | Date | string
     buyer?: XOR<UserRelationFilter, UserWhereInput>
@@ -17926,6 +19335,7 @@ export namespace Prisma {
     deliveryRequest?: XOR<DeliveryRequestNullableRelationFilter, DeliveryRequestWhereInput> | null
     reviews?: ReviewListRelationFilter
     messages?: MessageListRelationFilter
+    preOrder?: XOR<PreOrderNullableRelationFilter, PreOrderWhereInput> | null
   }
 
   export type OrderOrderByWithRelationInput = {
@@ -17937,6 +19347,7 @@ export namespace Prisma {
     status?: SortOrder
     paymentStatus?: SortOrder
     paystackReference?: SortOrderInput | SortOrder
+    depositCredit?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     buyer?: UserOrderByWithRelationInput
@@ -17944,6 +19355,7 @@ export namespace Prisma {
     deliveryRequest?: DeliveryRequestOrderByWithRelationInput
     reviews?: ReviewOrderByRelationAggregateInput
     messages?: MessageOrderByRelationAggregateInput
+    preOrder?: PreOrderOrderByWithRelationInput
   }
 
   export type OrderWhereUniqueInput = Prisma.AtLeast<{
@@ -17958,6 +19370,7 @@ export namespace Prisma {
     status?: EnumOrderStatusFilter<"Order"> | $Enums.OrderStatus
     paymentStatus?: EnumPaymentStatusFilter<"Order"> | $Enums.PaymentStatus
     paystackReference?: StringNullableFilter<"Order"> | string | null
+    depositCredit?: FloatFilter<"Order"> | number
     createdAt?: DateTimeFilter<"Order"> | Date | string
     updatedAt?: DateTimeFilter<"Order"> | Date | string
     buyer?: XOR<UserRelationFilter, UserWhereInput>
@@ -17965,6 +19378,7 @@ export namespace Prisma {
     deliveryRequest?: XOR<DeliveryRequestNullableRelationFilter, DeliveryRequestWhereInput> | null
     reviews?: ReviewListRelationFilter
     messages?: MessageListRelationFilter
+    preOrder?: XOR<PreOrderNullableRelationFilter, PreOrderWhereInput> | null
   }, "id">
 
   export type OrderOrderByWithAggregationInput = {
@@ -17976,6 +19390,7 @@ export namespace Prisma {
     status?: SortOrder
     paymentStatus?: SortOrder
     paystackReference?: SortOrderInput | SortOrder
+    depositCredit?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: OrderCountOrderByAggregateInput
@@ -17997,6 +19412,7 @@ export namespace Prisma {
     status?: EnumOrderStatusWithAggregatesFilter<"Order"> | $Enums.OrderStatus
     paymentStatus?: EnumPaymentStatusWithAggregatesFilter<"Order"> | $Enums.PaymentStatus
     paystackReference?: StringNullableWithAggregatesFilter<"Order"> | string | null
+    depositCredit?: FloatWithAggregatesFilter<"Order"> | number
     createdAt?: DateTimeWithAggregatesFilter<"Order"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Order"> | Date | string
   }
@@ -18455,6 +19871,129 @@ export namespace Prisma {
     updatedAt?: DateTimeWithAggregatesFilter<"UssdSession"> | Date | string
   }
 
+  export type PreOrderWhereInput = {
+    AND?: PreOrderWhereInput | PreOrderWhereInput[]
+    OR?: PreOrderWhereInput[]
+    NOT?: PreOrderWhereInput | PreOrderWhereInput[]
+    id?: StringFilter<"PreOrder"> | string
+    buyerId?: StringFilter<"PreOrder"> | string
+    cropType?: EnumCropTypeFilter<"PreOrder"> | $Enums.CropType
+    quantityKg?: FloatFilter<"PreOrder"> | number
+    maxPricePerKg?: FloatFilter<"PreOrder"> | number
+    preferredRegion?: StringNullableFilter<"PreOrder"> | string | null
+    harvestWindowStart?: DateTimeFilter<"PreOrder"> | Date | string
+    harvestWindowEnd?: DateTimeFilter<"PreOrder"> | Date | string
+    notes?: StringNullableFilter<"PreOrder"> | string | null
+    depositAmount?: FloatFilter<"PreOrder"> | number
+    depositPaid?: BoolFilter<"PreOrder"> | boolean
+    paystackReference?: StringNullableFilter<"PreOrder"> | string | null
+    status?: EnumPreOrderStatusFilter<"PreOrder"> | $Enums.PreOrderStatus
+    matchedListingId?: StringNullableFilter<"PreOrder"> | string | null
+    fulfilledOrderId?: StringNullableFilter<"PreOrder"> | string | null
+    createdAt?: DateTimeFilter<"PreOrder"> | Date | string
+    updatedAt?: DateTimeFilter<"PreOrder"> | Date | string
+    buyer?: XOR<UserRelationFilter, UserWhereInput>
+    matchedListing?: XOR<ProduceListingNullableRelationFilter, ProduceListingWhereInput> | null
+    fulfilledOrder?: XOR<OrderNullableRelationFilter, OrderWhereInput> | null
+  }
+
+  export type PreOrderOrderByWithRelationInput = {
+    id?: SortOrder
+    buyerId?: SortOrder
+    cropType?: SortOrder
+    quantityKg?: SortOrder
+    maxPricePerKg?: SortOrder
+    preferredRegion?: SortOrderInput | SortOrder
+    harvestWindowStart?: SortOrder
+    harvestWindowEnd?: SortOrder
+    notes?: SortOrderInput | SortOrder
+    depositAmount?: SortOrder
+    depositPaid?: SortOrder
+    paystackReference?: SortOrderInput | SortOrder
+    status?: SortOrder
+    matchedListingId?: SortOrderInput | SortOrder
+    fulfilledOrderId?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    buyer?: UserOrderByWithRelationInput
+    matchedListing?: ProduceListingOrderByWithRelationInput
+    fulfilledOrder?: OrderOrderByWithRelationInput
+  }
+
+  export type PreOrderWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    fulfilledOrderId?: string
+    AND?: PreOrderWhereInput | PreOrderWhereInput[]
+    OR?: PreOrderWhereInput[]
+    NOT?: PreOrderWhereInput | PreOrderWhereInput[]
+    buyerId?: StringFilter<"PreOrder"> | string
+    cropType?: EnumCropTypeFilter<"PreOrder"> | $Enums.CropType
+    quantityKg?: FloatFilter<"PreOrder"> | number
+    maxPricePerKg?: FloatFilter<"PreOrder"> | number
+    preferredRegion?: StringNullableFilter<"PreOrder"> | string | null
+    harvestWindowStart?: DateTimeFilter<"PreOrder"> | Date | string
+    harvestWindowEnd?: DateTimeFilter<"PreOrder"> | Date | string
+    notes?: StringNullableFilter<"PreOrder"> | string | null
+    depositAmount?: FloatFilter<"PreOrder"> | number
+    depositPaid?: BoolFilter<"PreOrder"> | boolean
+    paystackReference?: StringNullableFilter<"PreOrder"> | string | null
+    status?: EnumPreOrderStatusFilter<"PreOrder"> | $Enums.PreOrderStatus
+    matchedListingId?: StringNullableFilter<"PreOrder"> | string | null
+    createdAt?: DateTimeFilter<"PreOrder"> | Date | string
+    updatedAt?: DateTimeFilter<"PreOrder"> | Date | string
+    buyer?: XOR<UserRelationFilter, UserWhereInput>
+    matchedListing?: XOR<ProduceListingNullableRelationFilter, ProduceListingWhereInput> | null
+    fulfilledOrder?: XOR<OrderNullableRelationFilter, OrderWhereInput> | null
+  }, "id" | "fulfilledOrderId">
+
+  export type PreOrderOrderByWithAggregationInput = {
+    id?: SortOrder
+    buyerId?: SortOrder
+    cropType?: SortOrder
+    quantityKg?: SortOrder
+    maxPricePerKg?: SortOrder
+    preferredRegion?: SortOrderInput | SortOrder
+    harvestWindowStart?: SortOrder
+    harvestWindowEnd?: SortOrder
+    notes?: SortOrderInput | SortOrder
+    depositAmount?: SortOrder
+    depositPaid?: SortOrder
+    paystackReference?: SortOrderInput | SortOrder
+    status?: SortOrder
+    matchedListingId?: SortOrderInput | SortOrder
+    fulfilledOrderId?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: PreOrderCountOrderByAggregateInput
+    _avg?: PreOrderAvgOrderByAggregateInput
+    _max?: PreOrderMaxOrderByAggregateInput
+    _min?: PreOrderMinOrderByAggregateInput
+    _sum?: PreOrderSumOrderByAggregateInput
+  }
+
+  export type PreOrderScalarWhereWithAggregatesInput = {
+    AND?: PreOrderScalarWhereWithAggregatesInput | PreOrderScalarWhereWithAggregatesInput[]
+    OR?: PreOrderScalarWhereWithAggregatesInput[]
+    NOT?: PreOrderScalarWhereWithAggregatesInput | PreOrderScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"PreOrder"> | string
+    buyerId?: StringWithAggregatesFilter<"PreOrder"> | string
+    cropType?: EnumCropTypeWithAggregatesFilter<"PreOrder"> | $Enums.CropType
+    quantityKg?: FloatWithAggregatesFilter<"PreOrder"> | number
+    maxPricePerKg?: FloatWithAggregatesFilter<"PreOrder"> | number
+    preferredRegion?: StringNullableWithAggregatesFilter<"PreOrder"> | string | null
+    harvestWindowStart?: DateTimeWithAggregatesFilter<"PreOrder"> | Date | string
+    harvestWindowEnd?: DateTimeWithAggregatesFilter<"PreOrder"> | Date | string
+    notes?: StringNullableWithAggregatesFilter<"PreOrder"> | string | null
+    depositAmount?: FloatWithAggregatesFilter<"PreOrder"> | number
+    depositPaid?: BoolWithAggregatesFilter<"PreOrder"> | boolean
+    paystackReference?: StringNullableWithAggregatesFilter<"PreOrder"> | string | null
+    status?: EnumPreOrderStatusWithAggregatesFilter<"PreOrder"> | $Enums.PreOrderStatus
+    matchedListingId?: StringNullableWithAggregatesFilter<"PreOrder"> | string | null
+    fulfilledOrderId?: StringNullableWithAggregatesFilter<"PreOrder"> | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"PreOrder"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"PreOrder"> | Date | string
+  }
+
   export type UserCreateInput = {
     id?: string
     phone: string
@@ -18479,6 +20018,7 @@ export namespace Prisma {
     sentMessages?: MessageCreateNestedManyWithoutFromUserInput
     receivedMessages?: MessageCreateNestedManyWithoutToUserInput
     recordedTraceEvents?: TraceEventCreateNestedManyWithoutRecordedByUserInput
+    preOrders?: PreOrderCreateNestedManyWithoutBuyerInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -18505,6 +20045,7 @@ export namespace Prisma {
     sentMessages?: MessageUncheckedCreateNestedManyWithoutFromUserInput
     receivedMessages?: MessageUncheckedCreateNestedManyWithoutToUserInput
     recordedTraceEvents?: TraceEventUncheckedCreateNestedManyWithoutRecordedByUserInput
+    preOrders?: PreOrderUncheckedCreateNestedManyWithoutBuyerInput
   }
 
   export type UserUpdateInput = {
@@ -18531,6 +20072,7 @@ export namespace Prisma {
     sentMessages?: MessageUpdateManyWithoutFromUserNestedInput
     receivedMessages?: MessageUpdateManyWithoutToUserNestedInput
     recordedTraceEvents?: TraceEventUpdateManyWithoutRecordedByUserNestedInput
+    preOrders?: PreOrderUpdateManyWithoutBuyerNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -18557,6 +20099,7 @@ export namespace Prisma {
     sentMessages?: MessageUncheckedUpdateManyWithoutFromUserNestedInput
     receivedMessages?: MessageUncheckedUpdateManyWithoutToUserNestedInput
     recordedTraceEvents?: TraceEventUncheckedUpdateManyWithoutRecordedByUserNestedInput
+    preOrders?: PreOrderUncheckedUpdateManyWithoutBuyerNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -18857,6 +20400,7 @@ export namespace Prisma {
     orders?: OrderCreateNestedManyWithoutListingInput
     traceability?: TraceabilityRecordCreateNestedOneWithoutListingInput
     traceEvents?: TraceEventCreateNestedManyWithoutListingInput
+    preOrders?: PreOrderCreateNestedManyWithoutMatchedListingInput
   }
 
   export type ProduceListingUncheckedCreateInput = {
@@ -18880,6 +20424,7 @@ export namespace Prisma {
     orders?: OrderUncheckedCreateNestedManyWithoutListingInput
     traceability?: TraceabilityRecordUncheckedCreateNestedOneWithoutListingInput
     traceEvents?: TraceEventUncheckedCreateNestedManyWithoutListingInput
+    preOrders?: PreOrderUncheckedCreateNestedManyWithoutMatchedListingInput
   }
 
   export type ProduceListingUpdateInput = {
@@ -18903,6 +20448,7 @@ export namespace Prisma {
     orders?: OrderUpdateManyWithoutListingNestedInput
     traceability?: TraceabilityRecordUpdateOneWithoutListingNestedInput
     traceEvents?: TraceEventUpdateManyWithoutListingNestedInput
+    preOrders?: PreOrderUpdateManyWithoutMatchedListingNestedInput
   }
 
   export type ProduceListingUncheckedUpdateInput = {
@@ -18926,6 +20472,7 @@ export namespace Prisma {
     orders?: OrderUncheckedUpdateManyWithoutListingNestedInput
     traceability?: TraceabilityRecordUncheckedUpdateOneWithoutListingNestedInput
     traceEvents?: TraceEventUncheckedUpdateManyWithoutListingNestedInput
+    preOrders?: PreOrderUncheckedUpdateManyWithoutMatchedListingNestedInput
   }
 
   export type ProduceListingCreateManyInput = {
@@ -19152,6 +20699,7 @@ export namespace Prisma {
     status?: $Enums.OrderStatus
     paymentStatus?: $Enums.PaymentStatus
     paystackReference?: string | null
+    depositCredit?: number
     createdAt?: Date | string
     updatedAt?: Date | string
     buyer: UserCreateNestedOneWithoutOrdersInput
@@ -19159,6 +20707,7 @@ export namespace Prisma {
     deliveryRequest?: DeliveryRequestCreateNestedOneWithoutOrderInput
     reviews?: ReviewCreateNestedManyWithoutOrderInput
     messages?: MessageCreateNestedManyWithoutOrderInput
+    preOrder?: PreOrderCreateNestedOneWithoutFulfilledOrderInput
   }
 
   export type OrderUncheckedCreateInput = {
@@ -19170,11 +20719,13 @@ export namespace Prisma {
     status?: $Enums.OrderStatus
     paymentStatus?: $Enums.PaymentStatus
     paystackReference?: string | null
+    depositCredit?: number
     createdAt?: Date | string
     updatedAt?: Date | string
     deliveryRequest?: DeliveryRequestUncheckedCreateNestedOneWithoutOrderInput
     reviews?: ReviewUncheckedCreateNestedManyWithoutOrderInput
     messages?: MessageUncheckedCreateNestedManyWithoutOrderInput
+    preOrder?: PreOrderUncheckedCreateNestedOneWithoutFulfilledOrderInput
   }
 
   export type OrderUpdateInput = {
@@ -19184,6 +20735,7 @@ export namespace Prisma {
     status?: EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
     paymentStatus?: EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
     paystackReference?: NullableStringFieldUpdateOperationsInput | string | null
+    depositCredit?: FloatFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     buyer?: UserUpdateOneRequiredWithoutOrdersNestedInput
@@ -19191,6 +20743,7 @@ export namespace Prisma {
     deliveryRequest?: DeliveryRequestUpdateOneWithoutOrderNestedInput
     reviews?: ReviewUpdateManyWithoutOrderNestedInput
     messages?: MessageUpdateManyWithoutOrderNestedInput
+    preOrder?: PreOrderUpdateOneWithoutFulfilledOrderNestedInput
   }
 
   export type OrderUncheckedUpdateInput = {
@@ -19202,11 +20755,13 @@ export namespace Prisma {
     status?: EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
     paymentStatus?: EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
     paystackReference?: NullableStringFieldUpdateOperationsInput | string | null
+    depositCredit?: FloatFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     deliveryRequest?: DeliveryRequestUncheckedUpdateOneWithoutOrderNestedInput
     reviews?: ReviewUncheckedUpdateManyWithoutOrderNestedInput
     messages?: MessageUncheckedUpdateManyWithoutOrderNestedInput
+    preOrder?: PreOrderUncheckedUpdateOneWithoutFulfilledOrderNestedInput
   }
 
   export type OrderCreateManyInput = {
@@ -19218,6 +20773,7 @@ export namespace Prisma {
     status?: $Enums.OrderStatus
     paymentStatus?: $Enums.PaymentStatus
     paystackReference?: string | null
+    depositCredit?: number
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -19229,6 +20785,7 @@ export namespace Prisma {
     status?: EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
     paymentStatus?: EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
     paystackReference?: NullableStringFieldUpdateOperationsInput | string | null
+    depositCredit?: FloatFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -19242,6 +20799,7 @@ export namespace Prisma {
     status?: EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
     paymentStatus?: EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
     paystackReference?: NullableStringFieldUpdateOperationsInput | string | null
+    depositCredit?: FloatFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -19727,6 +21285,143 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type PreOrderCreateInput = {
+    id?: string
+    cropType: $Enums.CropType
+    quantityKg: number
+    maxPricePerKg: number
+    preferredRegion?: string | null
+    harvestWindowStart: Date | string
+    harvestWindowEnd: Date | string
+    notes?: string | null
+    depositAmount: number
+    depositPaid?: boolean
+    paystackReference?: string | null
+    status?: $Enums.PreOrderStatus
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    buyer: UserCreateNestedOneWithoutPreOrdersInput
+    matchedListing?: ProduceListingCreateNestedOneWithoutPreOrdersInput
+    fulfilledOrder?: OrderCreateNestedOneWithoutPreOrderInput
+  }
+
+  export type PreOrderUncheckedCreateInput = {
+    id?: string
+    buyerId: string
+    cropType: $Enums.CropType
+    quantityKg: number
+    maxPricePerKg: number
+    preferredRegion?: string | null
+    harvestWindowStart: Date | string
+    harvestWindowEnd: Date | string
+    notes?: string | null
+    depositAmount: number
+    depositPaid?: boolean
+    paystackReference?: string | null
+    status?: $Enums.PreOrderStatus
+    matchedListingId?: string | null
+    fulfilledOrderId?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type PreOrderUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    cropType?: EnumCropTypeFieldUpdateOperationsInput | $Enums.CropType
+    quantityKg?: FloatFieldUpdateOperationsInput | number
+    maxPricePerKg?: FloatFieldUpdateOperationsInput | number
+    preferredRegion?: NullableStringFieldUpdateOperationsInput | string | null
+    harvestWindowStart?: DateTimeFieldUpdateOperationsInput | Date | string
+    harvestWindowEnd?: DateTimeFieldUpdateOperationsInput | Date | string
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    depositAmount?: FloatFieldUpdateOperationsInput | number
+    depositPaid?: BoolFieldUpdateOperationsInput | boolean
+    paystackReference?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumPreOrderStatusFieldUpdateOperationsInput | $Enums.PreOrderStatus
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    buyer?: UserUpdateOneRequiredWithoutPreOrdersNestedInput
+    matchedListing?: ProduceListingUpdateOneWithoutPreOrdersNestedInput
+    fulfilledOrder?: OrderUpdateOneWithoutPreOrderNestedInput
+  }
+
+  export type PreOrderUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    buyerId?: StringFieldUpdateOperationsInput | string
+    cropType?: EnumCropTypeFieldUpdateOperationsInput | $Enums.CropType
+    quantityKg?: FloatFieldUpdateOperationsInput | number
+    maxPricePerKg?: FloatFieldUpdateOperationsInput | number
+    preferredRegion?: NullableStringFieldUpdateOperationsInput | string | null
+    harvestWindowStart?: DateTimeFieldUpdateOperationsInput | Date | string
+    harvestWindowEnd?: DateTimeFieldUpdateOperationsInput | Date | string
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    depositAmount?: FloatFieldUpdateOperationsInput | number
+    depositPaid?: BoolFieldUpdateOperationsInput | boolean
+    paystackReference?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumPreOrderStatusFieldUpdateOperationsInput | $Enums.PreOrderStatus
+    matchedListingId?: NullableStringFieldUpdateOperationsInput | string | null
+    fulfilledOrderId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type PreOrderCreateManyInput = {
+    id?: string
+    buyerId: string
+    cropType: $Enums.CropType
+    quantityKg: number
+    maxPricePerKg: number
+    preferredRegion?: string | null
+    harvestWindowStart: Date | string
+    harvestWindowEnd: Date | string
+    notes?: string | null
+    depositAmount: number
+    depositPaid?: boolean
+    paystackReference?: string | null
+    status?: $Enums.PreOrderStatus
+    matchedListingId?: string | null
+    fulfilledOrderId?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type PreOrderUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    cropType?: EnumCropTypeFieldUpdateOperationsInput | $Enums.CropType
+    quantityKg?: FloatFieldUpdateOperationsInput | number
+    maxPricePerKg?: FloatFieldUpdateOperationsInput | number
+    preferredRegion?: NullableStringFieldUpdateOperationsInput | string | null
+    harvestWindowStart?: DateTimeFieldUpdateOperationsInput | Date | string
+    harvestWindowEnd?: DateTimeFieldUpdateOperationsInput | Date | string
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    depositAmount?: FloatFieldUpdateOperationsInput | number
+    depositPaid?: BoolFieldUpdateOperationsInput | boolean
+    paystackReference?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumPreOrderStatusFieldUpdateOperationsInput | $Enums.PreOrderStatus
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type PreOrderUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    buyerId?: StringFieldUpdateOperationsInput | string
+    cropType?: EnumCropTypeFieldUpdateOperationsInput | $Enums.CropType
+    quantityKg?: FloatFieldUpdateOperationsInput | number
+    maxPricePerKg?: FloatFieldUpdateOperationsInput | number
+    preferredRegion?: NullableStringFieldUpdateOperationsInput | string | null
+    harvestWindowStart?: DateTimeFieldUpdateOperationsInput | Date | string
+    harvestWindowEnd?: DateTimeFieldUpdateOperationsInput | Date | string
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    depositAmount?: FloatFieldUpdateOperationsInput | number
+    depositPaid?: BoolFieldUpdateOperationsInput | boolean
+    paystackReference?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumPreOrderStatusFieldUpdateOperationsInput | $Enums.PreOrderStatus
+    matchedListingId?: NullableStringFieldUpdateOperationsInput | string | null
+    fulfilledOrderId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type StringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -19848,6 +21543,12 @@ export namespace Prisma {
     none?: TraceEventWhereInput
   }
 
+  export type PreOrderListRelationFilter = {
+    every?: PreOrderWhereInput
+    some?: PreOrderWhereInput
+    none?: PreOrderWhereInput
+  }
+
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
@@ -19878,6 +21579,10 @@ export namespace Prisma {
   }
 
   export type TraceEventOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type PreOrderOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -20513,6 +22218,11 @@ export namespace Prisma {
     isNot?: DeliveryRequestWhereInput | null
   }
 
+  export type PreOrderNullableRelationFilter = {
+    is?: PreOrderWhereInput | null
+    isNot?: PreOrderWhereInput | null
+  }
+
   export type OrderCountOrderByAggregateInput = {
     id?: SortOrder
     buyerId?: SortOrder
@@ -20522,6 +22232,7 @@ export namespace Prisma {
     status?: SortOrder
     paymentStatus?: SortOrder
     paystackReference?: SortOrder
+    depositCredit?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -20529,6 +22240,7 @@ export namespace Prisma {
   export type OrderAvgOrderByAggregateInput = {
     quantityKg?: SortOrder
     totalPrice?: SortOrder
+    depositCredit?: SortOrder
   }
 
   export type OrderMaxOrderByAggregateInput = {
@@ -20540,6 +22252,7 @@ export namespace Prisma {
     status?: SortOrder
     paymentStatus?: SortOrder
     paystackReference?: SortOrder
+    depositCredit?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -20553,6 +22266,7 @@ export namespace Prisma {
     status?: SortOrder
     paymentStatus?: SortOrder
     paystackReference?: SortOrder
+    depositCredit?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -20560,6 +22274,7 @@ export namespace Prisma {
   export type OrderSumOrderByAggregateInput = {
     quantityKg?: SortOrder
     totalPrice?: SortOrder
+    depositCredit?: SortOrder
   }
 
   export type EnumOrderStatusWithAggregatesFilter<$PrismaModel = never> = {
@@ -20891,6 +22606,100 @@ export namespace Prisma {
     updatedAt?: SortOrder
   }
 
+  export type EnumPreOrderStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.PreOrderStatus | EnumPreOrderStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.PreOrderStatus[] | ListEnumPreOrderStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.PreOrderStatus[] | ListEnumPreOrderStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumPreOrderStatusFilter<$PrismaModel> | $Enums.PreOrderStatus
+  }
+
+  export type ProduceListingNullableRelationFilter = {
+    is?: ProduceListingWhereInput | null
+    isNot?: ProduceListingWhereInput | null
+  }
+
+  export type PreOrderCountOrderByAggregateInput = {
+    id?: SortOrder
+    buyerId?: SortOrder
+    cropType?: SortOrder
+    quantityKg?: SortOrder
+    maxPricePerKg?: SortOrder
+    preferredRegion?: SortOrder
+    harvestWindowStart?: SortOrder
+    harvestWindowEnd?: SortOrder
+    notes?: SortOrder
+    depositAmount?: SortOrder
+    depositPaid?: SortOrder
+    paystackReference?: SortOrder
+    status?: SortOrder
+    matchedListingId?: SortOrder
+    fulfilledOrderId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type PreOrderAvgOrderByAggregateInput = {
+    quantityKg?: SortOrder
+    maxPricePerKg?: SortOrder
+    depositAmount?: SortOrder
+  }
+
+  export type PreOrderMaxOrderByAggregateInput = {
+    id?: SortOrder
+    buyerId?: SortOrder
+    cropType?: SortOrder
+    quantityKg?: SortOrder
+    maxPricePerKg?: SortOrder
+    preferredRegion?: SortOrder
+    harvestWindowStart?: SortOrder
+    harvestWindowEnd?: SortOrder
+    notes?: SortOrder
+    depositAmount?: SortOrder
+    depositPaid?: SortOrder
+    paystackReference?: SortOrder
+    status?: SortOrder
+    matchedListingId?: SortOrder
+    fulfilledOrderId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type PreOrderMinOrderByAggregateInput = {
+    id?: SortOrder
+    buyerId?: SortOrder
+    cropType?: SortOrder
+    quantityKg?: SortOrder
+    maxPricePerKg?: SortOrder
+    preferredRegion?: SortOrder
+    harvestWindowStart?: SortOrder
+    harvestWindowEnd?: SortOrder
+    notes?: SortOrder
+    depositAmount?: SortOrder
+    depositPaid?: SortOrder
+    paystackReference?: SortOrder
+    status?: SortOrder
+    matchedListingId?: SortOrder
+    fulfilledOrderId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type PreOrderSumOrderByAggregateInput = {
+    quantityKg?: SortOrder
+    maxPricePerKg?: SortOrder
+    depositAmount?: SortOrder
+  }
+
+  export type EnumPreOrderStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.PreOrderStatus | EnumPreOrderStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.PreOrderStatus[] | ListEnumPreOrderStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.PreOrderStatus[] | ListEnumPreOrderStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumPreOrderStatusWithAggregatesFilter<$PrismaModel> | $Enums.PreOrderStatus
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumPreOrderStatusFilter<$PrismaModel>
+    _max?: NestedEnumPreOrderStatusFilter<$PrismaModel>
+  }
+
   export type FarmerProfileCreateNestedOneWithoutUserInput = {
     create?: XOR<FarmerProfileCreateWithoutUserInput, FarmerProfileUncheckedCreateWithoutUserInput>
     connectOrCreate?: FarmerProfileCreateOrConnectWithoutUserInput
@@ -20972,6 +22781,13 @@ export namespace Prisma {
     connect?: TraceEventWhereUniqueInput | TraceEventWhereUniqueInput[]
   }
 
+  export type PreOrderCreateNestedManyWithoutBuyerInput = {
+    create?: XOR<PreOrderCreateWithoutBuyerInput, PreOrderUncheckedCreateWithoutBuyerInput> | PreOrderCreateWithoutBuyerInput[] | PreOrderUncheckedCreateWithoutBuyerInput[]
+    connectOrCreate?: PreOrderCreateOrConnectWithoutBuyerInput | PreOrderCreateOrConnectWithoutBuyerInput[]
+    createMany?: PreOrderCreateManyBuyerInputEnvelope
+    connect?: PreOrderWhereUniqueInput | PreOrderWhereUniqueInput[]
+  }
+
   export type FarmerProfileUncheckedCreateNestedOneWithoutUserInput = {
     create?: XOR<FarmerProfileCreateWithoutUserInput, FarmerProfileUncheckedCreateWithoutUserInput>
     connectOrCreate?: FarmerProfileCreateOrConnectWithoutUserInput
@@ -21051,6 +22867,13 @@ export namespace Prisma {
     connectOrCreate?: TraceEventCreateOrConnectWithoutRecordedByUserInput | TraceEventCreateOrConnectWithoutRecordedByUserInput[]
     createMany?: TraceEventCreateManyRecordedByUserInputEnvelope
     connect?: TraceEventWhereUniqueInput | TraceEventWhereUniqueInput[]
+  }
+
+  export type PreOrderUncheckedCreateNestedManyWithoutBuyerInput = {
+    create?: XOR<PreOrderCreateWithoutBuyerInput, PreOrderUncheckedCreateWithoutBuyerInput> | PreOrderCreateWithoutBuyerInput[] | PreOrderUncheckedCreateWithoutBuyerInput[]
+    connectOrCreate?: PreOrderCreateOrConnectWithoutBuyerInput | PreOrderCreateOrConnectWithoutBuyerInput[]
+    createMany?: PreOrderCreateManyBuyerInputEnvelope
+    connect?: PreOrderWhereUniqueInput | PreOrderWhereUniqueInput[]
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -21237,6 +23060,20 @@ export namespace Prisma {
     deleteMany?: TraceEventScalarWhereInput | TraceEventScalarWhereInput[]
   }
 
+  export type PreOrderUpdateManyWithoutBuyerNestedInput = {
+    create?: XOR<PreOrderCreateWithoutBuyerInput, PreOrderUncheckedCreateWithoutBuyerInput> | PreOrderCreateWithoutBuyerInput[] | PreOrderUncheckedCreateWithoutBuyerInput[]
+    connectOrCreate?: PreOrderCreateOrConnectWithoutBuyerInput | PreOrderCreateOrConnectWithoutBuyerInput[]
+    upsert?: PreOrderUpsertWithWhereUniqueWithoutBuyerInput | PreOrderUpsertWithWhereUniqueWithoutBuyerInput[]
+    createMany?: PreOrderCreateManyBuyerInputEnvelope
+    set?: PreOrderWhereUniqueInput | PreOrderWhereUniqueInput[]
+    disconnect?: PreOrderWhereUniqueInput | PreOrderWhereUniqueInput[]
+    delete?: PreOrderWhereUniqueInput | PreOrderWhereUniqueInput[]
+    connect?: PreOrderWhereUniqueInput | PreOrderWhereUniqueInput[]
+    update?: PreOrderUpdateWithWhereUniqueWithoutBuyerInput | PreOrderUpdateWithWhereUniqueWithoutBuyerInput[]
+    updateMany?: PreOrderUpdateManyWithWhereWithoutBuyerInput | PreOrderUpdateManyWithWhereWithoutBuyerInput[]
+    deleteMany?: PreOrderScalarWhereInput | PreOrderScalarWhereInput[]
+  }
+
   export type FarmerProfileUncheckedUpdateOneWithoutUserNestedInput = {
     create?: XOR<FarmerProfileCreateWithoutUserInput, FarmerProfileUncheckedCreateWithoutUserInput>
     connectOrCreate?: FarmerProfileCreateOrConnectWithoutUserInput
@@ -21393,6 +23230,20 @@ export namespace Prisma {
     deleteMany?: TraceEventScalarWhereInput | TraceEventScalarWhereInput[]
   }
 
+  export type PreOrderUncheckedUpdateManyWithoutBuyerNestedInput = {
+    create?: XOR<PreOrderCreateWithoutBuyerInput, PreOrderUncheckedCreateWithoutBuyerInput> | PreOrderCreateWithoutBuyerInput[] | PreOrderUncheckedCreateWithoutBuyerInput[]
+    connectOrCreate?: PreOrderCreateOrConnectWithoutBuyerInput | PreOrderCreateOrConnectWithoutBuyerInput[]
+    upsert?: PreOrderUpsertWithWhereUniqueWithoutBuyerInput | PreOrderUpsertWithWhereUniqueWithoutBuyerInput[]
+    createMany?: PreOrderCreateManyBuyerInputEnvelope
+    set?: PreOrderWhereUniqueInput | PreOrderWhereUniqueInput[]
+    disconnect?: PreOrderWhereUniqueInput | PreOrderWhereUniqueInput[]
+    delete?: PreOrderWhereUniqueInput | PreOrderWhereUniqueInput[]
+    connect?: PreOrderWhereUniqueInput | PreOrderWhereUniqueInput[]
+    update?: PreOrderUpdateWithWhereUniqueWithoutBuyerInput | PreOrderUpdateWithWhereUniqueWithoutBuyerInput[]
+    updateMany?: PreOrderUpdateManyWithWhereWithoutBuyerInput | PreOrderUpdateManyWithWhereWithoutBuyerInput[]
+    deleteMany?: PreOrderScalarWhereInput | PreOrderScalarWhereInput[]
+  }
+
   export type FarmerProfileCreateprimaryCropsInput = {
     set: string[]
   }
@@ -21494,6 +23345,13 @@ export namespace Prisma {
     connect?: TraceEventWhereUniqueInput | TraceEventWhereUniqueInput[]
   }
 
+  export type PreOrderCreateNestedManyWithoutMatchedListingInput = {
+    create?: XOR<PreOrderCreateWithoutMatchedListingInput, PreOrderUncheckedCreateWithoutMatchedListingInput> | PreOrderCreateWithoutMatchedListingInput[] | PreOrderUncheckedCreateWithoutMatchedListingInput[]
+    connectOrCreate?: PreOrderCreateOrConnectWithoutMatchedListingInput | PreOrderCreateOrConnectWithoutMatchedListingInput[]
+    createMany?: PreOrderCreateManyMatchedListingInputEnvelope
+    connect?: PreOrderWhereUniqueInput | PreOrderWhereUniqueInput[]
+  }
+
   export type OrderUncheckedCreateNestedManyWithoutListingInput = {
     create?: XOR<OrderCreateWithoutListingInput, OrderUncheckedCreateWithoutListingInput> | OrderCreateWithoutListingInput[] | OrderUncheckedCreateWithoutListingInput[]
     connectOrCreate?: OrderCreateOrConnectWithoutListingInput | OrderCreateOrConnectWithoutListingInput[]
@@ -21512,6 +23370,13 @@ export namespace Prisma {
     connectOrCreate?: TraceEventCreateOrConnectWithoutListingInput | TraceEventCreateOrConnectWithoutListingInput[]
     createMany?: TraceEventCreateManyListingInputEnvelope
     connect?: TraceEventWhereUniqueInput | TraceEventWhereUniqueInput[]
+  }
+
+  export type PreOrderUncheckedCreateNestedManyWithoutMatchedListingInput = {
+    create?: XOR<PreOrderCreateWithoutMatchedListingInput, PreOrderUncheckedCreateWithoutMatchedListingInput> | PreOrderCreateWithoutMatchedListingInput[] | PreOrderUncheckedCreateWithoutMatchedListingInput[]
+    connectOrCreate?: PreOrderCreateOrConnectWithoutMatchedListingInput | PreOrderCreateOrConnectWithoutMatchedListingInput[]
+    createMany?: PreOrderCreateManyMatchedListingInputEnvelope
+    connect?: PreOrderWhereUniqueInput | PreOrderWhereUniqueInput[]
   }
 
   export type EnumCropTypeFieldUpdateOperationsInput = {
@@ -21581,6 +23446,20 @@ export namespace Prisma {
     deleteMany?: TraceEventScalarWhereInput | TraceEventScalarWhereInput[]
   }
 
+  export type PreOrderUpdateManyWithoutMatchedListingNestedInput = {
+    create?: XOR<PreOrderCreateWithoutMatchedListingInput, PreOrderUncheckedCreateWithoutMatchedListingInput> | PreOrderCreateWithoutMatchedListingInput[] | PreOrderUncheckedCreateWithoutMatchedListingInput[]
+    connectOrCreate?: PreOrderCreateOrConnectWithoutMatchedListingInput | PreOrderCreateOrConnectWithoutMatchedListingInput[]
+    upsert?: PreOrderUpsertWithWhereUniqueWithoutMatchedListingInput | PreOrderUpsertWithWhereUniqueWithoutMatchedListingInput[]
+    createMany?: PreOrderCreateManyMatchedListingInputEnvelope
+    set?: PreOrderWhereUniqueInput | PreOrderWhereUniqueInput[]
+    disconnect?: PreOrderWhereUniqueInput | PreOrderWhereUniqueInput[]
+    delete?: PreOrderWhereUniqueInput | PreOrderWhereUniqueInput[]
+    connect?: PreOrderWhereUniqueInput | PreOrderWhereUniqueInput[]
+    update?: PreOrderUpdateWithWhereUniqueWithoutMatchedListingInput | PreOrderUpdateWithWhereUniqueWithoutMatchedListingInput[]
+    updateMany?: PreOrderUpdateManyWithWhereWithoutMatchedListingInput | PreOrderUpdateManyWithWhereWithoutMatchedListingInput[]
+    deleteMany?: PreOrderScalarWhereInput | PreOrderScalarWhereInput[]
+  }
+
   export type OrderUncheckedUpdateManyWithoutListingNestedInput = {
     create?: XOR<OrderCreateWithoutListingInput, OrderUncheckedCreateWithoutListingInput> | OrderCreateWithoutListingInput[] | OrderUncheckedCreateWithoutListingInput[]
     connectOrCreate?: OrderCreateOrConnectWithoutListingInput | OrderCreateOrConnectWithoutListingInput[]
@@ -21617,6 +23496,20 @@ export namespace Prisma {
     update?: TraceEventUpdateWithWhereUniqueWithoutListingInput | TraceEventUpdateWithWhereUniqueWithoutListingInput[]
     updateMany?: TraceEventUpdateManyWithWhereWithoutListingInput | TraceEventUpdateManyWithWhereWithoutListingInput[]
     deleteMany?: TraceEventScalarWhereInput | TraceEventScalarWhereInput[]
+  }
+
+  export type PreOrderUncheckedUpdateManyWithoutMatchedListingNestedInput = {
+    create?: XOR<PreOrderCreateWithoutMatchedListingInput, PreOrderUncheckedCreateWithoutMatchedListingInput> | PreOrderCreateWithoutMatchedListingInput[] | PreOrderUncheckedCreateWithoutMatchedListingInput[]
+    connectOrCreate?: PreOrderCreateOrConnectWithoutMatchedListingInput | PreOrderCreateOrConnectWithoutMatchedListingInput[]
+    upsert?: PreOrderUpsertWithWhereUniqueWithoutMatchedListingInput | PreOrderUpsertWithWhereUniqueWithoutMatchedListingInput[]
+    createMany?: PreOrderCreateManyMatchedListingInputEnvelope
+    set?: PreOrderWhereUniqueInput | PreOrderWhereUniqueInput[]
+    disconnect?: PreOrderWhereUniqueInput | PreOrderWhereUniqueInput[]
+    delete?: PreOrderWhereUniqueInput | PreOrderWhereUniqueInput[]
+    connect?: PreOrderWhereUniqueInput | PreOrderWhereUniqueInput[]
+    update?: PreOrderUpdateWithWhereUniqueWithoutMatchedListingInput | PreOrderUpdateWithWhereUniqueWithoutMatchedListingInput[]
+    updateMany?: PreOrderUpdateManyWithWhereWithoutMatchedListingInput | PreOrderUpdateManyWithWhereWithoutMatchedListingInput[]
+    deleteMany?: PreOrderScalarWhereInput | PreOrderScalarWhereInput[]
   }
 
   export type TraceabilityRecordCreateinputsUsedInput = {
@@ -21717,6 +23610,12 @@ export namespace Prisma {
     connect?: MessageWhereUniqueInput | MessageWhereUniqueInput[]
   }
 
+  export type PreOrderCreateNestedOneWithoutFulfilledOrderInput = {
+    create?: XOR<PreOrderCreateWithoutFulfilledOrderInput, PreOrderUncheckedCreateWithoutFulfilledOrderInput>
+    connectOrCreate?: PreOrderCreateOrConnectWithoutFulfilledOrderInput
+    connect?: PreOrderWhereUniqueInput
+  }
+
   export type DeliveryRequestUncheckedCreateNestedOneWithoutOrderInput = {
     create?: XOR<DeliveryRequestCreateWithoutOrderInput, DeliveryRequestUncheckedCreateWithoutOrderInput>
     connectOrCreate?: DeliveryRequestCreateOrConnectWithoutOrderInput
@@ -21735,6 +23634,12 @@ export namespace Prisma {
     connectOrCreate?: MessageCreateOrConnectWithoutOrderInput | MessageCreateOrConnectWithoutOrderInput[]
     createMany?: MessageCreateManyOrderInputEnvelope
     connect?: MessageWhereUniqueInput | MessageWhereUniqueInput[]
+  }
+
+  export type PreOrderUncheckedCreateNestedOneWithoutFulfilledOrderInput = {
+    create?: XOR<PreOrderCreateWithoutFulfilledOrderInput, PreOrderUncheckedCreateWithoutFulfilledOrderInput>
+    connectOrCreate?: PreOrderCreateOrConnectWithoutFulfilledOrderInput
+    connect?: PreOrderWhereUniqueInput
   }
 
   export type EnumOrderStatusFieldUpdateOperationsInput = {
@@ -21799,6 +23704,16 @@ export namespace Prisma {
     deleteMany?: MessageScalarWhereInput | MessageScalarWhereInput[]
   }
 
+  export type PreOrderUpdateOneWithoutFulfilledOrderNestedInput = {
+    create?: XOR<PreOrderCreateWithoutFulfilledOrderInput, PreOrderUncheckedCreateWithoutFulfilledOrderInput>
+    connectOrCreate?: PreOrderCreateOrConnectWithoutFulfilledOrderInput
+    upsert?: PreOrderUpsertWithoutFulfilledOrderInput
+    disconnect?: PreOrderWhereInput | boolean
+    delete?: PreOrderWhereInput | boolean
+    connect?: PreOrderWhereUniqueInput
+    update?: XOR<XOR<PreOrderUpdateToOneWithWhereWithoutFulfilledOrderInput, PreOrderUpdateWithoutFulfilledOrderInput>, PreOrderUncheckedUpdateWithoutFulfilledOrderInput>
+  }
+
   export type DeliveryRequestUncheckedUpdateOneWithoutOrderNestedInput = {
     create?: XOR<DeliveryRequestCreateWithoutOrderInput, DeliveryRequestUncheckedCreateWithoutOrderInput>
     connectOrCreate?: DeliveryRequestCreateOrConnectWithoutOrderInput
@@ -21835,6 +23750,16 @@ export namespace Prisma {
     update?: MessageUpdateWithWhereUniqueWithoutOrderInput | MessageUpdateWithWhereUniqueWithoutOrderInput[]
     updateMany?: MessageUpdateManyWithWhereWithoutOrderInput | MessageUpdateManyWithWhereWithoutOrderInput[]
     deleteMany?: MessageScalarWhereInput | MessageScalarWhereInput[]
+  }
+
+  export type PreOrderUncheckedUpdateOneWithoutFulfilledOrderNestedInput = {
+    create?: XOR<PreOrderCreateWithoutFulfilledOrderInput, PreOrderUncheckedCreateWithoutFulfilledOrderInput>
+    connectOrCreate?: PreOrderCreateOrConnectWithoutFulfilledOrderInput
+    upsert?: PreOrderUpsertWithoutFulfilledOrderInput
+    disconnect?: PreOrderWhereInput | boolean
+    delete?: PreOrderWhereInput | boolean
+    connect?: PreOrderWhereUniqueInput
+    update?: XOR<XOR<PreOrderUpdateToOneWithWhereWithoutFulfilledOrderInput, PreOrderUpdateWithoutFulfilledOrderInput>, PreOrderUncheckedUpdateWithoutFulfilledOrderInput>
   }
 
   export type OrderCreateNestedOneWithoutDeliveryRequestInput = {
@@ -21969,6 +23894,56 @@ export namespace Prisma {
     delete?: OrderWhereInput | boolean
     connect?: OrderWhereUniqueInput
     update?: XOR<XOR<OrderUpdateToOneWithWhereWithoutMessagesInput, OrderUpdateWithoutMessagesInput>, OrderUncheckedUpdateWithoutMessagesInput>
+  }
+
+  export type UserCreateNestedOneWithoutPreOrdersInput = {
+    create?: XOR<UserCreateWithoutPreOrdersInput, UserUncheckedCreateWithoutPreOrdersInput>
+    connectOrCreate?: UserCreateOrConnectWithoutPreOrdersInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type ProduceListingCreateNestedOneWithoutPreOrdersInput = {
+    create?: XOR<ProduceListingCreateWithoutPreOrdersInput, ProduceListingUncheckedCreateWithoutPreOrdersInput>
+    connectOrCreate?: ProduceListingCreateOrConnectWithoutPreOrdersInput
+    connect?: ProduceListingWhereUniqueInput
+  }
+
+  export type OrderCreateNestedOneWithoutPreOrderInput = {
+    create?: XOR<OrderCreateWithoutPreOrderInput, OrderUncheckedCreateWithoutPreOrderInput>
+    connectOrCreate?: OrderCreateOrConnectWithoutPreOrderInput
+    connect?: OrderWhereUniqueInput
+  }
+
+  export type EnumPreOrderStatusFieldUpdateOperationsInput = {
+    set?: $Enums.PreOrderStatus
+  }
+
+  export type UserUpdateOneRequiredWithoutPreOrdersNestedInput = {
+    create?: XOR<UserCreateWithoutPreOrdersInput, UserUncheckedCreateWithoutPreOrdersInput>
+    connectOrCreate?: UserCreateOrConnectWithoutPreOrdersInput
+    upsert?: UserUpsertWithoutPreOrdersInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutPreOrdersInput, UserUpdateWithoutPreOrdersInput>, UserUncheckedUpdateWithoutPreOrdersInput>
+  }
+
+  export type ProduceListingUpdateOneWithoutPreOrdersNestedInput = {
+    create?: XOR<ProduceListingCreateWithoutPreOrdersInput, ProduceListingUncheckedCreateWithoutPreOrdersInput>
+    connectOrCreate?: ProduceListingCreateOrConnectWithoutPreOrdersInput
+    upsert?: ProduceListingUpsertWithoutPreOrdersInput
+    disconnect?: ProduceListingWhereInput | boolean
+    delete?: ProduceListingWhereInput | boolean
+    connect?: ProduceListingWhereUniqueInput
+    update?: XOR<XOR<ProduceListingUpdateToOneWithWhereWithoutPreOrdersInput, ProduceListingUpdateWithoutPreOrdersInput>, ProduceListingUncheckedUpdateWithoutPreOrdersInput>
+  }
+
+  export type OrderUpdateOneWithoutPreOrderNestedInput = {
+    create?: XOR<OrderCreateWithoutPreOrderInput, OrderUncheckedCreateWithoutPreOrderInput>
+    connectOrCreate?: OrderCreateOrConnectWithoutPreOrderInput
+    upsert?: OrderUpsertWithoutPreOrderInput
+    disconnect?: OrderWhereInput | boolean
+    delete?: OrderWhereInput | boolean
+    connect?: OrderWhereUniqueInput
+    update?: XOR<XOR<OrderUpdateToOneWithWhereWithoutPreOrderInput, OrderUpdateWithoutPreOrderInput>, OrderUncheckedUpdateWithoutPreOrderInput>
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -22363,6 +24338,23 @@ export namespace Prisma {
     not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
   }
 
+  export type NestedEnumPreOrderStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.PreOrderStatus | EnumPreOrderStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.PreOrderStatus[] | ListEnumPreOrderStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.PreOrderStatus[] | ListEnumPreOrderStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumPreOrderStatusFilter<$PrismaModel> | $Enums.PreOrderStatus
+  }
+
+  export type NestedEnumPreOrderStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.PreOrderStatus | EnumPreOrderStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.PreOrderStatus[] | ListEnumPreOrderStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.PreOrderStatus[] | ListEnumPreOrderStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumPreOrderStatusWithAggregatesFilter<$PrismaModel> | $Enums.PreOrderStatus
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumPreOrderStatusFilter<$PrismaModel>
+    _max?: NestedEnumPreOrderStatusFilter<$PrismaModel>
+  }
+
   export type FarmerProfileCreateWithoutUserInput = {
     id?: string
     farmSizeAcres?: number | null
@@ -22460,6 +24452,7 @@ export namespace Prisma {
     orders?: OrderCreateNestedManyWithoutListingInput
     traceability?: TraceabilityRecordCreateNestedOneWithoutListingInput
     traceEvents?: TraceEventCreateNestedManyWithoutListingInput
+    preOrders?: PreOrderCreateNestedManyWithoutMatchedListingInput
   }
 
   export type ProduceListingUncheckedCreateWithoutFarmerInput = {
@@ -22482,6 +24475,7 @@ export namespace Prisma {
     orders?: OrderUncheckedCreateNestedManyWithoutListingInput
     traceability?: TraceabilityRecordUncheckedCreateNestedOneWithoutListingInput
     traceEvents?: TraceEventUncheckedCreateNestedManyWithoutListingInput
+    preOrders?: PreOrderUncheckedCreateNestedManyWithoutMatchedListingInput
   }
 
   export type ProduceListingCreateOrConnectWithoutFarmerInput = {
@@ -22501,12 +24495,14 @@ export namespace Prisma {
     status?: $Enums.OrderStatus
     paymentStatus?: $Enums.PaymentStatus
     paystackReference?: string | null
+    depositCredit?: number
     createdAt?: Date | string
     updatedAt?: Date | string
     listing: ProduceListingCreateNestedOneWithoutOrdersInput
     deliveryRequest?: DeliveryRequestCreateNestedOneWithoutOrderInput
     reviews?: ReviewCreateNestedManyWithoutOrderInput
     messages?: MessageCreateNestedManyWithoutOrderInput
+    preOrder?: PreOrderCreateNestedOneWithoutFulfilledOrderInput
   }
 
   export type OrderUncheckedCreateWithoutBuyerInput = {
@@ -22517,11 +24513,13 @@ export namespace Prisma {
     status?: $Enums.OrderStatus
     paymentStatus?: $Enums.PaymentStatus
     paystackReference?: string | null
+    depositCredit?: number
     createdAt?: Date | string
     updatedAt?: Date | string
     deliveryRequest?: DeliveryRequestUncheckedCreateNestedOneWithoutOrderInput
     reviews?: ReviewUncheckedCreateNestedManyWithoutOrderInput
     messages?: MessageUncheckedCreateNestedManyWithoutOrderInput
+    preOrder?: PreOrderUncheckedCreateNestedOneWithoutFulfilledOrderInput
   }
 
   export type OrderCreateOrConnectWithoutBuyerInput = {
@@ -22760,6 +24758,54 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type PreOrderCreateWithoutBuyerInput = {
+    id?: string
+    cropType: $Enums.CropType
+    quantityKg: number
+    maxPricePerKg: number
+    preferredRegion?: string | null
+    harvestWindowStart: Date | string
+    harvestWindowEnd: Date | string
+    notes?: string | null
+    depositAmount: number
+    depositPaid?: boolean
+    paystackReference?: string | null
+    status?: $Enums.PreOrderStatus
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    matchedListing?: ProduceListingCreateNestedOneWithoutPreOrdersInput
+    fulfilledOrder?: OrderCreateNestedOneWithoutPreOrderInput
+  }
+
+  export type PreOrderUncheckedCreateWithoutBuyerInput = {
+    id?: string
+    cropType: $Enums.CropType
+    quantityKg: number
+    maxPricePerKg: number
+    preferredRegion?: string | null
+    harvestWindowStart: Date | string
+    harvestWindowEnd: Date | string
+    notes?: string | null
+    depositAmount: number
+    depositPaid?: boolean
+    paystackReference?: string | null
+    status?: $Enums.PreOrderStatus
+    matchedListingId?: string | null
+    fulfilledOrderId?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type PreOrderCreateOrConnectWithoutBuyerInput = {
+    where: PreOrderWhereUniqueInput
+    create: XOR<PreOrderCreateWithoutBuyerInput, PreOrderUncheckedCreateWithoutBuyerInput>
+  }
+
+  export type PreOrderCreateManyBuyerInputEnvelope = {
+    data: PreOrderCreateManyBuyerInput | PreOrderCreateManyBuyerInput[]
+    skipDuplicates?: boolean
+  }
+
   export type FarmerProfileUpsertWithoutUserInput = {
     update: XOR<FarmerProfileUpdateWithoutUserInput, FarmerProfileUncheckedUpdateWithoutUserInput>
     create: XOR<FarmerProfileCreateWithoutUserInput, FarmerProfileUncheckedCreateWithoutUserInput>
@@ -22922,6 +24968,7 @@ export namespace Prisma {
     status?: EnumOrderStatusFilter<"Order"> | $Enums.OrderStatus
     paymentStatus?: EnumPaymentStatusFilter<"Order"> | $Enums.PaymentStatus
     paystackReference?: StringNullableFilter<"Order"> | string | null
+    depositCredit?: FloatFilter<"Order"> | number
     createdAt?: DateTimeFilter<"Order"> | Date | string
     updatedAt?: DateTimeFilter<"Order"> | Date | string
   }
@@ -23116,6 +25163,45 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"TraceEvent"> | Date | string
   }
 
+  export type PreOrderUpsertWithWhereUniqueWithoutBuyerInput = {
+    where: PreOrderWhereUniqueInput
+    update: XOR<PreOrderUpdateWithoutBuyerInput, PreOrderUncheckedUpdateWithoutBuyerInput>
+    create: XOR<PreOrderCreateWithoutBuyerInput, PreOrderUncheckedCreateWithoutBuyerInput>
+  }
+
+  export type PreOrderUpdateWithWhereUniqueWithoutBuyerInput = {
+    where: PreOrderWhereUniqueInput
+    data: XOR<PreOrderUpdateWithoutBuyerInput, PreOrderUncheckedUpdateWithoutBuyerInput>
+  }
+
+  export type PreOrderUpdateManyWithWhereWithoutBuyerInput = {
+    where: PreOrderScalarWhereInput
+    data: XOR<PreOrderUpdateManyMutationInput, PreOrderUncheckedUpdateManyWithoutBuyerInput>
+  }
+
+  export type PreOrderScalarWhereInput = {
+    AND?: PreOrderScalarWhereInput | PreOrderScalarWhereInput[]
+    OR?: PreOrderScalarWhereInput[]
+    NOT?: PreOrderScalarWhereInput | PreOrderScalarWhereInput[]
+    id?: StringFilter<"PreOrder"> | string
+    buyerId?: StringFilter<"PreOrder"> | string
+    cropType?: EnumCropTypeFilter<"PreOrder"> | $Enums.CropType
+    quantityKg?: FloatFilter<"PreOrder"> | number
+    maxPricePerKg?: FloatFilter<"PreOrder"> | number
+    preferredRegion?: StringNullableFilter<"PreOrder"> | string | null
+    harvestWindowStart?: DateTimeFilter<"PreOrder"> | Date | string
+    harvestWindowEnd?: DateTimeFilter<"PreOrder"> | Date | string
+    notes?: StringNullableFilter<"PreOrder"> | string | null
+    depositAmount?: FloatFilter<"PreOrder"> | number
+    depositPaid?: BoolFilter<"PreOrder"> | boolean
+    paystackReference?: StringNullableFilter<"PreOrder"> | string | null
+    status?: EnumPreOrderStatusFilter<"PreOrder"> | $Enums.PreOrderStatus
+    matchedListingId?: StringNullableFilter<"PreOrder"> | string | null
+    fulfilledOrderId?: StringNullableFilter<"PreOrder"> | string | null
+    createdAt?: DateTimeFilter<"PreOrder"> | Date | string
+    updatedAt?: DateTimeFilter<"PreOrder"> | Date | string
+  }
+
   export type UserCreateWithoutFarmerProfileInput = {
     id?: string
     phone: string
@@ -23139,6 +25225,7 @@ export namespace Prisma {
     sentMessages?: MessageCreateNestedManyWithoutFromUserInput
     receivedMessages?: MessageCreateNestedManyWithoutToUserInput
     recordedTraceEvents?: TraceEventCreateNestedManyWithoutRecordedByUserInput
+    preOrders?: PreOrderCreateNestedManyWithoutBuyerInput
   }
 
   export type UserUncheckedCreateWithoutFarmerProfileInput = {
@@ -23164,6 +25251,7 @@ export namespace Prisma {
     sentMessages?: MessageUncheckedCreateNestedManyWithoutFromUserInput
     receivedMessages?: MessageUncheckedCreateNestedManyWithoutToUserInput
     recordedTraceEvents?: TraceEventUncheckedCreateNestedManyWithoutRecordedByUserInput
+    preOrders?: PreOrderUncheckedCreateNestedManyWithoutBuyerInput
   }
 
   export type UserCreateOrConnectWithoutFarmerProfileInput = {
@@ -23205,6 +25293,7 @@ export namespace Prisma {
     sentMessages?: MessageUpdateManyWithoutFromUserNestedInput
     receivedMessages?: MessageUpdateManyWithoutToUserNestedInput
     recordedTraceEvents?: TraceEventUpdateManyWithoutRecordedByUserNestedInput
+    preOrders?: PreOrderUpdateManyWithoutBuyerNestedInput
   }
 
   export type UserUncheckedUpdateWithoutFarmerProfileInput = {
@@ -23230,6 +25319,7 @@ export namespace Prisma {
     sentMessages?: MessageUncheckedUpdateManyWithoutFromUserNestedInput
     receivedMessages?: MessageUncheckedUpdateManyWithoutToUserNestedInput
     recordedTraceEvents?: TraceEventUncheckedUpdateManyWithoutRecordedByUserNestedInput
+    preOrders?: PreOrderUncheckedUpdateManyWithoutBuyerNestedInput
   }
 
   export type UserCreateWithoutBuyerProfileInput = {
@@ -23255,6 +25345,7 @@ export namespace Prisma {
     sentMessages?: MessageCreateNestedManyWithoutFromUserInput
     receivedMessages?: MessageCreateNestedManyWithoutToUserInput
     recordedTraceEvents?: TraceEventCreateNestedManyWithoutRecordedByUserInput
+    preOrders?: PreOrderCreateNestedManyWithoutBuyerInput
   }
 
   export type UserUncheckedCreateWithoutBuyerProfileInput = {
@@ -23280,6 +25371,7 @@ export namespace Prisma {
     sentMessages?: MessageUncheckedCreateNestedManyWithoutFromUserInput
     receivedMessages?: MessageUncheckedCreateNestedManyWithoutToUserInput
     recordedTraceEvents?: TraceEventUncheckedCreateNestedManyWithoutRecordedByUserInput
+    preOrders?: PreOrderUncheckedCreateNestedManyWithoutBuyerInput
   }
 
   export type UserCreateOrConnectWithoutBuyerProfileInput = {
@@ -23321,6 +25413,7 @@ export namespace Prisma {
     sentMessages?: MessageUpdateManyWithoutFromUserNestedInput
     receivedMessages?: MessageUpdateManyWithoutToUserNestedInput
     recordedTraceEvents?: TraceEventUpdateManyWithoutRecordedByUserNestedInput
+    preOrders?: PreOrderUpdateManyWithoutBuyerNestedInput
   }
 
   export type UserUncheckedUpdateWithoutBuyerProfileInput = {
@@ -23346,6 +25439,7 @@ export namespace Prisma {
     sentMessages?: MessageUncheckedUpdateManyWithoutFromUserNestedInput
     receivedMessages?: MessageUncheckedUpdateManyWithoutToUserNestedInput
     recordedTraceEvents?: TraceEventUncheckedUpdateManyWithoutRecordedByUserNestedInput
+    preOrders?: PreOrderUncheckedUpdateManyWithoutBuyerNestedInput
   }
 
   export type UserCreateWithoutTransportProfileInput = {
@@ -23371,6 +25465,7 @@ export namespace Prisma {
     sentMessages?: MessageCreateNestedManyWithoutFromUserInput
     receivedMessages?: MessageCreateNestedManyWithoutToUserInput
     recordedTraceEvents?: TraceEventCreateNestedManyWithoutRecordedByUserInput
+    preOrders?: PreOrderCreateNestedManyWithoutBuyerInput
   }
 
   export type UserUncheckedCreateWithoutTransportProfileInput = {
@@ -23396,6 +25491,7 @@ export namespace Prisma {
     sentMessages?: MessageUncheckedCreateNestedManyWithoutFromUserInput
     receivedMessages?: MessageUncheckedCreateNestedManyWithoutToUserInput
     recordedTraceEvents?: TraceEventUncheckedCreateNestedManyWithoutRecordedByUserInput
+    preOrders?: PreOrderUncheckedCreateNestedManyWithoutBuyerInput
   }
 
   export type UserCreateOrConnectWithoutTransportProfileInput = {
@@ -23437,6 +25533,7 @@ export namespace Prisma {
     sentMessages?: MessageUpdateManyWithoutFromUserNestedInput
     receivedMessages?: MessageUpdateManyWithoutToUserNestedInput
     recordedTraceEvents?: TraceEventUpdateManyWithoutRecordedByUserNestedInput
+    preOrders?: PreOrderUpdateManyWithoutBuyerNestedInput
   }
 
   export type UserUncheckedUpdateWithoutTransportProfileInput = {
@@ -23462,6 +25559,7 @@ export namespace Prisma {
     sentMessages?: MessageUncheckedUpdateManyWithoutFromUserNestedInput
     receivedMessages?: MessageUncheckedUpdateManyWithoutToUserNestedInput
     recordedTraceEvents?: TraceEventUncheckedUpdateManyWithoutRecordedByUserNestedInput
+    preOrders?: PreOrderUncheckedUpdateManyWithoutBuyerNestedInput
   }
 
   export type UserCreateWithoutListingsInput = {
@@ -23487,6 +25585,7 @@ export namespace Prisma {
     sentMessages?: MessageCreateNestedManyWithoutFromUserInput
     receivedMessages?: MessageCreateNestedManyWithoutToUserInput
     recordedTraceEvents?: TraceEventCreateNestedManyWithoutRecordedByUserInput
+    preOrders?: PreOrderCreateNestedManyWithoutBuyerInput
   }
 
   export type UserUncheckedCreateWithoutListingsInput = {
@@ -23512,6 +25611,7 @@ export namespace Prisma {
     sentMessages?: MessageUncheckedCreateNestedManyWithoutFromUserInput
     receivedMessages?: MessageUncheckedCreateNestedManyWithoutToUserInput
     recordedTraceEvents?: TraceEventUncheckedCreateNestedManyWithoutRecordedByUserInput
+    preOrders?: PreOrderUncheckedCreateNestedManyWithoutBuyerInput
   }
 
   export type UserCreateOrConnectWithoutListingsInput = {
@@ -23526,12 +25626,14 @@ export namespace Prisma {
     status?: $Enums.OrderStatus
     paymentStatus?: $Enums.PaymentStatus
     paystackReference?: string | null
+    depositCredit?: number
     createdAt?: Date | string
     updatedAt?: Date | string
     buyer: UserCreateNestedOneWithoutOrdersInput
     deliveryRequest?: DeliveryRequestCreateNestedOneWithoutOrderInput
     reviews?: ReviewCreateNestedManyWithoutOrderInput
     messages?: MessageCreateNestedManyWithoutOrderInput
+    preOrder?: PreOrderCreateNestedOneWithoutFulfilledOrderInput
   }
 
   export type OrderUncheckedCreateWithoutListingInput = {
@@ -23542,11 +25644,13 @@ export namespace Prisma {
     status?: $Enums.OrderStatus
     paymentStatus?: $Enums.PaymentStatus
     paystackReference?: string | null
+    depositCredit?: number
     createdAt?: Date | string
     updatedAt?: Date | string
     deliveryRequest?: DeliveryRequestUncheckedCreateNestedOneWithoutOrderInput
     reviews?: ReviewUncheckedCreateNestedManyWithoutOrderInput
     messages?: MessageUncheckedCreateNestedManyWithoutOrderInput
+    preOrder?: PreOrderUncheckedCreateNestedOneWithoutFulfilledOrderInput
   }
 
   export type OrderCreateOrConnectWithoutListingInput = {
@@ -23616,6 +25720,54 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type PreOrderCreateWithoutMatchedListingInput = {
+    id?: string
+    cropType: $Enums.CropType
+    quantityKg: number
+    maxPricePerKg: number
+    preferredRegion?: string | null
+    harvestWindowStart: Date | string
+    harvestWindowEnd: Date | string
+    notes?: string | null
+    depositAmount: number
+    depositPaid?: boolean
+    paystackReference?: string | null
+    status?: $Enums.PreOrderStatus
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    buyer: UserCreateNestedOneWithoutPreOrdersInput
+    fulfilledOrder?: OrderCreateNestedOneWithoutPreOrderInput
+  }
+
+  export type PreOrderUncheckedCreateWithoutMatchedListingInput = {
+    id?: string
+    buyerId: string
+    cropType: $Enums.CropType
+    quantityKg: number
+    maxPricePerKg: number
+    preferredRegion?: string | null
+    harvestWindowStart: Date | string
+    harvestWindowEnd: Date | string
+    notes?: string | null
+    depositAmount: number
+    depositPaid?: boolean
+    paystackReference?: string | null
+    status?: $Enums.PreOrderStatus
+    fulfilledOrderId?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type PreOrderCreateOrConnectWithoutMatchedListingInput = {
+    where: PreOrderWhereUniqueInput
+    create: XOR<PreOrderCreateWithoutMatchedListingInput, PreOrderUncheckedCreateWithoutMatchedListingInput>
+  }
+
+  export type PreOrderCreateManyMatchedListingInputEnvelope = {
+    data: PreOrderCreateManyMatchedListingInput | PreOrderCreateManyMatchedListingInput[]
+    skipDuplicates?: boolean
+  }
+
   export type UserUpsertWithoutListingsInput = {
     update: XOR<UserUpdateWithoutListingsInput, UserUncheckedUpdateWithoutListingsInput>
     create: XOR<UserCreateWithoutListingsInput, UserUncheckedCreateWithoutListingsInput>
@@ -23650,6 +25802,7 @@ export namespace Prisma {
     sentMessages?: MessageUpdateManyWithoutFromUserNestedInput
     receivedMessages?: MessageUpdateManyWithoutToUserNestedInput
     recordedTraceEvents?: TraceEventUpdateManyWithoutRecordedByUserNestedInput
+    preOrders?: PreOrderUpdateManyWithoutBuyerNestedInput
   }
 
   export type UserUncheckedUpdateWithoutListingsInput = {
@@ -23675,6 +25828,7 @@ export namespace Prisma {
     sentMessages?: MessageUncheckedUpdateManyWithoutFromUserNestedInput
     receivedMessages?: MessageUncheckedUpdateManyWithoutToUserNestedInput
     recordedTraceEvents?: TraceEventUncheckedUpdateManyWithoutRecordedByUserNestedInput
+    preOrders?: PreOrderUncheckedUpdateManyWithoutBuyerNestedInput
   }
 
   export type OrderUpsertWithWhereUniqueWithoutListingInput = {
@@ -23738,6 +25892,22 @@ export namespace Prisma {
     data: XOR<TraceEventUpdateManyMutationInput, TraceEventUncheckedUpdateManyWithoutListingInput>
   }
 
+  export type PreOrderUpsertWithWhereUniqueWithoutMatchedListingInput = {
+    where: PreOrderWhereUniqueInput
+    update: XOR<PreOrderUpdateWithoutMatchedListingInput, PreOrderUncheckedUpdateWithoutMatchedListingInput>
+    create: XOR<PreOrderCreateWithoutMatchedListingInput, PreOrderUncheckedCreateWithoutMatchedListingInput>
+  }
+
+  export type PreOrderUpdateWithWhereUniqueWithoutMatchedListingInput = {
+    where: PreOrderWhereUniqueInput
+    data: XOR<PreOrderUpdateWithoutMatchedListingInput, PreOrderUncheckedUpdateWithoutMatchedListingInput>
+  }
+
+  export type PreOrderUpdateManyWithWhereWithoutMatchedListingInput = {
+    where: PreOrderScalarWhereInput
+    data: XOR<PreOrderUpdateManyMutationInput, PreOrderUncheckedUpdateManyWithoutMatchedListingInput>
+  }
+
   export type ProduceListingCreateWithoutTraceabilityInput = {
     id?: string
     cropType: $Enums.CropType
@@ -23758,6 +25928,7 @@ export namespace Prisma {
     farmer: UserCreateNestedOneWithoutListingsInput
     orders?: OrderCreateNestedManyWithoutListingInput
     traceEvents?: TraceEventCreateNestedManyWithoutListingInput
+    preOrders?: PreOrderCreateNestedManyWithoutMatchedListingInput
   }
 
   export type ProduceListingUncheckedCreateWithoutTraceabilityInput = {
@@ -23780,6 +25951,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     orders?: OrderUncheckedCreateNestedManyWithoutListingInput
     traceEvents?: TraceEventUncheckedCreateNestedManyWithoutListingInput
+    preOrders?: PreOrderUncheckedCreateNestedManyWithoutMatchedListingInput
   }
 
   export type ProduceListingCreateOrConnectWithoutTraceabilityInput = {
@@ -23818,6 +25990,7 @@ export namespace Prisma {
     farmer?: UserUpdateOneRequiredWithoutListingsNestedInput
     orders?: OrderUpdateManyWithoutListingNestedInput
     traceEvents?: TraceEventUpdateManyWithoutListingNestedInput
+    preOrders?: PreOrderUpdateManyWithoutMatchedListingNestedInput
   }
 
   export type ProduceListingUncheckedUpdateWithoutTraceabilityInput = {
@@ -23840,6 +26013,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     orders?: OrderUncheckedUpdateManyWithoutListingNestedInput
     traceEvents?: TraceEventUncheckedUpdateManyWithoutListingNestedInput
+    preOrders?: PreOrderUncheckedUpdateManyWithoutMatchedListingNestedInput
   }
 
   export type ProduceListingCreateWithoutTraceEventsInput = {
@@ -23862,6 +26036,7 @@ export namespace Prisma {
     farmer: UserCreateNestedOneWithoutListingsInput
     orders?: OrderCreateNestedManyWithoutListingInput
     traceability?: TraceabilityRecordCreateNestedOneWithoutListingInput
+    preOrders?: PreOrderCreateNestedManyWithoutMatchedListingInput
   }
 
   export type ProduceListingUncheckedCreateWithoutTraceEventsInput = {
@@ -23884,6 +26059,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     orders?: OrderUncheckedCreateNestedManyWithoutListingInput
     traceability?: TraceabilityRecordUncheckedCreateNestedOneWithoutListingInput
+    preOrders?: PreOrderUncheckedCreateNestedManyWithoutMatchedListingInput
   }
 
   export type ProduceListingCreateOrConnectWithoutTraceEventsInput = {
@@ -23914,6 +26090,7 @@ export namespace Prisma {
     notifications?: NotificationCreateNestedManyWithoutUserInput
     sentMessages?: MessageCreateNestedManyWithoutFromUserInput
     receivedMessages?: MessageCreateNestedManyWithoutToUserInput
+    preOrders?: PreOrderCreateNestedManyWithoutBuyerInput
   }
 
   export type UserUncheckedCreateWithoutRecordedTraceEventsInput = {
@@ -23939,6 +26116,7 @@ export namespace Prisma {
     notifications?: NotificationUncheckedCreateNestedManyWithoutUserInput
     sentMessages?: MessageUncheckedCreateNestedManyWithoutFromUserInput
     receivedMessages?: MessageUncheckedCreateNestedManyWithoutToUserInput
+    preOrders?: PreOrderUncheckedCreateNestedManyWithoutBuyerInput
   }
 
   export type UserCreateOrConnectWithoutRecordedTraceEventsInput = {
@@ -23977,6 +26155,7 @@ export namespace Prisma {
     farmer?: UserUpdateOneRequiredWithoutListingsNestedInput
     orders?: OrderUpdateManyWithoutListingNestedInput
     traceability?: TraceabilityRecordUpdateOneWithoutListingNestedInput
+    preOrders?: PreOrderUpdateManyWithoutMatchedListingNestedInput
   }
 
   export type ProduceListingUncheckedUpdateWithoutTraceEventsInput = {
@@ -23999,6 +26178,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     orders?: OrderUncheckedUpdateManyWithoutListingNestedInput
     traceability?: TraceabilityRecordUncheckedUpdateOneWithoutListingNestedInput
+    preOrders?: PreOrderUncheckedUpdateManyWithoutMatchedListingNestedInput
   }
 
   export type UserUpsertWithoutRecordedTraceEventsInput = {
@@ -24035,6 +26215,7 @@ export namespace Prisma {
     notifications?: NotificationUpdateManyWithoutUserNestedInput
     sentMessages?: MessageUpdateManyWithoutFromUserNestedInput
     receivedMessages?: MessageUpdateManyWithoutToUserNestedInput
+    preOrders?: PreOrderUpdateManyWithoutBuyerNestedInput
   }
 
   export type UserUncheckedUpdateWithoutRecordedTraceEventsInput = {
@@ -24060,6 +26241,7 @@ export namespace Prisma {
     notifications?: NotificationUncheckedUpdateManyWithoutUserNestedInput
     sentMessages?: MessageUncheckedUpdateManyWithoutFromUserNestedInput
     receivedMessages?: MessageUncheckedUpdateManyWithoutToUserNestedInput
+    preOrders?: PreOrderUncheckedUpdateManyWithoutBuyerNestedInput
   }
 
   export type UserCreateWithoutOrdersInput = {
@@ -24085,6 +26267,7 @@ export namespace Prisma {
     sentMessages?: MessageCreateNestedManyWithoutFromUserInput
     receivedMessages?: MessageCreateNestedManyWithoutToUserInput
     recordedTraceEvents?: TraceEventCreateNestedManyWithoutRecordedByUserInput
+    preOrders?: PreOrderCreateNestedManyWithoutBuyerInput
   }
 
   export type UserUncheckedCreateWithoutOrdersInput = {
@@ -24110,6 +26293,7 @@ export namespace Prisma {
     sentMessages?: MessageUncheckedCreateNestedManyWithoutFromUserInput
     receivedMessages?: MessageUncheckedCreateNestedManyWithoutToUserInput
     recordedTraceEvents?: TraceEventUncheckedCreateNestedManyWithoutRecordedByUserInput
+    preOrders?: PreOrderUncheckedCreateNestedManyWithoutBuyerInput
   }
 
   export type UserCreateOrConnectWithoutOrdersInput = {
@@ -24137,6 +26321,7 @@ export namespace Prisma {
     farmer: UserCreateNestedOneWithoutListingsInput
     traceability?: TraceabilityRecordCreateNestedOneWithoutListingInput
     traceEvents?: TraceEventCreateNestedManyWithoutListingInput
+    preOrders?: PreOrderCreateNestedManyWithoutMatchedListingInput
   }
 
   export type ProduceListingUncheckedCreateWithoutOrdersInput = {
@@ -24159,6 +26344,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     traceability?: TraceabilityRecordUncheckedCreateNestedOneWithoutListingInput
     traceEvents?: TraceEventUncheckedCreateNestedManyWithoutListingInput
+    preOrders?: PreOrderUncheckedCreateNestedManyWithoutMatchedListingInput
   }
 
   export type ProduceListingCreateOrConnectWithoutOrdersInput = {
@@ -24265,6 +26451,49 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type PreOrderCreateWithoutFulfilledOrderInput = {
+    id?: string
+    cropType: $Enums.CropType
+    quantityKg: number
+    maxPricePerKg: number
+    preferredRegion?: string | null
+    harvestWindowStart: Date | string
+    harvestWindowEnd: Date | string
+    notes?: string | null
+    depositAmount: number
+    depositPaid?: boolean
+    paystackReference?: string | null
+    status?: $Enums.PreOrderStatus
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    buyer: UserCreateNestedOneWithoutPreOrdersInput
+    matchedListing?: ProduceListingCreateNestedOneWithoutPreOrdersInput
+  }
+
+  export type PreOrderUncheckedCreateWithoutFulfilledOrderInput = {
+    id?: string
+    buyerId: string
+    cropType: $Enums.CropType
+    quantityKg: number
+    maxPricePerKg: number
+    preferredRegion?: string | null
+    harvestWindowStart: Date | string
+    harvestWindowEnd: Date | string
+    notes?: string | null
+    depositAmount: number
+    depositPaid?: boolean
+    paystackReference?: string | null
+    status?: $Enums.PreOrderStatus
+    matchedListingId?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type PreOrderCreateOrConnectWithoutFulfilledOrderInput = {
+    where: PreOrderWhereUniqueInput
+    create: XOR<PreOrderCreateWithoutFulfilledOrderInput, PreOrderUncheckedCreateWithoutFulfilledOrderInput>
+  }
+
   export type UserUpsertWithoutOrdersInput = {
     update: XOR<UserUpdateWithoutOrdersInput, UserUncheckedUpdateWithoutOrdersInput>
     create: XOR<UserCreateWithoutOrdersInput, UserUncheckedCreateWithoutOrdersInput>
@@ -24299,6 +26528,7 @@ export namespace Prisma {
     sentMessages?: MessageUpdateManyWithoutFromUserNestedInput
     receivedMessages?: MessageUpdateManyWithoutToUserNestedInput
     recordedTraceEvents?: TraceEventUpdateManyWithoutRecordedByUserNestedInput
+    preOrders?: PreOrderUpdateManyWithoutBuyerNestedInput
   }
 
   export type UserUncheckedUpdateWithoutOrdersInput = {
@@ -24324,6 +26554,7 @@ export namespace Prisma {
     sentMessages?: MessageUncheckedUpdateManyWithoutFromUserNestedInput
     receivedMessages?: MessageUncheckedUpdateManyWithoutToUserNestedInput
     recordedTraceEvents?: TraceEventUncheckedUpdateManyWithoutRecordedByUserNestedInput
+    preOrders?: PreOrderUncheckedUpdateManyWithoutBuyerNestedInput
   }
 
   export type ProduceListingUpsertWithoutOrdersInput = {
@@ -24357,6 +26588,7 @@ export namespace Prisma {
     farmer?: UserUpdateOneRequiredWithoutListingsNestedInput
     traceability?: TraceabilityRecordUpdateOneWithoutListingNestedInput
     traceEvents?: TraceEventUpdateManyWithoutListingNestedInput
+    preOrders?: PreOrderUpdateManyWithoutMatchedListingNestedInput
   }
 
   export type ProduceListingUncheckedUpdateWithoutOrdersInput = {
@@ -24379,6 +26611,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     traceability?: TraceabilityRecordUncheckedUpdateOneWithoutListingNestedInput
     traceEvents?: TraceEventUncheckedUpdateManyWithoutListingNestedInput
+    preOrders?: PreOrderUncheckedUpdateManyWithoutMatchedListingNestedInput
   }
 
   export type DeliveryRequestUpsertWithoutOrderInput = {
@@ -24458,6 +26691,55 @@ export namespace Prisma {
     data: XOR<MessageUpdateManyMutationInput, MessageUncheckedUpdateManyWithoutOrderInput>
   }
 
+  export type PreOrderUpsertWithoutFulfilledOrderInput = {
+    update: XOR<PreOrderUpdateWithoutFulfilledOrderInput, PreOrderUncheckedUpdateWithoutFulfilledOrderInput>
+    create: XOR<PreOrderCreateWithoutFulfilledOrderInput, PreOrderUncheckedCreateWithoutFulfilledOrderInput>
+    where?: PreOrderWhereInput
+  }
+
+  export type PreOrderUpdateToOneWithWhereWithoutFulfilledOrderInput = {
+    where?: PreOrderWhereInput
+    data: XOR<PreOrderUpdateWithoutFulfilledOrderInput, PreOrderUncheckedUpdateWithoutFulfilledOrderInput>
+  }
+
+  export type PreOrderUpdateWithoutFulfilledOrderInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    cropType?: EnumCropTypeFieldUpdateOperationsInput | $Enums.CropType
+    quantityKg?: FloatFieldUpdateOperationsInput | number
+    maxPricePerKg?: FloatFieldUpdateOperationsInput | number
+    preferredRegion?: NullableStringFieldUpdateOperationsInput | string | null
+    harvestWindowStart?: DateTimeFieldUpdateOperationsInput | Date | string
+    harvestWindowEnd?: DateTimeFieldUpdateOperationsInput | Date | string
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    depositAmount?: FloatFieldUpdateOperationsInput | number
+    depositPaid?: BoolFieldUpdateOperationsInput | boolean
+    paystackReference?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumPreOrderStatusFieldUpdateOperationsInput | $Enums.PreOrderStatus
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    buyer?: UserUpdateOneRequiredWithoutPreOrdersNestedInput
+    matchedListing?: ProduceListingUpdateOneWithoutPreOrdersNestedInput
+  }
+
+  export type PreOrderUncheckedUpdateWithoutFulfilledOrderInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    buyerId?: StringFieldUpdateOperationsInput | string
+    cropType?: EnumCropTypeFieldUpdateOperationsInput | $Enums.CropType
+    quantityKg?: FloatFieldUpdateOperationsInput | number
+    maxPricePerKg?: FloatFieldUpdateOperationsInput | number
+    preferredRegion?: NullableStringFieldUpdateOperationsInput | string | null
+    harvestWindowStart?: DateTimeFieldUpdateOperationsInput | Date | string
+    harvestWindowEnd?: DateTimeFieldUpdateOperationsInput | Date | string
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    depositAmount?: FloatFieldUpdateOperationsInput | number
+    depositPaid?: BoolFieldUpdateOperationsInput | boolean
+    paystackReference?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumPreOrderStatusFieldUpdateOperationsInput | $Enums.PreOrderStatus
+    matchedListingId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type OrderCreateWithoutDeliveryRequestInput = {
     id?: string
     quantityKg: number
@@ -24465,12 +26747,14 @@ export namespace Prisma {
     status?: $Enums.OrderStatus
     paymentStatus?: $Enums.PaymentStatus
     paystackReference?: string | null
+    depositCredit?: number
     createdAt?: Date | string
     updatedAt?: Date | string
     buyer: UserCreateNestedOneWithoutOrdersInput
     listing: ProduceListingCreateNestedOneWithoutOrdersInput
     reviews?: ReviewCreateNestedManyWithoutOrderInput
     messages?: MessageCreateNestedManyWithoutOrderInput
+    preOrder?: PreOrderCreateNestedOneWithoutFulfilledOrderInput
   }
 
   export type OrderUncheckedCreateWithoutDeliveryRequestInput = {
@@ -24482,10 +26766,12 @@ export namespace Prisma {
     status?: $Enums.OrderStatus
     paymentStatus?: $Enums.PaymentStatus
     paystackReference?: string | null
+    depositCredit?: number
     createdAt?: Date | string
     updatedAt?: Date | string
     reviews?: ReviewUncheckedCreateNestedManyWithoutOrderInput
     messages?: MessageUncheckedCreateNestedManyWithoutOrderInput
+    preOrder?: PreOrderUncheckedCreateNestedOneWithoutFulfilledOrderInput
   }
 
   export type OrderCreateOrConnectWithoutDeliveryRequestInput = {
@@ -24516,6 +26802,7 @@ export namespace Prisma {
     sentMessages?: MessageCreateNestedManyWithoutFromUserInput
     receivedMessages?: MessageCreateNestedManyWithoutToUserInput
     recordedTraceEvents?: TraceEventCreateNestedManyWithoutRecordedByUserInput
+    preOrders?: PreOrderCreateNestedManyWithoutBuyerInput
   }
 
   export type UserUncheckedCreateWithoutDeliveriesInput = {
@@ -24541,6 +26828,7 @@ export namespace Prisma {
     sentMessages?: MessageUncheckedCreateNestedManyWithoutFromUserInput
     receivedMessages?: MessageUncheckedCreateNestedManyWithoutToUserInput
     recordedTraceEvents?: TraceEventUncheckedCreateNestedManyWithoutRecordedByUserInput
+    preOrders?: PreOrderUncheckedCreateNestedManyWithoutBuyerInput
   }
 
   export type UserCreateOrConnectWithoutDeliveriesInput = {
@@ -24566,12 +26854,14 @@ export namespace Prisma {
     status?: EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
     paymentStatus?: EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
     paystackReference?: NullableStringFieldUpdateOperationsInput | string | null
+    depositCredit?: FloatFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     buyer?: UserUpdateOneRequiredWithoutOrdersNestedInput
     listing?: ProduceListingUpdateOneRequiredWithoutOrdersNestedInput
     reviews?: ReviewUpdateManyWithoutOrderNestedInput
     messages?: MessageUpdateManyWithoutOrderNestedInput
+    preOrder?: PreOrderUpdateOneWithoutFulfilledOrderNestedInput
   }
 
   export type OrderUncheckedUpdateWithoutDeliveryRequestInput = {
@@ -24583,10 +26873,12 @@ export namespace Prisma {
     status?: EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
     paymentStatus?: EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
     paystackReference?: NullableStringFieldUpdateOperationsInput | string | null
+    depositCredit?: FloatFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     reviews?: ReviewUncheckedUpdateManyWithoutOrderNestedInput
     messages?: MessageUncheckedUpdateManyWithoutOrderNestedInput
+    preOrder?: PreOrderUncheckedUpdateOneWithoutFulfilledOrderNestedInput
   }
 
   export type UserUpsertWithoutDeliveriesInput = {
@@ -24623,6 +26915,7 @@ export namespace Prisma {
     sentMessages?: MessageUpdateManyWithoutFromUserNestedInput
     receivedMessages?: MessageUpdateManyWithoutToUserNestedInput
     recordedTraceEvents?: TraceEventUpdateManyWithoutRecordedByUserNestedInput
+    preOrders?: PreOrderUpdateManyWithoutBuyerNestedInput
   }
 
   export type UserUncheckedUpdateWithoutDeliveriesInput = {
@@ -24648,6 +26941,7 @@ export namespace Prisma {
     sentMessages?: MessageUncheckedUpdateManyWithoutFromUserNestedInput
     receivedMessages?: MessageUncheckedUpdateManyWithoutToUserNestedInput
     recordedTraceEvents?: TraceEventUncheckedUpdateManyWithoutRecordedByUserNestedInput
+    preOrders?: PreOrderUncheckedUpdateManyWithoutBuyerNestedInput
   }
 
   export type UserCreateWithoutSentReviewsInput = {
@@ -24673,6 +26967,7 @@ export namespace Prisma {
     sentMessages?: MessageCreateNestedManyWithoutFromUserInput
     receivedMessages?: MessageCreateNestedManyWithoutToUserInput
     recordedTraceEvents?: TraceEventCreateNestedManyWithoutRecordedByUserInput
+    preOrders?: PreOrderCreateNestedManyWithoutBuyerInput
   }
 
   export type UserUncheckedCreateWithoutSentReviewsInput = {
@@ -24698,6 +26993,7 @@ export namespace Prisma {
     sentMessages?: MessageUncheckedCreateNestedManyWithoutFromUserInput
     receivedMessages?: MessageUncheckedCreateNestedManyWithoutToUserInput
     recordedTraceEvents?: TraceEventUncheckedCreateNestedManyWithoutRecordedByUserInput
+    preOrders?: PreOrderUncheckedCreateNestedManyWithoutBuyerInput
   }
 
   export type UserCreateOrConnectWithoutSentReviewsInput = {
@@ -24728,6 +27024,7 @@ export namespace Prisma {
     sentMessages?: MessageCreateNestedManyWithoutFromUserInput
     receivedMessages?: MessageCreateNestedManyWithoutToUserInput
     recordedTraceEvents?: TraceEventCreateNestedManyWithoutRecordedByUserInput
+    preOrders?: PreOrderCreateNestedManyWithoutBuyerInput
   }
 
   export type UserUncheckedCreateWithoutReceivedReviewsInput = {
@@ -24753,6 +27050,7 @@ export namespace Prisma {
     sentMessages?: MessageUncheckedCreateNestedManyWithoutFromUserInput
     receivedMessages?: MessageUncheckedCreateNestedManyWithoutToUserInput
     recordedTraceEvents?: TraceEventUncheckedCreateNestedManyWithoutRecordedByUserInput
+    preOrders?: PreOrderUncheckedCreateNestedManyWithoutBuyerInput
   }
 
   export type UserCreateOrConnectWithoutReceivedReviewsInput = {
@@ -24767,12 +27065,14 @@ export namespace Prisma {
     status?: $Enums.OrderStatus
     paymentStatus?: $Enums.PaymentStatus
     paystackReference?: string | null
+    depositCredit?: number
     createdAt?: Date | string
     updatedAt?: Date | string
     buyer: UserCreateNestedOneWithoutOrdersInput
     listing: ProduceListingCreateNestedOneWithoutOrdersInput
     deliveryRequest?: DeliveryRequestCreateNestedOneWithoutOrderInput
     messages?: MessageCreateNestedManyWithoutOrderInput
+    preOrder?: PreOrderCreateNestedOneWithoutFulfilledOrderInput
   }
 
   export type OrderUncheckedCreateWithoutReviewsInput = {
@@ -24784,10 +27084,12 @@ export namespace Prisma {
     status?: $Enums.OrderStatus
     paymentStatus?: $Enums.PaymentStatus
     paystackReference?: string | null
+    depositCredit?: number
     createdAt?: Date | string
     updatedAt?: Date | string
     deliveryRequest?: DeliveryRequestUncheckedCreateNestedOneWithoutOrderInput
     messages?: MessageUncheckedCreateNestedManyWithoutOrderInput
+    preOrder?: PreOrderUncheckedCreateNestedOneWithoutFulfilledOrderInput
   }
 
   export type OrderCreateOrConnectWithoutReviewsInput = {
@@ -24829,6 +27131,7 @@ export namespace Prisma {
     sentMessages?: MessageUpdateManyWithoutFromUserNestedInput
     receivedMessages?: MessageUpdateManyWithoutToUserNestedInput
     recordedTraceEvents?: TraceEventUpdateManyWithoutRecordedByUserNestedInput
+    preOrders?: PreOrderUpdateManyWithoutBuyerNestedInput
   }
 
   export type UserUncheckedUpdateWithoutSentReviewsInput = {
@@ -24854,6 +27157,7 @@ export namespace Prisma {
     sentMessages?: MessageUncheckedUpdateManyWithoutFromUserNestedInput
     receivedMessages?: MessageUncheckedUpdateManyWithoutToUserNestedInput
     recordedTraceEvents?: TraceEventUncheckedUpdateManyWithoutRecordedByUserNestedInput
+    preOrders?: PreOrderUncheckedUpdateManyWithoutBuyerNestedInput
   }
 
   export type UserUpsertWithoutReceivedReviewsInput = {
@@ -24890,6 +27194,7 @@ export namespace Prisma {
     sentMessages?: MessageUpdateManyWithoutFromUserNestedInput
     receivedMessages?: MessageUpdateManyWithoutToUserNestedInput
     recordedTraceEvents?: TraceEventUpdateManyWithoutRecordedByUserNestedInput
+    preOrders?: PreOrderUpdateManyWithoutBuyerNestedInput
   }
 
   export type UserUncheckedUpdateWithoutReceivedReviewsInput = {
@@ -24915,6 +27220,7 @@ export namespace Prisma {
     sentMessages?: MessageUncheckedUpdateManyWithoutFromUserNestedInput
     receivedMessages?: MessageUncheckedUpdateManyWithoutToUserNestedInput
     recordedTraceEvents?: TraceEventUncheckedUpdateManyWithoutRecordedByUserNestedInput
+    preOrders?: PreOrderUncheckedUpdateManyWithoutBuyerNestedInput
   }
 
   export type OrderUpsertWithoutReviewsInput = {
@@ -24935,12 +27241,14 @@ export namespace Prisma {
     status?: EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
     paymentStatus?: EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
     paystackReference?: NullableStringFieldUpdateOperationsInput | string | null
+    depositCredit?: FloatFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     buyer?: UserUpdateOneRequiredWithoutOrdersNestedInput
     listing?: ProduceListingUpdateOneRequiredWithoutOrdersNestedInput
     deliveryRequest?: DeliveryRequestUpdateOneWithoutOrderNestedInput
     messages?: MessageUpdateManyWithoutOrderNestedInput
+    preOrder?: PreOrderUpdateOneWithoutFulfilledOrderNestedInput
   }
 
   export type OrderUncheckedUpdateWithoutReviewsInput = {
@@ -24952,10 +27260,12 @@ export namespace Prisma {
     status?: EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
     paymentStatus?: EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
     paystackReference?: NullableStringFieldUpdateOperationsInput | string | null
+    depositCredit?: FloatFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     deliveryRequest?: DeliveryRequestUncheckedUpdateOneWithoutOrderNestedInput
     messages?: MessageUncheckedUpdateManyWithoutOrderNestedInput
+    preOrder?: PreOrderUncheckedUpdateOneWithoutFulfilledOrderNestedInput
   }
 
   export type UserCreateWithoutNotificationsInput = {
@@ -24981,6 +27291,7 @@ export namespace Prisma {
     sentMessages?: MessageCreateNestedManyWithoutFromUserInput
     receivedMessages?: MessageCreateNestedManyWithoutToUserInput
     recordedTraceEvents?: TraceEventCreateNestedManyWithoutRecordedByUserInput
+    preOrders?: PreOrderCreateNestedManyWithoutBuyerInput
   }
 
   export type UserUncheckedCreateWithoutNotificationsInput = {
@@ -25006,6 +27317,7 @@ export namespace Prisma {
     sentMessages?: MessageUncheckedCreateNestedManyWithoutFromUserInput
     receivedMessages?: MessageUncheckedCreateNestedManyWithoutToUserInput
     recordedTraceEvents?: TraceEventUncheckedCreateNestedManyWithoutRecordedByUserInput
+    preOrders?: PreOrderUncheckedCreateNestedManyWithoutBuyerInput
   }
 
   export type UserCreateOrConnectWithoutNotificationsInput = {
@@ -25047,6 +27359,7 @@ export namespace Prisma {
     sentMessages?: MessageUpdateManyWithoutFromUserNestedInput
     receivedMessages?: MessageUpdateManyWithoutToUserNestedInput
     recordedTraceEvents?: TraceEventUpdateManyWithoutRecordedByUserNestedInput
+    preOrders?: PreOrderUpdateManyWithoutBuyerNestedInput
   }
 
   export type UserUncheckedUpdateWithoutNotificationsInput = {
@@ -25072,6 +27385,7 @@ export namespace Prisma {
     sentMessages?: MessageUncheckedUpdateManyWithoutFromUserNestedInput
     receivedMessages?: MessageUncheckedUpdateManyWithoutToUserNestedInput
     recordedTraceEvents?: TraceEventUncheckedUpdateManyWithoutRecordedByUserNestedInput
+    preOrders?: PreOrderUncheckedUpdateManyWithoutBuyerNestedInput
   }
 
   export type UserCreateWithoutSentMessagesInput = {
@@ -25097,6 +27411,7 @@ export namespace Prisma {
     notifications?: NotificationCreateNestedManyWithoutUserInput
     receivedMessages?: MessageCreateNestedManyWithoutToUserInput
     recordedTraceEvents?: TraceEventCreateNestedManyWithoutRecordedByUserInput
+    preOrders?: PreOrderCreateNestedManyWithoutBuyerInput
   }
 
   export type UserUncheckedCreateWithoutSentMessagesInput = {
@@ -25122,6 +27437,7 @@ export namespace Prisma {
     notifications?: NotificationUncheckedCreateNestedManyWithoutUserInput
     receivedMessages?: MessageUncheckedCreateNestedManyWithoutToUserInput
     recordedTraceEvents?: TraceEventUncheckedCreateNestedManyWithoutRecordedByUserInput
+    preOrders?: PreOrderUncheckedCreateNestedManyWithoutBuyerInput
   }
 
   export type UserCreateOrConnectWithoutSentMessagesInput = {
@@ -25152,6 +27468,7 @@ export namespace Prisma {
     notifications?: NotificationCreateNestedManyWithoutUserInput
     sentMessages?: MessageCreateNestedManyWithoutFromUserInput
     recordedTraceEvents?: TraceEventCreateNestedManyWithoutRecordedByUserInput
+    preOrders?: PreOrderCreateNestedManyWithoutBuyerInput
   }
 
   export type UserUncheckedCreateWithoutReceivedMessagesInput = {
@@ -25177,6 +27494,7 @@ export namespace Prisma {
     notifications?: NotificationUncheckedCreateNestedManyWithoutUserInput
     sentMessages?: MessageUncheckedCreateNestedManyWithoutFromUserInput
     recordedTraceEvents?: TraceEventUncheckedCreateNestedManyWithoutRecordedByUserInput
+    preOrders?: PreOrderUncheckedCreateNestedManyWithoutBuyerInput
   }
 
   export type UserCreateOrConnectWithoutReceivedMessagesInput = {
@@ -25191,12 +27509,14 @@ export namespace Prisma {
     status?: $Enums.OrderStatus
     paymentStatus?: $Enums.PaymentStatus
     paystackReference?: string | null
+    depositCredit?: number
     createdAt?: Date | string
     updatedAt?: Date | string
     buyer: UserCreateNestedOneWithoutOrdersInput
     listing: ProduceListingCreateNestedOneWithoutOrdersInput
     deliveryRequest?: DeliveryRequestCreateNestedOneWithoutOrderInput
     reviews?: ReviewCreateNestedManyWithoutOrderInput
+    preOrder?: PreOrderCreateNestedOneWithoutFulfilledOrderInput
   }
 
   export type OrderUncheckedCreateWithoutMessagesInput = {
@@ -25208,10 +27528,12 @@ export namespace Prisma {
     status?: $Enums.OrderStatus
     paymentStatus?: $Enums.PaymentStatus
     paystackReference?: string | null
+    depositCredit?: number
     createdAt?: Date | string
     updatedAt?: Date | string
     deliveryRequest?: DeliveryRequestUncheckedCreateNestedOneWithoutOrderInput
     reviews?: ReviewUncheckedCreateNestedManyWithoutOrderInput
+    preOrder?: PreOrderUncheckedCreateNestedOneWithoutFulfilledOrderInput
   }
 
   export type OrderCreateOrConnectWithoutMessagesInput = {
@@ -25253,6 +27575,7 @@ export namespace Prisma {
     notifications?: NotificationUpdateManyWithoutUserNestedInput
     receivedMessages?: MessageUpdateManyWithoutToUserNestedInput
     recordedTraceEvents?: TraceEventUpdateManyWithoutRecordedByUserNestedInput
+    preOrders?: PreOrderUpdateManyWithoutBuyerNestedInput
   }
 
   export type UserUncheckedUpdateWithoutSentMessagesInput = {
@@ -25278,6 +27601,7 @@ export namespace Prisma {
     notifications?: NotificationUncheckedUpdateManyWithoutUserNestedInput
     receivedMessages?: MessageUncheckedUpdateManyWithoutToUserNestedInput
     recordedTraceEvents?: TraceEventUncheckedUpdateManyWithoutRecordedByUserNestedInput
+    preOrders?: PreOrderUncheckedUpdateManyWithoutBuyerNestedInput
   }
 
   export type UserUpsertWithoutReceivedMessagesInput = {
@@ -25314,6 +27638,7 @@ export namespace Prisma {
     notifications?: NotificationUpdateManyWithoutUserNestedInput
     sentMessages?: MessageUpdateManyWithoutFromUserNestedInput
     recordedTraceEvents?: TraceEventUpdateManyWithoutRecordedByUserNestedInput
+    preOrders?: PreOrderUpdateManyWithoutBuyerNestedInput
   }
 
   export type UserUncheckedUpdateWithoutReceivedMessagesInput = {
@@ -25339,6 +27664,7 @@ export namespace Prisma {
     notifications?: NotificationUncheckedUpdateManyWithoutUserNestedInput
     sentMessages?: MessageUncheckedUpdateManyWithoutFromUserNestedInput
     recordedTraceEvents?: TraceEventUncheckedUpdateManyWithoutRecordedByUserNestedInput
+    preOrders?: PreOrderUncheckedUpdateManyWithoutBuyerNestedInput
   }
 
   export type OrderUpsertWithoutMessagesInput = {
@@ -25359,12 +27685,14 @@ export namespace Prisma {
     status?: EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
     paymentStatus?: EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
     paystackReference?: NullableStringFieldUpdateOperationsInput | string | null
+    depositCredit?: FloatFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     buyer?: UserUpdateOneRequiredWithoutOrdersNestedInput
     listing?: ProduceListingUpdateOneRequiredWithoutOrdersNestedInput
     deliveryRequest?: DeliveryRequestUpdateOneWithoutOrderNestedInput
     reviews?: ReviewUpdateManyWithoutOrderNestedInput
+    preOrder?: PreOrderUpdateOneWithoutFulfilledOrderNestedInput
   }
 
   export type OrderUncheckedUpdateWithoutMessagesInput = {
@@ -25376,10 +27704,324 @@ export namespace Prisma {
     status?: EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
     paymentStatus?: EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
     paystackReference?: NullableStringFieldUpdateOperationsInput | string | null
+    depositCredit?: FloatFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     deliveryRequest?: DeliveryRequestUncheckedUpdateOneWithoutOrderNestedInput
     reviews?: ReviewUncheckedUpdateManyWithoutOrderNestedInput
+    preOrder?: PreOrderUncheckedUpdateOneWithoutFulfilledOrderNestedInput
+  }
+
+  export type UserCreateWithoutPreOrdersInput = {
+    id?: string
+    phone: string
+    name: string
+    role: $Enums.Role
+    latitude?: number | null
+    longitude?: number | null
+    region?: string | null
+    district?: string | null
+    isVerified?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    farmerProfile?: FarmerProfileCreateNestedOneWithoutUserInput
+    buyerProfile?: BuyerProfileCreateNestedOneWithoutUserInput
+    transportProfile?: TransportProfileCreateNestedOneWithoutUserInput
+    listings?: ProduceListingCreateNestedManyWithoutFarmerInput
+    orders?: OrderCreateNestedManyWithoutBuyerInput
+    deliveries?: DeliveryRequestCreateNestedManyWithoutTransportProviderInput
+    sentReviews?: ReviewCreateNestedManyWithoutFromUserInput
+    receivedReviews?: ReviewCreateNestedManyWithoutToUserInput
+    notifications?: NotificationCreateNestedManyWithoutUserInput
+    sentMessages?: MessageCreateNestedManyWithoutFromUserInput
+    receivedMessages?: MessageCreateNestedManyWithoutToUserInput
+    recordedTraceEvents?: TraceEventCreateNestedManyWithoutRecordedByUserInput
+  }
+
+  export type UserUncheckedCreateWithoutPreOrdersInput = {
+    id?: string
+    phone: string
+    name: string
+    role: $Enums.Role
+    latitude?: number | null
+    longitude?: number | null
+    region?: string | null
+    district?: string | null
+    isVerified?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    farmerProfile?: FarmerProfileUncheckedCreateNestedOneWithoutUserInput
+    buyerProfile?: BuyerProfileUncheckedCreateNestedOneWithoutUserInput
+    transportProfile?: TransportProfileUncheckedCreateNestedOneWithoutUserInput
+    listings?: ProduceListingUncheckedCreateNestedManyWithoutFarmerInput
+    orders?: OrderUncheckedCreateNestedManyWithoutBuyerInput
+    deliveries?: DeliveryRequestUncheckedCreateNestedManyWithoutTransportProviderInput
+    sentReviews?: ReviewUncheckedCreateNestedManyWithoutFromUserInput
+    receivedReviews?: ReviewUncheckedCreateNestedManyWithoutToUserInput
+    notifications?: NotificationUncheckedCreateNestedManyWithoutUserInput
+    sentMessages?: MessageUncheckedCreateNestedManyWithoutFromUserInput
+    receivedMessages?: MessageUncheckedCreateNestedManyWithoutToUserInput
+    recordedTraceEvents?: TraceEventUncheckedCreateNestedManyWithoutRecordedByUserInput
+  }
+
+  export type UserCreateOrConnectWithoutPreOrdersInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutPreOrdersInput, UserUncheckedCreateWithoutPreOrdersInput>
+  }
+
+  export type ProduceListingCreateWithoutPreOrdersInput = {
+    id?: string
+    cropType: $Enums.CropType
+    quantityKg: number
+    remainingKg: number
+    pricePerKg: number
+    images?: ProduceListingCreateimagesInput | string[]
+    harvestDate: Date | string
+    expiryEstimate?: Date | string | null
+    qualityGrade?: $Enums.QualityGrade
+    qualityGradeSource?: string
+    status?: $Enums.ListingStatus
+    latitude: number
+    longitude: number
+    batchCode: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    farmer: UserCreateNestedOneWithoutListingsInput
+    orders?: OrderCreateNestedManyWithoutListingInput
+    traceability?: TraceabilityRecordCreateNestedOneWithoutListingInput
+    traceEvents?: TraceEventCreateNestedManyWithoutListingInput
+  }
+
+  export type ProduceListingUncheckedCreateWithoutPreOrdersInput = {
+    id?: string
+    farmerId: string
+    cropType: $Enums.CropType
+    quantityKg: number
+    remainingKg: number
+    pricePerKg: number
+    images?: ProduceListingCreateimagesInput | string[]
+    harvestDate: Date | string
+    expiryEstimate?: Date | string | null
+    qualityGrade?: $Enums.QualityGrade
+    qualityGradeSource?: string
+    status?: $Enums.ListingStatus
+    latitude: number
+    longitude: number
+    batchCode: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    orders?: OrderUncheckedCreateNestedManyWithoutListingInput
+    traceability?: TraceabilityRecordUncheckedCreateNestedOneWithoutListingInput
+    traceEvents?: TraceEventUncheckedCreateNestedManyWithoutListingInput
+  }
+
+  export type ProduceListingCreateOrConnectWithoutPreOrdersInput = {
+    where: ProduceListingWhereUniqueInput
+    create: XOR<ProduceListingCreateWithoutPreOrdersInput, ProduceListingUncheckedCreateWithoutPreOrdersInput>
+  }
+
+  export type OrderCreateWithoutPreOrderInput = {
+    id?: string
+    quantityKg: number
+    totalPrice: number
+    status?: $Enums.OrderStatus
+    paymentStatus?: $Enums.PaymentStatus
+    paystackReference?: string | null
+    depositCredit?: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    buyer: UserCreateNestedOneWithoutOrdersInput
+    listing: ProduceListingCreateNestedOneWithoutOrdersInput
+    deliveryRequest?: DeliveryRequestCreateNestedOneWithoutOrderInput
+    reviews?: ReviewCreateNestedManyWithoutOrderInput
+    messages?: MessageCreateNestedManyWithoutOrderInput
+  }
+
+  export type OrderUncheckedCreateWithoutPreOrderInput = {
+    id?: string
+    buyerId: string
+    listingId: string
+    quantityKg: number
+    totalPrice: number
+    status?: $Enums.OrderStatus
+    paymentStatus?: $Enums.PaymentStatus
+    paystackReference?: string | null
+    depositCredit?: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    deliveryRequest?: DeliveryRequestUncheckedCreateNestedOneWithoutOrderInput
+    reviews?: ReviewUncheckedCreateNestedManyWithoutOrderInput
+    messages?: MessageUncheckedCreateNestedManyWithoutOrderInput
+  }
+
+  export type OrderCreateOrConnectWithoutPreOrderInput = {
+    where: OrderWhereUniqueInput
+    create: XOR<OrderCreateWithoutPreOrderInput, OrderUncheckedCreateWithoutPreOrderInput>
+  }
+
+  export type UserUpsertWithoutPreOrdersInput = {
+    update: XOR<UserUpdateWithoutPreOrdersInput, UserUncheckedUpdateWithoutPreOrdersInput>
+    create: XOR<UserCreateWithoutPreOrdersInput, UserUncheckedCreateWithoutPreOrdersInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutPreOrdersInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutPreOrdersInput, UserUncheckedUpdateWithoutPreOrdersInput>
+  }
+
+  export type UserUpdateWithoutPreOrdersInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    latitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    longitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    region?: NullableStringFieldUpdateOperationsInput | string | null
+    district?: NullableStringFieldUpdateOperationsInput | string | null
+    isVerified?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    farmerProfile?: FarmerProfileUpdateOneWithoutUserNestedInput
+    buyerProfile?: BuyerProfileUpdateOneWithoutUserNestedInput
+    transportProfile?: TransportProfileUpdateOneWithoutUserNestedInput
+    listings?: ProduceListingUpdateManyWithoutFarmerNestedInput
+    orders?: OrderUpdateManyWithoutBuyerNestedInput
+    deliveries?: DeliveryRequestUpdateManyWithoutTransportProviderNestedInput
+    sentReviews?: ReviewUpdateManyWithoutFromUserNestedInput
+    receivedReviews?: ReviewUpdateManyWithoutToUserNestedInput
+    notifications?: NotificationUpdateManyWithoutUserNestedInput
+    sentMessages?: MessageUpdateManyWithoutFromUserNestedInput
+    receivedMessages?: MessageUpdateManyWithoutToUserNestedInput
+    recordedTraceEvents?: TraceEventUpdateManyWithoutRecordedByUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutPreOrdersInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    latitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    longitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    region?: NullableStringFieldUpdateOperationsInput | string | null
+    district?: NullableStringFieldUpdateOperationsInput | string | null
+    isVerified?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    farmerProfile?: FarmerProfileUncheckedUpdateOneWithoutUserNestedInput
+    buyerProfile?: BuyerProfileUncheckedUpdateOneWithoutUserNestedInput
+    transportProfile?: TransportProfileUncheckedUpdateOneWithoutUserNestedInput
+    listings?: ProduceListingUncheckedUpdateManyWithoutFarmerNestedInput
+    orders?: OrderUncheckedUpdateManyWithoutBuyerNestedInput
+    deliveries?: DeliveryRequestUncheckedUpdateManyWithoutTransportProviderNestedInput
+    sentReviews?: ReviewUncheckedUpdateManyWithoutFromUserNestedInput
+    receivedReviews?: ReviewUncheckedUpdateManyWithoutToUserNestedInput
+    notifications?: NotificationUncheckedUpdateManyWithoutUserNestedInput
+    sentMessages?: MessageUncheckedUpdateManyWithoutFromUserNestedInput
+    receivedMessages?: MessageUncheckedUpdateManyWithoutToUserNestedInput
+    recordedTraceEvents?: TraceEventUncheckedUpdateManyWithoutRecordedByUserNestedInput
+  }
+
+  export type ProduceListingUpsertWithoutPreOrdersInput = {
+    update: XOR<ProduceListingUpdateWithoutPreOrdersInput, ProduceListingUncheckedUpdateWithoutPreOrdersInput>
+    create: XOR<ProduceListingCreateWithoutPreOrdersInput, ProduceListingUncheckedCreateWithoutPreOrdersInput>
+    where?: ProduceListingWhereInput
+  }
+
+  export type ProduceListingUpdateToOneWithWhereWithoutPreOrdersInput = {
+    where?: ProduceListingWhereInput
+    data: XOR<ProduceListingUpdateWithoutPreOrdersInput, ProduceListingUncheckedUpdateWithoutPreOrdersInput>
+  }
+
+  export type ProduceListingUpdateWithoutPreOrdersInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    cropType?: EnumCropTypeFieldUpdateOperationsInput | $Enums.CropType
+    quantityKg?: FloatFieldUpdateOperationsInput | number
+    remainingKg?: FloatFieldUpdateOperationsInput | number
+    pricePerKg?: FloatFieldUpdateOperationsInput | number
+    images?: ProduceListingUpdateimagesInput | string[]
+    harvestDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    expiryEstimate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    qualityGrade?: EnumQualityGradeFieldUpdateOperationsInput | $Enums.QualityGrade
+    qualityGradeSource?: StringFieldUpdateOperationsInput | string
+    status?: EnumListingStatusFieldUpdateOperationsInput | $Enums.ListingStatus
+    latitude?: FloatFieldUpdateOperationsInput | number
+    longitude?: FloatFieldUpdateOperationsInput | number
+    batchCode?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    farmer?: UserUpdateOneRequiredWithoutListingsNestedInput
+    orders?: OrderUpdateManyWithoutListingNestedInput
+    traceability?: TraceabilityRecordUpdateOneWithoutListingNestedInput
+    traceEvents?: TraceEventUpdateManyWithoutListingNestedInput
+  }
+
+  export type ProduceListingUncheckedUpdateWithoutPreOrdersInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    farmerId?: StringFieldUpdateOperationsInput | string
+    cropType?: EnumCropTypeFieldUpdateOperationsInput | $Enums.CropType
+    quantityKg?: FloatFieldUpdateOperationsInput | number
+    remainingKg?: FloatFieldUpdateOperationsInput | number
+    pricePerKg?: FloatFieldUpdateOperationsInput | number
+    images?: ProduceListingUpdateimagesInput | string[]
+    harvestDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    expiryEstimate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    qualityGrade?: EnumQualityGradeFieldUpdateOperationsInput | $Enums.QualityGrade
+    qualityGradeSource?: StringFieldUpdateOperationsInput | string
+    status?: EnumListingStatusFieldUpdateOperationsInput | $Enums.ListingStatus
+    latitude?: FloatFieldUpdateOperationsInput | number
+    longitude?: FloatFieldUpdateOperationsInput | number
+    batchCode?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    orders?: OrderUncheckedUpdateManyWithoutListingNestedInput
+    traceability?: TraceabilityRecordUncheckedUpdateOneWithoutListingNestedInput
+    traceEvents?: TraceEventUncheckedUpdateManyWithoutListingNestedInput
+  }
+
+  export type OrderUpsertWithoutPreOrderInput = {
+    update: XOR<OrderUpdateWithoutPreOrderInput, OrderUncheckedUpdateWithoutPreOrderInput>
+    create: XOR<OrderCreateWithoutPreOrderInput, OrderUncheckedCreateWithoutPreOrderInput>
+    where?: OrderWhereInput
+  }
+
+  export type OrderUpdateToOneWithWhereWithoutPreOrderInput = {
+    where?: OrderWhereInput
+    data: XOR<OrderUpdateWithoutPreOrderInput, OrderUncheckedUpdateWithoutPreOrderInput>
+  }
+
+  export type OrderUpdateWithoutPreOrderInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    quantityKg?: FloatFieldUpdateOperationsInput | number
+    totalPrice?: FloatFieldUpdateOperationsInput | number
+    status?: EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
+    paymentStatus?: EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
+    paystackReference?: NullableStringFieldUpdateOperationsInput | string | null
+    depositCredit?: FloatFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    buyer?: UserUpdateOneRequiredWithoutOrdersNestedInput
+    listing?: ProduceListingUpdateOneRequiredWithoutOrdersNestedInput
+    deliveryRequest?: DeliveryRequestUpdateOneWithoutOrderNestedInput
+    reviews?: ReviewUpdateManyWithoutOrderNestedInput
+    messages?: MessageUpdateManyWithoutOrderNestedInput
+  }
+
+  export type OrderUncheckedUpdateWithoutPreOrderInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    buyerId?: StringFieldUpdateOperationsInput | string
+    listingId?: StringFieldUpdateOperationsInput | string
+    quantityKg?: FloatFieldUpdateOperationsInput | number
+    totalPrice?: FloatFieldUpdateOperationsInput | number
+    status?: EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
+    paymentStatus?: EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
+    paystackReference?: NullableStringFieldUpdateOperationsInput | string | null
+    depositCredit?: FloatFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    deliveryRequest?: DeliveryRequestUncheckedUpdateOneWithoutOrderNestedInput
+    reviews?: ReviewUncheckedUpdateManyWithoutOrderNestedInput
+    messages?: MessageUncheckedUpdateManyWithoutOrderNestedInput
   }
 
   export type ProduceListingCreateManyFarmerInput = {
@@ -25409,6 +28051,7 @@ export namespace Prisma {
     status?: $Enums.OrderStatus
     paymentStatus?: $Enums.PaymentStatus
     paystackReference?: string | null
+    depositCredit?: number
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -25491,6 +28134,25 @@ export namespace Prisma {
     updatedAt?: Date | string
   }
 
+  export type PreOrderCreateManyBuyerInput = {
+    id?: string
+    cropType: $Enums.CropType
+    quantityKg: number
+    maxPricePerKg: number
+    preferredRegion?: string | null
+    harvestWindowStart: Date | string
+    harvestWindowEnd: Date | string
+    notes?: string | null
+    depositAmount: number
+    depositPaid?: boolean
+    paystackReference?: string | null
+    status?: $Enums.PreOrderStatus
+    matchedListingId?: string | null
+    fulfilledOrderId?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
   export type ProduceListingUpdateWithoutFarmerInput = {
     id?: StringFieldUpdateOperationsInput | string
     cropType?: EnumCropTypeFieldUpdateOperationsInput | $Enums.CropType
@@ -25511,6 +28173,7 @@ export namespace Prisma {
     orders?: OrderUpdateManyWithoutListingNestedInput
     traceability?: TraceabilityRecordUpdateOneWithoutListingNestedInput
     traceEvents?: TraceEventUpdateManyWithoutListingNestedInput
+    preOrders?: PreOrderUpdateManyWithoutMatchedListingNestedInput
   }
 
   export type ProduceListingUncheckedUpdateWithoutFarmerInput = {
@@ -25533,6 +28196,7 @@ export namespace Prisma {
     orders?: OrderUncheckedUpdateManyWithoutListingNestedInput
     traceability?: TraceabilityRecordUncheckedUpdateOneWithoutListingNestedInput
     traceEvents?: TraceEventUncheckedUpdateManyWithoutListingNestedInput
+    preOrders?: PreOrderUncheckedUpdateManyWithoutMatchedListingNestedInput
   }
 
   export type ProduceListingUncheckedUpdateManyWithoutFarmerInput = {
@@ -25561,12 +28225,14 @@ export namespace Prisma {
     status?: EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
     paymentStatus?: EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
     paystackReference?: NullableStringFieldUpdateOperationsInput | string | null
+    depositCredit?: FloatFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     listing?: ProduceListingUpdateOneRequiredWithoutOrdersNestedInput
     deliveryRequest?: DeliveryRequestUpdateOneWithoutOrderNestedInput
     reviews?: ReviewUpdateManyWithoutOrderNestedInput
     messages?: MessageUpdateManyWithoutOrderNestedInput
+    preOrder?: PreOrderUpdateOneWithoutFulfilledOrderNestedInput
   }
 
   export type OrderUncheckedUpdateWithoutBuyerInput = {
@@ -25577,11 +28243,13 @@ export namespace Prisma {
     status?: EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
     paymentStatus?: EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
     paystackReference?: NullableStringFieldUpdateOperationsInput | string | null
+    depositCredit?: FloatFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     deliveryRequest?: DeliveryRequestUncheckedUpdateOneWithoutOrderNestedInput
     reviews?: ReviewUncheckedUpdateManyWithoutOrderNestedInput
     messages?: MessageUncheckedUpdateManyWithoutOrderNestedInput
+    preOrder?: PreOrderUncheckedUpdateOneWithoutFulfilledOrderNestedInput
   }
 
   export type OrderUncheckedUpdateManyWithoutBuyerInput = {
@@ -25592,6 +28260,7 @@ export namespace Prisma {
     status?: EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
     paymentStatus?: EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
     paystackReference?: NullableStringFieldUpdateOperationsInput | string | null
+    depositCredit?: FloatFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -25830,6 +28499,63 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type PreOrderUpdateWithoutBuyerInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    cropType?: EnumCropTypeFieldUpdateOperationsInput | $Enums.CropType
+    quantityKg?: FloatFieldUpdateOperationsInput | number
+    maxPricePerKg?: FloatFieldUpdateOperationsInput | number
+    preferredRegion?: NullableStringFieldUpdateOperationsInput | string | null
+    harvestWindowStart?: DateTimeFieldUpdateOperationsInput | Date | string
+    harvestWindowEnd?: DateTimeFieldUpdateOperationsInput | Date | string
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    depositAmount?: FloatFieldUpdateOperationsInput | number
+    depositPaid?: BoolFieldUpdateOperationsInput | boolean
+    paystackReference?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumPreOrderStatusFieldUpdateOperationsInput | $Enums.PreOrderStatus
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    matchedListing?: ProduceListingUpdateOneWithoutPreOrdersNestedInput
+    fulfilledOrder?: OrderUpdateOneWithoutPreOrderNestedInput
+  }
+
+  export type PreOrderUncheckedUpdateWithoutBuyerInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    cropType?: EnumCropTypeFieldUpdateOperationsInput | $Enums.CropType
+    quantityKg?: FloatFieldUpdateOperationsInput | number
+    maxPricePerKg?: FloatFieldUpdateOperationsInput | number
+    preferredRegion?: NullableStringFieldUpdateOperationsInput | string | null
+    harvestWindowStart?: DateTimeFieldUpdateOperationsInput | Date | string
+    harvestWindowEnd?: DateTimeFieldUpdateOperationsInput | Date | string
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    depositAmount?: FloatFieldUpdateOperationsInput | number
+    depositPaid?: BoolFieldUpdateOperationsInput | boolean
+    paystackReference?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumPreOrderStatusFieldUpdateOperationsInput | $Enums.PreOrderStatus
+    matchedListingId?: NullableStringFieldUpdateOperationsInput | string | null
+    fulfilledOrderId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type PreOrderUncheckedUpdateManyWithoutBuyerInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    cropType?: EnumCropTypeFieldUpdateOperationsInput | $Enums.CropType
+    quantityKg?: FloatFieldUpdateOperationsInput | number
+    maxPricePerKg?: FloatFieldUpdateOperationsInput | number
+    preferredRegion?: NullableStringFieldUpdateOperationsInput | string | null
+    harvestWindowStart?: DateTimeFieldUpdateOperationsInput | Date | string
+    harvestWindowEnd?: DateTimeFieldUpdateOperationsInput | Date | string
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    depositAmount?: FloatFieldUpdateOperationsInput | number
+    depositPaid?: BoolFieldUpdateOperationsInput | boolean
+    paystackReference?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumPreOrderStatusFieldUpdateOperationsInput | $Enums.PreOrderStatus
+    matchedListingId?: NullableStringFieldUpdateOperationsInput | string | null
+    fulfilledOrderId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type OrderCreateManyListingInput = {
     id?: string
     buyerId: string
@@ -25838,6 +28564,7 @@ export namespace Prisma {
     status?: $Enums.OrderStatus
     paymentStatus?: $Enums.PaymentStatus
     paystackReference?: string | null
+    depositCredit?: number
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -25854,6 +28581,25 @@ export namespace Prisma {
     updatedAt?: Date | string
   }
 
+  export type PreOrderCreateManyMatchedListingInput = {
+    id?: string
+    buyerId: string
+    cropType: $Enums.CropType
+    quantityKg: number
+    maxPricePerKg: number
+    preferredRegion?: string | null
+    harvestWindowStart: Date | string
+    harvestWindowEnd: Date | string
+    notes?: string | null
+    depositAmount: number
+    depositPaid?: boolean
+    paystackReference?: string | null
+    status?: $Enums.PreOrderStatus
+    fulfilledOrderId?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
   export type OrderUpdateWithoutListingInput = {
     id?: StringFieldUpdateOperationsInput | string
     quantityKg?: FloatFieldUpdateOperationsInput | number
@@ -25861,12 +28607,14 @@ export namespace Prisma {
     status?: EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
     paymentStatus?: EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
     paystackReference?: NullableStringFieldUpdateOperationsInput | string | null
+    depositCredit?: FloatFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     buyer?: UserUpdateOneRequiredWithoutOrdersNestedInput
     deliveryRequest?: DeliveryRequestUpdateOneWithoutOrderNestedInput
     reviews?: ReviewUpdateManyWithoutOrderNestedInput
     messages?: MessageUpdateManyWithoutOrderNestedInput
+    preOrder?: PreOrderUpdateOneWithoutFulfilledOrderNestedInput
   }
 
   export type OrderUncheckedUpdateWithoutListingInput = {
@@ -25877,11 +28625,13 @@ export namespace Prisma {
     status?: EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
     paymentStatus?: EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
     paystackReference?: NullableStringFieldUpdateOperationsInput | string | null
+    depositCredit?: FloatFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     deliveryRequest?: DeliveryRequestUncheckedUpdateOneWithoutOrderNestedInput
     reviews?: ReviewUncheckedUpdateManyWithoutOrderNestedInput
     messages?: MessageUncheckedUpdateManyWithoutOrderNestedInput
+    preOrder?: PreOrderUncheckedUpdateOneWithoutFulfilledOrderNestedInput
   }
 
   export type OrderUncheckedUpdateManyWithoutListingInput = {
@@ -25892,6 +28642,7 @@ export namespace Prisma {
     status?: EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
     paymentStatus?: EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
     paystackReference?: NullableStringFieldUpdateOperationsInput | string | null
+    depositCredit?: FloatFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -25928,6 +28679,63 @@ export namespace Prisma {
     recordedByUserId?: NullableStringFieldUpdateOperationsInput | string | null
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type PreOrderUpdateWithoutMatchedListingInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    cropType?: EnumCropTypeFieldUpdateOperationsInput | $Enums.CropType
+    quantityKg?: FloatFieldUpdateOperationsInput | number
+    maxPricePerKg?: FloatFieldUpdateOperationsInput | number
+    preferredRegion?: NullableStringFieldUpdateOperationsInput | string | null
+    harvestWindowStart?: DateTimeFieldUpdateOperationsInput | Date | string
+    harvestWindowEnd?: DateTimeFieldUpdateOperationsInput | Date | string
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    depositAmount?: FloatFieldUpdateOperationsInput | number
+    depositPaid?: BoolFieldUpdateOperationsInput | boolean
+    paystackReference?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumPreOrderStatusFieldUpdateOperationsInput | $Enums.PreOrderStatus
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    buyer?: UserUpdateOneRequiredWithoutPreOrdersNestedInput
+    fulfilledOrder?: OrderUpdateOneWithoutPreOrderNestedInput
+  }
+
+  export type PreOrderUncheckedUpdateWithoutMatchedListingInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    buyerId?: StringFieldUpdateOperationsInput | string
+    cropType?: EnumCropTypeFieldUpdateOperationsInput | $Enums.CropType
+    quantityKg?: FloatFieldUpdateOperationsInput | number
+    maxPricePerKg?: FloatFieldUpdateOperationsInput | number
+    preferredRegion?: NullableStringFieldUpdateOperationsInput | string | null
+    harvestWindowStart?: DateTimeFieldUpdateOperationsInput | Date | string
+    harvestWindowEnd?: DateTimeFieldUpdateOperationsInput | Date | string
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    depositAmount?: FloatFieldUpdateOperationsInput | number
+    depositPaid?: BoolFieldUpdateOperationsInput | boolean
+    paystackReference?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumPreOrderStatusFieldUpdateOperationsInput | $Enums.PreOrderStatus
+    fulfilledOrderId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type PreOrderUncheckedUpdateManyWithoutMatchedListingInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    buyerId?: StringFieldUpdateOperationsInput | string
+    cropType?: EnumCropTypeFieldUpdateOperationsInput | $Enums.CropType
+    quantityKg?: FloatFieldUpdateOperationsInput | number
+    maxPricePerKg?: FloatFieldUpdateOperationsInput | number
+    preferredRegion?: NullableStringFieldUpdateOperationsInput | string | null
+    harvestWindowStart?: DateTimeFieldUpdateOperationsInput | Date | string
+    harvestWindowEnd?: DateTimeFieldUpdateOperationsInput | Date | string
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    depositAmount?: FloatFieldUpdateOperationsInput | number
+    depositPaid?: BoolFieldUpdateOperationsInput | boolean
+    paystackReference?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumPreOrderStatusFieldUpdateOperationsInput | $Enums.PreOrderStatus
+    fulfilledOrderId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -26085,6 +28893,10 @@ export namespace Prisma {
      * @deprecated Use UssdSessionDefaultArgs instead
      */
     export type UssdSessionArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = UssdSessionDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use PreOrderDefaultArgs instead
+     */
+    export type PreOrderArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = PreOrderDefaultArgs<ExtArgs>
 
   /**
    * Batch Payload for updateMany & deleteMany & createMany

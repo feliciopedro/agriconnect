@@ -2,6 +2,7 @@ import prisma from '../prisma/client';
 import { generateBatchCode } from '../utils/batchCode';
 import { createError } from '../utils/errors';
 import { CropType, ListingStatus, TraceEventType, Prisma } from '../prisma/generated-client';
+import { PreOrderService } from './preorder.service';
 
 export interface SearchFilters {
   cropType?: CropType;
@@ -22,9 +23,15 @@ export class ListingService {
   public static async createListing(farmerId: string, data: any, imagePaths: string[]) {
     const batchCode = generateBatchCode(data.cropType);
 
+    // Fetch farmer's region for pre-order matching
+    const farmer = await prisma.user.findUnique({
+      where: { id: farmerId },
+      select: { region: true },
+    });
+
     // Create listing transactionally with default traceability records and trace logs
-    return await prisma.$transaction(async (tx) => {
-      const listing = await tx.produceListing.create({
+    const listing = await prisma.$transaction(async (tx) => {
+      const newListing = await tx.produceListing.create({
         data: {
           farmerId,
           cropType: data.cropType,
@@ -56,17 +63,31 @@ export class ListingService {
       // Insert append-only LISTED trace log
       await tx.traceEvent.create({
         data: {
-          listingId: listing.id,
+          listingId: newListing.id,
           eventType: TraceEventType.LISTED,
           latitude: data.latitude,
           longitude: data.longitude,
           recordedByUserId: farmerId,
-          notes: `Batch listed: ${listing.quantityKg}kg of ${listing.cropType}`,
+          notes: `Batch listed: ${newListing.quantityKg}kg of ${newListing.cropType}`,
         },
       });
 
-      return listing;
+      return newListing;
     });
+
+    // Fire-and-forget: match open pre-orders to this new listing.
+    // Runs asynchronously so listing creation never blocks or fails because of this.
+    PreOrderService.matchPreOrderToListing({
+      id: listing.id,
+      cropType: listing.cropType,
+      pricePerKg: listing.pricePerKg,
+      remainingKg: listing.remainingKg,
+      harvestDate: listing.harvestDate,
+      farmerId,
+      farmer: { region: farmer?.region },
+    }).catch((err) => console.error('[PreOrder] matchPreOrderToListing error:', err));
+
+    return listing;
   }
 
   /**

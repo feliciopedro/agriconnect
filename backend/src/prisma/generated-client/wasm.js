@@ -222,6 +222,7 @@ exports.Prisma.OrderScalarFieldEnum = {
   status: 'status',
   paymentStatus: 'paymentStatus',
   paystackReference: 'paystackReference',
+  depositCredit: 'depositCredit',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };
@@ -292,6 +293,26 @@ exports.Prisma.UssdSessionScalarFieldEnum = {
   phone: 'phone',
   currentStep: 'currentStep',
   tempData: 'tempData',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.PreOrderScalarFieldEnum = {
+  id: 'id',
+  buyerId: 'buyerId',
+  cropType: 'cropType',
+  quantityKg: 'quantityKg',
+  maxPricePerKg: 'maxPricePerKg',
+  preferredRegion: 'preferredRegion',
+  harvestWindowStart: 'harvestWindowStart',
+  harvestWindowEnd: 'harvestWindowEnd',
+  notes: 'notes',
+  depositAmount: 'depositAmount',
+  depositPaid: 'depositPaid',
+  paystackReference: 'paystackReference',
+  status: 'status',
+  matchedListingId: 'matchedListingId',
+  fulfilledOrderId: 'fulfilledOrderId',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };
@@ -390,6 +411,15 @@ exports.DeliveryStatus = exports.$Enums.DeliveryStatus = {
   DELIVERED: 'DELIVERED'
 };
 
+exports.PreOrderStatus = exports.$Enums.PreOrderStatus = {
+  DEPOSIT_PENDING: 'DEPOSIT_PENDING',
+  OPEN: 'OPEN',
+  MATCHED: 'MATCHED',
+  FULFILLED: 'FULFILLED',
+  CANCELLED: 'CANCELLED',
+  EXPIRED: 'EXPIRED'
+};
+
 exports.Prisma.ModelName = {
   User: 'User',
   FarmerProfile: 'FarmerProfile',
@@ -404,7 +434,8 @@ exports.Prisma.ModelName = {
   Notification: 'Notification',
   Message: 'Message',
   OtpCode: 'OtpCode',
-  UssdSession: 'UssdSession'
+  UssdSession: 'UssdSession',
+  PreOrder: 'PreOrder'
 };
 
 /**

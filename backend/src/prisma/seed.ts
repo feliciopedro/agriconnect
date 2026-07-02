@@ -17,6 +17,7 @@ async function main() {
   // 1. Clean existing records in dependency order
   await prisma.review.deleteMany();
   await prisma.deliveryRequest.deleteMany();
+  await prisma.preOrder.deleteMany();
   await prisma.order.deleteMany();
   await prisma.traceEvent.deleteMany();
   await prisma.traceabilityRecord.deleteMany();
@@ -396,11 +397,108 @@ async function main() {
   }
   console.log(`⭐ Seeded ${reviewCount} Reviews on completed orders.`);
 
-  // 6. Print database summary counts
+  // 6. Seed Pre-Orders (demand signals)
+  const now = new Date();
+  const preOrdersSetup = [
+    // OPEN: 3 buyers seeking upcoming harvests
+    {
+      buyerIdx: 0, crop: CropType.TOMATO, qty: 200, maxPrice: 5.5,
+      region: 'Eastern',
+      start: new Date(now.getTime() + 30 * 24 * 60 * 60 * 1000),
+      end: new Date(now.getTime() + 90 * 24 * 60 * 60 * 1000),
+      depositPaid: true, status: 'OPEN' as const,
+      notes: 'Need for retail distribution to Accra markets',
+    },
+    {
+      buyerIdx: 1, crop: CropType.PEPPER, qty: 80, maxPrice: 9.0,
+      region: null,
+      start: new Date(now.getTime() + 20 * 24 * 60 * 60 * 1000),
+      end: new Date(now.getTime() + 60 * 24 * 60 * 60 * 1000),
+      depositPaid: true, status: 'OPEN' as const,
+      notes: 'Chop bar weekly supply',
+    },
+    {
+      buyerIdx: 2, crop: CropType.GARDEN_EGG, qty: 150, maxPrice: 4.2,
+      region: 'Eastern',
+      start: new Date(now.getTime() + 45 * 24 * 60 * 60 * 1000),
+      end: new Date(now.getTime() + 100 * 24 * 60 * 60 * 1000),
+      depositPaid: true, status: 'OPEN' as const,
+      notes: 'Processing facility bulk purchase',
+    },
+    // DEPOSIT_PENDING: buyer created but hasn't paid yet
+    {
+      buyerIdx: 3, crop: CropType.OKRA, qty: 60, maxPrice: 6.5,
+      region: null,
+      start: new Date(now.getTime() + 25 * 24 * 60 * 60 * 1000),
+      end: new Date(now.getTime() + 70 * 24 * 60 * 60 * 1000),
+      depositPaid: false, status: 'DEPOSIT_PENDING' as const,
+      notes: null,
+    },
+    // MATCHED: linked to existing listings
+    {
+      buyerIdx: 0, crop: CropType.TOMATO, qty: 50, maxPrice: 7.0,
+      region: 'Eastern',
+      start: new Date(now.getTime() - 5 * 24 * 60 * 60 * 1000),
+      end: new Date(now.getTime() + 30 * 24 * 60 * 60 * 1000),
+      depositPaid: true, status: 'MATCHED' as const,
+      matchedListingIdx: 0,
+      notes: null,
+    },
+    // CANCELLED: buyer changed their mind
+    {
+      buyerIdx: 4, crop: CropType.LEAFY_GREENS, qty: 40, maxPrice: 3.5,
+      region: null,
+      start: new Date(now.getTime() + 10 * 24 * 60 * 60 * 1000),
+      end: new Date(now.getTime() + 50 * 24 * 60 * 60 * 1000),
+      depositPaid: false, status: 'CANCELLED' as const,
+      notes: 'Changed sourcing plans',
+    },
+    // EXPIRED: harvest window has passed
+    {
+      buyerIdx: 1, crop: CropType.TOMATO, qty: 100, maxPrice: 4.0,
+      region: 'Eastern',
+      start: new Date(now.getTime() - 60 * 24 * 60 * 60 * 1000),
+      end: new Date(now.getTime() - 10 * 24 * 60 * 60 * 1000),
+      depositPaid: true, status: 'EXPIRED' as const,
+      notes: null,
+    },
+  ];
+
+  let preOrderCount = 0;
+  for (const p of preOrdersSetup) {
+    const buyer = buyers[p.buyerIdx];
+    const depositAmount = parseFloat((p.qty * p.maxPrice * 0.20).toFixed(2));
+    const matchedListingId = (p as any).matchedListingIdx !== undefined
+      ? listings[(p as any).matchedListingIdx].id
+      : null;
+
+    await prisma.preOrder.create({
+      data: {
+        buyerId: buyer.id,
+        cropType: p.crop,
+        quantityKg: p.qty,
+        maxPricePerKg: p.maxPrice,
+        preferredRegion: p.region,
+        harvestWindowStart: p.start,
+        harvestWindowEnd: p.end,
+        notes: p.notes,
+        depositAmount,
+        depositPaid: p.depositPaid,
+        paystackReference: p.depositPaid ? `PRE-seed-${preOrderCount}-${Date.now()}` : null,
+        status: p.status,
+        matchedListingId,
+      },
+    });
+    preOrderCount++;
+  }
+  console.log(`🛒 Seeded ${preOrderCount} Pre-Orders (demand signals).`);
+
+  // 7. Print database summary counts
   const totalUsers = await prisma.user.count();
   const totalListings = await prisma.produceListing.count();
   const totalOrders = await prisma.order.count();
   const totalTraceEvents = await prisma.traceEvent.count();
+  const totalPreOrders = await prisma.preOrder.count();
 
   console.log('\n=============================================');
   console.log('📊 AGRICONNECT SEED DATA SUMMARY REPORT');
@@ -409,6 +507,7 @@ async function main() {
   console.log(`🍅 Total Produce Listings:      ${totalListings}`);
   console.log(`📦 Total Customer Orders:       ${totalOrders}`);
   console.log(`📋 Total Trace Timeline Events:  ${totalTraceEvents}`);
+  console.log(`🛒 Total Pre-Orders:             ${totalPreOrders}`);
   console.log('=============================================\n');
 
   console.log('🎉 Seeding completed successfully!');

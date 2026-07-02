@@ -106,6 +106,7 @@ model User {
   sentMessages       Message[]          @relation("SentMessages")
   receivedMessages   Message[]          @relation("ReceivedMessages")
   recordedTraceEvents TraceEvent[]      @relation("RecordedEvents")
+  preOrders          PreOrder[]         @relation("BuyerPreOrders")
 
   @@index([role])
   @@index([latitude, longitude])
@@ -174,6 +175,7 @@ model ProduceListing {
   orders             Order[]
   traceability       TraceabilityRecord?
   traceEvents        TraceEvent[]
+  preOrders          PreOrder[]          @relation("PreOrderListing")
 
   @@index([cropType, status])
   @@index([latitude, longitude])
@@ -221,14 +223,16 @@ model Order {
   listing         ProduceListing   @relation(fields: [listingId], references: [id], onDelete: Cascade)
   quantityKg      Float
   totalPrice      Float
-  status          OrderStatus      @default(PENDING)
-  paymentStatus   PaymentStatus    @default(UNPAID)
+  status            OrderStatus      @default(PENDING)
+  paymentStatus     PaymentStatus    @default(UNPAID)
   paystackReference String?
-  createdAt       DateTime         @default(now())
-  updatedAt       DateTime         @updatedAt
-  deliveryRequest DeliveryRequest?
-  reviews         Review[]
-  messages        Message[]
+  depositCredit     Float            @default(0)  // amount credited from a pre-order deposit
+  createdAt         DateTime         @default(now())
+  updatedAt         DateTime         @updatedAt
+  deliveryRequest   DeliveryRequest?
+  reviews           Review[]
+  messages          Message[]
+  preOrder          PreOrder?        @relation("PreOrderOrder")
 
   @@index([buyerId])
   @@index([listingId])
@@ -338,4 +342,46 @@ model UssdSession {
   updatedAt   DateTime @updatedAt
 
   @@index([sessionId])
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// PRE-ORDERS & DEMAND FORECASTING
+// ─────────────────────────────────────────────────────────────────────────────
+
+enum PreOrderStatus {
+  DEPOSIT_PENDING // created, awaiting deposit payment via Paystack
+  OPEN            // deposit paid, actively seeking a matching listing
+  MATCHED         // linked to a farmer listing, awaiting full order placement
+  FULFILLED       // converted to a real Order with deposit credit applied
+  CANCELLED       // buyer cancelled before fulfillment
+  EXPIRED         // harvest window passed with no matching listing found
+}
+
+// PreOrder: demand-side intent before a listing exists
+model PreOrder {
+  id                 String         @id @default(uuid())
+  buyerId            String
+  buyer              User           @relation("BuyerPreOrders", fields: [buyerId], references: [id], onDelete: Cascade)
+  cropType           CropType
+  quantityKg         Float
+  maxPricePerKg      Float          // buyer's ceiling — matching only happens if listing.pricePerKg <= this
+  preferredRegion    String?        // null = any region in Ghana
+  harvestWindowStart DateTime       // earliest acceptable harvest date
+  harvestWindowEnd   DateTime       // latest acceptable harvest date; also used as expiry
+  notes              String?
+  depositAmount      Float          // computed: quantityKg * maxPricePerKg * DEPOSIT_PCT (default 20%)
+  depositPaid        Boolean        @default(false)
+  paystackReference  String?        // "PRE-{id}-{timestamp}" stored for webhook lookup
+  status             PreOrderStatus @default(DEPOSIT_PENDING)
+  matchedListingId   String?        // set when status becomes MATCHED
+  matchedListing     ProduceListing? @relation("PreOrderListing", fields: [matchedListingId], references: [id], onDelete: SetNull)
+  fulfilledOrderId   String?        @unique  // set when status becomes FULFILLED
+  fulfilledOrder     Order?         @relation("PreOrderOrder", fields: [fulfilledOrderId], references: [id], onDelete: SetNull)
+  createdAt          DateTime       @default(now())
+  updatedAt          DateTime       @updatedAt
+
+  @@index([buyerId])
+  @@index([cropType, status])
+  @@index([status])
+  @@index([harvestWindowEnd])
 }

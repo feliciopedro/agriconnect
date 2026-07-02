@@ -125,9 +125,22 @@ export class PaymentService {
 
   /**
    * Processes Paystack's verified webhook event payloads.
+   * Routes by reference prefix:
+   *   PRE-{id}-{ts}  → pre-order deposit confirmation
+   *   AGC-{id}-{ts}  → regular order payment confirmation
    */
   public static async handleWebhookEvent(event: any): Promise<void> {
     if (event.event === 'charge.success') {
+      const reference: string = event.data?.reference ?? '';
+
+      // Pre-order deposit confirmation (PRE- prefix)
+      if (reference.startsWith('PRE-')) {
+        const { PreOrderService } = await import('./preorder.service');
+        await PreOrderService.confirmDeposit(reference);
+        return;
+      }
+
+      // Regular order payment confirmation (AGC- prefix)
       const orderId = event.data?.metadata?.orderId;
       if (orderId) {
         const order = await prisma.order.findUnique({ where: { id: orderId } });
