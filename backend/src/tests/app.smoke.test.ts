@@ -162,3 +162,10 @@ describe('Farm Route Validation', () => {
     expect(res.status).toBe(401);
   });
 });
+
+describe('Invoice Route Validation', () => {
+  it('GET /api/orders/:id/invoice returns 401 without token', async () => {
+    const res = await request(app).get('/api/orders/123e4567-e89b-12d3-a456-426614174000/invoice');
+    expect(res.status).toBe(401);
+  });
+});
