@@ -11,6 +11,10 @@ import reviewRoutes from './review.routes';
 import ussdRoutes from './ussd.routes';
 import smsRoutes from './sms.routes';
 import paymentRoutes from './payment.routes';
+import adminRoutes from './admin.routes';
+import { authenticateToken, requireRole } from '../middleware/auth.middleware';
+import { Role } from '../prisma/generated-client';
+import { DeliveryController } from '../controllers/delivery.controller';
 
 const router = Router();
 
@@ -26,6 +30,15 @@ router.use('/messages', messageRoutes);
 router.use('/reviews', reviewRoutes);
 router.use('/ussd', ussdRoutes);
 router.use('/payments', paymentRoutes);
+router.use('/admin', adminRoutes);
 router.use('/', smsRoutes);
+
+// Backwards compatibility endpoint for manual grouping run triggers
+router.post(
+  '/delivery-requests/group',
+  authenticateToken,
+  requireRole(Role.ADMIN),
+  DeliveryController.triggerManualGrouping
+);
 
 export default router;

@@ -41,9 +41,6 @@ router.get('/:id/estimate', async (req, res, next) => {
   }
 });
 
-// Admin-only grouping actions
-router.post('/group', requireRole(Role.ADMIN), DeliveryController.triggerManualGrouping);
-
 // Request retrieval
 router.get('/:id', DeliveryController.getDeliveryById);
 
