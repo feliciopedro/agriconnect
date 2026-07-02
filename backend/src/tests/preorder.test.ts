@@ -140,6 +140,8 @@ jest.mock('../prisma/client', () => ({
     order: { findUnique: jest.fn() },
     produceListing: { findMany: jest.fn() },
     notification: { create: jest.fn() },
+    auditLog: { create: jest.fn() },
+    $transaction: jest.fn((cb) => cb(prisma)),
     $disconnect: jest.fn(),
   },
 }));

@@ -169,3 +169,10 @@ describe('Invoice Route Validation', () => {
     expect(res.status).toBe(401);
   });
 });
+
+describe('Admin Audit Log Route Validation', () => {
+  it('GET /api/admin/audit-logs returns 401 without token', async () => {
+    const res = await request(app).get('/api/admin/audit-logs');
+    expect(res.status).toBe(401);
+  });
+});

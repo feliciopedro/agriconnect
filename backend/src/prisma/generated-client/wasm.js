@@ -349,6 +349,17 @@ exports.Prisma.PlantingInputScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.AuditLogScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  action: 'action',
+  entityName: 'entityName',
+  entityId: 'entityId',
+  oldValues: 'oldValues',
+  newValues: 'newValues',
+  createdAt: 'createdAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -469,7 +480,8 @@ exports.Prisma.ModelName = {
   UssdSession: 'UssdSession',
   PreOrder: 'PreOrder',
   PlantingLog: 'PlantingLog',
-  PlantingInput: 'PlantingInput'
+  PlantingInput: 'PlantingInput',
+  AuditLog: 'AuditLog'
 };
 
 /**

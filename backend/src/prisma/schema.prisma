@@ -108,6 +108,7 @@ model User {
   recordedTraceEvents TraceEvent[]      @relation("RecordedEvents")
   preOrders          PreOrder[]         @relation("BuyerPreOrders")
   plantingLogs       PlantingLog[]      @relation("FarmerPlantingLogs")
+  auditLogs          AuditLog[]         @relation("UserAuditLogs")
 
   @@index([role])
   @@index([latitude, longitude])
@@ -432,4 +433,24 @@ model PlantingInput {
   updatedAt     DateTime    @updatedAt
 
   @@index([plantingLogId])
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// COMPLIANCE & DISPUTE RESOLUTION (IMMUTABLE AUDIT LOGGING)
+// ─────────────────────────────────────────────────────────────────────────────
+
+model AuditLog {
+  id         String   @id @default(uuid())
+  userId     String?  // actor (null for system/anonymous actions)
+  user       User?    @relation("UserAuditLogs", fields: [userId], references: [id], onDelete: SetNull)
+  action     String   // e.g. "CREATE", "UPDATE", "DELETE", "CANCEL"
+  entityName String   // e.g. "Order", "ProduceListing", "DeliveryRequest", "PreOrder"
+  entityId   String   // the targeted row UUID
+  oldValues  Json?    // state before mutation
+  newValues  Json?    // state after mutation
+  createdAt  DateTime @default(now())
+
+  @@index([entityName, entityId])
+  @@index([userId])
+  @@index([createdAt])
 }

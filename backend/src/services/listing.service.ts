@@ -3,6 +3,7 @@ import { generateBatchCode } from '../utils/batchCode';
 import { createError } from '../utils/errors';
 import { CropType, ListingStatus, TraceEventType, Prisma } from '../prisma/generated-client';
 import { PreOrderService } from './preorder.service';
+import { AuditLogService } from './audit.service';
 
 export interface SearchFilters {
   cropType?: CropType;
@@ -94,6 +95,24 @@ export class ListingService {
           notes: `Batch listed: ${newListing.quantityKg}kg of ${newListing.cropType}`,
         },
       });
+
+      // Audit Log mutation
+      await AuditLogService.log(
+        {
+          userId: farmerId,
+          action: 'CREATE',
+          entityName: 'ProduceListing',
+          entityId: newListing.id,
+          newValues: {
+            cropType: newListing.cropType,
+            quantityKg: newListing.quantityKg,
+            pricePerKg: newListing.pricePerKg,
+            status: newListing.status,
+            batchCode: newListing.batchCode,
+          },
+        },
+        tx
+      );
 
       return newListing;
     });
@@ -291,12 +310,38 @@ export class ListingService {
       }
     }
 
-    return await prisma.produceListing.update({
-      where: { id },
-      data: updatePayload,
-      include: {
-        traceability: true,
-      },
+    return await prisma.$transaction(async (tx) => {
+      const updated = await tx.produceListing.update({
+        where: { id },
+        data: updatePayload,
+        include: {
+          traceability: true,
+        },
+      });
+
+      await AuditLogService.log(
+        {
+          userId: farmerId,
+          action: 'UPDATE',
+          entityName: 'ProduceListing',
+          entityId: id,
+          oldValues: {
+            quantityKg: listing.quantityKg,
+            remainingKg: listing.remainingKg,
+            pricePerKg: listing.pricePerKg,
+            status: listing.status,
+          },
+          newValues: {
+            quantityKg: updated.quantityKg,
+            remainingKg: updated.remainingKg,
+            pricePerKg: updated.pricePerKg,
+            status: updated.status,
+          },
+        },
+        tx
+      );
+
+      return updated;
     });
   }
 
@@ -324,19 +369,51 @@ export class ListingService {
       },
     });
 
-    if (activeOrdersCount > 0) {
-      // Soft-delete: change listing status to EXPIRED
-      await prisma.produceListing.update({
-        where: { id },
-        data: { status: ListingStatus.EXPIRED },
-      });
-      return { success: true, action: 'EXPIRED' };
-    } else {
-      // Hard-delete safely
-      await prisma.produceListing.delete({
-        where: { id },
-      });
-      return { success: true, action: 'DELETED' };
-    }
+    return await prisma.$transaction(async (tx) => {
+      if (activeOrdersCount > 0) {
+        // Soft-delete: change listing status to EXPIRED
+        await tx.produceListing.update({
+          where: { id },
+          data: { status: ListingStatus.EXPIRED },
+        });
+
+        await AuditLogService.log(
+          {
+            userId: farmerId,
+            action: 'UPDATE',
+            entityName: 'ProduceListing',
+            entityId: id,
+            oldValues: { status: listing.status },
+            newValues: { status: ListingStatus.EXPIRED },
+          },
+          tx
+        );
+
+        return { success: true, action: 'EXPIRED' };
+      } else {
+        // Hard-delete safely
+        await tx.produceListing.delete({
+          where: { id },
+        });
+
+        await AuditLogService.log(
+          {
+            userId: farmerId,
+            action: 'DELETE',
+            entityName: 'ProduceListing',
+            entityId: id,
+            oldValues: {
+              cropType: listing.cropType,
+              quantityKg: listing.quantityKg,
+              remainingKg: listing.remainingKg,
+              status: listing.status,
+            },
+          },
+          tx
+        );
+
+        return { success: true, action: 'DELETED' };
+      }
+    });
   }
 }

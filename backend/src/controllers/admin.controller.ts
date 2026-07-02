@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import { AdminService } from '../services/admin.service';
 import { Role } from '../prisma/generated-client';
+import { AuditLogService } from '../services/audit.service';
 
 export class AdminController {
   /**
@@ -58,5 +59,25 @@ export class AdminController {
     const { id } = req.params;
     await AdminService.deleteListing(id);
     res.status(200).json({ success: true, message: 'Listing and all related records hard-deleted.' });
+  }
+
+  /**
+   * Audit logs retrieval for admins.
+   */
+  public static async getAuditLogs(req: Request, res: Response): Promise<void> {
+    const userId = req.query.userId as string | undefined;
+    const action = req.query.action as string | undefined;
+    const entityName = req.query.entityName as string | undefined;
+    const entityId = req.query.entityId as string | undefined;
+
+    const page = req.query.page ? parseInt(req.query.page as string) : 1;
+    const limit = req.query.limit ? parseInt(req.query.limit as string) : 20;
+
+    const result = await AuditLogService.getLogs(
+      { userId, action, entityName, entityId },
+      { page, limit }
+    );
+
+    res.status(200).json(result);
   }
 }

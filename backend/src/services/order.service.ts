@@ -10,6 +10,7 @@ import {
   TraceEventType,
   Prisma
 } from '../prisma/generated-client';
+import { AuditLogService } from './audit.service';
 
 export interface OrderFilters {
   status?: OrderStatus;
@@ -100,6 +101,25 @@ export class OrderService {
         'NEW_ORDER',
         `New order: ${quantityKg}kg of ${listing.cropType} from a buyer`,
         false,
+        tx
+      );
+
+      // Audit Log mutation
+      await AuditLogService.log(
+        {
+          userId: buyerId,
+          action: 'CREATE',
+          entityName: 'Order',
+          entityId: order.id,
+          newValues: {
+            buyerId: order.buyerId,
+            listingId: order.listingId,
+            quantityKg: order.quantityKg,
+            totalPrice: order.totalPrice,
+            status: order.status,
+            paymentStatus: order.paymentStatus,
+          },
+        },
         tx
       );
 
@@ -266,6 +286,23 @@ export class OrderService {
         tx
       );
 
+      // Audit Log mutation
+      await AuditLogService.log(
+        {
+          userId: requestingUserId,
+          action: 'CANCEL',
+          entityName: 'Order',
+          entityId: orderId,
+          oldValues: {
+            status: order.status,
+          },
+          newValues: {
+            status: OrderStatus.CANCELLED,
+          },
+        },
+        tx
+      );
+
       return updatedOrder;
     });
   }
@@ -304,6 +341,25 @@ export class OrderService {
         'ORDER_CONFIRMED',
         `Payment confirmed. Your ${order.listing.cropType} has been sold.`,
         true, // high-priority, send SMS!
+        tx
+      );
+
+      // Audit Log mutation
+      await AuditLogService.log(
+        {
+          userId: null, // System / Webhook trigger
+          action: 'CONFIRM',
+          entityName: 'Order',
+          entityId: orderId,
+          oldValues: {
+            status: order.status,
+            paymentStatus: order.paymentStatus,
+          },
+          newValues: {
+            status: OrderStatus.CONFIRMED,
+            paymentStatus: PaymentStatus.PAID,
+          },
+        },
         tx
       );
 

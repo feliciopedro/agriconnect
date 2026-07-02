@@ -9,8 +9,9 @@ import {
   DeliveryStatus,
   OrderStatus,
   TraceEventType,
-  Role
+  Prisma
 } from '../prisma/generated-client';
+import { AuditLogService } from './audit.service';
 
 interface Stop {
   requestId: string;
@@ -657,6 +658,27 @@ export class DeliveryService {
         data: { isAvailable: false },
       });
 
+      // Audit Log mutation for each request in route path
+      for (const reqId of requestsToUpdate) {
+        await AuditLogService.log(
+          {
+            userId: transportProviderId,
+            action: 'MATCH',
+            entityName: 'DeliveryRequest',
+            entityId: reqId,
+            oldValues: {
+              status: req.status,
+              transportProviderId: req.transportProviderId,
+            },
+            newValues: {
+              status: DeliveryStatus.MATCHED,
+              transportProviderId,
+            },
+          },
+          tx
+        );
+      }
+
       // 3. Dispatch notifications for all orders in path
       const activeRequests = await tx.deliveryRequest.findMany({
         where: { id: { in: requestsToUpdate } },
@@ -798,6 +820,19 @@ export class DeliveryService {
           false,
           tx
         );
+
+        // Audit Log mutation
+        await AuditLogService.log(
+          {
+            userId: actorUserId,
+            action: 'PICKUP',
+            entityName: 'DeliveryRequest',
+            entityId: deliveryRequestId,
+            oldValues: { status: req.status },
+            newValues: { status: newStatus },
+          },
+          tx
+        );
       }
 
       if (newStatus === DeliveryStatus.DELIVERED) {
@@ -868,6 +903,19 @@ export class DeliveryService {
           'REVIEW_PROMPT',
           `Please review buyer ${req.order.buyer.name} for order ${req.orderId.slice(0, 8)}`,
           false,
+          tx
+        );
+
+        // Audit Log mutation
+        await AuditLogService.log(
+          {
+            userId: actorUserId,
+            action: 'DELIVER',
+            entityName: 'DeliveryRequest',
+            entityId: deliveryRequestId,
+            oldValues: { status: req.status },
+            newValues: { status: newStatus },
+          },
           tx
         );
       }

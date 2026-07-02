@@ -1,6 +1,7 @@
 import prisma from '../prisma/client';
 import { createError } from '../utils/errors';
 import { NotificationService } from './notification.service';
+import { AuditLogService } from './audit.service';
 import { CropType, PreOrderStatus, ListingStatus, Prisma } from '../prisma/generated-client';
 import { config } from '../config';
 
@@ -40,6 +41,20 @@ export class PreOrderService {
         notes: data.notes,
         depositAmount,
         status: PreOrderStatus.DEPOSIT_PENDING,
+      },
+    });
+
+    // Audit Log mutation
+    await AuditLogService.log({
+      userId: buyerId,
+      action: 'CREATE',
+      entityName: 'PreOrder',
+      entityId: preOrder.id,
+      newValues: {
+        cropType: preOrder.cropType,
+        quantityKg: preOrder.quantityKg,
+        maxPricePerKg: preOrder.maxPricePerKg,
+        status: preOrder.status,
       },
     });
 
@@ -137,12 +152,26 @@ export class PreOrderService {
       return;
     }
 
-    await prisma.preOrder.update({
-      where: { id: preOrder.id },
-      data: {
-        depositPaid: true,
-        status: PreOrderStatus.OPEN,
-      },
+    await prisma.$transaction(async (tx) => {
+      await tx.preOrder.update({
+        where: { id: preOrder.id },
+        data: {
+          depositPaid: true,
+          status: PreOrderStatus.OPEN,
+        },
+      });
+
+      await AuditLogService.log(
+        {
+          userId: preOrder.buyerId,
+          action: 'DEPOSIT_CONFIRM',
+          entityName: 'PreOrder',
+          entityId: preOrder.id,
+          oldValues: { status: preOrder.status, depositPaid: preOrder.depositPaid },
+          newValues: { status: PreOrderStatus.OPEN, depositPaid: true },
+        },
+        tx
+      );
     });
 
     await NotificationService.createNotification(
@@ -334,9 +363,23 @@ export class PreOrderService {
       );
     }
 
-    await prisma.preOrder.update({
-      where: { id: preOrderId },
-      data: { status: PreOrderStatus.CANCELLED },
+    await prisma.$transaction(async (tx) => {
+      await tx.preOrder.update({
+        where: { id: preOrderId },
+        data: { status: PreOrderStatus.CANCELLED },
+      });
+
+      await AuditLogService.log(
+        {
+          userId: buyerId,
+          action: 'CANCEL',
+          entityName: 'PreOrder',
+          entityId: preOrderId,
+          oldValues: { status: preOrder.status },
+          newValues: { status: PreOrderStatus.CANCELLED },
+        },
+        tx
+      );
     });
 
     // Notify buyer
@@ -436,9 +479,25 @@ export class PreOrderService {
 
     if (stale.length === 0) return { expiredCount: 0 };
 
-    await prisma.preOrder.updateMany({
-      where: { id: { in: stale.map((p) => p.id) } },
-      data: { status: PreOrderStatus.EXPIRED },
+    await prisma.$transaction(async (tx) => {
+      await tx.preOrder.updateMany({
+        where: { id: { in: stale.map((p) => p.id) } },
+        data: { status: PreOrderStatus.EXPIRED },
+      });
+
+      for (const p of stale) {
+        await AuditLogService.log(
+          {
+            userId: p.buyerId,
+            action: 'EXPIRE',
+            entityName: 'PreOrder',
+            entityId: p.id,
+            oldValues: { status: PreOrderStatus.OPEN },
+            newValues: { status: PreOrderStatus.EXPIRED },
+          },
+          tx
+        );
+      }
     });
 
     // Notify each buyer

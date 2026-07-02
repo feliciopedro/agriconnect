@@ -24,6 +24,7 @@ router.get('/users', AdminController.getUsers);
 router.patch('/users/:id/verify', validate(UserIdParamSchema, 'params'), AdminController.verifyUser);
 router.get('/trace/:batchCode', validate(BatchCodeParamSchema, 'params'), AdminController.getTrace);
 router.delete('/listings/:id', validate(ListingIdParamSchema, 'params'), AdminController.deleteListing);
+router.get('/audit-logs', AdminController.getAuditLogs);
 
 // Manual delivery grouping trigger
 router.post('/delivery-requests/group', DeliveryController.triggerManualGrouping);

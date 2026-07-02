@@ -85,6 +85,9 @@ jest.mock('../prisma/client', () => ({
     traceEvent: {
       create: jest.fn(),
     },
+    auditLog: {
+      create: jest.fn().mockResolvedValue({}),
+    },
     $transaction: jest.fn((fn: (tx: any) => Promise<any>) => fn({
       produceListing: {
         create: jest.fn().mockImplementation((args) => Promise.resolve({
@@ -94,6 +97,7 @@ jest.mock('../prisma/client', () => ({
         })),
       },
       traceEvent: { create: jest.fn().mockResolvedValue({}) },
+      auditLog: { create: jest.fn().mockResolvedValue({}) },
     })),
     preOrder: {
       findFirst: jest.fn(),
@@ -213,6 +217,7 @@ describe('ListingService Traceability Auto-Population', () => {
         }),
       },
       traceEvent: { create: jest.fn().mockResolvedValue({}) },
+      auditLog: { create: jest.fn().mockResolvedValue({}) },
     };
 
     await transactionCall(mockTx);
