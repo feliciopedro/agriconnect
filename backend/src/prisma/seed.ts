@@ -22,6 +22,8 @@ async function main() {
   await prisma.traceEvent.deleteMany();
   await prisma.traceabilityRecord.deleteMany();
   await prisma.produceListing.deleteMany();
+  await prisma.plantingInput.deleteMany();
+  await prisma.plantingLog.deleteMany();
   await prisma.farmerProfile.deleteMany();
   await prisma.buyerProfile.deleteMany();
   await prisma.transportProfile.deleteMany();
@@ -74,6 +76,51 @@ async function main() {
     farmers.push(user);
   }
   console.log(`👨‍🌾 Created ${farmers.length} Farmers and profiles.`);
+
+  // 2b. Seed Planting Logs and Inputs
+  const plantingLogs: any[] = [];
+  const logSetup = [
+    // Completed harvests (for yield prediction calculations: TOMATO, PEPPER)
+    { farmerIdx: 0, crop: CropType.TOMATO, acreage: 2.0, plantingOffset: 120, harvestOffset: 30, yield: 24000 }, // 12000 kg/acre
+    { farmerIdx: 0, crop: CropType.TOMATO, acreage: 3.0, plantingOffset: 240, harvestOffset: 150, yield: 36000 }, // 12000 kg/acre
+    { farmerIdx: 0, crop: CropType.PEPPER, acreage: 1.5, plantingOffset: 100, harvestOffset: 40, yield: 12000 }, // 8000 kg/acre
+    // Active planting logs (can be linked to Listings)
+    { farmerIdx: 0, crop: CropType.TOMATO, acreage: 2.5, plantingOffset: 85, harvestOffset: null, yield: null }, // idx 3
+    { farmerIdx: 2, crop: CropType.TOMATO, acreage: 1.8, plantingOffset: 70, harvestOffset: null, yield: null }, // idx 4
+    { farmerIdx: 0, crop: CropType.PEPPER, acreage: 1.0, plantingOffset: 65, harvestOffset: null, yield: null }, // idx 5
+    { farmerIdx: 3, crop: CropType.OKRA, acreage: 1.2, plantingOffset: 55, harvestOffset: null, yield: null },  // idx 6
+  ];
+
+  const harvestBase = new Date();
+
+  for (let idx = 0; idx < logSetup.length; idx++) {
+    const spec = logSetup[idx];
+    const farmer = farmers[spec.farmerIdx];
+    const log = await prisma.plantingLog.create({
+      data: {
+        farmerId: farmer.id,
+        cropType: spec.crop,
+        acreage: spec.acreage,
+        plantingDate: new Date(harvestBase.getTime() - spec.plantingOffset * 24 * 60 * 60 * 1000),
+        expectedHarvestDate: new Date(harvestBase.getTime() - (spec.plantingOffset - 90) * 24 * 60 * 60 * 1000),
+        actualHarvestDate: spec.harvestOffset ? new Date(harvestBase.getTime() - spec.harvestOffset * 24 * 60 * 60 * 1000) : null,
+        actualYieldKg: spec.yield,
+        notes: `Seeded field journal entry #${idx + 1}`,
+      }
+    });
+
+    // Seed some inputs for each log
+    await prisma.plantingInput.createMany({
+      data: [
+        { plantingLogId: log.id, type: 'FERTILIZER', name: 'Natures Organic Fertilizer', quantity: 2, unit: 'bags' },
+        { plantingLogId: log.id, type: 'IRRIGATION', name: 'Drip system', quantity: 12, unit: 'hours' },
+        { plantingLogId: log.id, type: 'PESTICIDE', name: 'Neem Oil spray', quantity: 500, unit: 'ml' },
+      ]
+    });
+
+    plantingLogs.push(log);
+  }
+  console.log(`🌱 Seeded ${plantingLogs.length} Planting logs with associated inputs.`);
 
   // Buyers
   const buyersData = [
@@ -181,7 +228,6 @@ async function main() {
   ];
 
   const listings: any[] = [];
-  const harvestBase = new Date();
   for (let i = 0; i < cropsSetup.length; i++) {
     const c = cropsSetup[i];
     const farmer = farmers[c.farmerIdx];
@@ -190,6 +236,28 @@ async function main() {
     let expiry = new Date(harvestBase.getTime() + 10 * 24 * 60 * 60 * 1000);
     if (i === 0 || i === 4 || i === 8) {
       expiry = new Date(Date.now() + 24 * 60 * 60 * 1000); // Expires in 24 hours
+    }
+
+    let plantingLogId: string | null = null;
+    let inputsUsed = ['Natures Organic Fertilizer', 'Rainwater irrigation'];
+    let plantingDate = new Date(harvestBase.getTime() - 90 * 24 * 60 * 60 * 1000);
+
+    if (i === 0) {
+      plantingLogId = plantingLogs[3].id;
+      plantingDate = plantingLogs[3].plantingDate;
+      inputsUsed = ['FERTILIZER: Natures Organic Fertilizer (2 bags)', 'IRRIGATION: Drip system (12 hours)', 'PESTICIDE: Neem Oil spray (500 ml)'];
+    } else if (i === 1) {
+      plantingLogId = plantingLogs[4].id;
+      plantingDate = plantingLogs[4].plantingDate;
+      inputsUsed = ['FERTILIZER: Natures Organic Fertilizer (2 bags)', 'IRRIGATION: Drip system (12 hours)', 'PESTICIDE: Neem Oil spray (500 ml)'];
+    } else if (i === 4) {
+      plantingLogId = plantingLogs[5].id;
+      plantingDate = plantingLogs[5].plantingDate;
+      inputsUsed = ['FERTILIZER: Natures Organic Fertilizer (2 bags)', 'IRRIGATION: Drip system (12 hours)', 'PESTICIDE: Neem Oil spray (500 ml)'];
+    } else if (i === 14) {
+      plantingLogId = plantingLogs[6].id;
+      plantingDate = plantingLogs[6].plantingDate;
+      inputsUsed = ['FERTILIZER: Natures Organic Fertilizer (2 bags)', 'IRRIGATION: Drip system (12 hours)', 'PESTICIDE: Neem Oil spray (500 ml)'];
     }
 
     const listing = await prisma.produceListing.create({
@@ -208,10 +276,11 @@ async function main() {
         latitude: farmer.latitude!,
         longitude: farmer.longitude!,
         batchCode: c.batch,
+        plantingLogId,
         traceability: {
           create: {
-            plantingDate: new Date(harvestBase.getTime() - 90 * 24 * 60 * 60 * 1000),
-            inputsUsed: ['Natures Organic Fertilizer', 'Rainwater irrigation'],
+            plantingDate,
+            inputsUsed,
             qualityCheckImages: ['https://example.com/quality.jpg']
           }
         }
@@ -499,6 +568,7 @@ async function main() {
   const totalOrders = await prisma.order.count();
   const totalTraceEvents = await prisma.traceEvent.count();
   const totalPreOrders = await prisma.preOrder.count();
+  const totalPlantingLogs = await prisma.plantingLog.count();
 
   console.log('\n=============================================');
   console.log('📊 AGRICONNECT SEED DATA SUMMARY REPORT');
@@ -508,6 +578,7 @@ async function main() {
   console.log(`📦 Total Customer Orders:       ${totalOrders}`);
   console.log(`📋 Total Trace Timeline Events:  ${totalTraceEvents}`);
   console.log(`🛒 Total Pre-Orders:             ${totalPreOrders}`);
+  console.log(`🌱 Total Planting Logs:          ${totalPlantingLogs}`);
   console.log('=============================================\n');
 
   console.log('🎉 Seeding completed successfully!');

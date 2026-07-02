@@ -88,6 +88,16 @@ export type UssdSession = $Result.DefaultSelection<Prisma.$UssdSessionPayload>
  * 
  */
 export type PreOrder = $Result.DefaultSelection<Prisma.$PreOrderPayload>
+/**
+ * Model PlantingLog
+ * 
+ */
+export type PlantingLog = $Result.DefaultSelection<Prisma.$PlantingLogPayload>
+/**
+ * Model PlantingInput
+ * 
+ */
+export type PlantingInput = $Result.DefaultSelection<Prisma.$PlantingInputPayload>
 
 /**
  * Enums
@@ -514,6 +524,26 @@ export class PrismaClient<
     * ```
     */
   get preOrder(): Prisma.PreOrderDelegate<ExtArgs>;
+
+  /**
+   * `prisma.plantingLog`: Exposes CRUD operations for the **PlantingLog** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more PlantingLogs
+    * const plantingLogs = await prisma.plantingLog.findMany()
+    * ```
+    */
+  get plantingLog(): Prisma.PlantingLogDelegate<ExtArgs>;
+
+  /**
+   * `prisma.plantingInput`: Exposes CRUD operations for the **PlantingInput** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more PlantingInputs
+    * const plantingInputs = await prisma.plantingInput.findMany()
+    * ```
+    */
+  get plantingInput(): Prisma.PlantingInputDelegate<ExtArgs>;
 }
 
 export namespace Prisma {
@@ -969,7 +999,9 @@ export namespace Prisma {
     Message: 'Message',
     OtpCode: 'OtpCode',
     UssdSession: 'UssdSession',
-    PreOrder: 'PreOrder'
+    PreOrder: 'PreOrder',
+    PlantingLog: 'PlantingLog',
+    PlantingInput: 'PlantingInput'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -985,7 +1017,7 @@ export namespace Prisma {
 
   export type TypeMap<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, ClientOptions = {}> = {
     meta: {
-      modelProps: "user" | "farmerProfile" | "buyerProfile" | "transportProfile" | "produceListing" | "traceabilityRecord" | "traceEvent" | "order" | "deliveryRequest" | "review" | "notification" | "message" | "otpCode" | "ussdSession" | "preOrder"
+      modelProps: "user" | "farmerProfile" | "buyerProfile" | "transportProfile" | "produceListing" | "traceabilityRecord" | "traceEvent" | "order" | "deliveryRequest" | "review" | "notification" | "message" | "otpCode" | "ussdSession" | "preOrder" | "plantingLog" | "plantingInput"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -2039,6 +2071,146 @@ export namespace Prisma {
           }
         }
       }
+      PlantingLog: {
+        payload: Prisma.$PlantingLogPayload<ExtArgs>
+        fields: Prisma.PlantingLogFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.PlantingLogFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PlantingLogPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.PlantingLogFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PlantingLogPayload>
+          }
+          findFirst: {
+            args: Prisma.PlantingLogFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PlantingLogPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.PlantingLogFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PlantingLogPayload>
+          }
+          findMany: {
+            args: Prisma.PlantingLogFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PlantingLogPayload>[]
+          }
+          create: {
+            args: Prisma.PlantingLogCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PlantingLogPayload>
+          }
+          createMany: {
+            args: Prisma.PlantingLogCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.PlantingLogCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PlantingLogPayload>[]
+          }
+          delete: {
+            args: Prisma.PlantingLogDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PlantingLogPayload>
+          }
+          update: {
+            args: Prisma.PlantingLogUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PlantingLogPayload>
+          }
+          deleteMany: {
+            args: Prisma.PlantingLogDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.PlantingLogUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.PlantingLogUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PlantingLogPayload>
+          }
+          aggregate: {
+            args: Prisma.PlantingLogAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregatePlantingLog>
+          }
+          groupBy: {
+            args: Prisma.PlantingLogGroupByArgs<ExtArgs>
+            result: $Utils.Optional<PlantingLogGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.PlantingLogCountArgs<ExtArgs>
+            result: $Utils.Optional<PlantingLogCountAggregateOutputType> | number
+          }
+        }
+      }
+      PlantingInput: {
+        payload: Prisma.$PlantingInputPayload<ExtArgs>
+        fields: Prisma.PlantingInputFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.PlantingInputFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PlantingInputPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.PlantingInputFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PlantingInputPayload>
+          }
+          findFirst: {
+            args: Prisma.PlantingInputFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PlantingInputPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.PlantingInputFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PlantingInputPayload>
+          }
+          findMany: {
+            args: Prisma.PlantingInputFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PlantingInputPayload>[]
+          }
+          create: {
+            args: Prisma.PlantingInputCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PlantingInputPayload>
+          }
+          createMany: {
+            args: Prisma.PlantingInputCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.PlantingInputCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PlantingInputPayload>[]
+          }
+          delete: {
+            args: Prisma.PlantingInputDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PlantingInputPayload>
+          }
+          update: {
+            args: Prisma.PlantingInputUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PlantingInputPayload>
+          }
+          deleteMany: {
+            args: Prisma.PlantingInputDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.PlantingInputUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.PlantingInputUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PlantingInputPayload>
+          }
+          aggregate: {
+            args: Prisma.PlantingInputAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregatePlantingInput>
+          }
+          groupBy: {
+            args: Prisma.PlantingInputGroupByArgs<ExtArgs>
+            result: $Utils.Optional<PlantingInputGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.PlantingInputCountArgs<ExtArgs>
+            result: $Utils.Optional<PlantingInputCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -2210,6 +2382,7 @@ export namespace Prisma {
     receivedMessages: number
     recordedTraceEvents: number
     preOrders: number
+    plantingLogs: number
   }
 
   export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -2223,6 +2396,7 @@ export namespace Prisma {
     receivedMessages?: boolean | UserCountOutputTypeCountReceivedMessagesArgs
     recordedTraceEvents?: boolean | UserCountOutputTypeCountRecordedTraceEventsArgs
     preOrders?: boolean | UserCountOutputTypeCountPreOrdersArgs
+    plantingLogs?: boolean | UserCountOutputTypeCountPlantingLogsArgs
   }
 
   // Custom InputTypes
@@ -2304,6 +2478,13 @@ export namespace Prisma {
    */
   export type UserCountOutputTypeCountPreOrdersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: PreOrderWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountPlantingLogsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: PlantingLogWhereInput
   }
 
 
@@ -2393,6 +2574,46 @@ export namespace Prisma {
    */
   export type OrderCountOutputTypeCountMessagesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: MessageWhereInput
+  }
+
+
+  /**
+   * Count Type PlantingLogCountOutputType
+   */
+
+  export type PlantingLogCountOutputType = {
+    inputs: number
+    listings: number
+  }
+
+  export type PlantingLogCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    inputs?: boolean | PlantingLogCountOutputTypeCountInputsArgs
+    listings?: boolean | PlantingLogCountOutputTypeCountListingsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * PlantingLogCountOutputType without action
+   */
+  export type PlantingLogCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PlantingLogCountOutputType
+     */
+    select?: PlantingLogCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * PlantingLogCountOutputType without action
+   */
+  export type PlantingLogCountOutputTypeCountInputsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: PlantingInputWhereInput
+  }
+
+  /**
+   * PlantingLogCountOutputType without action
+   */
+  export type PlantingLogCountOutputTypeCountListingsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ProduceListingWhereInput
   }
 
 
@@ -2663,6 +2884,7 @@ export namespace Prisma {
     receivedMessages?: boolean | User$receivedMessagesArgs<ExtArgs>
     recordedTraceEvents?: boolean | User$recordedTraceEventsArgs<ExtArgs>
     preOrders?: boolean | User$preOrdersArgs<ExtArgs>
+    plantingLogs?: boolean | User$plantingLogsArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
@@ -2708,6 +2930,7 @@ export namespace Prisma {
     receivedMessages?: boolean | User$receivedMessagesArgs<ExtArgs>
     recordedTraceEvents?: boolean | User$recordedTraceEventsArgs<ExtArgs>
     preOrders?: boolean | User$preOrdersArgs<ExtArgs>
+    plantingLogs?: boolean | User$plantingLogsArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type UserIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -2728,6 +2951,7 @@ export namespace Prisma {
       receivedMessages: Prisma.$MessagePayload<ExtArgs>[]
       recordedTraceEvents: Prisma.$TraceEventPayload<ExtArgs>[]
       preOrders: Prisma.$PreOrderPayload<ExtArgs>[]
+      plantingLogs: Prisma.$PlantingLogPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -3118,6 +3342,7 @@ export namespace Prisma {
     receivedMessages<T extends User$receivedMessagesArgs<ExtArgs> = {}>(args?: Subset<T, User$receivedMessagesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MessagePayload<ExtArgs>, T, "findMany"> | Null>
     recordedTraceEvents<T extends User$recordedTraceEventsArgs<ExtArgs> = {}>(args?: Subset<T, User$recordedTraceEventsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TraceEventPayload<ExtArgs>, T, "findMany"> | Null>
     preOrders<T extends User$preOrdersArgs<ExtArgs> = {}>(args?: Subset<T, User$preOrdersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PreOrderPayload<ExtArgs>, T, "findMany"> | Null>
+    plantingLogs<T extends User$plantingLogsArgs<ExtArgs> = {}>(args?: Subset<T, User$plantingLogsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PlantingLogPayload<ExtArgs>, T, "findMany"> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3714,6 +3939,26 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: PreOrderScalarFieldEnum | PreOrderScalarFieldEnum[]
+  }
+
+  /**
+   * User.plantingLogs
+   */
+  export type User$plantingLogsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PlantingLog
+     */
+    select?: PlantingLogSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PlantingLogInclude<ExtArgs> | null
+    where?: PlantingLogWhereInput
+    orderBy?: PlantingLogOrderByWithRelationInput | PlantingLogOrderByWithRelationInput[]
+    cursor?: PlantingLogWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: PlantingLogScalarFieldEnum | PlantingLogScalarFieldEnum[]
   }
 
   /**
@@ -6817,6 +7062,7 @@ export namespace Prisma {
     batchCode: string | null
     createdAt: Date | null
     updatedAt: Date | null
+    plantingLogId: string | null
   }
 
   export type ProduceListingMaxAggregateOutputType = {
@@ -6836,6 +7082,7 @@ export namespace Prisma {
     batchCode: string | null
     createdAt: Date | null
     updatedAt: Date | null
+    plantingLogId: string | null
   }
 
   export type ProduceListingCountAggregateOutputType = {
@@ -6856,6 +7103,7 @@ export namespace Prisma {
     batchCode: number
     createdAt: number
     updatedAt: number
+    plantingLogId: number
     _all: number
   }
 
@@ -6893,6 +7141,7 @@ export namespace Prisma {
     batchCode?: true
     createdAt?: true
     updatedAt?: true
+    plantingLogId?: true
   }
 
   export type ProduceListingMaxAggregateInputType = {
@@ -6912,6 +7161,7 @@ export namespace Prisma {
     batchCode?: true
     createdAt?: true
     updatedAt?: true
+    plantingLogId?: true
   }
 
   export type ProduceListingCountAggregateInputType = {
@@ -6932,6 +7182,7 @@ export namespace Prisma {
     batchCode?: true
     createdAt?: true
     updatedAt?: true
+    plantingLogId?: true
     _all?: true
   }
 
@@ -7039,6 +7290,7 @@ export namespace Prisma {
     batchCode: string
     createdAt: Date
     updatedAt: Date
+    plantingLogId: string | null
     _count: ProduceListingCountAggregateOutputType | null
     _avg: ProduceListingAvgAggregateOutputType | null
     _sum: ProduceListingSumAggregateOutputType | null
@@ -7078,11 +7330,13 @@ export namespace Prisma {
     batchCode?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    plantingLogId?: boolean
     farmer?: boolean | UserDefaultArgs<ExtArgs>
     orders?: boolean | ProduceListing$ordersArgs<ExtArgs>
     traceability?: boolean | ProduceListing$traceabilityArgs<ExtArgs>
     traceEvents?: boolean | ProduceListing$traceEventsArgs<ExtArgs>
     preOrders?: boolean | ProduceListing$preOrdersArgs<ExtArgs>
+    plantingLog?: boolean | ProduceListing$plantingLogArgs<ExtArgs>
     _count?: boolean | ProduceListingCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["produceListing"]>
 
@@ -7104,7 +7358,9 @@ export namespace Prisma {
     batchCode?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    plantingLogId?: boolean
     farmer?: boolean | UserDefaultArgs<ExtArgs>
+    plantingLog?: boolean | ProduceListing$plantingLogArgs<ExtArgs>
   }, ExtArgs["result"]["produceListing"]>
 
   export type ProduceListingSelectScalar = {
@@ -7125,6 +7381,7 @@ export namespace Prisma {
     batchCode?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    plantingLogId?: boolean
   }
 
   export type ProduceListingInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -7133,10 +7390,12 @@ export namespace Prisma {
     traceability?: boolean | ProduceListing$traceabilityArgs<ExtArgs>
     traceEvents?: boolean | ProduceListing$traceEventsArgs<ExtArgs>
     preOrders?: boolean | ProduceListing$preOrdersArgs<ExtArgs>
+    plantingLog?: boolean | ProduceListing$plantingLogArgs<ExtArgs>
     _count?: boolean | ProduceListingCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type ProduceListingIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     farmer?: boolean | UserDefaultArgs<ExtArgs>
+    plantingLog?: boolean | ProduceListing$plantingLogArgs<ExtArgs>
   }
 
   export type $ProduceListingPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -7147,6 +7406,7 @@ export namespace Prisma {
       traceability: Prisma.$TraceabilityRecordPayload<ExtArgs> | null
       traceEvents: Prisma.$TraceEventPayload<ExtArgs>[]
       preOrders: Prisma.$PreOrderPayload<ExtArgs>[]
+      plantingLog: Prisma.$PlantingLogPayload<ExtArgs> | null
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -7166,6 +7426,7 @@ export namespace Prisma {
       batchCode: string
       createdAt: Date
       updatedAt: Date
+      plantingLogId: string | null
     }, ExtArgs["result"]["produceListing"]>
     composites: {}
   }
@@ -7535,6 +7796,7 @@ export namespace Prisma {
     traceability<T extends ProduceListing$traceabilityArgs<ExtArgs> = {}>(args?: Subset<T, ProduceListing$traceabilityArgs<ExtArgs>>): Prisma__TraceabilityRecordClient<$Result.GetResult<Prisma.$TraceabilityRecordPayload<ExtArgs>, T, "findUniqueOrThrow"> | null, null, ExtArgs>
     traceEvents<T extends ProduceListing$traceEventsArgs<ExtArgs> = {}>(args?: Subset<T, ProduceListing$traceEventsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TraceEventPayload<ExtArgs>, T, "findMany"> | Null>
     preOrders<T extends ProduceListing$preOrdersArgs<ExtArgs> = {}>(args?: Subset<T, ProduceListing$preOrdersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PreOrderPayload<ExtArgs>, T, "findMany"> | Null>
+    plantingLog<T extends ProduceListing$plantingLogArgs<ExtArgs> = {}>(args?: Subset<T, ProduceListing$plantingLogArgs<ExtArgs>>): Prisma__PlantingLogClient<$Result.GetResult<Prisma.$PlantingLogPayload<ExtArgs>, T, "findUniqueOrThrow"> | null, null, ExtArgs>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -7581,6 +7843,7 @@ export namespace Prisma {
     readonly batchCode: FieldRef<"ProduceListing", 'String'>
     readonly createdAt: FieldRef<"ProduceListing", 'DateTime'>
     readonly updatedAt: FieldRef<"ProduceListing", 'DateTime'>
+    readonly plantingLogId: FieldRef<"ProduceListing", 'String'>
   }
     
 
@@ -7971,6 +8234,21 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: PreOrderScalarFieldEnum | PreOrderScalarFieldEnum[]
+  }
+
+  /**
+   * ProduceListing.plantingLog
+   */
+  export type ProduceListing$plantingLogArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PlantingLog
+     */
+    select?: PlantingLogSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PlantingLogInclude<ExtArgs> | null
+    where?: PlantingLogWhereInput
   }
 
   /**
@@ -18256,6 +18534,2114 @@ export namespace Prisma {
 
 
   /**
+   * Model PlantingLog
+   */
+
+  export type AggregatePlantingLog = {
+    _count: PlantingLogCountAggregateOutputType | null
+    _avg: PlantingLogAvgAggregateOutputType | null
+    _sum: PlantingLogSumAggregateOutputType | null
+    _min: PlantingLogMinAggregateOutputType | null
+    _max: PlantingLogMaxAggregateOutputType | null
+  }
+
+  export type PlantingLogAvgAggregateOutputType = {
+    acreage: number | null
+    actualYieldKg: number | null
+  }
+
+  export type PlantingLogSumAggregateOutputType = {
+    acreage: number | null
+    actualYieldKg: number | null
+  }
+
+  export type PlantingLogMinAggregateOutputType = {
+    id: string | null
+    farmerId: string | null
+    cropType: $Enums.CropType | null
+    acreage: number | null
+    plantingDate: Date | null
+    expectedHarvestDate: Date | null
+    actualHarvestDate: Date | null
+    actualYieldKg: number | null
+    notes: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type PlantingLogMaxAggregateOutputType = {
+    id: string | null
+    farmerId: string | null
+    cropType: $Enums.CropType | null
+    acreage: number | null
+    plantingDate: Date | null
+    expectedHarvestDate: Date | null
+    actualHarvestDate: Date | null
+    actualYieldKg: number | null
+    notes: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type PlantingLogCountAggregateOutputType = {
+    id: number
+    farmerId: number
+    cropType: number
+    acreage: number
+    plantingDate: number
+    expectedHarvestDate: number
+    actualHarvestDate: number
+    actualYieldKg: number
+    notes: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type PlantingLogAvgAggregateInputType = {
+    acreage?: true
+    actualYieldKg?: true
+  }
+
+  export type PlantingLogSumAggregateInputType = {
+    acreage?: true
+    actualYieldKg?: true
+  }
+
+  export type PlantingLogMinAggregateInputType = {
+    id?: true
+    farmerId?: true
+    cropType?: true
+    acreage?: true
+    plantingDate?: true
+    expectedHarvestDate?: true
+    actualHarvestDate?: true
+    actualYieldKg?: true
+    notes?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type PlantingLogMaxAggregateInputType = {
+    id?: true
+    farmerId?: true
+    cropType?: true
+    acreage?: true
+    plantingDate?: true
+    expectedHarvestDate?: true
+    actualHarvestDate?: true
+    actualYieldKg?: true
+    notes?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type PlantingLogCountAggregateInputType = {
+    id?: true
+    farmerId?: true
+    cropType?: true
+    acreage?: true
+    plantingDate?: true
+    expectedHarvestDate?: true
+    actualHarvestDate?: true
+    actualYieldKg?: true
+    notes?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type PlantingLogAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which PlantingLog to aggregate.
+     */
+    where?: PlantingLogWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PlantingLogs to fetch.
+     */
+    orderBy?: PlantingLogOrderByWithRelationInput | PlantingLogOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: PlantingLogWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PlantingLogs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PlantingLogs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned PlantingLogs
+    **/
+    _count?: true | PlantingLogCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: PlantingLogAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: PlantingLogSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: PlantingLogMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: PlantingLogMaxAggregateInputType
+  }
+
+  export type GetPlantingLogAggregateType<T extends PlantingLogAggregateArgs> = {
+        [P in keyof T & keyof AggregatePlantingLog]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregatePlantingLog[P]>
+      : GetScalarType<T[P], AggregatePlantingLog[P]>
+  }
+
+
+
+
+  export type PlantingLogGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: PlantingLogWhereInput
+    orderBy?: PlantingLogOrderByWithAggregationInput | PlantingLogOrderByWithAggregationInput[]
+    by: PlantingLogScalarFieldEnum[] | PlantingLogScalarFieldEnum
+    having?: PlantingLogScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: PlantingLogCountAggregateInputType | true
+    _avg?: PlantingLogAvgAggregateInputType
+    _sum?: PlantingLogSumAggregateInputType
+    _min?: PlantingLogMinAggregateInputType
+    _max?: PlantingLogMaxAggregateInputType
+  }
+
+  export type PlantingLogGroupByOutputType = {
+    id: string
+    farmerId: string
+    cropType: $Enums.CropType
+    acreage: number
+    plantingDate: Date
+    expectedHarvestDate: Date
+    actualHarvestDate: Date | null
+    actualYieldKg: number | null
+    notes: string | null
+    createdAt: Date
+    updatedAt: Date
+    _count: PlantingLogCountAggregateOutputType | null
+    _avg: PlantingLogAvgAggregateOutputType | null
+    _sum: PlantingLogSumAggregateOutputType | null
+    _min: PlantingLogMinAggregateOutputType | null
+    _max: PlantingLogMaxAggregateOutputType | null
+  }
+
+  type GetPlantingLogGroupByPayload<T extends PlantingLogGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<PlantingLogGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof PlantingLogGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], PlantingLogGroupByOutputType[P]>
+            : GetScalarType<T[P], PlantingLogGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type PlantingLogSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    farmerId?: boolean
+    cropType?: boolean
+    acreage?: boolean
+    plantingDate?: boolean
+    expectedHarvestDate?: boolean
+    actualHarvestDate?: boolean
+    actualYieldKg?: boolean
+    notes?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    farmer?: boolean | UserDefaultArgs<ExtArgs>
+    inputs?: boolean | PlantingLog$inputsArgs<ExtArgs>
+    listings?: boolean | PlantingLog$listingsArgs<ExtArgs>
+    _count?: boolean | PlantingLogCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["plantingLog"]>
+
+  export type PlantingLogSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    farmerId?: boolean
+    cropType?: boolean
+    acreage?: boolean
+    plantingDate?: boolean
+    expectedHarvestDate?: boolean
+    actualHarvestDate?: boolean
+    actualYieldKg?: boolean
+    notes?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    farmer?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["plantingLog"]>
+
+  export type PlantingLogSelectScalar = {
+    id?: boolean
+    farmerId?: boolean
+    cropType?: boolean
+    acreage?: boolean
+    plantingDate?: boolean
+    expectedHarvestDate?: boolean
+    actualHarvestDate?: boolean
+    actualYieldKg?: boolean
+    notes?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type PlantingLogInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    farmer?: boolean | UserDefaultArgs<ExtArgs>
+    inputs?: boolean | PlantingLog$inputsArgs<ExtArgs>
+    listings?: boolean | PlantingLog$listingsArgs<ExtArgs>
+    _count?: boolean | PlantingLogCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type PlantingLogIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    farmer?: boolean | UserDefaultArgs<ExtArgs>
+  }
+
+  export type $PlantingLogPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "PlantingLog"
+    objects: {
+      farmer: Prisma.$UserPayload<ExtArgs>
+      inputs: Prisma.$PlantingInputPayload<ExtArgs>[]
+      listings: Prisma.$ProduceListingPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      farmerId: string
+      cropType: $Enums.CropType
+      acreage: number
+      plantingDate: Date
+      expectedHarvestDate: Date
+      actualHarvestDate: Date | null
+      actualYieldKg: number | null
+      notes: string | null
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["plantingLog"]>
+    composites: {}
+  }
+
+  type PlantingLogGetPayload<S extends boolean | null | undefined | PlantingLogDefaultArgs> = $Result.GetResult<Prisma.$PlantingLogPayload, S>
+
+  type PlantingLogCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<PlantingLogFindManyArgs, 'select' | 'include' | 'distinct'> & {
+      select?: PlantingLogCountAggregateInputType | true
+    }
+
+  export interface PlantingLogDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['PlantingLog'], meta: { name: 'PlantingLog' } }
+    /**
+     * Find zero or one PlantingLog that matches the filter.
+     * @param {PlantingLogFindUniqueArgs} args - Arguments to find a PlantingLog
+     * @example
+     * // Get one PlantingLog
+     * const plantingLog = await prisma.plantingLog.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends PlantingLogFindUniqueArgs>(args: SelectSubset<T, PlantingLogFindUniqueArgs<ExtArgs>>): Prisma__PlantingLogClient<$Result.GetResult<Prisma.$PlantingLogPayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
+
+    /**
+     * Find one PlantingLog that matches the filter or throw an error with `error.code='P2025'` 
+     * if no matches were found.
+     * @param {PlantingLogFindUniqueOrThrowArgs} args - Arguments to find a PlantingLog
+     * @example
+     * // Get one PlantingLog
+     * const plantingLog = await prisma.plantingLog.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends PlantingLogFindUniqueOrThrowArgs>(args: SelectSubset<T, PlantingLogFindUniqueOrThrowArgs<ExtArgs>>): Prisma__PlantingLogClient<$Result.GetResult<Prisma.$PlantingLogPayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
+
+    /**
+     * Find the first PlantingLog that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PlantingLogFindFirstArgs} args - Arguments to find a PlantingLog
+     * @example
+     * // Get one PlantingLog
+     * const plantingLog = await prisma.plantingLog.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends PlantingLogFindFirstArgs>(args?: SelectSubset<T, PlantingLogFindFirstArgs<ExtArgs>>): Prisma__PlantingLogClient<$Result.GetResult<Prisma.$PlantingLogPayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
+
+    /**
+     * Find the first PlantingLog that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PlantingLogFindFirstOrThrowArgs} args - Arguments to find a PlantingLog
+     * @example
+     * // Get one PlantingLog
+     * const plantingLog = await prisma.plantingLog.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends PlantingLogFindFirstOrThrowArgs>(args?: SelectSubset<T, PlantingLogFindFirstOrThrowArgs<ExtArgs>>): Prisma__PlantingLogClient<$Result.GetResult<Prisma.$PlantingLogPayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
+
+    /**
+     * Find zero or more PlantingLogs that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PlantingLogFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all PlantingLogs
+     * const plantingLogs = await prisma.plantingLog.findMany()
+     * 
+     * // Get first 10 PlantingLogs
+     * const plantingLogs = await prisma.plantingLog.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const plantingLogWithIdOnly = await prisma.plantingLog.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends PlantingLogFindManyArgs>(args?: SelectSubset<T, PlantingLogFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PlantingLogPayload<ExtArgs>, T, "findMany">>
+
+    /**
+     * Create a PlantingLog.
+     * @param {PlantingLogCreateArgs} args - Arguments to create a PlantingLog.
+     * @example
+     * // Create one PlantingLog
+     * const PlantingLog = await prisma.plantingLog.create({
+     *   data: {
+     *     // ... data to create a PlantingLog
+     *   }
+     * })
+     * 
+     */
+    create<T extends PlantingLogCreateArgs>(args: SelectSubset<T, PlantingLogCreateArgs<ExtArgs>>): Prisma__PlantingLogClient<$Result.GetResult<Prisma.$PlantingLogPayload<ExtArgs>, T, "create">, never, ExtArgs>
+
+    /**
+     * Create many PlantingLogs.
+     * @param {PlantingLogCreateManyArgs} args - Arguments to create many PlantingLogs.
+     * @example
+     * // Create many PlantingLogs
+     * const plantingLog = await prisma.plantingLog.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends PlantingLogCreateManyArgs>(args?: SelectSubset<T, PlantingLogCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many PlantingLogs and returns the data saved in the database.
+     * @param {PlantingLogCreateManyAndReturnArgs} args - Arguments to create many PlantingLogs.
+     * @example
+     * // Create many PlantingLogs
+     * const plantingLog = await prisma.plantingLog.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many PlantingLogs and only return the `id`
+     * const plantingLogWithIdOnly = await prisma.plantingLog.createManyAndReturn({ 
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends PlantingLogCreateManyAndReturnArgs>(args?: SelectSubset<T, PlantingLogCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PlantingLogPayload<ExtArgs>, T, "createManyAndReturn">>
+
+    /**
+     * Delete a PlantingLog.
+     * @param {PlantingLogDeleteArgs} args - Arguments to delete one PlantingLog.
+     * @example
+     * // Delete one PlantingLog
+     * const PlantingLog = await prisma.plantingLog.delete({
+     *   where: {
+     *     // ... filter to delete one PlantingLog
+     *   }
+     * })
+     * 
+     */
+    delete<T extends PlantingLogDeleteArgs>(args: SelectSubset<T, PlantingLogDeleteArgs<ExtArgs>>): Prisma__PlantingLogClient<$Result.GetResult<Prisma.$PlantingLogPayload<ExtArgs>, T, "delete">, never, ExtArgs>
+
+    /**
+     * Update one PlantingLog.
+     * @param {PlantingLogUpdateArgs} args - Arguments to update one PlantingLog.
+     * @example
+     * // Update one PlantingLog
+     * const plantingLog = await prisma.plantingLog.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends PlantingLogUpdateArgs>(args: SelectSubset<T, PlantingLogUpdateArgs<ExtArgs>>): Prisma__PlantingLogClient<$Result.GetResult<Prisma.$PlantingLogPayload<ExtArgs>, T, "update">, never, ExtArgs>
+
+    /**
+     * Delete zero or more PlantingLogs.
+     * @param {PlantingLogDeleteManyArgs} args - Arguments to filter PlantingLogs to delete.
+     * @example
+     * // Delete a few PlantingLogs
+     * const { count } = await prisma.plantingLog.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends PlantingLogDeleteManyArgs>(args?: SelectSubset<T, PlantingLogDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more PlantingLogs.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PlantingLogUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many PlantingLogs
+     * const plantingLog = await prisma.plantingLog.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends PlantingLogUpdateManyArgs>(args: SelectSubset<T, PlantingLogUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one PlantingLog.
+     * @param {PlantingLogUpsertArgs} args - Arguments to update or create a PlantingLog.
+     * @example
+     * // Update or create a PlantingLog
+     * const plantingLog = await prisma.plantingLog.upsert({
+     *   create: {
+     *     // ... data to create a PlantingLog
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the PlantingLog we want to update
+     *   }
+     * })
+     */
+    upsert<T extends PlantingLogUpsertArgs>(args: SelectSubset<T, PlantingLogUpsertArgs<ExtArgs>>): Prisma__PlantingLogClient<$Result.GetResult<Prisma.$PlantingLogPayload<ExtArgs>, T, "upsert">, never, ExtArgs>
+
+
+    /**
+     * Count the number of PlantingLogs.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PlantingLogCountArgs} args - Arguments to filter PlantingLogs to count.
+     * @example
+     * // Count the number of PlantingLogs
+     * const count = await prisma.plantingLog.count({
+     *   where: {
+     *     // ... the filter for the PlantingLogs we want to count
+     *   }
+     * })
+    **/
+    count<T extends PlantingLogCountArgs>(
+      args?: Subset<T, PlantingLogCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], PlantingLogCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a PlantingLog.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PlantingLogAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends PlantingLogAggregateArgs>(args: Subset<T, PlantingLogAggregateArgs>): Prisma.PrismaPromise<GetPlantingLogAggregateType<T>>
+
+    /**
+     * Group by PlantingLog.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PlantingLogGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends PlantingLogGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: PlantingLogGroupByArgs['orderBy'] }
+        : { orderBy?: PlantingLogGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, PlantingLogGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetPlantingLogGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the PlantingLog model
+   */
+  readonly fields: PlantingLogFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for PlantingLog.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__PlantingLogClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    farmer<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
+    inputs<T extends PlantingLog$inputsArgs<ExtArgs> = {}>(args?: Subset<T, PlantingLog$inputsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PlantingInputPayload<ExtArgs>, T, "findMany"> | Null>
+    listings<T extends PlantingLog$listingsArgs<ExtArgs> = {}>(args?: Subset<T, PlantingLog$listingsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProduceListingPayload<ExtArgs>, T, "findMany"> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the PlantingLog model
+   */ 
+  interface PlantingLogFieldRefs {
+    readonly id: FieldRef<"PlantingLog", 'String'>
+    readonly farmerId: FieldRef<"PlantingLog", 'String'>
+    readonly cropType: FieldRef<"PlantingLog", 'CropType'>
+    readonly acreage: FieldRef<"PlantingLog", 'Float'>
+    readonly plantingDate: FieldRef<"PlantingLog", 'DateTime'>
+    readonly expectedHarvestDate: FieldRef<"PlantingLog", 'DateTime'>
+    readonly actualHarvestDate: FieldRef<"PlantingLog", 'DateTime'>
+    readonly actualYieldKg: FieldRef<"PlantingLog", 'Float'>
+    readonly notes: FieldRef<"PlantingLog", 'String'>
+    readonly createdAt: FieldRef<"PlantingLog", 'DateTime'>
+    readonly updatedAt: FieldRef<"PlantingLog", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * PlantingLog findUnique
+   */
+  export type PlantingLogFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PlantingLog
+     */
+    select?: PlantingLogSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PlantingLogInclude<ExtArgs> | null
+    /**
+     * Filter, which PlantingLog to fetch.
+     */
+    where: PlantingLogWhereUniqueInput
+  }
+
+  /**
+   * PlantingLog findUniqueOrThrow
+   */
+  export type PlantingLogFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PlantingLog
+     */
+    select?: PlantingLogSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PlantingLogInclude<ExtArgs> | null
+    /**
+     * Filter, which PlantingLog to fetch.
+     */
+    where: PlantingLogWhereUniqueInput
+  }
+
+  /**
+   * PlantingLog findFirst
+   */
+  export type PlantingLogFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PlantingLog
+     */
+    select?: PlantingLogSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PlantingLogInclude<ExtArgs> | null
+    /**
+     * Filter, which PlantingLog to fetch.
+     */
+    where?: PlantingLogWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PlantingLogs to fetch.
+     */
+    orderBy?: PlantingLogOrderByWithRelationInput | PlantingLogOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for PlantingLogs.
+     */
+    cursor?: PlantingLogWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PlantingLogs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PlantingLogs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of PlantingLogs.
+     */
+    distinct?: PlantingLogScalarFieldEnum | PlantingLogScalarFieldEnum[]
+  }
+
+  /**
+   * PlantingLog findFirstOrThrow
+   */
+  export type PlantingLogFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PlantingLog
+     */
+    select?: PlantingLogSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PlantingLogInclude<ExtArgs> | null
+    /**
+     * Filter, which PlantingLog to fetch.
+     */
+    where?: PlantingLogWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PlantingLogs to fetch.
+     */
+    orderBy?: PlantingLogOrderByWithRelationInput | PlantingLogOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for PlantingLogs.
+     */
+    cursor?: PlantingLogWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PlantingLogs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PlantingLogs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of PlantingLogs.
+     */
+    distinct?: PlantingLogScalarFieldEnum | PlantingLogScalarFieldEnum[]
+  }
+
+  /**
+   * PlantingLog findMany
+   */
+  export type PlantingLogFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PlantingLog
+     */
+    select?: PlantingLogSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PlantingLogInclude<ExtArgs> | null
+    /**
+     * Filter, which PlantingLogs to fetch.
+     */
+    where?: PlantingLogWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PlantingLogs to fetch.
+     */
+    orderBy?: PlantingLogOrderByWithRelationInput | PlantingLogOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing PlantingLogs.
+     */
+    cursor?: PlantingLogWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PlantingLogs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PlantingLogs.
+     */
+    skip?: number
+    distinct?: PlantingLogScalarFieldEnum | PlantingLogScalarFieldEnum[]
+  }
+
+  /**
+   * PlantingLog create
+   */
+  export type PlantingLogCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PlantingLog
+     */
+    select?: PlantingLogSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PlantingLogInclude<ExtArgs> | null
+    /**
+     * The data needed to create a PlantingLog.
+     */
+    data: XOR<PlantingLogCreateInput, PlantingLogUncheckedCreateInput>
+  }
+
+  /**
+   * PlantingLog createMany
+   */
+  export type PlantingLogCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many PlantingLogs.
+     */
+    data: PlantingLogCreateManyInput | PlantingLogCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * PlantingLog createManyAndReturn
+   */
+  export type PlantingLogCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PlantingLog
+     */
+    select?: PlantingLogSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * The data used to create many PlantingLogs.
+     */
+    data: PlantingLogCreateManyInput | PlantingLogCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PlantingLogIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * PlantingLog update
+   */
+  export type PlantingLogUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PlantingLog
+     */
+    select?: PlantingLogSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PlantingLogInclude<ExtArgs> | null
+    /**
+     * The data needed to update a PlantingLog.
+     */
+    data: XOR<PlantingLogUpdateInput, PlantingLogUncheckedUpdateInput>
+    /**
+     * Choose, which PlantingLog to update.
+     */
+    where: PlantingLogWhereUniqueInput
+  }
+
+  /**
+   * PlantingLog updateMany
+   */
+  export type PlantingLogUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update PlantingLogs.
+     */
+    data: XOR<PlantingLogUpdateManyMutationInput, PlantingLogUncheckedUpdateManyInput>
+    /**
+     * Filter which PlantingLogs to update
+     */
+    where?: PlantingLogWhereInput
+  }
+
+  /**
+   * PlantingLog upsert
+   */
+  export type PlantingLogUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PlantingLog
+     */
+    select?: PlantingLogSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PlantingLogInclude<ExtArgs> | null
+    /**
+     * The filter to search for the PlantingLog to update in case it exists.
+     */
+    where: PlantingLogWhereUniqueInput
+    /**
+     * In case the PlantingLog found by the `where` argument doesn't exist, create a new PlantingLog with this data.
+     */
+    create: XOR<PlantingLogCreateInput, PlantingLogUncheckedCreateInput>
+    /**
+     * In case the PlantingLog was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<PlantingLogUpdateInput, PlantingLogUncheckedUpdateInput>
+  }
+
+  /**
+   * PlantingLog delete
+   */
+  export type PlantingLogDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PlantingLog
+     */
+    select?: PlantingLogSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PlantingLogInclude<ExtArgs> | null
+    /**
+     * Filter which PlantingLog to delete.
+     */
+    where: PlantingLogWhereUniqueInput
+  }
+
+  /**
+   * PlantingLog deleteMany
+   */
+  export type PlantingLogDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which PlantingLogs to delete
+     */
+    where?: PlantingLogWhereInput
+  }
+
+  /**
+   * PlantingLog.inputs
+   */
+  export type PlantingLog$inputsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PlantingInput
+     */
+    select?: PlantingInputSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PlantingInputInclude<ExtArgs> | null
+    where?: PlantingInputWhereInput
+    orderBy?: PlantingInputOrderByWithRelationInput | PlantingInputOrderByWithRelationInput[]
+    cursor?: PlantingInputWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: PlantingInputScalarFieldEnum | PlantingInputScalarFieldEnum[]
+  }
+
+  /**
+   * PlantingLog.listings
+   */
+  export type PlantingLog$listingsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProduceListing
+     */
+    select?: ProduceListingSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProduceListingInclude<ExtArgs> | null
+    where?: ProduceListingWhereInput
+    orderBy?: ProduceListingOrderByWithRelationInput | ProduceListingOrderByWithRelationInput[]
+    cursor?: ProduceListingWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ProduceListingScalarFieldEnum | ProduceListingScalarFieldEnum[]
+  }
+
+  /**
+   * PlantingLog without action
+   */
+  export type PlantingLogDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PlantingLog
+     */
+    select?: PlantingLogSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PlantingLogInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model PlantingInput
+   */
+
+  export type AggregatePlantingInput = {
+    _count: PlantingInputCountAggregateOutputType | null
+    _avg: PlantingInputAvgAggregateOutputType | null
+    _sum: PlantingInputSumAggregateOutputType | null
+    _min: PlantingInputMinAggregateOutputType | null
+    _max: PlantingInputMaxAggregateOutputType | null
+  }
+
+  export type PlantingInputAvgAggregateOutputType = {
+    quantity: number | null
+  }
+
+  export type PlantingInputSumAggregateOutputType = {
+    quantity: number | null
+  }
+
+  export type PlantingInputMinAggregateOutputType = {
+    id: string | null
+    plantingLogId: string | null
+    type: string | null
+    name: string | null
+    quantity: number | null
+    unit: string | null
+    appliedAt: Date | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type PlantingInputMaxAggregateOutputType = {
+    id: string | null
+    plantingLogId: string | null
+    type: string | null
+    name: string | null
+    quantity: number | null
+    unit: string | null
+    appliedAt: Date | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type PlantingInputCountAggregateOutputType = {
+    id: number
+    plantingLogId: number
+    type: number
+    name: number
+    quantity: number
+    unit: number
+    appliedAt: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type PlantingInputAvgAggregateInputType = {
+    quantity?: true
+  }
+
+  export type PlantingInputSumAggregateInputType = {
+    quantity?: true
+  }
+
+  export type PlantingInputMinAggregateInputType = {
+    id?: true
+    plantingLogId?: true
+    type?: true
+    name?: true
+    quantity?: true
+    unit?: true
+    appliedAt?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type PlantingInputMaxAggregateInputType = {
+    id?: true
+    plantingLogId?: true
+    type?: true
+    name?: true
+    quantity?: true
+    unit?: true
+    appliedAt?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type PlantingInputCountAggregateInputType = {
+    id?: true
+    plantingLogId?: true
+    type?: true
+    name?: true
+    quantity?: true
+    unit?: true
+    appliedAt?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type PlantingInputAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which PlantingInput to aggregate.
+     */
+    where?: PlantingInputWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PlantingInputs to fetch.
+     */
+    orderBy?: PlantingInputOrderByWithRelationInput | PlantingInputOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: PlantingInputWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PlantingInputs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PlantingInputs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned PlantingInputs
+    **/
+    _count?: true | PlantingInputCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: PlantingInputAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: PlantingInputSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: PlantingInputMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: PlantingInputMaxAggregateInputType
+  }
+
+  export type GetPlantingInputAggregateType<T extends PlantingInputAggregateArgs> = {
+        [P in keyof T & keyof AggregatePlantingInput]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregatePlantingInput[P]>
+      : GetScalarType<T[P], AggregatePlantingInput[P]>
+  }
+
+
+
+
+  export type PlantingInputGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: PlantingInputWhereInput
+    orderBy?: PlantingInputOrderByWithAggregationInput | PlantingInputOrderByWithAggregationInput[]
+    by: PlantingInputScalarFieldEnum[] | PlantingInputScalarFieldEnum
+    having?: PlantingInputScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: PlantingInputCountAggregateInputType | true
+    _avg?: PlantingInputAvgAggregateInputType
+    _sum?: PlantingInputSumAggregateInputType
+    _min?: PlantingInputMinAggregateInputType
+    _max?: PlantingInputMaxAggregateInputType
+  }
+
+  export type PlantingInputGroupByOutputType = {
+    id: string
+    plantingLogId: string
+    type: string
+    name: string
+    quantity: number | null
+    unit: string | null
+    appliedAt: Date
+    createdAt: Date
+    updatedAt: Date
+    _count: PlantingInputCountAggregateOutputType | null
+    _avg: PlantingInputAvgAggregateOutputType | null
+    _sum: PlantingInputSumAggregateOutputType | null
+    _min: PlantingInputMinAggregateOutputType | null
+    _max: PlantingInputMaxAggregateOutputType | null
+  }
+
+  type GetPlantingInputGroupByPayload<T extends PlantingInputGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<PlantingInputGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof PlantingInputGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], PlantingInputGroupByOutputType[P]>
+            : GetScalarType<T[P], PlantingInputGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type PlantingInputSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    plantingLogId?: boolean
+    type?: boolean
+    name?: boolean
+    quantity?: boolean
+    unit?: boolean
+    appliedAt?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    plantingLog?: boolean | PlantingLogDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["plantingInput"]>
+
+  export type PlantingInputSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    plantingLogId?: boolean
+    type?: boolean
+    name?: boolean
+    quantity?: boolean
+    unit?: boolean
+    appliedAt?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    plantingLog?: boolean | PlantingLogDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["plantingInput"]>
+
+  export type PlantingInputSelectScalar = {
+    id?: boolean
+    plantingLogId?: boolean
+    type?: boolean
+    name?: boolean
+    quantity?: boolean
+    unit?: boolean
+    appliedAt?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type PlantingInputInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    plantingLog?: boolean | PlantingLogDefaultArgs<ExtArgs>
+  }
+  export type PlantingInputIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    plantingLog?: boolean | PlantingLogDefaultArgs<ExtArgs>
+  }
+
+  export type $PlantingInputPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "PlantingInput"
+    objects: {
+      plantingLog: Prisma.$PlantingLogPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      plantingLogId: string
+      type: string
+      name: string
+      quantity: number | null
+      unit: string | null
+      appliedAt: Date
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["plantingInput"]>
+    composites: {}
+  }
+
+  type PlantingInputGetPayload<S extends boolean | null | undefined | PlantingInputDefaultArgs> = $Result.GetResult<Prisma.$PlantingInputPayload, S>
+
+  type PlantingInputCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<PlantingInputFindManyArgs, 'select' | 'include' | 'distinct'> & {
+      select?: PlantingInputCountAggregateInputType | true
+    }
+
+  export interface PlantingInputDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['PlantingInput'], meta: { name: 'PlantingInput' } }
+    /**
+     * Find zero or one PlantingInput that matches the filter.
+     * @param {PlantingInputFindUniqueArgs} args - Arguments to find a PlantingInput
+     * @example
+     * // Get one PlantingInput
+     * const plantingInput = await prisma.plantingInput.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends PlantingInputFindUniqueArgs>(args: SelectSubset<T, PlantingInputFindUniqueArgs<ExtArgs>>): Prisma__PlantingInputClient<$Result.GetResult<Prisma.$PlantingInputPayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
+
+    /**
+     * Find one PlantingInput that matches the filter or throw an error with `error.code='P2025'` 
+     * if no matches were found.
+     * @param {PlantingInputFindUniqueOrThrowArgs} args - Arguments to find a PlantingInput
+     * @example
+     * // Get one PlantingInput
+     * const plantingInput = await prisma.plantingInput.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends PlantingInputFindUniqueOrThrowArgs>(args: SelectSubset<T, PlantingInputFindUniqueOrThrowArgs<ExtArgs>>): Prisma__PlantingInputClient<$Result.GetResult<Prisma.$PlantingInputPayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
+
+    /**
+     * Find the first PlantingInput that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PlantingInputFindFirstArgs} args - Arguments to find a PlantingInput
+     * @example
+     * // Get one PlantingInput
+     * const plantingInput = await prisma.plantingInput.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends PlantingInputFindFirstArgs>(args?: SelectSubset<T, PlantingInputFindFirstArgs<ExtArgs>>): Prisma__PlantingInputClient<$Result.GetResult<Prisma.$PlantingInputPayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
+
+    /**
+     * Find the first PlantingInput that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PlantingInputFindFirstOrThrowArgs} args - Arguments to find a PlantingInput
+     * @example
+     * // Get one PlantingInput
+     * const plantingInput = await prisma.plantingInput.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends PlantingInputFindFirstOrThrowArgs>(args?: SelectSubset<T, PlantingInputFindFirstOrThrowArgs<ExtArgs>>): Prisma__PlantingInputClient<$Result.GetResult<Prisma.$PlantingInputPayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
+
+    /**
+     * Find zero or more PlantingInputs that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PlantingInputFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all PlantingInputs
+     * const plantingInputs = await prisma.plantingInput.findMany()
+     * 
+     * // Get first 10 PlantingInputs
+     * const plantingInputs = await prisma.plantingInput.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const plantingInputWithIdOnly = await prisma.plantingInput.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends PlantingInputFindManyArgs>(args?: SelectSubset<T, PlantingInputFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PlantingInputPayload<ExtArgs>, T, "findMany">>
+
+    /**
+     * Create a PlantingInput.
+     * @param {PlantingInputCreateArgs} args - Arguments to create a PlantingInput.
+     * @example
+     * // Create one PlantingInput
+     * const PlantingInput = await prisma.plantingInput.create({
+     *   data: {
+     *     // ... data to create a PlantingInput
+     *   }
+     * })
+     * 
+     */
+    create<T extends PlantingInputCreateArgs>(args: SelectSubset<T, PlantingInputCreateArgs<ExtArgs>>): Prisma__PlantingInputClient<$Result.GetResult<Prisma.$PlantingInputPayload<ExtArgs>, T, "create">, never, ExtArgs>
+
+    /**
+     * Create many PlantingInputs.
+     * @param {PlantingInputCreateManyArgs} args - Arguments to create many PlantingInputs.
+     * @example
+     * // Create many PlantingInputs
+     * const plantingInput = await prisma.plantingInput.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends PlantingInputCreateManyArgs>(args?: SelectSubset<T, PlantingInputCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many PlantingInputs and returns the data saved in the database.
+     * @param {PlantingInputCreateManyAndReturnArgs} args - Arguments to create many PlantingInputs.
+     * @example
+     * // Create many PlantingInputs
+     * const plantingInput = await prisma.plantingInput.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many PlantingInputs and only return the `id`
+     * const plantingInputWithIdOnly = await prisma.plantingInput.createManyAndReturn({ 
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends PlantingInputCreateManyAndReturnArgs>(args?: SelectSubset<T, PlantingInputCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PlantingInputPayload<ExtArgs>, T, "createManyAndReturn">>
+
+    /**
+     * Delete a PlantingInput.
+     * @param {PlantingInputDeleteArgs} args - Arguments to delete one PlantingInput.
+     * @example
+     * // Delete one PlantingInput
+     * const PlantingInput = await prisma.plantingInput.delete({
+     *   where: {
+     *     // ... filter to delete one PlantingInput
+     *   }
+     * })
+     * 
+     */
+    delete<T extends PlantingInputDeleteArgs>(args: SelectSubset<T, PlantingInputDeleteArgs<ExtArgs>>): Prisma__PlantingInputClient<$Result.GetResult<Prisma.$PlantingInputPayload<ExtArgs>, T, "delete">, never, ExtArgs>
+
+    /**
+     * Update one PlantingInput.
+     * @param {PlantingInputUpdateArgs} args - Arguments to update one PlantingInput.
+     * @example
+     * // Update one PlantingInput
+     * const plantingInput = await prisma.plantingInput.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends PlantingInputUpdateArgs>(args: SelectSubset<T, PlantingInputUpdateArgs<ExtArgs>>): Prisma__PlantingInputClient<$Result.GetResult<Prisma.$PlantingInputPayload<ExtArgs>, T, "update">, never, ExtArgs>
+
+    /**
+     * Delete zero or more PlantingInputs.
+     * @param {PlantingInputDeleteManyArgs} args - Arguments to filter PlantingInputs to delete.
+     * @example
+     * // Delete a few PlantingInputs
+     * const { count } = await prisma.plantingInput.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends PlantingInputDeleteManyArgs>(args?: SelectSubset<T, PlantingInputDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more PlantingInputs.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PlantingInputUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many PlantingInputs
+     * const plantingInput = await prisma.plantingInput.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends PlantingInputUpdateManyArgs>(args: SelectSubset<T, PlantingInputUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one PlantingInput.
+     * @param {PlantingInputUpsertArgs} args - Arguments to update or create a PlantingInput.
+     * @example
+     * // Update or create a PlantingInput
+     * const plantingInput = await prisma.plantingInput.upsert({
+     *   create: {
+     *     // ... data to create a PlantingInput
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the PlantingInput we want to update
+     *   }
+     * })
+     */
+    upsert<T extends PlantingInputUpsertArgs>(args: SelectSubset<T, PlantingInputUpsertArgs<ExtArgs>>): Prisma__PlantingInputClient<$Result.GetResult<Prisma.$PlantingInputPayload<ExtArgs>, T, "upsert">, never, ExtArgs>
+
+
+    /**
+     * Count the number of PlantingInputs.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PlantingInputCountArgs} args - Arguments to filter PlantingInputs to count.
+     * @example
+     * // Count the number of PlantingInputs
+     * const count = await prisma.plantingInput.count({
+     *   where: {
+     *     // ... the filter for the PlantingInputs we want to count
+     *   }
+     * })
+    **/
+    count<T extends PlantingInputCountArgs>(
+      args?: Subset<T, PlantingInputCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], PlantingInputCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a PlantingInput.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PlantingInputAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends PlantingInputAggregateArgs>(args: Subset<T, PlantingInputAggregateArgs>): Prisma.PrismaPromise<GetPlantingInputAggregateType<T>>
+
+    /**
+     * Group by PlantingInput.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PlantingInputGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends PlantingInputGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: PlantingInputGroupByArgs['orderBy'] }
+        : { orderBy?: PlantingInputGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, PlantingInputGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetPlantingInputGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the PlantingInput model
+   */
+  readonly fields: PlantingInputFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for PlantingInput.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__PlantingInputClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    plantingLog<T extends PlantingLogDefaultArgs<ExtArgs> = {}>(args?: Subset<T, PlantingLogDefaultArgs<ExtArgs>>): Prisma__PlantingLogClient<$Result.GetResult<Prisma.$PlantingLogPayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the PlantingInput model
+   */ 
+  interface PlantingInputFieldRefs {
+    readonly id: FieldRef<"PlantingInput", 'String'>
+    readonly plantingLogId: FieldRef<"PlantingInput", 'String'>
+    readonly type: FieldRef<"PlantingInput", 'String'>
+    readonly name: FieldRef<"PlantingInput", 'String'>
+    readonly quantity: FieldRef<"PlantingInput", 'Float'>
+    readonly unit: FieldRef<"PlantingInput", 'String'>
+    readonly appliedAt: FieldRef<"PlantingInput", 'DateTime'>
+    readonly createdAt: FieldRef<"PlantingInput", 'DateTime'>
+    readonly updatedAt: FieldRef<"PlantingInput", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * PlantingInput findUnique
+   */
+  export type PlantingInputFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PlantingInput
+     */
+    select?: PlantingInputSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PlantingInputInclude<ExtArgs> | null
+    /**
+     * Filter, which PlantingInput to fetch.
+     */
+    where: PlantingInputWhereUniqueInput
+  }
+
+  /**
+   * PlantingInput findUniqueOrThrow
+   */
+  export type PlantingInputFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PlantingInput
+     */
+    select?: PlantingInputSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PlantingInputInclude<ExtArgs> | null
+    /**
+     * Filter, which PlantingInput to fetch.
+     */
+    where: PlantingInputWhereUniqueInput
+  }
+
+  /**
+   * PlantingInput findFirst
+   */
+  export type PlantingInputFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PlantingInput
+     */
+    select?: PlantingInputSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PlantingInputInclude<ExtArgs> | null
+    /**
+     * Filter, which PlantingInput to fetch.
+     */
+    where?: PlantingInputWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PlantingInputs to fetch.
+     */
+    orderBy?: PlantingInputOrderByWithRelationInput | PlantingInputOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for PlantingInputs.
+     */
+    cursor?: PlantingInputWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PlantingInputs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PlantingInputs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of PlantingInputs.
+     */
+    distinct?: PlantingInputScalarFieldEnum | PlantingInputScalarFieldEnum[]
+  }
+
+  /**
+   * PlantingInput findFirstOrThrow
+   */
+  export type PlantingInputFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PlantingInput
+     */
+    select?: PlantingInputSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PlantingInputInclude<ExtArgs> | null
+    /**
+     * Filter, which PlantingInput to fetch.
+     */
+    where?: PlantingInputWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PlantingInputs to fetch.
+     */
+    orderBy?: PlantingInputOrderByWithRelationInput | PlantingInputOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for PlantingInputs.
+     */
+    cursor?: PlantingInputWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PlantingInputs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PlantingInputs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of PlantingInputs.
+     */
+    distinct?: PlantingInputScalarFieldEnum | PlantingInputScalarFieldEnum[]
+  }
+
+  /**
+   * PlantingInput findMany
+   */
+  export type PlantingInputFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PlantingInput
+     */
+    select?: PlantingInputSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PlantingInputInclude<ExtArgs> | null
+    /**
+     * Filter, which PlantingInputs to fetch.
+     */
+    where?: PlantingInputWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PlantingInputs to fetch.
+     */
+    orderBy?: PlantingInputOrderByWithRelationInput | PlantingInputOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing PlantingInputs.
+     */
+    cursor?: PlantingInputWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PlantingInputs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PlantingInputs.
+     */
+    skip?: number
+    distinct?: PlantingInputScalarFieldEnum | PlantingInputScalarFieldEnum[]
+  }
+
+  /**
+   * PlantingInput create
+   */
+  export type PlantingInputCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PlantingInput
+     */
+    select?: PlantingInputSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PlantingInputInclude<ExtArgs> | null
+    /**
+     * The data needed to create a PlantingInput.
+     */
+    data: XOR<PlantingInputCreateInput, PlantingInputUncheckedCreateInput>
+  }
+
+  /**
+   * PlantingInput createMany
+   */
+  export type PlantingInputCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many PlantingInputs.
+     */
+    data: PlantingInputCreateManyInput | PlantingInputCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * PlantingInput createManyAndReturn
+   */
+  export type PlantingInputCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PlantingInput
+     */
+    select?: PlantingInputSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * The data used to create many PlantingInputs.
+     */
+    data: PlantingInputCreateManyInput | PlantingInputCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PlantingInputIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * PlantingInput update
+   */
+  export type PlantingInputUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PlantingInput
+     */
+    select?: PlantingInputSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PlantingInputInclude<ExtArgs> | null
+    /**
+     * The data needed to update a PlantingInput.
+     */
+    data: XOR<PlantingInputUpdateInput, PlantingInputUncheckedUpdateInput>
+    /**
+     * Choose, which PlantingInput to update.
+     */
+    where: PlantingInputWhereUniqueInput
+  }
+
+  /**
+   * PlantingInput updateMany
+   */
+  export type PlantingInputUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update PlantingInputs.
+     */
+    data: XOR<PlantingInputUpdateManyMutationInput, PlantingInputUncheckedUpdateManyInput>
+    /**
+     * Filter which PlantingInputs to update
+     */
+    where?: PlantingInputWhereInput
+  }
+
+  /**
+   * PlantingInput upsert
+   */
+  export type PlantingInputUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PlantingInput
+     */
+    select?: PlantingInputSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PlantingInputInclude<ExtArgs> | null
+    /**
+     * The filter to search for the PlantingInput to update in case it exists.
+     */
+    where: PlantingInputWhereUniqueInput
+    /**
+     * In case the PlantingInput found by the `where` argument doesn't exist, create a new PlantingInput with this data.
+     */
+    create: XOR<PlantingInputCreateInput, PlantingInputUncheckedCreateInput>
+    /**
+     * In case the PlantingInput was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<PlantingInputUpdateInput, PlantingInputUncheckedUpdateInput>
+  }
+
+  /**
+   * PlantingInput delete
+   */
+  export type PlantingInputDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PlantingInput
+     */
+    select?: PlantingInputSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PlantingInputInclude<ExtArgs> | null
+    /**
+     * Filter which PlantingInput to delete.
+     */
+    where: PlantingInputWhereUniqueInput
+  }
+
+  /**
+   * PlantingInput deleteMany
+   */
+  export type PlantingInputDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which PlantingInputs to delete
+     */
+    where?: PlantingInputWhereInput
+  }
+
+  /**
+   * PlantingInput without action
+   */
+  export type PlantingInputDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PlantingInput
+     */
+    select?: PlantingInputSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PlantingInputInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -18346,7 +20732,8 @@ export namespace Prisma {
     longitude: 'longitude',
     batchCode: 'batchCode',
     createdAt: 'createdAt',
-    updatedAt: 'updatedAt'
+    updatedAt: 'updatedAt',
+    plantingLogId: 'plantingLogId'
   };
 
   export type ProduceListingScalarFieldEnum = (typeof ProduceListingScalarFieldEnum)[keyof typeof ProduceListingScalarFieldEnum]
@@ -18512,6 +20899,38 @@ export namespace Prisma {
   };
 
   export type PreOrderScalarFieldEnum = (typeof PreOrderScalarFieldEnum)[keyof typeof PreOrderScalarFieldEnum]
+
+
+  export const PlantingLogScalarFieldEnum: {
+    id: 'id',
+    farmerId: 'farmerId',
+    cropType: 'cropType',
+    acreage: 'acreage',
+    plantingDate: 'plantingDate',
+    expectedHarvestDate: 'expectedHarvestDate',
+    actualHarvestDate: 'actualHarvestDate',
+    actualYieldKg: 'actualYieldKg',
+    notes: 'notes',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type PlantingLogScalarFieldEnum = (typeof PlantingLogScalarFieldEnum)[keyof typeof PlantingLogScalarFieldEnum]
+
+
+  export const PlantingInputScalarFieldEnum: {
+    id: 'id',
+    plantingLogId: 'plantingLogId',
+    type: 'type',
+    name: 'name',
+    quantity: 'quantity',
+    unit: 'unit',
+    appliedAt: 'appliedAt',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type PlantingInputScalarFieldEnum = (typeof PlantingInputScalarFieldEnum)[keyof typeof PlantingInputScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -18801,6 +21220,7 @@ export namespace Prisma {
     receivedMessages?: MessageListRelationFilter
     recordedTraceEvents?: TraceEventListRelationFilter
     preOrders?: PreOrderListRelationFilter
+    plantingLogs?: PlantingLogListRelationFilter
   }
 
   export type UserOrderByWithRelationInput = {
@@ -18828,6 +21248,7 @@ export namespace Prisma {
     receivedMessages?: MessageOrderByRelationAggregateInput
     recordedTraceEvents?: TraceEventOrderByRelationAggregateInput
     preOrders?: PreOrderOrderByRelationAggregateInput
+    plantingLogs?: PlantingLogOrderByRelationAggregateInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -18858,6 +21279,7 @@ export namespace Prisma {
     receivedMessages?: MessageListRelationFilter
     recordedTraceEvents?: TraceEventListRelationFilter
     preOrders?: PreOrderListRelationFilter
+    plantingLogs?: PlantingLogListRelationFilter
   }, "id" | "phone">
 
   export type UserOrderByWithAggregationInput = {
@@ -19138,11 +21560,13 @@ export namespace Prisma {
     batchCode?: StringFilter<"ProduceListing"> | string
     createdAt?: DateTimeFilter<"ProduceListing"> | Date | string
     updatedAt?: DateTimeFilter<"ProduceListing"> | Date | string
+    plantingLogId?: StringNullableFilter<"ProduceListing"> | string | null
     farmer?: XOR<UserRelationFilter, UserWhereInput>
     orders?: OrderListRelationFilter
     traceability?: XOR<TraceabilityRecordNullableRelationFilter, TraceabilityRecordWhereInput> | null
     traceEvents?: TraceEventListRelationFilter
     preOrders?: PreOrderListRelationFilter
+    plantingLog?: XOR<PlantingLogNullableRelationFilter, PlantingLogWhereInput> | null
   }
 
   export type ProduceListingOrderByWithRelationInput = {
@@ -19163,11 +21587,13 @@ export namespace Prisma {
     batchCode?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    plantingLogId?: SortOrderInput | SortOrder
     farmer?: UserOrderByWithRelationInput
     orders?: OrderOrderByRelationAggregateInput
     traceability?: TraceabilityRecordOrderByWithRelationInput
     traceEvents?: TraceEventOrderByRelationAggregateInput
     preOrders?: PreOrderOrderByRelationAggregateInput
+    plantingLog?: PlantingLogOrderByWithRelationInput
   }
 
   export type ProduceListingWhereUniqueInput = Prisma.AtLeast<{
@@ -19191,11 +21617,13 @@ export namespace Prisma {
     longitude?: FloatFilter<"ProduceListing"> | number
     createdAt?: DateTimeFilter<"ProduceListing"> | Date | string
     updatedAt?: DateTimeFilter<"ProduceListing"> | Date | string
+    plantingLogId?: StringNullableFilter<"ProduceListing"> | string | null
     farmer?: XOR<UserRelationFilter, UserWhereInput>
     orders?: OrderListRelationFilter
     traceability?: XOR<TraceabilityRecordNullableRelationFilter, TraceabilityRecordWhereInput> | null
     traceEvents?: TraceEventListRelationFilter
     preOrders?: PreOrderListRelationFilter
+    plantingLog?: XOR<PlantingLogNullableRelationFilter, PlantingLogWhereInput> | null
   }, "id" | "batchCode">
 
   export type ProduceListingOrderByWithAggregationInput = {
@@ -19216,6 +21644,7 @@ export namespace Prisma {
     batchCode?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    plantingLogId?: SortOrderInput | SortOrder
     _count?: ProduceListingCountOrderByAggregateInput
     _avg?: ProduceListingAvgOrderByAggregateInput
     _max?: ProduceListingMaxOrderByAggregateInput
@@ -19244,6 +21673,7 @@ export namespace Prisma {
     batchCode?: StringWithAggregatesFilter<"ProduceListing"> | string
     createdAt?: DateTimeWithAggregatesFilter<"ProduceListing"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"ProduceListing"> | Date | string
+    plantingLogId?: StringNullableWithAggregatesFilter<"ProduceListing"> | string | null
   }
 
   export type TraceabilityRecordWhereInput = {
@@ -20100,6 +22530,176 @@ export namespace Prisma {
     updatedAt?: DateTimeWithAggregatesFilter<"PreOrder"> | Date | string
   }
 
+  export type PlantingLogWhereInput = {
+    AND?: PlantingLogWhereInput | PlantingLogWhereInput[]
+    OR?: PlantingLogWhereInput[]
+    NOT?: PlantingLogWhereInput | PlantingLogWhereInput[]
+    id?: StringFilter<"PlantingLog"> | string
+    farmerId?: StringFilter<"PlantingLog"> | string
+    cropType?: EnumCropTypeFilter<"PlantingLog"> | $Enums.CropType
+    acreage?: FloatFilter<"PlantingLog"> | number
+    plantingDate?: DateTimeFilter<"PlantingLog"> | Date | string
+    expectedHarvestDate?: DateTimeFilter<"PlantingLog"> | Date | string
+    actualHarvestDate?: DateTimeNullableFilter<"PlantingLog"> | Date | string | null
+    actualYieldKg?: FloatNullableFilter<"PlantingLog"> | number | null
+    notes?: StringNullableFilter<"PlantingLog"> | string | null
+    createdAt?: DateTimeFilter<"PlantingLog"> | Date | string
+    updatedAt?: DateTimeFilter<"PlantingLog"> | Date | string
+    farmer?: XOR<UserRelationFilter, UserWhereInput>
+    inputs?: PlantingInputListRelationFilter
+    listings?: ProduceListingListRelationFilter
+  }
+
+  export type PlantingLogOrderByWithRelationInput = {
+    id?: SortOrder
+    farmerId?: SortOrder
+    cropType?: SortOrder
+    acreage?: SortOrder
+    plantingDate?: SortOrder
+    expectedHarvestDate?: SortOrder
+    actualHarvestDate?: SortOrderInput | SortOrder
+    actualYieldKg?: SortOrderInput | SortOrder
+    notes?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    farmer?: UserOrderByWithRelationInput
+    inputs?: PlantingInputOrderByRelationAggregateInput
+    listings?: ProduceListingOrderByRelationAggregateInput
+  }
+
+  export type PlantingLogWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: PlantingLogWhereInput | PlantingLogWhereInput[]
+    OR?: PlantingLogWhereInput[]
+    NOT?: PlantingLogWhereInput | PlantingLogWhereInput[]
+    farmerId?: StringFilter<"PlantingLog"> | string
+    cropType?: EnumCropTypeFilter<"PlantingLog"> | $Enums.CropType
+    acreage?: FloatFilter<"PlantingLog"> | number
+    plantingDate?: DateTimeFilter<"PlantingLog"> | Date | string
+    expectedHarvestDate?: DateTimeFilter<"PlantingLog"> | Date | string
+    actualHarvestDate?: DateTimeNullableFilter<"PlantingLog"> | Date | string | null
+    actualYieldKg?: FloatNullableFilter<"PlantingLog"> | number | null
+    notes?: StringNullableFilter<"PlantingLog"> | string | null
+    createdAt?: DateTimeFilter<"PlantingLog"> | Date | string
+    updatedAt?: DateTimeFilter<"PlantingLog"> | Date | string
+    farmer?: XOR<UserRelationFilter, UserWhereInput>
+    inputs?: PlantingInputListRelationFilter
+    listings?: ProduceListingListRelationFilter
+  }, "id">
+
+  export type PlantingLogOrderByWithAggregationInput = {
+    id?: SortOrder
+    farmerId?: SortOrder
+    cropType?: SortOrder
+    acreage?: SortOrder
+    plantingDate?: SortOrder
+    expectedHarvestDate?: SortOrder
+    actualHarvestDate?: SortOrderInput | SortOrder
+    actualYieldKg?: SortOrderInput | SortOrder
+    notes?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: PlantingLogCountOrderByAggregateInput
+    _avg?: PlantingLogAvgOrderByAggregateInput
+    _max?: PlantingLogMaxOrderByAggregateInput
+    _min?: PlantingLogMinOrderByAggregateInput
+    _sum?: PlantingLogSumOrderByAggregateInput
+  }
+
+  export type PlantingLogScalarWhereWithAggregatesInput = {
+    AND?: PlantingLogScalarWhereWithAggregatesInput | PlantingLogScalarWhereWithAggregatesInput[]
+    OR?: PlantingLogScalarWhereWithAggregatesInput[]
+    NOT?: PlantingLogScalarWhereWithAggregatesInput | PlantingLogScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"PlantingLog"> | string
+    farmerId?: StringWithAggregatesFilter<"PlantingLog"> | string
+    cropType?: EnumCropTypeWithAggregatesFilter<"PlantingLog"> | $Enums.CropType
+    acreage?: FloatWithAggregatesFilter<"PlantingLog"> | number
+    plantingDate?: DateTimeWithAggregatesFilter<"PlantingLog"> | Date | string
+    expectedHarvestDate?: DateTimeWithAggregatesFilter<"PlantingLog"> | Date | string
+    actualHarvestDate?: DateTimeNullableWithAggregatesFilter<"PlantingLog"> | Date | string | null
+    actualYieldKg?: FloatNullableWithAggregatesFilter<"PlantingLog"> | number | null
+    notes?: StringNullableWithAggregatesFilter<"PlantingLog"> | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"PlantingLog"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"PlantingLog"> | Date | string
+  }
+
+  export type PlantingInputWhereInput = {
+    AND?: PlantingInputWhereInput | PlantingInputWhereInput[]
+    OR?: PlantingInputWhereInput[]
+    NOT?: PlantingInputWhereInput | PlantingInputWhereInput[]
+    id?: StringFilter<"PlantingInput"> | string
+    plantingLogId?: StringFilter<"PlantingInput"> | string
+    type?: StringFilter<"PlantingInput"> | string
+    name?: StringFilter<"PlantingInput"> | string
+    quantity?: FloatNullableFilter<"PlantingInput"> | number | null
+    unit?: StringNullableFilter<"PlantingInput"> | string | null
+    appliedAt?: DateTimeFilter<"PlantingInput"> | Date | string
+    createdAt?: DateTimeFilter<"PlantingInput"> | Date | string
+    updatedAt?: DateTimeFilter<"PlantingInput"> | Date | string
+    plantingLog?: XOR<PlantingLogRelationFilter, PlantingLogWhereInput>
+  }
+
+  export type PlantingInputOrderByWithRelationInput = {
+    id?: SortOrder
+    plantingLogId?: SortOrder
+    type?: SortOrder
+    name?: SortOrder
+    quantity?: SortOrderInput | SortOrder
+    unit?: SortOrderInput | SortOrder
+    appliedAt?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    plantingLog?: PlantingLogOrderByWithRelationInput
+  }
+
+  export type PlantingInputWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: PlantingInputWhereInput | PlantingInputWhereInput[]
+    OR?: PlantingInputWhereInput[]
+    NOT?: PlantingInputWhereInput | PlantingInputWhereInput[]
+    plantingLogId?: StringFilter<"PlantingInput"> | string
+    type?: StringFilter<"PlantingInput"> | string
+    name?: StringFilter<"PlantingInput"> | string
+    quantity?: FloatNullableFilter<"PlantingInput"> | number | null
+    unit?: StringNullableFilter<"PlantingInput"> | string | null
+    appliedAt?: DateTimeFilter<"PlantingInput"> | Date | string
+    createdAt?: DateTimeFilter<"PlantingInput"> | Date | string
+    updatedAt?: DateTimeFilter<"PlantingInput"> | Date | string
+    plantingLog?: XOR<PlantingLogRelationFilter, PlantingLogWhereInput>
+  }, "id">
+
+  export type PlantingInputOrderByWithAggregationInput = {
+    id?: SortOrder
+    plantingLogId?: SortOrder
+    type?: SortOrder
+    name?: SortOrder
+    quantity?: SortOrderInput | SortOrder
+    unit?: SortOrderInput | SortOrder
+    appliedAt?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: PlantingInputCountOrderByAggregateInput
+    _avg?: PlantingInputAvgOrderByAggregateInput
+    _max?: PlantingInputMaxOrderByAggregateInput
+    _min?: PlantingInputMinOrderByAggregateInput
+    _sum?: PlantingInputSumOrderByAggregateInput
+  }
+
+  export type PlantingInputScalarWhereWithAggregatesInput = {
+    AND?: PlantingInputScalarWhereWithAggregatesInput | PlantingInputScalarWhereWithAggregatesInput[]
+    OR?: PlantingInputScalarWhereWithAggregatesInput[]
+    NOT?: PlantingInputScalarWhereWithAggregatesInput | PlantingInputScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"PlantingInput"> | string
+    plantingLogId?: StringWithAggregatesFilter<"PlantingInput"> | string
+    type?: StringWithAggregatesFilter<"PlantingInput"> | string
+    name?: StringWithAggregatesFilter<"PlantingInput"> | string
+    quantity?: FloatNullableWithAggregatesFilter<"PlantingInput"> | number | null
+    unit?: StringNullableWithAggregatesFilter<"PlantingInput"> | string | null
+    appliedAt?: DateTimeWithAggregatesFilter<"PlantingInput"> | Date | string
+    createdAt?: DateTimeWithAggregatesFilter<"PlantingInput"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"PlantingInput"> | Date | string
+  }
+
   export type UserCreateInput = {
     id?: string
     phone: string
@@ -20125,6 +22725,7 @@ export namespace Prisma {
     receivedMessages?: MessageCreateNestedManyWithoutToUserInput
     recordedTraceEvents?: TraceEventCreateNestedManyWithoutRecordedByUserInput
     preOrders?: PreOrderCreateNestedManyWithoutBuyerInput
+    plantingLogs?: PlantingLogCreateNestedManyWithoutFarmerInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -20152,6 +22753,7 @@ export namespace Prisma {
     receivedMessages?: MessageUncheckedCreateNestedManyWithoutToUserInput
     recordedTraceEvents?: TraceEventUncheckedCreateNestedManyWithoutRecordedByUserInput
     preOrders?: PreOrderUncheckedCreateNestedManyWithoutBuyerInput
+    plantingLogs?: PlantingLogUncheckedCreateNestedManyWithoutFarmerInput
   }
 
   export type UserUpdateInput = {
@@ -20179,6 +22781,7 @@ export namespace Prisma {
     receivedMessages?: MessageUpdateManyWithoutToUserNestedInput
     recordedTraceEvents?: TraceEventUpdateManyWithoutRecordedByUserNestedInput
     preOrders?: PreOrderUpdateManyWithoutBuyerNestedInput
+    plantingLogs?: PlantingLogUpdateManyWithoutFarmerNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -20206,6 +22809,7 @@ export namespace Prisma {
     receivedMessages?: MessageUncheckedUpdateManyWithoutToUserNestedInput
     recordedTraceEvents?: TraceEventUncheckedUpdateManyWithoutRecordedByUserNestedInput
     preOrders?: PreOrderUncheckedUpdateManyWithoutBuyerNestedInput
+    plantingLogs?: PlantingLogUncheckedUpdateManyWithoutFarmerNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -20507,6 +23111,7 @@ export namespace Prisma {
     traceability?: TraceabilityRecordCreateNestedOneWithoutListingInput
     traceEvents?: TraceEventCreateNestedManyWithoutListingInput
     preOrders?: PreOrderCreateNestedManyWithoutMatchedListingInput
+    plantingLog?: PlantingLogCreateNestedOneWithoutListingsInput
   }
 
   export type ProduceListingUncheckedCreateInput = {
@@ -20527,6 +23132,7 @@ export namespace Prisma {
     batchCode: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    plantingLogId?: string | null
     orders?: OrderUncheckedCreateNestedManyWithoutListingInput
     traceability?: TraceabilityRecordUncheckedCreateNestedOneWithoutListingInput
     traceEvents?: TraceEventUncheckedCreateNestedManyWithoutListingInput
@@ -20555,6 +23161,7 @@ export namespace Prisma {
     traceability?: TraceabilityRecordUpdateOneWithoutListingNestedInput
     traceEvents?: TraceEventUpdateManyWithoutListingNestedInput
     preOrders?: PreOrderUpdateManyWithoutMatchedListingNestedInput
+    plantingLog?: PlantingLogUpdateOneWithoutListingsNestedInput
   }
 
   export type ProduceListingUncheckedUpdateInput = {
@@ -20575,6 +23182,7 @@ export namespace Prisma {
     batchCode?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    plantingLogId?: NullableStringFieldUpdateOperationsInput | string | null
     orders?: OrderUncheckedUpdateManyWithoutListingNestedInput
     traceability?: TraceabilityRecordUncheckedUpdateOneWithoutListingNestedInput
     traceEvents?: TraceEventUncheckedUpdateManyWithoutListingNestedInput
@@ -20599,6 +23207,7 @@ export namespace Prisma {
     batchCode: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    plantingLogId?: string | null
   }
 
   export type ProduceListingUpdateManyMutationInput = {
@@ -20638,6 +23247,7 @@ export namespace Prisma {
     batchCode?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    plantingLogId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type TraceabilityRecordCreateInput = {
@@ -21563,6 +24173,194 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type PlantingLogCreateInput = {
+    id?: string
+    cropType: $Enums.CropType
+    acreage: number
+    plantingDate: Date | string
+    expectedHarvestDate: Date | string
+    actualHarvestDate?: Date | string | null
+    actualYieldKg?: number | null
+    notes?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    farmer: UserCreateNestedOneWithoutPlantingLogsInput
+    inputs?: PlantingInputCreateNestedManyWithoutPlantingLogInput
+    listings?: ProduceListingCreateNestedManyWithoutPlantingLogInput
+  }
+
+  export type PlantingLogUncheckedCreateInput = {
+    id?: string
+    farmerId: string
+    cropType: $Enums.CropType
+    acreage: number
+    plantingDate: Date | string
+    expectedHarvestDate: Date | string
+    actualHarvestDate?: Date | string | null
+    actualYieldKg?: number | null
+    notes?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    inputs?: PlantingInputUncheckedCreateNestedManyWithoutPlantingLogInput
+    listings?: ProduceListingUncheckedCreateNestedManyWithoutPlantingLogInput
+  }
+
+  export type PlantingLogUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    cropType?: EnumCropTypeFieldUpdateOperationsInput | $Enums.CropType
+    acreage?: FloatFieldUpdateOperationsInput | number
+    plantingDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    expectedHarvestDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    actualHarvestDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    actualYieldKg?: NullableFloatFieldUpdateOperationsInput | number | null
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    farmer?: UserUpdateOneRequiredWithoutPlantingLogsNestedInput
+    inputs?: PlantingInputUpdateManyWithoutPlantingLogNestedInput
+    listings?: ProduceListingUpdateManyWithoutPlantingLogNestedInput
+  }
+
+  export type PlantingLogUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    farmerId?: StringFieldUpdateOperationsInput | string
+    cropType?: EnumCropTypeFieldUpdateOperationsInput | $Enums.CropType
+    acreage?: FloatFieldUpdateOperationsInput | number
+    plantingDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    expectedHarvestDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    actualHarvestDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    actualYieldKg?: NullableFloatFieldUpdateOperationsInput | number | null
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    inputs?: PlantingInputUncheckedUpdateManyWithoutPlantingLogNestedInput
+    listings?: ProduceListingUncheckedUpdateManyWithoutPlantingLogNestedInput
+  }
+
+  export type PlantingLogCreateManyInput = {
+    id?: string
+    farmerId: string
+    cropType: $Enums.CropType
+    acreage: number
+    plantingDate: Date | string
+    expectedHarvestDate: Date | string
+    actualHarvestDate?: Date | string | null
+    actualYieldKg?: number | null
+    notes?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type PlantingLogUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    cropType?: EnumCropTypeFieldUpdateOperationsInput | $Enums.CropType
+    acreage?: FloatFieldUpdateOperationsInput | number
+    plantingDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    expectedHarvestDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    actualHarvestDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    actualYieldKg?: NullableFloatFieldUpdateOperationsInput | number | null
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type PlantingLogUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    farmerId?: StringFieldUpdateOperationsInput | string
+    cropType?: EnumCropTypeFieldUpdateOperationsInput | $Enums.CropType
+    acreage?: FloatFieldUpdateOperationsInput | number
+    plantingDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    expectedHarvestDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    actualHarvestDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    actualYieldKg?: NullableFloatFieldUpdateOperationsInput | number | null
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type PlantingInputCreateInput = {
+    id?: string
+    type: string
+    name: string
+    quantity?: number | null
+    unit?: string | null
+    appliedAt?: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    plantingLog: PlantingLogCreateNestedOneWithoutInputsInput
+  }
+
+  export type PlantingInputUncheckedCreateInput = {
+    id?: string
+    plantingLogId: string
+    type: string
+    name: string
+    quantity?: number | null
+    unit?: string | null
+    appliedAt?: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type PlantingInputUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    quantity?: NullableFloatFieldUpdateOperationsInput | number | null
+    unit?: NullableStringFieldUpdateOperationsInput | string | null
+    appliedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    plantingLog?: PlantingLogUpdateOneRequiredWithoutInputsNestedInput
+  }
+
+  export type PlantingInputUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    plantingLogId?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    quantity?: NullableFloatFieldUpdateOperationsInput | number | null
+    unit?: NullableStringFieldUpdateOperationsInput | string | null
+    appliedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type PlantingInputCreateManyInput = {
+    id?: string
+    plantingLogId: string
+    type: string
+    name: string
+    quantity?: number | null
+    unit?: string | null
+    appliedAt?: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type PlantingInputUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    quantity?: NullableFloatFieldUpdateOperationsInput | number | null
+    unit?: NullableStringFieldUpdateOperationsInput | string | null
+    appliedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type PlantingInputUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    plantingLogId?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    quantity?: NullableFloatFieldUpdateOperationsInput | number | null
+    unit?: NullableStringFieldUpdateOperationsInput | string | null
+    appliedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type StringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -21690,6 +24488,12 @@ export namespace Prisma {
     none?: PreOrderWhereInput
   }
 
+  export type PlantingLogListRelationFilter = {
+    every?: PlantingLogWhereInput
+    some?: PlantingLogWhereInput
+    none?: PlantingLogWhereInput
+  }
+
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
@@ -21724,6 +24528,10 @@ export namespace Prisma {
   }
 
   export type PreOrderOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type PlantingLogOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -22120,6 +24928,11 @@ export namespace Prisma {
     isNot?: TraceabilityRecordWhereInput | null
   }
 
+  export type PlantingLogNullableRelationFilter = {
+    is?: PlantingLogWhereInput | null
+    isNot?: PlantingLogWhereInput | null
+  }
+
   export type ProduceListingCountOrderByAggregateInput = {
     id?: SortOrder
     farmerId?: SortOrder
@@ -22138,6 +24951,7 @@ export namespace Prisma {
     batchCode?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    plantingLogId?: SortOrder
   }
 
   export type ProduceListingAvgOrderByAggregateInput = {
@@ -22165,6 +24979,7 @@ export namespace Prisma {
     batchCode?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    plantingLogId?: SortOrder
   }
 
   export type ProduceListingMinOrderByAggregateInput = {
@@ -22184,6 +24999,7 @@ export namespace Prisma {
     batchCode?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    plantingLogId?: SortOrder
   }
 
   export type ProduceListingSumOrderByAggregateInput = {
@@ -22864,6 +25680,117 @@ export namespace Prisma {
     _max?: NestedEnumPreOrderStatusFilter<$PrismaModel>
   }
 
+  export type PlantingInputListRelationFilter = {
+    every?: PlantingInputWhereInput
+    some?: PlantingInputWhereInput
+    none?: PlantingInputWhereInput
+  }
+
+  export type PlantingInputOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type PlantingLogCountOrderByAggregateInput = {
+    id?: SortOrder
+    farmerId?: SortOrder
+    cropType?: SortOrder
+    acreage?: SortOrder
+    plantingDate?: SortOrder
+    expectedHarvestDate?: SortOrder
+    actualHarvestDate?: SortOrder
+    actualYieldKg?: SortOrder
+    notes?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type PlantingLogAvgOrderByAggregateInput = {
+    acreage?: SortOrder
+    actualYieldKg?: SortOrder
+  }
+
+  export type PlantingLogMaxOrderByAggregateInput = {
+    id?: SortOrder
+    farmerId?: SortOrder
+    cropType?: SortOrder
+    acreage?: SortOrder
+    plantingDate?: SortOrder
+    expectedHarvestDate?: SortOrder
+    actualHarvestDate?: SortOrder
+    actualYieldKg?: SortOrder
+    notes?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type PlantingLogMinOrderByAggregateInput = {
+    id?: SortOrder
+    farmerId?: SortOrder
+    cropType?: SortOrder
+    acreage?: SortOrder
+    plantingDate?: SortOrder
+    expectedHarvestDate?: SortOrder
+    actualHarvestDate?: SortOrder
+    actualYieldKg?: SortOrder
+    notes?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type PlantingLogSumOrderByAggregateInput = {
+    acreage?: SortOrder
+    actualYieldKg?: SortOrder
+  }
+
+  export type PlantingLogRelationFilter = {
+    is?: PlantingLogWhereInput
+    isNot?: PlantingLogWhereInput
+  }
+
+  export type PlantingInputCountOrderByAggregateInput = {
+    id?: SortOrder
+    plantingLogId?: SortOrder
+    type?: SortOrder
+    name?: SortOrder
+    quantity?: SortOrder
+    unit?: SortOrder
+    appliedAt?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type PlantingInputAvgOrderByAggregateInput = {
+    quantity?: SortOrder
+  }
+
+  export type PlantingInputMaxOrderByAggregateInput = {
+    id?: SortOrder
+    plantingLogId?: SortOrder
+    type?: SortOrder
+    name?: SortOrder
+    quantity?: SortOrder
+    unit?: SortOrder
+    appliedAt?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type PlantingInputMinOrderByAggregateInput = {
+    id?: SortOrder
+    plantingLogId?: SortOrder
+    type?: SortOrder
+    name?: SortOrder
+    quantity?: SortOrder
+    unit?: SortOrder
+    appliedAt?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type PlantingInputSumOrderByAggregateInput = {
+    quantity?: SortOrder
+  }
+
   export type FarmerProfileCreateNestedOneWithoutUserInput = {
     create?: XOR<FarmerProfileCreateWithoutUserInput, FarmerProfileUncheckedCreateWithoutUserInput>
     connectOrCreate?: FarmerProfileCreateOrConnectWithoutUserInput
@@ -22952,6 +25879,13 @@ export namespace Prisma {
     connect?: PreOrderWhereUniqueInput | PreOrderWhereUniqueInput[]
   }
 
+  export type PlantingLogCreateNestedManyWithoutFarmerInput = {
+    create?: XOR<PlantingLogCreateWithoutFarmerInput, PlantingLogUncheckedCreateWithoutFarmerInput> | PlantingLogCreateWithoutFarmerInput[] | PlantingLogUncheckedCreateWithoutFarmerInput[]
+    connectOrCreate?: PlantingLogCreateOrConnectWithoutFarmerInput | PlantingLogCreateOrConnectWithoutFarmerInput[]
+    createMany?: PlantingLogCreateManyFarmerInputEnvelope
+    connect?: PlantingLogWhereUniqueInput | PlantingLogWhereUniqueInput[]
+  }
+
   export type FarmerProfileUncheckedCreateNestedOneWithoutUserInput = {
     create?: XOR<FarmerProfileCreateWithoutUserInput, FarmerProfileUncheckedCreateWithoutUserInput>
     connectOrCreate?: FarmerProfileCreateOrConnectWithoutUserInput
@@ -23038,6 +25972,13 @@ export namespace Prisma {
     connectOrCreate?: PreOrderCreateOrConnectWithoutBuyerInput | PreOrderCreateOrConnectWithoutBuyerInput[]
     createMany?: PreOrderCreateManyBuyerInputEnvelope
     connect?: PreOrderWhereUniqueInput | PreOrderWhereUniqueInput[]
+  }
+
+  export type PlantingLogUncheckedCreateNestedManyWithoutFarmerInput = {
+    create?: XOR<PlantingLogCreateWithoutFarmerInput, PlantingLogUncheckedCreateWithoutFarmerInput> | PlantingLogCreateWithoutFarmerInput[] | PlantingLogUncheckedCreateWithoutFarmerInput[]
+    connectOrCreate?: PlantingLogCreateOrConnectWithoutFarmerInput | PlantingLogCreateOrConnectWithoutFarmerInput[]
+    createMany?: PlantingLogCreateManyFarmerInputEnvelope
+    connect?: PlantingLogWhereUniqueInput | PlantingLogWhereUniqueInput[]
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -23238,6 +26179,20 @@ export namespace Prisma {
     deleteMany?: PreOrderScalarWhereInput | PreOrderScalarWhereInput[]
   }
 
+  export type PlantingLogUpdateManyWithoutFarmerNestedInput = {
+    create?: XOR<PlantingLogCreateWithoutFarmerInput, PlantingLogUncheckedCreateWithoutFarmerInput> | PlantingLogCreateWithoutFarmerInput[] | PlantingLogUncheckedCreateWithoutFarmerInput[]
+    connectOrCreate?: PlantingLogCreateOrConnectWithoutFarmerInput | PlantingLogCreateOrConnectWithoutFarmerInput[]
+    upsert?: PlantingLogUpsertWithWhereUniqueWithoutFarmerInput | PlantingLogUpsertWithWhereUniqueWithoutFarmerInput[]
+    createMany?: PlantingLogCreateManyFarmerInputEnvelope
+    set?: PlantingLogWhereUniqueInput | PlantingLogWhereUniqueInput[]
+    disconnect?: PlantingLogWhereUniqueInput | PlantingLogWhereUniqueInput[]
+    delete?: PlantingLogWhereUniqueInput | PlantingLogWhereUniqueInput[]
+    connect?: PlantingLogWhereUniqueInput | PlantingLogWhereUniqueInput[]
+    update?: PlantingLogUpdateWithWhereUniqueWithoutFarmerInput | PlantingLogUpdateWithWhereUniqueWithoutFarmerInput[]
+    updateMany?: PlantingLogUpdateManyWithWhereWithoutFarmerInput | PlantingLogUpdateManyWithWhereWithoutFarmerInput[]
+    deleteMany?: PlantingLogScalarWhereInput | PlantingLogScalarWhereInput[]
+  }
+
   export type FarmerProfileUncheckedUpdateOneWithoutUserNestedInput = {
     create?: XOR<FarmerProfileCreateWithoutUserInput, FarmerProfileUncheckedCreateWithoutUserInput>
     connectOrCreate?: FarmerProfileCreateOrConnectWithoutUserInput
@@ -23408,6 +26363,20 @@ export namespace Prisma {
     deleteMany?: PreOrderScalarWhereInput | PreOrderScalarWhereInput[]
   }
 
+  export type PlantingLogUncheckedUpdateManyWithoutFarmerNestedInput = {
+    create?: XOR<PlantingLogCreateWithoutFarmerInput, PlantingLogUncheckedCreateWithoutFarmerInput> | PlantingLogCreateWithoutFarmerInput[] | PlantingLogUncheckedCreateWithoutFarmerInput[]
+    connectOrCreate?: PlantingLogCreateOrConnectWithoutFarmerInput | PlantingLogCreateOrConnectWithoutFarmerInput[]
+    upsert?: PlantingLogUpsertWithWhereUniqueWithoutFarmerInput | PlantingLogUpsertWithWhereUniqueWithoutFarmerInput[]
+    createMany?: PlantingLogCreateManyFarmerInputEnvelope
+    set?: PlantingLogWhereUniqueInput | PlantingLogWhereUniqueInput[]
+    disconnect?: PlantingLogWhereUniqueInput | PlantingLogWhereUniqueInput[]
+    delete?: PlantingLogWhereUniqueInput | PlantingLogWhereUniqueInput[]
+    connect?: PlantingLogWhereUniqueInput | PlantingLogWhereUniqueInput[]
+    update?: PlantingLogUpdateWithWhereUniqueWithoutFarmerInput | PlantingLogUpdateWithWhereUniqueWithoutFarmerInput[]
+    updateMany?: PlantingLogUpdateManyWithWhereWithoutFarmerInput | PlantingLogUpdateManyWithWhereWithoutFarmerInput[]
+    deleteMany?: PlantingLogScalarWhereInput | PlantingLogScalarWhereInput[]
+  }
+
   export type FarmerProfileCreateprimaryCropsInput = {
     set: string[]
   }
@@ -23516,6 +26485,12 @@ export namespace Prisma {
     connect?: PreOrderWhereUniqueInput | PreOrderWhereUniqueInput[]
   }
 
+  export type PlantingLogCreateNestedOneWithoutListingsInput = {
+    create?: XOR<PlantingLogCreateWithoutListingsInput, PlantingLogUncheckedCreateWithoutListingsInput>
+    connectOrCreate?: PlantingLogCreateOrConnectWithoutListingsInput
+    connect?: PlantingLogWhereUniqueInput
+  }
+
   export type OrderUncheckedCreateNestedManyWithoutListingInput = {
     create?: XOR<OrderCreateWithoutListingInput, OrderUncheckedCreateWithoutListingInput> | OrderCreateWithoutListingInput[] | OrderUncheckedCreateWithoutListingInput[]
     connectOrCreate?: OrderCreateOrConnectWithoutListingInput | OrderCreateOrConnectWithoutListingInput[]
@@ -23622,6 +26597,16 @@ export namespace Prisma {
     update?: PreOrderUpdateWithWhereUniqueWithoutMatchedListingInput | PreOrderUpdateWithWhereUniqueWithoutMatchedListingInput[]
     updateMany?: PreOrderUpdateManyWithWhereWithoutMatchedListingInput | PreOrderUpdateManyWithWhereWithoutMatchedListingInput[]
     deleteMany?: PreOrderScalarWhereInput | PreOrderScalarWhereInput[]
+  }
+
+  export type PlantingLogUpdateOneWithoutListingsNestedInput = {
+    create?: XOR<PlantingLogCreateWithoutListingsInput, PlantingLogUncheckedCreateWithoutListingsInput>
+    connectOrCreate?: PlantingLogCreateOrConnectWithoutListingsInput
+    upsert?: PlantingLogUpsertWithoutListingsInput
+    disconnect?: PlantingLogWhereInput | boolean
+    delete?: PlantingLogWhereInput | boolean
+    connect?: PlantingLogWhereUniqueInput
+    update?: XOR<XOR<PlantingLogUpdateToOneWithWhereWithoutListingsInput, PlantingLogUpdateWithoutListingsInput>, PlantingLogUncheckedUpdateWithoutListingsInput>
   }
 
   export type OrderUncheckedUpdateManyWithoutListingNestedInput = {
@@ -24108,6 +27093,118 @@ export namespace Prisma {
     delete?: OrderWhereInput | boolean
     connect?: OrderWhereUniqueInput
     update?: XOR<XOR<OrderUpdateToOneWithWhereWithoutPreOrderInput, OrderUpdateWithoutPreOrderInput>, OrderUncheckedUpdateWithoutPreOrderInput>
+  }
+
+  export type UserCreateNestedOneWithoutPlantingLogsInput = {
+    create?: XOR<UserCreateWithoutPlantingLogsInput, UserUncheckedCreateWithoutPlantingLogsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutPlantingLogsInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type PlantingInputCreateNestedManyWithoutPlantingLogInput = {
+    create?: XOR<PlantingInputCreateWithoutPlantingLogInput, PlantingInputUncheckedCreateWithoutPlantingLogInput> | PlantingInputCreateWithoutPlantingLogInput[] | PlantingInputUncheckedCreateWithoutPlantingLogInput[]
+    connectOrCreate?: PlantingInputCreateOrConnectWithoutPlantingLogInput | PlantingInputCreateOrConnectWithoutPlantingLogInput[]
+    createMany?: PlantingInputCreateManyPlantingLogInputEnvelope
+    connect?: PlantingInputWhereUniqueInput | PlantingInputWhereUniqueInput[]
+  }
+
+  export type ProduceListingCreateNestedManyWithoutPlantingLogInput = {
+    create?: XOR<ProduceListingCreateWithoutPlantingLogInput, ProduceListingUncheckedCreateWithoutPlantingLogInput> | ProduceListingCreateWithoutPlantingLogInput[] | ProduceListingUncheckedCreateWithoutPlantingLogInput[]
+    connectOrCreate?: ProduceListingCreateOrConnectWithoutPlantingLogInput | ProduceListingCreateOrConnectWithoutPlantingLogInput[]
+    createMany?: ProduceListingCreateManyPlantingLogInputEnvelope
+    connect?: ProduceListingWhereUniqueInput | ProduceListingWhereUniqueInput[]
+  }
+
+  export type PlantingInputUncheckedCreateNestedManyWithoutPlantingLogInput = {
+    create?: XOR<PlantingInputCreateWithoutPlantingLogInput, PlantingInputUncheckedCreateWithoutPlantingLogInput> | PlantingInputCreateWithoutPlantingLogInput[] | PlantingInputUncheckedCreateWithoutPlantingLogInput[]
+    connectOrCreate?: PlantingInputCreateOrConnectWithoutPlantingLogInput | PlantingInputCreateOrConnectWithoutPlantingLogInput[]
+    createMany?: PlantingInputCreateManyPlantingLogInputEnvelope
+    connect?: PlantingInputWhereUniqueInput | PlantingInputWhereUniqueInput[]
+  }
+
+  export type ProduceListingUncheckedCreateNestedManyWithoutPlantingLogInput = {
+    create?: XOR<ProduceListingCreateWithoutPlantingLogInput, ProduceListingUncheckedCreateWithoutPlantingLogInput> | ProduceListingCreateWithoutPlantingLogInput[] | ProduceListingUncheckedCreateWithoutPlantingLogInput[]
+    connectOrCreate?: ProduceListingCreateOrConnectWithoutPlantingLogInput | ProduceListingCreateOrConnectWithoutPlantingLogInput[]
+    createMany?: ProduceListingCreateManyPlantingLogInputEnvelope
+    connect?: ProduceListingWhereUniqueInput | ProduceListingWhereUniqueInput[]
+  }
+
+  export type UserUpdateOneRequiredWithoutPlantingLogsNestedInput = {
+    create?: XOR<UserCreateWithoutPlantingLogsInput, UserUncheckedCreateWithoutPlantingLogsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutPlantingLogsInput
+    upsert?: UserUpsertWithoutPlantingLogsInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutPlantingLogsInput, UserUpdateWithoutPlantingLogsInput>, UserUncheckedUpdateWithoutPlantingLogsInput>
+  }
+
+  export type PlantingInputUpdateManyWithoutPlantingLogNestedInput = {
+    create?: XOR<PlantingInputCreateWithoutPlantingLogInput, PlantingInputUncheckedCreateWithoutPlantingLogInput> | PlantingInputCreateWithoutPlantingLogInput[] | PlantingInputUncheckedCreateWithoutPlantingLogInput[]
+    connectOrCreate?: PlantingInputCreateOrConnectWithoutPlantingLogInput | PlantingInputCreateOrConnectWithoutPlantingLogInput[]
+    upsert?: PlantingInputUpsertWithWhereUniqueWithoutPlantingLogInput | PlantingInputUpsertWithWhereUniqueWithoutPlantingLogInput[]
+    createMany?: PlantingInputCreateManyPlantingLogInputEnvelope
+    set?: PlantingInputWhereUniqueInput | PlantingInputWhereUniqueInput[]
+    disconnect?: PlantingInputWhereUniqueInput | PlantingInputWhereUniqueInput[]
+    delete?: PlantingInputWhereUniqueInput | PlantingInputWhereUniqueInput[]
+    connect?: PlantingInputWhereUniqueInput | PlantingInputWhereUniqueInput[]
+    update?: PlantingInputUpdateWithWhereUniqueWithoutPlantingLogInput | PlantingInputUpdateWithWhereUniqueWithoutPlantingLogInput[]
+    updateMany?: PlantingInputUpdateManyWithWhereWithoutPlantingLogInput | PlantingInputUpdateManyWithWhereWithoutPlantingLogInput[]
+    deleteMany?: PlantingInputScalarWhereInput | PlantingInputScalarWhereInput[]
+  }
+
+  export type ProduceListingUpdateManyWithoutPlantingLogNestedInput = {
+    create?: XOR<ProduceListingCreateWithoutPlantingLogInput, ProduceListingUncheckedCreateWithoutPlantingLogInput> | ProduceListingCreateWithoutPlantingLogInput[] | ProduceListingUncheckedCreateWithoutPlantingLogInput[]
+    connectOrCreate?: ProduceListingCreateOrConnectWithoutPlantingLogInput | ProduceListingCreateOrConnectWithoutPlantingLogInput[]
+    upsert?: ProduceListingUpsertWithWhereUniqueWithoutPlantingLogInput | ProduceListingUpsertWithWhereUniqueWithoutPlantingLogInput[]
+    createMany?: ProduceListingCreateManyPlantingLogInputEnvelope
+    set?: ProduceListingWhereUniqueInput | ProduceListingWhereUniqueInput[]
+    disconnect?: ProduceListingWhereUniqueInput | ProduceListingWhereUniqueInput[]
+    delete?: ProduceListingWhereUniqueInput | ProduceListingWhereUniqueInput[]
+    connect?: ProduceListingWhereUniqueInput | ProduceListingWhereUniqueInput[]
+    update?: ProduceListingUpdateWithWhereUniqueWithoutPlantingLogInput | ProduceListingUpdateWithWhereUniqueWithoutPlantingLogInput[]
+    updateMany?: ProduceListingUpdateManyWithWhereWithoutPlantingLogInput | ProduceListingUpdateManyWithWhereWithoutPlantingLogInput[]
+    deleteMany?: ProduceListingScalarWhereInput | ProduceListingScalarWhereInput[]
+  }
+
+  export type PlantingInputUncheckedUpdateManyWithoutPlantingLogNestedInput = {
+    create?: XOR<PlantingInputCreateWithoutPlantingLogInput, PlantingInputUncheckedCreateWithoutPlantingLogInput> | PlantingInputCreateWithoutPlantingLogInput[] | PlantingInputUncheckedCreateWithoutPlantingLogInput[]
+    connectOrCreate?: PlantingInputCreateOrConnectWithoutPlantingLogInput | PlantingInputCreateOrConnectWithoutPlantingLogInput[]
+    upsert?: PlantingInputUpsertWithWhereUniqueWithoutPlantingLogInput | PlantingInputUpsertWithWhereUniqueWithoutPlantingLogInput[]
+    createMany?: PlantingInputCreateManyPlantingLogInputEnvelope
+    set?: PlantingInputWhereUniqueInput | PlantingInputWhereUniqueInput[]
+    disconnect?: PlantingInputWhereUniqueInput | PlantingInputWhereUniqueInput[]
+    delete?: PlantingInputWhereUniqueInput | PlantingInputWhereUniqueInput[]
+    connect?: PlantingInputWhereUniqueInput | PlantingInputWhereUniqueInput[]
+    update?: PlantingInputUpdateWithWhereUniqueWithoutPlantingLogInput | PlantingInputUpdateWithWhereUniqueWithoutPlantingLogInput[]
+    updateMany?: PlantingInputUpdateManyWithWhereWithoutPlantingLogInput | PlantingInputUpdateManyWithWhereWithoutPlantingLogInput[]
+    deleteMany?: PlantingInputScalarWhereInput | PlantingInputScalarWhereInput[]
+  }
+
+  export type ProduceListingUncheckedUpdateManyWithoutPlantingLogNestedInput = {
+    create?: XOR<ProduceListingCreateWithoutPlantingLogInput, ProduceListingUncheckedCreateWithoutPlantingLogInput> | ProduceListingCreateWithoutPlantingLogInput[] | ProduceListingUncheckedCreateWithoutPlantingLogInput[]
+    connectOrCreate?: ProduceListingCreateOrConnectWithoutPlantingLogInput | ProduceListingCreateOrConnectWithoutPlantingLogInput[]
+    upsert?: ProduceListingUpsertWithWhereUniqueWithoutPlantingLogInput | ProduceListingUpsertWithWhereUniqueWithoutPlantingLogInput[]
+    createMany?: ProduceListingCreateManyPlantingLogInputEnvelope
+    set?: ProduceListingWhereUniqueInput | ProduceListingWhereUniqueInput[]
+    disconnect?: ProduceListingWhereUniqueInput | ProduceListingWhereUniqueInput[]
+    delete?: ProduceListingWhereUniqueInput | ProduceListingWhereUniqueInput[]
+    connect?: ProduceListingWhereUniqueInput | ProduceListingWhereUniqueInput[]
+    update?: ProduceListingUpdateWithWhereUniqueWithoutPlantingLogInput | ProduceListingUpdateWithWhereUniqueWithoutPlantingLogInput[]
+    updateMany?: ProduceListingUpdateManyWithWhereWithoutPlantingLogInput | ProduceListingUpdateManyWithWhereWithoutPlantingLogInput[]
+    deleteMany?: ProduceListingScalarWhereInput | ProduceListingScalarWhereInput[]
+  }
+
+  export type PlantingLogCreateNestedOneWithoutInputsInput = {
+    create?: XOR<PlantingLogCreateWithoutInputsInput, PlantingLogUncheckedCreateWithoutInputsInput>
+    connectOrCreate?: PlantingLogCreateOrConnectWithoutInputsInput
+    connect?: PlantingLogWhereUniqueInput
+  }
+
+  export type PlantingLogUpdateOneRequiredWithoutInputsNestedInput = {
+    create?: XOR<PlantingLogCreateWithoutInputsInput, PlantingLogUncheckedCreateWithoutInputsInput>
+    connectOrCreate?: PlantingLogCreateOrConnectWithoutInputsInput
+    upsert?: PlantingLogUpsertWithoutInputsInput
+    connect?: PlantingLogWhereUniqueInput
+    update?: XOR<XOR<PlantingLogUpdateToOneWithWhereWithoutInputsInput, PlantingLogUpdateWithoutInputsInput>, PlantingLogUncheckedUpdateWithoutInputsInput>
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -24617,6 +27714,7 @@ export namespace Prisma {
     traceability?: TraceabilityRecordCreateNestedOneWithoutListingInput
     traceEvents?: TraceEventCreateNestedManyWithoutListingInput
     preOrders?: PreOrderCreateNestedManyWithoutMatchedListingInput
+    plantingLog?: PlantingLogCreateNestedOneWithoutListingsInput
   }
 
   export type ProduceListingUncheckedCreateWithoutFarmerInput = {
@@ -24636,6 +27734,7 @@ export namespace Prisma {
     batchCode: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    plantingLogId?: string | null
     orders?: OrderUncheckedCreateNestedManyWithoutListingInput
     traceability?: TraceabilityRecordUncheckedCreateNestedOneWithoutListingInput
     traceEvents?: TraceEventUncheckedCreateNestedManyWithoutListingInput
@@ -24980,6 +28079,46 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type PlantingLogCreateWithoutFarmerInput = {
+    id?: string
+    cropType: $Enums.CropType
+    acreage: number
+    plantingDate: Date | string
+    expectedHarvestDate: Date | string
+    actualHarvestDate?: Date | string | null
+    actualYieldKg?: number | null
+    notes?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    inputs?: PlantingInputCreateNestedManyWithoutPlantingLogInput
+    listings?: ProduceListingCreateNestedManyWithoutPlantingLogInput
+  }
+
+  export type PlantingLogUncheckedCreateWithoutFarmerInput = {
+    id?: string
+    cropType: $Enums.CropType
+    acreage: number
+    plantingDate: Date | string
+    expectedHarvestDate: Date | string
+    actualHarvestDate?: Date | string | null
+    actualYieldKg?: number | null
+    notes?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    inputs?: PlantingInputUncheckedCreateNestedManyWithoutPlantingLogInput
+    listings?: ProduceListingUncheckedCreateNestedManyWithoutPlantingLogInput
+  }
+
+  export type PlantingLogCreateOrConnectWithoutFarmerInput = {
+    where: PlantingLogWhereUniqueInput
+    create: XOR<PlantingLogCreateWithoutFarmerInput, PlantingLogUncheckedCreateWithoutFarmerInput>
+  }
+
+  export type PlantingLogCreateManyFarmerInputEnvelope = {
+    data: PlantingLogCreateManyFarmerInput | PlantingLogCreateManyFarmerInput[]
+    skipDuplicates?: boolean
+  }
+
   export type FarmerProfileUpsertWithoutUserInput = {
     update: XOR<FarmerProfileUpdateWithoutUserInput, FarmerProfileUncheckedUpdateWithoutUserInput>
     create: XOR<FarmerProfileCreateWithoutUserInput, FarmerProfileUncheckedCreateWithoutUserInput>
@@ -25112,6 +28251,7 @@ export namespace Prisma {
     batchCode?: StringFilter<"ProduceListing"> | string
     createdAt?: DateTimeFilter<"ProduceListing"> | Date | string
     updatedAt?: DateTimeFilter<"ProduceListing"> | Date | string
+    plantingLogId?: StringNullableFilter<"ProduceListing"> | string | null
   }
 
   export type OrderUpsertWithWhereUniqueWithoutBuyerInput = {
@@ -25381,6 +28521,39 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"PreOrder"> | Date | string
   }
 
+  export type PlantingLogUpsertWithWhereUniqueWithoutFarmerInput = {
+    where: PlantingLogWhereUniqueInput
+    update: XOR<PlantingLogUpdateWithoutFarmerInput, PlantingLogUncheckedUpdateWithoutFarmerInput>
+    create: XOR<PlantingLogCreateWithoutFarmerInput, PlantingLogUncheckedCreateWithoutFarmerInput>
+  }
+
+  export type PlantingLogUpdateWithWhereUniqueWithoutFarmerInput = {
+    where: PlantingLogWhereUniqueInput
+    data: XOR<PlantingLogUpdateWithoutFarmerInput, PlantingLogUncheckedUpdateWithoutFarmerInput>
+  }
+
+  export type PlantingLogUpdateManyWithWhereWithoutFarmerInput = {
+    where: PlantingLogScalarWhereInput
+    data: XOR<PlantingLogUpdateManyMutationInput, PlantingLogUncheckedUpdateManyWithoutFarmerInput>
+  }
+
+  export type PlantingLogScalarWhereInput = {
+    AND?: PlantingLogScalarWhereInput | PlantingLogScalarWhereInput[]
+    OR?: PlantingLogScalarWhereInput[]
+    NOT?: PlantingLogScalarWhereInput | PlantingLogScalarWhereInput[]
+    id?: StringFilter<"PlantingLog"> | string
+    farmerId?: StringFilter<"PlantingLog"> | string
+    cropType?: EnumCropTypeFilter<"PlantingLog"> | $Enums.CropType
+    acreage?: FloatFilter<"PlantingLog"> | number
+    plantingDate?: DateTimeFilter<"PlantingLog"> | Date | string
+    expectedHarvestDate?: DateTimeFilter<"PlantingLog"> | Date | string
+    actualHarvestDate?: DateTimeNullableFilter<"PlantingLog"> | Date | string | null
+    actualYieldKg?: FloatNullableFilter<"PlantingLog"> | number | null
+    notes?: StringNullableFilter<"PlantingLog"> | string | null
+    createdAt?: DateTimeFilter<"PlantingLog"> | Date | string
+    updatedAt?: DateTimeFilter<"PlantingLog"> | Date | string
+  }
+
   export type UserCreateWithoutFarmerProfileInput = {
     id?: string
     phone: string
@@ -25405,6 +28578,7 @@ export namespace Prisma {
     receivedMessages?: MessageCreateNestedManyWithoutToUserInput
     recordedTraceEvents?: TraceEventCreateNestedManyWithoutRecordedByUserInput
     preOrders?: PreOrderCreateNestedManyWithoutBuyerInput
+    plantingLogs?: PlantingLogCreateNestedManyWithoutFarmerInput
   }
 
   export type UserUncheckedCreateWithoutFarmerProfileInput = {
@@ -25431,6 +28605,7 @@ export namespace Prisma {
     receivedMessages?: MessageUncheckedCreateNestedManyWithoutToUserInput
     recordedTraceEvents?: TraceEventUncheckedCreateNestedManyWithoutRecordedByUserInput
     preOrders?: PreOrderUncheckedCreateNestedManyWithoutBuyerInput
+    plantingLogs?: PlantingLogUncheckedCreateNestedManyWithoutFarmerInput
   }
 
   export type UserCreateOrConnectWithoutFarmerProfileInput = {
@@ -25473,6 +28648,7 @@ export namespace Prisma {
     receivedMessages?: MessageUpdateManyWithoutToUserNestedInput
     recordedTraceEvents?: TraceEventUpdateManyWithoutRecordedByUserNestedInput
     preOrders?: PreOrderUpdateManyWithoutBuyerNestedInput
+    plantingLogs?: PlantingLogUpdateManyWithoutFarmerNestedInput
   }
 
   export type UserUncheckedUpdateWithoutFarmerProfileInput = {
@@ -25499,6 +28675,7 @@ export namespace Prisma {
     receivedMessages?: MessageUncheckedUpdateManyWithoutToUserNestedInput
     recordedTraceEvents?: TraceEventUncheckedUpdateManyWithoutRecordedByUserNestedInput
     preOrders?: PreOrderUncheckedUpdateManyWithoutBuyerNestedInput
+    plantingLogs?: PlantingLogUncheckedUpdateManyWithoutFarmerNestedInput
   }
 
   export type UserCreateWithoutBuyerProfileInput = {
@@ -25525,6 +28702,7 @@ export namespace Prisma {
     receivedMessages?: MessageCreateNestedManyWithoutToUserInput
     recordedTraceEvents?: TraceEventCreateNestedManyWithoutRecordedByUserInput
     preOrders?: PreOrderCreateNestedManyWithoutBuyerInput
+    plantingLogs?: PlantingLogCreateNestedManyWithoutFarmerInput
   }
 
   export type UserUncheckedCreateWithoutBuyerProfileInput = {
@@ -25551,6 +28729,7 @@ export namespace Prisma {
     receivedMessages?: MessageUncheckedCreateNestedManyWithoutToUserInput
     recordedTraceEvents?: TraceEventUncheckedCreateNestedManyWithoutRecordedByUserInput
     preOrders?: PreOrderUncheckedCreateNestedManyWithoutBuyerInput
+    plantingLogs?: PlantingLogUncheckedCreateNestedManyWithoutFarmerInput
   }
 
   export type UserCreateOrConnectWithoutBuyerProfileInput = {
@@ -25593,6 +28772,7 @@ export namespace Prisma {
     receivedMessages?: MessageUpdateManyWithoutToUserNestedInput
     recordedTraceEvents?: TraceEventUpdateManyWithoutRecordedByUserNestedInput
     preOrders?: PreOrderUpdateManyWithoutBuyerNestedInput
+    plantingLogs?: PlantingLogUpdateManyWithoutFarmerNestedInput
   }
 
   export type UserUncheckedUpdateWithoutBuyerProfileInput = {
@@ -25619,6 +28799,7 @@ export namespace Prisma {
     receivedMessages?: MessageUncheckedUpdateManyWithoutToUserNestedInput
     recordedTraceEvents?: TraceEventUncheckedUpdateManyWithoutRecordedByUserNestedInput
     preOrders?: PreOrderUncheckedUpdateManyWithoutBuyerNestedInput
+    plantingLogs?: PlantingLogUncheckedUpdateManyWithoutFarmerNestedInput
   }
 
   export type UserCreateWithoutTransportProfileInput = {
@@ -25645,6 +28826,7 @@ export namespace Prisma {
     receivedMessages?: MessageCreateNestedManyWithoutToUserInput
     recordedTraceEvents?: TraceEventCreateNestedManyWithoutRecordedByUserInput
     preOrders?: PreOrderCreateNestedManyWithoutBuyerInput
+    plantingLogs?: PlantingLogCreateNestedManyWithoutFarmerInput
   }
 
   export type UserUncheckedCreateWithoutTransportProfileInput = {
@@ -25671,6 +28853,7 @@ export namespace Prisma {
     receivedMessages?: MessageUncheckedCreateNestedManyWithoutToUserInput
     recordedTraceEvents?: TraceEventUncheckedCreateNestedManyWithoutRecordedByUserInput
     preOrders?: PreOrderUncheckedCreateNestedManyWithoutBuyerInput
+    plantingLogs?: PlantingLogUncheckedCreateNestedManyWithoutFarmerInput
   }
 
   export type UserCreateOrConnectWithoutTransportProfileInput = {
@@ -25713,6 +28896,7 @@ export namespace Prisma {
     receivedMessages?: MessageUpdateManyWithoutToUserNestedInput
     recordedTraceEvents?: TraceEventUpdateManyWithoutRecordedByUserNestedInput
     preOrders?: PreOrderUpdateManyWithoutBuyerNestedInput
+    plantingLogs?: PlantingLogUpdateManyWithoutFarmerNestedInput
   }
 
   export type UserUncheckedUpdateWithoutTransportProfileInput = {
@@ -25739,6 +28923,7 @@ export namespace Prisma {
     receivedMessages?: MessageUncheckedUpdateManyWithoutToUserNestedInput
     recordedTraceEvents?: TraceEventUncheckedUpdateManyWithoutRecordedByUserNestedInput
     preOrders?: PreOrderUncheckedUpdateManyWithoutBuyerNestedInput
+    plantingLogs?: PlantingLogUncheckedUpdateManyWithoutFarmerNestedInput
   }
 
   export type UserCreateWithoutListingsInput = {
@@ -25765,6 +28950,7 @@ export namespace Prisma {
     receivedMessages?: MessageCreateNestedManyWithoutToUserInput
     recordedTraceEvents?: TraceEventCreateNestedManyWithoutRecordedByUserInput
     preOrders?: PreOrderCreateNestedManyWithoutBuyerInput
+    plantingLogs?: PlantingLogCreateNestedManyWithoutFarmerInput
   }
 
   export type UserUncheckedCreateWithoutListingsInput = {
@@ -25791,6 +28977,7 @@ export namespace Prisma {
     receivedMessages?: MessageUncheckedCreateNestedManyWithoutToUserInput
     recordedTraceEvents?: TraceEventUncheckedCreateNestedManyWithoutRecordedByUserInput
     preOrders?: PreOrderUncheckedCreateNestedManyWithoutBuyerInput
+    plantingLogs?: PlantingLogUncheckedCreateNestedManyWithoutFarmerInput
   }
 
   export type UserCreateOrConnectWithoutListingsInput = {
@@ -25947,6 +29134,41 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type PlantingLogCreateWithoutListingsInput = {
+    id?: string
+    cropType: $Enums.CropType
+    acreage: number
+    plantingDate: Date | string
+    expectedHarvestDate: Date | string
+    actualHarvestDate?: Date | string | null
+    actualYieldKg?: number | null
+    notes?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    farmer: UserCreateNestedOneWithoutPlantingLogsInput
+    inputs?: PlantingInputCreateNestedManyWithoutPlantingLogInput
+  }
+
+  export type PlantingLogUncheckedCreateWithoutListingsInput = {
+    id?: string
+    farmerId: string
+    cropType: $Enums.CropType
+    acreage: number
+    plantingDate: Date | string
+    expectedHarvestDate: Date | string
+    actualHarvestDate?: Date | string | null
+    actualYieldKg?: number | null
+    notes?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    inputs?: PlantingInputUncheckedCreateNestedManyWithoutPlantingLogInput
+  }
+
+  export type PlantingLogCreateOrConnectWithoutListingsInput = {
+    where: PlantingLogWhereUniqueInput
+    create: XOR<PlantingLogCreateWithoutListingsInput, PlantingLogUncheckedCreateWithoutListingsInput>
+  }
+
   export type UserUpsertWithoutListingsInput = {
     update: XOR<UserUpdateWithoutListingsInput, UserUncheckedUpdateWithoutListingsInput>
     create: XOR<UserCreateWithoutListingsInput, UserUncheckedCreateWithoutListingsInput>
@@ -25982,6 +29204,7 @@ export namespace Prisma {
     receivedMessages?: MessageUpdateManyWithoutToUserNestedInput
     recordedTraceEvents?: TraceEventUpdateManyWithoutRecordedByUserNestedInput
     preOrders?: PreOrderUpdateManyWithoutBuyerNestedInput
+    plantingLogs?: PlantingLogUpdateManyWithoutFarmerNestedInput
   }
 
   export type UserUncheckedUpdateWithoutListingsInput = {
@@ -26008,6 +29231,7 @@ export namespace Prisma {
     receivedMessages?: MessageUncheckedUpdateManyWithoutToUserNestedInput
     recordedTraceEvents?: TraceEventUncheckedUpdateManyWithoutRecordedByUserNestedInput
     preOrders?: PreOrderUncheckedUpdateManyWithoutBuyerNestedInput
+    plantingLogs?: PlantingLogUncheckedUpdateManyWithoutFarmerNestedInput
   }
 
   export type OrderUpsertWithWhereUniqueWithoutListingInput = {
@@ -26087,6 +29311,47 @@ export namespace Prisma {
     data: XOR<PreOrderUpdateManyMutationInput, PreOrderUncheckedUpdateManyWithoutMatchedListingInput>
   }
 
+  export type PlantingLogUpsertWithoutListingsInput = {
+    update: XOR<PlantingLogUpdateWithoutListingsInput, PlantingLogUncheckedUpdateWithoutListingsInput>
+    create: XOR<PlantingLogCreateWithoutListingsInput, PlantingLogUncheckedCreateWithoutListingsInput>
+    where?: PlantingLogWhereInput
+  }
+
+  export type PlantingLogUpdateToOneWithWhereWithoutListingsInput = {
+    where?: PlantingLogWhereInput
+    data: XOR<PlantingLogUpdateWithoutListingsInput, PlantingLogUncheckedUpdateWithoutListingsInput>
+  }
+
+  export type PlantingLogUpdateWithoutListingsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    cropType?: EnumCropTypeFieldUpdateOperationsInput | $Enums.CropType
+    acreage?: FloatFieldUpdateOperationsInput | number
+    plantingDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    expectedHarvestDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    actualHarvestDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    actualYieldKg?: NullableFloatFieldUpdateOperationsInput | number | null
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    farmer?: UserUpdateOneRequiredWithoutPlantingLogsNestedInput
+    inputs?: PlantingInputUpdateManyWithoutPlantingLogNestedInput
+  }
+
+  export type PlantingLogUncheckedUpdateWithoutListingsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    farmerId?: StringFieldUpdateOperationsInput | string
+    cropType?: EnumCropTypeFieldUpdateOperationsInput | $Enums.CropType
+    acreage?: FloatFieldUpdateOperationsInput | number
+    plantingDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    expectedHarvestDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    actualHarvestDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    actualYieldKg?: NullableFloatFieldUpdateOperationsInput | number | null
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    inputs?: PlantingInputUncheckedUpdateManyWithoutPlantingLogNestedInput
+  }
+
   export type ProduceListingCreateWithoutTraceabilityInput = {
     id?: string
     cropType: $Enums.CropType
@@ -26108,6 +29373,7 @@ export namespace Prisma {
     orders?: OrderCreateNestedManyWithoutListingInput
     traceEvents?: TraceEventCreateNestedManyWithoutListingInput
     preOrders?: PreOrderCreateNestedManyWithoutMatchedListingInput
+    plantingLog?: PlantingLogCreateNestedOneWithoutListingsInput
   }
 
   export type ProduceListingUncheckedCreateWithoutTraceabilityInput = {
@@ -26128,6 +29394,7 @@ export namespace Prisma {
     batchCode: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    plantingLogId?: string | null
     orders?: OrderUncheckedCreateNestedManyWithoutListingInput
     traceEvents?: TraceEventUncheckedCreateNestedManyWithoutListingInput
     preOrders?: PreOrderUncheckedCreateNestedManyWithoutMatchedListingInput
@@ -26170,6 +29437,7 @@ export namespace Prisma {
     orders?: OrderUpdateManyWithoutListingNestedInput
     traceEvents?: TraceEventUpdateManyWithoutListingNestedInput
     preOrders?: PreOrderUpdateManyWithoutMatchedListingNestedInput
+    plantingLog?: PlantingLogUpdateOneWithoutListingsNestedInput
   }
 
   export type ProduceListingUncheckedUpdateWithoutTraceabilityInput = {
@@ -26190,6 +29458,7 @@ export namespace Prisma {
     batchCode?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    plantingLogId?: NullableStringFieldUpdateOperationsInput | string | null
     orders?: OrderUncheckedUpdateManyWithoutListingNestedInput
     traceEvents?: TraceEventUncheckedUpdateManyWithoutListingNestedInput
     preOrders?: PreOrderUncheckedUpdateManyWithoutMatchedListingNestedInput
@@ -26216,6 +29485,7 @@ export namespace Prisma {
     orders?: OrderCreateNestedManyWithoutListingInput
     traceability?: TraceabilityRecordCreateNestedOneWithoutListingInput
     preOrders?: PreOrderCreateNestedManyWithoutMatchedListingInput
+    plantingLog?: PlantingLogCreateNestedOneWithoutListingsInput
   }
 
   export type ProduceListingUncheckedCreateWithoutTraceEventsInput = {
@@ -26236,6 +29506,7 @@ export namespace Prisma {
     batchCode: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    plantingLogId?: string | null
     orders?: OrderUncheckedCreateNestedManyWithoutListingInput
     traceability?: TraceabilityRecordUncheckedCreateNestedOneWithoutListingInput
     preOrders?: PreOrderUncheckedCreateNestedManyWithoutMatchedListingInput
@@ -26270,6 +29541,7 @@ export namespace Prisma {
     sentMessages?: MessageCreateNestedManyWithoutFromUserInput
     receivedMessages?: MessageCreateNestedManyWithoutToUserInput
     preOrders?: PreOrderCreateNestedManyWithoutBuyerInput
+    plantingLogs?: PlantingLogCreateNestedManyWithoutFarmerInput
   }
 
   export type UserUncheckedCreateWithoutRecordedTraceEventsInput = {
@@ -26296,6 +29568,7 @@ export namespace Prisma {
     sentMessages?: MessageUncheckedCreateNestedManyWithoutFromUserInput
     receivedMessages?: MessageUncheckedCreateNestedManyWithoutToUserInput
     preOrders?: PreOrderUncheckedCreateNestedManyWithoutBuyerInput
+    plantingLogs?: PlantingLogUncheckedCreateNestedManyWithoutFarmerInput
   }
 
   export type UserCreateOrConnectWithoutRecordedTraceEventsInput = {
@@ -26335,6 +29608,7 @@ export namespace Prisma {
     orders?: OrderUpdateManyWithoutListingNestedInput
     traceability?: TraceabilityRecordUpdateOneWithoutListingNestedInput
     preOrders?: PreOrderUpdateManyWithoutMatchedListingNestedInput
+    plantingLog?: PlantingLogUpdateOneWithoutListingsNestedInput
   }
 
   export type ProduceListingUncheckedUpdateWithoutTraceEventsInput = {
@@ -26355,6 +29629,7 @@ export namespace Prisma {
     batchCode?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    plantingLogId?: NullableStringFieldUpdateOperationsInput | string | null
     orders?: OrderUncheckedUpdateManyWithoutListingNestedInput
     traceability?: TraceabilityRecordUncheckedUpdateOneWithoutListingNestedInput
     preOrders?: PreOrderUncheckedUpdateManyWithoutMatchedListingNestedInput
@@ -26395,6 +29670,7 @@ export namespace Prisma {
     sentMessages?: MessageUpdateManyWithoutFromUserNestedInput
     receivedMessages?: MessageUpdateManyWithoutToUserNestedInput
     preOrders?: PreOrderUpdateManyWithoutBuyerNestedInput
+    plantingLogs?: PlantingLogUpdateManyWithoutFarmerNestedInput
   }
 
   export type UserUncheckedUpdateWithoutRecordedTraceEventsInput = {
@@ -26421,6 +29697,7 @@ export namespace Prisma {
     sentMessages?: MessageUncheckedUpdateManyWithoutFromUserNestedInput
     receivedMessages?: MessageUncheckedUpdateManyWithoutToUserNestedInput
     preOrders?: PreOrderUncheckedUpdateManyWithoutBuyerNestedInput
+    plantingLogs?: PlantingLogUncheckedUpdateManyWithoutFarmerNestedInput
   }
 
   export type UserCreateWithoutOrdersInput = {
@@ -26447,6 +29724,7 @@ export namespace Prisma {
     receivedMessages?: MessageCreateNestedManyWithoutToUserInput
     recordedTraceEvents?: TraceEventCreateNestedManyWithoutRecordedByUserInput
     preOrders?: PreOrderCreateNestedManyWithoutBuyerInput
+    plantingLogs?: PlantingLogCreateNestedManyWithoutFarmerInput
   }
 
   export type UserUncheckedCreateWithoutOrdersInput = {
@@ -26473,6 +29751,7 @@ export namespace Prisma {
     receivedMessages?: MessageUncheckedCreateNestedManyWithoutToUserInput
     recordedTraceEvents?: TraceEventUncheckedCreateNestedManyWithoutRecordedByUserInput
     preOrders?: PreOrderUncheckedCreateNestedManyWithoutBuyerInput
+    plantingLogs?: PlantingLogUncheckedCreateNestedManyWithoutFarmerInput
   }
 
   export type UserCreateOrConnectWithoutOrdersInput = {
@@ -26501,6 +29780,7 @@ export namespace Prisma {
     traceability?: TraceabilityRecordCreateNestedOneWithoutListingInput
     traceEvents?: TraceEventCreateNestedManyWithoutListingInput
     preOrders?: PreOrderCreateNestedManyWithoutMatchedListingInput
+    plantingLog?: PlantingLogCreateNestedOneWithoutListingsInput
   }
 
   export type ProduceListingUncheckedCreateWithoutOrdersInput = {
@@ -26521,6 +29801,7 @@ export namespace Prisma {
     batchCode: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    plantingLogId?: string | null
     traceability?: TraceabilityRecordUncheckedCreateNestedOneWithoutListingInput
     traceEvents?: TraceEventUncheckedCreateNestedManyWithoutListingInput
     preOrders?: PreOrderUncheckedCreateNestedManyWithoutMatchedListingInput
@@ -26718,6 +29999,7 @@ export namespace Prisma {
     receivedMessages?: MessageUpdateManyWithoutToUserNestedInput
     recordedTraceEvents?: TraceEventUpdateManyWithoutRecordedByUserNestedInput
     preOrders?: PreOrderUpdateManyWithoutBuyerNestedInput
+    plantingLogs?: PlantingLogUpdateManyWithoutFarmerNestedInput
   }
 
   export type UserUncheckedUpdateWithoutOrdersInput = {
@@ -26744,6 +30026,7 @@ export namespace Prisma {
     receivedMessages?: MessageUncheckedUpdateManyWithoutToUserNestedInput
     recordedTraceEvents?: TraceEventUncheckedUpdateManyWithoutRecordedByUserNestedInput
     preOrders?: PreOrderUncheckedUpdateManyWithoutBuyerNestedInput
+    plantingLogs?: PlantingLogUncheckedUpdateManyWithoutFarmerNestedInput
   }
 
   export type ProduceListingUpsertWithoutOrdersInput = {
@@ -26778,6 +30061,7 @@ export namespace Prisma {
     traceability?: TraceabilityRecordUpdateOneWithoutListingNestedInput
     traceEvents?: TraceEventUpdateManyWithoutListingNestedInput
     preOrders?: PreOrderUpdateManyWithoutMatchedListingNestedInput
+    plantingLog?: PlantingLogUpdateOneWithoutListingsNestedInput
   }
 
   export type ProduceListingUncheckedUpdateWithoutOrdersInput = {
@@ -26798,6 +30082,7 @@ export namespace Prisma {
     batchCode?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    plantingLogId?: NullableStringFieldUpdateOperationsInput | string | null
     traceability?: TraceabilityRecordUncheckedUpdateOneWithoutListingNestedInput
     traceEvents?: TraceEventUncheckedUpdateManyWithoutListingNestedInput
     preOrders?: PreOrderUncheckedUpdateManyWithoutMatchedListingNestedInput
@@ -27002,6 +30287,7 @@ export namespace Prisma {
     receivedMessages?: MessageCreateNestedManyWithoutToUserInput
     recordedTraceEvents?: TraceEventCreateNestedManyWithoutRecordedByUserInput
     preOrders?: PreOrderCreateNestedManyWithoutBuyerInput
+    plantingLogs?: PlantingLogCreateNestedManyWithoutFarmerInput
   }
 
   export type UserUncheckedCreateWithoutDeliveriesInput = {
@@ -27028,6 +30314,7 @@ export namespace Prisma {
     receivedMessages?: MessageUncheckedCreateNestedManyWithoutToUserInput
     recordedTraceEvents?: TraceEventUncheckedCreateNestedManyWithoutRecordedByUserInput
     preOrders?: PreOrderUncheckedCreateNestedManyWithoutBuyerInput
+    plantingLogs?: PlantingLogUncheckedCreateNestedManyWithoutFarmerInput
   }
 
   export type UserCreateOrConnectWithoutDeliveriesInput = {
@@ -27115,6 +30402,7 @@ export namespace Prisma {
     receivedMessages?: MessageUpdateManyWithoutToUserNestedInput
     recordedTraceEvents?: TraceEventUpdateManyWithoutRecordedByUserNestedInput
     preOrders?: PreOrderUpdateManyWithoutBuyerNestedInput
+    plantingLogs?: PlantingLogUpdateManyWithoutFarmerNestedInput
   }
 
   export type UserUncheckedUpdateWithoutDeliveriesInput = {
@@ -27141,6 +30429,7 @@ export namespace Prisma {
     receivedMessages?: MessageUncheckedUpdateManyWithoutToUserNestedInput
     recordedTraceEvents?: TraceEventUncheckedUpdateManyWithoutRecordedByUserNestedInput
     preOrders?: PreOrderUncheckedUpdateManyWithoutBuyerNestedInput
+    plantingLogs?: PlantingLogUncheckedUpdateManyWithoutFarmerNestedInput
   }
 
   export type UserCreateWithoutSentReviewsInput = {
@@ -27167,6 +30456,7 @@ export namespace Prisma {
     receivedMessages?: MessageCreateNestedManyWithoutToUserInput
     recordedTraceEvents?: TraceEventCreateNestedManyWithoutRecordedByUserInput
     preOrders?: PreOrderCreateNestedManyWithoutBuyerInput
+    plantingLogs?: PlantingLogCreateNestedManyWithoutFarmerInput
   }
 
   export type UserUncheckedCreateWithoutSentReviewsInput = {
@@ -27193,6 +30483,7 @@ export namespace Prisma {
     receivedMessages?: MessageUncheckedCreateNestedManyWithoutToUserInput
     recordedTraceEvents?: TraceEventUncheckedCreateNestedManyWithoutRecordedByUserInput
     preOrders?: PreOrderUncheckedCreateNestedManyWithoutBuyerInput
+    plantingLogs?: PlantingLogUncheckedCreateNestedManyWithoutFarmerInput
   }
 
   export type UserCreateOrConnectWithoutSentReviewsInput = {
@@ -27224,6 +30515,7 @@ export namespace Prisma {
     receivedMessages?: MessageCreateNestedManyWithoutToUserInput
     recordedTraceEvents?: TraceEventCreateNestedManyWithoutRecordedByUserInput
     preOrders?: PreOrderCreateNestedManyWithoutBuyerInput
+    plantingLogs?: PlantingLogCreateNestedManyWithoutFarmerInput
   }
 
   export type UserUncheckedCreateWithoutReceivedReviewsInput = {
@@ -27250,6 +30542,7 @@ export namespace Prisma {
     receivedMessages?: MessageUncheckedCreateNestedManyWithoutToUserInput
     recordedTraceEvents?: TraceEventUncheckedCreateNestedManyWithoutRecordedByUserInput
     preOrders?: PreOrderUncheckedCreateNestedManyWithoutBuyerInput
+    plantingLogs?: PlantingLogUncheckedCreateNestedManyWithoutFarmerInput
   }
 
   export type UserCreateOrConnectWithoutReceivedReviewsInput = {
@@ -27331,6 +30624,7 @@ export namespace Prisma {
     receivedMessages?: MessageUpdateManyWithoutToUserNestedInput
     recordedTraceEvents?: TraceEventUpdateManyWithoutRecordedByUserNestedInput
     preOrders?: PreOrderUpdateManyWithoutBuyerNestedInput
+    plantingLogs?: PlantingLogUpdateManyWithoutFarmerNestedInput
   }
 
   export type UserUncheckedUpdateWithoutSentReviewsInput = {
@@ -27357,6 +30651,7 @@ export namespace Prisma {
     receivedMessages?: MessageUncheckedUpdateManyWithoutToUserNestedInput
     recordedTraceEvents?: TraceEventUncheckedUpdateManyWithoutRecordedByUserNestedInput
     preOrders?: PreOrderUncheckedUpdateManyWithoutBuyerNestedInput
+    plantingLogs?: PlantingLogUncheckedUpdateManyWithoutFarmerNestedInput
   }
 
   export type UserUpsertWithoutReceivedReviewsInput = {
@@ -27394,6 +30689,7 @@ export namespace Prisma {
     receivedMessages?: MessageUpdateManyWithoutToUserNestedInput
     recordedTraceEvents?: TraceEventUpdateManyWithoutRecordedByUserNestedInput
     preOrders?: PreOrderUpdateManyWithoutBuyerNestedInput
+    plantingLogs?: PlantingLogUpdateManyWithoutFarmerNestedInput
   }
 
   export type UserUncheckedUpdateWithoutReceivedReviewsInput = {
@@ -27420,6 +30716,7 @@ export namespace Prisma {
     receivedMessages?: MessageUncheckedUpdateManyWithoutToUserNestedInput
     recordedTraceEvents?: TraceEventUncheckedUpdateManyWithoutRecordedByUserNestedInput
     preOrders?: PreOrderUncheckedUpdateManyWithoutBuyerNestedInput
+    plantingLogs?: PlantingLogUncheckedUpdateManyWithoutFarmerNestedInput
   }
 
   export type OrderUpsertWithoutReviewsInput = {
@@ -27491,6 +30788,7 @@ export namespace Prisma {
     receivedMessages?: MessageCreateNestedManyWithoutToUserInput
     recordedTraceEvents?: TraceEventCreateNestedManyWithoutRecordedByUserInput
     preOrders?: PreOrderCreateNestedManyWithoutBuyerInput
+    plantingLogs?: PlantingLogCreateNestedManyWithoutFarmerInput
   }
 
   export type UserUncheckedCreateWithoutNotificationsInput = {
@@ -27517,6 +30815,7 @@ export namespace Prisma {
     receivedMessages?: MessageUncheckedCreateNestedManyWithoutToUserInput
     recordedTraceEvents?: TraceEventUncheckedCreateNestedManyWithoutRecordedByUserInput
     preOrders?: PreOrderUncheckedCreateNestedManyWithoutBuyerInput
+    plantingLogs?: PlantingLogUncheckedCreateNestedManyWithoutFarmerInput
   }
 
   export type UserCreateOrConnectWithoutNotificationsInput = {
@@ -27559,6 +30858,7 @@ export namespace Prisma {
     receivedMessages?: MessageUpdateManyWithoutToUserNestedInput
     recordedTraceEvents?: TraceEventUpdateManyWithoutRecordedByUserNestedInput
     preOrders?: PreOrderUpdateManyWithoutBuyerNestedInput
+    plantingLogs?: PlantingLogUpdateManyWithoutFarmerNestedInput
   }
 
   export type UserUncheckedUpdateWithoutNotificationsInput = {
@@ -27585,6 +30885,7 @@ export namespace Prisma {
     receivedMessages?: MessageUncheckedUpdateManyWithoutToUserNestedInput
     recordedTraceEvents?: TraceEventUncheckedUpdateManyWithoutRecordedByUserNestedInput
     preOrders?: PreOrderUncheckedUpdateManyWithoutBuyerNestedInput
+    plantingLogs?: PlantingLogUncheckedUpdateManyWithoutFarmerNestedInput
   }
 
   export type UserCreateWithoutSentMessagesInput = {
@@ -27611,6 +30912,7 @@ export namespace Prisma {
     receivedMessages?: MessageCreateNestedManyWithoutToUserInput
     recordedTraceEvents?: TraceEventCreateNestedManyWithoutRecordedByUserInput
     preOrders?: PreOrderCreateNestedManyWithoutBuyerInput
+    plantingLogs?: PlantingLogCreateNestedManyWithoutFarmerInput
   }
 
   export type UserUncheckedCreateWithoutSentMessagesInput = {
@@ -27637,6 +30939,7 @@ export namespace Prisma {
     receivedMessages?: MessageUncheckedCreateNestedManyWithoutToUserInput
     recordedTraceEvents?: TraceEventUncheckedCreateNestedManyWithoutRecordedByUserInput
     preOrders?: PreOrderUncheckedCreateNestedManyWithoutBuyerInput
+    plantingLogs?: PlantingLogUncheckedCreateNestedManyWithoutFarmerInput
   }
 
   export type UserCreateOrConnectWithoutSentMessagesInput = {
@@ -27668,6 +30971,7 @@ export namespace Prisma {
     sentMessages?: MessageCreateNestedManyWithoutFromUserInput
     recordedTraceEvents?: TraceEventCreateNestedManyWithoutRecordedByUserInput
     preOrders?: PreOrderCreateNestedManyWithoutBuyerInput
+    plantingLogs?: PlantingLogCreateNestedManyWithoutFarmerInput
   }
 
   export type UserUncheckedCreateWithoutReceivedMessagesInput = {
@@ -27694,6 +30998,7 @@ export namespace Prisma {
     sentMessages?: MessageUncheckedCreateNestedManyWithoutFromUserInput
     recordedTraceEvents?: TraceEventUncheckedCreateNestedManyWithoutRecordedByUserInput
     preOrders?: PreOrderUncheckedCreateNestedManyWithoutBuyerInput
+    plantingLogs?: PlantingLogUncheckedCreateNestedManyWithoutFarmerInput
   }
 
   export type UserCreateOrConnectWithoutReceivedMessagesInput = {
@@ -27775,6 +31080,7 @@ export namespace Prisma {
     receivedMessages?: MessageUpdateManyWithoutToUserNestedInput
     recordedTraceEvents?: TraceEventUpdateManyWithoutRecordedByUserNestedInput
     preOrders?: PreOrderUpdateManyWithoutBuyerNestedInput
+    plantingLogs?: PlantingLogUpdateManyWithoutFarmerNestedInput
   }
 
   export type UserUncheckedUpdateWithoutSentMessagesInput = {
@@ -27801,6 +31107,7 @@ export namespace Prisma {
     receivedMessages?: MessageUncheckedUpdateManyWithoutToUserNestedInput
     recordedTraceEvents?: TraceEventUncheckedUpdateManyWithoutRecordedByUserNestedInput
     preOrders?: PreOrderUncheckedUpdateManyWithoutBuyerNestedInput
+    plantingLogs?: PlantingLogUncheckedUpdateManyWithoutFarmerNestedInput
   }
 
   export type UserUpsertWithoutReceivedMessagesInput = {
@@ -27838,6 +31145,7 @@ export namespace Prisma {
     sentMessages?: MessageUpdateManyWithoutFromUserNestedInput
     recordedTraceEvents?: TraceEventUpdateManyWithoutRecordedByUserNestedInput
     preOrders?: PreOrderUpdateManyWithoutBuyerNestedInput
+    plantingLogs?: PlantingLogUpdateManyWithoutFarmerNestedInput
   }
 
   export type UserUncheckedUpdateWithoutReceivedMessagesInput = {
@@ -27864,6 +31172,7 @@ export namespace Prisma {
     sentMessages?: MessageUncheckedUpdateManyWithoutFromUserNestedInput
     recordedTraceEvents?: TraceEventUncheckedUpdateManyWithoutRecordedByUserNestedInput
     preOrders?: PreOrderUncheckedUpdateManyWithoutBuyerNestedInput
+    plantingLogs?: PlantingLogUncheckedUpdateManyWithoutFarmerNestedInput
   }
 
   export type OrderUpsertWithoutMessagesInput = {
@@ -27935,6 +31244,7 @@ export namespace Prisma {
     sentMessages?: MessageCreateNestedManyWithoutFromUserInput
     receivedMessages?: MessageCreateNestedManyWithoutToUserInput
     recordedTraceEvents?: TraceEventCreateNestedManyWithoutRecordedByUserInput
+    plantingLogs?: PlantingLogCreateNestedManyWithoutFarmerInput
   }
 
   export type UserUncheckedCreateWithoutPreOrdersInput = {
@@ -27961,6 +31271,7 @@ export namespace Prisma {
     sentMessages?: MessageUncheckedCreateNestedManyWithoutFromUserInput
     receivedMessages?: MessageUncheckedCreateNestedManyWithoutToUserInput
     recordedTraceEvents?: TraceEventUncheckedCreateNestedManyWithoutRecordedByUserInput
+    plantingLogs?: PlantingLogUncheckedCreateNestedManyWithoutFarmerInput
   }
 
   export type UserCreateOrConnectWithoutPreOrdersInput = {
@@ -27989,6 +31300,7 @@ export namespace Prisma {
     orders?: OrderCreateNestedManyWithoutListingInput
     traceability?: TraceabilityRecordCreateNestedOneWithoutListingInput
     traceEvents?: TraceEventCreateNestedManyWithoutListingInput
+    plantingLog?: PlantingLogCreateNestedOneWithoutListingsInput
   }
 
   export type ProduceListingUncheckedCreateWithoutPreOrdersInput = {
@@ -28009,6 +31321,7 @@ export namespace Prisma {
     batchCode: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    plantingLogId?: string | null
     orders?: OrderUncheckedCreateNestedManyWithoutListingInput
     traceability?: TraceabilityRecordUncheckedCreateNestedOneWithoutListingInput
     traceEvents?: TraceEventUncheckedCreateNestedManyWithoutListingInput
@@ -28093,6 +31406,7 @@ export namespace Prisma {
     sentMessages?: MessageUpdateManyWithoutFromUserNestedInput
     receivedMessages?: MessageUpdateManyWithoutToUserNestedInput
     recordedTraceEvents?: TraceEventUpdateManyWithoutRecordedByUserNestedInput
+    plantingLogs?: PlantingLogUpdateManyWithoutFarmerNestedInput
   }
 
   export type UserUncheckedUpdateWithoutPreOrdersInput = {
@@ -28119,6 +31433,7 @@ export namespace Prisma {
     sentMessages?: MessageUncheckedUpdateManyWithoutFromUserNestedInput
     receivedMessages?: MessageUncheckedUpdateManyWithoutToUserNestedInput
     recordedTraceEvents?: TraceEventUncheckedUpdateManyWithoutRecordedByUserNestedInput
+    plantingLogs?: PlantingLogUncheckedUpdateManyWithoutFarmerNestedInput
   }
 
   export type ProduceListingUpsertWithoutPreOrdersInput = {
@@ -28153,6 +31468,7 @@ export namespace Prisma {
     orders?: OrderUpdateManyWithoutListingNestedInput
     traceability?: TraceabilityRecordUpdateOneWithoutListingNestedInput
     traceEvents?: TraceEventUpdateManyWithoutListingNestedInput
+    plantingLog?: PlantingLogUpdateOneWithoutListingsNestedInput
   }
 
   export type ProduceListingUncheckedUpdateWithoutPreOrdersInput = {
@@ -28173,6 +31489,7 @@ export namespace Prisma {
     batchCode?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    plantingLogId?: NullableStringFieldUpdateOperationsInput | string | null
     orders?: OrderUncheckedUpdateManyWithoutListingNestedInput
     traceability?: TraceabilityRecordUncheckedUpdateOneWithoutListingNestedInput
     traceEvents?: TraceEventUncheckedUpdateManyWithoutListingNestedInput
@@ -28223,6 +31540,343 @@ export namespace Prisma {
     messages?: MessageUncheckedUpdateManyWithoutOrderNestedInput
   }
 
+  export type UserCreateWithoutPlantingLogsInput = {
+    id?: string
+    phone: string
+    name: string
+    role: $Enums.Role
+    latitude?: number | null
+    longitude?: number | null
+    region?: string | null
+    district?: string | null
+    isVerified?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    farmerProfile?: FarmerProfileCreateNestedOneWithoutUserInput
+    buyerProfile?: BuyerProfileCreateNestedOneWithoutUserInput
+    transportProfile?: TransportProfileCreateNestedOneWithoutUserInput
+    listings?: ProduceListingCreateNestedManyWithoutFarmerInput
+    orders?: OrderCreateNestedManyWithoutBuyerInput
+    deliveries?: DeliveryRequestCreateNestedManyWithoutTransportProviderInput
+    sentReviews?: ReviewCreateNestedManyWithoutFromUserInput
+    receivedReviews?: ReviewCreateNestedManyWithoutToUserInput
+    notifications?: NotificationCreateNestedManyWithoutUserInput
+    sentMessages?: MessageCreateNestedManyWithoutFromUserInput
+    receivedMessages?: MessageCreateNestedManyWithoutToUserInput
+    recordedTraceEvents?: TraceEventCreateNestedManyWithoutRecordedByUserInput
+    preOrders?: PreOrderCreateNestedManyWithoutBuyerInput
+  }
+
+  export type UserUncheckedCreateWithoutPlantingLogsInput = {
+    id?: string
+    phone: string
+    name: string
+    role: $Enums.Role
+    latitude?: number | null
+    longitude?: number | null
+    region?: string | null
+    district?: string | null
+    isVerified?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    farmerProfile?: FarmerProfileUncheckedCreateNestedOneWithoutUserInput
+    buyerProfile?: BuyerProfileUncheckedCreateNestedOneWithoutUserInput
+    transportProfile?: TransportProfileUncheckedCreateNestedOneWithoutUserInput
+    listings?: ProduceListingUncheckedCreateNestedManyWithoutFarmerInput
+    orders?: OrderUncheckedCreateNestedManyWithoutBuyerInput
+    deliveries?: DeliveryRequestUncheckedCreateNestedManyWithoutTransportProviderInput
+    sentReviews?: ReviewUncheckedCreateNestedManyWithoutFromUserInput
+    receivedReviews?: ReviewUncheckedCreateNestedManyWithoutToUserInput
+    notifications?: NotificationUncheckedCreateNestedManyWithoutUserInput
+    sentMessages?: MessageUncheckedCreateNestedManyWithoutFromUserInput
+    receivedMessages?: MessageUncheckedCreateNestedManyWithoutToUserInput
+    recordedTraceEvents?: TraceEventUncheckedCreateNestedManyWithoutRecordedByUserInput
+    preOrders?: PreOrderUncheckedCreateNestedManyWithoutBuyerInput
+  }
+
+  export type UserCreateOrConnectWithoutPlantingLogsInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutPlantingLogsInput, UserUncheckedCreateWithoutPlantingLogsInput>
+  }
+
+  export type PlantingInputCreateWithoutPlantingLogInput = {
+    id?: string
+    type: string
+    name: string
+    quantity?: number | null
+    unit?: string | null
+    appliedAt?: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type PlantingInputUncheckedCreateWithoutPlantingLogInput = {
+    id?: string
+    type: string
+    name: string
+    quantity?: number | null
+    unit?: string | null
+    appliedAt?: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type PlantingInputCreateOrConnectWithoutPlantingLogInput = {
+    where: PlantingInputWhereUniqueInput
+    create: XOR<PlantingInputCreateWithoutPlantingLogInput, PlantingInputUncheckedCreateWithoutPlantingLogInput>
+  }
+
+  export type PlantingInputCreateManyPlantingLogInputEnvelope = {
+    data: PlantingInputCreateManyPlantingLogInput | PlantingInputCreateManyPlantingLogInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type ProduceListingCreateWithoutPlantingLogInput = {
+    id?: string
+    cropType: $Enums.CropType
+    quantityKg: number
+    remainingKg: number
+    pricePerKg: number
+    images?: ProduceListingCreateimagesInput | string[]
+    harvestDate: Date | string
+    expiryEstimate?: Date | string | null
+    qualityGrade?: $Enums.QualityGrade
+    qualityGradeSource?: string
+    status?: $Enums.ListingStatus
+    latitude: number
+    longitude: number
+    batchCode: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    farmer: UserCreateNestedOneWithoutListingsInput
+    orders?: OrderCreateNestedManyWithoutListingInput
+    traceability?: TraceabilityRecordCreateNestedOneWithoutListingInput
+    traceEvents?: TraceEventCreateNestedManyWithoutListingInput
+    preOrders?: PreOrderCreateNestedManyWithoutMatchedListingInput
+  }
+
+  export type ProduceListingUncheckedCreateWithoutPlantingLogInput = {
+    id?: string
+    farmerId: string
+    cropType: $Enums.CropType
+    quantityKg: number
+    remainingKg: number
+    pricePerKg: number
+    images?: ProduceListingCreateimagesInput | string[]
+    harvestDate: Date | string
+    expiryEstimate?: Date | string | null
+    qualityGrade?: $Enums.QualityGrade
+    qualityGradeSource?: string
+    status?: $Enums.ListingStatus
+    latitude: number
+    longitude: number
+    batchCode: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    orders?: OrderUncheckedCreateNestedManyWithoutListingInput
+    traceability?: TraceabilityRecordUncheckedCreateNestedOneWithoutListingInput
+    traceEvents?: TraceEventUncheckedCreateNestedManyWithoutListingInput
+    preOrders?: PreOrderUncheckedCreateNestedManyWithoutMatchedListingInput
+  }
+
+  export type ProduceListingCreateOrConnectWithoutPlantingLogInput = {
+    where: ProduceListingWhereUniqueInput
+    create: XOR<ProduceListingCreateWithoutPlantingLogInput, ProduceListingUncheckedCreateWithoutPlantingLogInput>
+  }
+
+  export type ProduceListingCreateManyPlantingLogInputEnvelope = {
+    data: ProduceListingCreateManyPlantingLogInput | ProduceListingCreateManyPlantingLogInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type UserUpsertWithoutPlantingLogsInput = {
+    update: XOR<UserUpdateWithoutPlantingLogsInput, UserUncheckedUpdateWithoutPlantingLogsInput>
+    create: XOR<UserCreateWithoutPlantingLogsInput, UserUncheckedCreateWithoutPlantingLogsInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutPlantingLogsInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutPlantingLogsInput, UserUncheckedUpdateWithoutPlantingLogsInput>
+  }
+
+  export type UserUpdateWithoutPlantingLogsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    latitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    longitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    region?: NullableStringFieldUpdateOperationsInput | string | null
+    district?: NullableStringFieldUpdateOperationsInput | string | null
+    isVerified?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    farmerProfile?: FarmerProfileUpdateOneWithoutUserNestedInput
+    buyerProfile?: BuyerProfileUpdateOneWithoutUserNestedInput
+    transportProfile?: TransportProfileUpdateOneWithoutUserNestedInput
+    listings?: ProduceListingUpdateManyWithoutFarmerNestedInput
+    orders?: OrderUpdateManyWithoutBuyerNestedInput
+    deliveries?: DeliveryRequestUpdateManyWithoutTransportProviderNestedInput
+    sentReviews?: ReviewUpdateManyWithoutFromUserNestedInput
+    receivedReviews?: ReviewUpdateManyWithoutToUserNestedInput
+    notifications?: NotificationUpdateManyWithoutUserNestedInput
+    sentMessages?: MessageUpdateManyWithoutFromUserNestedInput
+    receivedMessages?: MessageUpdateManyWithoutToUserNestedInput
+    recordedTraceEvents?: TraceEventUpdateManyWithoutRecordedByUserNestedInput
+    preOrders?: PreOrderUpdateManyWithoutBuyerNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutPlantingLogsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    latitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    longitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    region?: NullableStringFieldUpdateOperationsInput | string | null
+    district?: NullableStringFieldUpdateOperationsInput | string | null
+    isVerified?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    farmerProfile?: FarmerProfileUncheckedUpdateOneWithoutUserNestedInput
+    buyerProfile?: BuyerProfileUncheckedUpdateOneWithoutUserNestedInput
+    transportProfile?: TransportProfileUncheckedUpdateOneWithoutUserNestedInput
+    listings?: ProduceListingUncheckedUpdateManyWithoutFarmerNestedInput
+    orders?: OrderUncheckedUpdateManyWithoutBuyerNestedInput
+    deliveries?: DeliveryRequestUncheckedUpdateManyWithoutTransportProviderNestedInput
+    sentReviews?: ReviewUncheckedUpdateManyWithoutFromUserNestedInput
+    receivedReviews?: ReviewUncheckedUpdateManyWithoutToUserNestedInput
+    notifications?: NotificationUncheckedUpdateManyWithoutUserNestedInput
+    sentMessages?: MessageUncheckedUpdateManyWithoutFromUserNestedInput
+    receivedMessages?: MessageUncheckedUpdateManyWithoutToUserNestedInput
+    recordedTraceEvents?: TraceEventUncheckedUpdateManyWithoutRecordedByUserNestedInput
+    preOrders?: PreOrderUncheckedUpdateManyWithoutBuyerNestedInput
+  }
+
+  export type PlantingInputUpsertWithWhereUniqueWithoutPlantingLogInput = {
+    where: PlantingInputWhereUniqueInput
+    update: XOR<PlantingInputUpdateWithoutPlantingLogInput, PlantingInputUncheckedUpdateWithoutPlantingLogInput>
+    create: XOR<PlantingInputCreateWithoutPlantingLogInput, PlantingInputUncheckedCreateWithoutPlantingLogInput>
+  }
+
+  export type PlantingInputUpdateWithWhereUniqueWithoutPlantingLogInput = {
+    where: PlantingInputWhereUniqueInput
+    data: XOR<PlantingInputUpdateWithoutPlantingLogInput, PlantingInputUncheckedUpdateWithoutPlantingLogInput>
+  }
+
+  export type PlantingInputUpdateManyWithWhereWithoutPlantingLogInput = {
+    where: PlantingInputScalarWhereInput
+    data: XOR<PlantingInputUpdateManyMutationInput, PlantingInputUncheckedUpdateManyWithoutPlantingLogInput>
+  }
+
+  export type PlantingInputScalarWhereInput = {
+    AND?: PlantingInputScalarWhereInput | PlantingInputScalarWhereInput[]
+    OR?: PlantingInputScalarWhereInput[]
+    NOT?: PlantingInputScalarWhereInput | PlantingInputScalarWhereInput[]
+    id?: StringFilter<"PlantingInput"> | string
+    plantingLogId?: StringFilter<"PlantingInput"> | string
+    type?: StringFilter<"PlantingInput"> | string
+    name?: StringFilter<"PlantingInput"> | string
+    quantity?: FloatNullableFilter<"PlantingInput"> | number | null
+    unit?: StringNullableFilter<"PlantingInput"> | string | null
+    appliedAt?: DateTimeFilter<"PlantingInput"> | Date | string
+    createdAt?: DateTimeFilter<"PlantingInput"> | Date | string
+    updatedAt?: DateTimeFilter<"PlantingInput"> | Date | string
+  }
+
+  export type ProduceListingUpsertWithWhereUniqueWithoutPlantingLogInput = {
+    where: ProduceListingWhereUniqueInput
+    update: XOR<ProduceListingUpdateWithoutPlantingLogInput, ProduceListingUncheckedUpdateWithoutPlantingLogInput>
+    create: XOR<ProduceListingCreateWithoutPlantingLogInput, ProduceListingUncheckedCreateWithoutPlantingLogInput>
+  }
+
+  export type ProduceListingUpdateWithWhereUniqueWithoutPlantingLogInput = {
+    where: ProduceListingWhereUniqueInput
+    data: XOR<ProduceListingUpdateWithoutPlantingLogInput, ProduceListingUncheckedUpdateWithoutPlantingLogInput>
+  }
+
+  export type ProduceListingUpdateManyWithWhereWithoutPlantingLogInput = {
+    where: ProduceListingScalarWhereInput
+    data: XOR<ProduceListingUpdateManyMutationInput, ProduceListingUncheckedUpdateManyWithoutPlantingLogInput>
+  }
+
+  export type PlantingLogCreateWithoutInputsInput = {
+    id?: string
+    cropType: $Enums.CropType
+    acreage: number
+    plantingDate: Date | string
+    expectedHarvestDate: Date | string
+    actualHarvestDate?: Date | string | null
+    actualYieldKg?: number | null
+    notes?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    farmer: UserCreateNestedOneWithoutPlantingLogsInput
+    listings?: ProduceListingCreateNestedManyWithoutPlantingLogInput
+  }
+
+  export type PlantingLogUncheckedCreateWithoutInputsInput = {
+    id?: string
+    farmerId: string
+    cropType: $Enums.CropType
+    acreage: number
+    plantingDate: Date | string
+    expectedHarvestDate: Date | string
+    actualHarvestDate?: Date | string | null
+    actualYieldKg?: number | null
+    notes?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    listings?: ProduceListingUncheckedCreateNestedManyWithoutPlantingLogInput
+  }
+
+  export type PlantingLogCreateOrConnectWithoutInputsInput = {
+    where: PlantingLogWhereUniqueInput
+    create: XOR<PlantingLogCreateWithoutInputsInput, PlantingLogUncheckedCreateWithoutInputsInput>
+  }
+
+  export type PlantingLogUpsertWithoutInputsInput = {
+    update: XOR<PlantingLogUpdateWithoutInputsInput, PlantingLogUncheckedUpdateWithoutInputsInput>
+    create: XOR<PlantingLogCreateWithoutInputsInput, PlantingLogUncheckedCreateWithoutInputsInput>
+    where?: PlantingLogWhereInput
+  }
+
+  export type PlantingLogUpdateToOneWithWhereWithoutInputsInput = {
+    where?: PlantingLogWhereInput
+    data: XOR<PlantingLogUpdateWithoutInputsInput, PlantingLogUncheckedUpdateWithoutInputsInput>
+  }
+
+  export type PlantingLogUpdateWithoutInputsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    cropType?: EnumCropTypeFieldUpdateOperationsInput | $Enums.CropType
+    acreage?: FloatFieldUpdateOperationsInput | number
+    plantingDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    expectedHarvestDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    actualHarvestDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    actualYieldKg?: NullableFloatFieldUpdateOperationsInput | number | null
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    farmer?: UserUpdateOneRequiredWithoutPlantingLogsNestedInput
+    listings?: ProduceListingUpdateManyWithoutPlantingLogNestedInput
+  }
+
+  export type PlantingLogUncheckedUpdateWithoutInputsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    farmerId?: StringFieldUpdateOperationsInput | string
+    cropType?: EnumCropTypeFieldUpdateOperationsInput | $Enums.CropType
+    acreage?: FloatFieldUpdateOperationsInput | number
+    plantingDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    expectedHarvestDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    actualHarvestDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    actualYieldKg?: NullableFloatFieldUpdateOperationsInput | number | null
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    listings?: ProduceListingUncheckedUpdateManyWithoutPlantingLogNestedInput
+  }
+
   export type ProduceListingCreateManyFarmerInput = {
     id?: string
     cropType: $Enums.CropType
@@ -28240,6 +31894,7 @@ export namespace Prisma {
     batchCode: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    plantingLogId?: string | null
   }
 
   export type OrderCreateManyBuyerInput = {
@@ -28357,6 +32012,19 @@ export namespace Prisma {
     updatedAt?: Date | string
   }
 
+  export type PlantingLogCreateManyFarmerInput = {
+    id?: string
+    cropType: $Enums.CropType
+    acreage: number
+    plantingDate: Date | string
+    expectedHarvestDate: Date | string
+    actualHarvestDate?: Date | string | null
+    actualYieldKg?: number | null
+    notes?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
   export type ProduceListingUpdateWithoutFarmerInput = {
     id?: StringFieldUpdateOperationsInput | string
     cropType?: EnumCropTypeFieldUpdateOperationsInput | $Enums.CropType
@@ -28378,6 +32046,7 @@ export namespace Prisma {
     traceability?: TraceabilityRecordUpdateOneWithoutListingNestedInput
     traceEvents?: TraceEventUpdateManyWithoutListingNestedInput
     preOrders?: PreOrderUpdateManyWithoutMatchedListingNestedInput
+    plantingLog?: PlantingLogUpdateOneWithoutListingsNestedInput
   }
 
   export type ProduceListingUncheckedUpdateWithoutFarmerInput = {
@@ -28397,6 +32066,7 @@ export namespace Prisma {
     batchCode?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    plantingLogId?: NullableStringFieldUpdateOperationsInput | string | null
     orders?: OrderUncheckedUpdateManyWithoutListingNestedInput
     traceability?: TraceabilityRecordUncheckedUpdateOneWithoutListingNestedInput
     traceEvents?: TraceEventUncheckedUpdateManyWithoutListingNestedInput
@@ -28420,6 +32090,7 @@ export namespace Prisma {
     batchCode?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    plantingLogId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type OrderUpdateWithoutBuyerInput = {
@@ -28775,6 +32446,49 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type PlantingLogUpdateWithoutFarmerInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    cropType?: EnumCropTypeFieldUpdateOperationsInput | $Enums.CropType
+    acreage?: FloatFieldUpdateOperationsInput | number
+    plantingDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    expectedHarvestDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    actualHarvestDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    actualYieldKg?: NullableFloatFieldUpdateOperationsInput | number | null
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    inputs?: PlantingInputUpdateManyWithoutPlantingLogNestedInput
+    listings?: ProduceListingUpdateManyWithoutPlantingLogNestedInput
+  }
+
+  export type PlantingLogUncheckedUpdateWithoutFarmerInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    cropType?: EnumCropTypeFieldUpdateOperationsInput | $Enums.CropType
+    acreage?: FloatFieldUpdateOperationsInput | number
+    plantingDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    expectedHarvestDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    actualHarvestDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    actualYieldKg?: NullableFloatFieldUpdateOperationsInput | number | null
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    inputs?: PlantingInputUncheckedUpdateManyWithoutPlantingLogNestedInput
+    listings?: ProduceListingUncheckedUpdateManyWithoutPlantingLogNestedInput
+  }
+
+  export type PlantingLogUncheckedUpdateManyWithoutFarmerInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    cropType?: EnumCropTypeFieldUpdateOperationsInput | $Enums.CropType
+    acreage?: FloatFieldUpdateOperationsInput | number
+    plantingDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    expectedHarvestDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    actualHarvestDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    actualYieldKg?: NullableFloatFieldUpdateOperationsInput | number | null
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type OrderCreateManyListingInput = {
     id?: string
     buyerId: string
@@ -29039,6 +32753,138 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type PlantingInputCreateManyPlantingLogInput = {
+    id?: string
+    type: string
+    name: string
+    quantity?: number | null
+    unit?: string | null
+    appliedAt?: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ProduceListingCreateManyPlantingLogInput = {
+    id?: string
+    farmerId: string
+    cropType: $Enums.CropType
+    quantityKg: number
+    remainingKg: number
+    pricePerKg: number
+    images?: ProduceListingCreateimagesInput | string[]
+    harvestDate: Date | string
+    expiryEstimate?: Date | string | null
+    qualityGrade?: $Enums.QualityGrade
+    qualityGradeSource?: string
+    status?: $Enums.ListingStatus
+    latitude: number
+    longitude: number
+    batchCode: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type PlantingInputUpdateWithoutPlantingLogInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    quantity?: NullableFloatFieldUpdateOperationsInput | number | null
+    unit?: NullableStringFieldUpdateOperationsInput | string | null
+    appliedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type PlantingInputUncheckedUpdateWithoutPlantingLogInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    quantity?: NullableFloatFieldUpdateOperationsInput | number | null
+    unit?: NullableStringFieldUpdateOperationsInput | string | null
+    appliedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type PlantingInputUncheckedUpdateManyWithoutPlantingLogInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    quantity?: NullableFloatFieldUpdateOperationsInput | number | null
+    unit?: NullableStringFieldUpdateOperationsInput | string | null
+    appliedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ProduceListingUpdateWithoutPlantingLogInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    cropType?: EnumCropTypeFieldUpdateOperationsInput | $Enums.CropType
+    quantityKg?: FloatFieldUpdateOperationsInput | number
+    remainingKg?: FloatFieldUpdateOperationsInput | number
+    pricePerKg?: FloatFieldUpdateOperationsInput | number
+    images?: ProduceListingUpdateimagesInput | string[]
+    harvestDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    expiryEstimate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    qualityGrade?: EnumQualityGradeFieldUpdateOperationsInput | $Enums.QualityGrade
+    qualityGradeSource?: StringFieldUpdateOperationsInput | string
+    status?: EnumListingStatusFieldUpdateOperationsInput | $Enums.ListingStatus
+    latitude?: FloatFieldUpdateOperationsInput | number
+    longitude?: FloatFieldUpdateOperationsInput | number
+    batchCode?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    farmer?: UserUpdateOneRequiredWithoutListingsNestedInput
+    orders?: OrderUpdateManyWithoutListingNestedInput
+    traceability?: TraceabilityRecordUpdateOneWithoutListingNestedInput
+    traceEvents?: TraceEventUpdateManyWithoutListingNestedInput
+    preOrders?: PreOrderUpdateManyWithoutMatchedListingNestedInput
+  }
+
+  export type ProduceListingUncheckedUpdateWithoutPlantingLogInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    farmerId?: StringFieldUpdateOperationsInput | string
+    cropType?: EnumCropTypeFieldUpdateOperationsInput | $Enums.CropType
+    quantityKg?: FloatFieldUpdateOperationsInput | number
+    remainingKg?: FloatFieldUpdateOperationsInput | number
+    pricePerKg?: FloatFieldUpdateOperationsInput | number
+    images?: ProduceListingUpdateimagesInput | string[]
+    harvestDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    expiryEstimate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    qualityGrade?: EnumQualityGradeFieldUpdateOperationsInput | $Enums.QualityGrade
+    qualityGradeSource?: StringFieldUpdateOperationsInput | string
+    status?: EnumListingStatusFieldUpdateOperationsInput | $Enums.ListingStatus
+    latitude?: FloatFieldUpdateOperationsInput | number
+    longitude?: FloatFieldUpdateOperationsInput | number
+    batchCode?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    orders?: OrderUncheckedUpdateManyWithoutListingNestedInput
+    traceability?: TraceabilityRecordUncheckedUpdateOneWithoutListingNestedInput
+    traceEvents?: TraceEventUncheckedUpdateManyWithoutListingNestedInput
+    preOrders?: PreOrderUncheckedUpdateManyWithoutMatchedListingNestedInput
+  }
+
+  export type ProduceListingUncheckedUpdateManyWithoutPlantingLogInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    farmerId?: StringFieldUpdateOperationsInput | string
+    cropType?: EnumCropTypeFieldUpdateOperationsInput | $Enums.CropType
+    quantityKg?: FloatFieldUpdateOperationsInput | number
+    remainingKg?: FloatFieldUpdateOperationsInput | number
+    pricePerKg?: FloatFieldUpdateOperationsInput | number
+    images?: ProduceListingUpdateimagesInput | string[]
+    harvestDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    expiryEstimate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    qualityGrade?: EnumQualityGradeFieldUpdateOperationsInput | $Enums.QualityGrade
+    qualityGradeSource?: StringFieldUpdateOperationsInput | string
+    status?: EnumListingStatusFieldUpdateOperationsInput | $Enums.ListingStatus
+    latitude?: FloatFieldUpdateOperationsInput | number
+    longitude?: FloatFieldUpdateOperationsInput | number
+    batchCode?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
 
 
   /**
@@ -29056,6 +32902,10 @@ export namespace Prisma {
      * @deprecated Use OrderCountOutputTypeDefaultArgs instead
      */
     export type OrderCountOutputTypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = OrderCountOutputTypeDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use PlantingLogCountOutputTypeDefaultArgs instead
+     */
+    export type PlantingLogCountOutputTypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = PlantingLogCountOutputTypeDefaultArgs<ExtArgs>
     /**
      * @deprecated Use UserDefaultArgs instead
      */
@@ -29116,6 +32966,14 @@ export namespace Prisma {
      * @deprecated Use PreOrderDefaultArgs instead
      */
     export type PreOrderArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = PreOrderDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use PlantingLogDefaultArgs instead
+     */
+    export type PlantingLogArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = PlantingLogDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use PlantingInputDefaultArgs instead
+     */
+    export type PlantingInputArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = PlantingInputDefaultArgs<ExtArgs>
 
   /**
    * Batch Payload for updateMany & deleteMany & createMany

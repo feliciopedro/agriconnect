@@ -29,6 +29,28 @@ export class ListingService {
       select: { region: true },
     });
 
+    // Resolve optional planting log linkage and auto-populate traceability
+    let plantingDate: Date | null = null;
+    let inputsUsed: string[] = [];
+    const plantingLogId = data.plantingLogId || null;
+
+    if (plantingLogId) {
+      const log = await prisma.plantingLog.findUnique({
+        where: { id: plantingLogId },
+        include: { inputs: true },
+      });
+
+      if (log) {
+        if (log.farmerId !== farmerId) {
+          throw createError('Access forbidden: you do not own the specified planting log', 'FORBIDDEN_LOG_LINKAGE', 403);
+        }
+        plantingDate = log.plantingDate;
+        inputsUsed = log.inputs.map(
+          (i) => `${i.type}: ${i.name}${i.quantity ? ` (${i.quantity} ${i.unit || ''})` : ''}`
+        );
+      }
+    }
+
     // Create listing transactionally with default traceability records and trace logs
     const listing = await prisma.$transaction(async (tx) => {
       const newListing = await tx.produceListing.create({
@@ -47,10 +69,11 @@ export class ListingService {
           latitude: data.latitude,
           longitude: data.longitude,
           batchCode,
+          plantingLogId,
           traceability: {
             create: {
-              plantingDate: null,
-              inputsUsed: [],
+              plantingDate,
+              inputsUsed,
               qualityCheckImages: [],
             },
           },

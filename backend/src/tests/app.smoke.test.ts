@@ -20,6 +20,8 @@ jest.mock('../prisma/client', () => ({
     traceEvent: { findMany: jest.fn().mockResolvedValue([]), create: jest.fn() },
     traceabilityRecord: { findUnique: jest.fn() },
     deliveryRequest: { findMany: jest.fn().mockResolvedValue([]), findUnique: jest.fn(), create: jest.fn(), update: jest.fn(), updateMany: jest.fn() },
+    plantingLog: { findUnique: jest.fn(), findMany: jest.fn().mockResolvedValue([]), create: jest.fn(), update: jest.fn() },
+    plantingInput: { create: jest.fn() },
     review: { create: jest.fn(), findMany: jest.fn().mockResolvedValue([]), findFirst: jest.fn() },
     farmerProfile: { update: jest.fn() },
     buyerProfile: { update: jest.fn() },
@@ -145,6 +147,18 @@ describe('Delivery Location Route Validation', () => {
       .send({ latitude: 6.0945, longitude: -0.2591 });
     // Since 401 check comes first in global middleware order, we might get 401. Let's make sure it checks validation if authenticated, or just asserts auth takes precedence.
     // To test validation properly, we need it to go past auth. Since we don't pass token, it returns 401.
+    expect(res.status).toBe(401);
+  });
+});
+
+describe('Farm Route Validation', () => {
+  it('POST /api/farm returns 401 without token', async () => {
+    const res = await request(app).post('/api/farm').send({ cropType: 'TOMATO', acreage: 2.0 });
+    expect(res.status).toBe(401);
+  });
+
+  it('GET /api/farm/predict-yield returns 401 without token', async () => {
+    const res = await request(app).get('/api/farm/predict-yield?cropType=TOMATO&acreage=2.0');
     expect(res.status).toBe(401);
   });
 });

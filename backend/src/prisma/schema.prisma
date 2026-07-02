@@ -107,6 +107,7 @@ model User {
   receivedMessages   Message[]          @relation("ReceivedMessages")
   recordedTraceEvents TraceEvent[]      @relation("RecordedEvents")
   preOrders          PreOrder[]         @relation("BuyerPreOrders")
+  plantingLogs       PlantingLog[]      @relation("FarmerPlantingLogs")
 
   @@index([role])
   @@index([latitude, longitude])
@@ -176,11 +177,14 @@ model ProduceListing {
   traceability       TraceabilityRecord?
   traceEvents        TraceEvent[]
   preOrders          PreOrder[]          @relation("PreOrderListing")
+  plantingLogId      String?
+  plantingLog        PlantingLog?        @relation(fields: [plantingLogId], references: [id], onDelete: SetNull)
 
   @@index([cropType, status])
   @@index([latitude, longitude])
   @@index([farmerId])
   @@index([status])
+  @@index([plantingLogId])
 }
 
 // TraceabilityRecord: 1:1 details for quality audits
@@ -389,4 +393,43 @@ model PreOrder {
   @@index([cropType, status])
   @@index([status])
   @@index([harvestWindowEnd])
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// FARM & CROP MANAGEMENT (PLANTING JOURNAL)
+// ─────────────────────────────────────────────────────────────────────────────
+
+model PlantingLog {
+  id                  String          @id @default(uuid())
+  farmerId            String
+  farmer              User            @relation("FarmerPlantingLogs", fields: [farmerId], references: [id], onDelete: Cascade)
+  cropType            CropType
+  acreage             Float
+  plantingDate        DateTime
+  expectedHarvestDate DateTime
+  actualHarvestDate   DateTime?
+  actualYieldKg       Float?          // yield achieved on harvest completion
+  notes               String?
+  createdAt           DateTime        @default(now())
+  updatedAt           DateTime        @updatedAt
+  inputs              PlantingInput[]
+  listings            ProduceListing[]
+
+  @@index([farmerId])
+  @@index([cropType])
+}
+
+model PlantingInput {
+  id            String      @id @default(uuid())
+  plantingLogId String
+  plantingLog   PlantingLog @relation(fields: [plantingLogId], references: [id], onDelete: Cascade)
+  type          String      // "FERTILIZER" | "PESTICIDE" | "IRRIGATION" | "OTHER"
+  name          String      // e.g. "NPK 15-15-15", "Drip irrigation"
+  quantity      Float?
+  unit          String?     // e.g. "kg", "bags", "liters", "hours"
+  appliedAt     DateTime    @default(now())
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+
+  @@index([plantingLogId])
 }

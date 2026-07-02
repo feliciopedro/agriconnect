@@ -34,6 +34,7 @@ export const CreateListingSchema = z.object({
   ),
   qualityGrade: QualityGradeEnum.optional().default(QualityGrade.UNGRADED),
   qualityGradeSource: z.string().optional().default('UNGRADED'),
+  plantingLogId: z.string().uuid('Invalid planting log identifier. Must be a valid UUID.').optional(),
 });
 
 /**

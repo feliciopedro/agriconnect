@@ -187,7 +187,8 @@ exports.Prisma.ProduceListingScalarFieldEnum = {
   longitude: 'longitude',
   batchCode: 'batchCode',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  plantingLogId: 'plantingLogId'
 };
 
 exports.Prisma.TraceabilityRecordScalarFieldEnum = {
@@ -322,6 +323,32 @@ exports.Prisma.PreOrderScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.PlantingLogScalarFieldEnum = {
+  id: 'id',
+  farmerId: 'farmerId',
+  cropType: 'cropType',
+  acreage: 'acreage',
+  plantingDate: 'plantingDate',
+  expectedHarvestDate: 'expectedHarvestDate',
+  actualHarvestDate: 'actualHarvestDate',
+  actualYieldKg: 'actualYieldKg',
+  notes: 'notes',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.PlantingInputScalarFieldEnum = {
+  id: 'id',
+  plantingLogId: 'plantingLogId',
+  type: 'type',
+  name: 'name',
+  quantity: 'quantity',
+  unit: 'unit',
+  appliedAt: 'appliedAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -440,7 +467,9 @@ exports.Prisma.ModelName = {
   Message: 'Message',
   OtpCode: 'OtpCode',
   UssdSession: 'UssdSession',
-  PreOrder: 'PreOrder'
+  PreOrder: 'PreOrder',
+  PlantingLog: 'PlantingLog',
+  PlantingInput: 'PlantingInput'
 };
 
 /**
