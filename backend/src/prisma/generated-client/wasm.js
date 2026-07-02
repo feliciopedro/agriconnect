@@ -238,6 +238,7 @@ exports.Prisma.DeliveryRequestScalarFieldEnum = {
   estimatedCost: 'estimatedCost',
   status: 'status',
   routeGroupId: 'routeGroupId',
+  routeSequence: 'routeSequence',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };

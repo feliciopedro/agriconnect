@@ -250,6 +250,7 @@ model DeliveryRequest {
   estimatedCost       Float?
   status              DeliveryStatus @default(REQUESTED)
   routeGroupId        String?
+  routeSequence       Json?
   createdAt           DateTime       @default(now())
   updatedAt           DateTime       @updatedAt
 
