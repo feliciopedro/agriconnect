@@ -8,6 +8,8 @@ import { traceRouter, adminTraceRouter } from './trace.routes';
 import notificationRoutes from './notification.routes';
 import messageRoutes from './message.routes';
 import reviewRoutes from './review.routes';
+import ussdRoutes from './ussd.routes';
+import smsRoutes from './sms.routes';
 
 const router = Router();
 
@@ -21,5 +23,7 @@ router.use('/admin/trace', adminTraceRouter);
 router.use('/notifications', notificationRoutes);
 router.use('/messages', messageRoutes);
 router.use('/reviews', reviewRoutes);
+router.use('/ussd', ussdRoutes);
+router.use('/', smsRoutes);
 
 export default router;
