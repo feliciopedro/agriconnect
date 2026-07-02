@@ -214,20 +214,21 @@ model TraceEvent {
 
 // Order: purchase transactions
 model Order {
-  id              String           @id @default(uuid())
-  buyerId         String
-  buyer           User             @relation("BuyerOrders", fields: [buyerId], references: [id], onDelete: Cascade)
-  listingId       String
-  listing         ProduceListing   @relation(fields: [listingId], references: [id], onDelete: Cascade)
-  quantityKg      Float
-  totalPrice      Float
-  status          OrderStatus      @default(PENDING)
-  paymentStatus   PaymentStatus    @default(UNPAID)
-  createdAt       DateTime         @default(now())
-  updatedAt       DateTime         @updatedAt
-  deliveryRequest DeliveryRequest?
-  reviews         Review[]
-  messages        Message[]
+  id                String           @id @default(uuid())
+  buyerId           String
+  buyer             User             @relation("BuyerOrders", fields: [buyerId], references: [id], onDelete: Cascade)
+  listingId         String
+  listing           ProduceListing   @relation(fields: [listingId], references: [id], onDelete: Cascade)
+  quantityKg        Float
+  totalPrice        Float
+  status            OrderStatus      @default(PENDING)
+  paymentStatus     PaymentStatus    @default(UNPAID)
+  paystackReference String?
+  createdAt         DateTime         @default(now())
+  updatedAt         DateTime         @updatedAt
+  deliveryRequest   DeliveryRequest?
+  reviews           Review[]
+  messages          Message[]
 
   @@index([buyerId])
   @@index([listingId])

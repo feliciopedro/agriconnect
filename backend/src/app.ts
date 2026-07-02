@@ -6,6 +6,7 @@ import morgan from 'morgan';
 import apiRoutes from './routes';
 import { errorHandler } from './middleware/error.middleware';
 import { config } from './config';
+import { PaymentController } from './controllers/payment.controller';
 
 const app = express();
 
@@ -17,6 +18,16 @@ app.use(
     credentials: true,
   })
 );
+
+// CRITICAL: Mount Paystack webhook before express.json() body parser middleware.
+// This is because we need access to the unmodified, raw body Buffer of the webhook
+// payload to securely perform SHA512 HMAC signature verification.
+app.post(
+  '/api/payments/webhook',
+  express.raw({ type: 'application/json' }),
+  PaymentController.webhook
+);
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 

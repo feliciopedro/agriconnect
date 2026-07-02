@@ -223,6 +223,7 @@ model Order {
   totalPrice      Float
   status          OrderStatus      @default(PENDING)
   paymentStatus   PaymentStatus    @default(UNPAID)
+  paystackReference String?
   createdAt       DateTime         @default(now())
   updatedAt       DateTime         @updatedAt
   deliveryRequest DeliveryRequest?

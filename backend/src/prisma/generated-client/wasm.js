@@ -221,6 +221,7 @@ exports.Prisma.OrderScalarFieldEnum = {
   totalPrice: 'totalPrice',
   status: 'status',
   paymentStatus: 'paymentStatus',
+  paystackReference: 'paystackReference',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };

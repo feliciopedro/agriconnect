@@ -9851,6 +9851,7 @@ export namespace Prisma {
     totalPrice: number | null
     status: $Enums.OrderStatus | null
     paymentStatus: $Enums.PaymentStatus | null
+    paystackReference: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -9863,6 +9864,7 @@ export namespace Prisma {
     totalPrice: number | null
     status: $Enums.OrderStatus | null
     paymentStatus: $Enums.PaymentStatus | null
+    paystackReference: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -9875,6 +9877,7 @@ export namespace Prisma {
     totalPrice: number
     status: number
     paymentStatus: number
+    paystackReference: number
     createdAt: number
     updatedAt: number
     _all: number
@@ -9899,6 +9902,7 @@ export namespace Prisma {
     totalPrice?: true
     status?: true
     paymentStatus?: true
+    paystackReference?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -9911,6 +9915,7 @@ export namespace Prisma {
     totalPrice?: true
     status?: true
     paymentStatus?: true
+    paystackReference?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -9923,6 +9928,7 @@ export namespace Prisma {
     totalPrice?: true
     status?: true
     paymentStatus?: true
+    paystackReference?: true
     createdAt?: true
     updatedAt?: true
     _all?: true
@@ -10022,6 +10028,7 @@ export namespace Prisma {
     totalPrice: number
     status: $Enums.OrderStatus
     paymentStatus: $Enums.PaymentStatus
+    paystackReference: string | null
     createdAt: Date
     updatedAt: Date
     _count: OrderCountAggregateOutputType | null
@@ -10053,6 +10060,7 @@ export namespace Prisma {
     totalPrice?: boolean
     status?: boolean
     paymentStatus?: boolean
+    paystackReference?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     buyer?: boolean | UserDefaultArgs<ExtArgs>
@@ -10071,6 +10079,7 @@ export namespace Prisma {
     totalPrice?: boolean
     status?: boolean
     paymentStatus?: boolean
+    paystackReference?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     buyer?: boolean | UserDefaultArgs<ExtArgs>
@@ -10085,6 +10094,7 @@ export namespace Prisma {
     totalPrice?: boolean
     status?: boolean
     paymentStatus?: boolean
+    paystackReference?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
@@ -10119,6 +10129,7 @@ export namespace Prisma {
       totalPrice: number
       status: $Enums.OrderStatus
       paymentStatus: $Enums.PaymentStatus
+      paystackReference: string | null
       createdAt: Date
       updatedAt: Date
     }, ExtArgs["result"]["order"]>
@@ -10526,6 +10537,7 @@ export namespace Prisma {
     readonly totalPrice: FieldRef<"Order", 'Float'>
     readonly status: FieldRef<"Order", 'OrderStatus'>
     readonly paymentStatus: FieldRef<"Order", 'PaymentStatus'>
+    readonly paystackReference: FieldRef<"Order", 'String'>
     readonly createdAt: FieldRef<"Order", 'DateTime'>
     readonly updatedAt: FieldRef<"Order", 'DateTime'>
   }
@@ -16937,6 +16949,7 @@ export namespace Prisma {
     totalPrice: 'totalPrice',
     status: 'status',
     paymentStatus: 'paymentStatus',
+    paystackReference: 'paystackReference',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
   };
@@ -17905,6 +17918,7 @@ export namespace Prisma {
     totalPrice?: FloatFilter<"Order"> | number
     status?: EnumOrderStatusFilter<"Order"> | $Enums.OrderStatus
     paymentStatus?: EnumPaymentStatusFilter<"Order"> | $Enums.PaymentStatus
+    paystackReference?: StringNullableFilter<"Order"> | string | null
     createdAt?: DateTimeFilter<"Order"> | Date | string
     updatedAt?: DateTimeFilter<"Order"> | Date | string
     buyer?: XOR<UserRelationFilter, UserWhereInput>
@@ -17922,6 +17936,7 @@ export namespace Prisma {
     totalPrice?: SortOrder
     status?: SortOrder
     paymentStatus?: SortOrder
+    paystackReference?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     buyer?: UserOrderByWithRelationInput
@@ -17942,6 +17957,7 @@ export namespace Prisma {
     totalPrice?: FloatFilter<"Order"> | number
     status?: EnumOrderStatusFilter<"Order"> | $Enums.OrderStatus
     paymentStatus?: EnumPaymentStatusFilter<"Order"> | $Enums.PaymentStatus
+    paystackReference?: StringNullableFilter<"Order"> | string | null
     createdAt?: DateTimeFilter<"Order"> | Date | string
     updatedAt?: DateTimeFilter<"Order"> | Date | string
     buyer?: XOR<UserRelationFilter, UserWhereInput>
@@ -17959,6 +17975,7 @@ export namespace Prisma {
     totalPrice?: SortOrder
     status?: SortOrder
     paymentStatus?: SortOrder
+    paystackReference?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: OrderCountOrderByAggregateInput
@@ -17979,6 +17996,7 @@ export namespace Prisma {
     totalPrice?: FloatWithAggregatesFilter<"Order"> | number
     status?: EnumOrderStatusWithAggregatesFilter<"Order"> | $Enums.OrderStatus
     paymentStatus?: EnumPaymentStatusWithAggregatesFilter<"Order"> | $Enums.PaymentStatus
+    paystackReference?: StringNullableWithAggregatesFilter<"Order"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"Order"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Order"> | Date | string
   }
@@ -19133,6 +19151,7 @@ export namespace Prisma {
     totalPrice: number
     status?: $Enums.OrderStatus
     paymentStatus?: $Enums.PaymentStatus
+    paystackReference?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     buyer: UserCreateNestedOneWithoutOrdersInput
@@ -19150,6 +19169,7 @@ export namespace Prisma {
     totalPrice: number
     status?: $Enums.OrderStatus
     paymentStatus?: $Enums.PaymentStatus
+    paystackReference?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     deliveryRequest?: DeliveryRequestUncheckedCreateNestedOneWithoutOrderInput
@@ -19163,6 +19183,7 @@ export namespace Prisma {
     totalPrice?: FloatFieldUpdateOperationsInput | number
     status?: EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
     paymentStatus?: EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
+    paystackReference?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     buyer?: UserUpdateOneRequiredWithoutOrdersNestedInput
@@ -19180,6 +19201,7 @@ export namespace Prisma {
     totalPrice?: FloatFieldUpdateOperationsInput | number
     status?: EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
     paymentStatus?: EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
+    paystackReference?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     deliveryRequest?: DeliveryRequestUncheckedUpdateOneWithoutOrderNestedInput
@@ -19195,6 +19217,7 @@ export namespace Prisma {
     totalPrice: number
     status?: $Enums.OrderStatus
     paymentStatus?: $Enums.PaymentStatus
+    paystackReference?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -19205,6 +19228,7 @@ export namespace Prisma {
     totalPrice?: FloatFieldUpdateOperationsInput | number
     status?: EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
     paymentStatus?: EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
+    paystackReference?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -19217,6 +19241,7 @@ export namespace Prisma {
     totalPrice?: FloatFieldUpdateOperationsInput | number
     status?: EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
     paymentStatus?: EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
+    paystackReference?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -20496,6 +20521,7 @@ export namespace Prisma {
     totalPrice?: SortOrder
     status?: SortOrder
     paymentStatus?: SortOrder
+    paystackReference?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -20513,6 +20539,7 @@ export namespace Prisma {
     totalPrice?: SortOrder
     status?: SortOrder
     paymentStatus?: SortOrder
+    paystackReference?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -20525,6 +20552,7 @@ export namespace Prisma {
     totalPrice?: SortOrder
     status?: SortOrder
     paymentStatus?: SortOrder
+    paystackReference?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -22472,6 +22500,7 @@ export namespace Prisma {
     totalPrice: number
     status?: $Enums.OrderStatus
     paymentStatus?: $Enums.PaymentStatus
+    paystackReference?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     listing: ProduceListingCreateNestedOneWithoutOrdersInput
@@ -22487,6 +22516,7 @@ export namespace Prisma {
     totalPrice: number
     status?: $Enums.OrderStatus
     paymentStatus?: $Enums.PaymentStatus
+    paystackReference?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     deliveryRequest?: DeliveryRequestUncheckedCreateNestedOneWithoutOrderInput
@@ -22891,6 +22921,7 @@ export namespace Prisma {
     totalPrice?: FloatFilter<"Order"> | number
     status?: EnumOrderStatusFilter<"Order"> | $Enums.OrderStatus
     paymentStatus?: EnumPaymentStatusFilter<"Order"> | $Enums.PaymentStatus
+    paystackReference?: StringNullableFilter<"Order"> | string | null
     createdAt?: DateTimeFilter<"Order"> | Date | string
     updatedAt?: DateTimeFilter<"Order"> | Date | string
   }
@@ -23494,6 +23525,7 @@ export namespace Prisma {
     totalPrice: number
     status?: $Enums.OrderStatus
     paymentStatus?: $Enums.PaymentStatus
+    paystackReference?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     buyer: UserCreateNestedOneWithoutOrdersInput
@@ -23509,6 +23541,7 @@ export namespace Prisma {
     totalPrice: number
     status?: $Enums.OrderStatus
     paymentStatus?: $Enums.PaymentStatus
+    paystackReference?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     deliveryRequest?: DeliveryRequestUncheckedCreateNestedOneWithoutOrderInput
@@ -24431,6 +24464,7 @@ export namespace Prisma {
     totalPrice: number
     status?: $Enums.OrderStatus
     paymentStatus?: $Enums.PaymentStatus
+    paystackReference?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     buyer: UserCreateNestedOneWithoutOrdersInput
@@ -24447,6 +24481,7 @@ export namespace Prisma {
     totalPrice: number
     status?: $Enums.OrderStatus
     paymentStatus?: $Enums.PaymentStatus
+    paystackReference?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     reviews?: ReviewUncheckedCreateNestedManyWithoutOrderInput
@@ -24530,6 +24565,7 @@ export namespace Prisma {
     totalPrice?: FloatFieldUpdateOperationsInput | number
     status?: EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
     paymentStatus?: EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
+    paystackReference?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     buyer?: UserUpdateOneRequiredWithoutOrdersNestedInput
@@ -24546,6 +24582,7 @@ export namespace Prisma {
     totalPrice?: FloatFieldUpdateOperationsInput | number
     status?: EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
     paymentStatus?: EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
+    paystackReference?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     reviews?: ReviewUncheckedUpdateManyWithoutOrderNestedInput
@@ -24729,6 +24766,7 @@ export namespace Prisma {
     totalPrice: number
     status?: $Enums.OrderStatus
     paymentStatus?: $Enums.PaymentStatus
+    paystackReference?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     buyer: UserCreateNestedOneWithoutOrdersInput
@@ -24745,6 +24783,7 @@ export namespace Prisma {
     totalPrice: number
     status?: $Enums.OrderStatus
     paymentStatus?: $Enums.PaymentStatus
+    paystackReference?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     deliveryRequest?: DeliveryRequestUncheckedCreateNestedOneWithoutOrderInput
@@ -24895,6 +24934,7 @@ export namespace Prisma {
     totalPrice?: FloatFieldUpdateOperationsInput | number
     status?: EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
     paymentStatus?: EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
+    paystackReference?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     buyer?: UserUpdateOneRequiredWithoutOrdersNestedInput
@@ -24911,6 +24951,7 @@ export namespace Prisma {
     totalPrice?: FloatFieldUpdateOperationsInput | number
     status?: EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
     paymentStatus?: EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
+    paystackReference?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     deliveryRequest?: DeliveryRequestUncheckedUpdateOneWithoutOrderNestedInput
@@ -25149,6 +25190,7 @@ export namespace Prisma {
     totalPrice: number
     status?: $Enums.OrderStatus
     paymentStatus?: $Enums.PaymentStatus
+    paystackReference?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     buyer: UserCreateNestedOneWithoutOrdersInput
@@ -25165,6 +25207,7 @@ export namespace Prisma {
     totalPrice: number
     status?: $Enums.OrderStatus
     paymentStatus?: $Enums.PaymentStatus
+    paystackReference?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     deliveryRequest?: DeliveryRequestUncheckedCreateNestedOneWithoutOrderInput
@@ -25315,6 +25358,7 @@ export namespace Prisma {
     totalPrice?: FloatFieldUpdateOperationsInput | number
     status?: EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
     paymentStatus?: EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
+    paystackReference?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     buyer?: UserUpdateOneRequiredWithoutOrdersNestedInput
@@ -25331,6 +25375,7 @@ export namespace Prisma {
     totalPrice?: FloatFieldUpdateOperationsInput | number
     status?: EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
     paymentStatus?: EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
+    paystackReference?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     deliveryRequest?: DeliveryRequestUncheckedUpdateOneWithoutOrderNestedInput
@@ -25363,6 +25408,7 @@ export namespace Prisma {
     totalPrice: number
     status?: $Enums.OrderStatus
     paymentStatus?: $Enums.PaymentStatus
+    paystackReference?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -25514,6 +25560,7 @@ export namespace Prisma {
     totalPrice?: FloatFieldUpdateOperationsInput | number
     status?: EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
     paymentStatus?: EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
+    paystackReference?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     listing?: ProduceListingUpdateOneRequiredWithoutOrdersNestedInput
@@ -25529,6 +25576,7 @@ export namespace Prisma {
     totalPrice?: FloatFieldUpdateOperationsInput | number
     status?: EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
     paymentStatus?: EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
+    paystackReference?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     deliveryRequest?: DeliveryRequestUncheckedUpdateOneWithoutOrderNestedInput
@@ -25543,6 +25591,7 @@ export namespace Prisma {
     totalPrice?: FloatFieldUpdateOperationsInput | number
     status?: EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
     paymentStatus?: EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
+    paystackReference?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -25788,6 +25837,7 @@ export namespace Prisma {
     totalPrice: number
     status?: $Enums.OrderStatus
     paymentStatus?: $Enums.PaymentStatus
+    paystackReference?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -25810,6 +25860,7 @@ export namespace Prisma {
     totalPrice?: FloatFieldUpdateOperationsInput | number
     status?: EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
     paymentStatus?: EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
+    paystackReference?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     buyer?: UserUpdateOneRequiredWithoutOrdersNestedInput
@@ -25825,6 +25876,7 @@ export namespace Prisma {
     totalPrice?: FloatFieldUpdateOperationsInput | number
     status?: EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
     paymentStatus?: EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
+    paystackReference?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     deliveryRequest?: DeliveryRequestUncheckedUpdateOneWithoutOrderNestedInput
@@ -25839,6 +25891,7 @@ export namespace Prisma {
     totalPrice?: FloatFieldUpdateOperationsInput | number
     status?: EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
     paymentStatus?: EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
+    paystackReference?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
