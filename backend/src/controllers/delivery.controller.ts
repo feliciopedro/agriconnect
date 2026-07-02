@@ -46,6 +46,24 @@ export class DeliveryController {
   }
 
   /**
+   * Transporters update their live location, triggering real-time ETA updates.
+   */
+  public static async updateLocation(req: Request, res: Response): Promise<void> {
+    const transportProviderId = req.user!.userId;
+    const { id } = req.params;
+    const { latitude, longitude } = req.body;
+
+    const result = await DeliveryService.updateLiveLocation(
+      id,
+      transportProviderId,
+      parseFloat(latitude as string),
+      parseFloat(longitude as string)
+    );
+
+    res.status(200).json(result);
+  }
+
+  /**
    * Fetch single delivery request details. Enforces access checks (Transporter, Farmer, or Buyer).
    */
   public static async getDeliveryById(req: Request, res: Response): Promise<void> {

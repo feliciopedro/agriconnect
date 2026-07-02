@@ -41,3 +41,14 @@ export const GetCostEstimateSchema = z.object({
 export const DeliveryIdParamSchema = z.object({
   id: z.string().uuid('Invalid delivery request identifier. Must be a valid UUID.'),
 });
+
+export const UpdateLocationSchema = z.object({
+  latitude: z.preprocess(
+    (val) => (typeof val === 'string' ? parseFloat(val) : val),
+    z.number().min(-90).max(90, 'Latitude must be between -90 and 90')
+  ),
+  longitude: z.preprocess(
+    (val) => (typeof val === 'string' ? parseFloat(val) : val),
+    z.number().min(-180).max(180, 'Longitude must be between -180 and 180')
+  ),
+});

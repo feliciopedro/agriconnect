@@ -10,6 +10,7 @@ import {
   UpdateDeliveryStatusSchema,
   GetCostEstimateSchema,
   DeliveryIdParamSchema,
+  UpdateLocationSchema,
 } from '../types/delivery.schema';
 
 const router = Router();
@@ -31,6 +32,14 @@ router.patch(
   validate(DeliveryIdParamSchema, 'params'),
   validate(UpdateDeliveryStatusSchema),
   DeliveryController.updateStatus
+);
+
+router.patch(
+  '/:id/location',
+  requireRole(Role.TRANSPORT),
+  validate(DeliveryIdParamSchema, 'params'),
+  validate(UpdateLocationSchema),
+  DeliveryController.updateLocation
 );
 
 // Estimate configurations

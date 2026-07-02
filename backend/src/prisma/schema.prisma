@@ -256,6 +256,11 @@ model DeliveryRequest {
   status              DeliveryStatus @default(REQUESTED)
   routeGroupId        String?
   routeSequence       Json?
+  eta                 DateTime?
+  currentLatitude     Float?
+  currentLongitude    Float?
+  routeDistanceKm     Float?
+  routeDurationMin    Float?
   createdAt           DateTime       @default(now())
   updatedAt           DateTime       @updatedAt
 

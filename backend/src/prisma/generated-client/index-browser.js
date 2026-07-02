@@ -241,6 +241,11 @@ exports.Prisma.DeliveryRequestScalarFieldEnum = {
   status: 'status',
   routeGroupId: 'routeGroupId',
   routeSequence: 'routeSequence',
+  eta: 'eta',
+  currentLatitude: 'currentLatitude',
+  currentLongitude: 'currentLongitude',
+  routeDistanceKm: 'routeDistanceKm',
+  routeDurationMin: 'routeDurationMin',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };

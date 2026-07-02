@@ -4,6 +4,7 @@ import { LogisticsConfig } from '../config/logistics.config';
 import { createError } from '../utils/errors';
 import { randomUUID } from 'crypto';
 import { NotificationService } from './notification.service';
+import { OSRMClient } from '../utils/osrm';
 import {
   DeliveryStatus,
   OrderStatus,
@@ -316,8 +317,9 @@ export class DeliveryService {
   }
 
   /**
-   * Optimize travel stops utilizing nearest-neighbor heuristic (Precedence constraint checked).
-   * Comment: "This is a nearest-neighbor heuristic suitable for groups of 3-8 stops. Replace with Google OR-Tools VRP solver for production scale."
+   * Optimize travel stops using a precedence-constrained TSP solver via OSRM.
+   * Finds the absolute shortest driving path where pickups precede dropoffs.
+   * Dynamically calculates ETAs for all stops.
    */
   public static async optimizeGroupedRoute(deliveryRequestIds: string[]): Promise<void> {
     const requests = await prisma.deliveryRequest.findMany({
@@ -353,63 +355,269 @@ export class DeliveryService {
       });
     }
 
-    // Centroid starting point for the heuristic (approximate centroid of all pickups)
+    // Centroid starting point for the solver
     const pickups = stops.filter((s) => s.type === 'PICKUP');
     const startLat = pickups.reduce((sum, p) => sum + p.latitude, 0) / pickups.length;
     const startLng = pickups.reduce((sum, p) => sum + p.longitude, 0) / pickups.length;
 
-    let currentLat = startLat;
-    let currentLng = startLng;
-    
-    const visitedStops: Stop[] = [];
-    const unvisited = [...stops];
-    const visitedPickups = new Set<string>(); // Tracks requests whose pickups are complete
+    // Fetch distance/duration matrix for start point (idx 0) and all stops (idx 1..2N)
+    const coords = [
+      { latitude: startLat, longitude: startLng },
+      ...stops.map((s) => ({ latitude: s.latitude, longitude: s.longitude })),
+    ];
 
-    while (unvisited.length > 0) {
-      // Filter candidates applying precedence: DROPOFF only valid if its PICKUP was visited
-      const candidates = unvisited.filter((s) => {
-        if (s.type === 'PICKUP') return true;
-        return visitedPickups.has(s.requestId);
-      });
+    const matrix = await OSRMClient.getDistanceMatrix(coords);
+    const N = requests.length;
 
-      if (candidates.length === 0) break;
+    let bestPath: number[] = [];
+    let minCost = Infinity;
 
-      // Select closest candidate
-      let closest = candidates[0];
-      let minDistance = Infinity;
-
-      for (const cand of candidates) {
-        const dist = calculateDistanceKm(currentLat, currentLng, cand.latitude, cand.longitude);
-        if (dist < minDistance) {
-          minDistance = dist;
-          closest = cand;
+    // Precedence-constrained TSP backtracking search
+    function solveTsp(
+      currentPath: number[],
+      currentCost: number,
+      visitedPickups: Set<string>
+    ) {
+      if (currentPath.length === 2 * N) {
+        if (currentCost < minCost) {
+          minCost = currentCost;
+          bestPath = [...currentPath];
         }
+        return;
       }
 
-      visitedStops.push(closest);
-      if (closest.type === 'PICKUP') {
-        visitedPickups.add(closest.requestId);
-      }
+      for (let i = 0; i < 2 * N; i++) {
+        if (currentPath.includes(i)) continue;
 
-      currentLat = closest.latitude;
-      currentLng = closest.longitude;
+        const stop = stops[i];
+        if (stop.type === 'DROPOFF' && !visitedPickups.has(stop.requestId)) continue;
 
-      // Remove from unvisited list
-      const idx = unvisited.findIndex(
-        (s) => s.requestId === closest.requestId && s.type === closest.type
-      );
-      if (idx !== -1) {
-        unvisited.splice(idx, 1);
+        const fromMatrixIdx = currentPath.length === 0 ? 0 : currentPath[currentPath.length - 1] + 1;
+        const toMatrixIdx = i + 1;
+        const transitionCost = matrix.durations[fromMatrixIdx][toMatrixIdx];
+
+        if (currentCost + transitionCost >= minCost) continue; // Pruning
+
+        const nextVisited = new Set(visitedPickups);
+        if (stop.type === 'PICKUP') {
+          nextVisited.add(stop.requestId);
+        }
+
+        currentPath.push(i);
+        solveTsp(currentPath, currentCost + transitionCost, nextVisited);
+        currentPath.pop();
       }
     }
 
-    // Save routing sequence JSON on first request in the group
+    solveTsp([], 0, new Set<string>());
+
+    // Fallback in case of solver issues
+    const orderedStops = bestPath.length > 0
+      ? bestPath.map((idx) => stops[idx])
+      : stops;
+
+    // Compute segments and stop ETAs
+    let totalDistanceMeters = 0;
+    let totalDurationSeconds = 0;
+
+    // Use scheduledPickup of the first request as start, fallback to now
+    const baseDate = requests[0].scheduledPickup || new Date();
+    let currentTimeMs = baseDate.getTime();
+
+    const stopEtasMap = new Map<string, { pickupEta?: Date; dropoffEta?: Date }>();
+
+    for (let i = 0; i < orderedStops.length; i++) {
+      const stop = orderedStops[i];
+      const fromMatrixIdx = i === 0 ? 0 : (bestPath[i - 1] !== undefined ? bestPath[i - 1] + 1 : 0);
+      const toMatrixIdx = bestPath[i] !== undefined ? bestPath[i] + 1 : i + 1;
+
+      const segmentDist = matrix.distances[fromMatrixIdx][toMatrixIdx];
+      const segmentDur = matrix.durations[fromMatrixIdx][toMatrixIdx];
+
+      totalDistanceMeters += segmentDist;
+      totalDurationSeconds += segmentDur;
+
+      currentTimeMs += segmentDur * 1000;
+      const arrivalTime = new Date(currentTimeMs);
+
+      if (!stopEtasMap.has(stop.requestId)) {
+        stopEtasMap.set(stop.requestId, {});
+      }
+      const item = stopEtasMap.get(stop.requestId)!;
+      if (stop.type === 'PICKUP') {
+        item.pickupEta = arrivalTime;
+      } else {
+        item.dropoffEta = arrivalTime;
+      }
+
+      // 10 minutes service delay per stop (loading/unloading)
+      currentTimeMs += 600 * 1000;
+      totalDurationSeconds += 600;
+    }
+
+    // Save routing metrics and ETAs on the requests
+    for (const req of requests) {
+      const etas = stopEtasMap.get(req.id);
+      const dropoffEta = etas?.dropoffEta || null;
+
+      await prisma.deliveryRequest.update({
+        where: { id: req.id },
+        data: {
+          eta: dropoffEta,
+          routeDistanceKm: parseFloat((totalDistanceMeters / 1000).toFixed(2)),
+          routeDurationMin: parseFloat((totalDurationSeconds / 60).toFixed(2)),
+        },
+      });
+    }
+
+    // Save optimized routeSequence on first request in the group
     await prisma.deliveryRequest.update({
       where: { id: requests[0].id },
       data: {
-        routeSequence: visitedStops as any,
+        routeSequence: orderedStops as any,
       },
     });
+  }
+
+  /**
+   * Transporters update their live location, triggering real-time ETA updates.
+   */
+  public static async updateLiveLocation(
+    deliveryRequestId: string,
+    transportProviderId: string,
+    latitude: number,
+    longitude: number
+  ) {
+    const req = await prisma.deliveryRequest.findUnique({
+      where: { id: deliveryRequestId },
+      include: {
+        order: { select: { buyerId: true } },
+      },
+    });
+
+    if (!req) {
+      throw createError('Delivery request not found', 'DELIVERY_NOT_FOUND', 404);
+    }
+
+    if (req.transportProviderId !== transportProviderId) {
+      throw createError(
+        'Access forbidden: only the assigned transport provider can update location',
+        'FORBIDDEN_LOCATION_UPDATE',
+        403
+      );
+    }
+
+    const routeGroupId = req.routeGroupId;
+    const whereClause = routeGroupId ? { routeGroupId } : { id: deliveryRequestId };
+
+    // Update transporter coordinates on all matching requests
+    await prisma.deliveryRequest.updateMany({
+      where: whereClause,
+      data: {
+        currentLatitude: latitude,
+        currentLongitude: longitude,
+      },
+    });
+
+    const groupRequests = await prisma.deliveryRequest.findMany({
+      where: whereClause,
+    });
+
+    const leadRequest = groupRequests.find((r) => r.routeSequence !== null);
+    if (!leadRequest || !leadRequest.routeSequence) {
+      return { success: true, updatedCount: groupRequests.length };
+    }
+
+    const fullSequence = leadRequest.routeSequence as any as Stop[];
+
+    // Remaining incomplete stops
+    const incompleteStops = fullSequence.filter((stop) => {
+      const matchReq = groupRequests.find((r) => r.id === stop.requestId);
+      if (!matchReq) return false;
+      if (stop.type === 'PICKUP') {
+        return matchReq.status !== DeliveryStatus.PICKED_UP && matchReq.status !== DeliveryStatus.DELIVERED;
+      } else {
+        return matchReq.status !== DeliveryStatus.DELIVERED;
+      }
+    });
+
+    if (incompleteStops.length === 0) {
+      return { success: true, remainingStops: 0 };
+    }
+
+    // Call OSRM starting from the transporter's live position
+    const coords = [
+      { latitude, longitude },
+      ...incompleteStops.map((s) => ({ latitude: s.latitude, longitude: s.longitude })),
+    ];
+
+    const matrix = await OSRMClient.getDistanceMatrix(coords);
+
+    let currentTimeMs = Date.now();
+    let totalRemDistanceMeters = 0;
+    let totalRemDurationSeconds = 0;
+
+    const updatedEtas = new Map<string, Date>();
+
+    for (let i = 0; i < incompleteStops.length; i++) {
+      const stop = incompleteStops[i];
+      const fromMatrixIdx = i === 0 ? 0 : i;
+      const toMatrixIdx = i + 1;
+
+      const segmentDist = matrix.distances[fromMatrixIdx][toMatrixIdx];
+      const segmentDur = matrix.durations[fromMatrixIdx][toMatrixIdx];
+
+      totalRemDistanceMeters += segmentDist;
+      totalRemDurationSeconds += segmentDur;
+
+      currentTimeMs += segmentDur * 1000;
+      const arrivalTime = new Date(currentTimeMs);
+
+      if (stop.type === 'DROPOFF') {
+        updatedEtas.set(stop.requestId, arrivalTime);
+      }
+
+      currentTimeMs += 600 * 1000; // 10 min stop duration
+      totalRemDurationSeconds += 600;
+    }
+
+    const notifiedBuyers: string[] = [];
+
+    for (const [reqId, newEta] of updatedEtas.entries()) {
+      const targetReq = groupRequests.find((r) => r.id === reqId);
+      if (!targetReq) continue;
+
+      const oldEta = targetReq.eta;
+
+      await prisma.deliveryRequest.update({
+        where: { id: reqId },
+        data: { eta: newEta },
+      });
+
+      if (oldEta) {
+        const diffMin = Math.abs(newEta.getTime() - oldEta.getTime()) / (60 * 1000);
+        if (diffMin > 15) {
+          const buyerOrder = await prisma.order.findUnique({ where: { id: targetReq.orderId } });
+          if (buyerOrder) {
+            await NotificationService.createNotification(
+              buyerOrder.buyerId,
+              'DELIVERY_ETA_CHANGED',
+              `⚠️ Delivery update: The estimated arrival time for your order has changed to ${newEta.toLocaleTimeString()}.`
+            );
+            notifiedBuyers.push(reqId);
+          }
+        }
+      }
+    }
+
+    return {
+      success: true,
+      currentCoordinates: { latitude, longitude },
+      remainingStopsCount: incompleteStops.length,
+      remainingDistanceKm: parseFloat((totalRemDistanceMeters / 1000).toFixed(2)),
+      remainingDurationMin: parseFloat((totalRemDurationSeconds / 60).toFixed(2)),
+      notifiedBuyersCount: notifiedBuyers.length,
+    };
   }
 
   /**
@@ -548,15 +756,21 @@ export class DeliveryService {
     }
 
     return await prisma.$transaction(async (tx) => {
-      // Update delivery request status
-      const updatedRequest = await tx.deliveryRequest.update({
-        where: { id: deliveryRequestId },
-        data: { status: newStatus },
-      });
+      let updatedRequest;
 
       if (newStatus === DeliveryStatus.PICKED_UP) {
         const lat = location?.latitude ?? req.pickupLatitude;
         const lng = location?.longitude ?? req.pickupLongitude;
+
+        // Update delivery request status & telemetry coordinates
+        updatedRequest = await tx.deliveryRequest.update({
+          where: { id: deliveryRequestId },
+          data: {
+            status: newStatus,
+            currentLatitude: lat,
+            currentLongitude: lng,
+          },
+        });
 
         // Log TraceEvent PICKED_UP
         await tx.traceEvent.create({
@@ -587,6 +801,16 @@ export class DeliveryService {
       }
 
       if (newStatus === DeliveryStatus.DELIVERED) {
+        // Update delivery request status & final telemetry coordinates
+        updatedRequest = await tx.deliveryRequest.update({
+          where: { id: deliveryRequestId },
+          data: {
+            status: newStatus,
+            currentLatitude: req.dropoffLatitude,
+            currentLongitude: req.dropoffLongitude,
+          },
+        });
+
         // Log TraceEvent DELIVERED
         await tx.traceEvent.create({
           data: {

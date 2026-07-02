@@ -11148,6 +11148,10 @@ export namespace Prisma {
     dropoffLatitude: number | null
     dropoffLongitude: number | null
     estimatedCost: number | null
+    currentLatitude: number | null
+    currentLongitude: number | null
+    routeDistanceKm: number | null
+    routeDurationMin: number | null
   }
 
   export type DeliveryRequestSumAggregateOutputType = {
@@ -11156,6 +11160,10 @@ export namespace Prisma {
     dropoffLatitude: number | null
     dropoffLongitude: number | null
     estimatedCost: number | null
+    currentLatitude: number | null
+    currentLongitude: number | null
+    routeDistanceKm: number | null
+    routeDurationMin: number | null
   }
 
   export type DeliveryRequestMinAggregateOutputType = {
@@ -11171,6 +11179,11 @@ export namespace Prisma {
     estimatedCost: number | null
     status: $Enums.DeliveryStatus | null
     routeGroupId: string | null
+    eta: Date | null
+    currentLatitude: number | null
+    currentLongitude: number | null
+    routeDistanceKm: number | null
+    routeDurationMin: number | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -11188,6 +11201,11 @@ export namespace Prisma {
     estimatedCost: number | null
     status: $Enums.DeliveryStatus | null
     routeGroupId: string | null
+    eta: Date | null
+    currentLatitude: number | null
+    currentLongitude: number | null
+    routeDistanceKm: number | null
+    routeDurationMin: number | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -11206,6 +11224,11 @@ export namespace Prisma {
     status: number
     routeGroupId: number
     routeSequence: number
+    eta: number
+    currentLatitude: number
+    currentLongitude: number
+    routeDistanceKm: number
+    routeDurationMin: number
     createdAt: number
     updatedAt: number
     _all: number
@@ -11218,6 +11241,10 @@ export namespace Prisma {
     dropoffLatitude?: true
     dropoffLongitude?: true
     estimatedCost?: true
+    currentLatitude?: true
+    currentLongitude?: true
+    routeDistanceKm?: true
+    routeDurationMin?: true
   }
 
   export type DeliveryRequestSumAggregateInputType = {
@@ -11226,6 +11253,10 @@ export namespace Prisma {
     dropoffLatitude?: true
     dropoffLongitude?: true
     estimatedCost?: true
+    currentLatitude?: true
+    currentLongitude?: true
+    routeDistanceKm?: true
+    routeDurationMin?: true
   }
 
   export type DeliveryRequestMinAggregateInputType = {
@@ -11241,6 +11272,11 @@ export namespace Prisma {
     estimatedCost?: true
     status?: true
     routeGroupId?: true
+    eta?: true
+    currentLatitude?: true
+    currentLongitude?: true
+    routeDistanceKm?: true
+    routeDurationMin?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -11258,6 +11294,11 @@ export namespace Prisma {
     estimatedCost?: true
     status?: true
     routeGroupId?: true
+    eta?: true
+    currentLatitude?: true
+    currentLongitude?: true
+    routeDistanceKm?: true
+    routeDurationMin?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -11276,6 +11317,11 @@ export namespace Prisma {
     status?: true
     routeGroupId?: true
     routeSequence?: true
+    eta?: true
+    currentLatitude?: true
+    currentLongitude?: true
+    routeDistanceKm?: true
+    routeDurationMin?: true
     createdAt?: true
     updatedAt?: true
     _all?: true
@@ -11381,6 +11427,11 @@ export namespace Prisma {
     status: $Enums.DeliveryStatus
     routeGroupId: string | null
     routeSequence: JsonValue | null
+    eta: Date | null
+    currentLatitude: number | null
+    currentLongitude: number | null
+    routeDistanceKm: number | null
+    routeDurationMin: number | null
     createdAt: Date
     updatedAt: Date
     _count: DeliveryRequestCountAggregateOutputType | null
@@ -11418,6 +11469,11 @@ export namespace Prisma {
     status?: boolean
     routeGroupId?: boolean
     routeSequence?: boolean
+    eta?: boolean
+    currentLatitude?: boolean
+    currentLongitude?: boolean
+    routeDistanceKm?: boolean
+    routeDurationMin?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     order?: boolean | OrderDefaultArgs<ExtArgs>
@@ -11438,6 +11494,11 @@ export namespace Prisma {
     status?: boolean
     routeGroupId?: boolean
     routeSequence?: boolean
+    eta?: boolean
+    currentLatitude?: boolean
+    currentLongitude?: boolean
+    routeDistanceKm?: boolean
+    routeDurationMin?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     order?: boolean | OrderDefaultArgs<ExtArgs>
@@ -11458,6 +11519,11 @@ export namespace Prisma {
     status?: boolean
     routeGroupId?: boolean
     routeSequence?: boolean
+    eta?: boolean
+    currentLatitude?: boolean
+    currentLongitude?: boolean
+    routeDistanceKm?: boolean
+    routeDurationMin?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
@@ -11491,6 +11557,11 @@ export namespace Prisma {
       status: $Enums.DeliveryStatus
       routeGroupId: string | null
       routeSequence: Prisma.JsonValue | null
+      eta: Date | null
+      currentLatitude: number | null
+      currentLongitude: number | null
+      routeDistanceKm: number | null
+      routeDurationMin: number | null
       createdAt: Date
       updatedAt: Date
     }, ExtArgs["result"]["deliveryRequest"]>
@@ -11901,6 +11972,11 @@ export namespace Prisma {
     readonly status: FieldRef<"DeliveryRequest", 'DeliveryStatus'>
     readonly routeGroupId: FieldRef<"DeliveryRequest", 'String'>
     readonly routeSequence: FieldRef<"DeliveryRequest", 'Json'>
+    readonly eta: FieldRef<"DeliveryRequest", 'DateTime'>
+    readonly currentLatitude: FieldRef<"DeliveryRequest", 'Float'>
+    readonly currentLongitude: FieldRef<"DeliveryRequest", 'Float'>
+    readonly routeDistanceKm: FieldRef<"DeliveryRequest", 'Float'>
+    readonly routeDurationMin: FieldRef<"DeliveryRequest", 'Float'>
     readonly createdAt: FieldRef<"DeliveryRequest", 'DateTime'>
     readonly updatedAt: FieldRef<"DeliveryRequest", 'DateTime'>
   }
@@ -18336,6 +18412,11 @@ export namespace Prisma {
     status: 'status',
     routeGroupId: 'routeGroupId',
     routeSequence: 'routeSequence',
+    eta: 'eta',
+    currentLatitude: 'currentLatitude',
+    currentLongitude: 'currentLongitude',
+    routeDistanceKm: 'routeDistanceKm',
+    routeDurationMin: 'routeDurationMin',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
   };
@@ -19434,6 +19515,11 @@ export namespace Prisma {
     status?: EnumDeliveryStatusFilter<"DeliveryRequest"> | $Enums.DeliveryStatus
     routeGroupId?: StringNullableFilter<"DeliveryRequest"> | string | null
     routeSequence?: JsonNullableFilter<"DeliveryRequest">
+    eta?: DateTimeNullableFilter<"DeliveryRequest"> | Date | string | null
+    currentLatitude?: FloatNullableFilter<"DeliveryRequest"> | number | null
+    currentLongitude?: FloatNullableFilter<"DeliveryRequest"> | number | null
+    routeDistanceKm?: FloatNullableFilter<"DeliveryRequest"> | number | null
+    routeDurationMin?: FloatNullableFilter<"DeliveryRequest"> | number | null
     createdAt?: DateTimeFilter<"DeliveryRequest"> | Date | string
     updatedAt?: DateTimeFilter<"DeliveryRequest"> | Date | string
     order?: XOR<OrderRelationFilter, OrderWhereInput>
@@ -19454,6 +19540,11 @@ export namespace Prisma {
     status?: SortOrder
     routeGroupId?: SortOrderInput | SortOrder
     routeSequence?: SortOrderInput | SortOrder
+    eta?: SortOrderInput | SortOrder
+    currentLatitude?: SortOrderInput | SortOrder
+    currentLongitude?: SortOrderInput | SortOrder
+    routeDistanceKm?: SortOrderInput | SortOrder
+    routeDurationMin?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     order?: OrderOrderByWithRelationInput
@@ -19477,6 +19568,11 @@ export namespace Prisma {
     status?: EnumDeliveryStatusFilter<"DeliveryRequest"> | $Enums.DeliveryStatus
     routeGroupId?: StringNullableFilter<"DeliveryRequest"> | string | null
     routeSequence?: JsonNullableFilter<"DeliveryRequest">
+    eta?: DateTimeNullableFilter<"DeliveryRequest"> | Date | string | null
+    currentLatitude?: FloatNullableFilter<"DeliveryRequest"> | number | null
+    currentLongitude?: FloatNullableFilter<"DeliveryRequest"> | number | null
+    routeDistanceKm?: FloatNullableFilter<"DeliveryRequest"> | number | null
+    routeDurationMin?: FloatNullableFilter<"DeliveryRequest"> | number | null
     createdAt?: DateTimeFilter<"DeliveryRequest"> | Date | string
     updatedAt?: DateTimeFilter<"DeliveryRequest"> | Date | string
     order?: XOR<OrderRelationFilter, OrderWhereInput>
@@ -19497,6 +19593,11 @@ export namespace Prisma {
     status?: SortOrder
     routeGroupId?: SortOrderInput | SortOrder
     routeSequence?: SortOrderInput | SortOrder
+    eta?: SortOrderInput | SortOrder
+    currentLatitude?: SortOrderInput | SortOrder
+    currentLongitude?: SortOrderInput | SortOrder
+    routeDistanceKm?: SortOrderInput | SortOrder
+    routeDurationMin?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: DeliveryRequestCountOrderByAggregateInput
@@ -19523,6 +19624,11 @@ export namespace Prisma {
     status?: EnumDeliveryStatusWithAggregatesFilter<"DeliveryRequest"> | $Enums.DeliveryStatus
     routeGroupId?: StringNullableWithAggregatesFilter<"DeliveryRequest"> | string | null
     routeSequence?: JsonNullableWithAggregatesFilter<"DeliveryRequest">
+    eta?: DateTimeNullableWithAggregatesFilter<"DeliveryRequest"> | Date | string | null
+    currentLatitude?: FloatNullableWithAggregatesFilter<"DeliveryRequest"> | number | null
+    currentLongitude?: FloatNullableWithAggregatesFilter<"DeliveryRequest"> | number | null
+    routeDistanceKm?: FloatNullableWithAggregatesFilter<"DeliveryRequest"> | number | null
+    routeDurationMin?: FloatNullableWithAggregatesFilter<"DeliveryRequest"> | number | null
     createdAt?: DateTimeWithAggregatesFilter<"DeliveryRequest"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"DeliveryRequest"> | Date | string
   }
@@ -20816,6 +20922,11 @@ export namespace Prisma {
     status?: $Enums.DeliveryStatus
     routeGroupId?: string | null
     routeSequence?: NullableJsonNullValueInput | InputJsonValue
+    eta?: Date | string | null
+    currentLatitude?: number | null
+    currentLongitude?: number | null
+    routeDistanceKm?: number | null
+    routeDurationMin?: number | null
     createdAt?: Date | string
     updatedAt?: Date | string
     order: OrderCreateNestedOneWithoutDeliveryRequestInput
@@ -20836,6 +20947,11 @@ export namespace Prisma {
     status?: $Enums.DeliveryStatus
     routeGroupId?: string | null
     routeSequence?: NullableJsonNullValueInput | InputJsonValue
+    eta?: Date | string | null
+    currentLatitude?: number | null
+    currentLongitude?: number | null
+    routeDistanceKm?: number | null
+    routeDurationMin?: number | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -20852,6 +20968,11 @@ export namespace Prisma {
     status?: EnumDeliveryStatusFieldUpdateOperationsInput | $Enums.DeliveryStatus
     routeGroupId?: NullableStringFieldUpdateOperationsInput | string | null
     routeSequence?: NullableJsonNullValueInput | InputJsonValue
+    eta?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    currentLatitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    currentLongitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    routeDistanceKm?: NullableFloatFieldUpdateOperationsInput | number | null
+    routeDurationMin?: NullableFloatFieldUpdateOperationsInput | number | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     order?: OrderUpdateOneRequiredWithoutDeliveryRequestNestedInput
@@ -20872,6 +20993,11 @@ export namespace Prisma {
     status?: EnumDeliveryStatusFieldUpdateOperationsInput | $Enums.DeliveryStatus
     routeGroupId?: NullableStringFieldUpdateOperationsInput | string | null
     routeSequence?: NullableJsonNullValueInput | InputJsonValue
+    eta?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    currentLatitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    currentLongitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    routeDistanceKm?: NullableFloatFieldUpdateOperationsInput | number | null
+    routeDurationMin?: NullableFloatFieldUpdateOperationsInput | number | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -20890,6 +21016,11 @@ export namespace Prisma {
     status?: $Enums.DeliveryStatus
     routeGroupId?: string | null
     routeSequence?: NullableJsonNullValueInput | InputJsonValue
+    eta?: Date | string | null
+    currentLatitude?: number | null
+    currentLongitude?: number | null
+    routeDistanceKm?: number | null
+    routeDurationMin?: number | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -20906,6 +21037,11 @@ export namespace Prisma {
     status?: EnumDeliveryStatusFieldUpdateOperationsInput | $Enums.DeliveryStatus
     routeGroupId?: NullableStringFieldUpdateOperationsInput | string | null
     routeSequence?: NullableJsonNullValueInput | InputJsonValue
+    eta?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    currentLatitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    currentLongitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    routeDistanceKm?: NullableFloatFieldUpdateOperationsInput | number | null
+    routeDurationMin?: NullableFloatFieldUpdateOperationsInput | number | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -20924,6 +21060,11 @@ export namespace Prisma {
     status?: EnumDeliveryStatusFieldUpdateOperationsInput | $Enums.DeliveryStatus
     routeGroupId?: NullableStringFieldUpdateOperationsInput | string | null
     routeSequence?: NullableJsonNullValueInput | InputJsonValue
+    eta?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    currentLatitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    currentLongitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    routeDistanceKm?: NullableFloatFieldUpdateOperationsInput | number | null
+    routeDurationMin?: NullableFloatFieldUpdateOperationsInput | number | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -22345,6 +22486,11 @@ export namespace Prisma {
     status?: SortOrder
     routeGroupId?: SortOrder
     routeSequence?: SortOrder
+    eta?: SortOrder
+    currentLatitude?: SortOrder
+    currentLongitude?: SortOrder
+    routeDistanceKm?: SortOrder
+    routeDurationMin?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -22355,6 +22501,10 @@ export namespace Prisma {
     dropoffLatitude?: SortOrder
     dropoffLongitude?: SortOrder
     estimatedCost?: SortOrder
+    currentLatitude?: SortOrder
+    currentLongitude?: SortOrder
+    routeDistanceKm?: SortOrder
+    routeDurationMin?: SortOrder
   }
 
   export type DeliveryRequestMaxOrderByAggregateInput = {
@@ -22370,6 +22520,11 @@ export namespace Prisma {
     estimatedCost?: SortOrder
     status?: SortOrder
     routeGroupId?: SortOrder
+    eta?: SortOrder
+    currentLatitude?: SortOrder
+    currentLongitude?: SortOrder
+    routeDistanceKm?: SortOrder
+    routeDurationMin?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -22387,6 +22542,11 @@ export namespace Prisma {
     estimatedCost?: SortOrder
     status?: SortOrder
     routeGroupId?: SortOrder
+    eta?: SortOrder
+    currentLatitude?: SortOrder
+    currentLongitude?: SortOrder
+    routeDistanceKm?: SortOrder
+    routeDurationMin?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -22397,6 +22557,10 @@ export namespace Prisma {
     dropoffLatitude?: SortOrder
     dropoffLongitude?: SortOrder
     estimatedCost?: SortOrder
+    currentLatitude?: SortOrder
+    currentLongitude?: SortOrder
+    routeDistanceKm?: SortOrder
+    routeDurationMin?: SortOrder
   }
 
   export type EnumDeliveryStatusWithAggregatesFilter<$PrismaModel = never> = {
@@ -24544,6 +24708,11 @@ export namespace Prisma {
     status?: $Enums.DeliveryStatus
     routeGroupId?: string | null
     routeSequence?: NullableJsonNullValueInput | InputJsonValue
+    eta?: Date | string | null
+    currentLatitude?: number | null
+    currentLongitude?: number | null
+    routeDistanceKm?: number | null
+    routeDurationMin?: number | null
     createdAt?: Date | string
     updatedAt?: Date | string
     order: OrderCreateNestedOneWithoutDeliveryRequestInput
@@ -24562,6 +24731,11 @@ export namespace Prisma {
     status?: $Enums.DeliveryStatus
     routeGroupId?: string | null
     routeSequence?: NullableJsonNullValueInput | InputJsonValue
+    eta?: Date | string | null
+    currentLatitude?: number | null
+    currentLongitude?: number | null
+    routeDistanceKm?: number | null
+    routeDurationMin?: number | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -25006,6 +25180,11 @@ export namespace Prisma {
     status?: EnumDeliveryStatusFilter<"DeliveryRequest"> | $Enums.DeliveryStatus
     routeGroupId?: StringNullableFilter<"DeliveryRequest"> | string | null
     routeSequence?: JsonNullableFilter<"DeliveryRequest">
+    eta?: DateTimeNullableFilter<"DeliveryRequest"> | Date | string | null
+    currentLatitude?: FloatNullableFilter<"DeliveryRequest"> | number | null
+    currentLongitude?: FloatNullableFilter<"DeliveryRequest"> | number | null
+    routeDistanceKm?: FloatNullableFilter<"DeliveryRequest"> | number | null
+    routeDurationMin?: FloatNullableFilter<"DeliveryRequest"> | number | null
     createdAt?: DateTimeFilter<"DeliveryRequest"> | Date | string
     updatedAt?: DateTimeFilter<"DeliveryRequest"> | Date | string
   }
@@ -26364,6 +26543,11 @@ export namespace Prisma {
     status?: $Enums.DeliveryStatus
     routeGroupId?: string | null
     routeSequence?: NullableJsonNullValueInput | InputJsonValue
+    eta?: Date | string | null
+    currentLatitude?: number | null
+    currentLongitude?: number | null
+    routeDistanceKm?: number | null
+    routeDurationMin?: number | null
     createdAt?: Date | string
     updatedAt?: Date | string
     transportProvider?: UserCreateNestedOneWithoutDeliveriesInput
@@ -26382,6 +26566,11 @@ export namespace Prisma {
     status?: $Enums.DeliveryStatus
     routeGroupId?: string | null
     routeSequence?: NullableJsonNullValueInput | InputJsonValue
+    eta?: Date | string | null
+    currentLatitude?: number | null
+    currentLongitude?: number | null
+    routeDistanceKm?: number | null
+    routeDurationMin?: number | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -26637,6 +26826,11 @@ export namespace Prisma {
     status?: EnumDeliveryStatusFieldUpdateOperationsInput | $Enums.DeliveryStatus
     routeGroupId?: NullableStringFieldUpdateOperationsInput | string | null
     routeSequence?: NullableJsonNullValueInput | InputJsonValue
+    eta?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    currentLatitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    currentLongitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    routeDistanceKm?: NullableFloatFieldUpdateOperationsInput | number | null
+    routeDurationMin?: NullableFloatFieldUpdateOperationsInput | number | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     transportProvider?: UserUpdateOneWithoutDeliveriesNestedInput
@@ -26655,6 +26849,11 @@ export namespace Prisma {
     status?: EnumDeliveryStatusFieldUpdateOperationsInput | $Enums.DeliveryStatus
     routeGroupId?: NullableStringFieldUpdateOperationsInput | string | null
     routeSequence?: NullableJsonNullValueInput | InputJsonValue
+    eta?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    currentLatitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    currentLongitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    routeDistanceKm?: NullableFloatFieldUpdateOperationsInput | number | null
+    routeDurationMin?: NullableFloatFieldUpdateOperationsInput | number | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -28069,6 +28268,11 @@ export namespace Prisma {
     status?: $Enums.DeliveryStatus
     routeGroupId?: string | null
     routeSequence?: NullableJsonNullValueInput | InputJsonValue
+    eta?: Date | string | null
+    currentLatitude?: number | null
+    currentLongitude?: number | null
+    routeDistanceKm?: number | null
+    routeDurationMin?: number | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -28277,6 +28481,11 @@ export namespace Prisma {
     status?: EnumDeliveryStatusFieldUpdateOperationsInput | $Enums.DeliveryStatus
     routeGroupId?: NullableStringFieldUpdateOperationsInput | string | null
     routeSequence?: NullableJsonNullValueInput | InputJsonValue
+    eta?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    currentLatitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    currentLongitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    routeDistanceKm?: NullableFloatFieldUpdateOperationsInput | number | null
+    routeDurationMin?: NullableFloatFieldUpdateOperationsInput | number | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     order?: OrderUpdateOneRequiredWithoutDeliveryRequestNestedInput
@@ -28295,6 +28504,11 @@ export namespace Prisma {
     status?: EnumDeliveryStatusFieldUpdateOperationsInput | $Enums.DeliveryStatus
     routeGroupId?: NullableStringFieldUpdateOperationsInput | string | null
     routeSequence?: NullableJsonNullValueInput | InputJsonValue
+    eta?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    currentLatitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    currentLongitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    routeDistanceKm?: NullableFloatFieldUpdateOperationsInput | number | null
+    routeDurationMin?: NullableFloatFieldUpdateOperationsInput | number | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -28312,6 +28526,11 @@ export namespace Prisma {
     status?: EnumDeliveryStatusFieldUpdateOperationsInput | $Enums.DeliveryStatus
     routeGroupId?: NullableStringFieldUpdateOperationsInput | string | null
     routeSequence?: NullableJsonNullValueInput | InputJsonValue
+    eta?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    currentLatitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    currentLongitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    routeDistanceKm?: NullableFloatFieldUpdateOperationsInput | number | null
+    routeDurationMin?: NullableFloatFieldUpdateOperationsInput | number | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
