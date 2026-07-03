@@ -14,6 +14,7 @@ const config: Config = {
           hover: '#235A41',
           active: '#1B4532',
         },
+        'primary-green': '#2D6A4F',
         gold: {
           DEFAULT: '#C8960C',
           bg: '#FEF9EC',
