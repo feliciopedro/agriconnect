@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -7,21 +8,24 @@ interface LayoutProps {
 
 export const Layout: React.FC<LayoutProps> = ({ children }) => {
   const location = useLocation();
+  const { role } = useAuth();
 
-  const isActive = (path: string) => location.pathname === path;
+  const isActive = (path: string) =>
+    location.pathname === path ||
+    (path === '/farmer' && location.pathname.startsWith('/farmer'));
 
   return (
-    <div className="min-h-screen flex flex-col bg-slate-950 text-slate-100">
-      {/* Header */}
-      <header className="sticky top-0 z-50 glass-panel border-b border-slate-800">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen flex flex-col bg-white text-text-primary">
+      {/* Header / Top navbar */}
+      <header className="sticky top-0 z-50 bg-white border-b border-border-default">
+        <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             {/* Logo */}
             <div className="flex items-center gap-2">
-              <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-emerald-500 to-teal-400 flex items-center justify-center shadow-lg shadow-emerald-500/20">
-                <span className="font-bold text-slate-950 text-lg">A</span>
+              <div className="w-9 h-9 rounded-xl bg-primary-green flex items-center justify-center shadow-md shadow-primary-green/10">
+                <span className="font-bold text-white text-lg">A</span>
               </div>
-              <span className="text-xl font-bold bg-gradient-to-r from-emerald-400 to-teal-300 bg-clip-text text-transparent tracking-tight">
+              <span className="text-xl font-bold text-primary-green tracking-tight">
                 AgriConnect
               </span>
             </div>
@@ -32,8 +36,8 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
                 to="/"
                 className={`px-3 py-2 rounded-lg text-sm font-medium transition-all-custom ${
                   isActive('/')
-                    ? 'bg-emerald-500/10 text-emerald-400 border-b-2 border-emerald-500 rounded-b-none'
-                    : 'text-slate-400 hover:text-slate-100 hover:bg-slate-800/50'
+                    ? 'bg-primary-light text-primary-green border-l-[3px] border-l-primary-green rounded-l-none'
+                    : 'text-text-secondary hover:text-text-primary hover:bg-[#F9FAFB]'
                 }`}
               >
                 Marketplace Home
@@ -42,33 +46,45 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
                 to="/health"
                 className={`px-3 py-2 rounded-lg text-sm font-medium transition-all-custom ${
                   isActive('/health')
-                    ? 'bg-emerald-500/10 text-emerald-400 border-b-2 border-emerald-500 rounded-b-none'
-                    : 'text-slate-400 hover:text-slate-100 hover:bg-slate-800/50'
+                    ? 'bg-primary-light text-primary-green border-l-[3px] border-l-primary-green rounded-l-none'
+                    : 'text-text-secondary hover:text-text-primary hover:bg-[#F9FAFB]'
                 }`}
               >
                 API Status
               </Link>
+              {role === 'FARMER' && (
+                <Link
+                  to="/farmer"
+                  className={`px-3 py-2 rounded-lg text-sm font-medium transition-all-custom ${
+                    isActive('/farmer')
+                      ? 'bg-primary-light text-primary-hover border-l-[3px] border-l-primary rounded-l-none'
+                      : 'text-text-secondary hover:text-text-primary hover:bg-[#F9FAFB]'
+                  }`}
+                >
+                  My Listings
+                </Link>
+              )}
             </nav>
           </div>
         </div>
       </header>
 
       {/* Main Content Area */}
-      <main className="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <main className="flex-grow max-w-[1280px] w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 bg-white">
         <div className="animate-[fadeIn_0.5s_ease-out]">
           {children}
         </div>
       </main>
 
       {/* Footer */}
-      <footer className="bg-slate-900 border-t border-slate-800 py-6">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-4">
+      <footer className="bg-white border-t border-border-default py-6">
+        <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-2">
-            <span className="text-sm text-slate-400">
+            <span className="text-sm text-text-secondary">
               © {new Date().getFullYear()} AgriConnect Ghana. Connecting farmers, buyers, & transporters.
             </span>
           </div>
-          <div className="flex items-center gap-4 text-xs text-slate-500">
+          <div className="flex items-center gap-4 text-xs text-text-muted">
             <span>Powered by React + Express + Prisma</span>
           </div>
         </div>
@@ -76,3 +92,4 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
     </div>
   );
 };
+export default Layout;

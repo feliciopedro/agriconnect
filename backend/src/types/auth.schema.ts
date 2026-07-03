@@ -19,4 +19,8 @@ export const UpdateProfileSchema = z.object({
   district: z.string().min(1, 'District cannot be empty').optional(),
   latitude: z.number().min(-90).max(90).optional(),
   longitude: z.number().min(-180).max(180).optional(),
+  vehicleType: z.string().optional(),
+  capacityKg: z.number().optional(),
+  serviceRadiusKm: z.number().optional(),
+  businessType: z.string().optional(),
 });

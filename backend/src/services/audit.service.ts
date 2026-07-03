@@ -1,18 +1,25 @@
 import prisma from '../prisma/client';
-import { Prisma } from '../prisma/generated-client';
+import { Prisma, Role } from '../prisma/generated-client';
 
 export interface AuditLogData {
-  userId?: string | null;
+  actorId?: string;
+  userId?: string | null; // Old field compatibility
+  actorRole?: string;     // Role enum as string
   action: string;
-  entityName: string;
-  entityId: string;
-  oldValues?: any;
-  newValues?: any;
+  targetType?: string;
+  entityName?: string;    // Old field compatibility
+  targetId?: string;
+  entityId?: string;      // Old field compatibility
+  metadata?: any;
+  oldValues?: any;        // Old field compatibility
+  newValues?: any;        // Old field compatibility
+  ipAddress?: string;
+  userAgent?: string;
 }
 
 export class AuditLogService {
   /**
-   * Logs a new data mutation to the immutable AuditLog table.
+   * Logs a new audit entry.
    * Can be executed within a transaction block by passing the transaction client.
    */
   public static async log(
@@ -20,51 +27,93 @@ export class AuditLogService {
     tx?: Prisma.TransactionClient
   ): Promise<void> {
     const client = tx || prisma;
+
+    const actorId = data.actorId || data.userId;
+    if (!actorId) {
+      throw new Error('actorId or userId is required for audit logging');
+    }
+
+    let actorRole = data.actorRole;
+    if (!actorRole) {
+      // Query the user's role if not explicitly provided
+      let user = null;
+      if (client && (client as any).user) {
+        user = await (client as any).user.findUnique({
+          where: { id: actorId },
+          select: { role: true },
+        });
+      } else if (prisma && prisma.user) {
+        user = await prisma.user.findUnique({
+          where: { id: actorId },
+          select: { role: true },
+        });
+      }
+      actorRole = user?.role || Role.ADMIN;
+    }
+
+    const targetType = data.targetType || data.entityName || null;
+    const targetId = data.targetId || data.entityId || null;
+
+    let metadata = data.metadata;
+    if (!metadata && (data.oldValues || data.newValues)) {
+      metadata = {
+        oldValues: data.oldValues ?? null,
+        newValues: data.newValues ?? null,
+      };
+    }
+
     await client.auditLog.create({
       data: {
-        userId: data.userId || null,
+        actorId,
+        actorRole: actorRole as Role,
         action: data.action,
-        entityName: data.entityName,
-        entityId: data.entityId,
-        oldValues: data.oldValues ? (data.oldValues as Prisma.InputJsonValue) : Prisma.JsonNull,
-        newValues: data.newValues ? (data.newValues as Prisma.InputJsonValue) : Prisma.JsonNull,
+        targetType,
+        targetId,
+        metadata: metadata ? (metadata as Prisma.InputJsonValue) : Prisma.JsonNull,
+        ipAddress: data.ipAddress ?? null,
+        userAgent: data.userAgent ?? null,
       },
     });
   }
 
   /**
-   * Retrieves audit logs for admin review with filtering and pagination.
+   * Retrieves audit logs with optional filtering and pagination.
    */
   public static async getLogs(
     filters: {
-      userId?: string;
+      actorId?: string;
+      userId?: string; // Old filter compatibility
+      actorRole?: string;
       action?: string;
-      entityName?: string;
-      entityId?: string;
+      targetType?: string;
+      entityName?: string; // Old filter compatibility
+      targetId?: string;
+      entityId?: string;   // Old filter compatibility
     },
-    pagination: {
-      limit: number;
-      page: number;
-    }
+    pagination: { limit: number; page: number }
   ) {
     const where: any = {};
-    if (filters.userId) where.userId = filters.userId;
+    const actorId = filters.actorId || filters.userId;
+    if (actorId) where.actorId = actorId;
+    if (filters.actorRole) where.actorRole = filters.actorRole;
     if (filters.action) where.action = filters.action;
-    if (filters.entityName) where.entityName = filters.entityName;
-    if (filters.entityId) where.entityId = filters.entityId;
+
+    const targetType = filters.targetType || filters.entityName;
+    if (targetType) where.targetType = targetType;
+
+    const targetId = filters.targetId || filters.entityId;
+    if (targetId) where.targetId = targetId;
 
     const skip = (pagination.page - 1) * pagination.limit;
 
     const [logs, total] = await Promise.all([
       prisma.auditLog.findMany({
         where,
-        orderBy: { createdAt: 'desc' },
+        orderBy: { timestamp: 'desc' },
         skip,
         take: pagination.limit,
         include: {
-          user: {
-            select: { id: true, name: true, phone: true, role: true },
-          },
+          actor: { select: { id: true, name: true, phone: true, role: true } },
         },
       }),
       prisma.auditLog.count({ where }),

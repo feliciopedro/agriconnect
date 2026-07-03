@@ -103,6 +103,16 @@ export type PlantingInput = $Result.DefaultSelection<Prisma.$PlantingInputPayloa
  * 
  */
 export type AuditLog = $Result.DefaultSelection<Prisma.$AuditLogPayload>
+/**
+ * Model SystemConfig
+ * 
+ */
+export type SystemConfig = $Result.DefaultSelection<Prisma.$SystemConfigPayload>
+/**
+ * Model UserBan
+ * 
+ */
+export type UserBan = $Result.DefaultSelection<Prisma.$UserBanPayload>
 
 /**
  * Enums
@@ -112,7 +122,8 @@ export namespace $Enums {
   FARMER: 'FARMER',
   BUYER: 'BUYER',
   TRANSPORT: 'TRANSPORT',
-  ADMIN: 'ADMIN'
+  ADMIN: 'ADMIN',
+  SUPERADMIN: 'SUPERADMIN'
 };
 
 export type Role = (typeof Role)[keyof typeof Role]
@@ -559,6 +570,26 @@ export class PrismaClient<
     * ```
     */
   get auditLog(): Prisma.AuditLogDelegate<ExtArgs>;
+
+  /**
+   * `prisma.systemConfig`: Exposes CRUD operations for the **SystemConfig** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more SystemConfigs
+    * const systemConfigs = await prisma.systemConfig.findMany()
+    * ```
+    */
+  get systemConfig(): Prisma.SystemConfigDelegate<ExtArgs>;
+
+  /**
+   * `prisma.userBan`: Exposes CRUD operations for the **UserBan** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more UserBans
+    * const userBans = await prisma.userBan.findMany()
+    * ```
+    */
+  get userBan(): Prisma.UserBanDelegate<ExtArgs>;
 }
 
 export namespace Prisma {
@@ -1017,7 +1048,9 @@ export namespace Prisma {
     PreOrder: 'PreOrder',
     PlantingLog: 'PlantingLog',
     PlantingInput: 'PlantingInput',
-    AuditLog: 'AuditLog'
+    AuditLog: 'AuditLog',
+    SystemConfig: 'SystemConfig',
+    UserBan: 'UserBan'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -1033,7 +1066,7 @@ export namespace Prisma {
 
   export type TypeMap<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, ClientOptions = {}> = {
     meta: {
-      modelProps: "user" | "farmerProfile" | "buyerProfile" | "transportProfile" | "produceListing" | "traceabilityRecord" | "traceEvent" | "order" | "deliveryRequest" | "review" | "notification" | "message" | "otpCode" | "ussdSession" | "preOrder" | "plantingLog" | "plantingInput" | "auditLog"
+      modelProps: "user" | "farmerProfile" | "buyerProfile" | "transportProfile" | "produceListing" | "traceabilityRecord" | "traceEvent" | "order" | "deliveryRequest" | "review" | "notification" | "message" | "otpCode" | "ussdSession" | "preOrder" | "plantingLog" | "plantingInput" | "auditLog" | "systemConfig" | "userBan"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -2297,6 +2330,146 @@ export namespace Prisma {
           }
         }
       }
+      SystemConfig: {
+        payload: Prisma.$SystemConfigPayload<ExtArgs>
+        fields: Prisma.SystemConfigFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.SystemConfigFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SystemConfigPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.SystemConfigFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SystemConfigPayload>
+          }
+          findFirst: {
+            args: Prisma.SystemConfigFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SystemConfigPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.SystemConfigFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SystemConfigPayload>
+          }
+          findMany: {
+            args: Prisma.SystemConfigFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SystemConfigPayload>[]
+          }
+          create: {
+            args: Prisma.SystemConfigCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SystemConfigPayload>
+          }
+          createMany: {
+            args: Prisma.SystemConfigCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.SystemConfigCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SystemConfigPayload>[]
+          }
+          delete: {
+            args: Prisma.SystemConfigDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SystemConfigPayload>
+          }
+          update: {
+            args: Prisma.SystemConfigUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SystemConfigPayload>
+          }
+          deleteMany: {
+            args: Prisma.SystemConfigDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.SystemConfigUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.SystemConfigUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SystemConfigPayload>
+          }
+          aggregate: {
+            args: Prisma.SystemConfigAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateSystemConfig>
+          }
+          groupBy: {
+            args: Prisma.SystemConfigGroupByArgs<ExtArgs>
+            result: $Utils.Optional<SystemConfigGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.SystemConfigCountArgs<ExtArgs>
+            result: $Utils.Optional<SystemConfigCountAggregateOutputType> | number
+          }
+        }
+      }
+      UserBan: {
+        payload: Prisma.$UserBanPayload<ExtArgs>
+        fields: Prisma.UserBanFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.UserBanFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserBanPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.UserBanFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserBanPayload>
+          }
+          findFirst: {
+            args: Prisma.UserBanFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserBanPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.UserBanFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserBanPayload>
+          }
+          findMany: {
+            args: Prisma.UserBanFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserBanPayload>[]
+          }
+          create: {
+            args: Prisma.UserBanCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserBanPayload>
+          }
+          createMany: {
+            args: Prisma.UserBanCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.UserBanCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserBanPayload>[]
+          }
+          delete: {
+            args: Prisma.UserBanDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserBanPayload>
+          }
+          update: {
+            args: Prisma.UserBanUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserBanPayload>
+          }
+          deleteMany: {
+            args: Prisma.UserBanDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.UserBanUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.UserBanUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserBanPayload>
+          }
+          aggregate: {
+            args: Prisma.UserBanAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateUserBan>
+          }
+          groupBy: {
+            args: Prisma.UserBanGroupByArgs<ExtArgs>
+            result: $Utils.Optional<UserBanGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.UserBanCountArgs<ExtArgs>
+            result: $Utils.Optional<UserBanCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -2470,6 +2643,8 @@ export namespace Prisma {
     preOrders: number
     plantingLogs: number
     auditLogs: number
+    configsUpdated: number
+    bansIssued: number
   }
 
   export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -2485,6 +2660,8 @@ export namespace Prisma {
     preOrders?: boolean | UserCountOutputTypeCountPreOrdersArgs
     plantingLogs?: boolean | UserCountOutputTypeCountPlantingLogsArgs
     auditLogs?: boolean | UserCountOutputTypeCountAuditLogsArgs
+    configsUpdated?: boolean | UserCountOutputTypeCountConfigsUpdatedArgs
+    bansIssued?: boolean | UserCountOutputTypeCountBansIssuedArgs
   }
 
   // Custom InputTypes
@@ -2580,6 +2757,20 @@ export namespace Prisma {
    */
   export type UserCountOutputTypeCountAuditLogsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: AuditLogWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountConfigsUpdatedArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: SystemConfigWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountBansIssuedArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: UserBanWhereInput
   }
 
 
@@ -2981,6 +3172,9 @@ export namespace Prisma {
     preOrders?: boolean | User$preOrdersArgs<ExtArgs>
     plantingLogs?: boolean | User$plantingLogsArgs<ExtArgs>
     auditLogs?: boolean | User$auditLogsArgs<ExtArgs>
+    configsUpdated?: boolean | User$configsUpdatedArgs<ExtArgs>
+    ban?: boolean | User$banArgs<ExtArgs>
+    bansIssued?: boolean | User$bansIssuedArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
@@ -3028,6 +3222,9 @@ export namespace Prisma {
     preOrders?: boolean | User$preOrdersArgs<ExtArgs>
     plantingLogs?: boolean | User$plantingLogsArgs<ExtArgs>
     auditLogs?: boolean | User$auditLogsArgs<ExtArgs>
+    configsUpdated?: boolean | User$configsUpdatedArgs<ExtArgs>
+    ban?: boolean | User$banArgs<ExtArgs>
+    bansIssued?: boolean | User$bansIssuedArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type UserIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -3050,6 +3247,9 @@ export namespace Prisma {
       preOrders: Prisma.$PreOrderPayload<ExtArgs>[]
       plantingLogs: Prisma.$PlantingLogPayload<ExtArgs>[]
       auditLogs: Prisma.$AuditLogPayload<ExtArgs>[]
+      configsUpdated: Prisma.$SystemConfigPayload<ExtArgs>[]
+      ban: Prisma.$UserBanPayload<ExtArgs> | null
+      bansIssued: Prisma.$UserBanPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -3442,6 +3642,9 @@ export namespace Prisma {
     preOrders<T extends User$preOrdersArgs<ExtArgs> = {}>(args?: Subset<T, User$preOrdersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PreOrderPayload<ExtArgs>, T, "findMany"> | Null>
     plantingLogs<T extends User$plantingLogsArgs<ExtArgs> = {}>(args?: Subset<T, User$plantingLogsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PlantingLogPayload<ExtArgs>, T, "findMany"> | Null>
     auditLogs<T extends User$auditLogsArgs<ExtArgs> = {}>(args?: Subset<T, User$auditLogsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AuditLogPayload<ExtArgs>, T, "findMany"> | Null>
+    configsUpdated<T extends User$configsUpdatedArgs<ExtArgs> = {}>(args?: Subset<T, User$configsUpdatedArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SystemConfigPayload<ExtArgs>, T, "findMany"> | Null>
+    ban<T extends User$banArgs<ExtArgs> = {}>(args?: Subset<T, User$banArgs<ExtArgs>>): Prisma__UserBanClient<$Result.GetResult<Prisma.$UserBanPayload<ExtArgs>, T, "findUniqueOrThrow"> | null, null, ExtArgs>
+    bansIssued<T extends User$bansIssuedArgs<ExtArgs> = {}>(args?: Subset<T, User$bansIssuedArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserBanPayload<ExtArgs>, T, "findMany"> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -4078,6 +4281,61 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: AuditLogScalarFieldEnum | AuditLogScalarFieldEnum[]
+  }
+
+  /**
+   * User.configsUpdated
+   */
+  export type User$configsUpdatedArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SystemConfig
+     */
+    select?: SystemConfigSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SystemConfigInclude<ExtArgs> | null
+    where?: SystemConfigWhereInput
+    orderBy?: SystemConfigOrderByWithRelationInput | SystemConfigOrderByWithRelationInput[]
+    cursor?: SystemConfigWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: SystemConfigScalarFieldEnum | SystemConfigScalarFieldEnum[]
+  }
+
+  /**
+   * User.ban
+   */
+  export type User$banArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserBan
+     */
+    select?: UserBanSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserBanInclude<ExtArgs> | null
+    where?: UserBanWhereInput
+  }
+
+  /**
+   * User.bansIssued
+   */
+  export type User$bansIssuedArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserBan
+     */
+    select?: UserBanSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserBanInclude<ExtArgs> | null
+    where?: UserBanWhereInput
+    orderBy?: UserBanOrderByWithRelationInput | UserBanOrderByWithRelationInput[]
+    cursor?: UserBanWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: UserBanScalarFieldEnum | UserBanScalarFieldEnum[]
   }
 
   /**
@@ -20772,62 +21030,78 @@ export namespace Prisma {
 
   export type AuditLogMinAggregateOutputType = {
     id: string | null
-    userId: string | null
+    actorId: string | null
+    actorRole: $Enums.Role | null
     action: string | null
-    entityName: string | null
-    entityId: string | null
-    createdAt: Date | null
+    targetType: string | null
+    targetId: string | null
+    ipAddress: string | null
+    userAgent: string | null
+    timestamp: Date | null
   }
 
   export type AuditLogMaxAggregateOutputType = {
     id: string | null
-    userId: string | null
+    actorId: string | null
+    actorRole: $Enums.Role | null
     action: string | null
-    entityName: string | null
-    entityId: string | null
-    createdAt: Date | null
+    targetType: string | null
+    targetId: string | null
+    ipAddress: string | null
+    userAgent: string | null
+    timestamp: Date | null
   }
 
   export type AuditLogCountAggregateOutputType = {
     id: number
-    userId: number
+    actorId: number
+    actorRole: number
     action: number
-    entityName: number
-    entityId: number
-    oldValues: number
-    newValues: number
-    createdAt: number
+    targetType: number
+    targetId: number
+    metadata: number
+    ipAddress: number
+    userAgent: number
+    timestamp: number
     _all: number
   }
 
 
   export type AuditLogMinAggregateInputType = {
     id?: true
-    userId?: true
+    actorId?: true
+    actorRole?: true
     action?: true
-    entityName?: true
-    entityId?: true
-    createdAt?: true
+    targetType?: true
+    targetId?: true
+    ipAddress?: true
+    userAgent?: true
+    timestamp?: true
   }
 
   export type AuditLogMaxAggregateInputType = {
     id?: true
-    userId?: true
+    actorId?: true
+    actorRole?: true
     action?: true
-    entityName?: true
-    entityId?: true
-    createdAt?: true
+    targetType?: true
+    targetId?: true
+    ipAddress?: true
+    userAgent?: true
+    timestamp?: true
   }
 
   export type AuditLogCountAggregateInputType = {
     id?: true
-    userId?: true
+    actorId?: true
+    actorRole?: true
     action?: true
-    entityName?: true
-    entityId?: true
-    oldValues?: true
-    newValues?: true
-    createdAt?: true
+    targetType?: true
+    targetId?: true
+    metadata?: true
+    ipAddress?: true
+    userAgent?: true
+    timestamp?: true
     _all?: true
   }
 
@@ -20905,13 +21179,15 @@ export namespace Prisma {
 
   export type AuditLogGroupByOutputType = {
     id: string
-    userId: string | null
+    actorId: string
+    actorRole: $Enums.Role
     action: string
-    entityName: string
-    entityId: string
-    oldValues: JsonValue | null
-    newValues: JsonValue | null
-    createdAt: Date
+    targetType: string | null
+    targetId: string | null
+    metadata: JsonValue | null
+    ipAddress: string | null
+    userAgent: string | null
+    timestamp: Date
     _count: AuditLogCountAggregateOutputType | null
     _min: AuditLogMinAggregateOutputType | null
     _max: AuditLogMaxAggregateOutputType | null
@@ -20933,60 +21209,68 @@ export namespace Prisma {
 
   export type AuditLogSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    userId?: boolean
+    actorId?: boolean
+    actorRole?: boolean
     action?: boolean
-    entityName?: boolean
-    entityId?: boolean
-    oldValues?: boolean
-    newValues?: boolean
-    createdAt?: boolean
-    user?: boolean | AuditLog$userArgs<ExtArgs>
+    targetType?: boolean
+    targetId?: boolean
+    metadata?: boolean
+    ipAddress?: boolean
+    userAgent?: boolean
+    timestamp?: boolean
+    actor?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["auditLog"]>
 
   export type AuditLogSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    userId?: boolean
+    actorId?: boolean
+    actorRole?: boolean
     action?: boolean
-    entityName?: boolean
-    entityId?: boolean
-    oldValues?: boolean
-    newValues?: boolean
-    createdAt?: boolean
-    user?: boolean | AuditLog$userArgs<ExtArgs>
+    targetType?: boolean
+    targetId?: boolean
+    metadata?: boolean
+    ipAddress?: boolean
+    userAgent?: boolean
+    timestamp?: boolean
+    actor?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["auditLog"]>
 
   export type AuditLogSelectScalar = {
     id?: boolean
-    userId?: boolean
+    actorId?: boolean
+    actorRole?: boolean
     action?: boolean
-    entityName?: boolean
-    entityId?: boolean
-    oldValues?: boolean
-    newValues?: boolean
-    createdAt?: boolean
+    targetType?: boolean
+    targetId?: boolean
+    metadata?: boolean
+    ipAddress?: boolean
+    userAgent?: boolean
+    timestamp?: boolean
   }
 
   export type AuditLogInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    user?: boolean | AuditLog$userArgs<ExtArgs>
+    actor?: boolean | UserDefaultArgs<ExtArgs>
   }
   export type AuditLogIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    user?: boolean | AuditLog$userArgs<ExtArgs>
+    actor?: boolean | UserDefaultArgs<ExtArgs>
   }
 
   export type $AuditLogPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "AuditLog"
     objects: {
-      user: Prisma.$UserPayload<ExtArgs> | null
+      actor: Prisma.$UserPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
-      userId: string | null
+      actorId: string
+      actorRole: $Enums.Role
       action: string
-      entityName: string
-      entityId: string
-      oldValues: Prisma.JsonValue | null
-      newValues: Prisma.JsonValue | null
-      createdAt: Date
+      targetType: string | null
+      targetId: string | null
+      metadata: Prisma.JsonValue | null
+      ipAddress: string | null
+      userAgent: string | null
+      timestamp: Date
     }, ExtArgs["result"]["auditLog"]>
     composites: {}
   }
@@ -21351,7 +21635,7 @@ export namespace Prisma {
    */
   export interface Prisma__AuditLogClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    user<T extends AuditLog$userArgs<ExtArgs> = {}>(args?: Subset<T, AuditLog$userArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow"> | null, null, ExtArgs>
+    actor<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -21382,13 +21666,15 @@ export namespace Prisma {
    */ 
   interface AuditLogFieldRefs {
     readonly id: FieldRef<"AuditLog", 'String'>
-    readonly userId: FieldRef<"AuditLog", 'String'>
+    readonly actorId: FieldRef<"AuditLog", 'String'>
+    readonly actorRole: FieldRef<"AuditLog", 'Role'>
     readonly action: FieldRef<"AuditLog", 'String'>
-    readonly entityName: FieldRef<"AuditLog", 'String'>
-    readonly entityId: FieldRef<"AuditLog", 'String'>
-    readonly oldValues: FieldRef<"AuditLog", 'Json'>
-    readonly newValues: FieldRef<"AuditLog", 'Json'>
-    readonly createdAt: FieldRef<"AuditLog", 'DateTime'>
+    readonly targetType: FieldRef<"AuditLog", 'String'>
+    readonly targetId: FieldRef<"AuditLog", 'String'>
+    readonly metadata: FieldRef<"AuditLog", 'Json'>
+    readonly ipAddress: FieldRef<"AuditLog", 'String'>
+    readonly userAgent: FieldRef<"AuditLog", 'String'>
+    readonly timestamp: FieldRef<"AuditLog", 'DateTime'>
   }
     
 
@@ -21707,21 +21993,6 @@ export namespace Prisma {
   }
 
   /**
-   * AuditLog.user
-   */
-  export type AuditLog$userArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the User
-     */
-    select?: UserSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: UserInclude<ExtArgs> | null
-    where?: UserWhereInput
-  }
-
-  /**
    * AuditLog without action
    */
   export type AuditLogDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -21733,6 +22004,1914 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well
      */
     include?: AuditLogInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model SystemConfig
+   */
+
+  export type AggregateSystemConfig = {
+    _count: SystemConfigCountAggregateOutputType | null
+    _min: SystemConfigMinAggregateOutputType | null
+    _max: SystemConfigMaxAggregateOutputType | null
+  }
+
+  export type SystemConfigMinAggregateOutputType = {
+    id: string | null
+    key: string | null
+    value: string | null
+    description: string | null
+    updatedBy: string | null
+    updatedAt: Date | null
+  }
+
+  export type SystemConfigMaxAggregateOutputType = {
+    id: string | null
+    key: string | null
+    value: string | null
+    description: string | null
+    updatedBy: string | null
+    updatedAt: Date | null
+  }
+
+  export type SystemConfigCountAggregateOutputType = {
+    id: number
+    key: number
+    value: number
+    description: number
+    updatedBy: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type SystemConfigMinAggregateInputType = {
+    id?: true
+    key?: true
+    value?: true
+    description?: true
+    updatedBy?: true
+    updatedAt?: true
+  }
+
+  export type SystemConfigMaxAggregateInputType = {
+    id?: true
+    key?: true
+    value?: true
+    description?: true
+    updatedBy?: true
+    updatedAt?: true
+  }
+
+  export type SystemConfigCountAggregateInputType = {
+    id?: true
+    key?: true
+    value?: true
+    description?: true
+    updatedBy?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type SystemConfigAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which SystemConfig to aggregate.
+     */
+    where?: SystemConfigWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of SystemConfigs to fetch.
+     */
+    orderBy?: SystemConfigOrderByWithRelationInput | SystemConfigOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: SystemConfigWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` SystemConfigs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` SystemConfigs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned SystemConfigs
+    **/
+    _count?: true | SystemConfigCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: SystemConfigMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: SystemConfigMaxAggregateInputType
+  }
+
+  export type GetSystemConfigAggregateType<T extends SystemConfigAggregateArgs> = {
+        [P in keyof T & keyof AggregateSystemConfig]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateSystemConfig[P]>
+      : GetScalarType<T[P], AggregateSystemConfig[P]>
+  }
+
+
+
+
+  export type SystemConfigGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: SystemConfigWhereInput
+    orderBy?: SystemConfigOrderByWithAggregationInput | SystemConfigOrderByWithAggregationInput[]
+    by: SystemConfigScalarFieldEnum[] | SystemConfigScalarFieldEnum
+    having?: SystemConfigScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: SystemConfigCountAggregateInputType | true
+    _min?: SystemConfigMinAggregateInputType
+    _max?: SystemConfigMaxAggregateInputType
+  }
+
+  export type SystemConfigGroupByOutputType = {
+    id: string
+    key: string
+    value: string
+    description: string | null
+    updatedBy: string
+    updatedAt: Date
+    _count: SystemConfigCountAggregateOutputType | null
+    _min: SystemConfigMinAggregateOutputType | null
+    _max: SystemConfigMaxAggregateOutputType | null
+  }
+
+  type GetSystemConfigGroupByPayload<T extends SystemConfigGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<SystemConfigGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof SystemConfigGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], SystemConfigGroupByOutputType[P]>
+            : GetScalarType<T[P], SystemConfigGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type SystemConfigSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    key?: boolean
+    value?: boolean
+    description?: boolean
+    updatedBy?: boolean
+    updatedAt?: boolean
+    updater?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["systemConfig"]>
+
+  export type SystemConfigSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    key?: boolean
+    value?: boolean
+    description?: boolean
+    updatedBy?: boolean
+    updatedAt?: boolean
+    updater?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["systemConfig"]>
+
+  export type SystemConfigSelectScalar = {
+    id?: boolean
+    key?: boolean
+    value?: boolean
+    description?: boolean
+    updatedBy?: boolean
+    updatedAt?: boolean
+  }
+
+  export type SystemConfigInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    updater?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type SystemConfigIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    updater?: boolean | UserDefaultArgs<ExtArgs>
+  }
+
+  export type $SystemConfigPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "SystemConfig"
+    objects: {
+      updater: Prisma.$UserPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      key: string
+      value: string
+      description: string | null
+      updatedBy: string
+      updatedAt: Date
+    }, ExtArgs["result"]["systemConfig"]>
+    composites: {}
+  }
+
+  type SystemConfigGetPayload<S extends boolean | null | undefined | SystemConfigDefaultArgs> = $Result.GetResult<Prisma.$SystemConfigPayload, S>
+
+  type SystemConfigCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<SystemConfigFindManyArgs, 'select' | 'include' | 'distinct'> & {
+      select?: SystemConfigCountAggregateInputType | true
+    }
+
+  export interface SystemConfigDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['SystemConfig'], meta: { name: 'SystemConfig' } }
+    /**
+     * Find zero or one SystemConfig that matches the filter.
+     * @param {SystemConfigFindUniqueArgs} args - Arguments to find a SystemConfig
+     * @example
+     * // Get one SystemConfig
+     * const systemConfig = await prisma.systemConfig.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends SystemConfigFindUniqueArgs>(args: SelectSubset<T, SystemConfigFindUniqueArgs<ExtArgs>>): Prisma__SystemConfigClient<$Result.GetResult<Prisma.$SystemConfigPayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
+
+    /**
+     * Find one SystemConfig that matches the filter or throw an error with `error.code='P2025'` 
+     * if no matches were found.
+     * @param {SystemConfigFindUniqueOrThrowArgs} args - Arguments to find a SystemConfig
+     * @example
+     * // Get one SystemConfig
+     * const systemConfig = await prisma.systemConfig.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends SystemConfigFindUniqueOrThrowArgs>(args: SelectSubset<T, SystemConfigFindUniqueOrThrowArgs<ExtArgs>>): Prisma__SystemConfigClient<$Result.GetResult<Prisma.$SystemConfigPayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
+
+    /**
+     * Find the first SystemConfig that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SystemConfigFindFirstArgs} args - Arguments to find a SystemConfig
+     * @example
+     * // Get one SystemConfig
+     * const systemConfig = await prisma.systemConfig.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends SystemConfigFindFirstArgs>(args?: SelectSubset<T, SystemConfigFindFirstArgs<ExtArgs>>): Prisma__SystemConfigClient<$Result.GetResult<Prisma.$SystemConfigPayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
+
+    /**
+     * Find the first SystemConfig that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SystemConfigFindFirstOrThrowArgs} args - Arguments to find a SystemConfig
+     * @example
+     * // Get one SystemConfig
+     * const systemConfig = await prisma.systemConfig.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends SystemConfigFindFirstOrThrowArgs>(args?: SelectSubset<T, SystemConfigFindFirstOrThrowArgs<ExtArgs>>): Prisma__SystemConfigClient<$Result.GetResult<Prisma.$SystemConfigPayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
+
+    /**
+     * Find zero or more SystemConfigs that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SystemConfigFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all SystemConfigs
+     * const systemConfigs = await prisma.systemConfig.findMany()
+     * 
+     * // Get first 10 SystemConfigs
+     * const systemConfigs = await prisma.systemConfig.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const systemConfigWithIdOnly = await prisma.systemConfig.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends SystemConfigFindManyArgs>(args?: SelectSubset<T, SystemConfigFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SystemConfigPayload<ExtArgs>, T, "findMany">>
+
+    /**
+     * Create a SystemConfig.
+     * @param {SystemConfigCreateArgs} args - Arguments to create a SystemConfig.
+     * @example
+     * // Create one SystemConfig
+     * const SystemConfig = await prisma.systemConfig.create({
+     *   data: {
+     *     // ... data to create a SystemConfig
+     *   }
+     * })
+     * 
+     */
+    create<T extends SystemConfigCreateArgs>(args: SelectSubset<T, SystemConfigCreateArgs<ExtArgs>>): Prisma__SystemConfigClient<$Result.GetResult<Prisma.$SystemConfigPayload<ExtArgs>, T, "create">, never, ExtArgs>
+
+    /**
+     * Create many SystemConfigs.
+     * @param {SystemConfigCreateManyArgs} args - Arguments to create many SystemConfigs.
+     * @example
+     * // Create many SystemConfigs
+     * const systemConfig = await prisma.systemConfig.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends SystemConfigCreateManyArgs>(args?: SelectSubset<T, SystemConfigCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many SystemConfigs and returns the data saved in the database.
+     * @param {SystemConfigCreateManyAndReturnArgs} args - Arguments to create many SystemConfigs.
+     * @example
+     * // Create many SystemConfigs
+     * const systemConfig = await prisma.systemConfig.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many SystemConfigs and only return the `id`
+     * const systemConfigWithIdOnly = await prisma.systemConfig.createManyAndReturn({ 
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends SystemConfigCreateManyAndReturnArgs>(args?: SelectSubset<T, SystemConfigCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SystemConfigPayload<ExtArgs>, T, "createManyAndReturn">>
+
+    /**
+     * Delete a SystemConfig.
+     * @param {SystemConfigDeleteArgs} args - Arguments to delete one SystemConfig.
+     * @example
+     * // Delete one SystemConfig
+     * const SystemConfig = await prisma.systemConfig.delete({
+     *   where: {
+     *     // ... filter to delete one SystemConfig
+     *   }
+     * })
+     * 
+     */
+    delete<T extends SystemConfigDeleteArgs>(args: SelectSubset<T, SystemConfigDeleteArgs<ExtArgs>>): Prisma__SystemConfigClient<$Result.GetResult<Prisma.$SystemConfigPayload<ExtArgs>, T, "delete">, never, ExtArgs>
+
+    /**
+     * Update one SystemConfig.
+     * @param {SystemConfigUpdateArgs} args - Arguments to update one SystemConfig.
+     * @example
+     * // Update one SystemConfig
+     * const systemConfig = await prisma.systemConfig.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends SystemConfigUpdateArgs>(args: SelectSubset<T, SystemConfigUpdateArgs<ExtArgs>>): Prisma__SystemConfigClient<$Result.GetResult<Prisma.$SystemConfigPayload<ExtArgs>, T, "update">, never, ExtArgs>
+
+    /**
+     * Delete zero or more SystemConfigs.
+     * @param {SystemConfigDeleteManyArgs} args - Arguments to filter SystemConfigs to delete.
+     * @example
+     * // Delete a few SystemConfigs
+     * const { count } = await prisma.systemConfig.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends SystemConfigDeleteManyArgs>(args?: SelectSubset<T, SystemConfigDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more SystemConfigs.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SystemConfigUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many SystemConfigs
+     * const systemConfig = await prisma.systemConfig.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends SystemConfigUpdateManyArgs>(args: SelectSubset<T, SystemConfigUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one SystemConfig.
+     * @param {SystemConfigUpsertArgs} args - Arguments to update or create a SystemConfig.
+     * @example
+     * // Update or create a SystemConfig
+     * const systemConfig = await prisma.systemConfig.upsert({
+     *   create: {
+     *     // ... data to create a SystemConfig
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the SystemConfig we want to update
+     *   }
+     * })
+     */
+    upsert<T extends SystemConfigUpsertArgs>(args: SelectSubset<T, SystemConfigUpsertArgs<ExtArgs>>): Prisma__SystemConfigClient<$Result.GetResult<Prisma.$SystemConfigPayload<ExtArgs>, T, "upsert">, never, ExtArgs>
+
+
+    /**
+     * Count the number of SystemConfigs.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SystemConfigCountArgs} args - Arguments to filter SystemConfigs to count.
+     * @example
+     * // Count the number of SystemConfigs
+     * const count = await prisma.systemConfig.count({
+     *   where: {
+     *     // ... the filter for the SystemConfigs we want to count
+     *   }
+     * })
+    **/
+    count<T extends SystemConfigCountArgs>(
+      args?: Subset<T, SystemConfigCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], SystemConfigCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a SystemConfig.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SystemConfigAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends SystemConfigAggregateArgs>(args: Subset<T, SystemConfigAggregateArgs>): Prisma.PrismaPromise<GetSystemConfigAggregateType<T>>
+
+    /**
+     * Group by SystemConfig.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SystemConfigGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends SystemConfigGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: SystemConfigGroupByArgs['orderBy'] }
+        : { orderBy?: SystemConfigGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, SystemConfigGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetSystemConfigGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the SystemConfig model
+   */
+  readonly fields: SystemConfigFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for SystemConfig.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__SystemConfigClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    updater<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the SystemConfig model
+   */ 
+  interface SystemConfigFieldRefs {
+    readonly id: FieldRef<"SystemConfig", 'String'>
+    readonly key: FieldRef<"SystemConfig", 'String'>
+    readonly value: FieldRef<"SystemConfig", 'String'>
+    readonly description: FieldRef<"SystemConfig", 'String'>
+    readonly updatedBy: FieldRef<"SystemConfig", 'String'>
+    readonly updatedAt: FieldRef<"SystemConfig", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * SystemConfig findUnique
+   */
+  export type SystemConfigFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SystemConfig
+     */
+    select?: SystemConfigSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SystemConfigInclude<ExtArgs> | null
+    /**
+     * Filter, which SystemConfig to fetch.
+     */
+    where: SystemConfigWhereUniqueInput
+  }
+
+  /**
+   * SystemConfig findUniqueOrThrow
+   */
+  export type SystemConfigFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SystemConfig
+     */
+    select?: SystemConfigSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SystemConfigInclude<ExtArgs> | null
+    /**
+     * Filter, which SystemConfig to fetch.
+     */
+    where: SystemConfigWhereUniqueInput
+  }
+
+  /**
+   * SystemConfig findFirst
+   */
+  export type SystemConfigFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SystemConfig
+     */
+    select?: SystemConfigSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SystemConfigInclude<ExtArgs> | null
+    /**
+     * Filter, which SystemConfig to fetch.
+     */
+    where?: SystemConfigWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of SystemConfigs to fetch.
+     */
+    orderBy?: SystemConfigOrderByWithRelationInput | SystemConfigOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for SystemConfigs.
+     */
+    cursor?: SystemConfigWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` SystemConfigs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` SystemConfigs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of SystemConfigs.
+     */
+    distinct?: SystemConfigScalarFieldEnum | SystemConfigScalarFieldEnum[]
+  }
+
+  /**
+   * SystemConfig findFirstOrThrow
+   */
+  export type SystemConfigFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SystemConfig
+     */
+    select?: SystemConfigSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SystemConfigInclude<ExtArgs> | null
+    /**
+     * Filter, which SystemConfig to fetch.
+     */
+    where?: SystemConfigWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of SystemConfigs to fetch.
+     */
+    orderBy?: SystemConfigOrderByWithRelationInput | SystemConfigOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for SystemConfigs.
+     */
+    cursor?: SystemConfigWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` SystemConfigs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` SystemConfigs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of SystemConfigs.
+     */
+    distinct?: SystemConfigScalarFieldEnum | SystemConfigScalarFieldEnum[]
+  }
+
+  /**
+   * SystemConfig findMany
+   */
+  export type SystemConfigFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SystemConfig
+     */
+    select?: SystemConfigSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SystemConfigInclude<ExtArgs> | null
+    /**
+     * Filter, which SystemConfigs to fetch.
+     */
+    where?: SystemConfigWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of SystemConfigs to fetch.
+     */
+    orderBy?: SystemConfigOrderByWithRelationInput | SystemConfigOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing SystemConfigs.
+     */
+    cursor?: SystemConfigWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` SystemConfigs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` SystemConfigs.
+     */
+    skip?: number
+    distinct?: SystemConfigScalarFieldEnum | SystemConfigScalarFieldEnum[]
+  }
+
+  /**
+   * SystemConfig create
+   */
+  export type SystemConfigCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SystemConfig
+     */
+    select?: SystemConfigSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SystemConfigInclude<ExtArgs> | null
+    /**
+     * The data needed to create a SystemConfig.
+     */
+    data: XOR<SystemConfigCreateInput, SystemConfigUncheckedCreateInput>
+  }
+
+  /**
+   * SystemConfig createMany
+   */
+  export type SystemConfigCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many SystemConfigs.
+     */
+    data: SystemConfigCreateManyInput | SystemConfigCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * SystemConfig createManyAndReturn
+   */
+  export type SystemConfigCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SystemConfig
+     */
+    select?: SystemConfigSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * The data used to create many SystemConfigs.
+     */
+    data: SystemConfigCreateManyInput | SystemConfigCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SystemConfigIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * SystemConfig update
+   */
+  export type SystemConfigUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SystemConfig
+     */
+    select?: SystemConfigSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SystemConfigInclude<ExtArgs> | null
+    /**
+     * The data needed to update a SystemConfig.
+     */
+    data: XOR<SystemConfigUpdateInput, SystemConfigUncheckedUpdateInput>
+    /**
+     * Choose, which SystemConfig to update.
+     */
+    where: SystemConfigWhereUniqueInput
+  }
+
+  /**
+   * SystemConfig updateMany
+   */
+  export type SystemConfigUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update SystemConfigs.
+     */
+    data: XOR<SystemConfigUpdateManyMutationInput, SystemConfigUncheckedUpdateManyInput>
+    /**
+     * Filter which SystemConfigs to update
+     */
+    where?: SystemConfigWhereInput
+  }
+
+  /**
+   * SystemConfig upsert
+   */
+  export type SystemConfigUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SystemConfig
+     */
+    select?: SystemConfigSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SystemConfigInclude<ExtArgs> | null
+    /**
+     * The filter to search for the SystemConfig to update in case it exists.
+     */
+    where: SystemConfigWhereUniqueInput
+    /**
+     * In case the SystemConfig found by the `where` argument doesn't exist, create a new SystemConfig with this data.
+     */
+    create: XOR<SystemConfigCreateInput, SystemConfigUncheckedCreateInput>
+    /**
+     * In case the SystemConfig was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<SystemConfigUpdateInput, SystemConfigUncheckedUpdateInput>
+  }
+
+  /**
+   * SystemConfig delete
+   */
+  export type SystemConfigDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SystemConfig
+     */
+    select?: SystemConfigSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SystemConfigInclude<ExtArgs> | null
+    /**
+     * Filter which SystemConfig to delete.
+     */
+    where: SystemConfigWhereUniqueInput
+  }
+
+  /**
+   * SystemConfig deleteMany
+   */
+  export type SystemConfigDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which SystemConfigs to delete
+     */
+    where?: SystemConfigWhereInput
+  }
+
+  /**
+   * SystemConfig without action
+   */
+  export type SystemConfigDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SystemConfig
+     */
+    select?: SystemConfigSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SystemConfigInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model UserBan
+   */
+
+  export type AggregateUserBan = {
+    _count: UserBanCountAggregateOutputType | null
+    _min: UserBanMinAggregateOutputType | null
+    _max: UserBanMaxAggregateOutputType | null
+  }
+
+  export type UserBanMinAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    bannedBy: string | null
+    reason: string | null
+    bannedAt: Date | null
+    expiresAt: Date | null
+    isActive: boolean | null
+  }
+
+  export type UserBanMaxAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    bannedBy: string | null
+    reason: string | null
+    bannedAt: Date | null
+    expiresAt: Date | null
+    isActive: boolean | null
+  }
+
+  export type UserBanCountAggregateOutputType = {
+    id: number
+    userId: number
+    bannedBy: number
+    reason: number
+    bannedAt: number
+    expiresAt: number
+    isActive: number
+    _all: number
+  }
+
+
+  export type UserBanMinAggregateInputType = {
+    id?: true
+    userId?: true
+    bannedBy?: true
+    reason?: true
+    bannedAt?: true
+    expiresAt?: true
+    isActive?: true
+  }
+
+  export type UserBanMaxAggregateInputType = {
+    id?: true
+    userId?: true
+    bannedBy?: true
+    reason?: true
+    bannedAt?: true
+    expiresAt?: true
+    isActive?: true
+  }
+
+  export type UserBanCountAggregateInputType = {
+    id?: true
+    userId?: true
+    bannedBy?: true
+    reason?: true
+    bannedAt?: true
+    expiresAt?: true
+    isActive?: true
+    _all?: true
+  }
+
+  export type UserBanAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which UserBan to aggregate.
+     */
+    where?: UserBanWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of UserBans to fetch.
+     */
+    orderBy?: UserBanOrderByWithRelationInput | UserBanOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: UserBanWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` UserBans from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` UserBans.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned UserBans
+    **/
+    _count?: true | UserBanCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: UserBanMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: UserBanMaxAggregateInputType
+  }
+
+  export type GetUserBanAggregateType<T extends UserBanAggregateArgs> = {
+        [P in keyof T & keyof AggregateUserBan]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateUserBan[P]>
+      : GetScalarType<T[P], AggregateUserBan[P]>
+  }
+
+
+
+
+  export type UserBanGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: UserBanWhereInput
+    orderBy?: UserBanOrderByWithAggregationInput | UserBanOrderByWithAggregationInput[]
+    by: UserBanScalarFieldEnum[] | UserBanScalarFieldEnum
+    having?: UserBanScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: UserBanCountAggregateInputType | true
+    _min?: UserBanMinAggregateInputType
+    _max?: UserBanMaxAggregateInputType
+  }
+
+  export type UserBanGroupByOutputType = {
+    id: string
+    userId: string
+    bannedBy: string
+    reason: string
+    bannedAt: Date
+    expiresAt: Date | null
+    isActive: boolean
+    _count: UserBanCountAggregateOutputType | null
+    _min: UserBanMinAggregateOutputType | null
+    _max: UserBanMaxAggregateOutputType | null
+  }
+
+  type GetUserBanGroupByPayload<T extends UserBanGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<UserBanGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof UserBanGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], UserBanGroupByOutputType[P]>
+            : GetScalarType<T[P], UserBanGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type UserBanSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    bannedBy?: boolean
+    reason?: boolean
+    bannedAt?: boolean
+    expiresAt?: boolean
+    isActive?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    banner?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["userBan"]>
+
+  export type UserBanSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    bannedBy?: boolean
+    reason?: boolean
+    bannedAt?: boolean
+    expiresAt?: boolean
+    isActive?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    banner?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["userBan"]>
+
+  export type UserBanSelectScalar = {
+    id?: boolean
+    userId?: boolean
+    bannedBy?: boolean
+    reason?: boolean
+    bannedAt?: boolean
+    expiresAt?: boolean
+    isActive?: boolean
+  }
+
+  export type UserBanInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    banner?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type UserBanIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    banner?: boolean | UserDefaultArgs<ExtArgs>
+  }
+
+  export type $UserBanPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "UserBan"
+    objects: {
+      user: Prisma.$UserPayload<ExtArgs>
+      banner: Prisma.$UserPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      userId: string
+      bannedBy: string
+      reason: string
+      bannedAt: Date
+      expiresAt: Date | null
+      isActive: boolean
+    }, ExtArgs["result"]["userBan"]>
+    composites: {}
+  }
+
+  type UserBanGetPayload<S extends boolean | null | undefined | UserBanDefaultArgs> = $Result.GetResult<Prisma.$UserBanPayload, S>
+
+  type UserBanCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<UserBanFindManyArgs, 'select' | 'include' | 'distinct'> & {
+      select?: UserBanCountAggregateInputType | true
+    }
+
+  export interface UserBanDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['UserBan'], meta: { name: 'UserBan' } }
+    /**
+     * Find zero or one UserBan that matches the filter.
+     * @param {UserBanFindUniqueArgs} args - Arguments to find a UserBan
+     * @example
+     * // Get one UserBan
+     * const userBan = await prisma.userBan.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends UserBanFindUniqueArgs>(args: SelectSubset<T, UserBanFindUniqueArgs<ExtArgs>>): Prisma__UserBanClient<$Result.GetResult<Prisma.$UserBanPayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
+
+    /**
+     * Find one UserBan that matches the filter or throw an error with `error.code='P2025'` 
+     * if no matches were found.
+     * @param {UserBanFindUniqueOrThrowArgs} args - Arguments to find a UserBan
+     * @example
+     * // Get one UserBan
+     * const userBan = await prisma.userBan.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends UserBanFindUniqueOrThrowArgs>(args: SelectSubset<T, UserBanFindUniqueOrThrowArgs<ExtArgs>>): Prisma__UserBanClient<$Result.GetResult<Prisma.$UserBanPayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
+
+    /**
+     * Find the first UserBan that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserBanFindFirstArgs} args - Arguments to find a UserBan
+     * @example
+     * // Get one UserBan
+     * const userBan = await prisma.userBan.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends UserBanFindFirstArgs>(args?: SelectSubset<T, UserBanFindFirstArgs<ExtArgs>>): Prisma__UserBanClient<$Result.GetResult<Prisma.$UserBanPayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
+
+    /**
+     * Find the first UserBan that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserBanFindFirstOrThrowArgs} args - Arguments to find a UserBan
+     * @example
+     * // Get one UserBan
+     * const userBan = await prisma.userBan.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends UserBanFindFirstOrThrowArgs>(args?: SelectSubset<T, UserBanFindFirstOrThrowArgs<ExtArgs>>): Prisma__UserBanClient<$Result.GetResult<Prisma.$UserBanPayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
+
+    /**
+     * Find zero or more UserBans that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserBanFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all UserBans
+     * const userBans = await prisma.userBan.findMany()
+     * 
+     * // Get first 10 UserBans
+     * const userBans = await prisma.userBan.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const userBanWithIdOnly = await prisma.userBan.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends UserBanFindManyArgs>(args?: SelectSubset<T, UserBanFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserBanPayload<ExtArgs>, T, "findMany">>
+
+    /**
+     * Create a UserBan.
+     * @param {UserBanCreateArgs} args - Arguments to create a UserBan.
+     * @example
+     * // Create one UserBan
+     * const UserBan = await prisma.userBan.create({
+     *   data: {
+     *     // ... data to create a UserBan
+     *   }
+     * })
+     * 
+     */
+    create<T extends UserBanCreateArgs>(args: SelectSubset<T, UserBanCreateArgs<ExtArgs>>): Prisma__UserBanClient<$Result.GetResult<Prisma.$UserBanPayload<ExtArgs>, T, "create">, never, ExtArgs>
+
+    /**
+     * Create many UserBans.
+     * @param {UserBanCreateManyArgs} args - Arguments to create many UserBans.
+     * @example
+     * // Create many UserBans
+     * const userBan = await prisma.userBan.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends UserBanCreateManyArgs>(args?: SelectSubset<T, UserBanCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many UserBans and returns the data saved in the database.
+     * @param {UserBanCreateManyAndReturnArgs} args - Arguments to create many UserBans.
+     * @example
+     * // Create many UserBans
+     * const userBan = await prisma.userBan.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many UserBans and only return the `id`
+     * const userBanWithIdOnly = await prisma.userBan.createManyAndReturn({ 
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends UserBanCreateManyAndReturnArgs>(args?: SelectSubset<T, UserBanCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserBanPayload<ExtArgs>, T, "createManyAndReturn">>
+
+    /**
+     * Delete a UserBan.
+     * @param {UserBanDeleteArgs} args - Arguments to delete one UserBan.
+     * @example
+     * // Delete one UserBan
+     * const UserBan = await prisma.userBan.delete({
+     *   where: {
+     *     // ... filter to delete one UserBan
+     *   }
+     * })
+     * 
+     */
+    delete<T extends UserBanDeleteArgs>(args: SelectSubset<T, UserBanDeleteArgs<ExtArgs>>): Prisma__UserBanClient<$Result.GetResult<Prisma.$UserBanPayload<ExtArgs>, T, "delete">, never, ExtArgs>
+
+    /**
+     * Update one UserBan.
+     * @param {UserBanUpdateArgs} args - Arguments to update one UserBan.
+     * @example
+     * // Update one UserBan
+     * const userBan = await prisma.userBan.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends UserBanUpdateArgs>(args: SelectSubset<T, UserBanUpdateArgs<ExtArgs>>): Prisma__UserBanClient<$Result.GetResult<Prisma.$UserBanPayload<ExtArgs>, T, "update">, never, ExtArgs>
+
+    /**
+     * Delete zero or more UserBans.
+     * @param {UserBanDeleteManyArgs} args - Arguments to filter UserBans to delete.
+     * @example
+     * // Delete a few UserBans
+     * const { count } = await prisma.userBan.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends UserBanDeleteManyArgs>(args?: SelectSubset<T, UserBanDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more UserBans.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserBanUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many UserBans
+     * const userBan = await prisma.userBan.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends UserBanUpdateManyArgs>(args: SelectSubset<T, UserBanUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one UserBan.
+     * @param {UserBanUpsertArgs} args - Arguments to update or create a UserBan.
+     * @example
+     * // Update or create a UserBan
+     * const userBan = await prisma.userBan.upsert({
+     *   create: {
+     *     // ... data to create a UserBan
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the UserBan we want to update
+     *   }
+     * })
+     */
+    upsert<T extends UserBanUpsertArgs>(args: SelectSubset<T, UserBanUpsertArgs<ExtArgs>>): Prisma__UserBanClient<$Result.GetResult<Prisma.$UserBanPayload<ExtArgs>, T, "upsert">, never, ExtArgs>
+
+
+    /**
+     * Count the number of UserBans.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserBanCountArgs} args - Arguments to filter UserBans to count.
+     * @example
+     * // Count the number of UserBans
+     * const count = await prisma.userBan.count({
+     *   where: {
+     *     // ... the filter for the UserBans we want to count
+     *   }
+     * })
+    **/
+    count<T extends UserBanCountArgs>(
+      args?: Subset<T, UserBanCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], UserBanCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a UserBan.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserBanAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends UserBanAggregateArgs>(args: Subset<T, UserBanAggregateArgs>): Prisma.PrismaPromise<GetUserBanAggregateType<T>>
+
+    /**
+     * Group by UserBan.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserBanGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends UserBanGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: UserBanGroupByArgs['orderBy'] }
+        : { orderBy?: UserBanGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, UserBanGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetUserBanGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the UserBan model
+   */
+  readonly fields: UserBanFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for UserBan.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__UserBanClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
+    banner<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the UserBan model
+   */ 
+  interface UserBanFieldRefs {
+    readonly id: FieldRef<"UserBan", 'String'>
+    readonly userId: FieldRef<"UserBan", 'String'>
+    readonly bannedBy: FieldRef<"UserBan", 'String'>
+    readonly reason: FieldRef<"UserBan", 'String'>
+    readonly bannedAt: FieldRef<"UserBan", 'DateTime'>
+    readonly expiresAt: FieldRef<"UserBan", 'DateTime'>
+    readonly isActive: FieldRef<"UserBan", 'Boolean'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * UserBan findUnique
+   */
+  export type UserBanFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserBan
+     */
+    select?: UserBanSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserBanInclude<ExtArgs> | null
+    /**
+     * Filter, which UserBan to fetch.
+     */
+    where: UserBanWhereUniqueInput
+  }
+
+  /**
+   * UserBan findUniqueOrThrow
+   */
+  export type UserBanFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserBan
+     */
+    select?: UserBanSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserBanInclude<ExtArgs> | null
+    /**
+     * Filter, which UserBan to fetch.
+     */
+    where: UserBanWhereUniqueInput
+  }
+
+  /**
+   * UserBan findFirst
+   */
+  export type UserBanFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserBan
+     */
+    select?: UserBanSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserBanInclude<ExtArgs> | null
+    /**
+     * Filter, which UserBan to fetch.
+     */
+    where?: UserBanWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of UserBans to fetch.
+     */
+    orderBy?: UserBanOrderByWithRelationInput | UserBanOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for UserBans.
+     */
+    cursor?: UserBanWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` UserBans from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` UserBans.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of UserBans.
+     */
+    distinct?: UserBanScalarFieldEnum | UserBanScalarFieldEnum[]
+  }
+
+  /**
+   * UserBan findFirstOrThrow
+   */
+  export type UserBanFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserBan
+     */
+    select?: UserBanSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserBanInclude<ExtArgs> | null
+    /**
+     * Filter, which UserBan to fetch.
+     */
+    where?: UserBanWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of UserBans to fetch.
+     */
+    orderBy?: UserBanOrderByWithRelationInput | UserBanOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for UserBans.
+     */
+    cursor?: UserBanWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` UserBans from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` UserBans.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of UserBans.
+     */
+    distinct?: UserBanScalarFieldEnum | UserBanScalarFieldEnum[]
+  }
+
+  /**
+   * UserBan findMany
+   */
+  export type UserBanFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserBan
+     */
+    select?: UserBanSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserBanInclude<ExtArgs> | null
+    /**
+     * Filter, which UserBans to fetch.
+     */
+    where?: UserBanWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of UserBans to fetch.
+     */
+    orderBy?: UserBanOrderByWithRelationInput | UserBanOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing UserBans.
+     */
+    cursor?: UserBanWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` UserBans from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` UserBans.
+     */
+    skip?: number
+    distinct?: UserBanScalarFieldEnum | UserBanScalarFieldEnum[]
+  }
+
+  /**
+   * UserBan create
+   */
+  export type UserBanCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserBan
+     */
+    select?: UserBanSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserBanInclude<ExtArgs> | null
+    /**
+     * The data needed to create a UserBan.
+     */
+    data: XOR<UserBanCreateInput, UserBanUncheckedCreateInput>
+  }
+
+  /**
+   * UserBan createMany
+   */
+  export type UserBanCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many UserBans.
+     */
+    data: UserBanCreateManyInput | UserBanCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * UserBan createManyAndReturn
+   */
+  export type UserBanCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserBan
+     */
+    select?: UserBanSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * The data used to create many UserBans.
+     */
+    data: UserBanCreateManyInput | UserBanCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserBanIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * UserBan update
+   */
+  export type UserBanUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserBan
+     */
+    select?: UserBanSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserBanInclude<ExtArgs> | null
+    /**
+     * The data needed to update a UserBan.
+     */
+    data: XOR<UserBanUpdateInput, UserBanUncheckedUpdateInput>
+    /**
+     * Choose, which UserBan to update.
+     */
+    where: UserBanWhereUniqueInput
+  }
+
+  /**
+   * UserBan updateMany
+   */
+  export type UserBanUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update UserBans.
+     */
+    data: XOR<UserBanUpdateManyMutationInput, UserBanUncheckedUpdateManyInput>
+    /**
+     * Filter which UserBans to update
+     */
+    where?: UserBanWhereInput
+  }
+
+  /**
+   * UserBan upsert
+   */
+  export type UserBanUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserBan
+     */
+    select?: UserBanSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserBanInclude<ExtArgs> | null
+    /**
+     * The filter to search for the UserBan to update in case it exists.
+     */
+    where: UserBanWhereUniqueInput
+    /**
+     * In case the UserBan found by the `where` argument doesn't exist, create a new UserBan with this data.
+     */
+    create: XOR<UserBanCreateInput, UserBanUncheckedCreateInput>
+    /**
+     * In case the UserBan was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<UserBanUpdateInput, UserBanUncheckedUpdateInput>
+  }
+
+  /**
+   * UserBan delete
+   */
+  export type UserBanDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserBan
+     */
+    select?: UserBanSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserBanInclude<ExtArgs> | null
+    /**
+     * Filter which UserBan to delete.
+     */
+    where: UserBanWhereUniqueInput
+  }
+
+  /**
+   * UserBan deleteMany
+   */
+  export type UserBanDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which UserBans to delete
+     */
+    where?: UserBanWhereInput
+  }
+
+  /**
+   * UserBan without action
+   */
+  export type UserBanDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserBan
+     */
+    select?: UserBanSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserBanInclude<ExtArgs> | null
   }
 
 
@@ -22030,16 +24209,43 @@ export namespace Prisma {
 
   export const AuditLogScalarFieldEnum: {
     id: 'id',
-    userId: 'userId',
+    actorId: 'actorId',
+    actorRole: 'actorRole',
     action: 'action',
-    entityName: 'entityName',
-    entityId: 'entityId',
-    oldValues: 'oldValues',
-    newValues: 'newValues',
-    createdAt: 'createdAt'
+    targetType: 'targetType',
+    targetId: 'targetId',
+    metadata: 'metadata',
+    ipAddress: 'ipAddress',
+    userAgent: 'userAgent',
+    timestamp: 'timestamp'
   };
 
   export type AuditLogScalarFieldEnum = (typeof AuditLogScalarFieldEnum)[keyof typeof AuditLogScalarFieldEnum]
+
+
+  export const SystemConfigScalarFieldEnum: {
+    id: 'id',
+    key: 'key',
+    value: 'value',
+    description: 'description',
+    updatedBy: 'updatedBy',
+    updatedAt: 'updatedAt'
+  };
+
+  export type SystemConfigScalarFieldEnum = (typeof SystemConfigScalarFieldEnum)[keyof typeof SystemConfigScalarFieldEnum]
+
+
+  export const UserBanScalarFieldEnum: {
+    id: 'id',
+    userId: 'userId',
+    bannedBy: 'bannedBy',
+    reason: 'reason',
+    bannedAt: 'bannedAt',
+    expiresAt: 'expiresAt',
+    isActive: 'isActive'
+  };
+
+  export type UserBanScalarFieldEnum = (typeof UserBanScalarFieldEnum)[keyof typeof UserBanScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -22331,6 +24537,9 @@ export namespace Prisma {
     preOrders?: PreOrderListRelationFilter
     plantingLogs?: PlantingLogListRelationFilter
     auditLogs?: AuditLogListRelationFilter
+    configsUpdated?: SystemConfigListRelationFilter
+    ban?: XOR<UserBanNullableRelationFilter, UserBanWhereInput> | null
+    bansIssued?: UserBanListRelationFilter
   }
 
   export type UserOrderByWithRelationInput = {
@@ -22360,6 +24569,9 @@ export namespace Prisma {
     preOrders?: PreOrderOrderByRelationAggregateInput
     plantingLogs?: PlantingLogOrderByRelationAggregateInput
     auditLogs?: AuditLogOrderByRelationAggregateInput
+    configsUpdated?: SystemConfigOrderByRelationAggregateInput
+    ban?: UserBanOrderByWithRelationInput
+    bansIssued?: UserBanOrderByRelationAggregateInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -22392,6 +24604,9 @@ export namespace Prisma {
     preOrders?: PreOrderListRelationFilter
     plantingLogs?: PlantingLogListRelationFilter
     auditLogs?: AuditLogListRelationFilter
+    configsUpdated?: SystemConfigListRelationFilter
+    ban?: XOR<UserBanNullableRelationFilter, UserBanWhereInput> | null
+    bansIssued?: UserBanListRelationFilter
   }, "id" | "phone">
 
   export type UserOrderByWithAggregationInput = {
@@ -23817,26 +26032,30 @@ export namespace Prisma {
     OR?: AuditLogWhereInput[]
     NOT?: AuditLogWhereInput | AuditLogWhereInput[]
     id?: StringFilter<"AuditLog"> | string
-    userId?: StringNullableFilter<"AuditLog"> | string | null
+    actorId?: StringFilter<"AuditLog"> | string
+    actorRole?: EnumRoleFilter<"AuditLog"> | $Enums.Role
     action?: StringFilter<"AuditLog"> | string
-    entityName?: StringFilter<"AuditLog"> | string
-    entityId?: StringFilter<"AuditLog"> | string
-    oldValues?: JsonNullableFilter<"AuditLog">
-    newValues?: JsonNullableFilter<"AuditLog">
-    createdAt?: DateTimeFilter<"AuditLog"> | Date | string
-    user?: XOR<UserNullableRelationFilter, UserWhereInput> | null
+    targetType?: StringNullableFilter<"AuditLog"> | string | null
+    targetId?: StringNullableFilter<"AuditLog"> | string | null
+    metadata?: JsonNullableFilter<"AuditLog">
+    ipAddress?: StringNullableFilter<"AuditLog"> | string | null
+    userAgent?: StringNullableFilter<"AuditLog"> | string | null
+    timestamp?: DateTimeFilter<"AuditLog"> | Date | string
+    actor?: XOR<UserRelationFilter, UserWhereInput>
   }
 
   export type AuditLogOrderByWithRelationInput = {
     id?: SortOrder
-    userId?: SortOrderInput | SortOrder
+    actorId?: SortOrder
+    actorRole?: SortOrder
     action?: SortOrder
-    entityName?: SortOrder
-    entityId?: SortOrder
-    oldValues?: SortOrderInput | SortOrder
-    newValues?: SortOrderInput | SortOrder
-    createdAt?: SortOrder
-    user?: UserOrderByWithRelationInput
+    targetType?: SortOrderInput | SortOrder
+    targetId?: SortOrderInput | SortOrder
+    metadata?: SortOrderInput | SortOrder
+    ipAddress?: SortOrderInput | SortOrder
+    userAgent?: SortOrderInput | SortOrder
+    timestamp?: SortOrder
+    actor?: UserOrderByWithRelationInput
   }
 
   export type AuditLogWhereUniqueInput = Prisma.AtLeast<{
@@ -23844,25 +26063,29 @@ export namespace Prisma {
     AND?: AuditLogWhereInput | AuditLogWhereInput[]
     OR?: AuditLogWhereInput[]
     NOT?: AuditLogWhereInput | AuditLogWhereInput[]
-    userId?: StringNullableFilter<"AuditLog"> | string | null
+    actorId?: StringFilter<"AuditLog"> | string
+    actorRole?: EnumRoleFilter<"AuditLog"> | $Enums.Role
     action?: StringFilter<"AuditLog"> | string
-    entityName?: StringFilter<"AuditLog"> | string
-    entityId?: StringFilter<"AuditLog"> | string
-    oldValues?: JsonNullableFilter<"AuditLog">
-    newValues?: JsonNullableFilter<"AuditLog">
-    createdAt?: DateTimeFilter<"AuditLog"> | Date | string
-    user?: XOR<UserNullableRelationFilter, UserWhereInput> | null
+    targetType?: StringNullableFilter<"AuditLog"> | string | null
+    targetId?: StringNullableFilter<"AuditLog"> | string | null
+    metadata?: JsonNullableFilter<"AuditLog">
+    ipAddress?: StringNullableFilter<"AuditLog"> | string | null
+    userAgent?: StringNullableFilter<"AuditLog"> | string | null
+    timestamp?: DateTimeFilter<"AuditLog"> | Date | string
+    actor?: XOR<UserRelationFilter, UserWhereInput>
   }, "id">
 
   export type AuditLogOrderByWithAggregationInput = {
     id?: SortOrder
-    userId?: SortOrderInput | SortOrder
+    actorId?: SortOrder
+    actorRole?: SortOrder
     action?: SortOrder
-    entityName?: SortOrder
-    entityId?: SortOrder
-    oldValues?: SortOrderInput | SortOrder
-    newValues?: SortOrderInput | SortOrder
-    createdAt?: SortOrder
+    targetType?: SortOrderInput | SortOrder
+    targetId?: SortOrderInput | SortOrder
+    metadata?: SortOrderInput | SortOrder
+    ipAddress?: SortOrderInput | SortOrder
+    userAgent?: SortOrderInput | SortOrder
+    timestamp?: SortOrder
     _count?: AuditLogCountOrderByAggregateInput
     _max?: AuditLogMaxOrderByAggregateInput
     _min?: AuditLogMinOrderByAggregateInput
@@ -23873,13 +26096,143 @@ export namespace Prisma {
     OR?: AuditLogScalarWhereWithAggregatesInput[]
     NOT?: AuditLogScalarWhereWithAggregatesInput | AuditLogScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"AuditLog"> | string
-    userId?: StringNullableWithAggregatesFilter<"AuditLog"> | string | null
+    actorId?: StringWithAggregatesFilter<"AuditLog"> | string
+    actorRole?: EnumRoleWithAggregatesFilter<"AuditLog"> | $Enums.Role
     action?: StringWithAggregatesFilter<"AuditLog"> | string
-    entityName?: StringWithAggregatesFilter<"AuditLog"> | string
-    entityId?: StringWithAggregatesFilter<"AuditLog"> | string
-    oldValues?: JsonNullableWithAggregatesFilter<"AuditLog">
-    newValues?: JsonNullableWithAggregatesFilter<"AuditLog">
-    createdAt?: DateTimeWithAggregatesFilter<"AuditLog"> | Date | string
+    targetType?: StringNullableWithAggregatesFilter<"AuditLog"> | string | null
+    targetId?: StringNullableWithAggregatesFilter<"AuditLog"> | string | null
+    metadata?: JsonNullableWithAggregatesFilter<"AuditLog">
+    ipAddress?: StringNullableWithAggregatesFilter<"AuditLog"> | string | null
+    userAgent?: StringNullableWithAggregatesFilter<"AuditLog"> | string | null
+    timestamp?: DateTimeWithAggregatesFilter<"AuditLog"> | Date | string
+  }
+
+  export type SystemConfigWhereInput = {
+    AND?: SystemConfigWhereInput | SystemConfigWhereInput[]
+    OR?: SystemConfigWhereInput[]
+    NOT?: SystemConfigWhereInput | SystemConfigWhereInput[]
+    id?: StringFilter<"SystemConfig"> | string
+    key?: StringFilter<"SystemConfig"> | string
+    value?: StringFilter<"SystemConfig"> | string
+    description?: StringNullableFilter<"SystemConfig"> | string | null
+    updatedBy?: StringFilter<"SystemConfig"> | string
+    updatedAt?: DateTimeFilter<"SystemConfig"> | Date | string
+    updater?: XOR<UserRelationFilter, UserWhereInput>
+  }
+
+  export type SystemConfigOrderByWithRelationInput = {
+    id?: SortOrder
+    key?: SortOrder
+    value?: SortOrder
+    description?: SortOrderInput | SortOrder
+    updatedBy?: SortOrder
+    updatedAt?: SortOrder
+    updater?: UserOrderByWithRelationInput
+  }
+
+  export type SystemConfigWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    key?: string
+    AND?: SystemConfigWhereInput | SystemConfigWhereInput[]
+    OR?: SystemConfigWhereInput[]
+    NOT?: SystemConfigWhereInput | SystemConfigWhereInput[]
+    value?: StringFilter<"SystemConfig"> | string
+    description?: StringNullableFilter<"SystemConfig"> | string | null
+    updatedBy?: StringFilter<"SystemConfig"> | string
+    updatedAt?: DateTimeFilter<"SystemConfig"> | Date | string
+    updater?: XOR<UserRelationFilter, UserWhereInput>
+  }, "id" | "key">
+
+  export type SystemConfigOrderByWithAggregationInput = {
+    id?: SortOrder
+    key?: SortOrder
+    value?: SortOrder
+    description?: SortOrderInput | SortOrder
+    updatedBy?: SortOrder
+    updatedAt?: SortOrder
+    _count?: SystemConfigCountOrderByAggregateInput
+    _max?: SystemConfigMaxOrderByAggregateInput
+    _min?: SystemConfigMinOrderByAggregateInput
+  }
+
+  export type SystemConfigScalarWhereWithAggregatesInput = {
+    AND?: SystemConfigScalarWhereWithAggregatesInput | SystemConfigScalarWhereWithAggregatesInput[]
+    OR?: SystemConfigScalarWhereWithAggregatesInput[]
+    NOT?: SystemConfigScalarWhereWithAggregatesInput | SystemConfigScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"SystemConfig"> | string
+    key?: StringWithAggregatesFilter<"SystemConfig"> | string
+    value?: StringWithAggregatesFilter<"SystemConfig"> | string
+    description?: StringNullableWithAggregatesFilter<"SystemConfig"> | string | null
+    updatedBy?: StringWithAggregatesFilter<"SystemConfig"> | string
+    updatedAt?: DateTimeWithAggregatesFilter<"SystemConfig"> | Date | string
+  }
+
+  export type UserBanWhereInput = {
+    AND?: UserBanWhereInput | UserBanWhereInput[]
+    OR?: UserBanWhereInput[]
+    NOT?: UserBanWhereInput | UserBanWhereInput[]
+    id?: StringFilter<"UserBan"> | string
+    userId?: StringFilter<"UserBan"> | string
+    bannedBy?: StringFilter<"UserBan"> | string
+    reason?: StringFilter<"UserBan"> | string
+    bannedAt?: DateTimeFilter<"UserBan"> | Date | string
+    expiresAt?: DateTimeNullableFilter<"UserBan"> | Date | string | null
+    isActive?: BoolFilter<"UserBan"> | boolean
+    user?: XOR<UserRelationFilter, UserWhereInput>
+    banner?: XOR<UserRelationFilter, UserWhereInput>
+  }
+
+  export type UserBanOrderByWithRelationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    bannedBy?: SortOrder
+    reason?: SortOrder
+    bannedAt?: SortOrder
+    expiresAt?: SortOrderInput | SortOrder
+    isActive?: SortOrder
+    user?: UserOrderByWithRelationInput
+    banner?: UserOrderByWithRelationInput
+  }
+
+  export type UserBanWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    userId?: string
+    AND?: UserBanWhereInput | UserBanWhereInput[]
+    OR?: UserBanWhereInput[]
+    NOT?: UserBanWhereInput | UserBanWhereInput[]
+    bannedBy?: StringFilter<"UserBan"> | string
+    reason?: StringFilter<"UserBan"> | string
+    bannedAt?: DateTimeFilter<"UserBan"> | Date | string
+    expiresAt?: DateTimeNullableFilter<"UserBan"> | Date | string | null
+    isActive?: BoolFilter<"UserBan"> | boolean
+    user?: XOR<UserRelationFilter, UserWhereInput>
+    banner?: XOR<UserRelationFilter, UserWhereInput>
+  }, "id" | "userId">
+
+  export type UserBanOrderByWithAggregationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    bannedBy?: SortOrder
+    reason?: SortOrder
+    bannedAt?: SortOrder
+    expiresAt?: SortOrderInput | SortOrder
+    isActive?: SortOrder
+    _count?: UserBanCountOrderByAggregateInput
+    _max?: UserBanMaxOrderByAggregateInput
+    _min?: UserBanMinOrderByAggregateInput
+  }
+
+  export type UserBanScalarWhereWithAggregatesInput = {
+    AND?: UserBanScalarWhereWithAggregatesInput | UserBanScalarWhereWithAggregatesInput[]
+    OR?: UserBanScalarWhereWithAggregatesInput[]
+    NOT?: UserBanScalarWhereWithAggregatesInput | UserBanScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"UserBan"> | string
+    userId?: StringWithAggregatesFilter<"UserBan"> | string
+    bannedBy?: StringWithAggregatesFilter<"UserBan"> | string
+    reason?: StringWithAggregatesFilter<"UserBan"> | string
+    bannedAt?: DateTimeWithAggregatesFilter<"UserBan"> | Date | string
+    expiresAt?: DateTimeNullableWithAggregatesFilter<"UserBan"> | Date | string | null
+    isActive?: BoolWithAggregatesFilter<"UserBan"> | boolean
   }
 
   export type UserCreateInput = {
@@ -23908,7 +26261,10 @@ export namespace Prisma {
     recordedTraceEvents?: TraceEventCreateNestedManyWithoutRecordedByUserInput
     preOrders?: PreOrderCreateNestedManyWithoutBuyerInput
     plantingLogs?: PlantingLogCreateNestedManyWithoutFarmerInput
-    auditLogs?: AuditLogCreateNestedManyWithoutUserInput
+    auditLogs?: AuditLogCreateNestedManyWithoutActorInput
+    configsUpdated?: SystemConfigCreateNestedManyWithoutUpdaterInput
+    ban?: UserBanCreateNestedOneWithoutUserInput
+    bansIssued?: UserBanCreateNestedManyWithoutBannerInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -23937,7 +26293,10 @@ export namespace Prisma {
     recordedTraceEvents?: TraceEventUncheckedCreateNestedManyWithoutRecordedByUserInput
     preOrders?: PreOrderUncheckedCreateNestedManyWithoutBuyerInput
     plantingLogs?: PlantingLogUncheckedCreateNestedManyWithoutFarmerInput
-    auditLogs?: AuditLogUncheckedCreateNestedManyWithoutUserInput
+    auditLogs?: AuditLogUncheckedCreateNestedManyWithoutActorInput
+    configsUpdated?: SystemConfigUncheckedCreateNestedManyWithoutUpdaterInput
+    ban?: UserBanUncheckedCreateNestedOneWithoutUserInput
+    bansIssued?: UserBanUncheckedCreateNestedManyWithoutBannerInput
   }
 
   export type UserUpdateInput = {
@@ -23966,7 +26325,10 @@ export namespace Prisma {
     recordedTraceEvents?: TraceEventUpdateManyWithoutRecordedByUserNestedInput
     preOrders?: PreOrderUpdateManyWithoutBuyerNestedInput
     plantingLogs?: PlantingLogUpdateManyWithoutFarmerNestedInput
-    auditLogs?: AuditLogUpdateManyWithoutUserNestedInput
+    auditLogs?: AuditLogUpdateManyWithoutActorNestedInput
+    configsUpdated?: SystemConfigUpdateManyWithoutUpdaterNestedInput
+    ban?: UserBanUpdateOneWithoutUserNestedInput
+    bansIssued?: UserBanUpdateManyWithoutBannerNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -23995,7 +26357,10 @@ export namespace Prisma {
     recordedTraceEvents?: TraceEventUncheckedUpdateManyWithoutRecordedByUserNestedInput
     preOrders?: PreOrderUncheckedUpdateManyWithoutBuyerNestedInput
     plantingLogs?: PlantingLogUncheckedUpdateManyWithoutFarmerNestedInput
-    auditLogs?: AuditLogUncheckedUpdateManyWithoutUserNestedInput
+    auditLogs?: AuditLogUncheckedUpdateManyWithoutActorNestedInput
+    configsUpdated?: SystemConfigUncheckedUpdateManyWithoutUpdaterNestedInput
+    ban?: UserBanUncheckedUpdateOneWithoutUserNestedInput
+    bansIssued?: UserBanUncheckedUpdateManyWithoutBannerNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -25549,78 +27914,222 @@ export namespace Prisma {
 
   export type AuditLogCreateInput = {
     id?: string
+    actorRole: $Enums.Role
     action: string
-    entityName: string
-    entityId: string
-    oldValues?: NullableJsonNullValueInput | InputJsonValue
-    newValues?: NullableJsonNullValueInput | InputJsonValue
-    createdAt?: Date | string
-    user?: UserCreateNestedOneWithoutAuditLogsInput
+    targetType?: string | null
+    targetId?: string | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    ipAddress?: string | null
+    userAgent?: string | null
+    timestamp?: Date | string
+    actor: UserCreateNestedOneWithoutAuditLogsInput
   }
 
   export type AuditLogUncheckedCreateInput = {
     id?: string
-    userId?: string | null
+    actorId: string
+    actorRole: $Enums.Role
     action: string
-    entityName: string
-    entityId: string
-    oldValues?: NullableJsonNullValueInput | InputJsonValue
-    newValues?: NullableJsonNullValueInput | InputJsonValue
-    createdAt?: Date | string
+    targetType?: string | null
+    targetId?: string | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    ipAddress?: string | null
+    userAgent?: string | null
+    timestamp?: Date | string
   }
 
   export type AuditLogUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
+    actorRole?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     action?: StringFieldUpdateOperationsInput | string
-    entityName?: StringFieldUpdateOperationsInput | string
-    entityId?: StringFieldUpdateOperationsInput | string
-    oldValues?: NullableJsonNullValueInput | InputJsonValue
-    newValues?: NullableJsonNullValueInput | InputJsonValue
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    user?: UserUpdateOneWithoutAuditLogsNestedInput
+    targetType?: NullableStringFieldUpdateOperationsInput | string | null
+    targetId?: NullableStringFieldUpdateOperationsInput | string | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    ipAddress?: NullableStringFieldUpdateOperationsInput | string | null
+    userAgent?: NullableStringFieldUpdateOperationsInput | string | null
+    timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
+    actor?: UserUpdateOneRequiredWithoutAuditLogsNestedInput
   }
 
   export type AuditLogUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    userId?: NullableStringFieldUpdateOperationsInput | string | null
+    actorId?: StringFieldUpdateOperationsInput | string
+    actorRole?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     action?: StringFieldUpdateOperationsInput | string
-    entityName?: StringFieldUpdateOperationsInput | string
-    entityId?: StringFieldUpdateOperationsInput | string
-    oldValues?: NullableJsonNullValueInput | InputJsonValue
-    newValues?: NullableJsonNullValueInput | InputJsonValue
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    targetType?: NullableStringFieldUpdateOperationsInput | string | null
+    targetId?: NullableStringFieldUpdateOperationsInput | string | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    ipAddress?: NullableStringFieldUpdateOperationsInput | string | null
+    userAgent?: NullableStringFieldUpdateOperationsInput | string | null
+    timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type AuditLogCreateManyInput = {
     id?: string
-    userId?: string | null
+    actorId: string
+    actorRole: $Enums.Role
     action: string
-    entityName: string
-    entityId: string
-    oldValues?: NullableJsonNullValueInput | InputJsonValue
-    newValues?: NullableJsonNullValueInput | InputJsonValue
-    createdAt?: Date | string
+    targetType?: string | null
+    targetId?: string | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    ipAddress?: string | null
+    userAgent?: string | null
+    timestamp?: Date | string
   }
 
   export type AuditLogUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
+    actorRole?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     action?: StringFieldUpdateOperationsInput | string
-    entityName?: StringFieldUpdateOperationsInput | string
-    entityId?: StringFieldUpdateOperationsInput | string
-    oldValues?: NullableJsonNullValueInput | InputJsonValue
-    newValues?: NullableJsonNullValueInput | InputJsonValue
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    targetType?: NullableStringFieldUpdateOperationsInput | string | null
+    targetId?: NullableStringFieldUpdateOperationsInput | string | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    ipAddress?: NullableStringFieldUpdateOperationsInput | string | null
+    userAgent?: NullableStringFieldUpdateOperationsInput | string | null
+    timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type AuditLogUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
-    userId?: NullableStringFieldUpdateOperationsInput | string | null
+    actorId?: StringFieldUpdateOperationsInput | string
+    actorRole?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     action?: StringFieldUpdateOperationsInput | string
-    entityName?: StringFieldUpdateOperationsInput | string
-    entityId?: StringFieldUpdateOperationsInput | string
-    oldValues?: NullableJsonNullValueInput | InputJsonValue
-    newValues?: NullableJsonNullValueInput | InputJsonValue
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    targetType?: NullableStringFieldUpdateOperationsInput | string | null
+    targetId?: NullableStringFieldUpdateOperationsInput | string | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    ipAddress?: NullableStringFieldUpdateOperationsInput | string | null
+    userAgent?: NullableStringFieldUpdateOperationsInput | string | null
+    timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SystemConfigCreateInput = {
+    id?: string
+    key: string
+    value: string
+    description?: string | null
+    updatedAt?: Date | string
+    updater: UserCreateNestedOneWithoutConfigsUpdatedInput
+  }
+
+  export type SystemConfigUncheckedCreateInput = {
+    id?: string
+    key: string
+    value: string
+    description?: string | null
+    updatedBy: string
+    updatedAt?: Date | string
+  }
+
+  export type SystemConfigUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    key?: StringFieldUpdateOperationsInput | string
+    value?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updater?: UserUpdateOneRequiredWithoutConfigsUpdatedNestedInput
+  }
+
+  export type SystemConfigUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    key?: StringFieldUpdateOperationsInput | string
+    value?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    updatedBy?: StringFieldUpdateOperationsInput | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SystemConfigCreateManyInput = {
+    id?: string
+    key: string
+    value: string
+    description?: string | null
+    updatedBy: string
+    updatedAt?: Date | string
+  }
+
+  export type SystemConfigUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    key?: StringFieldUpdateOperationsInput | string
+    value?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SystemConfigUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    key?: StringFieldUpdateOperationsInput | string
+    value?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    updatedBy?: StringFieldUpdateOperationsInput | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type UserBanCreateInput = {
+    id?: string
+    reason: string
+    bannedAt?: Date | string
+    expiresAt?: Date | string | null
+    isActive?: boolean
+    user: UserCreateNestedOneWithoutBanInput
+    banner: UserCreateNestedOneWithoutBansIssuedInput
+  }
+
+  export type UserBanUncheckedCreateInput = {
+    id?: string
+    userId: string
+    bannedBy: string
+    reason: string
+    bannedAt?: Date | string
+    expiresAt?: Date | string | null
+    isActive?: boolean
+  }
+
+  export type UserBanUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    reason?: StringFieldUpdateOperationsInput | string
+    bannedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    expiresAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    user?: UserUpdateOneRequiredWithoutBanNestedInput
+    banner?: UserUpdateOneRequiredWithoutBansIssuedNestedInput
+  }
+
+  export type UserBanUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    bannedBy?: StringFieldUpdateOperationsInput | string
+    reason?: StringFieldUpdateOperationsInput | string
+    bannedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    expiresAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type UserBanCreateManyInput = {
+    id?: string
+    userId: string
+    bannedBy: string
+    reason: string
+    bannedAt?: Date | string
+    expiresAt?: Date | string | null
+    isActive?: boolean
+  }
+
+  export type UserBanUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    reason?: StringFieldUpdateOperationsInput | string
+    bannedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    expiresAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type UserBanUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    bannedBy?: StringFieldUpdateOperationsInput | string
+    reason?: StringFieldUpdateOperationsInput | string
+    bannedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    expiresAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type StringFilter<$PrismaModel = never> = {
@@ -25762,6 +28271,23 @@ export namespace Prisma {
     none?: AuditLogWhereInput
   }
 
+  export type SystemConfigListRelationFilter = {
+    every?: SystemConfigWhereInput
+    some?: SystemConfigWhereInput
+    none?: SystemConfigWhereInput
+  }
+
+  export type UserBanNullableRelationFilter = {
+    is?: UserBanWhereInput | null
+    isNot?: UserBanWhereInput | null
+  }
+
+  export type UserBanListRelationFilter = {
+    every?: UserBanWhereInput
+    some?: UserBanWhereInput
+    none?: UserBanWhereInput
+  }
+
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
@@ -25804,6 +28330,14 @@ export namespace Prisma {
   }
 
   export type AuditLogOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type SystemConfigOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type UserBanOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -27065,31 +29599,96 @@ export namespace Prisma {
 
   export type AuditLogCountOrderByAggregateInput = {
     id?: SortOrder
-    userId?: SortOrder
+    actorId?: SortOrder
+    actorRole?: SortOrder
     action?: SortOrder
-    entityName?: SortOrder
-    entityId?: SortOrder
-    oldValues?: SortOrder
-    newValues?: SortOrder
-    createdAt?: SortOrder
+    targetType?: SortOrder
+    targetId?: SortOrder
+    metadata?: SortOrder
+    ipAddress?: SortOrder
+    userAgent?: SortOrder
+    timestamp?: SortOrder
   }
 
   export type AuditLogMaxOrderByAggregateInput = {
     id?: SortOrder
-    userId?: SortOrder
+    actorId?: SortOrder
+    actorRole?: SortOrder
     action?: SortOrder
-    entityName?: SortOrder
-    entityId?: SortOrder
-    createdAt?: SortOrder
+    targetType?: SortOrder
+    targetId?: SortOrder
+    ipAddress?: SortOrder
+    userAgent?: SortOrder
+    timestamp?: SortOrder
   }
 
   export type AuditLogMinOrderByAggregateInput = {
     id?: SortOrder
-    userId?: SortOrder
+    actorId?: SortOrder
+    actorRole?: SortOrder
     action?: SortOrder
-    entityName?: SortOrder
-    entityId?: SortOrder
-    createdAt?: SortOrder
+    targetType?: SortOrder
+    targetId?: SortOrder
+    ipAddress?: SortOrder
+    userAgent?: SortOrder
+    timestamp?: SortOrder
+  }
+
+  export type SystemConfigCountOrderByAggregateInput = {
+    id?: SortOrder
+    key?: SortOrder
+    value?: SortOrder
+    description?: SortOrder
+    updatedBy?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type SystemConfigMaxOrderByAggregateInput = {
+    id?: SortOrder
+    key?: SortOrder
+    value?: SortOrder
+    description?: SortOrder
+    updatedBy?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type SystemConfigMinOrderByAggregateInput = {
+    id?: SortOrder
+    key?: SortOrder
+    value?: SortOrder
+    description?: SortOrder
+    updatedBy?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type UserBanCountOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    bannedBy?: SortOrder
+    reason?: SortOrder
+    bannedAt?: SortOrder
+    expiresAt?: SortOrder
+    isActive?: SortOrder
+  }
+
+  export type UserBanMaxOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    bannedBy?: SortOrder
+    reason?: SortOrder
+    bannedAt?: SortOrder
+    expiresAt?: SortOrder
+    isActive?: SortOrder
+  }
+
+  export type UserBanMinOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    bannedBy?: SortOrder
+    reason?: SortOrder
+    bannedAt?: SortOrder
+    expiresAt?: SortOrder
+    isActive?: SortOrder
   }
 
   export type FarmerProfileCreateNestedOneWithoutUserInput = {
@@ -27187,11 +29786,31 @@ export namespace Prisma {
     connect?: PlantingLogWhereUniqueInput | PlantingLogWhereUniqueInput[]
   }
 
-  export type AuditLogCreateNestedManyWithoutUserInput = {
-    create?: XOR<AuditLogCreateWithoutUserInput, AuditLogUncheckedCreateWithoutUserInput> | AuditLogCreateWithoutUserInput[] | AuditLogUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: AuditLogCreateOrConnectWithoutUserInput | AuditLogCreateOrConnectWithoutUserInput[]
-    createMany?: AuditLogCreateManyUserInputEnvelope
+  export type AuditLogCreateNestedManyWithoutActorInput = {
+    create?: XOR<AuditLogCreateWithoutActorInput, AuditLogUncheckedCreateWithoutActorInput> | AuditLogCreateWithoutActorInput[] | AuditLogUncheckedCreateWithoutActorInput[]
+    connectOrCreate?: AuditLogCreateOrConnectWithoutActorInput | AuditLogCreateOrConnectWithoutActorInput[]
+    createMany?: AuditLogCreateManyActorInputEnvelope
     connect?: AuditLogWhereUniqueInput | AuditLogWhereUniqueInput[]
+  }
+
+  export type SystemConfigCreateNestedManyWithoutUpdaterInput = {
+    create?: XOR<SystemConfigCreateWithoutUpdaterInput, SystemConfigUncheckedCreateWithoutUpdaterInput> | SystemConfigCreateWithoutUpdaterInput[] | SystemConfigUncheckedCreateWithoutUpdaterInput[]
+    connectOrCreate?: SystemConfigCreateOrConnectWithoutUpdaterInput | SystemConfigCreateOrConnectWithoutUpdaterInput[]
+    createMany?: SystemConfigCreateManyUpdaterInputEnvelope
+    connect?: SystemConfigWhereUniqueInput | SystemConfigWhereUniqueInput[]
+  }
+
+  export type UserBanCreateNestedOneWithoutUserInput = {
+    create?: XOR<UserBanCreateWithoutUserInput, UserBanUncheckedCreateWithoutUserInput>
+    connectOrCreate?: UserBanCreateOrConnectWithoutUserInput
+    connect?: UserBanWhereUniqueInput
+  }
+
+  export type UserBanCreateNestedManyWithoutBannerInput = {
+    create?: XOR<UserBanCreateWithoutBannerInput, UserBanUncheckedCreateWithoutBannerInput> | UserBanCreateWithoutBannerInput[] | UserBanUncheckedCreateWithoutBannerInput[]
+    connectOrCreate?: UserBanCreateOrConnectWithoutBannerInput | UserBanCreateOrConnectWithoutBannerInput[]
+    createMany?: UserBanCreateManyBannerInputEnvelope
+    connect?: UserBanWhereUniqueInput | UserBanWhereUniqueInput[]
   }
 
   export type FarmerProfileUncheckedCreateNestedOneWithoutUserInput = {
@@ -27289,11 +29908,31 @@ export namespace Prisma {
     connect?: PlantingLogWhereUniqueInput | PlantingLogWhereUniqueInput[]
   }
 
-  export type AuditLogUncheckedCreateNestedManyWithoutUserInput = {
-    create?: XOR<AuditLogCreateWithoutUserInput, AuditLogUncheckedCreateWithoutUserInput> | AuditLogCreateWithoutUserInput[] | AuditLogUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: AuditLogCreateOrConnectWithoutUserInput | AuditLogCreateOrConnectWithoutUserInput[]
-    createMany?: AuditLogCreateManyUserInputEnvelope
+  export type AuditLogUncheckedCreateNestedManyWithoutActorInput = {
+    create?: XOR<AuditLogCreateWithoutActorInput, AuditLogUncheckedCreateWithoutActorInput> | AuditLogCreateWithoutActorInput[] | AuditLogUncheckedCreateWithoutActorInput[]
+    connectOrCreate?: AuditLogCreateOrConnectWithoutActorInput | AuditLogCreateOrConnectWithoutActorInput[]
+    createMany?: AuditLogCreateManyActorInputEnvelope
     connect?: AuditLogWhereUniqueInput | AuditLogWhereUniqueInput[]
+  }
+
+  export type SystemConfigUncheckedCreateNestedManyWithoutUpdaterInput = {
+    create?: XOR<SystemConfigCreateWithoutUpdaterInput, SystemConfigUncheckedCreateWithoutUpdaterInput> | SystemConfigCreateWithoutUpdaterInput[] | SystemConfigUncheckedCreateWithoutUpdaterInput[]
+    connectOrCreate?: SystemConfigCreateOrConnectWithoutUpdaterInput | SystemConfigCreateOrConnectWithoutUpdaterInput[]
+    createMany?: SystemConfigCreateManyUpdaterInputEnvelope
+    connect?: SystemConfigWhereUniqueInput | SystemConfigWhereUniqueInput[]
+  }
+
+  export type UserBanUncheckedCreateNestedOneWithoutUserInput = {
+    create?: XOR<UserBanCreateWithoutUserInput, UserBanUncheckedCreateWithoutUserInput>
+    connectOrCreate?: UserBanCreateOrConnectWithoutUserInput
+    connect?: UserBanWhereUniqueInput
+  }
+
+  export type UserBanUncheckedCreateNestedManyWithoutBannerInput = {
+    create?: XOR<UserBanCreateWithoutBannerInput, UserBanUncheckedCreateWithoutBannerInput> | UserBanCreateWithoutBannerInput[] | UserBanUncheckedCreateWithoutBannerInput[]
+    connectOrCreate?: UserBanCreateOrConnectWithoutBannerInput | UserBanCreateOrConnectWithoutBannerInput[]
+    createMany?: UserBanCreateManyBannerInputEnvelope
+    connect?: UserBanWhereUniqueInput | UserBanWhereUniqueInput[]
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -27508,18 +30147,56 @@ export namespace Prisma {
     deleteMany?: PlantingLogScalarWhereInput | PlantingLogScalarWhereInput[]
   }
 
-  export type AuditLogUpdateManyWithoutUserNestedInput = {
-    create?: XOR<AuditLogCreateWithoutUserInput, AuditLogUncheckedCreateWithoutUserInput> | AuditLogCreateWithoutUserInput[] | AuditLogUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: AuditLogCreateOrConnectWithoutUserInput | AuditLogCreateOrConnectWithoutUserInput[]
-    upsert?: AuditLogUpsertWithWhereUniqueWithoutUserInput | AuditLogUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: AuditLogCreateManyUserInputEnvelope
+  export type AuditLogUpdateManyWithoutActorNestedInput = {
+    create?: XOR<AuditLogCreateWithoutActorInput, AuditLogUncheckedCreateWithoutActorInput> | AuditLogCreateWithoutActorInput[] | AuditLogUncheckedCreateWithoutActorInput[]
+    connectOrCreate?: AuditLogCreateOrConnectWithoutActorInput | AuditLogCreateOrConnectWithoutActorInput[]
+    upsert?: AuditLogUpsertWithWhereUniqueWithoutActorInput | AuditLogUpsertWithWhereUniqueWithoutActorInput[]
+    createMany?: AuditLogCreateManyActorInputEnvelope
     set?: AuditLogWhereUniqueInput | AuditLogWhereUniqueInput[]
     disconnect?: AuditLogWhereUniqueInput | AuditLogWhereUniqueInput[]
     delete?: AuditLogWhereUniqueInput | AuditLogWhereUniqueInput[]
     connect?: AuditLogWhereUniqueInput | AuditLogWhereUniqueInput[]
-    update?: AuditLogUpdateWithWhereUniqueWithoutUserInput | AuditLogUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: AuditLogUpdateManyWithWhereWithoutUserInput | AuditLogUpdateManyWithWhereWithoutUserInput[]
+    update?: AuditLogUpdateWithWhereUniqueWithoutActorInput | AuditLogUpdateWithWhereUniqueWithoutActorInput[]
+    updateMany?: AuditLogUpdateManyWithWhereWithoutActorInput | AuditLogUpdateManyWithWhereWithoutActorInput[]
     deleteMany?: AuditLogScalarWhereInput | AuditLogScalarWhereInput[]
+  }
+
+  export type SystemConfigUpdateManyWithoutUpdaterNestedInput = {
+    create?: XOR<SystemConfigCreateWithoutUpdaterInput, SystemConfigUncheckedCreateWithoutUpdaterInput> | SystemConfigCreateWithoutUpdaterInput[] | SystemConfigUncheckedCreateWithoutUpdaterInput[]
+    connectOrCreate?: SystemConfigCreateOrConnectWithoutUpdaterInput | SystemConfigCreateOrConnectWithoutUpdaterInput[]
+    upsert?: SystemConfigUpsertWithWhereUniqueWithoutUpdaterInput | SystemConfigUpsertWithWhereUniqueWithoutUpdaterInput[]
+    createMany?: SystemConfigCreateManyUpdaterInputEnvelope
+    set?: SystemConfigWhereUniqueInput | SystemConfigWhereUniqueInput[]
+    disconnect?: SystemConfigWhereUniqueInput | SystemConfigWhereUniqueInput[]
+    delete?: SystemConfigWhereUniqueInput | SystemConfigWhereUniqueInput[]
+    connect?: SystemConfigWhereUniqueInput | SystemConfigWhereUniqueInput[]
+    update?: SystemConfigUpdateWithWhereUniqueWithoutUpdaterInput | SystemConfigUpdateWithWhereUniqueWithoutUpdaterInput[]
+    updateMany?: SystemConfigUpdateManyWithWhereWithoutUpdaterInput | SystemConfigUpdateManyWithWhereWithoutUpdaterInput[]
+    deleteMany?: SystemConfigScalarWhereInput | SystemConfigScalarWhereInput[]
+  }
+
+  export type UserBanUpdateOneWithoutUserNestedInput = {
+    create?: XOR<UserBanCreateWithoutUserInput, UserBanUncheckedCreateWithoutUserInput>
+    connectOrCreate?: UserBanCreateOrConnectWithoutUserInput
+    upsert?: UserBanUpsertWithoutUserInput
+    disconnect?: UserBanWhereInput | boolean
+    delete?: UserBanWhereInput | boolean
+    connect?: UserBanWhereUniqueInput
+    update?: XOR<XOR<UserBanUpdateToOneWithWhereWithoutUserInput, UserBanUpdateWithoutUserInput>, UserBanUncheckedUpdateWithoutUserInput>
+  }
+
+  export type UserBanUpdateManyWithoutBannerNestedInput = {
+    create?: XOR<UserBanCreateWithoutBannerInput, UserBanUncheckedCreateWithoutBannerInput> | UserBanCreateWithoutBannerInput[] | UserBanUncheckedCreateWithoutBannerInput[]
+    connectOrCreate?: UserBanCreateOrConnectWithoutBannerInput | UserBanCreateOrConnectWithoutBannerInput[]
+    upsert?: UserBanUpsertWithWhereUniqueWithoutBannerInput | UserBanUpsertWithWhereUniqueWithoutBannerInput[]
+    createMany?: UserBanCreateManyBannerInputEnvelope
+    set?: UserBanWhereUniqueInput | UserBanWhereUniqueInput[]
+    disconnect?: UserBanWhereUniqueInput | UserBanWhereUniqueInput[]
+    delete?: UserBanWhereUniqueInput | UserBanWhereUniqueInput[]
+    connect?: UserBanWhereUniqueInput | UserBanWhereUniqueInput[]
+    update?: UserBanUpdateWithWhereUniqueWithoutBannerInput | UserBanUpdateWithWhereUniqueWithoutBannerInput[]
+    updateMany?: UserBanUpdateManyWithWhereWithoutBannerInput | UserBanUpdateManyWithWhereWithoutBannerInput[]
+    deleteMany?: UserBanScalarWhereInput | UserBanScalarWhereInput[]
   }
 
   export type FarmerProfileUncheckedUpdateOneWithoutUserNestedInput = {
@@ -27706,18 +30383,56 @@ export namespace Prisma {
     deleteMany?: PlantingLogScalarWhereInput | PlantingLogScalarWhereInput[]
   }
 
-  export type AuditLogUncheckedUpdateManyWithoutUserNestedInput = {
-    create?: XOR<AuditLogCreateWithoutUserInput, AuditLogUncheckedCreateWithoutUserInput> | AuditLogCreateWithoutUserInput[] | AuditLogUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: AuditLogCreateOrConnectWithoutUserInput | AuditLogCreateOrConnectWithoutUserInput[]
-    upsert?: AuditLogUpsertWithWhereUniqueWithoutUserInput | AuditLogUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: AuditLogCreateManyUserInputEnvelope
+  export type AuditLogUncheckedUpdateManyWithoutActorNestedInput = {
+    create?: XOR<AuditLogCreateWithoutActorInput, AuditLogUncheckedCreateWithoutActorInput> | AuditLogCreateWithoutActorInput[] | AuditLogUncheckedCreateWithoutActorInput[]
+    connectOrCreate?: AuditLogCreateOrConnectWithoutActorInput | AuditLogCreateOrConnectWithoutActorInput[]
+    upsert?: AuditLogUpsertWithWhereUniqueWithoutActorInput | AuditLogUpsertWithWhereUniqueWithoutActorInput[]
+    createMany?: AuditLogCreateManyActorInputEnvelope
     set?: AuditLogWhereUniqueInput | AuditLogWhereUniqueInput[]
     disconnect?: AuditLogWhereUniqueInput | AuditLogWhereUniqueInput[]
     delete?: AuditLogWhereUniqueInput | AuditLogWhereUniqueInput[]
     connect?: AuditLogWhereUniqueInput | AuditLogWhereUniqueInput[]
-    update?: AuditLogUpdateWithWhereUniqueWithoutUserInput | AuditLogUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: AuditLogUpdateManyWithWhereWithoutUserInput | AuditLogUpdateManyWithWhereWithoutUserInput[]
+    update?: AuditLogUpdateWithWhereUniqueWithoutActorInput | AuditLogUpdateWithWhereUniqueWithoutActorInput[]
+    updateMany?: AuditLogUpdateManyWithWhereWithoutActorInput | AuditLogUpdateManyWithWhereWithoutActorInput[]
     deleteMany?: AuditLogScalarWhereInput | AuditLogScalarWhereInput[]
+  }
+
+  export type SystemConfigUncheckedUpdateManyWithoutUpdaterNestedInput = {
+    create?: XOR<SystemConfigCreateWithoutUpdaterInput, SystemConfigUncheckedCreateWithoutUpdaterInput> | SystemConfigCreateWithoutUpdaterInput[] | SystemConfigUncheckedCreateWithoutUpdaterInput[]
+    connectOrCreate?: SystemConfigCreateOrConnectWithoutUpdaterInput | SystemConfigCreateOrConnectWithoutUpdaterInput[]
+    upsert?: SystemConfigUpsertWithWhereUniqueWithoutUpdaterInput | SystemConfigUpsertWithWhereUniqueWithoutUpdaterInput[]
+    createMany?: SystemConfigCreateManyUpdaterInputEnvelope
+    set?: SystemConfigWhereUniqueInput | SystemConfigWhereUniqueInput[]
+    disconnect?: SystemConfigWhereUniqueInput | SystemConfigWhereUniqueInput[]
+    delete?: SystemConfigWhereUniqueInput | SystemConfigWhereUniqueInput[]
+    connect?: SystemConfigWhereUniqueInput | SystemConfigWhereUniqueInput[]
+    update?: SystemConfigUpdateWithWhereUniqueWithoutUpdaterInput | SystemConfigUpdateWithWhereUniqueWithoutUpdaterInput[]
+    updateMany?: SystemConfigUpdateManyWithWhereWithoutUpdaterInput | SystemConfigUpdateManyWithWhereWithoutUpdaterInput[]
+    deleteMany?: SystemConfigScalarWhereInput | SystemConfigScalarWhereInput[]
+  }
+
+  export type UserBanUncheckedUpdateOneWithoutUserNestedInput = {
+    create?: XOR<UserBanCreateWithoutUserInput, UserBanUncheckedCreateWithoutUserInput>
+    connectOrCreate?: UserBanCreateOrConnectWithoutUserInput
+    upsert?: UserBanUpsertWithoutUserInput
+    disconnect?: UserBanWhereInput | boolean
+    delete?: UserBanWhereInput | boolean
+    connect?: UserBanWhereUniqueInput
+    update?: XOR<XOR<UserBanUpdateToOneWithWhereWithoutUserInput, UserBanUpdateWithoutUserInput>, UserBanUncheckedUpdateWithoutUserInput>
+  }
+
+  export type UserBanUncheckedUpdateManyWithoutBannerNestedInput = {
+    create?: XOR<UserBanCreateWithoutBannerInput, UserBanUncheckedCreateWithoutBannerInput> | UserBanCreateWithoutBannerInput[] | UserBanUncheckedCreateWithoutBannerInput[]
+    connectOrCreate?: UserBanCreateOrConnectWithoutBannerInput | UserBanCreateOrConnectWithoutBannerInput[]
+    upsert?: UserBanUpsertWithWhereUniqueWithoutBannerInput | UserBanUpsertWithWhereUniqueWithoutBannerInput[]
+    createMany?: UserBanCreateManyBannerInputEnvelope
+    set?: UserBanWhereUniqueInput | UserBanWhereUniqueInput[]
+    disconnect?: UserBanWhereUniqueInput | UserBanWhereUniqueInput[]
+    delete?: UserBanWhereUniqueInput | UserBanWhereUniqueInput[]
+    connect?: UserBanWhereUniqueInput | UserBanWhereUniqueInput[]
+    update?: UserBanUpdateWithWhereUniqueWithoutBannerInput | UserBanUpdateWithWhereUniqueWithoutBannerInput[]
+    updateMany?: UserBanUpdateManyWithWhereWithoutBannerInput | UserBanUpdateManyWithWhereWithoutBannerInput[]
+    deleteMany?: UserBanScalarWhereInput | UserBanScalarWhereInput[]
   }
 
   export type FarmerProfileCreateprimaryCropsInput = {
@@ -28556,14 +31271,54 @@ export namespace Prisma {
     connect?: UserWhereUniqueInput
   }
 
-  export type UserUpdateOneWithoutAuditLogsNestedInput = {
+  export type UserUpdateOneRequiredWithoutAuditLogsNestedInput = {
     create?: XOR<UserCreateWithoutAuditLogsInput, UserUncheckedCreateWithoutAuditLogsInput>
     connectOrCreate?: UserCreateOrConnectWithoutAuditLogsInput
     upsert?: UserUpsertWithoutAuditLogsInput
-    disconnect?: UserWhereInput | boolean
-    delete?: UserWhereInput | boolean
     connect?: UserWhereUniqueInput
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutAuditLogsInput, UserUpdateWithoutAuditLogsInput>, UserUncheckedUpdateWithoutAuditLogsInput>
+  }
+
+  export type UserCreateNestedOneWithoutConfigsUpdatedInput = {
+    create?: XOR<UserCreateWithoutConfigsUpdatedInput, UserUncheckedCreateWithoutConfigsUpdatedInput>
+    connectOrCreate?: UserCreateOrConnectWithoutConfigsUpdatedInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type UserUpdateOneRequiredWithoutConfigsUpdatedNestedInput = {
+    create?: XOR<UserCreateWithoutConfigsUpdatedInput, UserUncheckedCreateWithoutConfigsUpdatedInput>
+    connectOrCreate?: UserCreateOrConnectWithoutConfigsUpdatedInput
+    upsert?: UserUpsertWithoutConfigsUpdatedInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutConfigsUpdatedInput, UserUpdateWithoutConfigsUpdatedInput>, UserUncheckedUpdateWithoutConfigsUpdatedInput>
+  }
+
+  export type UserCreateNestedOneWithoutBanInput = {
+    create?: XOR<UserCreateWithoutBanInput, UserUncheckedCreateWithoutBanInput>
+    connectOrCreate?: UserCreateOrConnectWithoutBanInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type UserCreateNestedOneWithoutBansIssuedInput = {
+    create?: XOR<UserCreateWithoutBansIssuedInput, UserUncheckedCreateWithoutBansIssuedInput>
+    connectOrCreate?: UserCreateOrConnectWithoutBansIssuedInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type UserUpdateOneRequiredWithoutBanNestedInput = {
+    create?: XOR<UserCreateWithoutBanInput, UserUncheckedCreateWithoutBanInput>
+    connectOrCreate?: UserCreateOrConnectWithoutBanInput
+    upsert?: UserUpsertWithoutBanInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutBanInput, UserUpdateWithoutBanInput>, UserUncheckedUpdateWithoutBanInput>
+  }
+
+  export type UserUpdateOneRequiredWithoutBansIssuedNestedInput = {
+    create?: XOR<UserCreateWithoutBansIssuedInput, UserUncheckedCreateWithoutBansIssuedInput>
+    connectOrCreate?: UserCreateOrConnectWithoutBansIssuedInput
+    upsert?: UserUpsertWithoutBansIssuedInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutBansIssuedInput, UserUpdateWithoutBansIssuedInput>, UserUncheckedUpdateWithoutBansIssuedInput>
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -29478,33 +32233,114 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
-  export type AuditLogCreateWithoutUserInput = {
+  export type AuditLogCreateWithoutActorInput = {
     id?: string
+    actorRole: $Enums.Role
     action: string
-    entityName: string
-    entityId: string
-    oldValues?: NullableJsonNullValueInput | InputJsonValue
-    newValues?: NullableJsonNullValueInput | InputJsonValue
-    createdAt?: Date | string
+    targetType?: string | null
+    targetId?: string | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    ipAddress?: string | null
+    userAgent?: string | null
+    timestamp?: Date | string
   }
 
-  export type AuditLogUncheckedCreateWithoutUserInput = {
+  export type AuditLogUncheckedCreateWithoutActorInput = {
     id?: string
+    actorRole: $Enums.Role
     action: string
-    entityName: string
-    entityId: string
-    oldValues?: NullableJsonNullValueInput | InputJsonValue
-    newValues?: NullableJsonNullValueInput | InputJsonValue
-    createdAt?: Date | string
+    targetType?: string | null
+    targetId?: string | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    ipAddress?: string | null
+    userAgent?: string | null
+    timestamp?: Date | string
   }
 
-  export type AuditLogCreateOrConnectWithoutUserInput = {
+  export type AuditLogCreateOrConnectWithoutActorInput = {
     where: AuditLogWhereUniqueInput
-    create: XOR<AuditLogCreateWithoutUserInput, AuditLogUncheckedCreateWithoutUserInput>
+    create: XOR<AuditLogCreateWithoutActorInput, AuditLogUncheckedCreateWithoutActorInput>
   }
 
-  export type AuditLogCreateManyUserInputEnvelope = {
-    data: AuditLogCreateManyUserInput | AuditLogCreateManyUserInput[]
+  export type AuditLogCreateManyActorInputEnvelope = {
+    data: AuditLogCreateManyActorInput | AuditLogCreateManyActorInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type SystemConfigCreateWithoutUpdaterInput = {
+    id?: string
+    key: string
+    value: string
+    description?: string | null
+    updatedAt?: Date | string
+  }
+
+  export type SystemConfigUncheckedCreateWithoutUpdaterInput = {
+    id?: string
+    key: string
+    value: string
+    description?: string | null
+    updatedAt?: Date | string
+  }
+
+  export type SystemConfigCreateOrConnectWithoutUpdaterInput = {
+    where: SystemConfigWhereUniqueInput
+    create: XOR<SystemConfigCreateWithoutUpdaterInput, SystemConfigUncheckedCreateWithoutUpdaterInput>
+  }
+
+  export type SystemConfigCreateManyUpdaterInputEnvelope = {
+    data: SystemConfigCreateManyUpdaterInput | SystemConfigCreateManyUpdaterInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type UserBanCreateWithoutUserInput = {
+    id?: string
+    reason: string
+    bannedAt?: Date | string
+    expiresAt?: Date | string | null
+    isActive?: boolean
+    banner: UserCreateNestedOneWithoutBansIssuedInput
+  }
+
+  export type UserBanUncheckedCreateWithoutUserInput = {
+    id?: string
+    bannedBy: string
+    reason: string
+    bannedAt?: Date | string
+    expiresAt?: Date | string | null
+    isActive?: boolean
+  }
+
+  export type UserBanCreateOrConnectWithoutUserInput = {
+    where: UserBanWhereUniqueInput
+    create: XOR<UserBanCreateWithoutUserInput, UserBanUncheckedCreateWithoutUserInput>
+  }
+
+  export type UserBanCreateWithoutBannerInput = {
+    id?: string
+    reason: string
+    bannedAt?: Date | string
+    expiresAt?: Date | string | null
+    isActive?: boolean
+    user: UserCreateNestedOneWithoutBanInput
+  }
+
+  export type UserBanUncheckedCreateWithoutBannerInput = {
+    id?: string
+    userId: string
+    reason: string
+    bannedAt?: Date | string
+    expiresAt?: Date | string | null
+    isActive?: boolean
+  }
+
+  export type UserBanCreateOrConnectWithoutBannerInput = {
+    where: UserBanWhereUniqueInput
+    create: XOR<UserBanCreateWithoutBannerInput, UserBanUncheckedCreateWithoutBannerInput>
+  }
+
+  export type UserBanCreateManyBannerInputEnvelope = {
+    data: UserBanCreateManyBannerInput | UserBanCreateManyBannerInput[]
     skipDuplicates?: boolean
   }
 
@@ -29943,20 +32779,20 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"PlantingLog"> | Date | string
   }
 
-  export type AuditLogUpsertWithWhereUniqueWithoutUserInput = {
+  export type AuditLogUpsertWithWhereUniqueWithoutActorInput = {
     where: AuditLogWhereUniqueInput
-    update: XOR<AuditLogUpdateWithoutUserInput, AuditLogUncheckedUpdateWithoutUserInput>
-    create: XOR<AuditLogCreateWithoutUserInput, AuditLogUncheckedCreateWithoutUserInput>
+    update: XOR<AuditLogUpdateWithoutActorInput, AuditLogUncheckedUpdateWithoutActorInput>
+    create: XOR<AuditLogCreateWithoutActorInput, AuditLogUncheckedCreateWithoutActorInput>
   }
 
-  export type AuditLogUpdateWithWhereUniqueWithoutUserInput = {
+  export type AuditLogUpdateWithWhereUniqueWithoutActorInput = {
     where: AuditLogWhereUniqueInput
-    data: XOR<AuditLogUpdateWithoutUserInput, AuditLogUncheckedUpdateWithoutUserInput>
+    data: XOR<AuditLogUpdateWithoutActorInput, AuditLogUncheckedUpdateWithoutActorInput>
   }
 
-  export type AuditLogUpdateManyWithWhereWithoutUserInput = {
+  export type AuditLogUpdateManyWithWhereWithoutActorInput = {
     where: AuditLogScalarWhereInput
-    data: XOR<AuditLogUpdateManyMutationInput, AuditLogUncheckedUpdateManyWithoutUserInput>
+    data: XOR<AuditLogUpdateManyMutationInput, AuditLogUncheckedUpdateManyWithoutActorInput>
   }
 
   export type AuditLogScalarWhereInput = {
@@ -29964,13 +32800,101 @@ export namespace Prisma {
     OR?: AuditLogScalarWhereInput[]
     NOT?: AuditLogScalarWhereInput | AuditLogScalarWhereInput[]
     id?: StringFilter<"AuditLog"> | string
-    userId?: StringNullableFilter<"AuditLog"> | string | null
+    actorId?: StringFilter<"AuditLog"> | string
+    actorRole?: EnumRoleFilter<"AuditLog"> | $Enums.Role
     action?: StringFilter<"AuditLog"> | string
-    entityName?: StringFilter<"AuditLog"> | string
-    entityId?: StringFilter<"AuditLog"> | string
-    oldValues?: JsonNullableFilter<"AuditLog">
-    newValues?: JsonNullableFilter<"AuditLog">
-    createdAt?: DateTimeFilter<"AuditLog"> | Date | string
+    targetType?: StringNullableFilter<"AuditLog"> | string | null
+    targetId?: StringNullableFilter<"AuditLog"> | string | null
+    metadata?: JsonNullableFilter<"AuditLog">
+    ipAddress?: StringNullableFilter<"AuditLog"> | string | null
+    userAgent?: StringNullableFilter<"AuditLog"> | string | null
+    timestamp?: DateTimeFilter<"AuditLog"> | Date | string
+  }
+
+  export type SystemConfigUpsertWithWhereUniqueWithoutUpdaterInput = {
+    where: SystemConfigWhereUniqueInput
+    update: XOR<SystemConfigUpdateWithoutUpdaterInput, SystemConfigUncheckedUpdateWithoutUpdaterInput>
+    create: XOR<SystemConfigCreateWithoutUpdaterInput, SystemConfigUncheckedCreateWithoutUpdaterInput>
+  }
+
+  export type SystemConfigUpdateWithWhereUniqueWithoutUpdaterInput = {
+    where: SystemConfigWhereUniqueInput
+    data: XOR<SystemConfigUpdateWithoutUpdaterInput, SystemConfigUncheckedUpdateWithoutUpdaterInput>
+  }
+
+  export type SystemConfigUpdateManyWithWhereWithoutUpdaterInput = {
+    where: SystemConfigScalarWhereInput
+    data: XOR<SystemConfigUpdateManyMutationInput, SystemConfigUncheckedUpdateManyWithoutUpdaterInput>
+  }
+
+  export type SystemConfigScalarWhereInput = {
+    AND?: SystemConfigScalarWhereInput | SystemConfigScalarWhereInput[]
+    OR?: SystemConfigScalarWhereInput[]
+    NOT?: SystemConfigScalarWhereInput | SystemConfigScalarWhereInput[]
+    id?: StringFilter<"SystemConfig"> | string
+    key?: StringFilter<"SystemConfig"> | string
+    value?: StringFilter<"SystemConfig"> | string
+    description?: StringNullableFilter<"SystemConfig"> | string | null
+    updatedBy?: StringFilter<"SystemConfig"> | string
+    updatedAt?: DateTimeFilter<"SystemConfig"> | Date | string
+  }
+
+  export type UserBanUpsertWithoutUserInput = {
+    update: XOR<UserBanUpdateWithoutUserInput, UserBanUncheckedUpdateWithoutUserInput>
+    create: XOR<UserBanCreateWithoutUserInput, UserBanUncheckedCreateWithoutUserInput>
+    where?: UserBanWhereInput
+  }
+
+  export type UserBanUpdateToOneWithWhereWithoutUserInput = {
+    where?: UserBanWhereInput
+    data: XOR<UserBanUpdateWithoutUserInput, UserBanUncheckedUpdateWithoutUserInput>
+  }
+
+  export type UserBanUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    reason?: StringFieldUpdateOperationsInput | string
+    bannedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    expiresAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    banner?: UserUpdateOneRequiredWithoutBansIssuedNestedInput
+  }
+
+  export type UserBanUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    bannedBy?: StringFieldUpdateOperationsInput | string
+    reason?: StringFieldUpdateOperationsInput | string
+    bannedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    expiresAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type UserBanUpsertWithWhereUniqueWithoutBannerInput = {
+    where: UserBanWhereUniqueInput
+    update: XOR<UserBanUpdateWithoutBannerInput, UserBanUncheckedUpdateWithoutBannerInput>
+    create: XOR<UserBanCreateWithoutBannerInput, UserBanUncheckedCreateWithoutBannerInput>
+  }
+
+  export type UserBanUpdateWithWhereUniqueWithoutBannerInput = {
+    where: UserBanWhereUniqueInput
+    data: XOR<UserBanUpdateWithoutBannerInput, UserBanUncheckedUpdateWithoutBannerInput>
+  }
+
+  export type UserBanUpdateManyWithWhereWithoutBannerInput = {
+    where: UserBanScalarWhereInput
+    data: XOR<UserBanUpdateManyMutationInput, UserBanUncheckedUpdateManyWithoutBannerInput>
+  }
+
+  export type UserBanScalarWhereInput = {
+    AND?: UserBanScalarWhereInput | UserBanScalarWhereInput[]
+    OR?: UserBanScalarWhereInput[]
+    NOT?: UserBanScalarWhereInput | UserBanScalarWhereInput[]
+    id?: StringFilter<"UserBan"> | string
+    userId?: StringFilter<"UserBan"> | string
+    bannedBy?: StringFilter<"UserBan"> | string
+    reason?: StringFilter<"UserBan"> | string
+    bannedAt?: DateTimeFilter<"UserBan"> | Date | string
+    expiresAt?: DateTimeNullableFilter<"UserBan"> | Date | string | null
+    isActive?: BoolFilter<"UserBan"> | boolean
   }
 
   export type UserCreateWithoutFarmerProfileInput = {
@@ -29998,7 +32922,10 @@ export namespace Prisma {
     recordedTraceEvents?: TraceEventCreateNestedManyWithoutRecordedByUserInput
     preOrders?: PreOrderCreateNestedManyWithoutBuyerInput
     plantingLogs?: PlantingLogCreateNestedManyWithoutFarmerInput
-    auditLogs?: AuditLogCreateNestedManyWithoutUserInput
+    auditLogs?: AuditLogCreateNestedManyWithoutActorInput
+    configsUpdated?: SystemConfigCreateNestedManyWithoutUpdaterInput
+    ban?: UserBanCreateNestedOneWithoutUserInput
+    bansIssued?: UserBanCreateNestedManyWithoutBannerInput
   }
 
   export type UserUncheckedCreateWithoutFarmerProfileInput = {
@@ -30026,7 +32953,10 @@ export namespace Prisma {
     recordedTraceEvents?: TraceEventUncheckedCreateNestedManyWithoutRecordedByUserInput
     preOrders?: PreOrderUncheckedCreateNestedManyWithoutBuyerInput
     plantingLogs?: PlantingLogUncheckedCreateNestedManyWithoutFarmerInput
-    auditLogs?: AuditLogUncheckedCreateNestedManyWithoutUserInput
+    auditLogs?: AuditLogUncheckedCreateNestedManyWithoutActorInput
+    configsUpdated?: SystemConfigUncheckedCreateNestedManyWithoutUpdaterInput
+    ban?: UserBanUncheckedCreateNestedOneWithoutUserInput
+    bansIssued?: UserBanUncheckedCreateNestedManyWithoutBannerInput
   }
 
   export type UserCreateOrConnectWithoutFarmerProfileInput = {
@@ -30070,7 +33000,10 @@ export namespace Prisma {
     recordedTraceEvents?: TraceEventUpdateManyWithoutRecordedByUserNestedInput
     preOrders?: PreOrderUpdateManyWithoutBuyerNestedInput
     plantingLogs?: PlantingLogUpdateManyWithoutFarmerNestedInput
-    auditLogs?: AuditLogUpdateManyWithoutUserNestedInput
+    auditLogs?: AuditLogUpdateManyWithoutActorNestedInput
+    configsUpdated?: SystemConfigUpdateManyWithoutUpdaterNestedInput
+    ban?: UserBanUpdateOneWithoutUserNestedInput
+    bansIssued?: UserBanUpdateManyWithoutBannerNestedInput
   }
 
   export type UserUncheckedUpdateWithoutFarmerProfileInput = {
@@ -30098,7 +33031,10 @@ export namespace Prisma {
     recordedTraceEvents?: TraceEventUncheckedUpdateManyWithoutRecordedByUserNestedInput
     preOrders?: PreOrderUncheckedUpdateManyWithoutBuyerNestedInput
     plantingLogs?: PlantingLogUncheckedUpdateManyWithoutFarmerNestedInput
-    auditLogs?: AuditLogUncheckedUpdateManyWithoutUserNestedInput
+    auditLogs?: AuditLogUncheckedUpdateManyWithoutActorNestedInput
+    configsUpdated?: SystemConfigUncheckedUpdateManyWithoutUpdaterNestedInput
+    ban?: UserBanUncheckedUpdateOneWithoutUserNestedInput
+    bansIssued?: UserBanUncheckedUpdateManyWithoutBannerNestedInput
   }
 
   export type UserCreateWithoutBuyerProfileInput = {
@@ -30126,7 +33062,10 @@ export namespace Prisma {
     recordedTraceEvents?: TraceEventCreateNestedManyWithoutRecordedByUserInput
     preOrders?: PreOrderCreateNestedManyWithoutBuyerInput
     plantingLogs?: PlantingLogCreateNestedManyWithoutFarmerInput
-    auditLogs?: AuditLogCreateNestedManyWithoutUserInput
+    auditLogs?: AuditLogCreateNestedManyWithoutActorInput
+    configsUpdated?: SystemConfigCreateNestedManyWithoutUpdaterInput
+    ban?: UserBanCreateNestedOneWithoutUserInput
+    bansIssued?: UserBanCreateNestedManyWithoutBannerInput
   }
 
   export type UserUncheckedCreateWithoutBuyerProfileInput = {
@@ -30154,7 +33093,10 @@ export namespace Prisma {
     recordedTraceEvents?: TraceEventUncheckedCreateNestedManyWithoutRecordedByUserInput
     preOrders?: PreOrderUncheckedCreateNestedManyWithoutBuyerInput
     plantingLogs?: PlantingLogUncheckedCreateNestedManyWithoutFarmerInput
-    auditLogs?: AuditLogUncheckedCreateNestedManyWithoutUserInput
+    auditLogs?: AuditLogUncheckedCreateNestedManyWithoutActorInput
+    configsUpdated?: SystemConfigUncheckedCreateNestedManyWithoutUpdaterInput
+    ban?: UserBanUncheckedCreateNestedOneWithoutUserInput
+    bansIssued?: UserBanUncheckedCreateNestedManyWithoutBannerInput
   }
 
   export type UserCreateOrConnectWithoutBuyerProfileInput = {
@@ -30198,7 +33140,10 @@ export namespace Prisma {
     recordedTraceEvents?: TraceEventUpdateManyWithoutRecordedByUserNestedInput
     preOrders?: PreOrderUpdateManyWithoutBuyerNestedInput
     plantingLogs?: PlantingLogUpdateManyWithoutFarmerNestedInput
-    auditLogs?: AuditLogUpdateManyWithoutUserNestedInput
+    auditLogs?: AuditLogUpdateManyWithoutActorNestedInput
+    configsUpdated?: SystemConfigUpdateManyWithoutUpdaterNestedInput
+    ban?: UserBanUpdateOneWithoutUserNestedInput
+    bansIssued?: UserBanUpdateManyWithoutBannerNestedInput
   }
 
   export type UserUncheckedUpdateWithoutBuyerProfileInput = {
@@ -30226,7 +33171,10 @@ export namespace Prisma {
     recordedTraceEvents?: TraceEventUncheckedUpdateManyWithoutRecordedByUserNestedInput
     preOrders?: PreOrderUncheckedUpdateManyWithoutBuyerNestedInput
     plantingLogs?: PlantingLogUncheckedUpdateManyWithoutFarmerNestedInput
-    auditLogs?: AuditLogUncheckedUpdateManyWithoutUserNestedInput
+    auditLogs?: AuditLogUncheckedUpdateManyWithoutActorNestedInput
+    configsUpdated?: SystemConfigUncheckedUpdateManyWithoutUpdaterNestedInput
+    ban?: UserBanUncheckedUpdateOneWithoutUserNestedInput
+    bansIssued?: UserBanUncheckedUpdateManyWithoutBannerNestedInput
   }
 
   export type UserCreateWithoutTransportProfileInput = {
@@ -30254,7 +33202,10 @@ export namespace Prisma {
     recordedTraceEvents?: TraceEventCreateNestedManyWithoutRecordedByUserInput
     preOrders?: PreOrderCreateNestedManyWithoutBuyerInput
     plantingLogs?: PlantingLogCreateNestedManyWithoutFarmerInput
-    auditLogs?: AuditLogCreateNestedManyWithoutUserInput
+    auditLogs?: AuditLogCreateNestedManyWithoutActorInput
+    configsUpdated?: SystemConfigCreateNestedManyWithoutUpdaterInput
+    ban?: UserBanCreateNestedOneWithoutUserInput
+    bansIssued?: UserBanCreateNestedManyWithoutBannerInput
   }
 
   export type UserUncheckedCreateWithoutTransportProfileInput = {
@@ -30282,7 +33233,10 @@ export namespace Prisma {
     recordedTraceEvents?: TraceEventUncheckedCreateNestedManyWithoutRecordedByUserInput
     preOrders?: PreOrderUncheckedCreateNestedManyWithoutBuyerInput
     plantingLogs?: PlantingLogUncheckedCreateNestedManyWithoutFarmerInput
-    auditLogs?: AuditLogUncheckedCreateNestedManyWithoutUserInput
+    auditLogs?: AuditLogUncheckedCreateNestedManyWithoutActorInput
+    configsUpdated?: SystemConfigUncheckedCreateNestedManyWithoutUpdaterInput
+    ban?: UserBanUncheckedCreateNestedOneWithoutUserInput
+    bansIssued?: UserBanUncheckedCreateNestedManyWithoutBannerInput
   }
 
   export type UserCreateOrConnectWithoutTransportProfileInput = {
@@ -30326,7 +33280,10 @@ export namespace Prisma {
     recordedTraceEvents?: TraceEventUpdateManyWithoutRecordedByUserNestedInput
     preOrders?: PreOrderUpdateManyWithoutBuyerNestedInput
     plantingLogs?: PlantingLogUpdateManyWithoutFarmerNestedInput
-    auditLogs?: AuditLogUpdateManyWithoutUserNestedInput
+    auditLogs?: AuditLogUpdateManyWithoutActorNestedInput
+    configsUpdated?: SystemConfigUpdateManyWithoutUpdaterNestedInput
+    ban?: UserBanUpdateOneWithoutUserNestedInput
+    bansIssued?: UserBanUpdateManyWithoutBannerNestedInput
   }
 
   export type UserUncheckedUpdateWithoutTransportProfileInput = {
@@ -30354,7 +33311,10 @@ export namespace Prisma {
     recordedTraceEvents?: TraceEventUncheckedUpdateManyWithoutRecordedByUserNestedInput
     preOrders?: PreOrderUncheckedUpdateManyWithoutBuyerNestedInput
     plantingLogs?: PlantingLogUncheckedUpdateManyWithoutFarmerNestedInput
-    auditLogs?: AuditLogUncheckedUpdateManyWithoutUserNestedInput
+    auditLogs?: AuditLogUncheckedUpdateManyWithoutActorNestedInput
+    configsUpdated?: SystemConfigUncheckedUpdateManyWithoutUpdaterNestedInput
+    ban?: UserBanUncheckedUpdateOneWithoutUserNestedInput
+    bansIssued?: UserBanUncheckedUpdateManyWithoutBannerNestedInput
   }
 
   export type UserCreateWithoutListingsInput = {
@@ -30382,7 +33342,10 @@ export namespace Prisma {
     recordedTraceEvents?: TraceEventCreateNestedManyWithoutRecordedByUserInput
     preOrders?: PreOrderCreateNestedManyWithoutBuyerInput
     plantingLogs?: PlantingLogCreateNestedManyWithoutFarmerInput
-    auditLogs?: AuditLogCreateNestedManyWithoutUserInput
+    auditLogs?: AuditLogCreateNestedManyWithoutActorInput
+    configsUpdated?: SystemConfigCreateNestedManyWithoutUpdaterInput
+    ban?: UserBanCreateNestedOneWithoutUserInput
+    bansIssued?: UserBanCreateNestedManyWithoutBannerInput
   }
 
   export type UserUncheckedCreateWithoutListingsInput = {
@@ -30410,7 +33373,10 @@ export namespace Prisma {
     recordedTraceEvents?: TraceEventUncheckedCreateNestedManyWithoutRecordedByUserInput
     preOrders?: PreOrderUncheckedCreateNestedManyWithoutBuyerInput
     plantingLogs?: PlantingLogUncheckedCreateNestedManyWithoutFarmerInput
-    auditLogs?: AuditLogUncheckedCreateNestedManyWithoutUserInput
+    auditLogs?: AuditLogUncheckedCreateNestedManyWithoutActorInput
+    configsUpdated?: SystemConfigUncheckedCreateNestedManyWithoutUpdaterInput
+    ban?: UserBanUncheckedCreateNestedOneWithoutUserInput
+    bansIssued?: UserBanUncheckedCreateNestedManyWithoutBannerInput
   }
 
   export type UserCreateOrConnectWithoutListingsInput = {
@@ -30638,7 +33604,10 @@ export namespace Prisma {
     recordedTraceEvents?: TraceEventUpdateManyWithoutRecordedByUserNestedInput
     preOrders?: PreOrderUpdateManyWithoutBuyerNestedInput
     plantingLogs?: PlantingLogUpdateManyWithoutFarmerNestedInput
-    auditLogs?: AuditLogUpdateManyWithoutUserNestedInput
+    auditLogs?: AuditLogUpdateManyWithoutActorNestedInput
+    configsUpdated?: SystemConfigUpdateManyWithoutUpdaterNestedInput
+    ban?: UserBanUpdateOneWithoutUserNestedInput
+    bansIssued?: UserBanUpdateManyWithoutBannerNestedInput
   }
 
   export type UserUncheckedUpdateWithoutListingsInput = {
@@ -30666,7 +33635,10 @@ export namespace Prisma {
     recordedTraceEvents?: TraceEventUncheckedUpdateManyWithoutRecordedByUserNestedInput
     preOrders?: PreOrderUncheckedUpdateManyWithoutBuyerNestedInput
     plantingLogs?: PlantingLogUncheckedUpdateManyWithoutFarmerNestedInput
-    auditLogs?: AuditLogUncheckedUpdateManyWithoutUserNestedInput
+    auditLogs?: AuditLogUncheckedUpdateManyWithoutActorNestedInput
+    configsUpdated?: SystemConfigUncheckedUpdateManyWithoutUpdaterNestedInput
+    ban?: UserBanUncheckedUpdateOneWithoutUserNestedInput
+    bansIssued?: UserBanUncheckedUpdateManyWithoutBannerNestedInput
   }
 
   export type OrderUpsertWithWhereUniqueWithoutListingInput = {
@@ -30977,7 +33949,10 @@ export namespace Prisma {
     receivedMessages?: MessageCreateNestedManyWithoutToUserInput
     preOrders?: PreOrderCreateNestedManyWithoutBuyerInput
     plantingLogs?: PlantingLogCreateNestedManyWithoutFarmerInput
-    auditLogs?: AuditLogCreateNestedManyWithoutUserInput
+    auditLogs?: AuditLogCreateNestedManyWithoutActorInput
+    configsUpdated?: SystemConfigCreateNestedManyWithoutUpdaterInput
+    ban?: UserBanCreateNestedOneWithoutUserInput
+    bansIssued?: UserBanCreateNestedManyWithoutBannerInput
   }
 
   export type UserUncheckedCreateWithoutRecordedTraceEventsInput = {
@@ -31005,7 +33980,10 @@ export namespace Prisma {
     receivedMessages?: MessageUncheckedCreateNestedManyWithoutToUserInput
     preOrders?: PreOrderUncheckedCreateNestedManyWithoutBuyerInput
     plantingLogs?: PlantingLogUncheckedCreateNestedManyWithoutFarmerInput
-    auditLogs?: AuditLogUncheckedCreateNestedManyWithoutUserInput
+    auditLogs?: AuditLogUncheckedCreateNestedManyWithoutActorInput
+    configsUpdated?: SystemConfigUncheckedCreateNestedManyWithoutUpdaterInput
+    ban?: UserBanUncheckedCreateNestedOneWithoutUserInput
+    bansIssued?: UserBanUncheckedCreateNestedManyWithoutBannerInput
   }
 
   export type UserCreateOrConnectWithoutRecordedTraceEventsInput = {
@@ -31108,7 +34086,10 @@ export namespace Prisma {
     receivedMessages?: MessageUpdateManyWithoutToUserNestedInput
     preOrders?: PreOrderUpdateManyWithoutBuyerNestedInput
     plantingLogs?: PlantingLogUpdateManyWithoutFarmerNestedInput
-    auditLogs?: AuditLogUpdateManyWithoutUserNestedInput
+    auditLogs?: AuditLogUpdateManyWithoutActorNestedInput
+    configsUpdated?: SystemConfigUpdateManyWithoutUpdaterNestedInput
+    ban?: UserBanUpdateOneWithoutUserNestedInput
+    bansIssued?: UserBanUpdateManyWithoutBannerNestedInput
   }
 
   export type UserUncheckedUpdateWithoutRecordedTraceEventsInput = {
@@ -31136,7 +34117,10 @@ export namespace Prisma {
     receivedMessages?: MessageUncheckedUpdateManyWithoutToUserNestedInput
     preOrders?: PreOrderUncheckedUpdateManyWithoutBuyerNestedInput
     plantingLogs?: PlantingLogUncheckedUpdateManyWithoutFarmerNestedInput
-    auditLogs?: AuditLogUncheckedUpdateManyWithoutUserNestedInput
+    auditLogs?: AuditLogUncheckedUpdateManyWithoutActorNestedInput
+    configsUpdated?: SystemConfigUncheckedUpdateManyWithoutUpdaterNestedInput
+    ban?: UserBanUncheckedUpdateOneWithoutUserNestedInput
+    bansIssued?: UserBanUncheckedUpdateManyWithoutBannerNestedInput
   }
 
   export type UserCreateWithoutOrdersInput = {
@@ -31164,7 +34148,10 @@ export namespace Prisma {
     recordedTraceEvents?: TraceEventCreateNestedManyWithoutRecordedByUserInput
     preOrders?: PreOrderCreateNestedManyWithoutBuyerInput
     plantingLogs?: PlantingLogCreateNestedManyWithoutFarmerInput
-    auditLogs?: AuditLogCreateNestedManyWithoutUserInput
+    auditLogs?: AuditLogCreateNestedManyWithoutActorInput
+    configsUpdated?: SystemConfigCreateNestedManyWithoutUpdaterInput
+    ban?: UserBanCreateNestedOneWithoutUserInput
+    bansIssued?: UserBanCreateNestedManyWithoutBannerInput
   }
 
   export type UserUncheckedCreateWithoutOrdersInput = {
@@ -31192,7 +34179,10 @@ export namespace Prisma {
     recordedTraceEvents?: TraceEventUncheckedCreateNestedManyWithoutRecordedByUserInput
     preOrders?: PreOrderUncheckedCreateNestedManyWithoutBuyerInput
     plantingLogs?: PlantingLogUncheckedCreateNestedManyWithoutFarmerInput
-    auditLogs?: AuditLogUncheckedCreateNestedManyWithoutUserInput
+    auditLogs?: AuditLogUncheckedCreateNestedManyWithoutActorInput
+    configsUpdated?: SystemConfigUncheckedCreateNestedManyWithoutUpdaterInput
+    ban?: UserBanUncheckedCreateNestedOneWithoutUserInput
+    bansIssued?: UserBanUncheckedCreateNestedManyWithoutBannerInput
   }
 
   export type UserCreateOrConnectWithoutOrdersInput = {
@@ -31441,7 +34431,10 @@ export namespace Prisma {
     recordedTraceEvents?: TraceEventUpdateManyWithoutRecordedByUserNestedInput
     preOrders?: PreOrderUpdateManyWithoutBuyerNestedInput
     plantingLogs?: PlantingLogUpdateManyWithoutFarmerNestedInput
-    auditLogs?: AuditLogUpdateManyWithoutUserNestedInput
+    auditLogs?: AuditLogUpdateManyWithoutActorNestedInput
+    configsUpdated?: SystemConfigUpdateManyWithoutUpdaterNestedInput
+    ban?: UserBanUpdateOneWithoutUserNestedInput
+    bansIssued?: UserBanUpdateManyWithoutBannerNestedInput
   }
 
   export type UserUncheckedUpdateWithoutOrdersInput = {
@@ -31469,7 +34462,10 @@ export namespace Prisma {
     recordedTraceEvents?: TraceEventUncheckedUpdateManyWithoutRecordedByUserNestedInput
     preOrders?: PreOrderUncheckedUpdateManyWithoutBuyerNestedInput
     plantingLogs?: PlantingLogUncheckedUpdateManyWithoutFarmerNestedInput
-    auditLogs?: AuditLogUncheckedUpdateManyWithoutUserNestedInput
+    auditLogs?: AuditLogUncheckedUpdateManyWithoutActorNestedInput
+    configsUpdated?: SystemConfigUncheckedUpdateManyWithoutUpdaterNestedInput
+    ban?: UserBanUncheckedUpdateOneWithoutUserNestedInput
+    bansIssued?: UserBanUncheckedUpdateManyWithoutBannerNestedInput
   }
 
   export type ProduceListingUpsertWithoutOrdersInput = {
@@ -31731,7 +34727,10 @@ export namespace Prisma {
     recordedTraceEvents?: TraceEventCreateNestedManyWithoutRecordedByUserInput
     preOrders?: PreOrderCreateNestedManyWithoutBuyerInput
     plantingLogs?: PlantingLogCreateNestedManyWithoutFarmerInput
-    auditLogs?: AuditLogCreateNestedManyWithoutUserInput
+    auditLogs?: AuditLogCreateNestedManyWithoutActorInput
+    configsUpdated?: SystemConfigCreateNestedManyWithoutUpdaterInput
+    ban?: UserBanCreateNestedOneWithoutUserInput
+    bansIssued?: UserBanCreateNestedManyWithoutBannerInput
   }
 
   export type UserUncheckedCreateWithoutDeliveriesInput = {
@@ -31759,7 +34758,10 @@ export namespace Prisma {
     recordedTraceEvents?: TraceEventUncheckedCreateNestedManyWithoutRecordedByUserInput
     preOrders?: PreOrderUncheckedCreateNestedManyWithoutBuyerInput
     plantingLogs?: PlantingLogUncheckedCreateNestedManyWithoutFarmerInput
-    auditLogs?: AuditLogUncheckedCreateNestedManyWithoutUserInput
+    auditLogs?: AuditLogUncheckedCreateNestedManyWithoutActorInput
+    configsUpdated?: SystemConfigUncheckedCreateNestedManyWithoutUpdaterInput
+    ban?: UserBanUncheckedCreateNestedOneWithoutUserInput
+    bansIssued?: UserBanUncheckedCreateNestedManyWithoutBannerInput
   }
 
   export type UserCreateOrConnectWithoutDeliveriesInput = {
@@ -31848,7 +34850,10 @@ export namespace Prisma {
     recordedTraceEvents?: TraceEventUpdateManyWithoutRecordedByUserNestedInput
     preOrders?: PreOrderUpdateManyWithoutBuyerNestedInput
     plantingLogs?: PlantingLogUpdateManyWithoutFarmerNestedInput
-    auditLogs?: AuditLogUpdateManyWithoutUserNestedInput
+    auditLogs?: AuditLogUpdateManyWithoutActorNestedInput
+    configsUpdated?: SystemConfigUpdateManyWithoutUpdaterNestedInput
+    ban?: UserBanUpdateOneWithoutUserNestedInput
+    bansIssued?: UserBanUpdateManyWithoutBannerNestedInput
   }
 
   export type UserUncheckedUpdateWithoutDeliveriesInput = {
@@ -31876,7 +34881,10 @@ export namespace Prisma {
     recordedTraceEvents?: TraceEventUncheckedUpdateManyWithoutRecordedByUserNestedInput
     preOrders?: PreOrderUncheckedUpdateManyWithoutBuyerNestedInput
     plantingLogs?: PlantingLogUncheckedUpdateManyWithoutFarmerNestedInput
-    auditLogs?: AuditLogUncheckedUpdateManyWithoutUserNestedInput
+    auditLogs?: AuditLogUncheckedUpdateManyWithoutActorNestedInput
+    configsUpdated?: SystemConfigUncheckedUpdateManyWithoutUpdaterNestedInput
+    ban?: UserBanUncheckedUpdateOneWithoutUserNestedInput
+    bansIssued?: UserBanUncheckedUpdateManyWithoutBannerNestedInput
   }
 
   export type UserCreateWithoutSentReviewsInput = {
@@ -31904,7 +34912,10 @@ export namespace Prisma {
     recordedTraceEvents?: TraceEventCreateNestedManyWithoutRecordedByUserInput
     preOrders?: PreOrderCreateNestedManyWithoutBuyerInput
     plantingLogs?: PlantingLogCreateNestedManyWithoutFarmerInput
-    auditLogs?: AuditLogCreateNestedManyWithoutUserInput
+    auditLogs?: AuditLogCreateNestedManyWithoutActorInput
+    configsUpdated?: SystemConfigCreateNestedManyWithoutUpdaterInput
+    ban?: UserBanCreateNestedOneWithoutUserInput
+    bansIssued?: UserBanCreateNestedManyWithoutBannerInput
   }
 
   export type UserUncheckedCreateWithoutSentReviewsInput = {
@@ -31932,7 +34943,10 @@ export namespace Prisma {
     recordedTraceEvents?: TraceEventUncheckedCreateNestedManyWithoutRecordedByUserInput
     preOrders?: PreOrderUncheckedCreateNestedManyWithoutBuyerInput
     plantingLogs?: PlantingLogUncheckedCreateNestedManyWithoutFarmerInput
-    auditLogs?: AuditLogUncheckedCreateNestedManyWithoutUserInput
+    auditLogs?: AuditLogUncheckedCreateNestedManyWithoutActorInput
+    configsUpdated?: SystemConfigUncheckedCreateNestedManyWithoutUpdaterInput
+    ban?: UserBanUncheckedCreateNestedOneWithoutUserInput
+    bansIssued?: UserBanUncheckedCreateNestedManyWithoutBannerInput
   }
 
   export type UserCreateOrConnectWithoutSentReviewsInput = {
@@ -31965,7 +34979,10 @@ export namespace Prisma {
     recordedTraceEvents?: TraceEventCreateNestedManyWithoutRecordedByUserInput
     preOrders?: PreOrderCreateNestedManyWithoutBuyerInput
     plantingLogs?: PlantingLogCreateNestedManyWithoutFarmerInput
-    auditLogs?: AuditLogCreateNestedManyWithoutUserInput
+    auditLogs?: AuditLogCreateNestedManyWithoutActorInput
+    configsUpdated?: SystemConfigCreateNestedManyWithoutUpdaterInput
+    ban?: UserBanCreateNestedOneWithoutUserInput
+    bansIssued?: UserBanCreateNestedManyWithoutBannerInput
   }
 
   export type UserUncheckedCreateWithoutReceivedReviewsInput = {
@@ -31993,7 +35010,10 @@ export namespace Prisma {
     recordedTraceEvents?: TraceEventUncheckedCreateNestedManyWithoutRecordedByUserInput
     preOrders?: PreOrderUncheckedCreateNestedManyWithoutBuyerInput
     plantingLogs?: PlantingLogUncheckedCreateNestedManyWithoutFarmerInput
-    auditLogs?: AuditLogUncheckedCreateNestedManyWithoutUserInput
+    auditLogs?: AuditLogUncheckedCreateNestedManyWithoutActorInput
+    configsUpdated?: SystemConfigUncheckedCreateNestedManyWithoutUpdaterInput
+    ban?: UserBanUncheckedCreateNestedOneWithoutUserInput
+    bansIssued?: UserBanUncheckedCreateNestedManyWithoutBannerInput
   }
 
   export type UserCreateOrConnectWithoutReceivedReviewsInput = {
@@ -32076,7 +35096,10 @@ export namespace Prisma {
     recordedTraceEvents?: TraceEventUpdateManyWithoutRecordedByUserNestedInput
     preOrders?: PreOrderUpdateManyWithoutBuyerNestedInput
     plantingLogs?: PlantingLogUpdateManyWithoutFarmerNestedInput
-    auditLogs?: AuditLogUpdateManyWithoutUserNestedInput
+    auditLogs?: AuditLogUpdateManyWithoutActorNestedInput
+    configsUpdated?: SystemConfigUpdateManyWithoutUpdaterNestedInput
+    ban?: UserBanUpdateOneWithoutUserNestedInput
+    bansIssued?: UserBanUpdateManyWithoutBannerNestedInput
   }
 
   export type UserUncheckedUpdateWithoutSentReviewsInput = {
@@ -32104,7 +35127,10 @@ export namespace Prisma {
     recordedTraceEvents?: TraceEventUncheckedUpdateManyWithoutRecordedByUserNestedInput
     preOrders?: PreOrderUncheckedUpdateManyWithoutBuyerNestedInput
     plantingLogs?: PlantingLogUncheckedUpdateManyWithoutFarmerNestedInput
-    auditLogs?: AuditLogUncheckedUpdateManyWithoutUserNestedInput
+    auditLogs?: AuditLogUncheckedUpdateManyWithoutActorNestedInput
+    configsUpdated?: SystemConfigUncheckedUpdateManyWithoutUpdaterNestedInput
+    ban?: UserBanUncheckedUpdateOneWithoutUserNestedInput
+    bansIssued?: UserBanUncheckedUpdateManyWithoutBannerNestedInput
   }
 
   export type UserUpsertWithoutReceivedReviewsInput = {
@@ -32143,7 +35169,10 @@ export namespace Prisma {
     recordedTraceEvents?: TraceEventUpdateManyWithoutRecordedByUserNestedInput
     preOrders?: PreOrderUpdateManyWithoutBuyerNestedInput
     plantingLogs?: PlantingLogUpdateManyWithoutFarmerNestedInput
-    auditLogs?: AuditLogUpdateManyWithoutUserNestedInput
+    auditLogs?: AuditLogUpdateManyWithoutActorNestedInput
+    configsUpdated?: SystemConfigUpdateManyWithoutUpdaterNestedInput
+    ban?: UserBanUpdateOneWithoutUserNestedInput
+    bansIssued?: UserBanUpdateManyWithoutBannerNestedInput
   }
 
   export type UserUncheckedUpdateWithoutReceivedReviewsInput = {
@@ -32171,7 +35200,10 @@ export namespace Prisma {
     recordedTraceEvents?: TraceEventUncheckedUpdateManyWithoutRecordedByUserNestedInput
     preOrders?: PreOrderUncheckedUpdateManyWithoutBuyerNestedInput
     plantingLogs?: PlantingLogUncheckedUpdateManyWithoutFarmerNestedInput
-    auditLogs?: AuditLogUncheckedUpdateManyWithoutUserNestedInput
+    auditLogs?: AuditLogUncheckedUpdateManyWithoutActorNestedInput
+    configsUpdated?: SystemConfigUncheckedUpdateManyWithoutUpdaterNestedInput
+    ban?: UserBanUncheckedUpdateOneWithoutUserNestedInput
+    bansIssued?: UserBanUncheckedUpdateManyWithoutBannerNestedInput
   }
 
   export type OrderUpsertWithoutReviewsInput = {
@@ -32244,7 +35276,10 @@ export namespace Prisma {
     recordedTraceEvents?: TraceEventCreateNestedManyWithoutRecordedByUserInput
     preOrders?: PreOrderCreateNestedManyWithoutBuyerInput
     plantingLogs?: PlantingLogCreateNestedManyWithoutFarmerInput
-    auditLogs?: AuditLogCreateNestedManyWithoutUserInput
+    auditLogs?: AuditLogCreateNestedManyWithoutActorInput
+    configsUpdated?: SystemConfigCreateNestedManyWithoutUpdaterInput
+    ban?: UserBanCreateNestedOneWithoutUserInput
+    bansIssued?: UserBanCreateNestedManyWithoutBannerInput
   }
 
   export type UserUncheckedCreateWithoutNotificationsInput = {
@@ -32272,7 +35307,10 @@ export namespace Prisma {
     recordedTraceEvents?: TraceEventUncheckedCreateNestedManyWithoutRecordedByUserInput
     preOrders?: PreOrderUncheckedCreateNestedManyWithoutBuyerInput
     plantingLogs?: PlantingLogUncheckedCreateNestedManyWithoutFarmerInput
-    auditLogs?: AuditLogUncheckedCreateNestedManyWithoutUserInput
+    auditLogs?: AuditLogUncheckedCreateNestedManyWithoutActorInput
+    configsUpdated?: SystemConfigUncheckedCreateNestedManyWithoutUpdaterInput
+    ban?: UserBanUncheckedCreateNestedOneWithoutUserInput
+    bansIssued?: UserBanUncheckedCreateNestedManyWithoutBannerInput
   }
 
   export type UserCreateOrConnectWithoutNotificationsInput = {
@@ -32316,7 +35354,10 @@ export namespace Prisma {
     recordedTraceEvents?: TraceEventUpdateManyWithoutRecordedByUserNestedInput
     preOrders?: PreOrderUpdateManyWithoutBuyerNestedInput
     plantingLogs?: PlantingLogUpdateManyWithoutFarmerNestedInput
-    auditLogs?: AuditLogUpdateManyWithoutUserNestedInput
+    auditLogs?: AuditLogUpdateManyWithoutActorNestedInput
+    configsUpdated?: SystemConfigUpdateManyWithoutUpdaterNestedInput
+    ban?: UserBanUpdateOneWithoutUserNestedInput
+    bansIssued?: UserBanUpdateManyWithoutBannerNestedInput
   }
 
   export type UserUncheckedUpdateWithoutNotificationsInput = {
@@ -32344,7 +35385,10 @@ export namespace Prisma {
     recordedTraceEvents?: TraceEventUncheckedUpdateManyWithoutRecordedByUserNestedInput
     preOrders?: PreOrderUncheckedUpdateManyWithoutBuyerNestedInput
     plantingLogs?: PlantingLogUncheckedUpdateManyWithoutFarmerNestedInput
-    auditLogs?: AuditLogUncheckedUpdateManyWithoutUserNestedInput
+    auditLogs?: AuditLogUncheckedUpdateManyWithoutActorNestedInput
+    configsUpdated?: SystemConfigUncheckedUpdateManyWithoutUpdaterNestedInput
+    ban?: UserBanUncheckedUpdateOneWithoutUserNestedInput
+    bansIssued?: UserBanUncheckedUpdateManyWithoutBannerNestedInput
   }
 
   export type UserCreateWithoutSentMessagesInput = {
@@ -32372,7 +35416,10 @@ export namespace Prisma {
     recordedTraceEvents?: TraceEventCreateNestedManyWithoutRecordedByUserInput
     preOrders?: PreOrderCreateNestedManyWithoutBuyerInput
     plantingLogs?: PlantingLogCreateNestedManyWithoutFarmerInput
-    auditLogs?: AuditLogCreateNestedManyWithoutUserInput
+    auditLogs?: AuditLogCreateNestedManyWithoutActorInput
+    configsUpdated?: SystemConfigCreateNestedManyWithoutUpdaterInput
+    ban?: UserBanCreateNestedOneWithoutUserInput
+    bansIssued?: UserBanCreateNestedManyWithoutBannerInput
   }
 
   export type UserUncheckedCreateWithoutSentMessagesInput = {
@@ -32400,7 +35447,10 @@ export namespace Prisma {
     recordedTraceEvents?: TraceEventUncheckedCreateNestedManyWithoutRecordedByUserInput
     preOrders?: PreOrderUncheckedCreateNestedManyWithoutBuyerInput
     plantingLogs?: PlantingLogUncheckedCreateNestedManyWithoutFarmerInput
-    auditLogs?: AuditLogUncheckedCreateNestedManyWithoutUserInput
+    auditLogs?: AuditLogUncheckedCreateNestedManyWithoutActorInput
+    configsUpdated?: SystemConfigUncheckedCreateNestedManyWithoutUpdaterInput
+    ban?: UserBanUncheckedCreateNestedOneWithoutUserInput
+    bansIssued?: UserBanUncheckedCreateNestedManyWithoutBannerInput
   }
 
   export type UserCreateOrConnectWithoutSentMessagesInput = {
@@ -32433,7 +35483,10 @@ export namespace Prisma {
     recordedTraceEvents?: TraceEventCreateNestedManyWithoutRecordedByUserInput
     preOrders?: PreOrderCreateNestedManyWithoutBuyerInput
     plantingLogs?: PlantingLogCreateNestedManyWithoutFarmerInput
-    auditLogs?: AuditLogCreateNestedManyWithoutUserInput
+    auditLogs?: AuditLogCreateNestedManyWithoutActorInput
+    configsUpdated?: SystemConfigCreateNestedManyWithoutUpdaterInput
+    ban?: UserBanCreateNestedOneWithoutUserInput
+    bansIssued?: UserBanCreateNestedManyWithoutBannerInput
   }
 
   export type UserUncheckedCreateWithoutReceivedMessagesInput = {
@@ -32461,7 +35514,10 @@ export namespace Prisma {
     recordedTraceEvents?: TraceEventUncheckedCreateNestedManyWithoutRecordedByUserInput
     preOrders?: PreOrderUncheckedCreateNestedManyWithoutBuyerInput
     plantingLogs?: PlantingLogUncheckedCreateNestedManyWithoutFarmerInput
-    auditLogs?: AuditLogUncheckedCreateNestedManyWithoutUserInput
+    auditLogs?: AuditLogUncheckedCreateNestedManyWithoutActorInput
+    configsUpdated?: SystemConfigUncheckedCreateNestedManyWithoutUpdaterInput
+    ban?: UserBanUncheckedCreateNestedOneWithoutUserInput
+    bansIssued?: UserBanUncheckedCreateNestedManyWithoutBannerInput
   }
 
   export type UserCreateOrConnectWithoutReceivedMessagesInput = {
@@ -32544,7 +35600,10 @@ export namespace Prisma {
     recordedTraceEvents?: TraceEventUpdateManyWithoutRecordedByUserNestedInput
     preOrders?: PreOrderUpdateManyWithoutBuyerNestedInput
     plantingLogs?: PlantingLogUpdateManyWithoutFarmerNestedInput
-    auditLogs?: AuditLogUpdateManyWithoutUserNestedInput
+    auditLogs?: AuditLogUpdateManyWithoutActorNestedInput
+    configsUpdated?: SystemConfigUpdateManyWithoutUpdaterNestedInput
+    ban?: UserBanUpdateOneWithoutUserNestedInput
+    bansIssued?: UserBanUpdateManyWithoutBannerNestedInput
   }
 
   export type UserUncheckedUpdateWithoutSentMessagesInput = {
@@ -32572,7 +35631,10 @@ export namespace Prisma {
     recordedTraceEvents?: TraceEventUncheckedUpdateManyWithoutRecordedByUserNestedInput
     preOrders?: PreOrderUncheckedUpdateManyWithoutBuyerNestedInput
     plantingLogs?: PlantingLogUncheckedUpdateManyWithoutFarmerNestedInput
-    auditLogs?: AuditLogUncheckedUpdateManyWithoutUserNestedInput
+    auditLogs?: AuditLogUncheckedUpdateManyWithoutActorNestedInput
+    configsUpdated?: SystemConfigUncheckedUpdateManyWithoutUpdaterNestedInput
+    ban?: UserBanUncheckedUpdateOneWithoutUserNestedInput
+    bansIssued?: UserBanUncheckedUpdateManyWithoutBannerNestedInput
   }
 
   export type UserUpsertWithoutReceivedMessagesInput = {
@@ -32611,7 +35673,10 @@ export namespace Prisma {
     recordedTraceEvents?: TraceEventUpdateManyWithoutRecordedByUserNestedInput
     preOrders?: PreOrderUpdateManyWithoutBuyerNestedInput
     plantingLogs?: PlantingLogUpdateManyWithoutFarmerNestedInput
-    auditLogs?: AuditLogUpdateManyWithoutUserNestedInput
+    auditLogs?: AuditLogUpdateManyWithoutActorNestedInput
+    configsUpdated?: SystemConfigUpdateManyWithoutUpdaterNestedInput
+    ban?: UserBanUpdateOneWithoutUserNestedInput
+    bansIssued?: UserBanUpdateManyWithoutBannerNestedInput
   }
 
   export type UserUncheckedUpdateWithoutReceivedMessagesInput = {
@@ -32639,7 +35704,10 @@ export namespace Prisma {
     recordedTraceEvents?: TraceEventUncheckedUpdateManyWithoutRecordedByUserNestedInput
     preOrders?: PreOrderUncheckedUpdateManyWithoutBuyerNestedInput
     plantingLogs?: PlantingLogUncheckedUpdateManyWithoutFarmerNestedInput
-    auditLogs?: AuditLogUncheckedUpdateManyWithoutUserNestedInput
+    auditLogs?: AuditLogUncheckedUpdateManyWithoutActorNestedInput
+    configsUpdated?: SystemConfigUncheckedUpdateManyWithoutUpdaterNestedInput
+    ban?: UserBanUncheckedUpdateOneWithoutUserNestedInput
+    bansIssued?: UserBanUncheckedUpdateManyWithoutBannerNestedInput
   }
 
   export type OrderUpsertWithoutMessagesInput = {
@@ -32712,7 +35780,10 @@ export namespace Prisma {
     receivedMessages?: MessageCreateNestedManyWithoutToUserInput
     recordedTraceEvents?: TraceEventCreateNestedManyWithoutRecordedByUserInput
     plantingLogs?: PlantingLogCreateNestedManyWithoutFarmerInput
-    auditLogs?: AuditLogCreateNestedManyWithoutUserInput
+    auditLogs?: AuditLogCreateNestedManyWithoutActorInput
+    configsUpdated?: SystemConfigCreateNestedManyWithoutUpdaterInput
+    ban?: UserBanCreateNestedOneWithoutUserInput
+    bansIssued?: UserBanCreateNestedManyWithoutBannerInput
   }
 
   export type UserUncheckedCreateWithoutPreOrdersInput = {
@@ -32740,7 +35811,10 @@ export namespace Prisma {
     receivedMessages?: MessageUncheckedCreateNestedManyWithoutToUserInput
     recordedTraceEvents?: TraceEventUncheckedCreateNestedManyWithoutRecordedByUserInput
     plantingLogs?: PlantingLogUncheckedCreateNestedManyWithoutFarmerInput
-    auditLogs?: AuditLogUncheckedCreateNestedManyWithoutUserInput
+    auditLogs?: AuditLogUncheckedCreateNestedManyWithoutActorInput
+    configsUpdated?: SystemConfigUncheckedCreateNestedManyWithoutUpdaterInput
+    ban?: UserBanUncheckedCreateNestedOneWithoutUserInput
+    bansIssued?: UserBanUncheckedCreateNestedManyWithoutBannerInput
   }
 
   export type UserCreateOrConnectWithoutPreOrdersInput = {
@@ -32876,7 +35950,10 @@ export namespace Prisma {
     receivedMessages?: MessageUpdateManyWithoutToUserNestedInput
     recordedTraceEvents?: TraceEventUpdateManyWithoutRecordedByUserNestedInput
     plantingLogs?: PlantingLogUpdateManyWithoutFarmerNestedInput
-    auditLogs?: AuditLogUpdateManyWithoutUserNestedInput
+    auditLogs?: AuditLogUpdateManyWithoutActorNestedInput
+    configsUpdated?: SystemConfigUpdateManyWithoutUpdaterNestedInput
+    ban?: UserBanUpdateOneWithoutUserNestedInput
+    bansIssued?: UserBanUpdateManyWithoutBannerNestedInput
   }
 
   export type UserUncheckedUpdateWithoutPreOrdersInput = {
@@ -32904,7 +35981,10 @@ export namespace Prisma {
     receivedMessages?: MessageUncheckedUpdateManyWithoutToUserNestedInput
     recordedTraceEvents?: TraceEventUncheckedUpdateManyWithoutRecordedByUserNestedInput
     plantingLogs?: PlantingLogUncheckedUpdateManyWithoutFarmerNestedInput
-    auditLogs?: AuditLogUncheckedUpdateManyWithoutUserNestedInput
+    auditLogs?: AuditLogUncheckedUpdateManyWithoutActorNestedInput
+    configsUpdated?: SystemConfigUncheckedUpdateManyWithoutUpdaterNestedInput
+    ban?: UserBanUncheckedUpdateOneWithoutUserNestedInput
+    bansIssued?: UserBanUncheckedUpdateManyWithoutBannerNestedInput
   }
 
   export type ProduceListingUpsertWithoutPreOrdersInput = {
@@ -33036,7 +36116,10 @@ export namespace Prisma {
     receivedMessages?: MessageCreateNestedManyWithoutToUserInput
     recordedTraceEvents?: TraceEventCreateNestedManyWithoutRecordedByUserInput
     preOrders?: PreOrderCreateNestedManyWithoutBuyerInput
-    auditLogs?: AuditLogCreateNestedManyWithoutUserInput
+    auditLogs?: AuditLogCreateNestedManyWithoutActorInput
+    configsUpdated?: SystemConfigCreateNestedManyWithoutUpdaterInput
+    ban?: UserBanCreateNestedOneWithoutUserInput
+    bansIssued?: UserBanCreateNestedManyWithoutBannerInput
   }
 
   export type UserUncheckedCreateWithoutPlantingLogsInput = {
@@ -33064,7 +36147,10 @@ export namespace Prisma {
     receivedMessages?: MessageUncheckedCreateNestedManyWithoutToUserInput
     recordedTraceEvents?: TraceEventUncheckedCreateNestedManyWithoutRecordedByUserInput
     preOrders?: PreOrderUncheckedCreateNestedManyWithoutBuyerInput
-    auditLogs?: AuditLogUncheckedCreateNestedManyWithoutUserInput
+    auditLogs?: AuditLogUncheckedCreateNestedManyWithoutActorInput
+    configsUpdated?: SystemConfigUncheckedCreateNestedManyWithoutUpdaterInput
+    ban?: UserBanUncheckedCreateNestedOneWithoutUserInput
+    bansIssued?: UserBanUncheckedCreateNestedManyWithoutBannerInput
   }
 
   export type UserCreateOrConnectWithoutPlantingLogsInput = {
@@ -33198,7 +36284,10 @@ export namespace Prisma {
     receivedMessages?: MessageUpdateManyWithoutToUserNestedInput
     recordedTraceEvents?: TraceEventUpdateManyWithoutRecordedByUserNestedInput
     preOrders?: PreOrderUpdateManyWithoutBuyerNestedInput
-    auditLogs?: AuditLogUpdateManyWithoutUserNestedInput
+    auditLogs?: AuditLogUpdateManyWithoutActorNestedInput
+    configsUpdated?: SystemConfigUpdateManyWithoutUpdaterNestedInput
+    ban?: UserBanUpdateOneWithoutUserNestedInput
+    bansIssued?: UserBanUpdateManyWithoutBannerNestedInput
   }
 
   export type UserUncheckedUpdateWithoutPlantingLogsInput = {
@@ -33226,7 +36315,10 @@ export namespace Prisma {
     receivedMessages?: MessageUncheckedUpdateManyWithoutToUserNestedInput
     recordedTraceEvents?: TraceEventUncheckedUpdateManyWithoutRecordedByUserNestedInput
     preOrders?: PreOrderUncheckedUpdateManyWithoutBuyerNestedInput
-    auditLogs?: AuditLogUncheckedUpdateManyWithoutUserNestedInput
+    auditLogs?: AuditLogUncheckedUpdateManyWithoutActorNestedInput
+    configsUpdated?: SystemConfigUncheckedUpdateManyWithoutUpdaterNestedInput
+    ban?: UserBanUncheckedUpdateOneWithoutUserNestedInput
+    bansIssued?: UserBanUncheckedUpdateManyWithoutBannerNestedInput
   }
 
   export type PlantingInputUpsertWithWhereUniqueWithoutPlantingLogInput = {
@@ -33378,6 +36470,9 @@ export namespace Prisma {
     recordedTraceEvents?: TraceEventCreateNestedManyWithoutRecordedByUserInput
     preOrders?: PreOrderCreateNestedManyWithoutBuyerInput
     plantingLogs?: PlantingLogCreateNestedManyWithoutFarmerInput
+    configsUpdated?: SystemConfigCreateNestedManyWithoutUpdaterInput
+    ban?: UserBanCreateNestedOneWithoutUserInput
+    bansIssued?: UserBanCreateNestedManyWithoutBannerInput
   }
 
   export type UserUncheckedCreateWithoutAuditLogsInput = {
@@ -33406,6 +36501,9 @@ export namespace Prisma {
     recordedTraceEvents?: TraceEventUncheckedCreateNestedManyWithoutRecordedByUserInput
     preOrders?: PreOrderUncheckedCreateNestedManyWithoutBuyerInput
     plantingLogs?: PlantingLogUncheckedCreateNestedManyWithoutFarmerInput
+    configsUpdated?: SystemConfigUncheckedCreateNestedManyWithoutUpdaterInput
+    ban?: UserBanUncheckedCreateNestedOneWithoutUserInput
+    bansIssued?: UserBanUncheckedCreateNestedManyWithoutBannerInput
   }
 
   export type UserCreateOrConnectWithoutAuditLogsInput = {
@@ -33450,6 +36548,9 @@ export namespace Prisma {
     recordedTraceEvents?: TraceEventUpdateManyWithoutRecordedByUserNestedInput
     preOrders?: PreOrderUpdateManyWithoutBuyerNestedInput
     plantingLogs?: PlantingLogUpdateManyWithoutFarmerNestedInput
+    configsUpdated?: SystemConfigUpdateManyWithoutUpdaterNestedInput
+    ban?: UserBanUpdateOneWithoutUserNestedInput
+    bansIssued?: UserBanUpdateManyWithoutBannerNestedInput
   }
 
   export type UserUncheckedUpdateWithoutAuditLogsInput = {
@@ -33478,6 +36579,429 @@ export namespace Prisma {
     recordedTraceEvents?: TraceEventUncheckedUpdateManyWithoutRecordedByUserNestedInput
     preOrders?: PreOrderUncheckedUpdateManyWithoutBuyerNestedInput
     plantingLogs?: PlantingLogUncheckedUpdateManyWithoutFarmerNestedInput
+    configsUpdated?: SystemConfigUncheckedUpdateManyWithoutUpdaterNestedInput
+    ban?: UserBanUncheckedUpdateOneWithoutUserNestedInput
+    bansIssued?: UserBanUncheckedUpdateManyWithoutBannerNestedInput
+  }
+
+  export type UserCreateWithoutConfigsUpdatedInput = {
+    id?: string
+    phone: string
+    name: string
+    role: $Enums.Role
+    latitude?: number | null
+    longitude?: number | null
+    region?: string | null
+    district?: string | null
+    isVerified?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    farmerProfile?: FarmerProfileCreateNestedOneWithoutUserInput
+    buyerProfile?: BuyerProfileCreateNestedOneWithoutUserInput
+    transportProfile?: TransportProfileCreateNestedOneWithoutUserInput
+    listings?: ProduceListingCreateNestedManyWithoutFarmerInput
+    orders?: OrderCreateNestedManyWithoutBuyerInput
+    deliveries?: DeliveryRequestCreateNestedManyWithoutTransportProviderInput
+    sentReviews?: ReviewCreateNestedManyWithoutFromUserInput
+    receivedReviews?: ReviewCreateNestedManyWithoutToUserInput
+    notifications?: NotificationCreateNestedManyWithoutUserInput
+    sentMessages?: MessageCreateNestedManyWithoutFromUserInput
+    receivedMessages?: MessageCreateNestedManyWithoutToUserInput
+    recordedTraceEvents?: TraceEventCreateNestedManyWithoutRecordedByUserInput
+    preOrders?: PreOrderCreateNestedManyWithoutBuyerInput
+    plantingLogs?: PlantingLogCreateNestedManyWithoutFarmerInput
+    auditLogs?: AuditLogCreateNestedManyWithoutActorInput
+    ban?: UserBanCreateNestedOneWithoutUserInput
+    bansIssued?: UserBanCreateNestedManyWithoutBannerInput
+  }
+
+  export type UserUncheckedCreateWithoutConfigsUpdatedInput = {
+    id?: string
+    phone: string
+    name: string
+    role: $Enums.Role
+    latitude?: number | null
+    longitude?: number | null
+    region?: string | null
+    district?: string | null
+    isVerified?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    farmerProfile?: FarmerProfileUncheckedCreateNestedOneWithoutUserInput
+    buyerProfile?: BuyerProfileUncheckedCreateNestedOneWithoutUserInput
+    transportProfile?: TransportProfileUncheckedCreateNestedOneWithoutUserInput
+    listings?: ProduceListingUncheckedCreateNestedManyWithoutFarmerInput
+    orders?: OrderUncheckedCreateNestedManyWithoutBuyerInput
+    deliveries?: DeliveryRequestUncheckedCreateNestedManyWithoutTransportProviderInput
+    sentReviews?: ReviewUncheckedCreateNestedManyWithoutFromUserInput
+    receivedReviews?: ReviewUncheckedCreateNestedManyWithoutToUserInput
+    notifications?: NotificationUncheckedCreateNestedManyWithoutUserInput
+    sentMessages?: MessageUncheckedCreateNestedManyWithoutFromUserInput
+    receivedMessages?: MessageUncheckedCreateNestedManyWithoutToUserInput
+    recordedTraceEvents?: TraceEventUncheckedCreateNestedManyWithoutRecordedByUserInput
+    preOrders?: PreOrderUncheckedCreateNestedManyWithoutBuyerInput
+    plantingLogs?: PlantingLogUncheckedCreateNestedManyWithoutFarmerInput
+    auditLogs?: AuditLogUncheckedCreateNestedManyWithoutActorInput
+    ban?: UserBanUncheckedCreateNestedOneWithoutUserInput
+    bansIssued?: UserBanUncheckedCreateNestedManyWithoutBannerInput
+  }
+
+  export type UserCreateOrConnectWithoutConfigsUpdatedInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutConfigsUpdatedInput, UserUncheckedCreateWithoutConfigsUpdatedInput>
+  }
+
+  export type UserUpsertWithoutConfigsUpdatedInput = {
+    update: XOR<UserUpdateWithoutConfigsUpdatedInput, UserUncheckedUpdateWithoutConfigsUpdatedInput>
+    create: XOR<UserCreateWithoutConfigsUpdatedInput, UserUncheckedCreateWithoutConfigsUpdatedInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutConfigsUpdatedInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutConfigsUpdatedInput, UserUncheckedUpdateWithoutConfigsUpdatedInput>
+  }
+
+  export type UserUpdateWithoutConfigsUpdatedInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    latitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    longitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    region?: NullableStringFieldUpdateOperationsInput | string | null
+    district?: NullableStringFieldUpdateOperationsInput | string | null
+    isVerified?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    farmerProfile?: FarmerProfileUpdateOneWithoutUserNestedInput
+    buyerProfile?: BuyerProfileUpdateOneWithoutUserNestedInput
+    transportProfile?: TransportProfileUpdateOneWithoutUserNestedInput
+    listings?: ProduceListingUpdateManyWithoutFarmerNestedInput
+    orders?: OrderUpdateManyWithoutBuyerNestedInput
+    deliveries?: DeliveryRequestUpdateManyWithoutTransportProviderNestedInput
+    sentReviews?: ReviewUpdateManyWithoutFromUserNestedInput
+    receivedReviews?: ReviewUpdateManyWithoutToUserNestedInput
+    notifications?: NotificationUpdateManyWithoutUserNestedInput
+    sentMessages?: MessageUpdateManyWithoutFromUserNestedInput
+    receivedMessages?: MessageUpdateManyWithoutToUserNestedInput
+    recordedTraceEvents?: TraceEventUpdateManyWithoutRecordedByUserNestedInput
+    preOrders?: PreOrderUpdateManyWithoutBuyerNestedInput
+    plantingLogs?: PlantingLogUpdateManyWithoutFarmerNestedInput
+    auditLogs?: AuditLogUpdateManyWithoutActorNestedInput
+    ban?: UserBanUpdateOneWithoutUserNestedInput
+    bansIssued?: UserBanUpdateManyWithoutBannerNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutConfigsUpdatedInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    latitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    longitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    region?: NullableStringFieldUpdateOperationsInput | string | null
+    district?: NullableStringFieldUpdateOperationsInput | string | null
+    isVerified?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    farmerProfile?: FarmerProfileUncheckedUpdateOneWithoutUserNestedInput
+    buyerProfile?: BuyerProfileUncheckedUpdateOneWithoutUserNestedInput
+    transportProfile?: TransportProfileUncheckedUpdateOneWithoutUserNestedInput
+    listings?: ProduceListingUncheckedUpdateManyWithoutFarmerNestedInput
+    orders?: OrderUncheckedUpdateManyWithoutBuyerNestedInput
+    deliveries?: DeliveryRequestUncheckedUpdateManyWithoutTransportProviderNestedInput
+    sentReviews?: ReviewUncheckedUpdateManyWithoutFromUserNestedInput
+    receivedReviews?: ReviewUncheckedUpdateManyWithoutToUserNestedInput
+    notifications?: NotificationUncheckedUpdateManyWithoutUserNestedInput
+    sentMessages?: MessageUncheckedUpdateManyWithoutFromUserNestedInput
+    receivedMessages?: MessageUncheckedUpdateManyWithoutToUserNestedInput
+    recordedTraceEvents?: TraceEventUncheckedUpdateManyWithoutRecordedByUserNestedInput
+    preOrders?: PreOrderUncheckedUpdateManyWithoutBuyerNestedInput
+    plantingLogs?: PlantingLogUncheckedUpdateManyWithoutFarmerNestedInput
+    auditLogs?: AuditLogUncheckedUpdateManyWithoutActorNestedInput
+    ban?: UserBanUncheckedUpdateOneWithoutUserNestedInput
+    bansIssued?: UserBanUncheckedUpdateManyWithoutBannerNestedInput
+  }
+
+  export type UserCreateWithoutBanInput = {
+    id?: string
+    phone: string
+    name: string
+    role: $Enums.Role
+    latitude?: number | null
+    longitude?: number | null
+    region?: string | null
+    district?: string | null
+    isVerified?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    farmerProfile?: FarmerProfileCreateNestedOneWithoutUserInput
+    buyerProfile?: BuyerProfileCreateNestedOneWithoutUserInput
+    transportProfile?: TransportProfileCreateNestedOneWithoutUserInput
+    listings?: ProduceListingCreateNestedManyWithoutFarmerInput
+    orders?: OrderCreateNestedManyWithoutBuyerInput
+    deliveries?: DeliveryRequestCreateNestedManyWithoutTransportProviderInput
+    sentReviews?: ReviewCreateNestedManyWithoutFromUserInput
+    receivedReviews?: ReviewCreateNestedManyWithoutToUserInput
+    notifications?: NotificationCreateNestedManyWithoutUserInput
+    sentMessages?: MessageCreateNestedManyWithoutFromUserInput
+    receivedMessages?: MessageCreateNestedManyWithoutToUserInput
+    recordedTraceEvents?: TraceEventCreateNestedManyWithoutRecordedByUserInput
+    preOrders?: PreOrderCreateNestedManyWithoutBuyerInput
+    plantingLogs?: PlantingLogCreateNestedManyWithoutFarmerInput
+    auditLogs?: AuditLogCreateNestedManyWithoutActorInput
+    configsUpdated?: SystemConfigCreateNestedManyWithoutUpdaterInput
+    bansIssued?: UserBanCreateNestedManyWithoutBannerInput
+  }
+
+  export type UserUncheckedCreateWithoutBanInput = {
+    id?: string
+    phone: string
+    name: string
+    role: $Enums.Role
+    latitude?: number | null
+    longitude?: number | null
+    region?: string | null
+    district?: string | null
+    isVerified?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    farmerProfile?: FarmerProfileUncheckedCreateNestedOneWithoutUserInput
+    buyerProfile?: BuyerProfileUncheckedCreateNestedOneWithoutUserInput
+    transportProfile?: TransportProfileUncheckedCreateNestedOneWithoutUserInput
+    listings?: ProduceListingUncheckedCreateNestedManyWithoutFarmerInput
+    orders?: OrderUncheckedCreateNestedManyWithoutBuyerInput
+    deliveries?: DeliveryRequestUncheckedCreateNestedManyWithoutTransportProviderInput
+    sentReviews?: ReviewUncheckedCreateNestedManyWithoutFromUserInput
+    receivedReviews?: ReviewUncheckedCreateNestedManyWithoutToUserInput
+    notifications?: NotificationUncheckedCreateNestedManyWithoutUserInput
+    sentMessages?: MessageUncheckedCreateNestedManyWithoutFromUserInput
+    receivedMessages?: MessageUncheckedCreateNestedManyWithoutToUserInput
+    recordedTraceEvents?: TraceEventUncheckedCreateNestedManyWithoutRecordedByUserInput
+    preOrders?: PreOrderUncheckedCreateNestedManyWithoutBuyerInput
+    plantingLogs?: PlantingLogUncheckedCreateNestedManyWithoutFarmerInput
+    auditLogs?: AuditLogUncheckedCreateNestedManyWithoutActorInput
+    configsUpdated?: SystemConfigUncheckedCreateNestedManyWithoutUpdaterInput
+    bansIssued?: UserBanUncheckedCreateNestedManyWithoutBannerInput
+  }
+
+  export type UserCreateOrConnectWithoutBanInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutBanInput, UserUncheckedCreateWithoutBanInput>
+  }
+
+  export type UserCreateWithoutBansIssuedInput = {
+    id?: string
+    phone: string
+    name: string
+    role: $Enums.Role
+    latitude?: number | null
+    longitude?: number | null
+    region?: string | null
+    district?: string | null
+    isVerified?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    farmerProfile?: FarmerProfileCreateNestedOneWithoutUserInput
+    buyerProfile?: BuyerProfileCreateNestedOneWithoutUserInput
+    transportProfile?: TransportProfileCreateNestedOneWithoutUserInput
+    listings?: ProduceListingCreateNestedManyWithoutFarmerInput
+    orders?: OrderCreateNestedManyWithoutBuyerInput
+    deliveries?: DeliveryRequestCreateNestedManyWithoutTransportProviderInput
+    sentReviews?: ReviewCreateNestedManyWithoutFromUserInput
+    receivedReviews?: ReviewCreateNestedManyWithoutToUserInput
+    notifications?: NotificationCreateNestedManyWithoutUserInput
+    sentMessages?: MessageCreateNestedManyWithoutFromUserInput
+    receivedMessages?: MessageCreateNestedManyWithoutToUserInput
+    recordedTraceEvents?: TraceEventCreateNestedManyWithoutRecordedByUserInput
+    preOrders?: PreOrderCreateNestedManyWithoutBuyerInput
+    plantingLogs?: PlantingLogCreateNestedManyWithoutFarmerInput
+    auditLogs?: AuditLogCreateNestedManyWithoutActorInput
+    configsUpdated?: SystemConfigCreateNestedManyWithoutUpdaterInput
+    ban?: UserBanCreateNestedOneWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutBansIssuedInput = {
+    id?: string
+    phone: string
+    name: string
+    role: $Enums.Role
+    latitude?: number | null
+    longitude?: number | null
+    region?: string | null
+    district?: string | null
+    isVerified?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    farmerProfile?: FarmerProfileUncheckedCreateNestedOneWithoutUserInput
+    buyerProfile?: BuyerProfileUncheckedCreateNestedOneWithoutUserInput
+    transportProfile?: TransportProfileUncheckedCreateNestedOneWithoutUserInput
+    listings?: ProduceListingUncheckedCreateNestedManyWithoutFarmerInput
+    orders?: OrderUncheckedCreateNestedManyWithoutBuyerInput
+    deliveries?: DeliveryRequestUncheckedCreateNestedManyWithoutTransportProviderInput
+    sentReviews?: ReviewUncheckedCreateNestedManyWithoutFromUserInput
+    receivedReviews?: ReviewUncheckedCreateNestedManyWithoutToUserInput
+    notifications?: NotificationUncheckedCreateNestedManyWithoutUserInput
+    sentMessages?: MessageUncheckedCreateNestedManyWithoutFromUserInput
+    receivedMessages?: MessageUncheckedCreateNestedManyWithoutToUserInput
+    recordedTraceEvents?: TraceEventUncheckedCreateNestedManyWithoutRecordedByUserInput
+    preOrders?: PreOrderUncheckedCreateNestedManyWithoutBuyerInput
+    plantingLogs?: PlantingLogUncheckedCreateNestedManyWithoutFarmerInput
+    auditLogs?: AuditLogUncheckedCreateNestedManyWithoutActorInput
+    configsUpdated?: SystemConfigUncheckedCreateNestedManyWithoutUpdaterInput
+    ban?: UserBanUncheckedCreateNestedOneWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutBansIssuedInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutBansIssuedInput, UserUncheckedCreateWithoutBansIssuedInput>
+  }
+
+  export type UserUpsertWithoutBanInput = {
+    update: XOR<UserUpdateWithoutBanInput, UserUncheckedUpdateWithoutBanInput>
+    create: XOR<UserCreateWithoutBanInput, UserUncheckedCreateWithoutBanInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutBanInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutBanInput, UserUncheckedUpdateWithoutBanInput>
+  }
+
+  export type UserUpdateWithoutBanInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    latitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    longitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    region?: NullableStringFieldUpdateOperationsInput | string | null
+    district?: NullableStringFieldUpdateOperationsInput | string | null
+    isVerified?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    farmerProfile?: FarmerProfileUpdateOneWithoutUserNestedInput
+    buyerProfile?: BuyerProfileUpdateOneWithoutUserNestedInput
+    transportProfile?: TransportProfileUpdateOneWithoutUserNestedInput
+    listings?: ProduceListingUpdateManyWithoutFarmerNestedInput
+    orders?: OrderUpdateManyWithoutBuyerNestedInput
+    deliveries?: DeliveryRequestUpdateManyWithoutTransportProviderNestedInput
+    sentReviews?: ReviewUpdateManyWithoutFromUserNestedInput
+    receivedReviews?: ReviewUpdateManyWithoutToUserNestedInput
+    notifications?: NotificationUpdateManyWithoutUserNestedInput
+    sentMessages?: MessageUpdateManyWithoutFromUserNestedInput
+    receivedMessages?: MessageUpdateManyWithoutToUserNestedInput
+    recordedTraceEvents?: TraceEventUpdateManyWithoutRecordedByUserNestedInput
+    preOrders?: PreOrderUpdateManyWithoutBuyerNestedInput
+    plantingLogs?: PlantingLogUpdateManyWithoutFarmerNestedInput
+    auditLogs?: AuditLogUpdateManyWithoutActorNestedInput
+    configsUpdated?: SystemConfigUpdateManyWithoutUpdaterNestedInput
+    bansIssued?: UserBanUpdateManyWithoutBannerNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutBanInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    latitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    longitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    region?: NullableStringFieldUpdateOperationsInput | string | null
+    district?: NullableStringFieldUpdateOperationsInput | string | null
+    isVerified?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    farmerProfile?: FarmerProfileUncheckedUpdateOneWithoutUserNestedInput
+    buyerProfile?: BuyerProfileUncheckedUpdateOneWithoutUserNestedInput
+    transportProfile?: TransportProfileUncheckedUpdateOneWithoutUserNestedInput
+    listings?: ProduceListingUncheckedUpdateManyWithoutFarmerNestedInput
+    orders?: OrderUncheckedUpdateManyWithoutBuyerNestedInput
+    deliveries?: DeliveryRequestUncheckedUpdateManyWithoutTransportProviderNestedInput
+    sentReviews?: ReviewUncheckedUpdateManyWithoutFromUserNestedInput
+    receivedReviews?: ReviewUncheckedUpdateManyWithoutToUserNestedInput
+    notifications?: NotificationUncheckedUpdateManyWithoutUserNestedInput
+    sentMessages?: MessageUncheckedUpdateManyWithoutFromUserNestedInput
+    receivedMessages?: MessageUncheckedUpdateManyWithoutToUserNestedInput
+    recordedTraceEvents?: TraceEventUncheckedUpdateManyWithoutRecordedByUserNestedInput
+    preOrders?: PreOrderUncheckedUpdateManyWithoutBuyerNestedInput
+    plantingLogs?: PlantingLogUncheckedUpdateManyWithoutFarmerNestedInput
+    auditLogs?: AuditLogUncheckedUpdateManyWithoutActorNestedInput
+    configsUpdated?: SystemConfigUncheckedUpdateManyWithoutUpdaterNestedInput
+    bansIssued?: UserBanUncheckedUpdateManyWithoutBannerNestedInput
+  }
+
+  export type UserUpsertWithoutBansIssuedInput = {
+    update: XOR<UserUpdateWithoutBansIssuedInput, UserUncheckedUpdateWithoutBansIssuedInput>
+    create: XOR<UserCreateWithoutBansIssuedInput, UserUncheckedCreateWithoutBansIssuedInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutBansIssuedInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutBansIssuedInput, UserUncheckedUpdateWithoutBansIssuedInput>
+  }
+
+  export type UserUpdateWithoutBansIssuedInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    latitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    longitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    region?: NullableStringFieldUpdateOperationsInput | string | null
+    district?: NullableStringFieldUpdateOperationsInput | string | null
+    isVerified?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    farmerProfile?: FarmerProfileUpdateOneWithoutUserNestedInput
+    buyerProfile?: BuyerProfileUpdateOneWithoutUserNestedInput
+    transportProfile?: TransportProfileUpdateOneWithoutUserNestedInput
+    listings?: ProduceListingUpdateManyWithoutFarmerNestedInput
+    orders?: OrderUpdateManyWithoutBuyerNestedInput
+    deliveries?: DeliveryRequestUpdateManyWithoutTransportProviderNestedInput
+    sentReviews?: ReviewUpdateManyWithoutFromUserNestedInput
+    receivedReviews?: ReviewUpdateManyWithoutToUserNestedInput
+    notifications?: NotificationUpdateManyWithoutUserNestedInput
+    sentMessages?: MessageUpdateManyWithoutFromUserNestedInput
+    receivedMessages?: MessageUpdateManyWithoutToUserNestedInput
+    recordedTraceEvents?: TraceEventUpdateManyWithoutRecordedByUserNestedInput
+    preOrders?: PreOrderUpdateManyWithoutBuyerNestedInput
+    plantingLogs?: PlantingLogUpdateManyWithoutFarmerNestedInput
+    auditLogs?: AuditLogUpdateManyWithoutActorNestedInput
+    configsUpdated?: SystemConfigUpdateManyWithoutUpdaterNestedInput
+    ban?: UserBanUpdateOneWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutBansIssuedInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    latitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    longitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    region?: NullableStringFieldUpdateOperationsInput | string | null
+    district?: NullableStringFieldUpdateOperationsInput | string | null
+    isVerified?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    farmerProfile?: FarmerProfileUncheckedUpdateOneWithoutUserNestedInput
+    buyerProfile?: BuyerProfileUncheckedUpdateOneWithoutUserNestedInput
+    transportProfile?: TransportProfileUncheckedUpdateOneWithoutUserNestedInput
+    listings?: ProduceListingUncheckedUpdateManyWithoutFarmerNestedInput
+    orders?: OrderUncheckedUpdateManyWithoutBuyerNestedInput
+    deliveries?: DeliveryRequestUncheckedUpdateManyWithoutTransportProviderNestedInput
+    sentReviews?: ReviewUncheckedUpdateManyWithoutFromUserNestedInput
+    receivedReviews?: ReviewUncheckedUpdateManyWithoutToUserNestedInput
+    notifications?: NotificationUncheckedUpdateManyWithoutUserNestedInput
+    sentMessages?: MessageUncheckedUpdateManyWithoutFromUserNestedInput
+    receivedMessages?: MessageUncheckedUpdateManyWithoutToUserNestedInput
+    recordedTraceEvents?: TraceEventUncheckedUpdateManyWithoutRecordedByUserNestedInput
+    preOrders?: PreOrderUncheckedUpdateManyWithoutBuyerNestedInput
+    plantingLogs?: PlantingLogUncheckedUpdateManyWithoutFarmerNestedInput
+    auditLogs?: AuditLogUncheckedUpdateManyWithoutActorNestedInput
+    configsUpdated?: SystemConfigUncheckedUpdateManyWithoutUpdaterNestedInput
+    ban?: UserBanUncheckedUpdateOneWithoutUserNestedInput
   }
 
   export type ProduceListingCreateManyFarmerInput = {
@@ -33628,14 +37152,33 @@ export namespace Prisma {
     updatedAt?: Date | string
   }
 
-  export type AuditLogCreateManyUserInput = {
+  export type AuditLogCreateManyActorInput = {
     id?: string
+    actorRole: $Enums.Role
     action: string
-    entityName: string
-    entityId: string
-    oldValues?: NullableJsonNullValueInput | InputJsonValue
-    newValues?: NullableJsonNullValueInput | InputJsonValue
-    createdAt?: Date | string
+    targetType?: string | null
+    targetId?: string | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    ipAddress?: string | null
+    userAgent?: string | null
+    timestamp?: Date | string
+  }
+
+  export type SystemConfigCreateManyUpdaterInput = {
+    id?: string
+    key: string
+    value: string
+    description?: string | null
+    updatedAt?: Date | string
+  }
+
+  export type UserBanCreateManyBannerInput = {
+    id?: string
+    userId: string
+    reason: string
+    bannedAt?: Date | string
+    expiresAt?: Date | string | null
+    isActive?: boolean
   }
 
   export type ProduceListingUpdateWithoutFarmerInput = {
@@ -34102,34 +37645,91 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type AuditLogUpdateWithoutUserInput = {
+  export type AuditLogUpdateWithoutActorInput = {
     id?: StringFieldUpdateOperationsInput | string
+    actorRole?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     action?: StringFieldUpdateOperationsInput | string
-    entityName?: StringFieldUpdateOperationsInput | string
-    entityId?: StringFieldUpdateOperationsInput | string
-    oldValues?: NullableJsonNullValueInput | InputJsonValue
-    newValues?: NullableJsonNullValueInput | InputJsonValue
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    targetType?: NullableStringFieldUpdateOperationsInput | string | null
+    targetId?: NullableStringFieldUpdateOperationsInput | string | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    ipAddress?: NullableStringFieldUpdateOperationsInput | string | null
+    userAgent?: NullableStringFieldUpdateOperationsInput | string | null
+    timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type AuditLogUncheckedUpdateWithoutUserInput = {
+  export type AuditLogUncheckedUpdateWithoutActorInput = {
     id?: StringFieldUpdateOperationsInput | string
+    actorRole?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     action?: StringFieldUpdateOperationsInput | string
-    entityName?: StringFieldUpdateOperationsInput | string
-    entityId?: StringFieldUpdateOperationsInput | string
-    oldValues?: NullableJsonNullValueInput | InputJsonValue
-    newValues?: NullableJsonNullValueInput | InputJsonValue
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    targetType?: NullableStringFieldUpdateOperationsInput | string | null
+    targetId?: NullableStringFieldUpdateOperationsInput | string | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    ipAddress?: NullableStringFieldUpdateOperationsInput | string | null
+    userAgent?: NullableStringFieldUpdateOperationsInput | string | null
+    timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type AuditLogUncheckedUpdateManyWithoutUserInput = {
+  export type AuditLogUncheckedUpdateManyWithoutActorInput = {
     id?: StringFieldUpdateOperationsInput | string
+    actorRole?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     action?: StringFieldUpdateOperationsInput | string
-    entityName?: StringFieldUpdateOperationsInput | string
-    entityId?: StringFieldUpdateOperationsInput | string
-    oldValues?: NullableJsonNullValueInput | InputJsonValue
-    newValues?: NullableJsonNullValueInput | InputJsonValue
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    targetType?: NullableStringFieldUpdateOperationsInput | string | null
+    targetId?: NullableStringFieldUpdateOperationsInput | string | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    ipAddress?: NullableStringFieldUpdateOperationsInput | string | null
+    userAgent?: NullableStringFieldUpdateOperationsInput | string | null
+    timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SystemConfigUpdateWithoutUpdaterInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    key?: StringFieldUpdateOperationsInput | string
+    value?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SystemConfigUncheckedUpdateWithoutUpdaterInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    key?: StringFieldUpdateOperationsInput | string
+    value?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SystemConfigUncheckedUpdateManyWithoutUpdaterInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    key?: StringFieldUpdateOperationsInput | string
+    value?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type UserBanUpdateWithoutBannerInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    reason?: StringFieldUpdateOperationsInput | string
+    bannedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    expiresAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    user?: UserUpdateOneRequiredWithoutBanNestedInput
+  }
+
+  export type UserBanUncheckedUpdateWithoutBannerInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    reason?: StringFieldUpdateOperationsInput | string
+    bannedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    expiresAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type UserBanUncheckedUpdateManyWithoutBannerInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    reason?: StringFieldUpdateOperationsInput | string
+    bannedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    expiresAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type OrderCreateManyListingInput = {
@@ -34621,6 +38221,14 @@ export namespace Prisma {
      * @deprecated Use AuditLogDefaultArgs instead
      */
     export type AuditLogArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = AuditLogDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use SystemConfigDefaultArgs instead
+     */
+    export type SystemConfigArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = SystemConfigDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use UserBanDefaultArgs instead
+     */
+    export type UserBanArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = UserBanDefaultArgs<ExtArgs>
 
   /**
    * Batch Payload for updateMany & deleteMany & createMany

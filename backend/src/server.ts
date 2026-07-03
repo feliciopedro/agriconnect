@@ -1,7 +1,9 @@
 import app from './app';
 import { config } from './config';
+import { RuntimeConfig } from './config/runtimeConfig';
 
-const server = app.listen(config.PORT, () => {
+const server = app.listen(config.PORT, async () => {
+  await RuntimeConfig.init();
   console.log(`🚀 AgriConnect backend API is running on port ${config.PORT}`);
   console.log(`🌍 Environment: ${config.NODE_ENV}`);
   console.log(`🔗 Health Check: http://localhost:${config.PORT}/api/health`);

@@ -15,6 +15,7 @@ export interface SearchFilters {
   status?: ListingStatus;
   page?: number;
   limit?: number;
+  farmerId?: string;
 }
 
 export class ListingService {
@@ -176,6 +177,7 @@ export class ListingService {
       ...(filters.status ? { status: filters.status } : {}),
       ...(filters.minQuantityKg !== undefined ? { remainingKg: { gte: filters.minQuantityKg } } : {}),
       ...(filters.maxPricePerKg !== undefined ? { pricePerKg: { lte: filters.maxPricePerKg } } : {}),
+      ...(filters.farmerId ? { farmerId: filters.farmerId } : {}),
     };
 
     // 3. Fetch listings matching filters

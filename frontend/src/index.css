@@ -1,9 +1,15 @@
-@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 @layer base {
   body {
-    @apply bg-slate-900 text-slate-100 antialiased selection:bg-emerald-500 selection:text-slate-900;
-    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    @apply bg-white text-gray-900;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 }
 
@@ -14,32 +20,177 @@
 }
 
 ::-webkit-scrollbar-track {
-  background: #0f172a;
+  background: #FFFFFF;
+  border-left: 1px solid #E5E7EB;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #334155;
+  background: #E5E7EB;
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #10b981;
+  background: #2D6A4F;
 }
 
 /* Smooth transitions */
 .transition-all-custom {
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Glassmorphism utility */
-.glass-panel {
-  background: rgba(30, 41, 59, 0.7);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.05);
+/* Page Layout Spacing Utilities */
+.section-spacing-desktop {
+  margin-bottom: 24px;
+}
+.section-spacing-mobile {
+  margin-bottom: 16px;
 }
 
-.glass-panel-hover:hover {
-  background: rgba(30, 41, 59, 0.85);
-  border-color: rgba(16, 185, 129, 0.3);
-  box-shadow: 0 10px 30px -10px rgba(16, 185, 129, 0.15);
+/* Cards system */
+.premium-card {
+  @apply bg-white border border-border rounded-card shadow-card transition-all duration-200 ease-out;
+  padding: 16px; /* Mobile */
+}
+
+@media (min-width: 768px) {
+  .premium-card {
+    padding: 20px; /* Desktop */
+  }
+}
+
+.premium-card-clickable {
+  cursor: pointer;
+}
+
+.premium-card-clickable:hover {
+  @apply border-primary shadow-card-hover;
+}
+
+/* Input Fields system */
+.form-input {
+  @apply bg-white border border-border-input rounded-btn outline-none transition-all duration-200 text-text-primary;
+  padding: 10px 14px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+.form-input:focus {
+  @apply border-primary;
+  box-shadow: 0 0 0 3px rgba(45, 106, 79, 0.15);
+}
+
+.form-input-error {
+  border-color: #DC2626 !important;
+}
+
+.form-input::placeholder {
+  @apply text-text-muted;
+}
+
+/* Button hierarchy system */
+.btn {
+  @apply inline-flex items-center justify-center font-medium text-sm tracking-[0.01em] rounded-btn transition-all duration-200 cursor-pointer border border-transparent;
+  min-height: 44px;
+  padding: 0 1.25rem;
+}
+
+.btn-primary {
+  @apply bg-primary text-white;
+}
+
+.btn-primary:hover {
+  @apply bg-primary-hover;
+}
+
+.btn-primary:active {
+  @apply bg-primary-active;
+}
+
+.btn-secondary {
+  @apply bg-white text-primary;
+  border: 1.5px solid #2D6A4F;
+}
+
+.btn-secondary:hover {
+  @apply bg-primary-light;
+}
+
+.btn-danger {
+  @apply bg-red text-white;
+}
+
+.btn-danger:hover {
+  @apply bg-red-800;
+}
+
+.btn-ghost {
+  @apply bg-transparent text-primary;
+}
+
+.btn-ghost:hover {
+  @apply bg-primary-light;
+}
+
+.btn:disabled, .btn-disabled {
+  background-color: #F3F4F6 !important;
+  color: #9CA3AF !important;
+  border-color: #F3F4F6 !important;
+  cursor: not-allowed !important;
+}
+
+/* Badge / Pills system */
+.badge {
+  @apply inline-flex items-center justify-center rounded-pill font-semibold tracking-[0.02em];
+  font-size: 12px;
+  padding: 4px 10px;
+}
+
+.badge-success {
+  @apply bg-[#DCFCE7] text-[#15803D];
+}
+
+.badge-warning {
+  @apply bg-[#FEF9C3] text-[#A16207];
+}
+
+.badge-error {
+  @apply bg-[#FEE2E2] text-[#B91C1C];
+}
+
+.badge-info {
+  @apply bg-[#DBEAFE] text-[#1D4ED8];
+}
+
+.badge-neutral {
+  @apply bg-[#F3F4F6] text-[#374151];
+}
+
+.badge-primary {
+  @apply bg-primary-light text-primary;
+}
+
+/* Stat Cards (Dashboard) system */
+.stat-card {
+  @apply bg-white border border-border rounded-card shadow-card p-5;
+}
+
+.stat-card-green {
+  border-top: 3px solid #2D6A4F;
+}
+
+.stat-card-gold {
+  border-top: 3px solid #C8960C;
+}
+
+.stat-card-amber {
+  border-top: 3px solid #D97706;
+}
+
+.stat-card-number {
+  @apply text-text-primary font-mono font-extrabold leading-none mt-1;
+  font-size: 30px;
+}
+
+.stat-card-label {
+  @apply text-text-secondary;
+  font-size: 13px;
 }

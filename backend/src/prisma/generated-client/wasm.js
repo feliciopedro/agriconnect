@@ -351,13 +351,34 @@ exports.Prisma.PlantingInputScalarFieldEnum = {
 
 exports.Prisma.AuditLogScalarFieldEnum = {
   id: 'id',
-  userId: 'userId',
+  actorId: 'actorId',
+  actorRole: 'actorRole',
   action: 'action',
-  entityName: 'entityName',
-  entityId: 'entityId',
-  oldValues: 'oldValues',
-  newValues: 'newValues',
-  createdAt: 'createdAt'
+  targetType: 'targetType',
+  targetId: 'targetId',
+  metadata: 'metadata',
+  ipAddress: 'ipAddress',
+  userAgent: 'userAgent',
+  timestamp: 'timestamp'
+};
+
+exports.Prisma.SystemConfigScalarFieldEnum = {
+  id: 'id',
+  key: 'key',
+  value: 'value',
+  description: 'description',
+  updatedBy: 'updatedBy',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.UserBanScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  bannedBy: 'bannedBy',
+  reason: 'reason',
+  bannedAt: 'bannedAt',
+  expiresAt: 'expiresAt',
+  isActive: 'isActive'
 };
 
 exports.Prisma.SortOrder = {
@@ -389,7 +410,8 @@ exports.Role = exports.$Enums.Role = {
   FARMER: 'FARMER',
   BUYER: 'BUYER',
   TRANSPORT: 'TRANSPORT',
-  ADMIN: 'ADMIN'
+  ADMIN: 'ADMIN',
+  SUPERADMIN: 'SUPERADMIN'
 };
 
 exports.BusinessType = exports.$Enums.BusinessType = {
@@ -481,7 +503,9 @@ exports.Prisma.ModelName = {
   PreOrder: 'PreOrder',
   PlantingLog: 'PlantingLog',
   PlantingInput: 'PlantingInput',
-  AuditLog: 'AuditLog'
+  AuditLog: 'AuditLog',
+  SystemConfig: 'SystemConfig',
+  UserBan: 'UserBan'
 };
 
 /**

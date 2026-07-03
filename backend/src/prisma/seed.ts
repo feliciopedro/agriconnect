@@ -31,6 +31,9 @@ async function main() {
   await prisma.message.deleteMany();
   await prisma.otpCode.deleteMany();
   await prisma.ussdSession.deleteMany();
+  await prisma.userBan.deleteMany();
+  await prisma.systemConfig.deleteMany();
+  await prisma.auditLog.deleteMany();
   await prisma.user.deleteMany();
 
   console.log('🧹 Cleaned existing database records.');
@@ -202,6 +205,48 @@ async function main() {
       isVerified: true,
     }
   });
+
+  // Super Admin user
+  const superAdminUser = await prisma.user.create({
+    data: {
+      phone: '+233999999999',
+      name: 'Super Admin',
+      role: Role.SUPERADMIN,
+      isVerified: true,
+    }
+  });
+  console.log('👑 Created Super Admin.');
+
+  // System configurations seed
+  await prisma.systemConfig.createMany({
+    data: [
+      {
+        key: 'platform_fee_percent',
+        value: '3.5',
+        description: 'Default platform transaction fee in percentage',
+        updatedBy: superAdminUser.id,
+      },
+      {
+        key: 'delivery_base_fee_ghs',
+        value: '15',
+        description: 'Base delivery fee in GHS',
+        updatedBy: superAdminUser.id,
+      },
+      {
+        key: 'delivery_rate_per_km',
+        value: '2.5',
+        description: 'Delivery rate per kilometer in GHS',
+        updatedBy: superAdminUser.id,
+      },
+      {
+        key: 'max_listing_duration_days',
+        value: '14',
+        description: 'Maximum lifetime of a produce listing in days',
+        updatedBy: superAdminUser.id,
+      },
+    ],
+  });
+  console.log('⚙️ Seeded system configurations.');
 
   // 3. Create Produce Listings (20 listings spread crops, prices, statuses)
   const cropsSetup = [

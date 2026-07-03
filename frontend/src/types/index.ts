@@ -1,21 +1,47 @@
+export type Role = 'SUPERADMIN' | 'ADMIN' | 'FARMER' | 'BUYER' | 'TRANSPORT' | 'TRANSPORTER';
+
 export interface User {
   id: string;
   email: string;
   name: string;
-  role: 'FARMER' | 'BUYER' | 'TRANSPORTER';
+  role: Role;
   phone?: string;
   location?: string;
+  isVerified: boolean;
+  isBanned: boolean;
+  region?: string;
+  district?: string;
   createdAt: string;
   updatedAt: string;
 }
 
-export interface Product {
+export interface UserBan {
   id: string;
-  name: string;
-  quantity: number; // in kg
-  price: number; // in GHS (Ghana Cedis)
+  userId: string;
+  reason: string;
+  expiresAt?: string;
+  createdAt: string;
+}
+
+export interface ProduceListing {
+  id: string;
   farmerId: string;
   farmer?: User;
+  cropType: string;
+  title: string;
+  description: string;
+  pricePerKg: number;
+  remainingKg: number;
+  quantityKg: number;
+  images: string[];
+  harvestDate: string;
+  status: 'AVAILABLE' | 'RESERVED' | 'SOLD_OUT' | 'EXPIRED';
+  qualityGrade?: string;
+  qualityGradeSource?: string;
+  batchCode: string;
+  expiryEstimate: string;
+  latitude: number;
+  longitude: number;
   createdAt: string;
   updatedAt: string;
 }
@@ -24,24 +50,60 @@ export interface Order {
   id: string;
   buyerId: string;
   buyer?: User;
-  productId: string;
-  product?: Product;
-  quantity: number;
+  listingId: string;
+  listing?: ProduceListing;
+  quantityKg: number;
   totalPrice: number;
-  status: 'PENDING' | 'COMPLETED' | 'CANCELLED';
+  status: 'PENDING' | 'CONFIRMED' | 'IN_TRANSIT' | 'DELIVERED' | 'CANCELLED';
+  paymentStatus: 'UNPAID' | 'PAID' | 'REFUNDED';
+  deliveryPreference: 'PICKUP' | 'DELIVERY';
+  deliveryAddress?: string;
+  deliveryLat?: number;
+  deliveryLng?: number;
   createdAt: string;
   updatedAt: string;
 }
 
-export interface Delivery {
+export interface DeliveryRequest {
   id: string;
   orderId: string;
   order?: Order;
-  transporterId: string;
+  transporterId?: string;
   transporter?: User;
-  status: 'ASSIGNED' | 'IN_TRANSIT' | 'DELIVERED';
-  cost: number; // Delivery fee in GHS
+  status: 'REQUESTED' | 'MATCHED' | 'PICKED_UP' | 'DELIVERED' | 'CANCELLED';
+  baseFeeGhs: number;
+  feePerKmGhs: number;
+  totalDistanceKm: number;
+  totalCostGhs: number;
+  matchedAt?: string;
+  pickedUpAt?: string;
+  deliveredAt?: string;
+  currentLat?: number;
+  currentLng?: number;
   createdAt: string;
+  updatedAt: string;
+}
+
+export interface AuditLog {
+  id: string;
+  actorId: string;
+  actor?: User;
+  actorRole: Role;
+  action: string;
+  targetType?: string;
+  targetId?: string;
+  metadata?: any;
+  ipAddress?: string;
+  userAgent?: string;
+  timestamp: string;
+}
+
+export interface SystemConfig {
+  id: string;
+  key: string;
+  value: string;
+  description?: string;
+  updatedBy: string;
   updatedAt: string;
 }
 

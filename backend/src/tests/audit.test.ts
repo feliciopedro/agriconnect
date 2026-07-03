@@ -46,6 +46,16 @@ jest.mock('../prisma/client', () => ({
       findUnique: jest.fn(),
       findFirst: jest.fn(),
     },
+    userBan: {
+      findUnique: jest.fn(),
+      upsert: jest.fn(),
+      update: jest.fn(),
+    },
+    systemConfig: {
+      findUnique: jest.fn(),
+      upsert: jest.fn(),
+      findMany: jest.fn(),
+    },
     transportProfile: {
       update: jest.fn(),
     },
@@ -63,7 +73,8 @@ import { OrderService } from '../services/order.service';
 import { DeliveryService } from '../services/delivery.service';
 import { PreOrderService } from '../services/preorder.service';
 import { AuditLogService } from '../services/audit.service';
-import { ListingStatus, OrderStatus, DeliveryStatus, PreOrderStatus, CropType } from '../prisma/generated-client';
+import { requireSuperAdmin, checkBanned } from '../middleware/auth.middleware';
+import { ListingStatus, OrderStatus, DeliveryStatus, PreOrderStatus, CropType, Role } from '../prisma/generated-client';
 
 beforeEach(() => {
   jest.clearAllMocks();
@@ -71,6 +82,8 @@ beforeEach(() => {
 
 describe('AuditLogService', () => {
   it('creates log database rows via log() method', async () => {
+    (prisma.user.findUnique as jest.Mock).mockResolvedValue({ id: 'user-01', role: 'FARMER' });
+
     await AuditLogService.log({
       userId: 'user-01',
       action: 'TEST',
@@ -82,12 +95,14 @@ describe('AuditLogService', () => {
 
     expect(prisma.auditLog.create).toHaveBeenCalledWith({
       data: {
-        userId: 'user-01',
+        actorId: 'user-01',
+        actorRole: 'FARMER',
         action: 'TEST',
-        entityName: 'TestEntity',
-        entityId: 'id-01',
-        oldValues: { status: 'OLD' },
-        newValues: { status: 'NEW' },
+        targetType: 'TestEntity',
+        targetId: 'id-01',
+        metadata: { oldValues: { status: 'OLD' }, newValues: { status: 'NEW' } },
+        ipAddress: null,
+        userAgent: null,
       },
     });
   });
@@ -131,8 +146,8 @@ describe('Centralized Hooks Integration Tests', () => {
         expect.objectContaining({
           data: expect.objectContaining({
             action: 'CREATE',
-            entityName: 'ProduceListing',
-            entityId: 'listing-01',
+            targetType: 'ProduceListing',
+            targetId: 'listing-01',
           }),
         })
       );
@@ -162,8 +177,8 @@ describe('Centralized Hooks Integration Tests', () => {
         expect.objectContaining({
           data: expect.objectContaining({
             action: 'UPDATE',
-            entityName: 'ProduceListing',
-            entityId: 'listing-01',
+            targetType: 'ProduceListing',
+            targetId: 'listing-01',
           }),
         })
       );
@@ -197,8 +212,8 @@ describe('Centralized Hooks Integration Tests', () => {
         expect.objectContaining({
           data: expect.objectContaining({
             action: 'CREATE',
-            entityName: 'Order',
-            entityId: 'order-01',
+            targetType: 'Order',
+            targetId: 'order-01',
           }),
         })
       );
@@ -224,8 +239,8 @@ describe('Centralized Hooks Integration Tests', () => {
         expect.objectContaining({
           data: expect.objectContaining({
             action: 'CANCEL',
-            entityName: 'Order',
-            entityId: 'order-01',
+            targetType: 'Order',
+            targetId: 'order-01',
           }),
         })
       );
@@ -252,8 +267,8 @@ describe('Centralized Hooks Integration Tests', () => {
         expect.objectContaining({
           data: expect.objectContaining({
             action: 'MATCH',
-            entityName: 'DeliveryRequest',
-            entityId: 'delivery-01',
+            targetType: 'DeliveryRequest',
+            targetId: 'delivery-01',
           }),
         })
       );
@@ -281,11 +296,58 @@ describe('Centralized Hooks Integration Tests', () => {
         expect.objectContaining({
           data: expect.objectContaining({
             action: 'PICKUP',
-            entityName: 'DeliveryRequest',
-            entityId: 'delivery-01',
+            targetType: 'DeliveryRequest',
+            targetId: 'delivery-01',
           }),
         })
       );
+    });
+  });
+});
+
+describe('SuperAdmin Middleware', () => {
+  let req: any;
+  let res: any;
+  let next: any;
+
+  beforeEach(() => {
+    req = {
+      headers: {},
+      ip: '127.0.0.1',
+    };
+    res = {};
+    next = jest.fn();
+  });
+
+  describe('requireSuperAdmin', () => {
+    it('allows access for SUPERADMIN users', () => {
+      req.user = { userId: 'sa-01', role: Role.SUPERADMIN };
+      const middleware = requireSuperAdmin();
+      middleware(req, res, next);
+      expect(next).toHaveBeenCalled();
+    });
+
+    it('throws forbidden for non-SUPERADMIN users', () => {
+      req.user = { userId: 'user-01', role: Role.ADMIN };
+      const middleware = requireSuperAdmin();
+      expect(() => middleware(req, res, next)).toThrow();
+    });
+  });
+
+  describe('checkBanned', () => {
+    it('allows access for non-banned users', async () => {
+      req.user = { userId: 'user-01', role: Role.FARMER };
+      (prisma.userBan.findUnique as jest.Mock).mockResolvedValue(null);
+
+      await checkBanned(req, res, next);
+      expect(next).toHaveBeenCalled();
+    });
+
+    it('throws forbidden for banned active users', async () => {
+      req.user = { userId: 'user-01', role: Role.FARMER };
+      (prisma.userBan.findUnique as jest.Mock).mockResolvedValue({ isActive: true });
+
+      await expect(checkBanned(req, res, next)).rejects.toThrow();
     });
   });
 });

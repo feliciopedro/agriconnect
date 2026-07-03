@@ -46,7 +46,21 @@ export class AuthController {
    * Update the user profile attributes (name, region, district, lat/lng).
    */
   public static async updateProfile(req: Request, res: Response): Promise<void> {
-    const { name, region, district, latitude, longitude } = req.body;
+    const {
+      name,
+      region,
+      district,
+      latitude,
+      longitude,
+      vehicleType,
+      capacityKg,
+      serviceRadiusKm,
+      businessType,
+    } = req.body;
+
+    const user = await prisma.user.findUnique({
+      where: { id: req.user!.userId },
+    });
 
     const updatedUser = await prisma.user.update({
       where: { id: req.user!.userId },
@@ -56,6 +70,22 @@ export class AuthController {
         ...(district !== undefined && { district }),
         ...(latitude !== undefined && { latitude }),
         ...(longitude !== undefined && { longitude }),
+        ...(user?.role === 'TRANSPORT' && (vehicleType !== undefined || capacityKg !== undefined || serviceRadiusKm !== undefined) && {
+          transportProfile: {
+            update: {
+              ...(vehicleType !== undefined && { vehicleType }),
+              ...(capacityKg !== undefined && { capacityKg }),
+              ...(serviceRadiusKm !== undefined && { serviceRadiusKm }),
+            },
+          },
+        }),
+        ...(user?.role === 'BUYER' && businessType !== undefined && {
+          buyerProfile: {
+            update: {
+              businessType: businessType as any,
+            },
+          },
+        }),
       },
       include: {
         farmerProfile: true,

@@ -35,6 +35,7 @@ export class ListingController {
       status,
       page,
       limit,
+      farmerId,
     } = req.query;
 
     const filters: SearchFilters = {
@@ -47,6 +48,7 @@ export class ListingController {
       ...(radiusKm && { radiusKm: parseFloat(radiusKm as string) }),
       ...(page && { page: parseInt(page as string, 10) }),
       ...(limit && { limit: parseInt(limit as string, 10) }),
+      ...(farmerId && { farmerId: farmerId as string }),
     };
 
     const results = await ListingService.searchListings(filters);
