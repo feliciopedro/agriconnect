@@ -11,6 +11,10 @@ import { Trace } from './pages/Trace';
 import { FarmerDashboardPage } from './pages/farmer/FarmerDashboardPage';
 import { NewListingPage } from './pages/farmer/NewListingPage';
 import { ListingDetailPage } from './pages/farmer/ListingDetailPage';
+import { MarketplacePage } from './pages/buyer/MarketplacePage';
+import { ListingDetailBuyerPage } from './pages/buyer/ListingDetailBuyerPage';
+import { OrdersPage } from './pages/buyer/OrdersPage';
+import { OrderDetailPage } from './pages/buyer/OrderDetailPage';
 
 import { Toaster } from 'react-hot-toast';
 
@@ -85,6 +89,10 @@ function App() {
                               <Route path="/farmer/listings/new" element={<NewListingPage />} />
                               <Route path="/farmer/listings/:id" element={<ListingDetailPage />} />
                               <Route path="/farmer/listings/edit/:id" element={<NewListingPage isEdit={true} />} />
+                              <Route path="/marketplace" element={<MarketplacePage />} />
+                              <Route path="/marketplace/listings/:id" element={<ListingDetailBuyerPage />} />
+                              <Route path="/orders" element={<OrdersPage />} />
+                              <Route path="/orders/:id" element={<OrderDetailPage />} />
                             </Routes>
                           </Layout>
                         }

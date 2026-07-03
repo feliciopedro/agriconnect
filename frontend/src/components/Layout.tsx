@@ -12,7 +12,9 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
 
   const isActive = (path: string) =>
     location.pathname === path ||
-    (path === '/farmer' && location.pathname.startsWith('/farmer'));
+    (path === '/farmer' && location.pathname.startsWith('/farmer')) ||
+    (path === '/marketplace' && location.pathname.startsWith('/marketplace')) ||
+    (path === '/orders' && location.pathname.startsWith('/orders'));
 
   return (
     <div className="min-h-screen flex flex-col bg-white text-text-primary">
@@ -63,6 +65,30 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
                 >
                   My Listings
                 </Link>
+              )}
+              {role === 'BUYER' && (
+                <>
+                  <Link
+                    to="/marketplace"
+                    className={`px-3 py-2 rounded-lg text-sm font-medium transition-all-custom ${
+                      isActive('/marketplace')
+                        ? 'bg-primary-light text-primary-hover border-l-[3px] border-l-primary rounded-l-none'
+                        : 'text-text-secondary hover:text-text-primary hover:bg-[#F9FAFB]'
+                    }`}
+                  >
+                    Marketplace
+                  </Link>
+                  <Link
+                    to="/orders"
+                    className={`px-3 py-2 rounded-lg text-sm font-medium transition-all-custom ${
+                      isActive('/orders')
+                        ? 'bg-primary-light text-primary-hover border-l-[3px] border-l-primary rounded-l-none'
+                        : 'text-text-secondary hover:text-text-primary hover:bg-[#F9FAFB]'
+                    }`}
+                  >
+                    My Orders
+                  </Link>
+                </>
               )}
             </nav>
           </div>

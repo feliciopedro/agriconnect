@@ -60,6 +60,7 @@ export interface Order {
   deliveryAddress?: string;
   deliveryLat?: number;
   deliveryLng?: number;
+  deliveryRequest?: DeliveryRequest;
   createdAt: string;
   updatedAt: string;
 }
