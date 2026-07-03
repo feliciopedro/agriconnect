@@ -66,12 +66,12 @@ export const HealthStatus: React.FC = () => {
           <div className="premium-card rounded-2xl p-6 flex flex-col sm:flex-row items-center justify-between gap-4">
             <div className="flex items-center gap-4">
               <div className={`w-4 h-4 rounded-full animate-pulse ${
-                healthData.status === 'OK' ? 'bg-primary-green' : 'bg-warning-amber'
+                healthData.status?.toUpperCase() === 'OK' ? 'bg-primary-green' : 'bg-warning-amber'
               }`} />
               <div>
                 <h3 className="text-xl font-bold text-text-primary flex items-center gap-2">
                   System Status: 
-                  <span className={`badge ${healthData.status === 'OK' ? 'badge-success' : 'badge-warning'}`}>
+                  <span className={`badge ${healthData.status?.toUpperCase() === 'OK' ? 'badge-success' : 'badge-warning'}`}>
                     {healthData.status}
                   </span>
                 </h3>

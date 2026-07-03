@@ -7,7 +7,7 @@ import { Home } from './pages/Home';
 import { HealthStatus } from './pages/HealthStatus';
 import { LoginPage as Login } from './pages/auth/LoginPage';
 import { ProfileSetupPage } from './pages/auth/ProfileSetupPage';
-import { Trace } from './pages/Trace';
+import { TracePublicPage } from './pages/TracePublicPage';
 import { FarmerDashboardPage } from './pages/farmer/FarmerDashboardPage';
 import { NewListingPage } from './pages/farmer/NewListingPage';
 import { ListingDetailPage } from './pages/farmer/ListingDetailPage';
@@ -68,7 +68,7 @@ function App() {
             <Routes>
               {/* Public Routes */}
               <Route path="/login" element={<Login />} />
-              <Route path="/trace/:batchCode" element={<Trace />} />
+              <Route path="/trace/:batchCode" element={<TracePublicPage />} />
 
               {/* Protected Routes (wrapped in AuthGuard) */}
               <Route

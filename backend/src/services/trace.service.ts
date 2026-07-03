@@ -58,6 +58,8 @@ export class TraceService {
     }
 
     return {
+      id: listing.id,
+      status: listing.status,
       batchCode: listing.batchCode,
       cropType: listing.cropType,
       qualityGrade: listing.qualityGrade,
@@ -66,6 +68,8 @@ export class TraceService {
         region: listing.farmer.region,
         district: listing.farmer.district,
       },
+      latitude: listing.latitude,
+      longitude: listing.longitude,
       harvestDate: listing.harvestDate,
       plantingDate: listing.traceability?.plantingDate || null,
       inputsUsed: listing.traceability?.inputsUsed || [],
