@@ -15,6 +15,8 @@ import { MarketplacePage } from './pages/buyer/MarketplacePage';
 import { ListingDetailBuyerPage } from './pages/buyer/ListingDetailBuyerPage';
 import { OrdersPage } from './pages/buyer/OrdersPage';
 import { OrderDetailPage } from './pages/buyer/OrderDetailPage';
+import { TransportDashboardPage } from './pages/transport/TransportDashboardPage';
+import { DeliveryDetailPage } from './pages/transport/DeliveryDetailPage';
 
 import { Toaster } from 'react-hot-toast';
 
@@ -93,6 +95,8 @@ function App() {
                               <Route path="/marketplace/listings/:id" element={<ListingDetailBuyerPage />} />
                               <Route path="/orders" element={<OrdersPage />} />
                               <Route path="/orders/:id" element={<OrderDetailPage />} />
+                              <Route path="/transporter" element={<TransportDashboardPage />} />
+                              <Route path="/transporter/deliveries/:id" element={<DeliveryDetailPage />} />
                             </Routes>
                           </Layout>
                         }

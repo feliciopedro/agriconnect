@@ -14,7 +14,8 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
     location.pathname === path ||
     (path === '/farmer' && location.pathname.startsWith('/farmer')) ||
     (path === '/marketplace' && location.pathname.startsWith('/marketplace')) ||
-    (path === '/orders' && location.pathname.startsWith('/orders'));
+    (path === '/orders' && location.pathname.startsWith('/orders')) ||
+    (path === '/transporter' && location.pathname.startsWith('/transporter'));
 
   return (
     <div className="min-h-screen flex flex-col bg-white text-text-primary">
@@ -89,6 +90,18 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
                     My Orders
                   </Link>
                 </>
+              )}
+              {(role === 'TRANSPORT' || role === 'TRANSPORTER') && (
+                <Link
+                  to="/transporter"
+                  className={`px-3 py-2 rounded-lg text-sm font-medium transition-all-custom ${
+                    isActive('/transporter')
+                      ? 'bg-primary-light text-primary-hover border-l-[3px] border-l-primary rounded-l-none'
+                      : 'text-text-secondary hover:text-text-primary hover:bg-[#F9FAFB]'
+                  }`}
+                >
+                  Deliveries
+                </Link>
               )}
             </nav>
           </div>

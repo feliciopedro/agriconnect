@@ -56,6 +56,7 @@ export class AuthController {
       capacityKg,
       serviceRadiusKm,
       businessType,
+      isAvailable,
     } = req.body;
 
     const user = await prisma.user.findUnique({
@@ -70,12 +71,13 @@ export class AuthController {
         ...(district !== undefined && { district }),
         ...(latitude !== undefined && { latitude }),
         ...(longitude !== undefined && { longitude }),
-        ...(user?.role === 'TRANSPORT' && (vehicleType !== undefined || capacityKg !== undefined || serviceRadiusKm !== undefined) && {
+        ...(user?.role === 'TRANSPORT' && (vehicleType !== undefined || capacityKg !== undefined || serviceRadiusKm !== undefined || isAvailable !== undefined) && {
           transportProfile: {
             update: {
               ...(vehicleType !== undefined && { vehicleType }),
               ...(capacityKg !== undefined && { capacityKg }),
               ...(serviceRadiusKm !== undefined && { serviceRadiusKm }),
+              ...(isAvailable !== undefined && { isAvailable }),
             },
           },
         }),

@@ -44,6 +44,7 @@ export const AuthApi = {
     capacityKg?: number;
     serviceRadiusKm?: number;
     businessType?: string;
+    isAvailable?: boolean;
   }): Promise<User> => {
     const response = await api.patch('/auth/profile', data);
     return response.data;

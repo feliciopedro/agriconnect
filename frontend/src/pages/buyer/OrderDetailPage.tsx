@@ -261,7 +261,7 @@ export const OrderDetailPage: React.FC = () => {
                 </p>
                 {order.deliveryRequest ? (
                   <p className="text-text-secondary">
-                    Transporter matched! Distance: {order.deliveryRequest.totalDistanceKm || 'N/A'} km.
+                    Transporter matched! Distance: {order.deliveryRequest.routeDistanceKm || 'N/A'} km.
                   </p>
                 ) : (
                   <p className="text-text-secondary">

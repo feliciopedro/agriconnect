@@ -20,6 +20,7 @@ router.use(authenticateToken);
 
 // Transporter routes
 router.get('/available', requireRole(Role.TRANSPORT), DeliveryController.findAvailable);
+router.get('/my-jobs', requireRole(Role.TRANSPORT), DeliveryController.findMyJobs);
 router.post(
   '/:id/accept',
   requireRole(Role.TRANSPORT),

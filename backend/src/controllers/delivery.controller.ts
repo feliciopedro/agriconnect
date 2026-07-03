@@ -15,6 +15,36 @@ export class DeliveryController {
   }
 
   /**
+   * Transporters retrieve their active and completed jobs.
+   */
+  public static async findMyJobs(req: Request, res: Response): Promise<void> {
+    const transportProviderId = req.user!.userId;
+    const result = await prisma.deliveryRequest.findMany({
+      where: {
+        transportProviderId,
+      },
+      include: {
+        order: {
+          include: {
+            listing: {
+              include: {
+                farmer: {
+                  select: { name: true, region: true, district: true },
+                },
+              },
+            },
+            buyer: {
+              select: { name: true, region: true, district: true },
+            },
+          },
+        },
+      },
+      orderBy: { updatedAt: 'desc' },
+    });
+    res.status(200).json(result);
+  }
+
+  /**
    * Transporters accept a delivery request (or entire route group if batched).
    */
   public static async acceptRequest(req: Request, res: Response): Promise<void> {

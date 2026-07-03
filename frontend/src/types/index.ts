@@ -1,5 +1,18 @@
 export type Role = 'SUPERADMIN' | 'ADMIN' | 'FARMER' | 'BUYER' | 'TRANSPORT' | 'TRANSPORTER';
 
+export interface TransportProfile {
+  id: string;
+  userId: string;
+  vehicleType: string;
+  capacityKg: number;
+  serviceRadiusKm: number;
+  isAvailable: boolean;
+  avgRating: number;
+  totalReviews: number;
+  createdAt: string;
+  updatedAt: string;
+}
+
 export interface User {
   id: string;
   email: string;
@@ -11,6 +24,7 @@ export interface User {
   isBanned: boolean;
   region?: string;
   district?: string;
+  transportProfile?: TransportProfile;
   createdAt: string;
   updatedAt: string;
 }
@@ -69,18 +83,23 @@ export interface DeliveryRequest {
   id: string;
   orderId: string;
   order?: Order;
-  transporterId?: string;
-  transporter?: User;
+  transportProviderId?: string;
+  transportProvider?: User;
+  pickupLatitude: number;
+  pickupLongitude: number;
+  dropoffLatitude: number;
+  dropoffLongitude: number;
+  scheduledPickup?: string;
+  scheduledDropoff?: string;
+  estimatedCost?: number;
   status: 'REQUESTED' | 'MATCHED' | 'PICKED_UP' | 'DELIVERED' | 'CANCELLED';
-  baseFeeGhs: number;
-  feePerKmGhs: number;
-  totalDistanceKm: number;
-  totalCostGhs: number;
-  matchedAt?: string;
-  pickedUpAt?: string;
-  deliveredAt?: string;
-  currentLat?: number;
-  currentLng?: number;
+  routeGroupId?: string;
+  routeSequence?: any;
+  eta?: string;
+  currentLatitude?: number;
+  currentLongitude?: number;
+  routeDistanceKm?: number;
+  routeDurationMin?: number;
   createdAt: string;
   updatedAt: string;
 }
