@@ -80,17 +80,18 @@ enum TraceEventType {
 
 // User: unified table for all system users
 model User {
-  id         String   @id @default(uuid())
-  phone      String   @unique
-  name       String
-  role       Role
-  latitude   Float?
-  longitude  Float?
-  region     String?
-  district   String?
-  isVerified Boolean  @default(false)
-  createdAt  DateTime @default(now())
-  updatedAt  DateTime @updatedAt
+  id           String   @id @default(uuid())
+  phone        String   @unique
+  name         String
+  role         Role
+  latitude     Float?
+  longitude    Float?
+  region       String?
+  district     String?
+  isVerified   Boolean  @default(false)
+  passwordHash String?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
 
   // 1:1 Profiles
   farmerProfile    FarmerProfile?

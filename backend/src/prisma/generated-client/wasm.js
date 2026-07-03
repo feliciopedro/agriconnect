@@ -132,6 +132,7 @@ exports.Prisma.UserScalarFieldEnum = {
   region: 'region',
   district: 'district',
   isVerified: 'isVerified',
+  passwordHash: 'passwordHash',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };

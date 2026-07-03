@@ -5,6 +5,7 @@ import { config } from '../config';
 import { createError } from '../utils/errors';
 import { Role, BusinessType } from '../prisma/generated-client';
 import { JWTPayload } from '../types';
+import { verifyPassword } from '../utils/crypto';
 
 /**
  * Normalizes phone numbers to '+233XX' format.
@@ -167,6 +168,52 @@ export class AuthService {
       role: user.role,
     };
 
+    const token = jwt.sign(payload, config.JWT_SECRET, { expiresIn: '30d' });
+
+    return {
+      token,
+      user,
+    };
+  }
+
+  /**
+   * Log in a user by verifying their phone number and PBKDF2 password hash.
+   */
+  public static async loginWithPassword(phone: string, password: string, role?: Role) {
+    const normalizedPhone = normalizePhone(phone);
+    const user = await prisma.user.findUnique({
+      where: { phone: normalizedPhone },
+      include: {
+        farmerProfile: true,
+        buyerProfile: true,
+        transportProfile: true,
+      },
+    });
+
+    if (!user) {
+      throw createError('User not registered. Please sign in via OTP to register first.', 'USER_NOT_FOUND', 404);
+    }
+
+    if (!user.passwordHash) {
+      throw createError('No password configured for this account. Please log in via OTP to setup a password.', 'PASSWORD_NOT_SET', 400);
+    }
+
+    // Verify password hash
+    const isMatched = verifyPassword(password, user.passwordHash);
+    if (!isMatched) {
+      throw createError('Invalid credentials. Password verification failed.', 'INVALID_PASSWORD', 401);
+    }
+
+    // Role check if specified
+    if (role && user.role !== role) {
+      throw createError(`Access forbidden: logged in role mismatch. Expecting ${role}.`, 'ROLE_MISMATCH', 403);
+    }
+
+    // Sign token
+    const payload: JWTPayload = {
+      userId: user.id,
+      role: user.role,
+    };
     const token = jwt.sign(payload, config.JWT_SECRET, { expiresIn: '30d' });
 
     return {

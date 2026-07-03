@@ -2939,6 +2939,7 @@ export namespace Prisma {
     region: string | null
     district: string | null
     isVerified: boolean | null
+    passwordHash: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -2953,6 +2954,7 @@ export namespace Prisma {
     region: string | null
     district: string | null
     isVerified: boolean | null
+    passwordHash: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -2967,6 +2969,7 @@ export namespace Prisma {
     region: number
     district: number
     isVerified: number
+    passwordHash: number
     createdAt: number
     updatedAt: number
     _all: number
@@ -2993,6 +2996,7 @@ export namespace Prisma {
     region?: true
     district?: true
     isVerified?: true
+    passwordHash?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -3007,6 +3011,7 @@ export namespace Prisma {
     region?: true
     district?: true
     isVerified?: true
+    passwordHash?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -3021,6 +3026,7 @@ export namespace Prisma {
     region?: true
     district?: true
     isVerified?: true
+    passwordHash?: true
     createdAt?: true
     updatedAt?: true
     _all?: true
@@ -3122,6 +3128,7 @@ export namespace Prisma {
     region: string | null
     district: string | null
     isVerified: boolean
+    passwordHash: string | null
     createdAt: Date
     updatedAt: Date
     _count: UserCountAggregateOutputType | null
@@ -3155,6 +3162,7 @@ export namespace Prisma {
     region?: boolean
     district?: boolean
     isVerified?: boolean
+    passwordHash?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     farmerProfile?: boolean | User$farmerProfileArgs<ExtArgs>
@@ -3188,6 +3196,7 @@ export namespace Prisma {
     region?: boolean
     district?: boolean
     isVerified?: boolean
+    passwordHash?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }, ExtArgs["result"]["user"]>
@@ -3202,6 +3211,7 @@ export namespace Prisma {
     region?: boolean
     district?: boolean
     isVerified?: boolean
+    passwordHash?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
@@ -3261,6 +3271,7 @@ export namespace Prisma {
       region: string | null
       district: string | null
       isVerified: boolean
+      passwordHash: string | null
       createdAt: Date
       updatedAt: Date
     }, ExtArgs["result"]["user"]>
@@ -3683,6 +3694,7 @@ export namespace Prisma {
     readonly region: FieldRef<"User", 'String'>
     readonly district: FieldRef<"User", 'String'>
     readonly isVerified: FieldRef<"User", 'Boolean'>
+    readonly passwordHash: FieldRef<"User", 'String'>
     readonly createdAt: FieldRef<"User", 'DateTime'>
     readonly updatedAt: FieldRef<"User", 'DateTime'>
   }
@@ -23939,6 +23951,7 @@ export namespace Prisma {
     region: 'region',
     district: 'district',
     isVerified: 'isVerified',
+    passwordHash: 'passwordHash',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
   };
@@ -24520,6 +24533,7 @@ export namespace Prisma {
     region?: StringNullableFilter<"User"> | string | null
     district?: StringNullableFilter<"User"> | string | null
     isVerified?: BoolFilter<"User"> | boolean
+    passwordHash?: StringNullableFilter<"User"> | string | null
     createdAt?: DateTimeFilter<"User"> | Date | string
     updatedAt?: DateTimeFilter<"User"> | Date | string
     farmerProfile?: XOR<FarmerProfileNullableRelationFilter, FarmerProfileWhereInput> | null
@@ -24552,6 +24566,7 @@ export namespace Prisma {
     region?: SortOrderInput | SortOrder
     district?: SortOrderInput | SortOrder
     isVerified?: SortOrder
+    passwordHash?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     farmerProfile?: FarmerProfileOrderByWithRelationInput
@@ -24587,6 +24602,7 @@ export namespace Prisma {
     region?: StringNullableFilter<"User"> | string | null
     district?: StringNullableFilter<"User"> | string | null
     isVerified?: BoolFilter<"User"> | boolean
+    passwordHash?: StringNullableFilter<"User"> | string | null
     createdAt?: DateTimeFilter<"User"> | Date | string
     updatedAt?: DateTimeFilter<"User"> | Date | string
     farmerProfile?: XOR<FarmerProfileNullableRelationFilter, FarmerProfileWhereInput> | null
@@ -24619,6 +24635,7 @@ export namespace Prisma {
     region?: SortOrderInput | SortOrder
     district?: SortOrderInput | SortOrder
     isVerified?: SortOrder
+    passwordHash?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: UserCountOrderByAggregateInput
@@ -24641,6 +24658,7 @@ export namespace Prisma {
     region?: StringNullableWithAggregatesFilter<"User"> | string | null
     district?: StringNullableWithAggregatesFilter<"User"> | string | null
     isVerified?: BoolWithAggregatesFilter<"User"> | boolean
+    passwordHash?: StringNullableWithAggregatesFilter<"User"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
   }
@@ -26245,6 +26263,7 @@ export namespace Prisma {
     region?: string | null
     district?: string | null
     isVerified?: boolean
+    passwordHash?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     farmerProfile?: FarmerProfileCreateNestedOneWithoutUserInput
@@ -26277,6 +26296,7 @@ export namespace Prisma {
     region?: string | null
     district?: string | null
     isVerified?: boolean
+    passwordHash?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     farmerProfile?: FarmerProfileUncheckedCreateNestedOneWithoutUserInput
@@ -26309,6 +26329,7 @@ export namespace Prisma {
     region?: NullableStringFieldUpdateOperationsInput | string | null
     district?: NullableStringFieldUpdateOperationsInput | string | null
     isVerified?: BoolFieldUpdateOperationsInput | boolean
+    passwordHash?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     farmerProfile?: FarmerProfileUpdateOneWithoutUserNestedInput
@@ -26341,6 +26362,7 @@ export namespace Prisma {
     region?: NullableStringFieldUpdateOperationsInput | string | null
     district?: NullableStringFieldUpdateOperationsInput | string | null
     isVerified?: BoolFieldUpdateOperationsInput | boolean
+    passwordHash?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     farmerProfile?: FarmerProfileUncheckedUpdateOneWithoutUserNestedInput
@@ -26373,6 +26395,7 @@ export namespace Prisma {
     region?: string | null
     district?: string | null
     isVerified?: boolean
+    passwordHash?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -26387,6 +26410,7 @@ export namespace Prisma {
     region?: NullableStringFieldUpdateOperationsInput | string | null
     district?: NullableStringFieldUpdateOperationsInput | string | null
     isVerified?: BoolFieldUpdateOperationsInput | boolean
+    passwordHash?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -26401,6 +26425,7 @@ export namespace Prisma {
     region?: NullableStringFieldUpdateOperationsInput | string | null
     district?: NullableStringFieldUpdateOperationsInput | string | null
     isVerified?: BoolFieldUpdateOperationsInput | boolean
+    passwordHash?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -28351,6 +28376,7 @@ export namespace Prisma {
     region?: SortOrder
     district?: SortOrder
     isVerified?: SortOrder
+    passwordHash?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -28370,6 +28396,7 @@ export namespace Prisma {
     region?: SortOrder
     district?: SortOrder
     isVerified?: SortOrder
+    passwordHash?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -28384,6 +28411,7 @@ export namespace Prisma {
     region?: SortOrder
     district?: SortOrder
     isVerified?: SortOrder
+    passwordHash?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -32907,6 +32935,7 @@ export namespace Prisma {
     region?: string | null
     district?: string | null
     isVerified?: boolean
+    passwordHash?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     buyerProfile?: BuyerProfileCreateNestedOneWithoutUserInput
@@ -32938,6 +32967,7 @@ export namespace Prisma {
     region?: string | null
     district?: string | null
     isVerified?: boolean
+    passwordHash?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     buyerProfile?: BuyerProfileUncheckedCreateNestedOneWithoutUserInput
@@ -32985,6 +33015,7 @@ export namespace Prisma {
     region?: NullableStringFieldUpdateOperationsInput | string | null
     district?: NullableStringFieldUpdateOperationsInput | string | null
     isVerified?: BoolFieldUpdateOperationsInput | boolean
+    passwordHash?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     buyerProfile?: BuyerProfileUpdateOneWithoutUserNestedInput
@@ -33016,6 +33047,7 @@ export namespace Prisma {
     region?: NullableStringFieldUpdateOperationsInput | string | null
     district?: NullableStringFieldUpdateOperationsInput | string | null
     isVerified?: BoolFieldUpdateOperationsInput | boolean
+    passwordHash?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     buyerProfile?: BuyerProfileUncheckedUpdateOneWithoutUserNestedInput
@@ -33047,6 +33079,7 @@ export namespace Prisma {
     region?: string | null
     district?: string | null
     isVerified?: boolean
+    passwordHash?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     farmerProfile?: FarmerProfileCreateNestedOneWithoutUserInput
@@ -33078,6 +33111,7 @@ export namespace Prisma {
     region?: string | null
     district?: string | null
     isVerified?: boolean
+    passwordHash?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     farmerProfile?: FarmerProfileUncheckedCreateNestedOneWithoutUserInput
@@ -33125,6 +33159,7 @@ export namespace Prisma {
     region?: NullableStringFieldUpdateOperationsInput | string | null
     district?: NullableStringFieldUpdateOperationsInput | string | null
     isVerified?: BoolFieldUpdateOperationsInput | boolean
+    passwordHash?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     farmerProfile?: FarmerProfileUpdateOneWithoutUserNestedInput
@@ -33156,6 +33191,7 @@ export namespace Prisma {
     region?: NullableStringFieldUpdateOperationsInput | string | null
     district?: NullableStringFieldUpdateOperationsInput | string | null
     isVerified?: BoolFieldUpdateOperationsInput | boolean
+    passwordHash?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     farmerProfile?: FarmerProfileUncheckedUpdateOneWithoutUserNestedInput
@@ -33187,6 +33223,7 @@ export namespace Prisma {
     region?: string | null
     district?: string | null
     isVerified?: boolean
+    passwordHash?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     farmerProfile?: FarmerProfileCreateNestedOneWithoutUserInput
@@ -33218,6 +33255,7 @@ export namespace Prisma {
     region?: string | null
     district?: string | null
     isVerified?: boolean
+    passwordHash?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     farmerProfile?: FarmerProfileUncheckedCreateNestedOneWithoutUserInput
@@ -33265,6 +33303,7 @@ export namespace Prisma {
     region?: NullableStringFieldUpdateOperationsInput | string | null
     district?: NullableStringFieldUpdateOperationsInput | string | null
     isVerified?: BoolFieldUpdateOperationsInput | boolean
+    passwordHash?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     farmerProfile?: FarmerProfileUpdateOneWithoutUserNestedInput
@@ -33296,6 +33335,7 @@ export namespace Prisma {
     region?: NullableStringFieldUpdateOperationsInput | string | null
     district?: NullableStringFieldUpdateOperationsInput | string | null
     isVerified?: BoolFieldUpdateOperationsInput | boolean
+    passwordHash?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     farmerProfile?: FarmerProfileUncheckedUpdateOneWithoutUserNestedInput
@@ -33327,6 +33367,7 @@ export namespace Prisma {
     region?: string | null
     district?: string | null
     isVerified?: boolean
+    passwordHash?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     farmerProfile?: FarmerProfileCreateNestedOneWithoutUserInput
@@ -33358,6 +33399,7 @@ export namespace Prisma {
     region?: string | null
     district?: string | null
     isVerified?: boolean
+    passwordHash?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     farmerProfile?: FarmerProfileUncheckedCreateNestedOneWithoutUserInput
@@ -33589,6 +33631,7 @@ export namespace Prisma {
     region?: NullableStringFieldUpdateOperationsInput | string | null
     district?: NullableStringFieldUpdateOperationsInput | string | null
     isVerified?: BoolFieldUpdateOperationsInput | boolean
+    passwordHash?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     farmerProfile?: FarmerProfileUpdateOneWithoutUserNestedInput
@@ -33620,6 +33663,7 @@ export namespace Prisma {
     region?: NullableStringFieldUpdateOperationsInput | string | null
     district?: NullableStringFieldUpdateOperationsInput | string | null
     isVerified?: BoolFieldUpdateOperationsInput | boolean
+    passwordHash?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     farmerProfile?: FarmerProfileUncheckedUpdateOneWithoutUserNestedInput
@@ -33934,6 +33978,7 @@ export namespace Prisma {
     region?: string | null
     district?: string | null
     isVerified?: boolean
+    passwordHash?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     farmerProfile?: FarmerProfileCreateNestedOneWithoutUserInput
@@ -33965,6 +34010,7 @@ export namespace Prisma {
     region?: string | null
     district?: string | null
     isVerified?: boolean
+    passwordHash?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     farmerProfile?: FarmerProfileUncheckedCreateNestedOneWithoutUserInput
@@ -34071,6 +34117,7 @@ export namespace Prisma {
     region?: NullableStringFieldUpdateOperationsInput | string | null
     district?: NullableStringFieldUpdateOperationsInput | string | null
     isVerified?: BoolFieldUpdateOperationsInput | boolean
+    passwordHash?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     farmerProfile?: FarmerProfileUpdateOneWithoutUserNestedInput
@@ -34102,6 +34149,7 @@ export namespace Prisma {
     region?: NullableStringFieldUpdateOperationsInput | string | null
     district?: NullableStringFieldUpdateOperationsInput | string | null
     isVerified?: BoolFieldUpdateOperationsInput | boolean
+    passwordHash?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     farmerProfile?: FarmerProfileUncheckedUpdateOneWithoutUserNestedInput
@@ -34133,6 +34181,7 @@ export namespace Prisma {
     region?: string | null
     district?: string | null
     isVerified?: boolean
+    passwordHash?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     farmerProfile?: FarmerProfileCreateNestedOneWithoutUserInput
@@ -34164,6 +34213,7 @@ export namespace Prisma {
     region?: string | null
     district?: string | null
     isVerified?: boolean
+    passwordHash?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     farmerProfile?: FarmerProfileUncheckedCreateNestedOneWithoutUserInput
@@ -34416,6 +34466,7 @@ export namespace Prisma {
     region?: NullableStringFieldUpdateOperationsInput | string | null
     district?: NullableStringFieldUpdateOperationsInput | string | null
     isVerified?: BoolFieldUpdateOperationsInput | boolean
+    passwordHash?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     farmerProfile?: FarmerProfileUpdateOneWithoutUserNestedInput
@@ -34447,6 +34498,7 @@ export namespace Prisma {
     region?: NullableStringFieldUpdateOperationsInput | string | null
     district?: NullableStringFieldUpdateOperationsInput | string | null
     isVerified?: BoolFieldUpdateOperationsInput | boolean
+    passwordHash?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     farmerProfile?: FarmerProfileUncheckedUpdateOneWithoutUserNestedInput
@@ -34712,6 +34764,7 @@ export namespace Prisma {
     region?: string | null
     district?: string | null
     isVerified?: boolean
+    passwordHash?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     farmerProfile?: FarmerProfileCreateNestedOneWithoutUserInput
@@ -34743,6 +34796,7 @@ export namespace Prisma {
     region?: string | null
     district?: string | null
     isVerified?: boolean
+    passwordHash?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     farmerProfile?: FarmerProfileUncheckedCreateNestedOneWithoutUserInput
@@ -34835,6 +34889,7 @@ export namespace Prisma {
     region?: NullableStringFieldUpdateOperationsInput | string | null
     district?: NullableStringFieldUpdateOperationsInput | string | null
     isVerified?: BoolFieldUpdateOperationsInput | boolean
+    passwordHash?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     farmerProfile?: FarmerProfileUpdateOneWithoutUserNestedInput
@@ -34866,6 +34921,7 @@ export namespace Prisma {
     region?: NullableStringFieldUpdateOperationsInput | string | null
     district?: NullableStringFieldUpdateOperationsInput | string | null
     isVerified?: BoolFieldUpdateOperationsInput | boolean
+    passwordHash?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     farmerProfile?: FarmerProfileUncheckedUpdateOneWithoutUserNestedInput
@@ -34897,6 +34953,7 @@ export namespace Prisma {
     region?: string | null
     district?: string | null
     isVerified?: boolean
+    passwordHash?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     farmerProfile?: FarmerProfileCreateNestedOneWithoutUserInput
@@ -34928,6 +34985,7 @@ export namespace Prisma {
     region?: string | null
     district?: string | null
     isVerified?: boolean
+    passwordHash?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     farmerProfile?: FarmerProfileUncheckedCreateNestedOneWithoutUserInput
@@ -34964,6 +35022,7 @@ export namespace Prisma {
     region?: string | null
     district?: string | null
     isVerified?: boolean
+    passwordHash?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     farmerProfile?: FarmerProfileCreateNestedOneWithoutUserInput
@@ -34995,6 +35054,7 @@ export namespace Prisma {
     region?: string | null
     district?: string | null
     isVerified?: boolean
+    passwordHash?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     farmerProfile?: FarmerProfileUncheckedCreateNestedOneWithoutUserInput
@@ -35081,6 +35141,7 @@ export namespace Prisma {
     region?: NullableStringFieldUpdateOperationsInput | string | null
     district?: NullableStringFieldUpdateOperationsInput | string | null
     isVerified?: BoolFieldUpdateOperationsInput | boolean
+    passwordHash?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     farmerProfile?: FarmerProfileUpdateOneWithoutUserNestedInput
@@ -35112,6 +35173,7 @@ export namespace Prisma {
     region?: NullableStringFieldUpdateOperationsInput | string | null
     district?: NullableStringFieldUpdateOperationsInput | string | null
     isVerified?: BoolFieldUpdateOperationsInput | boolean
+    passwordHash?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     farmerProfile?: FarmerProfileUncheckedUpdateOneWithoutUserNestedInput
@@ -35154,6 +35216,7 @@ export namespace Prisma {
     region?: NullableStringFieldUpdateOperationsInput | string | null
     district?: NullableStringFieldUpdateOperationsInput | string | null
     isVerified?: BoolFieldUpdateOperationsInput | boolean
+    passwordHash?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     farmerProfile?: FarmerProfileUpdateOneWithoutUserNestedInput
@@ -35185,6 +35248,7 @@ export namespace Prisma {
     region?: NullableStringFieldUpdateOperationsInput | string | null
     district?: NullableStringFieldUpdateOperationsInput | string | null
     isVerified?: BoolFieldUpdateOperationsInput | boolean
+    passwordHash?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     farmerProfile?: FarmerProfileUncheckedUpdateOneWithoutUserNestedInput
@@ -35261,6 +35325,7 @@ export namespace Prisma {
     region?: string | null
     district?: string | null
     isVerified?: boolean
+    passwordHash?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     farmerProfile?: FarmerProfileCreateNestedOneWithoutUserInput
@@ -35292,6 +35357,7 @@ export namespace Prisma {
     region?: string | null
     district?: string | null
     isVerified?: boolean
+    passwordHash?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     farmerProfile?: FarmerProfileUncheckedCreateNestedOneWithoutUserInput
@@ -35339,6 +35405,7 @@ export namespace Prisma {
     region?: NullableStringFieldUpdateOperationsInput | string | null
     district?: NullableStringFieldUpdateOperationsInput | string | null
     isVerified?: BoolFieldUpdateOperationsInput | boolean
+    passwordHash?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     farmerProfile?: FarmerProfileUpdateOneWithoutUserNestedInput
@@ -35370,6 +35437,7 @@ export namespace Prisma {
     region?: NullableStringFieldUpdateOperationsInput | string | null
     district?: NullableStringFieldUpdateOperationsInput | string | null
     isVerified?: BoolFieldUpdateOperationsInput | boolean
+    passwordHash?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     farmerProfile?: FarmerProfileUncheckedUpdateOneWithoutUserNestedInput
@@ -35401,6 +35469,7 @@ export namespace Prisma {
     region?: string | null
     district?: string | null
     isVerified?: boolean
+    passwordHash?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     farmerProfile?: FarmerProfileCreateNestedOneWithoutUserInput
@@ -35432,6 +35501,7 @@ export namespace Prisma {
     region?: string | null
     district?: string | null
     isVerified?: boolean
+    passwordHash?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     farmerProfile?: FarmerProfileUncheckedCreateNestedOneWithoutUserInput
@@ -35468,6 +35538,7 @@ export namespace Prisma {
     region?: string | null
     district?: string | null
     isVerified?: boolean
+    passwordHash?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     farmerProfile?: FarmerProfileCreateNestedOneWithoutUserInput
@@ -35499,6 +35570,7 @@ export namespace Prisma {
     region?: string | null
     district?: string | null
     isVerified?: boolean
+    passwordHash?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     farmerProfile?: FarmerProfileUncheckedCreateNestedOneWithoutUserInput
@@ -35585,6 +35657,7 @@ export namespace Prisma {
     region?: NullableStringFieldUpdateOperationsInput | string | null
     district?: NullableStringFieldUpdateOperationsInput | string | null
     isVerified?: BoolFieldUpdateOperationsInput | boolean
+    passwordHash?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     farmerProfile?: FarmerProfileUpdateOneWithoutUserNestedInput
@@ -35616,6 +35689,7 @@ export namespace Prisma {
     region?: NullableStringFieldUpdateOperationsInput | string | null
     district?: NullableStringFieldUpdateOperationsInput | string | null
     isVerified?: BoolFieldUpdateOperationsInput | boolean
+    passwordHash?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     farmerProfile?: FarmerProfileUncheckedUpdateOneWithoutUserNestedInput
@@ -35658,6 +35732,7 @@ export namespace Prisma {
     region?: NullableStringFieldUpdateOperationsInput | string | null
     district?: NullableStringFieldUpdateOperationsInput | string | null
     isVerified?: BoolFieldUpdateOperationsInput | boolean
+    passwordHash?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     farmerProfile?: FarmerProfileUpdateOneWithoutUserNestedInput
@@ -35689,6 +35764,7 @@ export namespace Prisma {
     region?: NullableStringFieldUpdateOperationsInput | string | null
     district?: NullableStringFieldUpdateOperationsInput | string | null
     isVerified?: BoolFieldUpdateOperationsInput | boolean
+    passwordHash?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     farmerProfile?: FarmerProfileUncheckedUpdateOneWithoutUserNestedInput
@@ -35765,6 +35841,7 @@ export namespace Prisma {
     region?: string | null
     district?: string | null
     isVerified?: boolean
+    passwordHash?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     farmerProfile?: FarmerProfileCreateNestedOneWithoutUserInput
@@ -35796,6 +35873,7 @@ export namespace Prisma {
     region?: string | null
     district?: string | null
     isVerified?: boolean
+    passwordHash?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     farmerProfile?: FarmerProfileUncheckedCreateNestedOneWithoutUserInput
@@ -35935,6 +36013,7 @@ export namespace Prisma {
     region?: NullableStringFieldUpdateOperationsInput | string | null
     district?: NullableStringFieldUpdateOperationsInput | string | null
     isVerified?: BoolFieldUpdateOperationsInput | boolean
+    passwordHash?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     farmerProfile?: FarmerProfileUpdateOneWithoutUserNestedInput
@@ -35966,6 +36045,7 @@ export namespace Prisma {
     region?: NullableStringFieldUpdateOperationsInput | string | null
     district?: NullableStringFieldUpdateOperationsInput | string | null
     isVerified?: BoolFieldUpdateOperationsInput | boolean
+    passwordHash?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     farmerProfile?: FarmerProfileUncheckedUpdateOneWithoutUserNestedInput
@@ -36101,6 +36181,7 @@ export namespace Prisma {
     region?: string | null
     district?: string | null
     isVerified?: boolean
+    passwordHash?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     farmerProfile?: FarmerProfileCreateNestedOneWithoutUserInput
@@ -36132,6 +36213,7 @@ export namespace Prisma {
     region?: string | null
     district?: string | null
     isVerified?: boolean
+    passwordHash?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     farmerProfile?: FarmerProfileUncheckedCreateNestedOneWithoutUserInput
@@ -36269,6 +36351,7 @@ export namespace Prisma {
     region?: NullableStringFieldUpdateOperationsInput | string | null
     district?: NullableStringFieldUpdateOperationsInput | string | null
     isVerified?: BoolFieldUpdateOperationsInput | boolean
+    passwordHash?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     farmerProfile?: FarmerProfileUpdateOneWithoutUserNestedInput
@@ -36300,6 +36383,7 @@ export namespace Prisma {
     region?: NullableStringFieldUpdateOperationsInput | string | null
     district?: NullableStringFieldUpdateOperationsInput | string | null
     isVerified?: BoolFieldUpdateOperationsInput | boolean
+    passwordHash?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     farmerProfile?: FarmerProfileUncheckedUpdateOneWithoutUserNestedInput
@@ -36454,6 +36538,7 @@ export namespace Prisma {
     region?: string | null
     district?: string | null
     isVerified?: boolean
+    passwordHash?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     farmerProfile?: FarmerProfileCreateNestedOneWithoutUserInput
@@ -36485,6 +36570,7 @@ export namespace Prisma {
     region?: string | null
     district?: string | null
     isVerified?: boolean
+    passwordHash?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     farmerProfile?: FarmerProfileUncheckedCreateNestedOneWithoutUserInput
@@ -36532,6 +36618,7 @@ export namespace Prisma {
     region?: NullableStringFieldUpdateOperationsInput | string | null
     district?: NullableStringFieldUpdateOperationsInput | string | null
     isVerified?: BoolFieldUpdateOperationsInput | boolean
+    passwordHash?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     farmerProfile?: FarmerProfileUpdateOneWithoutUserNestedInput
@@ -36563,6 +36650,7 @@ export namespace Prisma {
     region?: NullableStringFieldUpdateOperationsInput | string | null
     district?: NullableStringFieldUpdateOperationsInput | string | null
     isVerified?: BoolFieldUpdateOperationsInput | boolean
+    passwordHash?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     farmerProfile?: FarmerProfileUncheckedUpdateOneWithoutUserNestedInput
@@ -36594,6 +36682,7 @@ export namespace Prisma {
     region?: string | null
     district?: string | null
     isVerified?: boolean
+    passwordHash?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     farmerProfile?: FarmerProfileCreateNestedOneWithoutUserInput
@@ -36625,6 +36714,7 @@ export namespace Prisma {
     region?: string | null
     district?: string | null
     isVerified?: boolean
+    passwordHash?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     farmerProfile?: FarmerProfileUncheckedCreateNestedOneWithoutUserInput
@@ -36672,6 +36762,7 @@ export namespace Prisma {
     region?: NullableStringFieldUpdateOperationsInput | string | null
     district?: NullableStringFieldUpdateOperationsInput | string | null
     isVerified?: BoolFieldUpdateOperationsInput | boolean
+    passwordHash?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     farmerProfile?: FarmerProfileUpdateOneWithoutUserNestedInput
@@ -36703,6 +36794,7 @@ export namespace Prisma {
     region?: NullableStringFieldUpdateOperationsInput | string | null
     district?: NullableStringFieldUpdateOperationsInput | string | null
     isVerified?: BoolFieldUpdateOperationsInput | boolean
+    passwordHash?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     farmerProfile?: FarmerProfileUncheckedUpdateOneWithoutUserNestedInput
@@ -36734,6 +36826,7 @@ export namespace Prisma {
     region?: string | null
     district?: string | null
     isVerified?: boolean
+    passwordHash?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     farmerProfile?: FarmerProfileCreateNestedOneWithoutUserInput
@@ -36765,6 +36858,7 @@ export namespace Prisma {
     region?: string | null
     district?: string | null
     isVerified?: boolean
+    passwordHash?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     farmerProfile?: FarmerProfileUncheckedCreateNestedOneWithoutUserInput
@@ -36801,6 +36895,7 @@ export namespace Prisma {
     region?: string | null
     district?: string | null
     isVerified?: boolean
+    passwordHash?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     farmerProfile?: FarmerProfileCreateNestedOneWithoutUserInput
@@ -36832,6 +36927,7 @@ export namespace Prisma {
     region?: string | null
     district?: string | null
     isVerified?: boolean
+    passwordHash?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     farmerProfile?: FarmerProfileUncheckedCreateNestedOneWithoutUserInput
@@ -36879,6 +36975,7 @@ export namespace Prisma {
     region?: NullableStringFieldUpdateOperationsInput | string | null
     district?: NullableStringFieldUpdateOperationsInput | string | null
     isVerified?: BoolFieldUpdateOperationsInput | boolean
+    passwordHash?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     farmerProfile?: FarmerProfileUpdateOneWithoutUserNestedInput
@@ -36910,6 +37007,7 @@ export namespace Prisma {
     region?: NullableStringFieldUpdateOperationsInput | string | null
     district?: NullableStringFieldUpdateOperationsInput | string | null
     isVerified?: BoolFieldUpdateOperationsInput | boolean
+    passwordHash?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     farmerProfile?: FarmerProfileUncheckedUpdateOneWithoutUserNestedInput
@@ -36952,6 +37050,7 @@ export namespace Prisma {
     region?: NullableStringFieldUpdateOperationsInput | string | null
     district?: NullableStringFieldUpdateOperationsInput | string | null
     isVerified?: BoolFieldUpdateOperationsInput | boolean
+    passwordHash?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     farmerProfile?: FarmerProfileUpdateOneWithoutUserNestedInput
@@ -36983,6 +37082,7 @@ export namespace Prisma {
     region?: NullableStringFieldUpdateOperationsInput | string | null
     district?: NullableStringFieldUpdateOperationsInput | string | null
     isVerified?: BoolFieldUpdateOperationsInput | boolean
+    passwordHash?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     farmerProfile?: FarmerProfileUncheckedUpdateOneWithoutUserNestedInput

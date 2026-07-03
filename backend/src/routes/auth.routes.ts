@@ -6,6 +6,7 @@ import {
   RequestOtpSchema,
   VerifyOtpSchema,
   UpdateProfileSchema,
+  LoginPasswordSchema,
 } from '../types/auth.schema';
 
 const router = Router();
@@ -13,6 +14,7 @@ const router = Router();
 // Public routes
 router.post('/request-otp', validate(RequestOtpSchema), AuthController.requestOtp);
 router.post('/verify-otp', validate(VerifyOtpSchema), AuthController.verifyOtp);
+router.post('/login-password', validate(LoginPasswordSchema), AuthController.loginPassword);
 
 // Authenticated routes
 router.get('/me', authenticateToken, AuthController.getMe);

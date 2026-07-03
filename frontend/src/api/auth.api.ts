@@ -45,8 +45,17 @@ export const AuthApi = {
     serviceRadiusKm?: number;
     businessType?: string;
     isAvailable?: boolean;
+    password?: string;
   }): Promise<User> => {
     const response = await api.patch('/auth/profile', data);
+    return response.data;
+  },
+
+  /**
+   * Log in a user using password credentials.
+   */
+  loginPassword: async (phone: string, password: string, role?: Role): Promise<VerifyOtpResponse> => {
+    const response = await api.post('/auth/login-password', { phone, password, role });
     return response.data;
   },
 };

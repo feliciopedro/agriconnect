@@ -2,6 +2,7 @@ import { Request, Response } from 'express';
 import { AuthService } from '../services/auth.service';
 import prisma from '../prisma/client';
 import { createError } from '../utils/errors';
+import { hashPassword } from '../utils/crypto';
 
 export class AuthController {
   /**
@@ -57,6 +58,7 @@ export class AuthController {
       serviceRadiusKm,
       businessType,
       isAvailable,
+      password,
     } = req.body;
 
     const user = await prisma.user.findUnique({
@@ -71,6 +73,7 @@ export class AuthController {
         ...(district !== undefined && { district }),
         ...(latitude !== undefined && { latitude }),
         ...(longitude !== undefined && { longitude }),
+        ...(password !== undefined && { passwordHash: hashPassword(password) }),
         ...(user?.role === 'TRANSPORT' && (vehicleType !== undefined || capacityKg !== undefined || serviceRadiusKm !== undefined || isAvailable !== undefined) && {
           transportProfile: {
             update: {
@@ -97,5 +100,14 @@ export class AuthController {
     });
 
     res.status(200).json(updatedUser);
+  }
+
+  /**
+   * Log in a user using their phone and PBKDF2 password.
+   */
+  public static async loginPassword(req: Request, res: Response): Promise<void> {
+    const { phone, password, role } = req.body;
+    const result = await AuthService.loginWithPassword(phone, password, role);
+    res.status(200).json(result);
   }
 }

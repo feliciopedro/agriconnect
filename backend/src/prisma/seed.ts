@@ -10,9 +10,11 @@ import {
   BusinessType,
   TraceEventType
 } from './generated-client';
+import { hashPassword } from '../utils/crypto';
 
 async function main() {
   console.log('🌱 Starting AgriConnect database seed...');
+  const defaultHash = hashPassword('password123');
 
   // 1. Clean existing records in dependency order
   await prisma.review.deleteMany();
@@ -65,6 +67,7 @@ async function main() {
         region: f.region,
         district: f.district,
         isVerified: true,
+        passwordHash: defaultHash,
         farmerProfile: {
           create: {
             farmSizeAcres: f.size,
@@ -146,6 +149,7 @@ async function main() {
         region: b.region,
         district: b.district,
         isVerified: true,
+        passwordHash: defaultHash,
         buyerProfile: {
           create: {
             businessType: b.biz,
@@ -179,6 +183,7 @@ async function main() {
         region: t.region,
         district: t.district,
         isVerified: true,
+        passwordHash: defaultHash,
         transportProfile: {
           create: {
             vehicleType: t.vehicle,
@@ -203,6 +208,7 @@ async function main() {
       name: 'System Admin',
       role: Role.ADMIN,
       isVerified: true,
+      passwordHash: defaultHash,
     }
   });
 
@@ -213,6 +219,7 @@ async function main() {
       name: 'Super Admin',
       role: Role.SUPERADMIN,
       isVerified: true,
+      passwordHash: defaultHash,
     }
   });
   console.log('👑 Created Super Admin.');

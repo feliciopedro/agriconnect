@@ -23,4 +23,11 @@ export const UpdateProfileSchema = z.object({
   capacityKg: z.number().optional(),
   serviceRadiusKm: z.number().optional(),
   businessType: z.string().optional(),
+  password: z.string().min(6, 'Password must be at least 6 characters long').optional(),
+});
+
+export const LoginPasswordSchema = z.object({
+  phone: z.string().min(8, 'Phone number must be at least 8 characters long'),
+  password: z.string().min(6, 'Password must be at least 6 characters long'),
+  role: RoleEnum.optional(),
 });
