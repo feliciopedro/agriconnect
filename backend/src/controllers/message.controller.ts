@@ -8,7 +8,8 @@ export class MessageController {
    */
   public static async sendMessage(req: Request, res: Response): Promise<void> {
     const fromUserId = req.user!.userId;
-    const { toUserId, content, orderId } = req.body;
+    const toUserId = req.body.toUserId || req.body.receiverId;
+    const { content, orderId } = req.body;
 
     if (!toUserId || !content) {
       throw createError('Missing required body parameters: toUserId, content', 'MISSING_PARAMETERS', 400);

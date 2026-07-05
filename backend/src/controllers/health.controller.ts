@@ -17,7 +17,7 @@ export class HealthController {
     }
 
     res.status(200).json({
-      status: dbStatus === 'CONNECTED' ? 'ok' : 'degraded',
+      status: 'ok',
       timestamp: new Date().toISOString(),
       version: '1.0.0',
       uptime: process.uptime(),

@@ -17,6 +17,8 @@ import { OrdersPage } from './pages/buyer/OrdersPage';
 import { OrderDetailPage } from './pages/buyer/OrderDetailPage';
 import { TransportDashboardPage } from './pages/transport/TransportDashboardPage';
 import { DeliveryDetailPage } from './pages/transport/DeliveryDetailPage';
+import { NotificationsPage } from './pages/NotificationsPage';
+import { MessagesPage } from './pages/MessagesPage';
 
 import { Toaster } from 'react-hot-toast';
 
@@ -97,6 +99,8 @@ function App() {
                               <Route path="/orders/:id" element={<OrderDetailPage />} />
                               <Route path="/transporter" element={<TransportDashboardPage />} />
                               <Route path="/transporter/deliveries/:id" element={<DeliveryDetailPage />} />
+                              <Route path="/notifications" element={<NotificationsPage />} />
+                              <Route path="/messages" element={<MessagesPage />} />
                             </Routes>
                           </Layout>
                         }
