@@ -289,7 +289,8 @@ async function handleListProduce(session: any, input: string, lang: string, step
           pricePerKg: price,
           harvestDate: new Date(session.tempData.harvestDate),
           latitude: user.latitude,
-          longitude: user.longitude
+          longitude: user.longitude,
+          source: 'USSD'
         },
         []
       );

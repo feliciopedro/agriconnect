@@ -23,7 +23,7 @@ export class OrderService {
    * Create an order in a transaction. Validates stock availability,
    * decrements inventory, generates trace events, and alerts the farmer.
    */
-  public static async createOrder(buyerId: string, listingId: string, quantityKg: number) {
+  public static async createOrder(buyerId: string, listingId: string, quantityKg: number, source?: any) {
     const createdOrder = await prisma.$transaction(async (tx) => {
       // 1. Fetch listing and check availability
       const listing = await tx.produceListing.findUnique({
@@ -76,6 +76,7 @@ export class OrderService {
           totalPrice,
           status: OrderStatus.PENDING,
           paymentStatus: PaymentStatus.UNPAID,
+          source: source || 'WEB',
         },
         include: {
           listing: {

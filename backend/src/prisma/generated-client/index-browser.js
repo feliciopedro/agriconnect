@@ -194,6 +194,7 @@ exports.Prisma.ProduceListingScalarFieldEnum = {
   batchCode: 'batchCode',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
+  source: 'source',
   plantingLogId: 'plantingLogId'
 };
 
@@ -231,7 +232,8 @@ exports.Prisma.OrderScalarFieldEnum = {
   paystackReference: 'paystackReference',
   depositCredit: 'depositCredit',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  source: 'source'
 };
 
 exports.Prisma.DeliveryRequestScalarFieldEnum = {
@@ -487,6 +489,12 @@ exports.ListingStatus = exports.$Enums.ListingStatus = {
   RESERVED: 'RESERVED',
   SOLD_OUT: 'SOLD_OUT',
   EXPIRED: 'EXPIRED'
+};
+
+exports.CreationSource = exports.$Enums.CreationSource = {
+  WEB: 'WEB',
+  USSD: 'USSD',
+  SMS: 'SMS'
 };
 
 exports.TraceEventType = exports.$Enums.TraceEventType = {

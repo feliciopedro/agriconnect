@@ -72,6 +72,7 @@ export class ListingService {
           longitude: data.longitude,
           batchCode,
           plantingLogId,
+          source: data.source || 'WEB',
           traceability: {
             create: {
               plantingDate,

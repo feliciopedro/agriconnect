@@ -17,8 +17,19 @@ export class AdminService {
     const nowPlus48Hours = new Date(Date.now() + 48 * 60 * 60 * 1000);
     const thirtyDaysAgo = new Date();
     thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
+    const startOfDay = new Date();
+    startOfDay.setHours(0, 0, 0, 0);
 
-    const [userCounts, listingCounts, orderCounts, gmvResult, spoilageRisk] = await Promise.all([
+    const [
+      userCounts,
+      listingCounts,
+      orderCounts,
+      gmvResult,
+      spoilageRisk,
+      sessionsToday,
+      listingsBySource,
+      ordersBySource
+    ] = await Promise.all([
       // User counts grouped by role
       prisma.user.groupBy({
         by: ['role'],
@@ -48,6 +59,20 @@ export class AdminService {
           expiryEstimate: { lt: nowPlus48Hours },
         },
       }),
+      // USSD sessions today
+      prisma.ussdSession.count({
+        where: { startedAt: { gte: startOfDay } }
+      }),
+      // Listings by source
+      prisma.produceListing.groupBy({
+        by: ['source'],
+        _count: { id: true }
+      }),
+      // Orders by source
+      prisma.order.groupBy({
+        by: ['source'],
+        _count: { id: true }
+      })
     ]);
 
     // Top 5 cropTypes by quantityKg on confirmed+ orders in the last 30 days
@@ -75,6 +100,9 @@ export class AdminService {
       totalGMV: gmvResult._sum.totalPrice || 0,
       topCrops,
       spoilageRisk,
+      sessionsToday,
+      listingsBySource,
+      ordersBySource
     };
   }
 

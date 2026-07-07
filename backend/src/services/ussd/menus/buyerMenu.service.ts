@@ -324,7 +324,7 @@ async function handleFindProduce(session: any, input: string, lang: string, step
 
     if (input === '1') {
       try {
-        const order = await OrderService.createOrder(buyerId, listingId, qty);
+        const order = await OrderService.createOrder(buyerId, listingId, qty, 'USSD');
         return respond('END', `Order placed!\nRef: ${order.id.slice(0, 8)}\nFarmer will be notified.\nPay GHS${total} on delivery\nor visit app to pay online.`);
       } catch (err: any) {
         console.error('Error creating USSD order:', err);

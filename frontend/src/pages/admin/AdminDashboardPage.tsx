@@ -11,6 +11,9 @@ import {
   CartesianGrid,
   Tooltip,
   ResponsiveContainer,
+  PieChart,
+  Pie,
+  Cell,
 } from 'recharts';
 import {
   Users,
@@ -22,6 +25,7 @@ import {
   Play,
   CheckCircle,
   XCircle,
+  Phone,
 } from 'lucide-react';
 import { AdminApi } from '../../api/admin.api';
 import { SectionCard } from '../../components/ui/SectionCard';
@@ -56,11 +60,15 @@ interface StatCardProps {
   value: string | number;
   icon: React.ReactNode;
   topColor: string;
+  onClick?: () => void;
 }
 
-const StatCard: React.FC<StatCardProps> = ({ label, value, icon, topColor }) => (
+const StatCard: React.FC<StatCardProps> = ({ label, value, icon, topColor, onClick }) => (
   <div
-    className="bg-white rounded-card border border-[#E5E7EB] p-5 flex flex-col gap-3 shadow-card"
+    onClick={onClick}
+    className={`bg-white rounded-card border border-[#E5E7EB] p-5 flex flex-col gap-3 shadow-card transition-all duration-200 ${
+      onClick ? 'cursor-pointer hover:border-emerald-600 hover:shadow-md' : ''
+    }`}
     style={{ borderTop: `3px solid ${topColor}` }}
   >
     <div className="flex items-center justify-between">
@@ -119,6 +127,28 @@ export const AdminDashboardPage: React.FC = () => {
     }));
   }, [stats]);
 
+  const channelChartData = React.useMemo(() => {
+    if (!stats) return [];
+    const counts: Record<string, number> = { WEB: 0, USSD: 0, SMS: 0 };
+    if ((stats as any).listingsBySource) {
+      (stats as any).listingsBySource.forEach((item: any) => {
+        const src = item.source || 'WEB';
+        if (src in counts) counts[src] += item._count.id;
+      });
+    }
+    if ((stats as any).ordersBySource) {
+      (stats as any).ordersBySource.forEach((item: any) => {
+        const src = item.source || 'WEB';
+        if (src in counts) counts[src] += item._count.id;
+      });
+    }
+    return [
+      { name: 'WEB', value: counts.WEB, color: '#2D6A4F' },
+      { name: 'USSD', value: counts.USSD, color: '#C8960C' },
+      { name: 'SMS', value: counts.SMS, color: '#2563EB' },
+    ];
+  }, [stats]);
+
   // Fake 7-day GMV trend (pattern from total GMV)
   const gmvChartData = React.useMemo(() => {
     if (!stats) return [];
@@ -169,8 +199,8 @@ export const AdminDashboardPage: React.FC = () => {
         <p className="text-sm text-text-secondary">Platform statistics and operations</p>
       </div>
 
-      {/* ── Stat Cards 3×2 ── */}
-      <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+      {/* ── Stat Cards ── */}
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
         <StatCard
           label="Total Farmers"
           value={count('FARMER')}
@@ -206,6 +236,13 @@ export const AdminDashboardPage: React.FC = () => {
           value={`GHS ${(stats?.totalGMV ?? 0).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`}
           icon={<TrendingUp className="w-4 h-4" />}
           topColor="#D97706"
+        />
+        <StatCard
+          label="USSD Sessions Today"
+          value={(stats as any)?.sessionsToday ?? 0}
+          icon={<Phone className="w-4 h-4" />}
+          topColor="#059669"
+          onClick={() => navigate('/admin/ussd-monitor')}
         />
       </div>
 
@@ -244,7 +281,7 @@ export const AdminDashboardPage: React.FC = () => {
         </SectionCard>
 
         {/* GMV Last 7 Days */}
-        <SectionCard title="GMV — Last 7 Days (GHS)" className="lg:col-span-2">
+        <SectionCard title="GMV — Last 7 Days (GHS)">
           <ResponsiveContainer width="100%" height={220}>
             <LineChart data={gmvChartData}>
               <CartesianGrid strokeDasharray="3 3" stroke={CHART_COMMON.gridStroke} vertical={false} />
@@ -264,6 +301,44 @@ export const AdminDashboardPage: React.FC = () => {
               />
             </LineChart>
           </ResponsiveContainer>
+        </SectionCard>
+
+        {/* Channel breakdown */}
+        <SectionCard title="Transactions by channel">
+          <div className="flex flex-col sm:flex-row items-center justify-around h-[220px]">
+            <ResponsiveContainer width="60%" height="100%">
+              <PieChart>
+                <Pie
+                  data={channelChartData}
+                  cx="50%"
+                  cy="50%"
+                  innerRadius={60}
+                  outerRadius={80}
+                  paddingAngle={4}
+                  dataKey="value"
+                >
+                  {channelChartData.map((entry, index) => (
+                    <Cell key={`cell-${index}`} fill={entry.color} />
+                  ))}
+                </Pie>
+                <Tooltip
+                  formatter={(value: number) => [value, 'Volume']}
+                  contentStyle={{ background: '#fff', border: '1px solid #E5E7EB', borderRadius: 8, fontSize: 12 }}
+                />
+              </PieChart>
+            </ResponsiveContainer>
+            
+            {/* Legend */}
+            <div className="flex flex-col gap-3 text-xs font-semibold text-slate-700">
+              {channelChartData.map((item) => (
+                <div key={item.name} className="flex items-center gap-2">
+                  <span className="w-3.5 h-3.5 rounded-full shrink-0" style={{ backgroundColor: item.color }} />
+                  <span className="min-w-[40px] uppercase font-bold">{item.name}</span>
+                  <span className="font-mono text-slate-500">({item.value})</span>
+                </div>
+              ))}
+            </div>
+          </div>
         </SectionCard>
       </div>
 

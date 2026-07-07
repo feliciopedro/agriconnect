@@ -78,6 +78,12 @@ enum TraceEventType {
   DELIVERED
 }
 
+enum CreationSource {
+  WEB
+  USSD
+  SMS
+}
+
 // User: unified table for all system users
 model User {
   id                String    @id @default(uuid())
@@ -185,6 +191,7 @@ model ProduceListing {
   batchCode          String              @unique
   createdAt          DateTime            @default(now())
   updatedAt          DateTime            @updatedAt
+  source             CreationSource      @default(WEB)
   orders             Order[]
   traceability       TraceabilityRecord?
   traceEvents        TraceEvent[]
@@ -245,6 +252,7 @@ model Order {
   depositCredit     Float            @default(0) // amount credited from a pre-order deposit
   createdAt         DateTime         @default(now())
   updatedAt         DateTime         @updatedAt
+  source            CreationSource   @default(WEB)
   deliveryRequest   DeliveryRequest?
   reviews           Review[]
   messages          Message[]

@@ -182,6 +182,15 @@ export const ListingStatus: {
 export type ListingStatus = (typeof ListingStatus)[keyof typeof ListingStatus]
 
 
+export const CreationSource: {
+  WEB: 'WEB',
+  USSD: 'USSD',
+  SMS: 'SMS'
+};
+
+export type CreationSource = (typeof CreationSource)[keyof typeof CreationSource]
+
+
 export const TraceEventType: {
   HARVESTED: 'HARVESTED',
   LISTED: 'LISTED',
@@ -266,6 +275,10 @@ export const QualityGrade: typeof $Enums.QualityGrade
 export type ListingStatus = $Enums.ListingStatus
 
 export const ListingStatus: typeof $Enums.ListingStatus
+
+export type CreationSource = $Enums.CreationSource
+
+export const CreationSource: typeof $Enums.CreationSource
 
 export type TraceEventType = $Enums.TraceEventType
 
@@ -7729,6 +7742,7 @@ export namespace Prisma {
     batchCode: string | null
     createdAt: Date | null
     updatedAt: Date | null
+    source: $Enums.CreationSource | null
     plantingLogId: string | null
   }
 
@@ -7749,6 +7763,7 @@ export namespace Prisma {
     batchCode: string | null
     createdAt: Date | null
     updatedAt: Date | null
+    source: $Enums.CreationSource | null
     plantingLogId: string | null
   }
 
@@ -7770,6 +7785,7 @@ export namespace Prisma {
     batchCode: number
     createdAt: number
     updatedAt: number
+    source: number
     plantingLogId: number
     _all: number
   }
@@ -7808,6 +7824,7 @@ export namespace Prisma {
     batchCode?: true
     createdAt?: true
     updatedAt?: true
+    source?: true
     plantingLogId?: true
   }
 
@@ -7828,6 +7845,7 @@ export namespace Prisma {
     batchCode?: true
     createdAt?: true
     updatedAt?: true
+    source?: true
     plantingLogId?: true
   }
 
@@ -7849,6 +7867,7 @@ export namespace Prisma {
     batchCode?: true
     createdAt?: true
     updatedAt?: true
+    source?: true
     plantingLogId?: true
     _all?: true
   }
@@ -7957,6 +7976,7 @@ export namespace Prisma {
     batchCode: string
     createdAt: Date
     updatedAt: Date
+    source: $Enums.CreationSource
     plantingLogId: string | null
     _count: ProduceListingCountAggregateOutputType | null
     _avg: ProduceListingAvgAggregateOutputType | null
@@ -7997,6 +8017,7 @@ export namespace Prisma {
     batchCode?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    source?: boolean
     plantingLogId?: boolean
     farmer?: boolean | UserDefaultArgs<ExtArgs>
     orders?: boolean | ProduceListing$ordersArgs<ExtArgs>
@@ -8025,6 +8046,7 @@ export namespace Prisma {
     batchCode?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    source?: boolean
     plantingLogId?: boolean
     farmer?: boolean | UserDefaultArgs<ExtArgs>
     plantingLog?: boolean | ProduceListing$plantingLogArgs<ExtArgs>
@@ -8048,6 +8070,7 @@ export namespace Prisma {
     batchCode?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    source?: boolean
     plantingLogId?: boolean
   }
 
@@ -8093,6 +8116,7 @@ export namespace Prisma {
       batchCode: string
       createdAt: Date
       updatedAt: Date
+      source: $Enums.CreationSource
       plantingLogId: string | null
     }, ExtArgs["result"]["produceListing"]>
     composites: {}
@@ -8510,6 +8534,7 @@ export namespace Prisma {
     readonly batchCode: FieldRef<"ProduceListing", 'String'>
     readonly createdAt: FieldRef<"ProduceListing", 'DateTime'>
     readonly updatedAt: FieldRef<"ProduceListing", 'DateTime'>
+    readonly source: FieldRef<"ProduceListing", 'CreationSource'>
     readonly plantingLogId: FieldRef<"ProduceListing", 'String'>
   }
     
@@ -10970,6 +10995,7 @@ export namespace Prisma {
     depositCredit: number | null
     createdAt: Date | null
     updatedAt: Date | null
+    source: $Enums.CreationSource | null
   }
 
   export type OrderMaxAggregateOutputType = {
@@ -10984,6 +11010,7 @@ export namespace Prisma {
     depositCredit: number | null
     createdAt: Date | null
     updatedAt: Date | null
+    source: $Enums.CreationSource | null
   }
 
   export type OrderCountAggregateOutputType = {
@@ -10998,6 +11025,7 @@ export namespace Prisma {
     depositCredit: number
     createdAt: number
     updatedAt: number
+    source: number
     _all: number
   }
 
@@ -11026,6 +11054,7 @@ export namespace Prisma {
     depositCredit?: true
     createdAt?: true
     updatedAt?: true
+    source?: true
   }
 
   export type OrderMaxAggregateInputType = {
@@ -11040,6 +11069,7 @@ export namespace Prisma {
     depositCredit?: true
     createdAt?: true
     updatedAt?: true
+    source?: true
   }
 
   export type OrderCountAggregateInputType = {
@@ -11054,6 +11084,7 @@ export namespace Prisma {
     depositCredit?: true
     createdAt?: true
     updatedAt?: true
+    source?: true
     _all?: true
   }
 
@@ -11155,6 +11186,7 @@ export namespace Prisma {
     depositCredit: number
     createdAt: Date
     updatedAt: Date
+    source: $Enums.CreationSource
     _count: OrderCountAggregateOutputType | null
     _avg: OrderAvgAggregateOutputType | null
     _sum: OrderSumAggregateOutputType | null
@@ -11188,6 +11220,7 @@ export namespace Prisma {
     depositCredit?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    source?: boolean
     buyer?: boolean | UserDefaultArgs<ExtArgs>
     listing?: boolean | ProduceListingDefaultArgs<ExtArgs>
     deliveryRequest?: boolean | Order$deliveryRequestArgs<ExtArgs>
@@ -11209,6 +11242,7 @@ export namespace Prisma {
     depositCredit?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    source?: boolean
     buyer?: boolean | UserDefaultArgs<ExtArgs>
     listing?: boolean | ProduceListingDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["order"]>
@@ -11225,6 +11259,7 @@ export namespace Prisma {
     depositCredit?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    source?: boolean
   }
 
   export type OrderInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -11263,6 +11298,7 @@ export namespace Prisma {
       depositCredit: number
       createdAt: Date
       updatedAt: Date
+      source: $Enums.CreationSource
     }, ExtArgs["result"]["order"]>
     composites: {}
   }
@@ -11673,6 +11709,7 @@ export namespace Prisma {
     readonly depositCredit: FieldRef<"Order", 'Float'>
     readonly createdAt: FieldRef<"Order", 'DateTime'>
     readonly updatedAt: FieldRef<"Order", 'DateTime'>
+    readonly source: FieldRef<"Order", 'CreationSource'>
   }
     
 
@@ -26367,6 +26404,7 @@ export namespace Prisma {
     batchCode: 'batchCode',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt',
+    source: 'source',
     plantingLogId: 'plantingLogId'
   };
 
@@ -26413,7 +26451,8 @@ export namespace Prisma {
     paystackReference: 'paystackReference',
     depositCredit: 'depositCredit',
     createdAt: 'createdAt',
-    updatedAt: 'updatedAt'
+    updatedAt: 'updatedAt',
+    source: 'source'
   };
 
   export type OrderScalarFieldEnum = (typeof OrderScalarFieldEnum)[keyof typeof OrderScalarFieldEnum]
@@ -26831,6 +26870,20 @@ export namespace Prisma {
    * Reference to a field of type 'ListingStatus[]'
    */
   export type ListEnumListingStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ListingStatus[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'CreationSource'
+   */
+  export type EnumCreationSourceFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'CreationSource'>
+    
+
+
+  /**
+   * Reference to a field of type 'CreationSource[]'
+   */
+  export type ListEnumCreationSourceFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'CreationSource[]'>
     
 
 
@@ -27341,6 +27394,7 @@ export namespace Prisma {
     batchCode?: StringFilter<"ProduceListing"> | string
     createdAt?: DateTimeFilter<"ProduceListing"> | Date | string
     updatedAt?: DateTimeFilter<"ProduceListing"> | Date | string
+    source?: EnumCreationSourceFilter<"ProduceListing"> | $Enums.CreationSource
     plantingLogId?: StringNullableFilter<"ProduceListing"> | string | null
     farmer?: XOR<UserRelationFilter, UserWhereInput>
     orders?: OrderListRelationFilter
@@ -27368,6 +27422,7 @@ export namespace Prisma {
     batchCode?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    source?: SortOrder
     plantingLogId?: SortOrderInput | SortOrder
     farmer?: UserOrderByWithRelationInput
     orders?: OrderOrderByRelationAggregateInput
@@ -27398,6 +27453,7 @@ export namespace Prisma {
     longitude?: FloatFilter<"ProduceListing"> | number
     createdAt?: DateTimeFilter<"ProduceListing"> | Date | string
     updatedAt?: DateTimeFilter<"ProduceListing"> | Date | string
+    source?: EnumCreationSourceFilter<"ProduceListing"> | $Enums.CreationSource
     plantingLogId?: StringNullableFilter<"ProduceListing"> | string | null
     farmer?: XOR<UserRelationFilter, UserWhereInput>
     orders?: OrderListRelationFilter
@@ -27425,6 +27481,7 @@ export namespace Prisma {
     batchCode?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    source?: SortOrder
     plantingLogId?: SortOrderInput | SortOrder
     _count?: ProduceListingCountOrderByAggregateInput
     _avg?: ProduceListingAvgOrderByAggregateInput
@@ -27454,6 +27511,7 @@ export namespace Prisma {
     batchCode?: StringWithAggregatesFilter<"ProduceListing"> | string
     createdAt?: DateTimeWithAggregatesFilter<"ProduceListing"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"ProduceListing"> | Date | string
+    source?: EnumCreationSourceWithAggregatesFilter<"ProduceListing"> | $Enums.CreationSource
     plantingLogId?: StringNullableWithAggregatesFilter<"ProduceListing"> | string | null
   }
 
@@ -27622,6 +27680,7 @@ export namespace Prisma {
     depositCredit?: FloatFilter<"Order"> | number
     createdAt?: DateTimeFilter<"Order"> | Date | string
     updatedAt?: DateTimeFilter<"Order"> | Date | string
+    source?: EnumCreationSourceFilter<"Order"> | $Enums.CreationSource
     buyer?: XOR<UserRelationFilter, UserWhereInput>
     listing?: XOR<ProduceListingRelationFilter, ProduceListingWhereInput>
     deliveryRequest?: XOR<DeliveryRequestNullableRelationFilter, DeliveryRequestWhereInput> | null
@@ -27642,6 +27701,7 @@ export namespace Prisma {
     depositCredit?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    source?: SortOrder
     buyer?: UserOrderByWithRelationInput
     listing?: ProduceListingOrderByWithRelationInput
     deliveryRequest?: DeliveryRequestOrderByWithRelationInput
@@ -27665,6 +27725,7 @@ export namespace Prisma {
     depositCredit?: FloatFilter<"Order"> | number
     createdAt?: DateTimeFilter<"Order"> | Date | string
     updatedAt?: DateTimeFilter<"Order"> | Date | string
+    source?: EnumCreationSourceFilter<"Order"> | $Enums.CreationSource
     buyer?: XOR<UserRelationFilter, UserWhereInput>
     listing?: XOR<ProduceListingRelationFilter, ProduceListingWhereInput>
     deliveryRequest?: XOR<DeliveryRequestNullableRelationFilter, DeliveryRequestWhereInput> | null
@@ -27685,6 +27746,7 @@ export namespace Prisma {
     depositCredit?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    source?: SortOrder
     _count?: OrderCountOrderByAggregateInput
     _avg?: OrderAvgOrderByAggregateInput
     _max?: OrderMaxOrderByAggregateInput
@@ -27707,6 +27769,7 @@ export namespace Prisma {
     depositCredit?: FloatWithAggregatesFilter<"Order"> | number
     createdAt?: DateTimeWithAggregatesFilter<"Order"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Order"> | Date | string
+    source?: EnumCreationSourceWithAggregatesFilter<"Order"> | $Enums.CreationSource
   }
 
   export type DeliveryRequestWhereInput = {
@@ -29356,6 +29419,7 @@ export namespace Prisma {
     batchCode: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    source?: $Enums.CreationSource
     farmer: UserCreateNestedOneWithoutListingsInput
     orders?: OrderCreateNestedManyWithoutListingInput
     traceability?: TraceabilityRecordCreateNestedOneWithoutListingInput
@@ -29382,6 +29446,7 @@ export namespace Prisma {
     batchCode: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    source?: $Enums.CreationSource
     plantingLogId?: string | null
     orders?: OrderUncheckedCreateNestedManyWithoutListingInput
     traceability?: TraceabilityRecordUncheckedCreateNestedOneWithoutListingInput
@@ -29406,6 +29471,7 @@ export namespace Prisma {
     batchCode?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    source?: EnumCreationSourceFieldUpdateOperationsInput | $Enums.CreationSource
     farmer?: UserUpdateOneRequiredWithoutListingsNestedInput
     orders?: OrderUpdateManyWithoutListingNestedInput
     traceability?: TraceabilityRecordUpdateOneWithoutListingNestedInput
@@ -29432,6 +29498,7 @@ export namespace Prisma {
     batchCode?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    source?: EnumCreationSourceFieldUpdateOperationsInput | $Enums.CreationSource
     plantingLogId?: NullableStringFieldUpdateOperationsInput | string | null
     orders?: OrderUncheckedUpdateManyWithoutListingNestedInput
     traceability?: TraceabilityRecordUncheckedUpdateOneWithoutListingNestedInput
@@ -29457,6 +29524,7 @@ export namespace Prisma {
     batchCode: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    source?: $Enums.CreationSource
     plantingLogId?: string | null
   }
 
@@ -29477,6 +29545,7 @@ export namespace Prisma {
     batchCode?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    source?: EnumCreationSourceFieldUpdateOperationsInput | $Enums.CreationSource
   }
 
   export type ProduceListingUncheckedUpdateManyInput = {
@@ -29497,6 +29566,7 @@ export namespace Prisma {
     batchCode?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    source?: EnumCreationSourceFieldUpdateOperationsInput | $Enums.CreationSource
     plantingLogId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
@@ -29668,6 +29738,7 @@ export namespace Prisma {
     depositCredit?: number
     createdAt?: Date | string
     updatedAt?: Date | string
+    source?: $Enums.CreationSource
     buyer: UserCreateNestedOneWithoutOrdersInput
     listing: ProduceListingCreateNestedOneWithoutOrdersInput
     deliveryRequest?: DeliveryRequestCreateNestedOneWithoutOrderInput
@@ -29688,6 +29759,7 @@ export namespace Prisma {
     depositCredit?: number
     createdAt?: Date | string
     updatedAt?: Date | string
+    source?: $Enums.CreationSource
     deliveryRequest?: DeliveryRequestUncheckedCreateNestedOneWithoutOrderInput
     reviews?: ReviewUncheckedCreateNestedManyWithoutOrderInput
     messages?: MessageUncheckedCreateNestedManyWithoutOrderInput
@@ -29704,6 +29776,7 @@ export namespace Prisma {
     depositCredit?: FloatFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    source?: EnumCreationSourceFieldUpdateOperationsInput | $Enums.CreationSource
     buyer?: UserUpdateOneRequiredWithoutOrdersNestedInput
     listing?: ProduceListingUpdateOneRequiredWithoutOrdersNestedInput
     deliveryRequest?: DeliveryRequestUpdateOneWithoutOrderNestedInput
@@ -29724,6 +29797,7 @@ export namespace Prisma {
     depositCredit?: FloatFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    source?: EnumCreationSourceFieldUpdateOperationsInput | $Enums.CreationSource
     deliveryRequest?: DeliveryRequestUncheckedUpdateOneWithoutOrderNestedInput
     reviews?: ReviewUncheckedUpdateManyWithoutOrderNestedInput
     messages?: MessageUncheckedUpdateManyWithoutOrderNestedInput
@@ -29742,6 +29816,7 @@ export namespace Prisma {
     depositCredit?: number
     createdAt?: Date | string
     updatedAt?: Date | string
+    source?: $Enums.CreationSource
   }
 
   export type OrderUpdateManyMutationInput = {
@@ -29754,6 +29829,7 @@ export namespace Prisma {
     depositCredit?: FloatFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    source?: EnumCreationSourceFieldUpdateOperationsInput | $Enums.CreationSource
   }
 
   export type OrderUncheckedUpdateManyInput = {
@@ -29768,6 +29844,7 @@ export namespace Prisma {
     depositCredit?: FloatFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    source?: EnumCreationSourceFieldUpdateOperationsInput | $Enums.CreationSource
   }
 
   export type DeliveryRequestCreateInput = {
@@ -31707,6 +31784,13 @@ export namespace Prisma {
     not?: NestedEnumListingStatusFilter<$PrismaModel> | $Enums.ListingStatus
   }
 
+  export type EnumCreationSourceFilter<$PrismaModel = never> = {
+    equals?: $Enums.CreationSource | EnumCreationSourceFieldRefInput<$PrismaModel>
+    in?: $Enums.CreationSource[] | ListEnumCreationSourceFieldRefInput<$PrismaModel>
+    notIn?: $Enums.CreationSource[] | ListEnumCreationSourceFieldRefInput<$PrismaModel>
+    not?: NestedEnumCreationSourceFilter<$PrismaModel> | $Enums.CreationSource
+  }
+
   export type TraceabilityRecordNullableRelationFilter = {
     is?: TraceabilityRecordWhereInput | null
     isNot?: TraceabilityRecordWhereInput | null
@@ -31735,6 +31819,7 @@ export namespace Prisma {
     batchCode?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    source?: SortOrder
     plantingLogId?: SortOrder
   }
 
@@ -31763,6 +31848,7 @@ export namespace Prisma {
     batchCode?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    source?: SortOrder
     plantingLogId?: SortOrder
   }
 
@@ -31783,6 +31869,7 @@ export namespace Prisma {
     batchCode?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    source?: SortOrder
     plantingLogId?: SortOrder
   }
 
@@ -31822,6 +31909,16 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumListingStatusFilter<$PrismaModel>
     _max?: NestedEnumListingStatusFilter<$PrismaModel>
+  }
+
+  export type EnumCreationSourceWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.CreationSource | EnumCreationSourceFieldRefInput<$PrismaModel>
+    in?: $Enums.CreationSource[] | ListEnumCreationSourceFieldRefInput<$PrismaModel>
+    notIn?: $Enums.CreationSource[] | ListEnumCreationSourceFieldRefInput<$PrismaModel>
+    not?: NestedEnumCreationSourceWithAggregatesFilter<$PrismaModel> | $Enums.CreationSource
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumCreationSourceFilter<$PrismaModel>
+    _max?: NestedEnumCreationSourceFilter<$PrismaModel>
   }
 
   export type ProduceListingRelationFilter = {
@@ -31962,6 +32059,7 @@ export namespace Prisma {
     depositCredit?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    source?: SortOrder
   }
 
   export type OrderAvgOrderByAggregateInput = {
@@ -31982,6 +32080,7 @@ export namespace Prisma {
     depositCredit?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    source?: SortOrder
   }
 
   export type OrderMinOrderByAggregateInput = {
@@ -31996,6 +32095,7 @@ export namespace Prisma {
     depositCredit?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    source?: SortOrder
   }
 
   export type OrderSumOrderByAggregateInput = {
@@ -33771,6 +33871,10 @@ export namespace Prisma {
     set?: $Enums.ListingStatus
   }
 
+  export type EnumCreationSourceFieldUpdateOperationsInput = {
+    set?: $Enums.CreationSource
+  }
+
   export type UserUpdateOneRequiredWithoutListingsNestedInput = {
     create?: XOR<UserCreateWithoutListingsInput, UserUncheckedCreateWithoutListingsInput>
     connectOrCreate?: UserCreateOrConnectWithoutListingsInput
@@ -34787,6 +34891,13 @@ export namespace Prisma {
     not?: NestedEnumListingStatusFilter<$PrismaModel> | $Enums.ListingStatus
   }
 
+  export type NestedEnumCreationSourceFilter<$PrismaModel = never> = {
+    equals?: $Enums.CreationSource | EnumCreationSourceFieldRefInput<$PrismaModel>
+    in?: $Enums.CreationSource[] | ListEnumCreationSourceFieldRefInput<$PrismaModel>
+    notIn?: $Enums.CreationSource[] | ListEnumCreationSourceFieldRefInput<$PrismaModel>
+    not?: NestedEnumCreationSourceFilter<$PrismaModel> | $Enums.CreationSource
+  }
+
   export type NestedEnumCropTypeWithAggregatesFilter<$PrismaModel = never> = {
     equals?: $Enums.CropType | EnumCropTypeFieldRefInput<$PrismaModel>
     in?: $Enums.CropType[] | ListEnumCropTypeFieldRefInput<$PrismaModel>
@@ -34815,6 +34926,16 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumListingStatusFilter<$PrismaModel>
     _max?: NestedEnumListingStatusFilter<$PrismaModel>
+  }
+
+  export type NestedEnumCreationSourceWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.CreationSource | EnumCreationSourceFieldRefInput<$PrismaModel>
+    in?: $Enums.CreationSource[] | ListEnumCreationSourceFieldRefInput<$PrismaModel>
+    notIn?: $Enums.CreationSource[] | ListEnumCreationSourceFieldRefInput<$PrismaModel>
+    not?: NestedEnumCreationSourceWithAggregatesFilter<$PrismaModel> | $Enums.CreationSource
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumCreationSourceFilter<$PrismaModel>
+    _max?: NestedEnumCreationSourceFilter<$PrismaModel>
   }
 
   export type NestedEnumTraceEventTypeFilter<$PrismaModel = never> = {
@@ -35057,6 +35178,7 @@ export namespace Prisma {
     batchCode: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    source?: $Enums.CreationSource
     orders?: OrderCreateNestedManyWithoutListingInput
     traceability?: TraceabilityRecordCreateNestedOneWithoutListingInput
     traceEvents?: TraceEventCreateNestedManyWithoutListingInput
@@ -35081,6 +35203,7 @@ export namespace Prisma {
     batchCode: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    source?: $Enums.CreationSource
     plantingLogId?: string | null
     orders?: OrderUncheckedCreateNestedManyWithoutListingInput
     traceability?: TraceabilityRecordUncheckedCreateNestedOneWithoutListingInput
@@ -35108,6 +35231,7 @@ export namespace Prisma {
     depositCredit?: number
     createdAt?: Date | string
     updatedAt?: Date | string
+    source?: $Enums.CreationSource
     listing: ProduceListingCreateNestedOneWithoutOrdersInput
     deliveryRequest?: DeliveryRequestCreateNestedOneWithoutOrderInput
     reviews?: ReviewCreateNestedManyWithoutOrderInput
@@ -35126,6 +35250,7 @@ export namespace Prisma {
     depositCredit?: number
     createdAt?: Date | string
     updatedAt?: Date | string
+    source?: $Enums.CreationSource
     deliveryRequest?: DeliveryRequestUncheckedCreateNestedOneWithoutOrderInput
     reviews?: ReviewUncheckedCreateNestedManyWithoutOrderInput
     messages?: MessageUncheckedCreateNestedManyWithoutOrderInput
@@ -35753,6 +35878,7 @@ export namespace Prisma {
     batchCode?: StringFilter<"ProduceListing"> | string
     createdAt?: DateTimeFilter<"ProduceListing"> | Date | string
     updatedAt?: DateTimeFilter<"ProduceListing"> | Date | string
+    source?: EnumCreationSourceFilter<"ProduceListing"> | $Enums.CreationSource
     plantingLogId?: StringNullableFilter<"ProduceListing"> | string | null
   }
 
@@ -35787,6 +35913,7 @@ export namespace Prisma {
     depositCredit?: FloatFilter<"Order"> | number
     createdAt?: DateTimeFilter<"Order"> | Date | string
     updatedAt?: DateTimeFilter<"Order"> | Date | string
+    source?: EnumCreationSourceFilter<"Order"> | $Enums.CreationSource
   }
 
   export type DeliveryRequestUpsertWithWhereUniqueWithoutTransportProviderInput = {
@@ -36806,6 +36933,7 @@ export namespace Prisma {
     depositCredit?: number
     createdAt?: Date | string
     updatedAt?: Date | string
+    source?: $Enums.CreationSource
     buyer: UserCreateNestedOneWithoutOrdersInput
     deliveryRequest?: DeliveryRequestCreateNestedOneWithoutOrderInput
     reviews?: ReviewCreateNestedManyWithoutOrderInput
@@ -36824,6 +36952,7 @@ export namespace Prisma {
     depositCredit?: number
     createdAt?: Date | string
     updatedAt?: Date | string
+    source?: $Enums.CreationSource
     deliveryRequest?: DeliveryRequestUncheckedCreateNestedOneWithoutOrderInput
     reviews?: ReviewUncheckedCreateNestedManyWithoutOrderInput
     messages?: MessageUncheckedCreateNestedManyWithoutOrderInput
@@ -37202,6 +37331,7 @@ export namespace Prisma {
     batchCode: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    source?: $Enums.CreationSource
     farmer: UserCreateNestedOneWithoutListingsInput
     orders?: OrderCreateNestedManyWithoutListingInput
     traceEvents?: TraceEventCreateNestedManyWithoutListingInput
@@ -37227,6 +37357,7 @@ export namespace Prisma {
     batchCode: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    source?: $Enums.CreationSource
     plantingLogId?: string | null
     orders?: OrderUncheckedCreateNestedManyWithoutListingInput
     traceEvents?: TraceEventUncheckedCreateNestedManyWithoutListingInput
@@ -37266,6 +37397,7 @@ export namespace Prisma {
     batchCode?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    source?: EnumCreationSourceFieldUpdateOperationsInput | $Enums.CreationSource
     farmer?: UserUpdateOneRequiredWithoutListingsNestedInput
     orders?: OrderUpdateManyWithoutListingNestedInput
     traceEvents?: TraceEventUpdateManyWithoutListingNestedInput
@@ -37291,6 +37423,7 @@ export namespace Prisma {
     batchCode?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    source?: EnumCreationSourceFieldUpdateOperationsInput | $Enums.CreationSource
     plantingLogId?: NullableStringFieldUpdateOperationsInput | string | null
     orders?: OrderUncheckedUpdateManyWithoutListingNestedInput
     traceEvents?: TraceEventUncheckedUpdateManyWithoutListingNestedInput
@@ -37314,6 +37447,7 @@ export namespace Prisma {
     batchCode: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    source?: $Enums.CreationSource
     farmer: UserCreateNestedOneWithoutListingsInput
     orders?: OrderCreateNestedManyWithoutListingInput
     traceability?: TraceabilityRecordCreateNestedOneWithoutListingInput
@@ -37339,6 +37473,7 @@ export namespace Prisma {
     batchCode: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    source?: $Enums.CreationSource
     plantingLogId?: string | null
     orders?: OrderUncheckedCreateNestedManyWithoutListingInput
     traceability?: TraceabilityRecordUncheckedCreateNestedOneWithoutListingInput
@@ -37459,6 +37594,7 @@ export namespace Prisma {
     batchCode?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    source?: EnumCreationSourceFieldUpdateOperationsInput | $Enums.CreationSource
     farmer?: UserUpdateOneRequiredWithoutListingsNestedInput
     orders?: OrderUpdateManyWithoutListingNestedInput
     traceability?: TraceabilityRecordUpdateOneWithoutListingNestedInput
@@ -37484,6 +37620,7 @@ export namespace Prisma {
     batchCode?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    source?: EnumCreationSourceFieldUpdateOperationsInput | $Enums.CreationSource
     plantingLogId?: NullableStringFieldUpdateOperationsInput | string | null
     orders?: OrderUncheckedUpdateManyWithoutListingNestedInput
     traceability?: TraceabilityRecordUncheckedUpdateOneWithoutListingNestedInput
@@ -37675,6 +37812,7 @@ export namespace Prisma {
     batchCode: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    source?: $Enums.CreationSource
     farmer: UserCreateNestedOneWithoutListingsInput
     traceability?: TraceabilityRecordCreateNestedOneWithoutListingInput
     traceEvents?: TraceEventCreateNestedManyWithoutListingInput
@@ -37700,6 +37838,7 @@ export namespace Prisma {
     batchCode: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    source?: $Enums.CreationSource
     plantingLogId?: string | null
     traceability?: TraceabilityRecordUncheckedCreateNestedOneWithoutListingInput
     traceEvents?: TraceEventUncheckedCreateNestedManyWithoutListingInput
@@ -37978,6 +38117,7 @@ export namespace Prisma {
     batchCode?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    source?: EnumCreationSourceFieldUpdateOperationsInput | $Enums.CreationSource
     farmer?: UserUpdateOneRequiredWithoutListingsNestedInput
     traceability?: TraceabilityRecordUpdateOneWithoutListingNestedInput
     traceEvents?: TraceEventUpdateManyWithoutListingNestedInput
@@ -38003,6 +38143,7 @@ export namespace Prisma {
     batchCode?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    source?: EnumCreationSourceFieldUpdateOperationsInput | $Enums.CreationSource
     plantingLogId?: NullableStringFieldUpdateOperationsInput | string | null
     traceability?: TraceabilityRecordUncheckedUpdateOneWithoutListingNestedInput
     traceEvents?: TraceEventUncheckedUpdateManyWithoutListingNestedInput
@@ -38155,6 +38296,7 @@ export namespace Prisma {
     depositCredit?: number
     createdAt?: Date | string
     updatedAt?: Date | string
+    source?: $Enums.CreationSource
     buyer: UserCreateNestedOneWithoutOrdersInput
     listing: ProduceListingCreateNestedOneWithoutOrdersInput
     reviews?: ReviewCreateNestedManyWithoutOrderInput
@@ -38174,6 +38316,7 @@ export namespace Prisma {
     depositCredit?: number
     createdAt?: Date | string
     updatedAt?: Date | string
+    source?: $Enums.CreationSource
     reviews?: ReviewUncheckedCreateNestedManyWithoutOrderInput
     messages?: MessageUncheckedCreateNestedManyWithoutOrderInput
     preOrder?: PreOrderUncheckedCreateNestedOneWithoutFulfilledOrderInput
@@ -38286,6 +38429,7 @@ export namespace Prisma {
     depositCredit?: FloatFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    source?: EnumCreationSourceFieldUpdateOperationsInput | $Enums.CreationSource
     buyer?: UserUpdateOneRequiredWithoutOrdersNestedInput
     listing?: ProduceListingUpdateOneRequiredWithoutOrdersNestedInput
     reviews?: ReviewUpdateManyWithoutOrderNestedInput
@@ -38305,6 +38449,7 @@ export namespace Prisma {
     depositCredit?: FloatFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    source?: EnumCreationSourceFieldUpdateOperationsInput | $Enums.CreationSource
     reviews?: ReviewUncheckedUpdateManyWithoutOrderNestedInput
     messages?: MessageUncheckedUpdateManyWithoutOrderNestedInput
     preOrder?: PreOrderUncheckedUpdateOneWithoutFulfilledOrderNestedInput
@@ -38569,6 +38714,7 @@ export namespace Prisma {
     depositCredit?: number
     createdAt?: Date | string
     updatedAt?: Date | string
+    source?: $Enums.CreationSource
     buyer: UserCreateNestedOneWithoutOrdersInput
     listing: ProduceListingCreateNestedOneWithoutOrdersInput
     deliveryRequest?: DeliveryRequestCreateNestedOneWithoutOrderInput
@@ -38588,6 +38734,7 @@ export namespace Prisma {
     depositCredit?: number
     createdAt?: Date | string
     updatedAt?: Date | string
+    source?: $Enums.CreationSource
     deliveryRequest?: DeliveryRequestUncheckedCreateNestedOneWithoutOrderInput
     messages?: MessageUncheckedCreateNestedManyWithoutOrderInput
     preOrder?: PreOrderUncheckedCreateNestedOneWithoutFulfilledOrderInput
@@ -38793,6 +38940,7 @@ export namespace Prisma {
     depositCredit?: FloatFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    source?: EnumCreationSourceFieldUpdateOperationsInput | $Enums.CreationSource
     buyer?: UserUpdateOneRequiredWithoutOrdersNestedInput
     listing?: ProduceListingUpdateOneRequiredWithoutOrdersNestedInput
     deliveryRequest?: DeliveryRequestUpdateOneWithoutOrderNestedInput
@@ -38812,6 +38960,7 @@ export namespace Prisma {
     depositCredit?: FloatFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    source?: EnumCreationSourceFieldUpdateOperationsInput | $Enums.CreationSource
     deliveryRequest?: DeliveryRequestUncheckedUpdateOneWithoutOrderNestedInput
     messages?: MessageUncheckedUpdateManyWithoutOrderNestedInput
     preOrder?: PreOrderUncheckedUpdateOneWithoutFulfilledOrderNestedInput
@@ -39157,6 +39306,7 @@ export namespace Prisma {
     depositCredit?: number
     createdAt?: Date | string
     updatedAt?: Date | string
+    source?: $Enums.CreationSource
     buyer: UserCreateNestedOneWithoutOrdersInput
     listing: ProduceListingCreateNestedOneWithoutOrdersInput
     deliveryRequest?: DeliveryRequestCreateNestedOneWithoutOrderInput
@@ -39176,6 +39326,7 @@ export namespace Prisma {
     depositCredit?: number
     createdAt?: Date | string
     updatedAt?: Date | string
+    source?: $Enums.CreationSource
     deliveryRequest?: DeliveryRequestUncheckedCreateNestedOneWithoutOrderInput
     reviews?: ReviewUncheckedCreateNestedManyWithoutOrderInput
     preOrder?: PreOrderUncheckedCreateNestedOneWithoutFulfilledOrderInput
@@ -39381,6 +39532,7 @@ export namespace Prisma {
     depositCredit?: FloatFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    source?: EnumCreationSourceFieldUpdateOperationsInput | $Enums.CreationSource
     buyer?: UserUpdateOneRequiredWithoutOrdersNestedInput
     listing?: ProduceListingUpdateOneRequiredWithoutOrdersNestedInput
     deliveryRequest?: DeliveryRequestUpdateOneWithoutOrderNestedInput
@@ -39400,6 +39552,7 @@ export namespace Prisma {
     depositCredit?: FloatFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    source?: EnumCreationSourceFieldUpdateOperationsInput | $Enums.CreationSource
     deliveryRequest?: DeliveryRequestUncheckedUpdateOneWithoutOrderNestedInput
     reviews?: ReviewUncheckedUpdateManyWithoutOrderNestedInput
     preOrder?: PreOrderUncheckedUpdateOneWithoutFulfilledOrderNestedInput
@@ -39671,6 +39824,7 @@ export namespace Prisma {
     batchCode: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    source?: $Enums.CreationSource
     farmer: UserCreateNestedOneWithoutListingsInput
     orders?: OrderCreateNestedManyWithoutListingInput
     traceability?: TraceabilityRecordCreateNestedOneWithoutListingInput
@@ -39696,6 +39850,7 @@ export namespace Prisma {
     batchCode: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    source?: $Enums.CreationSource
     plantingLogId?: string | null
     orders?: OrderUncheckedCreateNestedManyWithoutListingInput
     traceability?: TraceabilityRecordUncheckedCreateNestedOneWithoutListingInput
@@ -39717,6 +39872,7 @@ export namespace Prisma {
     depositCredit?: number
     createdAt?: Date | string
     updatedAt?: Date | string
+    source?: $Enums.CreationSource
     buyer: UserCreateNestedOneWithoutOrdersInput
     listing: ProduceListingCreateNestedOneWithoutOrdersInput
     deliveryRequest?: DeliveryRequestCreateNestedOneWithoutOrderInput
@@ -39736,6 +39892,7 @@ export namespace Prisma {
     depositCredit?: number
     createdAt?: Date | string
     updatedAt?: Date | string
+    source?: $Enums.CreationSource
     deliveryRequest?: DeliveryRequestUncheckedCreateNestedOneWithoutOrderInput
     reviews?: ReviewUncheckedCreateNestedManyWithoutOrderInput
     messages?: MessageUncheckedCreateNestedManyWithoutOrderInput
@@ -39861,6 +40018,7 @@ export namespace Prisma {
     batchCode?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    source?: EnumCreationSourceFieldUpdateOperationsInput | $Enums.CreationSource
     farmer?: UserUpdateOneRequiredWithoutListingsNestedInput
     orders?: OrderUpdateManyWithoutListingNestedInput
     traceability?: TraceabilityRecordUpdateOneWithoutListingNestedInput
@@ -39886,6 +40044,7 @@ export namespace Prisma {
     batchCode?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    source?: EnumCreationSourceFieldUpdateOperationsInput | $Enums.CreationSource
     plantingLogId?: NullableStringFieldUpdateOperationsInput | string | null
     orders?: OrderUncheckedUpdateManyWithoutListingNestedInput
     traceability?: TraceabilityRecordUncheckedUpdateOneWithoutListingNestedInput
@@ -39913,6 +40072,7 @@ export namespace Prisma {
     depositCredit?: FloatFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    source?: EnumCreationSourceFieldUpdateOperationsInput | $Enums.CreationSource
     buyer?: UserUpdateOneRequiredWithoutOrdersNestedInput
     listing?: ProduceListingUpdateOneRequiredWithoutOrdersNestedInput
     deliveryRequest?: DeliveryRequestUpdateOneWithoutOrderNestedInput
@@ -39932,6 +40092,7 @@ export namespace Prisma {
     depositCredit?: FloatFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    source?: EnumCreationSourceFieldUpdateOperationsInput | $Enums.CreationSource
     deliveryRequest?: DeliveryRequestUncheckedUpdateOneWithoutOrderNestedInput
     reviews?: ReviewUncheckedUpdateManyWithoutOrderNestedInput
     messages?: MessageUncheckedUpdateManyWithoutOrderNestedInput
@@ -40067,6 +40228,7 @@ export namespace Prisma {
     batchCode: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    source?: $Enums.CreationSource
     farmer: UserCreateNestedOneWithoutListingsInput
     orders?: OrderCreateNestedManyWithoutListingInput
     traceability?: TraceabilityRecordCreateNestedOneWithoutListingInput
@@ -40092,6 +40254,7 @@ export namespace Prisma {
     batchCode: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    source?: $Enums.CreationSource
     orders?: OrderUncheckedCreateNestedManyWithoutListingInput
     traceability?: TraceabilityRecordUncheckedCreateNestedOneWithoutListingInput
     traceEvents?: TraceEventUncheckedCreateNestedManyWithoutListingInput
@@ -41007,6 +41170,7 @@ export namespace Prisma {
     batchCode: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    source?: $Enums.CreationSource
     plantingLogId?: string | null
   }
 
@@ -41021,6 +41185,7 @@ export namespace Prisma {
     depositCredit?: number
     createdAt?: Date | string
     updatedAt?: Date | string
+    source?: $Enums.CreationSource
   }
 
   export type DeliveryRequestCreateManyTransportProviderInput = {
@@ -41201,6 +41366,7 @@ export namespace Prisma {
     batchCode?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    source?: EnumCreationSourceFieldUpdateOperationsInput | $Enums.CreationSource
     orders?: OrderUpdateManyWithoutListingNestedInput
     traceability?: TraceabilityRecordUpdateOneWithoutListingNestedInput
     traceEvents?: TraceEventUpdateManyWithoutListingNestedInput
@@ -41225,6 +41391,7 @@ export namespace Prisma {
     batchCode?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    source?: EnumCreationSourceFieldUpdateOperationsInput | $Enums.CreationSource
     plantingLogId?: NullableStringFieldUpdateOperationsInput | string | null
     orders?: OrderUncheckedUpdateManyWithoutListingNestedInput
     traceability?: TraceabilityRecordUncheckedUpdateOneWithoutListingNestedInput
@@ -41249,6 +41416,7 @@ export namespace Prisma {
     batchCode?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    source?: EnumCreationSourceFieldUpdateOperationsInput | $Enums.CreationSource
     plantingLogId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
@@ -41262,6 +41430,7 @@ export namespace Prisma {
     depositCredit?: FloatFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    source?: EnumCreationSourceFieldUpdateOperationsInput | $Enums.CreationSource
     listing?: ProduceListingUpdateOneRequiredWithoutOrdersNestedInput
     deliveryRequest?: DeliveryRequestUpdateOneWithoutOrderNestedInput
     reviews?: ReviewUpdateManyWithoutOrderNestedInput
@@ -41280,6 +41449,7 @@ export namespace Prisma {
     depositCredit?: FloatFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    source?: EnumCreationSourceFieldUpdateOperationsInput | $Enums.CreationSource
     deliveryRequest?: DeliveryRequestUncheckedUpdateOneWithoutOrderNestedInput
     reviews?: ReviewUncheckedUpdateManyWithoutOrderNestedInput
     messages?: MessageUncheckedUpdateManyWithoutOrderNestedInput
@@ -41297,6 +41467,7 @@ export namespace Prisma {
     depositCredit?: FloatFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    source?: EnumCreationSourceFieldUpdateOperationsInput | $Enums.CreationSource
   }
 
   export type DeliveryRequestUpdateWithoutTransportProviderInput = {
@@ -41797,6 +41968,7 @@ export namespace Prisma {
     depositCredit?: number
     createdAt?: Date | string
     updatedAt?: Date | string
+    source?: $Enums.CreationSource
   }
 
   export type TraceEventCreateManyListingInput = {
@@ -41840,6 +42012,7 @@ export namespace Prisma {
     depositCredit?: FloatFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    source?: EnumCreationSourceFieldUpdateOperationsInput | $Enums.CreationSource
     buyer?: UserUpdateOneRequiredWithoutOrdersNestedInput
     deliveryRequest?: DeliveryRequestUpdateOneWithoutOrderNestedInput
     reviews?: ReviewUpdateManyWithoutOrderNestedInput
@@ -41858,6 +42031,7 @@ export namespace Prisma {
     depositCredit?: FloatFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    source?: EnumCreationSourceFieldUpdateOperationsInput | $Enums.CreationSource
     deliveryRequest?: DeliveryRequestUncheckedUpdateOneWithoutOrderNestedInput
     reviews?: ReviewUncheckedUpdateManyWithoutOrderNestedInput
     messages?: MessageUncheckedUpdateManyWithoutOrderNestedInput
@@ -41875,6 +42049,7 @@ export namespace Prisma {
     depositCredit?: FloatFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    source?: EnumCreationSourceFieldUpdateOperationsInput | $Enums.CreationSource
   }
 
   export type TraceEventUpdateWithoutListingInput = {
@@ -42079,6 +42254,7 @@ export namespace Prisma {
     batchCode: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    source?: $Enums.CreationSource
   }
 
   export type PlantingInputUpdateWithoutPlantingLogInput = {
@@ -42131,6 +42307,7 @@ export namespace Prisma {
     batchCode?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    source?: EnumCreationSourceFieldUpdateOperationsInput | $Enums.CreationSource
     farmer?: UserUpdateOneRequiredWithoutListingsNestedInput
     orders?: OrderUpdateManyWithoutListingNestedInput
     traceability?: TraceabilityRecordUpdateOneWithoutListingNestedInput
@@ -42156,6 +42333,7 @@ export namespace Prisma {
     batchCode?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    source?: EnumCreationSourceFieldUpdateOperationsInput | $Enums.CreationSource
     orders?: OrderUncheckedUpdateManyWithoutListingNestedInput
     traceability?: TraceabilityRecordUncheckedUpdateOneWithoutListingNestedInput
     traceEvents?: TraceEventUncheckedUpdateManyWithoutListingNestedInput
@@ -42180,6 +42358,7 @@ export namespace Prisma {
     batchCode?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    source?: EnumCreationSourceFieldUpdateOperationsInput | $Enums.CreationSource
   }
 
 

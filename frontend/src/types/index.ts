@@ -58,6 +58,7 @@ export interface ProduceListing {
   expiryEstimate: string;
   latitude: number;
   longitude: number;
+  source?: 'WEB' | 'USSD' | 'SMS';
   createdAt: string;
   updatedAt: string;
 }
@@ -78,6 +79,7 @@ export interface Order {
   deliveryLat?: number;
   deliveryLng?: number;
   deliveryRequest?: DeliveryRequest;
+  source?: 'WEB' | 'USSD' | 'SMS';
   createdAt: string;
   updatedAt: string;
 }

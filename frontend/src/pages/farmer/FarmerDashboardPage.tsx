@@ -277,7 +277,17 @@ export const FarmerDashboardPage: React.FC = () => {
                   <div className="space-y-2">
                     {/* Row 1: CropTypeBadge + status badge */}
                     <div className="flex items-center justify-between">
-                      <CropTypeBadge cropType={listing.cropType} size="sm" />
+                      <div className="flex items-center gap-2">
+                        <CropTypeBadge cropType={listing.cropType} size="sm" />
+                        {listing.source === 'USSD' && (
+                          <span
+                            title="This listing was created using the USSD menu on a feature phone."
+                            className="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-extrabold bg-[#EAF4EE] text-[#2D6A4F] border border-[#2D6A4F] cursor-help"
+                          >
+                            Via USSD
+                          </span>
+                        )}
+                      </div>
                       {isDraft ? (
                         <Badge variant="warning" size="sm" label="Draft / Expired" />
                       ) : (
