@@ -137,6 +137,7 @@ exports.Prisma.UserScalarFieldEnum = {
   ussdPin: 'ussdPin',
   ussdPinSetAt: 'ussdPinSetAt',
   lastUssdActivity: 'lastUssdActivity',
+  lockoutUntil: 'lockoutUntil',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };

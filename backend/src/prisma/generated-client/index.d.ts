@@ -3138,6 +3138,7 @@ export namespace Prisma {
     ussdPin: string | null
     ussdPinSetAt: Date | null
     lastUssdActivity: Date | null
+    lockoutUntil: Date | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -3157,6 +3158,7 @@ export namespace Prisma {
     ussdPin: string | null
     ussdPinSetAt: Date | null
     lastUssdActivity: Date | null
+    lockoutUntil: Date | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -3176,6 +3178,7 @@ export namespace Prisma {
     ussdPin: number
     ussdPinSetAt: number
     lastUssdActivity: number
+    lockoutUntil: number
     createdAt: number
     updatedAt: number
     _all: number
@@ -3207,6 +3210,7 @@ export namespace Prisma {
     ussdPin?: true
     ussdPinSetAt?: true
     lastUssdActivity?: true
+    lockoutUntil?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -3226,6 +3230,7 @@ export namespace Prisma {
     ussdPin?: true
     ussdPinSetAt?: true
     lastUssdActivity?: true
+    lockoutUntil?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -3245,6 +3250,7 @@ export namespace Prisma {
     ussdPin?: true
     ussdPinSetAt?: true
     lastUssdActivity?: true
+    lockoutUntil?: true
     createdAt?: true
     updatedAt?: true
     _all?: true
@@ -3351,6 +3357,7 @@ export namespace Prisma {
     ussdPin: string | null
     ussdPinSetAt: Date | null
     lastUssdActivity: Date | null
+    lockoutUntil: Date | null
     createdAt: Date
     updatedAt: Date
     _count: UserCountAggregateOutputType | null
@@ -3389,6 +3396,7 @@ export namespace Prisma {
     ussdPin?: boolean
     ussdPinSetAt?: boolean
     lastUssdActivity?: boolean
+    lockoutUntil?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     farmerProfile?: boolean | User$farmerProfileArgs<ExtArgs>
@@ -3428,6 +3436,7 @@ export namespace Prisma {
     ussdPin?: boolean
     ussdPinSetAt?: boolean
     lastUssdActivity?: boolean
+    lockoutUntil?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }, ExtArgs["result"]["user"]>
@@ -3447,6 +3456,7 @@ export namespace Prisma {
     ussdPin?: boolean
     ussdPinSetAt?: boolean
     lastUssdActivity?: boolean
+    lockoutUntil?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
@@ -3513,6 +3523,7 @@ export namespace Prisma {
       ussdPin: string | null
       ussdPinSetAt: Date | null
       lastUssdActivity: Date | null
+      lockoutUntil: Date | null
       createdAt: Date
       updatedAt: Date
     }, ExtArgs["result"]["user"]>
@@ -3941,6 +3952,7 @@ export namespace Prisma {
     readonly ussdPin: FieldRef<"User", 'String'>
     readonly ussdPinSetAt: FieldRef<"User", 'DateTime'>
     readonly lastUssdActivity: FieldRef<"User", 'DateTime'>
+    readonly lockoutUntil: FieldRef<"User", 'DateTime'>
     readonly createdAt: FieldRef<"User", 'DateTime'>
     readonly updatedAt: FieldRef<"User", 'DateTime'>
   }
@@ -26286,6 +26298,7 @@ export namespace Prisma {
     ussdPin: 'ussdPin',
     ussdPinSetAt: 'ussdPinSetAt',
     lastUssdActivity: 'lastUssdActivity',
+    lockoutUntil: 'lockoutUntil',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
   };
@@ -26933,6 +26946,7 @@ export namespace Prisma {
     ussdPin?: StringNullableFilter<"User"> | string | null
     ussdPinSetAt?: DateTimeNullableFilter<"User"> | Date | string | null
     lastUssdActivity?: DateTimeNullableFilter<"User"> | Date | string | null
+    lockoutUntil?: DateTimeNullableFilter<"User"> | Date | string | null
     createdAt?: DateTimeFilter<"User"> | Date | string
     updatedAt?: DateTimeFilter<"User"> | Date | string
     farmerProfile?: XOR<FarmerProfileNullableRelationFilter, FarmerProfileWhereInput> | null
@@ -26971,6 +26985,7 @@ export namespace Prisma {
     ussdPin?: SortOrderInput | SortOrder
     ussdPinSetAt?: SortOrderInput | SortOrder
     lastUssdActivity?: SortOrderInput | SortOrder
+    lockoutUntil?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     farmerProfile?: FarmerProfileOrderByWithRelationInput
@@ -27012,6 +27027,7 @@ export namespace Prisma {
     ussdPin?: StringNullableFilter<"User"> | string | null
     ussdPinSetAt?: DateTimeNullableFilter<"User"> | Date | string | null
     lastUssdActivity?: DateTimeNullableFilter<"User"> | Date | string | null
+    lockoutUntil?: DateTimeNullableFilter<"User"> | Date | string | null
     createdAt?: DateTimeFilter<"User"> | Date | string
     updatedAt?: DateTimeFilter<"User"> | Date | string
     farmerProfile?: XOR<FarmerProfileNullableRelationFilter, FarmerProfileWhereInput> | null
@@ -27050,6 +27066,7 @@ export namespace Prisma {
     ussdPin?: SortOrderInput | SortOrder
     ussdPinSetAt?: SortOrderInput | SortOrder
     lastUssdActivity?: SortOrderInput | SortOrder
+    lockoutUntil?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: UserCountOrderByAggregateInput
@@ -27077,6 +27094,7 @@ export namespace Prisma {
     ussdPin?: StringNullableWithAggregatesFilter<"User"> | string | null
     ussdPinSetAt?: DateTimeNullableWithAggregatesFilter<"User"> | Date | string | null
     lastUssdActivity?: DateTimeNullableWithAggregatesFilter<"User"> | Date | string | null
+    lockoutUntil?: DateTimeNullableWithAggregatesFilter<"User"> | Date | string | null
     createdAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
   }
@@ -28885,6 +28903,7 @@ export namespace Prisma {
     ussdPin?: string | null
     ussdPinSetAt?: Date | string | null
     lastUssdActivity?: Date | string | null
+    lockoutUntil?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     farmerProfile?: FarmerProfileCreateNestedOneWithoutUserInput
@@ -28923,6 +28942,7 @@ export namespace Prisma {
     ussdPin?: string | null
     ussdPinSetAt?: Date | string | null
     lastUssdActivity?: Date | string | null
+    lockoutUntil?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     farmerProfile?: FarmerProfileUncheckedCreateNestedOneWithoutUserInput
@@ -28961,6 +28981,7 @@ export namespace Prisma {
     ussdPin?: NullableStringFieldUpdateOperationsInput | string | null
     ussdPinSetAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     lastUssdActivity?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lockoutUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     farmerProfile?: FarmerProfileUpdateOneWithoutUserNestedInput
@@ -28999,6 +29020,7 @@ export namespace Prisma {
     ussdPin?: NullableStringFieldUpdateOperationsInput | string | null
     ussdPinSetAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     lastUssdActivity?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lockoutUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     farmerProfile?: FarmerProfileUncheckedUpdateOneWithoutUserNestedInput
@@ -29037,6 +29059,7 @@ export namespace Prisma {
     ussdPin?: string | null
     ussdPinSetAt?: Date | string | null
     lastUssdActivity?: Date | string | null
+    lockoutUntil?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -29056,6 +29079,7 @@ export namespace Prisma {
     ussdPin?: NullableStringFieldUpdateOperationsInput | string | null
     ussdPinSetAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     lastUssdActivity?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lockoutUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -29075,6 +29099,7 @@ export namespace Prisma {
     ussdPin?: NullableStringFieldUpdateOperationsInput | string | null
     ussdPinSetAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     lastUssdActivity?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lockoutUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -31288,6 +31313,7 @@ export namespace Prisma {
     ussdPin?: SortOrder
     ussdPinSetAt?: SortOrder
     lastUssdActivity?: SortOrder
+    lockoutUntil?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -31312,6 +31338,7 @@ export namespace Prisma {
     ussdPin?: SortOrder
     ussdPinSetAt?: SortOrder
     lastUssdActivity?: SortOrder
+    lockoutUntil?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -31331,6 +31358,7 @@ export namespace Prisma {
     ussdPin?: SortOrder
     ussdPinSetAt?: SortOrder
     lastUssdActivity?: SortOrder
+    lockoutUntil?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -36198,6 +36226,7 @@ export namespace Prisma {
     ussdPin?: string | null
     ussdPinSetAt?: Date | string | null
     lastUssdActivity?: Date | string | null
+    lockoutUntil?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     buyerProfile?: BuyerProfileCreateNestedOneWithoutUserInput
@@ -36235,6 +36264,7 @@ export namespace Prisma {
     ussdPin?: string | null
     ussdPinSetAt?: Date | string | null
     lastUssdActivity?: Date | string | null
+    lockoutUntil?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     buyerProfile?: BuyerProfileUncheckedCreateNestedOneWithoutUserInput
@@ -36288,6 +36318,7 @@ export namespace Prisma {
     ussdPin?: NullableStringFieldUpdateOperationsInput | string | null
     ussdPinSetAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     lastUssdActivity?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lockoutUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     buyerProfile?: BuyerProfileUpdateOneWithoutUserNestedInput
@@ -36325,6 +36356,7 @@ export namespace Prisma {
     ussdPin?: NullableStringFieldUpdateOperationsInput | string | null
     ussdPinSetAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     lastUssdActivity?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lockoutUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     buyerProfile?: BuyerProfileUncheckedUpdateOneWithoutUserNestedInput
@@ -36362,6 +36394,7 @@ export namespace Prisma {
     ussdPin?: string | null
     ussdPinSetAt?: Date | string | null
     lastUssdActivity?: Date | string | null
+    lockoutUntil?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     farmerProfile?: FarmerProfileCreateNestedOneWithoutUserInput
@@ -36399,6 +36432,7 @@ export namespace Prisma {
     ussdPin?: string | null
     ussdPinSetAt?: Date | string | null
     lastUssdActivity?: Date | string | null
+    lockoutUntil?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     farmerProfile?: FarmerProfileUncheckedCreateNestedOneWithoutUserInput
@@ -36452,6 +36486,7 @@ export namespace Prisma {
     ussdPin?: NullableStringFieldUpdateOperationsInput | string | null
     ussdPinSetAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     lastUssdActivity?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lockoutUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     farmerProfile?: FarmerProfileUpdateOneWithoutUserNestedInput
@@ -36489,6 +36524,7 @@ export namespace Prisma {
     ussdPin?: NullableStringFieldUpdateOperationsInput | string | null
     ussdPinSetAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     lastUssdActivity?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lockoutUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     farmerProfile?: FarmerProfileUncheckedUpdateOneWithoutUserNestedInput
@@ -36526,6 +36562,7 @@ export namespace Prisma {
     ussdPin?: string | null
     ussdPinSetAt?: Date | string | null
     lastUssdActivity?: Date | string | null
+    lockoutUntil?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     farmerProfile?: FarmerProfileCreateNestedOneWithoutUserInput
@@ -36563,6 +36600,7 @@ export namespace Prisma {
     ussdPin?: string | null
     ussdPinSetAt?: Date | string | null
     lastUssdActivity?: Date | string | null
+    lockoutUntil?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     farmerProfile?: FarmerProfileUncheckedCreateNestedOneWithoutUserInput
@@ -36616,6 +36654,7 @@ export namespace Prisma {
     ussdPin?: NullableStringFieldUpdateOperationsInput | string | null
     ussdPinSetAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     lastUssdActivity?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lockoutUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     farmerProfile?: FarmerProfileUpdateOneWithoutUserNestedInput
@@ -36653,6 +36692,7 @@ export namespace Prisma {
     ussdPin?: NullableStringFieldUpdateOperationsInput | string | null
     ussdPinSetAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     lastUssdActivity?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lockoutUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     farmerProfile?: FarmerProfileUncheckedUpdateOneWithoutUserNestedInput
@@ -36690,6 +36730,7 @@ export namespace Prisma {
     ussdPin?: string | null
     ussdPinSetAt?: Date | string | null
     lastUssdActivity?: Date | string | null
+    lockoutUntil?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     farmerProfile?: FarmerProfileCreateNestedOneWithoutUserInput
@@ -36727,6 +36768,7 @@ export namespace Prisma {
     ussdPin?: string | null
     ussdPinSetAt?: Date | string | null
     lastUssdActivity?: Date | string | null
+    lockoutUntil?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     farmerProfile?: FarmerProfileUncheckedCreateNestedOneWithoutUserInput
@@ -36964,6 +37006,7 @@ export namespace Prisma {
     ussdPin?: NullableStringFieldUpdateOperationsInput | string | null
     ussdPinSetAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     lastUssdActivity?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lockoutUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     farmerProfile?: FarmerProfileUpdateOneWithoutUserNestedInput
@@ -37001,6 +37044,7 @@ export namespace Prisma {
     ussdPin?: NullableStringFieldUpdateOperationsInput | string | null
     ussdPinSetAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     lastUssdActivity?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lockoutUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     farmerProfile?: FarmerProfileUncheckedUpdateOneWithoutUserNestedInput
@@ -37321,6 +37365,7 @@ export namespace Prisma {
     ussdPin?: string | null
     ussdPinSetAt?: Date | string | null
     lastUssdActivity?: Date | string | null
+    lockoutUntil?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     farmerProfile?: FarmerProfileCreateNestedOneWithoutUserInput
@@ -37358,6 +37403,7 @@ export namespace Prisma {
     ussdPin?: string | null
     ussdPinSetAt?: Date | string | null
     lastUssdActivity?: Date | string | null
+    lockoutUntil?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     farmerProfile?: FarmerProfileUncheckedCreateNestedOneWithoutUserInput
@@ -37470,6 +37516,7 @@ export namespace Prisma {
     ussdPin?: NullableStringFieldUpdateOperationsInput | string | null
     ussdPinSetAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     lastUssdActivity?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lockoutUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     farmerProfile?: FarmerProfileUpdateOneWithoutUserNestedInput
@@ -37507,6 +37554,7 @@ export namespace Prisma {
     ussdPin?: NullableStringFieldUpdateOperationsInput | string | null
     ussdPinSetAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     lastUssdActivity?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lockoutUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     farmerProfile?: FarmerProfileUncheckedUpdateOneWithoutUserNestedInput
@@ -37544,6 +37592,7 @@ export namespace Prisma {
     ussdPin?: string | null
     ussdPinSetAt?: Date | string | null
     lastUssdActivity?: Date | string | null
+    lockoutUntil?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     farmerProfile?: FarmerProfileCreateNestedOneWithoutUserInput
@@ -37581,6 +37630,7 @@ export namespace Prisma {
     ussdPin?: string | null
     ussdPinSetAt?: Date | string | null
     lastUssdActivity?: Date | string | null
+    lockoutUntil?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     farmerProfile?: FarmerProfileUncheckedCreateNestedOneWithoutUserInput
@@ -37839,6 +37889,7 @@ export namespace Prisma {
     ussdPin?: NullableStringFieldUpdateOperationsInput | string | null
     ussdPinSetAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     lastUssdActivity?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lockoutUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     farmerProfile?: FarmerProfileUpdateOneWithoutUserNestedInput
@@ -37876,6 +37927,7 @@ export namespace Prisma {
     ussdPin?: NullableStringFieldUpdateOperationsInput | string | null
     ussdPinSetAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     lastUssdActivity?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lockoutUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     farmerProfile?: FarmerProfileUncheckedUpdateOneWithoutUserNestedInput
@@ -38147,6 +38199,7 @@ export namespace Prisma {
     ussdPin?: string | null
     ussdPinSetAt?: Date | string | null
     lastUssdActivity?: Date | string | null
+    lockoutUntil?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     farmerProfile?: FarmerProfileCreateNestedOneWithoutUserInput
@@ -38184,6 +38237,7 @@ export namespace Prisma {
     ussdPin?: string | null
     ussdPinSetAt?: Date | string | null
     lastUssdActivity?: Date | string | null
+    lockoutUntil?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     farmerProfile?: FarmerProfileUncheckedCreateNestedOneWithoutUserInput
@@ -38282,6 +38336,7 @@ export namespace Prisma {
     ussdPin?: NullableStringFieldUpdateOperationsInput | string | null
     ussdPinSetAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     lastUssdActivity?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lockoutUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     farmerProfile?: FarmerProfileUpdateOneWithoutUserNestedInput
@@ -38319,6 +38374,7 @@ export namespace Prisma {
     ussdPin?: NullableStringFieldUpdateOperationsInput | string | null
     ussdPinSetAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     lastUssdActivity?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lockoutUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     farmerProfile?: FarmerProfileUncheckedUpdateOneWithoutUserNestedInput
@@ -38356,6 +38412,7 @@ export namespace Prisma {
     ussdPin?: string | null
     ussdPinSetAt?: Date | string | null
     lastUssdActivity?: Date | string | null
+    lockoutUntil?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     farmerProfile?: FarmerProfileCreateNestedOneWithoutUserInput
@@ -38393,6 +38450,7 @@ export namespace Prisma {
     ussdPin?: string | null
     ussdPinSetAt?: Date | string | null
     lastUssdActivity?: Date | string | null
+    lockoutUntil?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     farmerProfile?: FarmerProfileUncheckedCreateNestedOneWithoutUserInput
@@ -38435,6 +38493,7 @@ export namespace Prisma {
     ussdPin?: string | null
     ussdPinSetAt?: Date | string | null
     lastUssdActivity?: Date | string | null
+    lockoutUntil?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     farmerProfile?: FarmerProfileCreateNestedOneWithoutUserInput
@@ -38472,6 +38531,7 @@ export namespace Prisma {
     ussdPin?: string | null
     ussdPinSetAt?: Date | string | null
     lastUssdActivity?: Date | string | null
+    lockoutUntil?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     farmerProfile?: FarmerProfileUncheckedCreateNestedOneWithoutUserInput
@@ -38564,6 +38624,7 @@ export namespace Prisma {
     ussdPin?: NullableStringFieldUpdateOperationsInput | string | null
     ussdPinSetAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     lastUssdActivity?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lockoutUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     farmerProfile?: FarmerProfileUpdateOneWithoutUserNestedInput
@@ -38601,6 +38662,7 @@ export namespace Prisma {
     ussdPin?: NullableStringFieldUpdateOperationsInput | string | null
     ussdPinSetAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     lastUssdActivity?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lockoutUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     farmerProfile?: FarmerProfileUncheckedUpdateOneWithoutUserNestedInput
@@ -38649,6 +38711,7 @@ export namespace Prisma {
     ussdPin?: NullableStringFieldUpdateOperationsInput | string | null
     ussdPinSetAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     lastUssdActivity?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lockoutUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     farmerProfile?: FarmerProfileUpdateOneWithoutUserNestedInput
@@ -38686,6 +38749,7 @@ export namespace Prisma {
     ussdPin?: NullableStringFieldUpdateOperationsInput | string | null
     ussdPinSetAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     lastUssdActivity?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lockoutUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     farmerProfile?: FarmerProfileUncheckedUpdateOneWithoutUserNestedInput
@@ -38768,6 +38832,7 @@ export namespace Prisma {
     ussdPin?: string | null
     ussdPinSetAt?: Date | string | null
     lastUssdActivity?: Date | string | null
+    lockoutUntil?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     farmerProfile?: FarmerProfileCreateNestedOneWithoutUserInput
@@ -38805,6 +38870,7 @@ export namespace Prisma {
     ussdPin?: string | null
     ussdPinSetAt?: Date | string | null
     lastUssdActivity?: Date | string | null
+    lockoutUntil?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     farmerProfile?: FarmerProfileUncheckedCreateNestedOneWithoutUserInput
@@ -38858,6 +38924,7 @@ export namespace Prisma {
     ussdPin?: NullableStringFieldUpdateOperationsInput | string | null
     ussdPinSetAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     lastUssdActivity?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lockoutUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     farmerProfile?: FarmerProfileUpdateOneWithoutUserNestedInput
@@ -38895,6 +38962,7 @@ export namespace Prisma {
     ussdPin?: NullableStringFieldUpdateOperationsInput | string | null
     ussdPinSetAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     lastUssdActivity?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lockoutUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     farmerProfile?: FarmerProfileUncheckedUpdateOneWithoutUserNestedInput
@@ -38932,6 +39000,7 @@ export namespace Prisma {
     ussdPin?: string | null
     ussdPinSetAt?: Date | string | null
     lastUssdActivity?: Date | string | null
+    lockoutUntil?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     farmerProfile?: FarmerProfileCreateNestedOneWithoutUserInput
@@ -38969,6 +39038,7 @@ export namespace Prisma {
     ussdPin?: string | null
     ussdPinSetAt?: Date | string | null
     lastUssdActivity?: Date | string | null
+    lockoutUntil?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     farmerProfile?: FarmerProfileUncheckedCreateNestedOneWithoutUserInput
@@ -39011,6 +39081,7 @@ export namespace Prisma {
     ussdPin?: string | null
     ussdPinSetAt?: Date | string | null
     lastUssdActivity?: Date | string | null
+    lockoutUntil?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     farmerProfile?: FarmerProfileCreateNestedOneWithoutUserInput
@@ -39048,6 +39119,7 @@ export namespace Prisma {
     ussdPin?: string | null
     ussdPinSetAt?: Date | string | null
     lastUssdActivity?: Date | string | null
+    lockoutUntil?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     farmerProfile?: FarmerProfileUncheckedCreateNestedOneWithoutUserInput
@@ -39140,6 +39212,7 @@ export namespace Prisma {
     ussdPin?: NullableStringFieldUpdateOperationsInput | string | null
     ussdPinSetAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     lastUssdActivity?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lockoutUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     farmerProfile?: FarmerProfileUpdateOneWithoutUserNestedInput
@@ -39177,6 +39250,7 @@ export namespace Prisma {
     ussdPin?: NullableStringFieldUpdateOperationsInput | string | null
     ussdPinSetAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     lastUssdActivity?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lockoutUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     farmerProfile?: FarmerProfileUncheckedUpdateOneWithoutUserNestedInput
@@ -39225,6 +39299,7 @@ export namespace Prisma {
     ussdPin?: NullableStringFieldUpdateOperationsInput | string | null
     ussdPinSetAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     lastUssdActivity?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lockoutUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     farmerProfile?: FarmerProfileUpdateOneWithoutUserNestedInput
@@ -39262,6 +39337,7 @@ export namespace Prisma {
     ussdPin?: NullableStringFieldUpdateOperationsInput | string | null
     ussdPinSetAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     lastUssdActivity?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lockoutUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     farmerProfile?: FarmerProfileUncheckedUpdateOneWithoutUserNestedInput
@@ -39344,6 +39420,7 @@ export namespace Prisma {
     ussdPin?: string | null
     ussdPinSetAt?: Date | string | null
     lastUssdActivity?: Date | string | null
+    lockoutUntil?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     farmerProfile?: FarmerProfileCreateNestedOneWithoutUserInput
@@ -39381,6 +39458,7 @@ export namespace Prisma {
     ussdPin?: string | null
     ussdPinSetAt?: Date | string | null
     lastUssdActivity?: Date | string | null
+    lockoutUntil?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     farmerProfile?: FarmerProfileUncheckedCreateNestedOneWithoutUserInput
@@ -39434,6 +39512,7 @@ export namespace Prisma {
     ussdPin?: NullableStringFieldUpdateOperationsInput | string | null
     ussdPinSetAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     lastUssdActivity?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lockoutUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     farmerProfile?: FarmerProfileUpdateOneWithoutUserNestedInput
@@ -39471,6 +39550,7 @@ export namespace Prisma {
     ussdPin?: NullableStringFieldUpdateOperationsInput | string | null
     ussdPinSetAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     lastUssdActivity?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lockoutUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     farmerProfile?: FarmerProfileUncheckedUpdateOneWithoutUserNestedInput
@@ -39508,6 +39588,7 @@ export namespace Prisma {
     ussdPin?: string | null
     ussdPinSetAt?: Date | string | null
     lastUssdActivity?: Date | string | null
+    lockoutUntil?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     farmerProfile?: FarmerProfileCreateNestedOneWithoutUserInput
@@ -39545,6 +39626,7 @@ export namespace Prisma {
     ussdPin?: string | null
     ussdPinSetAt?: Date | string | null
     lastUssdActivity?: Date | string | null
+    lockoutUntil?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     farmerProfile?: FarmerProfileUncheckedCreateNestedOneWithoutUserInput
@@ -39690,6 +39772,7 @@ export namespace Prisma {
     ussdPin?: NullableStringFieldUpdateOperationsInput | string | null
     ussdPinSetAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     lastUssdActivity?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lockoutUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     farmerProfile?: FarmerProfileUpdateOneWithoutUserNestedInput
@@ -39727,6 +39810,7 @@ export namespace Prisma {
     ussdPin?: NullableStringFieldUpdateOperationsInput | string | null
     ussdPinSetAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     lastUssdActivity?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lockoutUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     farmerProfile?: FarmerProfileUncheckedUpdateOneWithoutUserNestedInput
@@ -39868,6 +39952,7 @@ export namespace Prisma {
     ussdPin?: string | null
     ussdPinSetAt?: Date | string | null
     lastUssdActivity?: Date | string | null
+    lockoutUntil?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     farmerProfile?: FarmerProfileCreateNestedOneWithoutUserInput
@@ -39905,6 +39990,7 @@ export namespace Prisma {
     ussdPin?: string | null
     ussdPinSetAt?: Date | string | null
     lastUssdActivity?: Date | string | null
+    lockoutUntil?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     farmerProfile?: FarmerProfileUncheckedCreateNestedOneWithoutUserInput
@@ -40048,6 +40134,7 @@ export namespace Prisma {
     ussdPin?: NullableStringFieldUpdateOperationsInput | string | null
     ussdPinSetAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     lastUssdActivity?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lockoutUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     farmerProfile?: FarmerProfileUpdateOneWithoutUserNestedInput
@@ -40085,6 +40172,7 @@ export namespace Prisma {
     ussdPin?: NullableStringFieldUpdateOperationsInput | string | null
     ussdPinSetAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     lastUssdActivity?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lockoutUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     farmerProfile?: FarmerProfileUncheckedUpdateOneWithoutUserNestedInput
@@ -40245,6 +40333,7 @@ export namespace Prisma {
     ussdPin?: string | null
     ussdPinSetAt?: Date | string | null
     lastUssdActivity?: Date | string | null
+    lockoutUntil?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     farmerProfile?: FarmerProfileCreateNestedOneWithoutUserInput
@@ -40282,6 +40371,7 @@ export namespace Prisma {
     ussdPin?: string | null
     ussdPinSetAt?: Date | string | null
     lastUssdActivity?: Date | string | null
+    lockoutUntil?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     farmerProfile?: FarmerProfileUncheckedCreateNestedOneWithoutUserInput
@@ -40335,6 +40425,7 @@ export namespace Prisma {
     ussdPin?: NullableStringFieldUpdateOperationsInput | string | null
     ussdPinSetAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     lastUssdActivity?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lockoutUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     farmerProfile?: FarmerProfileUpdateOneWithoutUserNestedInput
@@ -40372,6 +40463,7 @@ export namespace Prisma {
     ussdPin?: NullableStringFieldUpdateOperationsInput | string | null
     ussdPinSetAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     lastUssdActivity?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lockoutUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     farmerProfile?: FarmerProfileUncheckedUpdateOneWithoutUserNestedInput
@@ -40409,6 +40501,7 @@ export namespace Prisma {
     ussdPin?: string | null
     ussdPinSetAt?: Date | string | null
     lastUssdActivity?: Date | string | null
+    lockoutUntil?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     farmerProfile?: FarmerProfileCreateNestedOneWithoutUserInput
@@ -40446,6 +40539,7 @@ export namespace Prisma {
     ussdPin?: string | null
     ussdPinSetAt?: Date | string | null
     lastUssdActivity?: Date | string | null
+    lockoutUntil?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     farmerProfile?: FarmerProfileUncheckedCreateNestedOneWithoutUserInput
@@ -40499,6 +40593,7 @@ export namespace Prisma {
     ussdPin?: NullableStringFieldUpdateOperationsInput | string | null
     ussdPinSetAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     lastUssdActivity?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lockoutUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     farmerProfile?: FarmerProfileUpdateOneWithoutUserNestedInput
@@ -40536,6 +40631,7 @@ export namespace Prisma {
     ussdPin?: NullableStringFieldUpdateOperationsInput | string | null
     ussdPinSetAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     lastUssdActivity?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lockoutUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     farmerProfile?: FarmerProfileUncheckedUpdateOneWithoutUserNestedInput
@@ -40573,6 +40669,7 @@ export namespace Prisma {
     ussdPin?: string | null
     ussdPinSetAt?: Date | string | null
     lastUssdActivity?: Date | string | null
+    lockoutUntil?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     farmerProfile?: FarmerProfileCreateNestedOneWithoutUserInput
@@ -40610,6 +40707,7 @@ export namespace Prisma {
     ussdPin?: string | null
     ussdPinSetAt?: Date | string | null
     lastUssdActivity?: Date | string | null
+    lockoutUntil?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     farmerProfile?: FarmerProfileUncheckedCreateNestedOneWithoutUserInput
@@ -40652,6 +40750,7 @@ export namespace Prisma {
     ussdPin?: string | null
     ussdPinSetAt?: Date | string | null
     lastUssdActivity?: Date | string | null
+    lockoutUntil?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     farmerProfile?: FarmerProfileCreateNestedOneWithoutUserInput
@@ -40689,6 +40788,7 @@ export namespace Prisma {
     ussdPin?: string | null
     ussdPinSetAt?: Date | string | null
     lastUssdActivity?: Date | string | null
+    lockoutUntil?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     farmerProfile?: FarmerProfileUncheckedCreateNestedOneWithoutUserInput
@@ -40742,6 +40842,7 @@ export namespace Prisma {
     ussdPin?: NullableStringFieldUpdateOperationsInput | string | null
     ussdPinSetAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     lastUssdActivity?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lockoutUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     farmerProfile?: FarmerProfileUpdateOneWithoutUserNestedInput
@@ -40779,6 +40880,7 @@ export namespace Prisma {
     ussdPin?: NullableStringFieldUpdateOperationsInput | string | null
     ussdPinSetAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     lastUssdActivity?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lockoutUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     farmerProfile?: FarmerProfileUncheckedUpdateOneWithoutUserNestedInput
@@ -40827,6 +40929,7 @@ export namespace Prisma {
     ussdPin?: NullableStringFieldUpdateOperationsInput | string | null
     ussdPinSetAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     lastUssdActivity?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lockoutUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     farmerProfile?: FarmerProfileUpdateOneWithoutUserNestedInput
@@ -40864,6 +40967,7 @@ export namespace Prisma {
     ussdPin?: NullableStringFieldUpdateOperationsInput | string | null
     ussdPinSetAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     lastUssdActivity?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lockoutUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     farmerProfile?: FarmerProfileUncheckedUpdateOneWithoutUserNestedInput

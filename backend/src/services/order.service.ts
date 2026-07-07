@@ -24,7 +24,7 @@ export class OrderService {
    * decrements inventory, generates trace events, and alerts the farmer.
    */
   public static async createOrder(buyerId: string, listingId: string, quantityKg: number) {
-    return await prisma.$transaction(async (tx) => {
+    const createdOrder = await prisma.$transaction(async (tx) => {
       // 1. Fetch listing and check availability
       const listing = await tx.produceListing.findUnique({
         where: { id: listingId },
@@ -78,7 +78,11 @@ export class OrderService {
           paymentStatus: PaymentStatus.UNPAID,
         },
         include: {
-          listing: true,
+          listing: {
+            include: {
+              farmer: true,
+            },
+          },
           buyer: true,
         },
       });
@@ -125,6 +129,41 @@ export class OrderService {
 
       return order;
     });
+
+    try {
+      const farmerPhone = createdOrder.listing?.farmer?.phone;
+      const buyerPhone = createdOrder.buyer?.phone;
+
+      if (farmerPhone || buyerPhone) {
+        const { SmsOutboundService } = require('./ussd/smsOutbound.service');
+        const farmerName = createdOrder.listing?.farmer?.name || 'Farmer';
+
+        // 1. Send order_received_farmer to farmer
+        if (farmerPhone) {
+          await SmsOutboundService.sendSms(farmerPhone, 'order_received_farmer', {
+            qty: createdOrder.quantityKg,
+            crop: createdOrder.listing?.cropType || 'Produce',
+            price: createdOrder.listing?.pricePerKg || 0,
+            total: createdOrder.totalPrice
+          });
+        }
+
+        // 2. Send order_placed_buyer to buyer
+        if (buyerPhone) {
+          await SmsOutboundService.sendSms(buyerPhone, 'order_placed_buyer', {
+            qty: createdOrder.quantityKg,
+            crop: createdOrder.listing?.cropType || 'Produce',
+            farmer: farmerName,
+            orderId: createdOrder.id.slice(0, 8),
+            total: createdOrder.totalPrice
+          });
+        }
+      }
+    } catch (smsErr) {
+      console.error('Failed to dispatch order SMS alerts:', smsErr);
+    }
+
+    return createdOrder;
   }
 
   /**
@@ -347,7 +386,7 @@ export class OrderService {
       // Audit Log mutation
       await AuditLogService.log(
         {
-          userId: null, // System / Webhook trigger
+          userId: order.buyerId, // System / Webhook trigger
           action: 'CONFIRM',
           entityName: 'Order',
           entityId: orderId,

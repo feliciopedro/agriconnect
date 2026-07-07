@@ -140,7 +140,7 @@ export class UssdService {
           where: { id: farmerUser.id },
           data: { preferredLanguage: newLang }
         });
-        return `END ${t(newLang, 'lang_changed')}`;
+        return `END ${t(newLang, 'ussd_lang_changed')}`;
       }
       return `END ${t(lang, 'invalid_path')}`;
     }

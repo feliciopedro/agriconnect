@@ -94,6 +94,7 @@ model User {
   ussdPin      String?
   ussdPinSetAt DateTime?
   lastUssdActivity DateTime?
+  lockoutUntil DateTime?
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
 

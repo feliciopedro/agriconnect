@@ -1,6 +1,5 @@
 import prisma from '../prisma/client';
 import jwt from 'jsonwebtoken';
-import AfricasTalking = require('africastalking');
 import { config } from '../config';
 import { createError } from '../utils/errors';
 import { Role, BusinessType } from '../prisma/generated-client';
@@ -63,22 +62,12 @@ export class AuthService {
       },
     });
 
-    // 3. Send via Africa's Talking
-    if (!config.AFRICAS_TALKING_API_KEY || config.AFRICAS_TALKING_API_KEY === 'mock_africas_talking_api_key') {
-      console.log(`[DEV OTP] DEV OTP for ${normalizedPhone}: ${code}`);
-    } else {
-      try {
-        const at = AfricasTalking({
-          apiKey: config.AFRICAS_TALKING_API_KEY,
-          username: config.AFRICAS_TALKING_USERNAME,
-        });
-        await at.SMS.send({
-          to: [normalizedPhone],
-          message: `Your AgriConnect verification code is: ${code}. Valid for 5 minutes.`,
-        });
-      } catch (error) {
-        console.error('Failed to dispatch SMS through Africa\'s Talking:', error);
-      }
+    // 3. Dispatch OTP via unified outbound SMS service
+    try {
+      const { SmsOutboundService } = require('./ussd/smsOutbound.service');
+      await SmsOutboundService.sendSms(normalizedPhone, 'otp_code', { code });
+    } catch (error) {
+      console.error('Failed to dispatch OTP SMS alert:', error);
     }
   }
 

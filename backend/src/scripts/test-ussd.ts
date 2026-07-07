@@ -1,22 +1,91 @@
 import app from '../app';
 import prisma from '../prisma/client';
 import http from 'http';
+import readline from 'readline';
+import fs from 'fs';
+import path from 'path';
+import { Role } from '../prisma/generated-client';
 
-async function runUssdSimulation() {
-  console.log('🧪 Starting AgriConnect USSD Simulation script...\n');
+async function runInteractiveUssd() {
+  console.log('🧪 Starting Interactive AgriConnect USSD Test Runner...\n');
+
+  // 1. Parse arguments
+  const args = process.argv.slice(2);
+  const langArg = args.find((a) => a.startsWith('--lang='))?.split('=')[1] || 'en';
+  const roleArg = (args.find((a) => a.startsWith('--role='))?.split('=')[1] || 'FARMER').toUpperCase();
+
+  const validLangs = ['en', 'tw', 'ew', 'ha'];
+  if (!validLangs.includes(langArg)) {
+    console.error(`❌ Invalid language: ${langArg}. Supported: en, tw, ew, ha`);
+    process.exit(1);
+  }
+
+  const validRoles = ['FARMER', 'BUYER', 'TRANSPORT', 'ADMIN'];
+  if (!validRoles.includes(roleArg)) {
+    console.error(`❌ Invalid role: ${roleArg}. Supported: ${validRoles.join(', ')}`);
+    process.exit(1);
+  }
 
   const port = 5011;
   const server = http.createServer(app);
   await new Promise<void>((resolve) => server.listen(port, resolve));
   console.log(`📡 Local test server listening on http://localhost:${port}`);
 
-  const testPhone = '+233240000000';
-  const sessionId = 'AT_USSD_SIM_SESSION_123456';
+  const testPhone = '+233249999999';
+  const sessionId = `AT_INTERACTIVE_USSD_${Date.now()}`;
 
-  // 1. Clean up any previous test listings
-  await prisma.traceEvent.deleteMany({ where: { listing: { batchCode: { startsWith: 'AGC-' } }, recordedByUserId: { not: null } } });
-  await prisma.produceListing.deleteMany({ where: { farmer: { phone: testPhone } } });
+  // 2. Clean up previous test user and pre-create
+  await prisma.ussdSession.deleteMany({ where: { phone: testPhone } });
   await prisma.user.deleteMany({ where: { phone: testPhone } });
+
+  const user = await prisma.user.create({
+    data: {
+      phone: testPhone,
+      name: 'Interactive Tester',
+      role: roleArg as Role,
+      preferredLanguage: langArg,
+      isVerified: true,
+      ...(roleArg === 'FARMER' && {
+        farmerProfile: {
+          create: { farmSizeAcres: 5, primaryCrops: ['TOMATO', 'PEPPER'] }
+        }
+      }),
+      ...(roleArg === 'BUYER' && {
+        buyerProfile: {
+          create: { businessType: 'RETAILER' }
+        }
+      }),
+      ...(roleArg === 'TRANSPORT' && {
+        transportProfile: {
+          create: { vehicleType: 'TRUCK', capacityKg: 2000, serviceRadiusKm: 50, isAvailable: true }
+        }
+      })
+    }
+  });
+
+  console.log(`👤 Created test user: ${testPhone} (${roleArg}, Lang: ${langArg})`);
+
+  const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout
+  });
+
+  const sessionLog: {
+    timestamp: string;
+    phone: string;
+    role: string;
+    lang: string;
+    steps: Array<{ step: number; input: string; response: string }>;
+  } = {
+    timestamp: new Date().toISOString(),
+    phone: testPhone,
+    role: roleArg,
+    lang: langArg,
+    steps: []
+  };
+
+  const dialPath: string[] = [];
+  let stepCount = 0;
 
   const queryUssd = async (text: string) => {
     const res = await fetch(`http://localhost:${port}/api/ussd`, {
@@ -24,76 +93,96 @@ async function runUssdSimulation() {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         sessionId,
+        serviceCode: '*920*11#',
         phoneNumber: testPhone,
-        text,
-      }),
+        text
+      })
     });
     return await res.text();
   };
 
+  const askNextStep = async (): Promise<void> => {
+    stepCount++;
+    const currentText = dialPath.join('*');
+    
+    try {
+      const response = await queryUssd(currentText);
+      const charCount = response.length;
+      
+      console.log(`\n================ STEP ${stepCount} ================`);
+      console.log(`Dial Path: *920*11#${dialPath.length > 0 ? '*' + currentText : ''}`);
+      console.log(`Response Type: ${response.substring(0, 3)} (${charCount} chars)`);
+      console.log(`-----------------------------------`);
+      console.log(response.substring(4)); // Strip CON/END prefix for output
+      console.log(`-----------------------------------`);
+
+      if (charCount > 182) {
+        console.warn(`⚠️ WARNING: Response exceeds Africa's Talking 182-character limit! (${charCount}/182)`);
+      }
+
+      sessionLog.steps.push({
+        step: stepCount,
+        input: currentText,
+        response
+      });
+
+      if (response.startsWith('END')) {
+        console.log('\n🏁 Session ended by the server.');
+        return;
+      }
+
+      // Prompt for next choice
+      const nextInput = await new Promise<string>((resolve) => {
+        rl.question('Enter your choice (or type "exit" to quit): ', resolve);
+      });
+
+      const trimmedInput = nextInput.trim();
+      if (trimmedInput.toLowerCase() === 'exit') {
+        console.log('\n👋 Session terminated by user.');
+        return;
+      }
+
+      if (trimmedInput === '0') {
+        // Handle Back navigation by popping path
+        if (dialPath.length > 0) {
+          dialPath.pop();
+        }
+      } else {
+        dialPath.push(trimmedInput);
+      }
+
+      await askNextStep();
+    } catch (err: any) {
+      console.error('❌ Error executing step:', err.message);
+    }
+  };
+
   try {
-    // Step 1: text="" -> expect main menu
-    console.log('--- Step 1: Dialing USSD (text="") ---');
-    const resp1 = await queryUssd('');
-    console.log(`Response:\n${resp1}\n`);
-    if (!resp1.startsWith('CON')) throw new Error('Step 1 failed: Expected CON main menu');
-
-    // Step 2: text="1" -> expect crop selection menu
-    console.log('--- Step 2: Selecting option 1 "List Produce" (text="1") ---');
-    const resp2 = await queryUssd('1');
-    console.log(`Response:\n${resp2}\n`);
-    if (!resp2.startsWith('CON') || !resp2.includes('Select crop')) {
-      throw new Error('Step 2 failed: Expected crop selection menu');
+    await askNextStep();
+    
+    // Save session logs
+    const logsDir = path.join(__dirname, 'test-sessions');
+    if (!fs.existsSync(logsDir)) {
+      fs.mkdirSync(logsDir, { recursive: true });
     }
-
-    // Step 3: text="1*1" -> expect quantity prompt (choosing Tomato)
-    console.log('--- Step 3: Selecting Crop option 1 "Tomato" (text="1*1") ---');
-    const resp3 = await queryUssd('1*1');
-    console.log(`Response:\n${resp3}\n`);
-    if (!resp3.startsWith('CON') || !resp3.includes('quantity')) {
-      throw new Error('Step 3 failed: Expected quantity prompt');
-    }
-
-    // Step 4: text="1*1*50" -> expect price prompt
-    console.log('--- Step 4: Entering quantity 50kg (text="1*1*50") ---');
-    const resp4 = await queryUssd('1*1*50');
-    console.log(`Response:\n${resp4}\n`);
-    if (!resp4.startsWith('CON') || !resp4.includes('price')) {
-      throw new Error('Step 4 failed: Expected price prompt');
-    }
-
-    // Step 5: text="1*1*50*5" -> expect confirmation
-    console.log('--- Step 5: Entering price GHS 5/kg (text="1*1*50*5") ---');
-    const resp5 = await queryUssd('1*1*50*5');
-    console.log(`Response:\n${resp5}\n`);
-    if (!resp5.startsWith('CON') || !resp5.includes('Confirm listing')) {
-      throw new Error('Step 5 failed: Expected confirmation screen');
-    }
-
-    // Step 6: text="1*1*50*5*1" -> expect END with batch code
-    console.log('--- Step 6: Confirming listing (text="1*1*50*5*1") ---');
-    const resp6 = await queryUssd('1*1*50*5*1');
-    console.log(`Response:\n${resp6}\n`);
-    if (!resp6.startsWith('END') || !resp6.includes('Batch code')) {
-      throw new Error('Step 6 failed: Expected END with batch code');
-    }
-
-    console.log('🎉 USSD simulation finished successfully!');
+    const filename = `${new Date().toISOString().replace(/[:.]/g, '-')}.json`;
+    const logPath = path.join(logsDir, filename);
+    fs.writeFileSync(logPath, JSON.stringify(sessionLog, null, 2), 'utf-8');
+    console.log(`💾 Session logs saved to: ${logPath}`);
 
     // Clean up created records
-    await prisma.traceEvent.deleteMany({ where: { listing: { farmer: { phone: testPhone } } } });
-    await prisma.produceListing.deleteMany({ where: { farmer: { phone: testPhone } } });
+    await prisma.ussdSession.deleteMany({ where: { phone: testPhone } });
     await prisma.user.deleteMany({ where: { phone: testPhone } });
-    console.log('🧹 Cleaned up created simulation records.');
+    console.log('🧹 Cleaned up database records.');
 
   } catch (error: any) {
-    console.error('❌ USSD Simulation failed:', error.message);
-    process.exit(1);
+    console.error('❌ Simulation aborted:', error.message);
   } finally {
+    rl.close();
     await new Promise<void>((resolve) => server.close(() => resolve()));
     console.log('🔌 Test server shut down.');
     process.exit(0);
   }
 }
 
-runUssdSimulation();
+runInteractiveUssd();

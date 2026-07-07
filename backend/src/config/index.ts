@@ -13,6 +13,8 @@ const envSchema = z.object({
   AFRICAS_TALKING_USERNAME: z.string().min(1, 'AFRICAS_TALKING_USERNAME is required'),
   AFRICAS_TALKING_API_KEY: z.string().min(1, 'AFRICAS_TALKING_API_KEY is required'),
   PAYSTACK_SECRET_KEY: z.string().min(1, 'PAYSTACK_SECRET_KEY is required'),
+  MNOTIFY_API_KEY: z.string().default('n2KEdiQig7Ru5OAOM7NRKNq7E'),
+  MNOTIFY_SENDER_ID: z.string().default('mNotify'),
 });
 
 const parsed = envSchema.safeParse(process.env);

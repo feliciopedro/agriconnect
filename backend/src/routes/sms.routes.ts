@@ -44,8 +44,22 @@ router.post('/sms-inbound', async (req: Request, res: Response) => {
 
   const normalizedPhone = normalizePhone(from);
   const cleanText = text.trim();
-  const tokens = cleanText.split(/\s+/);
-  const command = tokens[0].toUpperCase();
+  let tokens = cleanText.split(/\s+/);
+  
+  let overrideLang: string | null = null;
+  if (tokens.length > 0) {
+    const firstToken = tokens[0].toUpperCase();
+    if (firstToken === 'TW:') overrideLang = 'tw';
+    else if (firstToken === 'EN:') overrideLang = 'en';
+    else if (firstToken === 'EW:') overrideLang = 'ew';
+    else if (firstToken === 'HA:') overrideLang = 'ha';
+
+    if (overrideLang) {
+      tokens.shift(); // remove the language prefix token
+    }
+  }
+
+  const command = tokens.length > 0 ? tokens[0].toUpperCase() : '';
 
   // 1. Fetch or create Farmer user
   let farmerUser = await prisma.user.findUnique({
@@ -60,6 +74,7 @@ router.post('/sms-inbound', async (req: Request, res: Response) => {
         name: 'New Farmer',
         role: Role.FARMER,
         isVerified: false,
+        preferredLanguage: overrideLang || 'en',
         farmerProfile: {
           create: {
             farmSizeAcres: null,
@@ -67,6 +82,12 @@ router.post('/sms-inbound', async (req: Request, res: Response) => {
           },
         },
       },
+      include: { farmerProfile: true },
+    });
+  } else if (overrideLang && farmerUser.preferredLanguage !== overrideLang) {
+    farmerUser = await prisma.user.update({
+      where: { id: farmerUser.id },
+      data: { preferredLanguage: overrideLang },
       include: { farmerProfile: true },
     });
   }

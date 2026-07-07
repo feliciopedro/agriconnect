@@ -12,6 +12,7 @@ import {
   Prisma
 } from '../prisma/generated-client';
 import { AuditLogService } from './audit.service';
+import { SmsOutboundService } from './ussd/smsOutbound.service';
 
 interface Stop {
   requestId: string;
@@ -642,7 +643,7 @@ export class DeliveryService {
       requestsToUpdate = groupReqs.map((r) => r.id);
     }
 
-    return await prisma.$transaction(async (tx) => {
+    const result = await prisma.$transaction(async (tx) => {
       // 1. Update all requests in path to MATCHED
       await tx.deliveryRequest.updateMany({
         where: { id: { in: requestsToUpdate } },
@@ -685,10 +686,19 @@ export class DeliveryService {
         include: {
           order: {
             include: {
-              listing: true,
+              listing: {
+                include: {
+                  farmer: true,
+                },
+              },
+              buyer: true,
             },
           },
         },
+      });
+
+      const transporter = await tx.user.findUnique({
+        where: { id: transportProviderId }
       });
 
       for (const r of activeRequests) {
@@ -711,8 +721,63 @@ export class DeliveryService {
         );
       }
 
-      return { success: true, requestsUpdated: requestsToUpdate.length };
+      return { success: true, requestsUpdated: requestsToUpdate.length, activeRequests, transporter };
     });
+
+    // Proactive USSD SMS Triggers
+    try {
+      if (result.transporter && result.activeRequests) {
+        for (const r of result.activeRequests) {
+          const etaStr = r.eta ? new Date(r.eta).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : 'soon';
+          
+          const farmerPhone = r.order?.listing?.farmer?.phone;
+          const buyerPhone = r.order?.buyer?.phone;
+
+          // Send delivery_matched to farmer
+          if (farmerPhone) {
+            await SmsOutboundService.sendSms(farmerPhone, 'delivery_matched', {
+              crop: r.order?.listing?.cropType || 'Produce',
+              name: result.transporter.name,
+              eta: etaStr
+            });
+          }
+
+          // Send delivery_matched to buyer
+          if (buyerPhone) {
+            await SmsOutboundService.sendSms(buyerPhone, 'delivery_matched', {
+              crop: r.order?.listing?.cropType || 'Produce',
+              name: result.transporter.name,
+              eta: etaStr
+            });
+          }
+        }
+
+        // Send route_stop_summary to transporter if grouped
+        const groupReq = result.activeRequests.find((r: any) => r.routeGroupId !== null);
+        if (groupReq && result.activeRequests.length > 1 && result.transporter.phone) {
+          const leadReq = result.activeRequests.find((r: any) => r.routeSequence !== null) || result.activeRequests[0];
+          const seq = leadReq.routeSequence as any as Stop[] || [];
+          const stop1 = seq[0] ? `${seq[0].type} ${seq[0].cropType}` : 'N/A';
+          const stop2 = seq[1] ? `${seq[1].type} ${seq[1].cropType}` : 'N/A';
+          const stop3 = seq[2] ? `${seq[2].type} ${seq[2].cropType}` : 'N/A';
+          
+          const totalKm = result.activeRequests[0]?.routeDistanceKm || 0;
+          const totalEarn = result.activeRequests.reduce((sum: number, r: any) => sum + (r.estimatedCost || 0), 0);
+
+          await SmsOutboundService.sendSms(result.transporter.phone, 'route_stop_summary', {
+            stop1,
+            stop2,
+            stop3,
+            km: totalKm,
+            earn: totalEarn
+          });
+        }
+      }
+    } catch (smsErr) {
+      console.error('Failed to send USSD delivery matched SMS:', smsErr);
+    }
+
+    return { success: result.success, requestsUpdated: result.requestsUpdated };
   }
 
   /**
@@ -732,10 +797,10 @@ export class DeliveryService {
           include: {
             listing: {
               include: {
-                farmer: { select: { name: true } },
+                farmer: { select: { name: true, phone: true } },
               },
             },
-            buyer: { select: { name: true } },
+            buyer: { select: { name: true, phone: true } },
           },
         },
       },
@@ -777,7 +842,7 @@ export class DeliveryService {
       throw createError(`Invalid target status transition: ${newStatus}`, 'INVALID_TRANSITION', 400);
     }
 
-    return await prisma.$transaction(async (tx) => {
+    const result = await prisma.$transaction(async (tx) => {
       let updatedRequest;
 
       if (newStatus === DeliveryStatus.PICKED_UP) {
@@ -922,5 +987,82 @@ export class DeliveryService {
 
       return updatedRequest;
     });
+
+    // Proactive USSD SMS Triggers
+    try {
+      const farmerPhone = req.order?.listing?.farmer?.phone;
+      const buyerPhone = req.order?.buyer?.phone;
+
+      if (newStatus === DeliveryStatus.PICKED_UP) {
+        if (buyerPhone) {
+          await SmsOutboundService.sendSms(buyerPhone, 'pickup_confirmed', {
+            qty: req.order?.quantityKg || 0,
+            crop: req.order?.listing?.cropType || 'Produce',
+            eta: req.eta ? new Date(req.eta).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : 'soon'
+          });
+        }
+      } else if (newStatus === DeliveryStatus.DELIVERED) {
+        // Send delivery_confirmed_farmer to farmer
+        if (farmerPhone) {
+          await SmsOutboundService.sendSms(farmerPhone, 'delivery_confirmed_farmer', {
+            qty: req.order?.quantityKg || 0,
+            crop: req.order?.listing?.cropType || 'Produce',
+            amount: req.estimatedCost || 0
+          });
+        }
+
+        // Send delivery_confirmed_buyer to buyer
+        if (buyerPhone) {
+          await SmsOutboundService.sendSms(buyerPhone, 'delivery_confirmed_buyer', {
+            crop: req.order?.listing?.cropType || 'Produce',
+            url: `https://agriconnect.gh/trace/${req.order?.listing?.batchCode || 'batch'}`
+          });
+        }
+      }
+    } catch (smsErr) {
+      console.error('Failed to send delivery status SMS alerts:', smsErr);
+    }
+
+    return result;
+  }
+
+  /**
+   * Records a transporter stop status change (e.g. ARRIVED) with null coordinates
+   * so it can be backfilled by subsequent location updates.
+   */
+  public static async updateStopStatus(
+    deliveryRequestId: string,
+    transportProviderId: string,
+    status: 'ARRIVED'
+  ) {
+    const req = await prisma.deliveryRequest.findUnique({
+      where: { id: deliveryRequestId },
+      include: {
+        order: { select: { listingId: true } }
+      }
+    });
+
+    if (!req) {
+      throw createError('Delivery request not found', 'DELIVERY_NOT_FOUND', 404);
+    }
+
+    if (req.transportProviderId !== transportProviderId) {
+      throw createError(
+        'Access forbidden: you are not the assigned transport provider',
+        'FORBIDDEN',
+        403
+      );
+    }
+
+    // Log the ARRIVED action to the Audit Log with null coordinates
+    await AuditLogService.log({
+      userId: transportProviderId,
+      action: 'ARRIVED',
+      entityName: 'DeliveryRequest',
+      entityId: deliveryRequestId,
+      metadata: { status, latitude: null, longitude: null }
+    });
+
+    return { success: true };
   }
 }
