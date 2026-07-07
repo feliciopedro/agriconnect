@@ -12,6 +12,8 @@ import {
   Users,
   Search,
   BarChart2,
+  Smartphone,
+  Monitor
 } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 import { Badge } from '../ui/Badge';
@@ -124,6 +126,8 @@ function getNavSections(role: string | null): NavSection[] {
             { label: 'Overview', to: '/admin', icon: <BarChart2 size={18} />, matchPrefix: '/admin' },
             { label: 'Users', to: '/admin/users', icon: <Users size={18} /> },
             { label: 'Trace Lookup', to: '/admin/trace', icon: <Search size={18} /> },
+            { label: 'USSD Simulator', to: '/admin/ussd-simulator', icon: <Smartphone size={18} /> },
+            { label: 'USSD Monitor', to: '/admin/ussd-monitor', icon: <Monitor size={18} /> },
           ],
         },
         {

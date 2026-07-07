@@ -25,6 +25,8 @@ import { MessagesPage } from './pages/MessagesPage';
 import { AdminDashboardPage } from './pages/admin/AdminDashboardPage';
 import { AdminUsersPage } from './pages/admin/AdminUsersPage';
 import { AdminTracePage } from './pages/admin/AdminTracePage';
+import { UssdSimulatorPage } from './pages/admin/UssdSimulatorPage';
+import { UssdMonitorPage } from './pages/admin/UssdMonitorPage';
 import { NotFoundPage } from './pages/NotFoundPage';
 
 import { Toaster } from 'react-hot-toast';
@@ -113,6 +115,8 @@ function App() {
                                 <Route path="/admin"                         element={<AdminDashboardPage />} />
                                 <Route path="/admin/users"                   element={<AdminUsersPage />} />
                                 <Route path="/admin/trace"                   element={<AdminTracePage />} />
+                                <Route path="/admin/ussd-simulator"          element={<UssdSimulatorPage />} />
+                                <Route path="/admin/ussd-monitor"            element={<UssdMonitorPage />} />
 
                                 {/* 404 catch-all */}
                                 <Route path="*"                              element={<NotFoundPage />} />
