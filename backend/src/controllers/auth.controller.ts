@@ -3,6 +3,7 @@ import { AuthService } from '../services/auth.service';
 import prisma from '../prisma/client';
 import { createError } from '../utils/errors';
 import { hashPassword } from '../utils/crypto';
+import bcrypt from 'bcryptjs';
 
 export class AuthController {
   /**
@@ -59,11 +60,19 @@ export class AuthController {
       businessType,
       isAvailable,
       password,
+      preferredLanguage,
+      ussdPin,
     } = req.body;
 
     const user = await prisma.user.findUnique({
       where: { id: req.user!.userId },
     });
+
+    if (ussdPin !== undefined) {
+      if (!/^\d{4}$/.test(ussdPin)) {
+        throw createError('USSD PIN must be a 4-digit numeric code', 'INVALID_PIN', 400);
+      }
+    }
 
     const updatedUser = await prisma.user.update({
       where: { id: req.user!.userId },
@@ -73,6 +82,11 @@ export class AuthController {
         ...(district !== undefined && { district }),
         ...(latitude !== undefined && { latitude }),
         ...(longitude !== undefined && { longitude }),
+        ...(preferredLanguage !== undefined && { preferredLanguage }),
+        ...(ussdPin !== undefined && {
+          ussdPin: await bcrypt.hash(ussdPin, await bcrypt.genSalt(10)),
+          ussdPinSetAt: new Date(),
+        }),
         ...(password !== undefined && { passwordHash: hashPassword(password) }),
         ...(user?.role === 'TRANSPORT' && (vehicleType !== undefined || capacityKg !== undefined || serviceRadiusKm !== undefined || isAvailable !== undefined) && {
           transportProfile: {

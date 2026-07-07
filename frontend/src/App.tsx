@@ -1,4 +1,4 @@
-import React, { Suspense } from 'react';
+import { Suspense } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { AuthProvider } from './context/AuthContext';
@@ -10,6 +10,7 @@ import { Home } from './pages/Home';
 import { HealthStatus } from './pages/HealthStatus';
 import { LoginPage as Login } from './pages/auth/LoginPage';
 import { ProfileSetupPage } from './pages/auth/ProfileSetupPage';
+import { ProfilePage } from './pages/auth/ProfilePage';
 import { TracePublicPage } from './pages/TracePublicPage';
 import { FarmerDashboardPage } from './pages/farmer/FarmerDashboardPage';
 import { NewListingPage } from './pages/farmer/NewListingPage';
@@ -89,6 +90,7 @@ function App() {
                             <Layout>
                               <Routes>
                                 <Route path="/"                              element={<Home />} />
+                                <Route path="/profile"                       element={<ProfilePage />} />
                                 <Route path="/health"                        element={<HealthStatus />} />
 
                                 {/* Farmer */}

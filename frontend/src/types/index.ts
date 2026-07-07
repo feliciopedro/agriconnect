@@ -24,6 +24,8 @@ export interface User {
   isBanned: boolean;
   region?: string;
   district?: string;
+  preferredLanguage?: string;
+  ussdPinSetAt?: string;
   transportProfile?: TransportProfile;
   createdAt: string;
   updatedAt: string;

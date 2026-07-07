@@ -230,7 +230,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ onClose }) => {
           </div>
         </div>
         <Link
-          to="/notifications"
+          to="/profile"
           onClick={handleLink}
           className="mt-2 block text-[12px] text-[#2D6A4F] font-semibold hover:text-[#235A41] hover:underline transition-colors"
         >

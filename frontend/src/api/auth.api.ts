@@ -46,6 +46,8 @@ export const AuthApi = {
     businessType?: string;
     isAvailable?: boolean;
     password?: string;
+    preferredLanguage?: string;
+    ussdPin?: string;
   }): Promise<User> => {
     const response = await api.patch('/auth/profile', data);
     return response.data;
