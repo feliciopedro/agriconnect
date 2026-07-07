@@ -17,10 +17,10 @@ const LANGUAGES = [
 ];
 
 const SHORTCODES = [
-  { code: '*920*11#', label: 'Main menu' },
-  { code: '*920*11*1#', label: 'List produce quickly (farmers)' },
-  { code: '*920*11*3#', label: 'Check your orders' },
-  { code: '*920*11*6#', label: 'Check your balance' },
+  { code: '*384*26832#', label: 'Main menu' },
+  { code: '*384*26832*1#', label: 'List produce quickly (farmers)' },
+  { code: '*384*26832*3#', label: 'Check your orders' },
+  { code: '*384*26832*6#', label: 'Check your balance' },
 ];
 
 export const ProfilePage: React.FC = () => {

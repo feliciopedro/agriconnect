@@ -50,11 +50,11 @@ export const UssdApi = {
     lang?: string
   ): Promise<string> => {
     // Map lang code to the corresponding dial serviceCode
-    let serviceCode = '*920*11#';
-    if (lang === 'tw') serviceCode = '*920*11*99#';
-    else if (lang === 'ew') serviceCode = '*920*11*98#';
-    else if (lang === 'ha') serviceCode = '*920*11*97#';
-    else if (lang === 'en') serviceCode = '*920*11*96#';
+    let serviceCode = '*384*26832#';
+    if (lang === 'tw') serviceCode = '*384*26832*99#';
+    else if (lang === 'ew') serviceCode = '*384*26832*98#';
+    else if (lang === 'ha') serviceCode = '*384*26832*97#';
+    else if (lang === 'en') serviceCode = '*384*26832*96#';
 
     const response = await api.post<string>('/ussd', {
       sessionId,
