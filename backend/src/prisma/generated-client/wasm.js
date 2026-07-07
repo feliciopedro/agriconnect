@@ -133,6 +133,10 @@ exports.Prisma.UserScalarFieldEnum = {
   district: 'district',
   isVerified: 'isVerified',
   passwordHash: 'passwordHash',
+  preferredLanguage: 'preferredLanguage',
+  ussdPin: 'ussdPin',
+  ussdPinSetAt: 'ussdPinSetAt',
+  lastUssdActivity: 'lastUssdActivity',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };
@@ -298,10 +302,44 @@ exports.Prisma.UssdSessionScalarFieldEnum = {
   id: 'id',
   sessionId: 'sessionId',
   phone: 'phone',
+  userId: 'userId',
+  language: 'language',
+  currentMenu: 'currentMenu',
   currentStep: 'currentStep',
+  menuStack: 'menuStack',
   tempData: 'tempData',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  inputHistory: 'inputHistory',
+  startedAt: 'startedAt',
+  lastActivityAt: 'lastActivityAt',
+  isActive: 'isActive',
+  endedAt: 'endedAt',
+  endReason: 'endReason'
+};
+
+exports.Prisma.UssdAuditLogScalarFieldEnum = {
+  id: 'id',
+  sessionId: 'sessionId',
+  phone: 'phone',
+  userId: 'userId',
+  menu: 'menu',
+  step: 'step',
+  userInput: 'userInput',
+  systemResponse: 'systemResponse',
+  action: 'action',
+  metadata: 'metadata',
+  timestamp: 'timestamp'
+};
+
+exports.Prisma.UssdShortMessageScalarFieldEnum = {
+  id: 'id',
+  toPhone: 'toPhone',
+  message: 'message',
+  triggerAction: 'triggerAction',
+  status: 'status',
+  attemptCount: 'attemptCount',
+  sentAt: 'sentAt',
+  errorMessage: 'errorMessage',
+  createdAt: 'createdAt'
 };
 
 exports.Prisma.PreOrderScalarFieldEnum = {
@@ -392,6 +430,10 @@ exports.Prisma.NullableJsonNullValueInput = {
   JsonNull: Prisma.JsonNull
 };
 
+exports.Prisma.JsonNullValueInput = {
+  JsonNull: Prisma.JsonNull
+};
+
 exports.Prisma.QueryMode = {
   default: 'default',
   insensitive: 'insensitive'
@@ -477,6 +519,12 @@ exports.DeliveryStatus = exports.$Enums.DeliveryStatus = {
   DELIVERED: 'DELIVERED'
 };
 
+exports.UssdMessageStatus = exports.$Enums.UssdMessageStatus = {
+  QUEUED: 'QUEUED',
+  SENT: 'SENT',
+  FAILED: 'FAILED'
+};
+
 exports.PreOrderStatus = exports.$Enums.PreOrderStatus = {
   DEPOSIT_PENDING: 'DEPOSIT_PENDING',
   OPEN: 'OPEN',
@@ -501,6 +549,8 @@ exports.Prisma.ModelName = {
   Message: 'Message',
   OtpCode: 'OtpCode',
   UssdSession: 'UssdSession',
+  UssdAuditLog: 'UssdAuditLog',
+  UssdShortMessage: 'UssdShortMessage',
   PreOrder: 'PreOrder',
   PlantingLog: 'PlantingLog',
   PlantingInput: 'PlantingInput',

@@ -14,6 +14,7 @@ import {
   Save,
   CheckCircle2,
 } from 'lucide-react';
+import { Spinner } from '../../components/ui/Spinner';
 import toast from 'react-hot-toast';
 
 interface NewListingPageProps {
@@ -316,7 +317,7 @@ export const NewListingPage: React.FC<NewListingPageProps> = ({ isEdit = false }
   if (fetchingListing) {
     return (
       <div className="flex flex-col items-center justify-center py-20 space-y-4">
-        <div className="w-10 h-10 border-4 border-primary-green/20 border-t-primary-green rounded-full animate-spin" />
+        <Spinner size="lg" />
         <p className="text-text-secondary text-sm">Loading listing details...</p>
       </div>
     );
@@ -470,14 +471,14 @@ export const NewListingPage: React.FC<NewListingPageProps> = ({ isEdit = false }
                 ) : (
                   <p className="text-xs italic text-[#9CA3AF]">No photos uploaded for this listing.</p>
                 )}
-                <div className="p-3 bg-gray-50 border border-gray-200 rounded-card text-xs text-text-secondary">
+                <div className="p-3 bg-[#EAF4EE] border border-[#2D6A4F]/10 rounded-card text-xs text-[#2D6A4F] font-medium">
                   Note: Photo updates are not permitted after listing creation to ensure audit validation.
                 </div>
               </div>
             ) : (
               <div className="space-y-4">
                 {/* Upload Trigger Area */}
-                <div className="relative border-2 border-dashed border-[#D1D5DB] rounded-card p-6 flex flex-col items-center justify-center text-center cursor-pointer hover:border-[#2D6A4F] hover:bg-gray-50 transition-colors">
+                <div className="relative border-2 border-dashed border-[#D1D5DB] rounded-card p-6 flex flex-col items-center justify-center text-center cursor-pointer hover:border-[#2D6A4F] hover:bg-[#EAF4EE]/40 transition-colors">
                   <input
                     type="file"
                     multiple

@@ -70,6 +70,7 @@ export interface Order {
   totalPrice: number;
   status: 'PENDING' | 'CONFIRMED' | 'IN_TRANSIT' | 'DELIVERED' | 'CANCELLED';
   paymentStatus: 'UNPAID' | 'PAID' | 'REFUNDED';
+  paystackReference?: string;
   deliveryPreference: 'PICKUP' | 'DELIVERY';
   deliveryAddress?: string;
   deliveryLat?: number;

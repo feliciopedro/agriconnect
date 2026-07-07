@@ -194,3 +194,37 @@
   @apply text-text-secondary;
   font-size: 13px;
 }
+
+/* ── App Shell animations ────────────────────────────────────────────────── */
+@keyframes slideInLeft {
+  from { transform: translateX(-100%); }
+  to   { transform: translateX(0); }
+}
+
+@keyframes fadeInBackdrop {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* ── Accessibility: focus-visible rings ──────────────────────────────────── */
+/* Remove default outline; replace with a consistent 3px green ring */
+:focus {
+  outline: none;
+}
+
+:focus-visible,
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+[role="button"]:focus-visible,
+[tabindex]:focus-visible {
+  outline: 3px solid #2D6A4F;
+  outline-offset: 2px;
+}
+
+/* Prevent focus ring on mouse clicks (only show on keyboard navigation) */
+:focus:not(:focus-visible) {
+  outline: none;
+}

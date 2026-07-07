@@ -11,6 +11,7 @@ import { CropTypeBadge } from '../../components/ui/CropTypeBadge';
 import {
   ArrowLeft,
 } from 'lucide-react';
+import { Spinner } from '../../components/ui/Spinner';
 import toast from 'react-hot-toast';
 
 // Leaflet imports
@@ -69,9 +70,9 @@ export const DeliveryDetailPage: React.FC = () => {
 
   if (loading) {
     return (
-      <div className="flex flex-col items-center justify-center py-20 space-y-4 bg-white">
-        <div className="w-10 h-10 border-4 border-[#2D6A4F]/20 border-t-[#2D6A4F] rounded-full animate-spin" />
-        <p className="text-text-secondary text-sm">Loading delivery route details...</p>
+      <div className="flex flex-col items-center justify-center py-20 bg-white space-y-4">
+        <Spinner size="lg" />
+        <p className="text-text-secondary text-sm">Loading delivery details...</p>
       </div>
     );
   }

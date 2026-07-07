@@ -11,16 +11,20 @@ import { CropTypeBadge } from '../../components/ui/CropTypeBadge';
 import {
   ArrowLeft,
   Copy,
-  Printer,
-  Edit2,
+  Check,
+  ExternalLink,
+  QrCode,
+  Pencil,
   Trash2,
-  Calendar,
+  RefreshCw,
   MapPin,
+  Calendar,
   Leaf,
   ChevronLeft,
   ChevronRight,
   ClipboardCheck,
 } from 'lucide-react';
+import { Spinner } from '../../components/ui/Spinner';
 import toast from 'react-hot-toast';
 
 interface OrderItem {
@@ -127,7 +131,7 @@ export const ListingDetailPage: React.FC = () => {
   if (loading) {
     return (
       <div className="flex flex-col items-center justify-center py-20 space-y-4 bg-white">
-        <div className="w-10 h-10 border-4 border-primary-green/20 border-t-primary-green rounded-full animate-spin" />
+        <Spinner size="lg" />
         <p className="text-text-secondary text-sm">Loading listing details...</p>
       </div>
     );
@@ -335,7 +339,7 @@ export const ListingDetailPage: React.FC = () => {
               <div className="overflow-x-auto -mx-4 sm:-mx-5 border-t border-[#E5E7EB]">
                 <table className="w-full text-left border-collapse text-xs">
                   <thead>
-                    <tr className="bg-gray-50 border-b border-[#E5E7EB]">
+                    <tr className="bg-[#FAFAFA] border-b border-[#E5E7EB]">
                       <th className="p-3 font-semibold text-text-primary">Buyer</th>
                       <th className="p-3 font-semibold text-text-primary">Qty</th>
                       <th className="p-3 font-semibold text-text-primary">Value</th>
@@ -345,7 +349,7 @@ export const ListingDetailPage: React.FC = () => {
                   </thead>
                   <tbody className="divide-y divide-[#E5E7EB]">
                     {orders.map((order) => (
-                      <tr key={order.id} className="hover:bg-gray-50">
+                      <tr key={order.id} className="hover:bg-[#F9FAFB]">
                         <td className="p-3 font-medium text-text-primary">
                           {order.buyer?.name || 'Unknown Buyer'}
                         </td>
@@ -389,7 +393,7 @@ export const ListingDetailPage: React.FC = () => {
                 <p className="text-xs font-semibold text-text-secondary uppercase tracking-wider">
                   Batch Code
                 </p>
-                <div className="flex items-center gap-2 p-3 bg-gray-50 border border-[#E5E7EB] rounded-card justify-between">
+                <div className="flex items-center gap-2 p-3 bg-white border border-[#E5E7EB] rounded-card justify-between">
                   <span className="font-mono text-base font-bold text-text-primary tracking-wide">
                     {listing.batchCode}
                   </span>

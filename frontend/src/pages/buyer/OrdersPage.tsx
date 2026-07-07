@@ -9,7 +9,7 @@ import { Button } from '../../components/ui/Button';
 import { CropTypeBadge } from '../../components/ui/CropTypeBadge';
 import { EmptyState } from '../../components/ui/EmptyState';
 import { StatusStepper } from '../../components/ui/StatusStepper';
-import { RefreshCw, ShoppingBag, Eye } from 'lucide-react';
+import { RefreshCw, ShoppingBag, Eye, PackageX } from 'lucide-react';
 import toast from 'react-hot-toast';
 
 type TabStatus = 'all' | 'pending' | 'confirmed' | 'in_transit' | 'delivered' | 'cancelled';
@@ -33,7 +33,7 @@ function getStepIndex(status: string): number {
 }
 
 export const OrdersPage: React.FC = () => {
-  const { user } = useAuth();
+  const { user, role } = useAuth();
   const navigate = useNavigate();
 
   const [orders, setOrders] = useState<Order[]>([]);
@@ -118,26 +118,44 @@ export const OrdersPage: React.FC = () => {
 
       {/* Orders List Container */}
       {loading ? (
-        <div className="space-y-4">
-          {[1, 2].map((i) => (
-            <Card key={i} className="animate-pulse flex flex-col sm:flex-row justify-between p-6 h-[120px]">
-              <div className="h-12 bg-gray-200 rounded w-1/4" />
-              <div className="h-12 bg-gray-200 rounded w-1/3" />
-              <div className="h-12 bg-gray-200 rounded w-1/6" />
+        <div className="space-y-3">
+          {[1, 2, 3].map((i) => (
+            <Card key={i} className="animate-pulse bg-white p-5">
+              <div className="flex items-start gap-4">
+                <div className="w-10 h-10 bg-[#E5E7EB] rounded-lg shrink-0" />
+                <div className="flex-1 space-y-2">
+                  <div className="h-4 bg-[#E5E7EB] rounded w-1/3" />
+                  <div className="h-3 bg-[#E5E7EB] rounded w-1/4" />
+                </div>
+                <div className="flex-1 space-y-2 hidden sm:block">
+                  <div className="h-3 bg-[#E5E7EB] rounded w-2/3 mx-auto" />
+                  <div className="h-3 bg-[#E5E7EB] rounded w-1/2 mx-auto" />
+                </div>
+                <div className="space-y-2 text-right">
+                  <div className="h-5 bg-[#E5E7EB] rounded w-20" />
+                  <div className="h-3 bg-[#E5E7EB] rounded w-16" />
+                </div>
+              </div>
             </Card>
           ))}
         </div>
       ) : filteredOrders.length === 0 ? (
         <EmptyState
-          title="No orders found"
+          title={activeTab === 'all' ? 'No orders yet' : `No ${activeTab.replace('_', ' ')} orders`}
           description={
             activeTab === 'all'
-              ? 'Browse the marketplace to find fresh produce listed near you.'
-              : `You have no ${activeTab.replace('_', ' ')} purchases.`
+              ? role === 'FARMER'
+                ? 'No orders yet. Make sure your listings have good photos and fair prices.'
+                : 'No orders yet. Browse the marketplace to find fresh produce near you.'
+              : `You have no ${activeTab.replace('_', ' ')} orders.`
           }
-          icon={<ShoppingBag className="w-12 h-12 text-[#9CA3AF]" />}
+          icon={
+            role === 'FARMER'
+              ? <PackageX className="w-12 h-12 text-[#9CA3AF]" />
+              : <ShoppingBag className="w-12 h-12 text-[#9CA3AF]" />
+          }
           action={
-            activeTab === 'all' ? (
+            activeTab === 'all' && role !== 'FARMER' ? (
               <Button variant="primary" onClick={() => navigate('/marketplace')}>
                 Go to Marketplace
               </Button>

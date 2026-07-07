@@ -3,6 +3,7 @@ import { normalizePhone } from './auth.service';
 import { ListingService } from './listing.service';
 import { Role, ListingStatus, OrderStatus, CropType } from '../prisma/generated-client';
 import { config } from '../config';
+import { t } from '../prisma/ussdTranslations';
 
 export class UssdService {
   /**
@@ -40,6 +41,8 @@ export class UssdService {
       });
     }
 
+    const lang = farmerUser.preferredLanguage || 'en';
+
     // 2. Parse USSD input accumulated text
     let parts = text === '' ? [] : text.split('*');
 
@@ -52,14 +55,14 @@ export class UssdService {
 
     // LEVEL 0 (Main Menu)
     if (depth === 0) {
-      return 'CON Welcome to AgriConnect\n1. List Produce\n2. My Listings\n3. My Orders\n4. Help';
+      return `CON ${t(lang, 'welcome')}\n${t(lang, 'main_menu')}`;
     }
 
     // LEVEL 1
     if (depth === 1) {
       const choice = parts[0];
       if (choice === '1') {
-        return 'CON Select crop:\n1. Tomato\n2. Pepper\n3. Garden Egg\n4. Okra\n5. Leafy Greens';
+        return `CON ${t(lang, 'choose_crop')}`;
       }
       if (choice === '2') {
         const listings = await prisma.produceListing.findMany({
@@ -69,13 +72,13 @@ export class UssdService {
         });
 
         if (listings.length === 0) {
-          return 'END You have no active listings.';
+          return `END ${t(lang, 'no_listings')}`;
         }
 
         const lines = listings.map(
-          (l) => `${l.cropType} - ${l.remainingKg}kg at GHS${l.pricePerKg}/kg`
+          (l) => t(lang, 'listing_item', { crop: t(lang, 'crop_' + getCropChoiceIndex(l.cropType)), qty: l.remainingKg, price: l.pricePerKg })
         );
-        return `CON Active Listings:\n${lines.join('\n')}\n0. Back`;
+        return `CON ${t(lang, 'active_listings_header')}${lines.join('\n')}\n0. Back`;
       }
       if (choice === '3') {
         const orders = await prisma.order.findMany({
@@ -92,18 +95,27 @@ export class UssdService {
         });
 
         if (orders.length === 0) {
-          return 'END No pending orders.';
+          return `END ${t(lang, 'no_orders')}`;
         }
 
         const lines = orders.map(
-          (o) => `${o.quantityKg}kg ${o.listing.cropType} - ${o.status} - Call: ${o.buyer.phone}`
+          (o) => t(lang, 'order_item', { qty: o.quantityKg, crop: t(lang, 'crop_' + getCropChoiceIndex(o.listing.cropType)), status: o.status, phone: o.buyer.phone })
         );
-        return `CON Pending Orders:\n${lines.join('\n')}\n0. Back`;
+        return `CON ${t(lang, 'pending_orders_header')}${lines.join('\n')}\n0. Back`;
       }
       if (choice === '4') {
-        return `END AgriConnect: List produce, check orders, coordinate delivery.\nVisit ${config.FRONTEND_URL} for full features.\nSupport: +233241234567`;
+        return `END ${t(lang, 'help_text', { frontendUrl: config.FRONTEND_URL })}`;
       }
-      return 'END Invalid selection. Dial again to start over.';
+      if (choice === '5') {
+        return `CON ${t(lang, 'balance', { amount: '0.00' })}`;
+      }
+      if (choice === '6') {
+        return `CON ${t(lang, 'language_menu')}`;
+      }
+      if (choice === '0') {
+        return `END ${t(lang, 'exit')}`;
+      }
+      return `END ${t(lang, 'invalid_selection')}`;
     }
 
     // LEVEL 2
@@ -111,11 +123,26 @@ export class UssdService {
       if (parts[0] === '1') {
         const cropChoice = parts[1];
         if (!['1', '2', '3', '4', '5'].includes(cropChoice)) {
-          return 'END Invalid crop selection. Dial again to start over.';
+          return `END ${t(lang, 'invalid_crop')}`;
         }
-        return 'CON Enter quantity in kg (numbers only):';
+        return `CON ${t(lang, 'enter_qty')}`;
       }
-      return 'END Invalid path. Dial again to start over.';
+      if (parts[0] === '6') {
+        const langChoice = parts[1];
+        let newLang = 'en';
+        if (langChoice === '1') newLang = 'en';
+        else if (langChoice === '2') newLang = 'tw';
+        else if (langChoice === '3') newLang = 'ew';
+        else if (langChoice === '4') newLang = 'ha';
+        else return `END ${t(lang, 'invalid_selection')}`;
+
+        await prisma.user.update({
+          where: { id: farmerUser.id },
+          data: { preferredLanguage: newLang }
+        });
+        return `END ${t(newLang, 'lang_changed')}`;
+      }
+      return `END ${t(lang, 'invalid_path')}`;
     }
 
     // LEVEL 3
@@ -123,11 +150,11 @@ export class UssdService {
       if (parts[0] === '1') {
         const qty = parseFloat(parts[2]);
         if (isNaN(qty) || qty <= 0) {
-          return 'END Invalid quantity. Dial again to start over.';
+          return `END ${t(lang, 'invalid_qty')}`;
         }
-        return 'CON Enter your price per kg in GHS (numbers only):';
+        return `CON ${t(lang, 'enter_price')}`;
       }
-      return 'END Invalid path. Dial again to start over.';
+      return `END ${t(lang, 'invalid_path')}`;
     }
 
     // LEVEL 4
@@ -136,21 +163,18 @@ export class UssdService {
         const qty = parseFloat(parts[2]);
         const price = parseFloat(parts[3]);
         if (isNaN(qty) || qty <= 0 || isNaN(price) || price <= 0) {
-          return 'END Invalid inputs. Dial again to start over.';
+          return `END ${t(lang, 'invalid_inputs')}`;
         }
 
-        const cropMap = {
-          '1': 'Tomato',
-          '2': 'Pepper',
-          '3': 'Garden Egg',
-          '4': 'Okra',
-          '5': 'Leafy Greens',
-        };
-        const cropName = cropMap[parts[1] as keyof typeof cropMap];
+        const cropChoice = parts[1];
+        if (!['1', '2', '3', '4', '5'].includes(cropChoice)) {
+          return `END ${t(lang, 'invalid_crop')}`;
+        }
+        const cropName = t(lang, 'crop_' + cropChoice);
 
-        return `CON Confirm listing:\n${qty}kg of ${cropName} at GHS ${price}/kg\n1. Confirm\n2. Cancel`;
+        return `CON ${t(lang, 'confirm_listing', { qty, crop: cropName, price })}`;
       }
-      return 'END Invalid path. Dial again to start over.';
+      return `END ${t(lang, 'invalid_path')}`;
     }
 
     // LEVEL 5
@@ -161,11 +185,11 @@ export class UssdService {
         const confirmChoice = parts[4];
 
         if (isNaN(qty) || qty <= 0 || isNaN(price) || price <= 0) {
-          return 'END Invalid parameters. Dial again to start over.';
+          return `END ${t(lang, 'invalid_params')}`;
         }
 
         if (confirmChoice === '2') {
-          return 'END Listing cancelled. Dial again to start over.';
+          return `END ${t(lang, 'listing_cancelled')}`;
         }
 
         if (confirmChoice === '1') {
@@ -177,6 +201,9 @@ export class UssdService {
             '5': CropType.LEAFY_GREENS,
           };
           const cropType = cropEnumMap[parts[1] as keyof typeof cropEnumMap];
+          if (!cropType) {
+            return `END ${t(lang, 'invalid_crop')}`;
+          }
 
           const latitude = farmerUser.latitude ?? 6.0945;
           const longitude = farmerUser.longitude ?? -0.2591;
@@ -194,14 +221,25 @@ export class UssdService {
             []
           );
 
-          return `END Listing created! Batch code: ${listing.batchCode}. Buyers can now find your produce.`;
+          return `END ${t(lang, 'listing_created', { code: listing.batchCode })}`;
         }
 
-        return 'END Invalid confirm option. Dial again to start over.';
+        return `END ${t(lang, 'invalid_confirm')}`;
       }
-      return 'END Invalid path. Dial again to start over.';
+      return `END ${t(lang, 'invalid_path')}`;
     }
 
-    return 'END Invalid session state. Dial again to start over.';
+    return `END ${t(lang, 'invalid_session')}`;
+  }
+}
+
+function getCropChoiceIndex(cropType: CropType): string {
+  switch (cropType) {
+    case CropType.TOMATO: return '1';
+    case CropType.PEPPER: return '2';
+    case CropType.GARDEN_EGG: return '3';
+    case CropType.OKRA: return '4';
+    case CropType.LEAFY_GREENS: return '5';
+    default: return '1';
   }
 }

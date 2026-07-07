@@ -1,23 +1,26 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate, useParams, Link } from 'react-router-dom';
+import { useNavigate, useParams, useSearchParams, Link } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import { OrdersApi } from '../../api/orders.api';
-import api from '../../api/axios';
+import { PaymentsApi } from '../../api/payments.api';
 import type { Order } from '../../types';
 import { SectionCard } from '../../components/ui/SectionCard';
 import { Badge } from '../../components/ui/Badge';
 import { Button } from '../../components/ui/Button';
 import { CropTypeBadge } from '../../components/ui/CropTypeBadge';
 import { StatusStepper } from '../../components/ui/StatusStepper';
+import { LeaveReviewModal } from '../../components/ui/LeaveReviewModal';
+import { PaymentCard } from '../../components/ui/PaymentCard';
+import type { PaymentCardState } from '../../components/ui/PaymentCard';
 import {
   ArrowLeft,
   Send,
-  CreditCard,
   Truck,
   QrCode,
   Star,
   Info,
 } from 'lucide-react';
+import { Spinner } from '../../components/ui/Spinner';
 import toast from 'react-hot-toast';
 
 const STEP_LABELS = ['Pending', 'Confirmed', 'In Transit', 'Delivered'];
@@ -46,7 +49,14 @@ export const OrderDetailPage: React.FC = () => {
   const [order, setOrder] = useState<Order | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [cancelling, setCancelling] = useState<boolean>(false);
-  const [paying, setPaying] = useState<boolean>(false);
+  const [reviewModalOpen, setReviewModalOpen] = useState<boolean>(false);
+
+  // Payment flow state
+  const [searchParams] = useSearchParams();
+  const [paymentCardState, setPaymentCardState] = useState<PaymentCardState>('checkout');
+  const [paymentRef, setPaymentRef] = useState<string>('');
+  const [initializingPayment, setInitializingPayment] = useState<boolean>(false);
+  const [verifyingPayment, setVerifyingPayment] = useState<boolean>(false);
 
   // Mock chat details
   const [messages, setMessages] = useState<{ sender: string; text: string; time: string }[]>([
@@ -73,6 +83,32 @@ export const OrderDetailPage: React.FC = () => {
     fetchOrderDetails();
   }, [id]);
 
+  // Detect ?payment=complete callback from Paystack / mock redirect
+  useEffect(() => {
+    const paymentParam = searchParams.get('payment');
+    const refParam = searchParams.get('reference') || '';
+    if (paymentParam === 'complete' && id) {
+      setPaymentCardState('verifying');
+      setPaymentRef(refParam);
+      setVerifyingPayment(true);
+      PaymentsApi.verifyPayment(id)
+        .then((res) => {
+          if (res.verified) {
+            setPaymentCardState('confirmed');
+            fetchOrderDetails();
+          } else {
+            setPaymentCardState('pending_confirm');
+          }
+        })
+        .catch(() => {
+          setPaymentCardState('pending_confirm');
+        })
+        .finally(() => {
+          setVerifyingPayment(false);
+        });
+    }
+  }, [id]); // eslint-disable-line react-hooks/exhaustive-deps
+
   const handleCancelOrder = async () => {
     if (!order) return;
     if (!confirm('Are you sure you want to cancel this order?')) return;
@@ -90,26 +126,34 @@ export const OrderDetailPage: React.FC = () => {
     }
   };
 
-  const handleMockPayment = async () => {
+  const handleProceedToPayment = async () => {
     if (!order) return;
-    setPaying(true);
+    setInitializingPayment(true);
     try {
-      // Mock payment patch request or success delay simulation
-      await api.patch(`/payments/paystack/callback`, {
-        reference: `mock-pay-${Date.now()}`,
-        status: 'success',
-        orderId: order.id,
-      });
-      toast.success('Payment verified successfully!');
-      fetchOrderDetails();
+      const { authorizationUrl } = await PaymentsApi.initializePayment(order.id);
+      window.location.href = authorizationUrl;
     } catch (err: any) {
       console.error(err);
-      // Fallback: update status locally in mock mode in case the Paystack simulation endpoint fails
-      toast.success('Mock Payment approved!');
-      // re-trigger load
-      fetchOrderDetails();
+      toast.error(err.message || 'Failed to initialize payment. Please try again.');
+      setInitializingPayment(false);
+    }
+  };
+
+  const handleRefreshVerify = async () => {
+    if (!id) return;
+    setVerifyingPayment(true);
+    try {
+      const res = await PaymentsApi.verifyPayment(id);
+      if (res.verified) {
+        setPaymentCardState('confirmed');
+        fetchOrderDetails();
+      } else {
+        toast.error('Payment not yet confirmed. Please try again shortly.');
+      }
+    } catch (err: any) {
+      toast.error(err.message || 'Could not verify payment.');
     } finally {
-      setPaying(false);
+      setVerifyingPayment(false);
     }
   };
 
@@ -125,7 +169,7 @@ export const OrderDetailPage: React.FC = () => {
   if (loading) {
     return (
       <div className="flex flex-col items-center justify-center py-20 space-y-4 bg-white">
-        <div className="w-10 h-10 border-4 border-primary-green/20 border-t-primary-green rounded-full animate-spin" />
+        <Spinner size="lg" />
         <p className="text-text-secondary text-sm">Loading order details...</p>
       </div>
     );
@@ -226,27 +270,30 @@ export const OrderDetailPage: React.FC = () => {
             )}
           </SectionCard>
 
-          {/* Payment Section details */}
-          <SectionCard title="Invoice Payment Info" subtitle="Financial escrow details.">
-            <div className="flex items-center justify-between p-4 bg-gray-50 border border-[#E5E7EB] rounded-xl">
-              <div className="flex items-center gap-3">
-                <CreditCard className="w-5 h-5 text-[#C8960C]" />
-                <div>
-                  <h5 className="font-bold text-text-primary text-xs uppercase tracking-wider">
-                    Escrow Status
-                  </h5>
-                  <p className="text-xs text-text-secondary mt-0.5">
-                    Total due: GHS {order.totalPrice.toFixed(2)}
-                  </p>
-                </div>
-              </div>
-              <Badge
-                variant={order.paymentStatus === 'PAID' ? 'success' : 'warning'}
-                label={order.paymentStatus === 'PAID' ? 'PAID ✓' : 'UNPAID'}
-                size="md"
-              />
+          {/* Payment Section */}
+          {order.paymentStatus === 'PAID' ? (
+            /* Paid state: compact badge + reference */
+            <div className="flex items-center gap-3 px-1 py-2">
+              <Badge variant="success" label="Paid ✓" size="md" />
+              {order.paystackReference && (
+                <span className="font-mono text-xs text-[#6B7280]">
+                  Ref: {order.paystackReference}
+                </span>
+              )}
             </div>
-          </SectionCard>
+          ) : !isCancelled ? (
+            /* Unpaid states: checkout / verifying / confirmed / pending */
+            <PaymentCard
+              state={paymentCardState}
+              cropType={order.listing?.cropType}
+              orderTotal={order.totalPrice}
+              deliveryCost={0}
+              reference={paymentRef}
+              onProceed={handleProceedToPayment}
+              onRefresh={handleRefreshVerify}
+              isLoading={initializingPayment || verifyingPayment}
+            />
+          ) : null}
 
           {/* Delivery tracking information */}
           <SectionCard title="Logistics & Dispatch" subtitle="Matched transporter vehicle details.">
@@ -276,7 +323,7 @@ export const OrderDetailPage: React.FC = () => {
           <SectionCard title="Farmer Conversation" subtitle={`Direct channel with ${farmerName}`}>
             <div className="border border-[#E5E7EB] rounded-xl flex flex-col h-[280px] bg-white overflow-hidden shadow-sm">
               {/* Message scroll list */}
-              <div className="flex-grow p-4 overflow-y-auto space-y-3.5 bg-gray-50 text-xs">
+              <div className="flex-grow p-4 overflow-y-auto space-y-3.5 bg-white text-xs">
                 {messages.map((m, idx) => {
                   const isYou = m.sender === 'You';
                   return (
@@ -320,18 +367,6 @@ export const OrderDetailPage: React.FC = () => {
         <div className="space-y-6 lg:sticky lg:top-20">
           <SectionCard title="Order Actions" subtitle="Verification & Checkout operations.">
             <div className="space-y-3.5">
-              {/* Pay Now Button */}
-              {isUnpaid && !isCancelled && (
-                <button
-                  onClick={handleMockPayment}
-                  disabled={paying}
-                  className="w-full flex items-center justify-center gap-2 bg-[#C8960C] hover:bg-[#b0830a] text-white font-bold py-3 rounded-lg text-sm border border-transparent shadow hover:shadow-md transition-all cursor-pointer min-h-[44px]"
-                >
-                  <CreditCard className="w-4 h-4" />
-                  <span>{paying ? 'Authorizing...' : 'Pay Now'}</span>
-                </button>
-              )}
-
               {/* Cancel Order Button */}
               {isPending && (
                 <Button
@@ -349,7 +384,7 @@ export const OrderDetailPage: React.FC = () => {
               {/* View Trace Button */}
               <Link
                 to={`/trace/${batchCode}`}
-                className="w-full inline-flex items-center justify-center gap-2 bg-white border border-[#E5E7EB] hover:bg-gray-50 text-[#2D6A4F] hover:text-[#235A41] font-bold py-3 rounded-lg text-sm transition-all min-h-[44px]"
+                className="w-full inline-flex items-center justify-center gap-2 bg-white border border-[#E5E7EB] hover:bg-[#EAF4EE] text-[#2D6A4F] hover:text-[#235A41] font-bold py-3 rounded-lg text-sm transition-all min-h-[44px]"
               >
                 <QrCode className="w-4 h-4" />
                 <span>View Batch Trace</span>
@@ -361,7 +396,7 @@ export const OrderDetailPage: React.FC = () => {
                   variant="ghost"
                   fullWidth
                   leftIcon={<Star className="w-4 h-4 text-amber-500 fill-amber-500" />}
-                  onClick={() => toast.success('Feedback successfully saved! Thank you.')}
+                  onClick={() => setReviewModalOpen(true)}
                 >
                   Rate this Order
                 </Button>
@@ -370,6 +405,17 @@ export const OrderDetailPage: React.FC = () => {
           </SectionCard>
         </div>
       </div>
+
+      {order && (
+        <LeaveReviewModal
+          isOpen={reviewModalOpen}
+          onClose={() => setReviewModalOpen(false)}
+          toUserId={order.listing?.farmerId || ''}
+          toUserName={farmerName}
+          orderId={order.id}
+          onSuccess={fetchOrderDetails}
+        />
+      )}
     </div>
   );
 };

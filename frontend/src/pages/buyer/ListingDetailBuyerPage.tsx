@@ -9,6 +9,7 @@ import { Badge } from '../../components/ui/Badge';
 import { Button } from '../../components/ui/Button';
 import { Input } from '../../components/ui/Input';
 import { CropTypeBadge } from '../../components/ui/CropTypeBadge';
+import { UserReviewsPanel } from '../../components/ui/UserReviewsPanel';
 import {
   ArrowLeft,
   Calendar,
@@ -285,7 +286,7 @@ export const ListingDetailBuyerPage: React.FC = () => {
                   variant="ghost"
                   size="sm"
                   leftIcon={<MessageCircle className="w-4 h-4" />}
-                  onClick={() => toast.success(`Chat capability coming soon for ${farmerName}!`)}
+                  onClick={() => navigate(`/messages?userId=${listing.farmerId}&userName=${encodeURIComponent(farmerName)}&userRole=FARMER`)}
                 >
                   Message Farmer
                 </Button>
@@ -410,35 +411,7 @@ export const ListingDetailBuyerPage: React.FC = () => {
           </Card>
 
           {/* 6. Reviews Section */}
-          <Card className="border border-[#E5E7EB] p-5 space-y-4">
-            <h4 className="text-sm font-bold text-text-primary border-b border-[#E5E7EB] pb-2">
-              Recent Buyer Reviews
-            </h4>
-            <div className="space-y-4 divide-y divide-[#F3F4F6]">
-              {[1, 2].map((r, idx) => (
-                <div key={r} className={`pt-3.5 ${idx === 0 ? 'pt-0' : ''} space-y-1.5`}>
-                  <div className="flex justify-between items-center text-xs">
-                    <span className="font-bold text-text-primary">Buyer G. {r}</span>
-                    <span className="text-[#9CA3AF]">2 weeks ago</span>
-                  </div>
-                  <div className="flex items-center text-amber-500">
-                    {[1, 2, 3, 4, 5].map((s) => (
-                      <Star key={s} className="w-3 h-3 fill-current" />
-                    ))}
-                  </div>
-                  <p className="text-xs text-text-secondary leading-relaxed">
-                    Great crop batch. Fresh quality, accurate weight calculations, and highly responsive support.
-                  </p>
-                </div>
-              ))}
-            </div>
-            <button
-              onClick={() => toast.success('Reviews drawer coming soon!')}
-              className="text-xs font-semibold text-[#2D6A4F] hover:text-[#235A41] mt-2 block select-none"
-            >
-              View all reviews
-            </button>
-          </Card>
+          <UserReviewsPanel userId={listing.farmerId} />
         </div>
 
         {/* Right Column: Order Form Panel (Sticky) */}

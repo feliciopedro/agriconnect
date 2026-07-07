@@ -19,6 +19,7 @@ import {
   RefreshCw,
   Eye,
 } from 'lucide-react';
+import { Spinner } from '../../components/ui/Spinner';
 import toast from 'react-hot-toast';
 
 // Leaflet map imports
@@ -274,7 +275,7 @@ export const TransportDashboardPage: React.FC = () => {
                 {stat.val}
               </p>
             </div>
-            <div className="p-2 bg-gray-50 border border-gray-100 rounded-lg">{stat.icon}</div>
+            <div className="p-2 bg-[#EAF4EE]/40 border border-[#2D6A4F]/10 rounded-lg">{stat.icon}</div>
           </Card>
         ))}
       </div>
@@ -305,7 +306,7 @@ export const TransportDashboardPage: React.FC = () => {
       {/* Loading state */}
       {loading ? (
         <div className="flex flex-col items-center justify-center py-20 bg-white">
-          <div className="w-10 h-10 border-4 border-[#2D6A4F]/20 border-t-[#2D6A4F] rounded-full animate-spin" />
+          <Spinner size="lg" />
           <p className="text-text-secondary text-xs mt-3">Syncing route dispatches...</p>
         </div>
       ) : activeTab === 'available' ? (
@@ -673,7 +674,7 @@ export const TransportDashboardPage: React.FC = () => {
                         href={`https://www.google.com/maps/dir/?api=1&destination=${nextStopLat},${nextStopLng}`}
                         target="_blank"
                         rel="noreferrer"
-                        className="inline-flex items-center justify-center gap-2 px-4 py-3 bg-white border border-[#E5E7EB] hover:bg-gray-50 text-text-primary font-bold rounded-lg text-sm shrink-0 select-none cursor-pointer h-11"
+                        className="inline-flex items-center justify-center gap-2 px-4 py-3 bg-white border border-[#E5E7EB] hover:bg-[#EAF4EE] text-text-primary font-bold rounded-lg text-sm shrink-0 select-none cursor-pointer h-11"
                       >
                         <ExternalLink className="w-4 h-4" />
                         <span>Navigate ({nextStopLabel.split(':')[0]})</span>
@@ -694,7 +695,7 @@ export const TransportDashboardPage: React.FC = () => {
                     {completedJobs.map((job) => (
                       <Card
                         key={job.id}
-                        className="bg-gray-50/50 border border-[#E5E7EB] p-4 flex items-center justify-between gap-4"
+                        className="bg-white border border-[#E5E7EB] p-4 flex items-center justify-between gap-4"
                       >
                         <div className="space-y-1 text-xs">
                           <div className="flex items-center gap-2">

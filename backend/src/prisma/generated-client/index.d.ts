@@ -84,6 +84,16 @@ export type OtpCode = $Result.DefaultSelection<Prisma.$OtpCodePayload>
  */
 export type UssdSession = $Result.DefaultSelection<Prisma.$UssdSessionPayload>
 /**
+ * Model UssdAuditLog
+ * 
+ */
+export type UssdAuditLog = $Result.DefaultSelection<Prisma.$UssdAuditLogPayload>
+/**
+ * Model UssdShortMessage
+ * 
+ */
+export type UssdShortMessage = $Result.DefaultSelection<Prisma.$UssdShortMessagePayload>
+/**
  * Model PreOrder
  * 
  */
@@ -215,6 +225,15 @@ export const DeliveryStatus: {
 export type DeliveryStatus = (typeof DeliveryStatus)[keyof typeof DeliveryStatus]
 
 
+export const UssdMessageStatus: {
+  QUEUED: 'QUEUED',
+  SENT: 'SENT',
+  FAILED: 'FAILED'
+};
+
+export type UssdMessageStatus = (typeof UssdMessageStatus)[keyof typeof UssdMessageStatus]
+
+
 export const PreOrderStatus: {
   DEPOSIT_PENDING: 'DEPOSIT_PENDING',
   OPEN: 'OPEN',
@@ -263,6 +282,10 @@ export const PaymentStatus: typeof $Enums.PaymentStatus
 export type DeliveryStatus = $Enums.DeliveryStatus
 
 export const DeliveryStatus: typeof $Enums.DeliveryStatus
+
+export type UssdMessageStatus = $Enums.UssdMessageStatus
+
+export const UssdMessageStatus: typeof $Enums.UssdMessageStatus
 
 export type PreOrderStatus = $Enums.PreOrderStatus
 
@@ -530,6 +553,26 @@ export class PrismaClient<
     * ```
     */
   get ussdSession(): Prisma.UssdSessionDelegate<ExtArgs>;
+
+  /**
+   * `prisma.ussdAuditLog`: Exposes CRUD operations for the **UssdAuditLog** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more UssdAuditLogs
+    * const ussdAuditLogs = await prisma.ussdAuditLog.findMany()
+    * ```
+    */
+  get ussdAuditLog(): Prisma.UssdAuditLogDelegate<ExtArgs>;
+
+  /**
+   * `prisma.ussdShortMessage`: Exposes CRUD operations for the **UssdShortMessage** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more UssdShortMessages
+    * const ussdShortMessages = await prisma.ussdShortMessage.findMany()
+    * ```
+    */
+  get ussdShortMessage(): Prisma.UssdShortMessageDelegate<ExtArgs>;
 
   /**
    * `prisma.preOrder`: Exposes CRUD operations for the **PreOrder** model.
@@ -1045,6 +1088,8 @@ export namespace Prisma {
     Message: 'Message',
     OtpCode: 'OtpCode',
     UssdSession: 'UssdSession',
+    UssdAuditLog: 'UssdAuditLog',
+    UssdShortMessage: 'UssdShortMessage',
     PreOrder: 'PreOrder',
     PlantingLog: 'PlantingLog',
     PlantingInput: 'PlantingInput',
@@ -1066,7 +1111,7 @@ export namespace Prisma {
 
   export type TypeMap<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, ClientOptions = {}> = {
     meta: {
-      modelProps: "user" | "farmerProfile" | "buyerProfile" | "transportProfile" | "produceListing" | "traceabilityRecord" | "traceEvent" | "order" | "deliveryRequest" | "review" | "notification" | "message" | "otpCode" | "ussdSession" | "preOrder" | "plantingLog" | "plantingInput" | "auditLog" | "systemConfig" | "userBan"
+      modelProps: "user" | "farmerProfile" | "buyerProfile" | "transportProfile" | "produceListing" | "traceabilityRecord" | "traceEvent" | "order" | "deliveryRequest" | "review" | "notification" | "message" | "otpCode" | "ussdSession" | "ussdAuditLog" | "ussdShortMessage" | "preOrder" | "plantingLog" | "plantingInput" | "auditLog" | "systemConfig" | "userBan"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -2050,6 +2095,146 @@ export namespace Prisma {
           }
         }
       }
+      UssdAuditLog: {
+        payload: Prisma.$UssdAuditLogPayload<ExtArgs>
+        fields: Prisma.UssdAuditLogFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.UssdAuditLogFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UssdAuditLogPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.UssdAuditLogFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UssdAuditLogPayload>
+          }
+          findFirst: {
+            args: Prisma.UssdAuditLogFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UssdAuditLogPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.UssdAuditLogFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UssdAuditLogPayload>
+          }
+          findMany: {
+            args: Prisma.UssdAuditLogFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UssdAuditLogPayload>[]
+          }
+          create: {
+            args: Prisma.UssdAuditLogCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UssdAuditLogPayload>
+          }
+          createMany: {
+            args: Prisma.UssdAuditLogCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.UssdAuditLogCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UssdAuditLogPayload>[]
+          }
+          delete: {
+            args: Prisma.UssdAuditLogDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UssdAuditLogPayload>
+          }
+          update: {
+            args: Prisma.UssdAuditLogUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UssdAuditLogPayload>
+          }
+          deleteMany: {
+            args: Prisma.UssdAuditLogDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.UssdAuditLogUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.UssdAuditLogUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UssdAuditLogPayload>
+          }
+          aggregate: {
+            args: Prisma.UssdAuditLogAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateUssdAuditLog>
+          }
+          groupBy: {
+            args: Prisma.UssdAuditLogGroupByArgs<ExtArgs>
+            result: $Utils.Optional<UssdAuditLogGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.UssdAuditLogCountArgs<ExtArgs>
+            result: $Utils.Optional<UssdAuditLogCountAggregateOutputType> | number
+          }
+        }
+      }
+      UssdShortMessage: {
+        payload: Prisma.$UssdShortMessagePayload<ExtArgs>
+        fields: Prisma.UssdShortMessageFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.UssdShortMessageFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UssdShortMessagePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.UssdShortMessageFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UssdShortMessagePayload>
+          }
+          findFirst: {
+            args: Prisma.UssdShortMessageFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UssdShortMessagePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.UssdShortMessageFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UssdShortMessagePayload>
+          }
+          findMany: {
+            args: Prisma.UssdShortMessageFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UssdShortMessagePayload>[]
+          }
+          create: {
+            args: Prisma.UssdShortMessageCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UssdShortMessagePayload>
+          }
+          createMany: {
+            args: Prisma.UssdShortMessageCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.UssdShortMessageCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UssdShortMessagePayload>[]
+          }
+          delete: {
+            args: Prisma.UssdShortMessageDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UssdShortMessagePayload>
+          }
+          update: {
+            args: Prisma.UssdShortMessageUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UssdShortMessagePayload>
+          }
+          deleteMany: {
+            args: Prisma.UssdShortMessageDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.UssdShortMessageUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.UssdShortMessageUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UssdShortMessagePayload>
+          }
+          aggregate: {
+            args: Prisma.UssdShortMessageAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateUssdShortMessage>
+          }
+          groupBy: {
+            args: Prisma.UssdShortMessageGroupByArgs<ExtArgs>
+            result: $Utils.Optional<UssdShortMessageGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.UssdShortMessageCountArgs<ExtArgs>
+            result: $Utils.Optional<UssdShortMessageCountAggregateOutputType> | number
+          }
+        }
+      }
       PreOrder: {
         payload: Prisma.$PreOrderPayload<ExtArgs>
         fields: Prisma.PreOrderFieldRefs
@@ -2645,6 +2830,7 @@ export namespace Prisma {
     auditLogs: number
     configsUpdated: number
     bansIssued: number
+    ussdSessions: number
   }
 
   export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -2662,6 +2848,7 @@ export namespace Prisma {
     auditLogs?: boolean | UserCountOutputTypeCountAuditLogsArgs
     configsUpdated?: boolean | UserCountOutputTypeCountConfigsUpdatedArgs
     bansIssued?: boolean | UserCountOutputTypeCountBansIssuedArgs
+    ussdSessions?: boolean | UserCountOutputTypeCountUssdSessionsArgs
   }
 
   // Custom InputTypes
@@ -2771,6 +2958,13 @@ export namespace Prisma {
    */
   export type UserCountOutputTypeCountBansIssuedArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: UserBanWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountUssdSessionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: UssdSessionWhereInput
   }
 
 
@@ -2940,6 +3134,10 @@ export namespace Prisma {
     district: string | null
     isVerified: boolean | null
     passwordHash: string | null
+    preferredLanguage: string | null
+    ussdPin: string | null
+    ussdPinSetAt: Date | null
+    lastUssdActivity: Date | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -2955,6 +3153,10 @@ export namespace Prisma {
     district: string | null
     isVerified: boolean | null
     passwordHash: string | null
+    preferredLanguage: string | null
+    ussdPin: string | null
+    ussdPinSetAt: Date | null
+    lastUssdActivity: Date | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -2970,6 +3172,10 @@ export namespace Prisma {
     district: number
     isVerified: number
     passwordHash: number
+    preferredLanguage: number
+    ussdPin: number
+    ussdPinSetAt: number
+    lastUssdActivity: number
     createdAt: number
     updatedAt: number
     _all: number
@@ -2997,6 +3203,10 @@ export namespace Prisma {
     district?: true
     isVerified?: true
     passwordHash?: true
+    preferredLanguage?: true
+    ussdPin?: true
+    ussdPinSetAt?: true
+    lastUssdActivity?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -3012,6 +3222,10 @@ export namespace Prisma {
     district?: true
     isVerified?: true
     passwordHash?: true
+    preferredLanguage?: true
+    ussdPin?: true
+    ussdPinSetAt?: true
+    lastUssdActivity?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -3027,6 +3241,10 @@ export namespace Prisma {
     district?: true
     isVerified?: true
     passwordHash?: true
+    preferredLanguage?: true
+    ussdPin?: true
+    ussdPinSetAt?: true
+    lastUssdActivity?: true
     createdAt?: true
     updatedAt?: true
     _all?: true
@@ -3129,6 +3347,10 @@ export namespace Prisma {
     district: string | null
     isVerified: boolean
     passwordHash: string | null
+    preferredLanguage: string
+    ussdPin: string | null
+    ussdPinSetAt: Date | null
+    lastUssdActivity: Date | null
     createdAt: Date
     updatedAt: Date
     _count: UserCountAggregateOutputType | null
@@ -3163,6 +3385,10 @@ export namespace Prisma {
     district?: boolean
     isVerified?: boolean
     passwordHash?: boolean
+    preferredLanguage?: boolean
+    ussdPin?: boolean
+    ussdPinSetAt?: boolean
+    lastUssdActivity?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     farmerProfile?: boolean | User$farmerProfileArgs<ExtArgs>
@@ -3183,6 +3409,7 @@ export namespace Prisma {
     configsUpdated?: boolean | User$configsUpdatedArgs<ExtArgs>
     ban?: boolean | User$banArgs<ExtArgs>
     bansIssued?: boolean | User$bansIssuedArgs<ExtArgs>
+    ussdSessions?: boolean | User$ussdSessionsArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
@@ -3197,6 +3424,10 @@ export namespace Prisma {
     district?: boolean
     isVerified?: boolean
     passwordHash?: boolean
+    preferredLanguage?: boolean
+    ussdPin?: boolean
+    ussdPinSetAt?: boolean
+    lastUssdActivity?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }, ExtArgs["result"]["user"]>
@@ -3212,6 +3443,10 @@ export namespace Prisma {
     district?: boolean
     isVerified?: boolean
     passwordHash?: boolean
+    preferredLanguage?: boolean
+    ussdPin?: boolean
+    ussdPinSetAt?: boolean
+    lastUssdActivity?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
@@ -3235,6 +3470,7 @@ export namespace Prisma {
     configsUpdated?: boolean | User$configsUpdatedArgs<ExtArgs>
     ban?: boolean | User$banArgs<ExtArgs>
     bansIssued?: boolean | User$bansIssuedArgs<ExtArgs>
+    ussdSessions?: boolean | User$ussdSessionsArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type UserIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -3260,6 +3496,7 @@ export namespace Prisma {
       configsUpdated: Prisma.$SystemConfigPayload<ExtArgs>[]
       ban: Prisma.$UserBanPayload<ExtArgs> | null
       bansIssued: Prisma.$UserBanPayload<ExtArgs>[]
+      ussdSessions: Prisma.$UssdSessionPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -3272,6 +3509,10 @@ export namespace Prisma {
       district: string | null
       isVerified: boolean
       passwordHash: string | null
+      preferredLanguage: string
+      ussdPin: string | null
+      ussdPinSetAt: Date | null
+      lastUssdActivity: Date | null
       createdAt: Date
       updatedAt: Date
     }, ExtArgs["result"]["user"]>
@@ -3656,6 +3897,7 @@ export namespace Prisma {
     configsUpdated<T extends User$configsUpdatedArgs<ExtArgs> = {}>(args?: Subset<T, User$configsUpdatedArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SystemConfigPayload<ExtArgs>, T, "findMany"> | Null>
     ban<T extends User$banArgs<ExtArgs> = {}>(args?: Subset<T, User$banArgs<ExtArgs>>): Prisma__UserBanClient<$Result.GetResult<Prisma.$UserBanPayload<ExtArgs>, T, "findUniqueOrThrow"> | null, null, ExtArgs>
     bansIssued<T extends User$bansIssuedArgs<ExtArgs> = {}>(args?: Subset<T, User$bansIssuedArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserBanPayload<ExtArgs>, T, "findMany"> | Null>
+    ussdSessions<T extends User$ussdSessionsArgs<ExtArgs> = {}>(args?: Subset<T, User$ussdSessionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UssdSessionPayload<ExtArgs>, T, "findMany"> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3695,6 +3937,10 @@ export namespace Prisma {
     readonly district: FieldRef<"User", 'String'>
     readonly isVerified: FieldRef<"User", 'Boolean'>
     readonly passwordHash: FieldRef<"User", 'String'>
+    readonly preferredLanguage: FieldRef<"User", 'String'>
+    readonly ussdPin: FieldRef<"User", 'String'>
+    readonly ussdPinSetAt: FieldRef<"User", 'DateTime'>
+    readonly lastUssdActivity: FieldRef<"User", 'DateTime'>
     readonly createdAt: FieldRef<"User", 'DateTime'>
     readonly updatedAt: FieldRef<"User", 'DateTime'>
   }
@@ -4348,6 +4594,26 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: UserBanScalarFieldEnum | UserBanScalarFieldEnum[]
+  }
+
+  /**
+   * User.ussdSessions
+   */
+  export type User$ussdSessionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UssdSession
+     */
+    select?: UssdSessionSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UssdSessionInclude<ExtArgs> | null
+    where?: UssdSessionWhereInput
+    orderBy?: UssdSessionOrderByWithRelationInput | UssdSessionOrderByWithRelationInput[]
+    cursor?: UssdSessionWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: UssdSessionScalarFieldEnum | UssdSessionScalarFieldEnum[]
   }
 
   /**
@@ -16877,28 +17143,48 @@ export namespace Prisma {
     id: string | null
     sessionId: string | null
     phone: string | null
+    userId: string | null
+    language: string | null
+    currentMenu: string | null
     currentStep: string | null
-    createdAt: Date | null
-    updatedAt: Date | null
+    startedAt: Date | null
+    lastActivityAt: Date | null
+    isActive: boolean | null
+    endedAt: Date | null
+    endReason: string | null
   }
 
   export type UssdSessionMaxAggregateOutputType = {
     id: string | null
     sessionId: string | null
     phone: string | null
+    userId: string | null
+    language: string | null
+    currentMenu: string | null
     currentStep: string | null
-    createdAt: Date | null
-    updatedAt: Date | null
+    startedAt: Date | null
+    lastActivityAt: Date | null
+    isActive: boolean | null
+    endedAt: Date | null
+    endReason: string | null
   }
 
   export type UssdSessionCountAggregateOutputType = {
     id: number
     sessionId: number
     phone: number
+    userId: number
+    language: number
+    currentMenu: number
     currentStep: number
+    menuStack: number
     tempData: number
-    createdAt: number
-    updatedAt: number
+    inputHistory: number
+    startedAt: number
+    lastActivityAt: number
+    isActive: number
+    endedAt: number
+    endReason: number
     _all: number
   }
 
@@ -16907,28 +17193,48 @@ export namespace Prisma {
     id?: true
     sessionId?: true
     phone?: true
+    userId?: true
+    language?: true
+    currentMenu?: true
     currentStep?: true
-    createdAt?: true
-    updatedAt?: true
+    startedAt?: true
+    lastActivityAt?: true
+    isActive?: true
+    endedAt?: true
+    endReason?: true
   }
 
   export type UssdSessionMaxAggregateInputType = {
     id?: true
     sessionId?: true
     phone?: true
+    userId?: true
+    language?: true
+    currentMenu?: true
     currentStep?: true
-    createdAt?: true
-    updatedAt?: true
+    startedAt?: true
+    lastActivityAt?: true
+    isActive?: true
+    endedAt?: true
+    endReason?: true
   }
 
   export type UssdSessionCountAggregateInputType = {
     id?: true
     sessionId?: true
     phone?: true
+    userId?: true
+    language?: true
+    currentMenu?: true
     currentStep?: true
+    menuStack?: true
     tempData?: true
-    createdAt?: true
-    updatedAt?: true
+    inputHistory?: true
+    startedAt?: true
+    lastActivityAt?: true
+    isActive?: true
+    endedAt?: true
+    endReason?: true
     _all?: true
   }
 
@@ -17008,10 +17314,18 @@ export namespace Prisma {
     id: string
     sessionId: string
     phone: string
+    userId: string | null
+    language: string
+    currentMenu: string
     currentStep: string
-    tempData: JsonValue | null
-    createdAt: Date
-    updatedAt: Date
+    menuStack: JsonValue
+    tempData: JsonValue
+    inputHistory: JsonValue
+    startedAt: Date
+    lastActivityAt: Date
+    isActive: boolean
+    endedAt: Date | null
+    endReason: string | null
     _count: UssdSessionCountAggregateOutputType | null
     _min: UssdSessionMinAggregateOutputType | null
     _max: UssdSessionMaxAggregateOutputType | null
@@ -17035,44 +17349,86 @@ export namespace Prisma {
     id?: boolean
     sessionId?: boolean
     phone?: boolean
+    userId?: boolean
+    language?: boolean
+    currentMenu?: boolean
     currentStep?: boolean
+    menuStack?: boolean
     tempData?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
+    inputHistory?: boolean
+    startedAt?: boolean
+    lastActivityAt?: boolean
+    isActive?: boolean
+    endedAt?: boolean
+    endReason?: boolean
+    user?: boolean | UssdSession$userArgs<ExtArgs>
   }, ExtArgs["result"]["ussdSession"]>
 
   export type UssdSessionSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     sessionId?: boolean
     phone?: boolean
+    userId?: boolean
+    language?: boolean
+    currentMenu?: boolean
     currentStep?: boolean
+    menuStack?: boolean
     tempData?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
+    inputHistory?: boolean
+    startedAt?: boolean
+    lastActivityAt?: boolean
+    isActive?: boolean
+    endedAt?: boolean
+    endReason?: boolean
+    user?: boolean | UssdSession$userArgs<ExtArgs>
   }, ExtArgs["result"]["ussdSession"]>
 
   export type UssdSessionSelectScalar = {
     id?: boolean
     sessionId?: boolean
     phone?: boolean
+    userId?: boolean
+    language?: boolean
+    currentMenu?: boolean
     currentStep?: boolean
+    menuStack?: boolean
     tempData?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
+    inputHistory?: boolean
+    startedAt?: boolean
+    lastActivityAt?: boolean
+    isActive?: boolean
+    endedAt?: boolean
+    endReason?: boolean
   }
 
+  export type UssdSessionInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UssdSession$userArgs<ExtArgs>
+  }
+  export type UssdSessionIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UssdSession$userArgs<ExtArgs>
+  }
 
   export type $UssdSessionPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "UssdSession"
-    objects: {}
+    objects: {
+      user: Prisma.$UserPayload<ExtArgs> | null
+    }
     scalars: $Extensions.GetPayloadResult<{
       id: string
       sessionId: string
       phone: string
+      userId: string | null
+      language: string
+      currentMenu: string
       currentStep: string
-      tempData: Prisma.JsonValue | null
-      createdAt: Date
-      updatedAt: Date
+      menuStack: Prisma.JsonValue
+      tempData: Prisma.JsonValue
+      inputHistory: Prisma.JsonValue
+      startedAt: Date
+      lastActivityAt: Date
+      isActive: boolean
+      endedAt: Date | null
+      endReason: string | null
     }, ExtArgs["result"]["ussdSession"]>
     composites: {}
   }
@@ -17437,6 +17793,7 @@ export namespace Prisma {
    */
   export interface Prisma__UssdSessionClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    user<T extends UssdSession$userArgs<ExtArgs> = {}>(args?: Subset<T, UssdSession$userArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow"> | null, null, ExtArgs>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -17469,10 +17826,18 @@ export namespace Prisma {
     readonly id: FieldRef<"UssdSession", 'String'>
     readonly sessionId: FieldRef<"UssdSession", 'String'>
     readonly phone: FieldRef<"UssdSession", 'String'>
+    readonly userId: FieldRef<"UssdSession", 'String'>
+    readonly language: FieldRef<"UssdSession", 'String'>
+    readonly currentMenu: FieldRef<"UssdSession", 'String'>
     readonly currentStep: FieldRef<"UssdSession", 'String'>
+    readonly menuStack: FieldRef<"UssdSession", 'Json'>
     readonly tempData: FieldRef<"UssdSession", 'Json'>
-    readonly createdAt: FieldRef<"UssdSession", 'DateTime'>
-    readonly updatedAt: FieldRef<"UssdSession", 'DateTime'>
+    readonly inputHistory: FieldRef<"UssdSession", 'Json'>
+    readonly startedAt: FieldRef<"UssdSession", 'DateTime'>
+    readonly lastActivityAt: FieldRef<"UssdSession", 'DateTime'>
+    readonly isActive: FieldRef<"UssdSession", 'Boolean'>
+    readonly endedAt: FieldRef<"UssdSession", 'DateTime'>
+    readonly endReason: FieldRef<"UssdSession", 'String'>
   }
     
 
@@ -17485,6 +17850,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the UssdSession
      */
     select?: UssdSessionSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UssdSessionInclude<ExtArgs> | null
     /**
      * Filter, which UssdSession to fetch.
      */
@@ -17500,6 +17869,10 @@ export namespace Prisma {
      */
     select?: UssdSessionSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UssdSessionInclude<ExtArgs> | null
+    /**
      * Filter, which UssdSession to fetch.
      */
     where: UssdSessionWhereUniqueInput
@@ -17513,6 +17886,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the UssdSession
      */
     select?: UssdSessionSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UssdSessionInclude<ExtArgs> | null
     /**
      * Filter, which UssdSession to fetch.
      */
@@ -17558,6 +17935,10 @@ export namespace Prisma {
      */
     select?: UssdSessionSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UssdSessionInclude<ExtArgs> | null
+    /**
      * Filter, which UssdSession to fetch.
      */
     where?: UssdSessionWhereInput
@@ -17602,6 +17983,10 @@ export namespace Prisma {
      */
     select?: UssdSessionSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UssdSessionInclude<ExtArgs> | null
+    /**
      * Filter, which UssdSessions to fetch.
      */
     where?: UssdSessionWhereInput
@@ -17641,6 +18026,10 @@ export namespace Prisma {
      */
     select?: UssdSessionSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UssdSessionInclude<ExtArgs> | null
+    /**
      * The data needed to create a UssdSession.
      */
     data: XOR<UssdSessionCreateInput, UssdSessionUncheckedCreateInput>
@@ -17670,6 +18059,10 @@ export namespace Prisma {
      */
     data: UssdSessionCreateManyInput | UssdSessionCreateManyInput[]
     skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UssdSessionIncludeCreateManyAndReturn<ExtArgs> | null
   }
 
   /**
@@ -17680,6 +18073,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the UssdSession
      */
     select?: UssdSessionSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UssdSessionInclude<ExtArgs> | null
     /**
      * The data needed to update a UssdSession.
      */
@@ -17713,6 +18110,10 @@ export namespace Prisma {
      */
     select?: UssdSessionSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UssdSessionInclude<ExtArgs> | null
+    /**
      * The filter to search for the UssdSession to update in case it exists.
      */
     where: UssdSessionWhereUniqueInput
@@ -17735,6 +18136,10 @@ export namespace Prisma {
      */
     select?: UssdSessionSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UssdSessionInclude<ExtArgs> | null
+    /**
      * Filter which UssdSession to delete.
      */
     where: UssdSessionWhereUniqueInput
@@ -17751,6 +18156,21 @@ export namespace Prisma {
   }
 
   /**
+   * UssdSession.user
+   */
+  export type UssdSession$userArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the User
+     */
+    select?: UserSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    where?: UserWhereInput
+  }
+
+  /**
    * UssdSession without action
    */
   export type UssdSessionDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -17758,6 +18178,1916 @@ export namespace Prisma {
      * Select specific fields to fetch from the UssdSession
      */
     select?: UssdSessionSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UssdSessionInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model UssdAuditLog
+   */
+
+  export type AggregateUssdAuditLog = {
+    _count: UssdAuditLogCountAggregateOutputType | null
+    _min: UssdAuditLogMinAggregateOutputType | null
+    _max: UssdAuditLogMaxAggregateOutputType | null
+  }
+
+  export type UssdAuditLogMinAggregateOutputType = {
+    id: string | null
+    sessionId: string | null
+    phone: string | null
+    userId: string | null
+    menu: string | null
+    step: string | null
+    userInput: string | null
+    systemResponse: string | null
+    action: string | null
+    timestamp: Date | null
+  }
+
+  export type UssdAuditLogMaxAggregateOutputType = {
+    id: string | null
+    sessionId: string | null
+    phone: string | null
+    userId: string | null
+    menu: string | null
+    step: string | null
+    userInput: string | null
+    systemResponse: string | null
+    action: string | null
+    timestamp: Date | null
+  }
+
+  export type UssdAuditLogCountAggregateOutputType = {
+    id: number
+    sessionId: number
+    phone: number
+    userId: number
+    menu: number
+    step: number
+    userInput: number
+    systemResponse: number
+    action: number
+    metadata: number
+    timestamp: number
+    _all: number
+  }
+
+
+  export type UssdAuditLogMinAggregateInputType = {
+    id?: true
+    sessionId?: true
+    phone?: true
+    userId?: true
+    menu?: true
+    step?: true
+    userInput?: true
+    systemResponse?: true
+    action?: true
+    timestamp?: true
+  }
+
+  export type UssdAuditLogMaxAggregateInputType = {
+    id?: true
+    sessionId?: true
+    phone?: true
+    userId?: true
+    menu?: true
+    step?: true
+    userInput?: true
+    systemResponse?: true
+    action?: true
+    timestamp?: true
+  }
+
+  export type UssdAuditLogCountAggregateInputType = {
+    id?: true
+    sessionId?: true
+    phone?: true
+    userId?: true
+    menu?: true
+    step?: true
+    userInput?: true
+    systemResponse?: true
+    action?: true
+    metadata?: true
+    timestamp?: true
+    _all?: true
+  }
+
+  export type UssdAuditLogAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which UssdAuditLog to aggregate.
+     */
+    where?: UssdAuditLogWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of UssdAuditLogs to fetch.
+     */
+    orderBy?: UssdAuditLogOrderByWithRelationInput | UssdAuditLogOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: UssdAuditLogWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` UssdAuditLogs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` UssdAuditLogs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned UssdAuditLogs
+    **/
+    _count?: true | UssdAuditLogCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: UssdAuditLogMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: UssdAuditLogMaxAggregateInputType
+  }
+
+  export type GetUssdAuditLogAggregateType<T extends UssdAuditLogAggregateArgs> = {
+        [P in keyof T & keyof AggregateUssdAuditLog]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateUssdAuditLog[P]>
+      : GetScalarType<T[P], AggregateUssdAuditLog[P]>
+  }
+
+
+
+
+  export type UssdAuditLogGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: UssdAuditLogWhereInput
+    orderBy?: UssdAuditLogOrderByWithAggregationInput | UssdAuditLogOrderByWithAggregationInput[]
+    by: UssdAuditLogScalarFieldEnum[] | UssdAuditLogScalarFieldEnum
+    having?: UssdAuditLogScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: UssdAuditLogCountAggregateInputType | true
+    _min?: UssdAuditLogMinAggregateInputType
+    _max?: UssdAuditLogMaxAggregateInputType
+  }
+
+  export type UssdAuditLogGroupByOutputType = {
+    id: string
+    sessionId: string
+    phone: string
+    userId: string | null
+    menu: string
+    step: string
+    userInput: string | null
+    systemResponse: string
+    action: string | null
+    metadata: JsonValue | null
+    timestamp: Date
+    _count: UssdAuditLogCountAggregateOutputType | null
+    _min: UssdAuditLogMinAggregateOutputType | null
+    _max: UssdAuditLogMaxAggregateOutputType | null
+  }
+
+  type GetUssdAuditLogGroupByPayload<T extends UssdAuditLogGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<UssdAuditLogGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof UssdAuditLogGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], UssdAuditLogGroupByOutputType[P]>
+            : GetScalarType<T[P], UssdAuditLogGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type UssdAuditLogSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    sessionId?: boolean
+    phone?: boolean
+    userId?: boolean
+    menu?: boolean
+    step?: boolean
+    userInput?: boolean
+    systemResponse?: boolean
+    action?: boolean
+    metadata?: boolean
+    timestamp?: boolean
+  }, ExtArgs["result"]["ussdAuditLog"]>
+
+  export type UssdAuditLogSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    sessionId?: boolean
+    phone?: boolean
+    userId?: boolean
+    menu?: boolean
+    step?: boolean
+    userInput?: boolean
+    systemResponse?: boolean
+    action?: boolean
+    metadata?: boolean
+    timestamp?: boolean
+  }, ExtArgs["result"]["ussdAuditLog"]>
+
+  export type UssdAuditLogSelectScalar = {
+    id?: boolean
+    sessionId?: boolean
+    phone?: boolean
+    userId?: boolean
+    menu?: boolean
+    step?: boolean
+    userInput?: boolean
+    systemResponse?: boolean
+    action?: boolean
+    metadata?: boolean
+    timestamp?: boolean
+  }
+
+
+  export type $UssdAuditLogPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "UssdAuditLog"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      sessionId: string
+      phone: string
+      userId: string | null
+      menu: string
+      step: string
+      userInput: string | null
+      systemResponse: string
+      action: string | null
+      metadata: Prisma.JsonValue | null
+      timestamp: Date
+    }, ExtArgs["result"]["ussdAuditLog"]>
+    composites: {}
+  }
+
+  type UssdAuditLogGetPayload<S extends boolean | null | undefined | UssdAuditLogDefaultArgs> = $Result.GetResult<Prisma.$UssdAuditLogPayload, S>
+
+  type UssdAuditLogCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<UssdAuditLogFindManyArgs, 'select' | 'include' | 'distinct'> & {
+      select?: UssdAuditLogCountAggregateInputType | true
+    }
+
+  export interface UssdAuditLogDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['UssdAuditLog'], meta: { name: 'UssdAuditLog' } }
+    /**
+     * Find zero or one UssdAuditLog that matches the filter.
+     * @param {UssdAuditLogFindUniqueArgs} args - Arguments to find a UssdAuditLog
+     * @example
+     * // Get one UssdAuditLog
+     * const ussdAuditLog = await prisma.ussdAuditLog.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends UssdAuditLogFindUniqueArgs>(args: SelectSubset<T, UssdAuditLogFindUniqueArgs<ExtArgs>>): Prisma__UssdAuditLogClient<$Result.GetResult<Prisma.$UssdAuditLogPayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
+
+    /**
+     * Find one UssdAuditLog that matches the filter or throw an error with `error.code='P2025'` 
+     * if no matches were found.
+     * @param {UssdAuditLogFindUniqueOrThrowArgs} args - Arguments to find a UssdAuditLog
+     * @example
+     * // Get one UssdAuditLog
+     * const ussdAuditLog = await prisma.ussdAuditLog.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends UssdAuditLogFindUniqueOrThrowArgs>(args: SelectSubset<T, UssdAuditLogFindUniqueOrThrowArgs<ExtArgs>>): Prisma__UssdAuditLogClient<$Result.GetResult<Prisma.$UssdAuditLogPayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
+
+    /**
+     * Find the first UssdAuditLog that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UssdAuditLogFindFirstArgs} args - Arguments to find a UssdAuditLog
+     * @example
+     * // Get one UssdAuditLog
+     * const ussdAuditLog = await prisma.ussdAuditLog.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends UssdAuditLogFindFirstArgs>(args?: SelectSubset<T, UssdAuditLogFindFirstArgs<ExtArgs>>): Prisma__UssdAuditLogClient<$Result.GetResult<Prisma.$UssdAuditLogPayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
+
+    /**
+     * Find the first UssdAuditLog that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UssdAuditLogFindFirstOrThrowArgs} args - Arguments to find a UssdAuditLog
+     * @example
+     * // Get one UssdAuditLog
+     * const ussdAuditLog = await prisma.ussdAuditLog.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends UssdAuditLogFindFirstOrThrowArgs>(args?: SelectSubset<T, UssdAuditLogFindFirstOrThrowArgs<ExtArgs>>): Prisma__UssdAuditLogClient<$Result.GetResult<Prisma.$UssdAuditLogPayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
+
+    /**
+     * Find zero or more UssdAuditLogs that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UssdAuditLogFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all UssdAuditLogs
+     * const ussdAuditLogs = await prisma.ussdAuditLog.findMany()
+     * 
+     * // Get first 10 UssdAuditLogs
+     * const ussdAuditLogs = await prisma.ussdAuditLog.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const ussdAuditLogWithIdOnly = await prisma.ussdAuditLog.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends UssdAuditLogFindManyArgs>(args?: SelectSubset<T, UssdAuditLogFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UssdAuditLogPayload<ExtArgs>, T, "findMany">>
+
+    /**
+     * Create a UssdAuditLog.
+     * @param {UssdAuditLogCreateArgs} args - Arguments to create a UssdAuditLog.
+     * @example
+     * // Create one UssdAuditLog
+     * const UssdAuditLog = await prisma.ussdAuditLog.create({
+     *   data: {
+     *     // ... data to create a UssdAuditLog
+     *   }
+     * })
+     * 
+     */
+    create<T extends UssdAuditLogCreateArgs>(args: SelectSubset<T, UssdAuditLogCreateArgs<ExtArgs>>): Prisma__UssdAuditLogClient<$Result.GetResult<Prisma.$UssdAuditLogPayload<ExtArgs>, T, "create">, never, ExtArgs>
+
+    /**
+     * Create many UssdAuditLogs.
+     * @param {UssdAuditLogCreateManyArgs} args - Arguments to create many UssdAuditLogs.
+     * @example
+     * // Create many UssdAuditLogs
+     * const ussdAuditLog = await prisma.ussdAuditLog.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends UssdAuditLogCreateManyArgs>(args?: SelectSubset<T, UssdAuditLogCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many UssdAuditLogs and returns the data saved in the database.
+     * @param {UssdAuditLogCreateManyAndReturnArgs} args - Arguments to create many UssdAuditLogs.
+     * @example
+     * // Create many UssdAuditLogs
+     * const ussdAuditLog = await prisma.ussdAuditLog.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many UssdAuditLogs and only return the `id`
+     * const ussdAuditLogWithIdOnly = await prisma.ussdAuditLog.createManyAndReturn({ 
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends UssdAuditLogCreateManyAndReturnArgs>(args?: SelectSubset<T, UssdAuditLogCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UssdAuditLogPayload<ExtArgs>, T, "createManyAndReturn">>
+
+    /**
+     * Delete a UssdAuditLog.
+     * @param {UssdAuditLogDeleteArgs} args - Arguments to delete one UssdAuditLog.
+     * @example
+     * // Delete one UssdAuditLog
+     * const UssdAuditLog = await prisma.ussdAuditLog.delete({
+     *   where: {
+     *     // ... filter to delete one UssdAuditLog
+     *   }
+     * })
+     * 
+     */
+    delete<T extends UssdAuditLogDeleteArgs>(args: SelectSubset<T, UssdAuditLogDeleteArgs<ExtArgs>>): Prisma__UssdAuditLogClient<$Result.GetResult<Prisma.$UssdAuditLogPayload<ExtArgs>, T, "delete">, never, ExtArgs>
+
+    /**
+     * Update one UssdAuditLog.
+     * @param {UssdAuditLogUpdateArgs} args - Arguments to update one UssdAuditLog.
+     * @example
+     * // Update one UssdAuditLog
+     * const ussdAuditLog = await prisma.ussdAuditLog.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends UssdAuditLogUpdateArgs>(args: SelectSubset<T, UssdAuditLogUpdateArgs<ExtArgs>>): Prisma__UssdAuditLogClient<$Result.GetResult<Prisma.$UssdAuditLogPayload<ExtArgs>, T, "update">, never, ExtArgs>
+
+    /**
+     * Delete zero or more UssdAuditLogs.
+     * @param {UssdAuditLogDeleteManyArgs} args - Arguments to filter UssdAuditLogs to delete.
+     * @example
+     * // Delete a few UssdAuditLogs
+     * const { count } = await prisma.ussdAuditLog.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends UssdAuditLogDeleteManyArgs>(args?: SelectSubset<T, UssdAuditLogDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more UssdAuditLogs.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UssdAuditLogUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many UssdAuditLogs
+     * const ussdAuditLog = await prisma.ussdAuditLog.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends UssdAuditLogUpdateManyArgs>(args: SelectSubset<T, UssdAuditLogUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one UssdAuditLog.
+     * @param {UssdAuditLogUpsertArgs} args - Arguments to update or create a UssdAuditLog.
+     * @example
+     * // Update or create a UssdAuditLog
+     * const ussdAuditLog = await prisma.ussdAuditLog.upsert({
+     *   create: {
+     *     // ... data to create a UssdAuditLog
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the UssdAuditLog we want to update
+     *   }
+     * })
+     */
+    upsert<T extends UssdAuditLogUpsertArgs>(args: SelectSubset<T, UssdAuditLogUpsertArgs<ExtArgs>>): Prisma__UssdAuditLogClient<$Result.GetResult<Prisma.$UssdAuditLogPayload<ExtArgs>, T, "upsert">, never, ExtArgs>
+
+
+    /**
+     * Count the number of UssdAuditLogs.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UssdAuditLogCountArgs} args - Arguments to filter UssdAuditLogs to count.
+     * @example
+     * // Count the number of UssdAuditLogs
+     * const count = await prisma.ussdAuditLog.count({
+     *   where: {
+     *     // ... the filter for the UssdAuditLogs we want to count
+     *   }
+     * })
+    **/
+    count<T extends UssdAuditLogCountArgs>(
+      args?: Subset<T, UssdAuditLogCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], UssdAuditLogCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a UssdAuditLog.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UssdAuditLogAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends UssdAuditLogAggregateArgs>(args: Subset<T, UssdAuditLogAggregateArgs>): Prisma.PrismaPromise<GetUssdAuditLogAggregateType<T>>
+
+    /**
+     * Group by UssdAuditLog.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UssdAuditLogGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends UssdAuditLogGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: UssdAuditLogGroupByArgs['orderBy'] }
+        : { orderBy?: UssdAuditLogGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, UssdAuditLogGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetUssdAuditLogGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the UssdAuditLog model
+   */
+  readonly fields: UssdAuditLogFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for UssdAuditLog.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__UssdAuditLogClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the UssdAuditLog model
+   */ 
+  interface UssdAuditLogFieldRefs {
+    readonly id: FieldRef<"UssdAuditLog", 'String'>
+    readonly sessionId: FieldRef<"UssdAuditLog", 'String'>
+    readonly phone: FieldRef<"UssdAuditLog", 'String'>
+    readonly userId: FieldRef<"UssdAuditLog", 'String'>
+    readonly menu: FieldRef<"UssdAuditLog", 'String'>
+    readonly step: FieldRef<"UssdAuditLog", 'String'>
+    readonly userInput: FieldRef<"UssdAuditLog", 'String'>
+    readonly systemResponse: FieldRef<"UssdAuditLog", 'String'>
+    readonly action: FieldRef<"UssdAuditLog", 'String'>
+    readonly metadata: FieldRef<"UssdAuditLog", 'Json'>
+    readonly timestamp: FieldRef<"UssdAuditLog", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * UssdAuditLog findUnique
+   */
+  export type UssdAuditLogFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UssdAuditLog
+     */
+    select?: UssdAuditLogSelect<ExtArgs> | null
+    /**
+     * Filter, which UssdAuditLog to fetch.
+     */
+    where: UssdAuditLogWhereUniqueInput
+  }
+
+  /**
+   * UssdAuditLog findUniqueOrThrow
+   */
+  export type UssdAuditLogFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UssdAuditLog
+     */
+    select?: UssdAuditLogSelect<ExtArgs> | null
+    /**
+     * Filter, which UssdAuditLog to fetch.
+     */
+    where: UssdAuditLogWhereUniqueInput
+  }
+
+  /**
+   * UssdAuditLog findFirst
+   */
+  export type UssdAuditLogFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UssdAuditLog
+     */
+    select?: UssdAuditLogSelect<ExtArgs> | null
+    /**
+     * Filter, which UssdAuditLog to fetch.
+     */
+    where?: UssdAuditLogWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of UssdAuditLogs to fetch.
+     */
+    orderBy?: UssdAuditLogOrderByWithRelationInput | UssdAuditLogOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for UssdAuditLogs.
+     */
+    cursor?: UssdAuditLogWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` UssdAuditLogs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` UssdAuditLogs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of UssdAuditLogs.
+     */
+    distinct?: UssdAuditLogScalarFieldEnum | UssdAuditLogScalarFieldEnum[]
+  }
+
+  /**
+   * UssdAuditLog findFirstOrThrow
+   */
+  export type UssdAuditLogFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UssdAuditLog
+     */
+    select?: UssdAuditLogSelect<ExtArgs> | null
+    /**
+     * Filter, which UssdAuditLog to fetch.
+     */
+    where?: UssdAuditLogWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of UssdAuditLogs to fetch.
+     */
+    orderBy?: UssdAuditLogOrderByWithRelationInput | UssdAuditLogOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for UssdAuditLogs.
+     */
+    cursor?: UssdAuditLogWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` UssdAuditLogs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` UssdAuditLogs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of UssdAuditLogs.
+     */
+    distinct?: UssdAuditLogScalarFieldEnum | UssdAuditLogScalarFieldEnum[]
+  }
+
+  /**
+   * UssdAuditLog findMany
+   */
+  export type UssdAuditLogFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UssdAuditLog
+     */
+    select?: UssdAuditLogSelect<ExtArgs> | null
+    /**
+     * Filter, which UssdAuditLogs to fetch.
+     */
+    where?: UssdAuditLogWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of UssdAuditLogs to fetch.
+     */
+    orderBy?: UssdAuditLogOrderByWithRelationInput | UssdAuditLogOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing UssdAuditLogs.
+     */
+    cursor?: UssdAuditLogWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` UssdAuditLogs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` UssdAuditLogs.
+     */
+    skip?: number
+    distinct?: UssdAuditLogScalarFieldEnum | UssdAuditLogScalarFieldEnum[]
+  }
+
+  /**
+   * UssdAuditLog create
+   */
+  export type UssdAuditLogCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UssdAuditLog
+     */
+    select?: UssdAuditLogSelect<ExtArgs> | null
+    /**
+     * The data needed to create a UssdAuditLog.
+     */
+    data: XOR<UssdAuditLogCreateInput, UssdAuditLogUncheckedCreateInput>
+  }
+
+  /**
+   * UssdAuditLog createMany
+   */
+  export type UssdAuditLogCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many UssdAuditLogs.
+     */
+    data: UssdAuditLogCreateManyInput | UssdAuditLogCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * UssdAuditLog createManyAndReturn
+   */
+  export type UssdAuditLogCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UssdAuditLog
+     */
+    select?: UssdAuditLogSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * The data used to create many UssdAuditLogs.
+     */
+    data: UssdAuditLogCreateManyInput | UssdAuditLogCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * UssdAuditLog update
+   */
+  export type UssdAuditLogUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UssdAuditLog
+     */
+    select?: UssdAuditLogSelect<ExtArgs> | null
+    /**
+     * The data needed to update a UssdAuditLog.
+     */
+    data: XOR<UssdAuditLogUpdateInput, UssdAuditLogUncheckedUpdateInput>
+    /**
+     * Choose, which UssdAuditLog to update.
+     */
+    where: UssdAuditLogWhereUniqueInput
+  }
+
+  /**
+   * UssdAuditLog updateMany
+   */
+  export type UssdAuditLogUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update UssdAuditLogs.
+     */
+    data: XOR<UssdAuditLogUpdateManyMutationInput, UssdAuditLogUncheckedUpdateManyInput>
+    /**
+     * Filter which UssdAuditLogs to update
+     */
+    where?: UssdAuditLogWhereInput
+  }
+
+  /**
+   * UssdAuditLog upsert
+   */
+  export type UssdAuditLogUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UssdAuditLog
+     */
+    select?: UssdAuditLogSelect<ExtArgs> | null
+    /**
+     * The filter to search for the UssdAuditLog to update in case it exists.
+     */
+    where: UssdAuditLogWhereUniqueInput
+    /**
+     * In case the UssdAuditLog found by the `where` argument doesn't exist, create a new UssdAuditLog with this data.
+     */
+    create: XOR<UssdAuditLogCreateInput, UssdAuditLogUncheckedCreateInput>
+    /**
+     * In case the UssdAuditLog was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<UssdAuditLogUpdateInput, UssdAuditLogUncheckedUpdateInput>
+  }
+
+  /**
+   * UssdAuditLog delete
+   */
+  export type UssdAuditLogDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UssdAuditLog
+     */
+    select?: UssdAuditLogSelect<ExtArgs> | null
+    /**
+     * Filter which UssdAuditLog to delete.
+     */
+    where: UssdAuditLogWhereUniqueInput
+  }
+
+  /**
+   * UssdAuditLog deleteMany
+   */
+  export type UssdAuditLogDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which UssdAuditLogs to delete
+     */
+    where?: UssdAuditLogWhereInput
+  }
+
+  /**
+   * UssdAuditLog without action
+   */
+  export type UssdAuditLogDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UssdAuditLog
+     */
+    select?: UssdAuditLogSelect<ExtArgs> | null
+  }
+
+
+  /**
+   * Model UssdShortMessage
+   */
+
+  export type AggregateUssdShortMessage = {
+    _count: UssdShortMessageCountAggregateOutputType | null
+    _avg: UssdShortMessageAvgAggregateOutputType | null
+    _sum: UssdShortMessageSumAggregateOutputType | null
+    _min: UssdShortMessageMinAggregateOutputType | null
+    _max: UssdShortMessageMaxAggregateOutputType | null
+  }
+
+  export type UssdShortMessageAvgAggregateOutputType = {
+    attemptCount: number | null
+  }
+
+  export type UssdShortMessageSumAggregateOutputType = {
+    attemptCount: number | null
+  }
+
+  export type UssdShortMessageMinAggregateOutputType = {
+    id: string | null
+    toPhone: string | null
+    message: string | null
+    triggerAction: string | null
+    status: $Enums.UssdMessageStatus | null
+    attemptCount: number | null
+    sentAt: Date | null
+    errorMessage: string | null
+    createdAt: Date | null
+  }
+
+  export type UssdShortMessageMaxAggregateOutputType = {
+    id: string | null
+    toPhone: string | null
+    message: string | null
+    triggerAction: string | null
+    status: $Enums.UssdMessageStatus | null
+    attemptCount: number | null
+    sentAt: Date | null
+    errorMessage: string | null
+    createdAt: Date | null
+  }
+
+  export type UssdShortMessageCountAggregateOutputType = {
+    id: number
+    toPhone: number
+    message: number
+    triggerAction: number
+    status: number
+    attemptCount: number
+    sentAt: number
+    errorMessage: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type UssdShortMessageAvgAggregateInputType = {
+    attemptCount?: true
+  }
+
+  export type UssdShortMessageSumAggregateInputType = {
+    attemptCount?: true
+  }
+
+  export type UssdShortMessageMinAggregateInputType = {
+    id?: true
+    toPhone?: true
+    message?: true
+    triggerAction?: true
+    status?: true
+    attemptCount?: true
+    sentAt?: true
+    errorMessage?: true
+    createdAt?: true
+  }
+
+  export type UssdShortMessageMaxAggregateInputType = {
+    id?: true
+    toPhone?: true
+    message?: true
+    triggerAction?: true
+    status?: true
+    attemptCount?: true
+    sentAt?: true
+    errorMessage?: true
+    createdAt?: true
+  }
+
+  export type UssdShortMessageCountAggregateInputType = {
+    id?: true
+    toPhone?: true
+    message?: true
+    triggerAction?: true
+    status?: true
+    attemptCount?: true
+    sentAt?: true
+    errorMessage?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type UssdShortMessageAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which UssdShortMessage to aggregate.
+     */
+    where?: UssdShortMessageWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of UssdShortMessages to fetch.
+     */
+    orderBy?: UssdShortMessageOrderByWithRelationInput | UssdShortMessageOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: UssdShortMessageWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` UssdShortMessages from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` UssdShortMessages.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned UssdShortMessages
+    **/
+    _count?: true | UssdShortMessageCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: UssdShortMessageAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: UssdShortMessageSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: UssdShortMessageMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: UssdShortMessageMaxAggregateInputType
+  }
+
+  export type GetUssdShortMessageAggregateType<T extends UssdShortMessageAggregateArgs> = {
+        [P in keyof T & keyof AggregateUssdShortMessage]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateUssdShortMessage[P]>
+      : GetScalarType<T[P], AggregateUssdShortMessage[P]>
+  }
+
+
+
+
+  export type UssdShortMessageGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: UssdShortMessageWhereInput
+    orderBy?: UssdShortMessageOrderByWithAggregationInput | UssdShortMessageOrderByWithAggregationInput[]
+    by: UssdShortMessageScalarFieldEnum[] | UssdShortMessageScalarFieldEnum
+    having?: UssdShortMessageScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: UssdShortMessageCountAggregateInputType | true
+    _avg?: UssdShortMessageAvgAggregateInputType
+    _sum?: UssdShortMessageSumAggregateInputType
+    _min?: UssdShortMessageMinAggregateInputType
+    _max?: UssdShortMessageMaxAggregateInputType
+  }
+
+  export type UssdShortMessageGroupByOutputType = {
+    id: string
+    toPhone: string
+    message: string
+    triggerAction: string
+    status: $Enums.UssdMessageStatus
+    attemptCount: number
+    sentAt: Date | null
+    errorMessage: string | null
+    createdAt: Date
+    _count: UssdShortMessageCountAggregateOutputType | null
+    _avg: UssdShortMessageAvgAggregateOutputType | null
+    _sum: UssdShortMessageSumAggregateOutputType | null
+    _min: UssdShortMessageMinAggregateOutputType | null
+    _max: UssdShortMessageMaxAggregateOutputType | null
+  }
+
+  type GetUssdShortMessageGroupByPayload<T extends UssdShortMessageGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<UssdShortMessageGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof UssdShortMessageGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], UssdShortMessageGroupByOutputType[P]>
+            : GetScalarType<T[P], UssdShortMessageGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type UssdShortMessageSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    toPhone?: boolean
+    message?: boolean
+    triggerAction?: boolean
+    status?: boolean
+    attemptCount?: boolean
+    sentAt?: boolean
+    errorMessage?: boolean
+    createdAt?: boolean
+  }, ExtArgs["result"]["ussdShortMessage"]>
+
+  export type UssdShortMessageSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    toPhone?: boolean
+    message?: boolean
+    triggerAction?: boolean
+    status?: boolean
+    attemptCount?: boolean
+    sentAt?: boolean
+    errorMessage?: boolean
+    createdAt?: boolean
+  }, ExtArgs["result"]["ussdShortMessage"]>
+
+  export type UssdShortMessageSelectScalar = {
+    id?: boolean
+    toPhone?: boolean
+    message?: boolean
+    triggerAction?: boolean
+    status?: boolean
+    attemptCount?: boolean
+    sentAt?: boolean
+    errorMessage?: boolean
+    createdAt?: boolean
+  }
+
+
+  export type $UssdShortMessagePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "UssdShortMessage"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      toPhone: string
+      message: string
+      triggerAction: string
+      status: $Enums.UssdMessageStatus
+      attemptCount: number
+      sentAt: Date | null
+      errorMessage: string | null
+      createdAt: Date
+    }, ExtArgs["result"]["ussdShortMessage"]>
+    composites: {}
+  }
+
+  type UssdShortMessageGetPayload<S extends boolean | null | undefined | UssdShortMessageDefaultArgs> = $Result.GetResult<Prisma.$UssdShortMessagePayload, S>
+
+  type UssdShortMessageCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<UssdShortMessageFindManyArgs, 'select' | 'include' | 'distinct'> & {
+      select?: UssdShortMessageCountAggregateInputType | true
+    }
+
+  export interface UssdShortMessageDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['UssdShortMessage'], meta: { name: 'UssdShortMessage' } }
+    /**
+     * Find zero or one UssdShortMessage that matches the filter.
+     * @param {UssdShortMessageFindUniqueArgs} args - Arguments to find a UssdShortMessage
+     * @example
+     * // Get one UssdShortMessage
+     * const ussdShortMessage = await prisma.ussdShortMessage.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends UssdShortMessageFindUniqueArgs>(args: SelectSubset<T, UssdShortMessageFindUniqueArgs<ExtArgs>>): Prisma__UssdShortMessageClient<$Result.GetResult<Prisma.$UssdShortMessagePayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
+
+    /**
+     * Find one UssdShortMessage that matches the filter or throw an error with `error.code='P2025'` 
+     * if no matches were found.
+     * @param {UssdShortMessageFindUniqueOrThrowArgs} args - Arguments to find a UssdShortMessage
+     * @example
+     * // Get one UssdShortMessage
+     * const ussdShortMessage = await prisma.ussdShortMessage.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends UssdShortMessageFindUniqueOrThrowArgs>(args: SelectSubset<T, UssdShortMessageFindUniqueOrThrowArgs<ExtArgs>>): Prisma__UssdShortMessageClient<$Result.GetResult<Prisma.$UssdShortMessagePayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
+
+    /**
+     * Find the first UssdShortMessage that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UssdShortMessageFindFirstArgs} args - Arguments to find a UssdShortMessage
+     * @example
+     * // Get one UssdShortMessage
+     * const ussdShortMessage = await prisma.ussdShortMessage.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends UssdShortMessageFindFirstArgs>(args?: SelectSubset<T, UssdShortMessageFindFirstArgs<ExtArgs>>): Prisma__UssdShortMessageClient<$Result.GetResult<Prisma.$UssdShortMessagePayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
+
+    /**
+     * Find the first UssdShortMessage that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UssdShortMessageFindFirstOrThrowArgs} args - Arguments to find a UssdShortMessage
+     * @example
+     * // Get one UssdShortMessage
+     * const ussdShortMessage = await prisma.ussdShortMessage.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends UssdShortMessageFindFirstOrThrowArgs>(args?: SelectSubset<T, UssdShortMessageFindFirstOrThrowArgs<ExtArgs>>): Prisma__UssdShortMessageClient<$Result.GetResult<Prisma.$UssdShortMessagePayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
+
+    /**
+     * Find zero or more UssdShortMessages that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UssdShortMessageFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all UssdShortMessages
+     * const ussdShortMessages = await prisma.ussdShortMessage.findMany()
+     * 
+     * // Get first 10 UssdShortMessages
+     * const ussdShortMessages = await prisma.ussdShortMessage.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const ussdShortMessageWithIdOnly = await prisma.ussdShortMessage.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends UssdShortMessageFindManyArgs>(args?: SelectSubset<T, UssdShortMessageFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UssdShortMessagePayload<ExtArgs>, T, "findMany">>
+
+    /**
+     * Create a UssdShortMessage.
+     * @param {UssdShortMessageCreateArgs} args - Arguments to create a UssdShortMessage.
+     * @example
+     * // Create one UssdShortMessage
+     * const UssdShortMessage = await prisma.ussdShortMessage.create({
+     *   data: {
+     *     // ... data to create a UssdShortMessage
+     *   }
+     * })
+     * 
+     */
+    create<T extends UssdShortMessageCreateArgs>(args: SelectSubset<T, UssdShortMessageCreateArgs<ExtArgs>>): Prisma__UssdShortMessageClient<$Result.GetResult<Prisma.$UssdShortMessagePayload<ExtArgs>, T, "create">, never, ExtArgs>
+
+    /**
+     * Create many UssdShortMessages.
+     * @param {UssdShortMessageCreateManyArgs} args - Arguments to create many UssdShortMessages.
+     * @example
+     * // Create many UssdShortMessages
+     * const ussdShortMessage = await prisma.ussdShortMessage.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends UssdShortMessageCreateManyArgs>(args?: SelectSubset<T, UssdShortMessageCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many UssdShortMessages and returns the data saved in the database.
+     * @param {UssdShortMessageCreateManyAndReturnArgs} args - Arguments to create many UssdShortMessages.
+     * @example
+     * // Create many UssdShortMessages
+     * const ussdShortMessage = await prisma.ussdShortMessage.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many UssdShortMessages and only return the `id`
+     * const ussdShortMessageWithIdOnly = await prisma.ussdShortMessage.createManyAndReturn({ 
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends UssdShortMessageCreateManyAndReturnArgs>(args?: SelectSubset<T, UssdShortMessageCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UssdShortMessagePayload<ExtArgs>, T, "createManyAndReturn">>
+
+    /**
+     * Delete a UssdShortMessage.
+     * @param {UssdShortMessageDeleteArgs} args - Arguments to delete one UssdShortMessage.
+     * @example
+     * // Delete one UssdShortMessage
+     * const UssdShortMessage = await prisma.ussdShortMessage.delete({
+     *   where: {
+     *     // ... filter to delete one UssdShortMessage
+     *   }
+     * })
+     * 
+     */
+    delete<T extends UssdShortMessageDeleteArgs>(args: SelectSubset<T, UssdShortMessageDeleteArgs<ExtArgs>>): Prisma__UssdShortMessageClient<$Result.GetResult<Prisma.$UssdShortMessagePayload<ExtArgs>, T, "delete">, never, ExtArgs>
+
+    /**
+     * Update one UssdShortMessage.
+     * @param {UssdShortMessageUpdateArgs} args - Arguments to update one UssdShortMessage.
+     * @example
+     * // Update one UssdShortMessage
+     * const ussdShortMessage = await prisma.ussdShortMessage.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends UssdShortMessageUpdateArgs>(args: SelectSubset<T, UssdShortMessageUpdateArgs<ExtArgs>>): Prisma__UssdShortMessageClient<$Result.GetResult<Prisma.$UssdShortMessagePayload<ExtArgs>, T, "update">, never, ExtArgs>
+
+    /**
+     * Delete zero or more UssdShortMessages.
+     * @param {UssdShortMessageDeleteManyArgs} args - Arguments to filter UssdShortMessages to delete.
+     * @example
+     * // Delete a few UssdShortMessages
+     * const { count } = await prisma.ussdShortMessage.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends UssdShortMessageDeleteManyArgs>(args?: SelectSubset<T, UssdShortMessageDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more UssdShortMessages.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UssdShortMessageUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many UssdShortMessages
+     * const ussdShortMessage = await prisma.ussdShortMessage.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends UssdShortMessageUpdateManyArgs>(args: SelectSubset<T, UssdShortMessageUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one UssdShortMessage.
+     * @param {UssdShortMessageUpsertArgs} args - Arguments to update or create a UssdShortMessage.
+     * @example
+     * // Update or create a UssdShortMessage
+     * const ussdShortMessage = await prisma.ussdShortMessage.upsert({
+     *   create: {
+     *     // ... data to create a UssdShortMessage
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the UssdShortMessage we want to update
+     *   }
+     * })
+     */
+    upsert<T extends UssdShortMessageUpsertArgs>(args: SelectSubset<T, UssdShortMessageUpsertArgs<ExtArgs>>): Prisma__UssdShortMessageClient<$Result.GetResult<Prisma.$UssdShortMessagePayload<ExtArgs>, T, "upsert">, never, ExtArgs>
+
+
+    /**
+     * Count the number of UssdShortMessages.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UssdShortMessageCountArgs} args - Arguments to filter UssdShortMessages to count.
+     * @example
+     * // Count the number of UssdShortMessages
+     * const count = await prisma.ussdShortMessage.count({
+     *   where: {
+     *     // ... the filter for the UssdShortMessages we want to count
+     *   }
+     * })
+    **/
+    count<T extends UssdShortMessageCountArgs>(
+      args?: Subset<T, UssdShortMessageCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], UssdShortMessageCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a UssdShortMessage.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UssdShortMessageAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends UssdShortMessageAggregateArgs>(args: Subset<T, UssdShortMessageAggregateArgs>): Prisma.PrismaPromise<GetUssdShortMessageAggregateType<T>>
+
+    /**
+     * Group by UssdShortMessage.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UssdShortMessageGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends UssdShortMessageGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: UssdShortMessageGroupByArgs['orderBy'] }
+        : { orderBy?: UssdShortMessageGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, UssdShortMessageGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetUssdShortMessageGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the UssdShortMessage model
+   */
+  readonly fields: UssdShortMessageFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for UssdShortMessage.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__UssdShortMessageClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the UssdShortMessage model
+   */ 
+  interface UssdShortMessageFieldRefs {
+    readonly id: FieldRef<"UssdShortMessage", 'String'>
+    readonly toPhone: FieldRef<"UssdShortMessage", 'String'>
+    readonly message: FieldRef<"UssdShortMessage", 'String'>
+    readonly triggerAction: FieldRef<"UssdShortMessage", 'String'>
+    readonly status: FieldRef<"UssdShortMessage", 'UssdMessageStatus'>
+    readonly attemptCount: FieldRef<"UssdShortMessage", 'Int'>
+    readonly sentAt: FieldRef<"UssdShortMessage", 'DateTime'>
+    readonly errorMessage: FieldRef<"UssdShortMessage", 'String'>
+    readonly createdAt: FieldRef<"UssdShortMessage", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * UssdShortMessage findUnique
+   */
+  export type UssdShortMessageFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UssdShortMessage
+     */
+    select?: UssdShortMessageSelect<ExtArgs> | null
+    /**
+     * Filter, which UssdShortMessage to fetch.
+     */
+    where: UssdShortMessageWhereUniqueInput
+  }
+
+  /**
+   * UssdShortMessage findUniqueOrThrow
+   */
+  export type UssdShortMessageFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UssdShortMessage
+     */
+    select?: UssdShortMessageSelect<ExtArgs> | null
+    /**
+     * Filter, which UssdShortMessage to fetch.
+     */
+    where: UssdShortMessageWhereUniqueInput
+  }
+
+  /**
+   * UssdShortMessage findFirst
+   */
+  export type UssdShortMessageFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UssdShortMessage
+     */
+    select?: UssdShortMessageSelect<ExtArgs> | null
+    /**
+     * Filter, which UssdShortMessage to fetch.
+     */
+    where?: UssdShortMessageWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of UssdShortMessages to fetch.
+     */
+    orderBy?: UssdShortMessageOrderByWithRelationInput | UssdShortMessageOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for UssdShortMessages.
+     */
+    cursor?: UssdShortMessageWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` UssdShortMessages from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` UssdShortMessages.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of UssdShortMessages.
+     */
+    distinct?: UssdShortMessageScalarFieldEnum | UssdShortMessageScalarFieldEnum[]
+  }
+
+  /**
+   * UssdShortMessage findFirstOrThrow
+   */
+  export type UssdShortMessageFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UssdShortMessage
+     */
+    select?: UssdShortMessageSelect<ExtArgs> | null
+    /**
+     * Filter, which UssdShortMessage to fetch.
+     */
+    where?: UssdShortMessageWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of UssdShortMessages to fetch.
+     */
+    orderBy?: UssdShortMessageOrderByWithRelationInput | UssdShortMessageOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for UssdShortMessages.
+     */
+    cursor?: UssdShortMessageWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` UssdShortMessages from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` UssdShortMessages.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of UssdShortMessages.
+     */
+    distinct?: UssdShortMessageScalarFieldEnum | UssdShortMessageScalarFieldEnum[]
+  }
+
+  /**
+   * UssdShortMessage findMany
+   */
+  export type UssdShortMessageFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UssdShortMessage
+     */
+    select?: UssdShortMessageSelect<ExtArgs> | null
+    /**
+     * Filter, which UssdShortMessages to fetch.
+     */
+    where?: UssdShortMessageWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of UssdShortMessages to fetch.
+     */
+    orderBy?: UssdShortMessageOrderByWithRelationInput | UssdShortMessageOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing UssdShortMessages.
+     */
+    cursor?: UssdShortMessageWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` UssdShortMessages from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` UssdShortMessages.
+     */
+    skip?: number
+    distinct?: UssdShortMessageScalarFieldEnum | UssdShortMessageScalarFieldEnum[]
+  }
+
+  /**
+   * UssdShortMessage create
+   */
+  export type UssdShortMessageCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UssdShortMessage
+     */
+    select?: UssdShortMessageSelect<ExtArgs> | null
+    /**
+     * The data needed to create a UssdShortMessage.
+     */
+    data: XOR<UssdShortMessageCreateInput, UssdShortMessageUncheckedCreateInput>
+  }
+
+  /**
+   * UssdShortMessage createMany
+   */
+  export type UssdShortMessageCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many UssdShortMessages.
+     */
+    data: UssdShortMessageCreateManyInput | UssdShortMessageCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * UssdShortMessage createManyAndReturn
+   */
+  export type UssdShortMessageCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UssdShortMessage
+     */
+    select?: UssdShortMessageSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * The data used to create many UssdShortMessages.
+     */
+    data: UssdShortMessageCreateManyInput | UssdShortMessageCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * UssdShortMessage update
+   */
+  export type UssdShortMessageUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UssdShortMessage
+     */
+    select?: UssdShortMessageSelect<ExtArgs> | null
+    /**
+     * The data needed to update a UssdShortMessage.
+     */
+    data: XOR<UssdShortMessageUpdateInput, UssdShortMessageUncheckedUpdateInput>
+    /**
+     * Choose, which UssdShortMessage to update.
+     */
+    where: UssdShortMessageWhereUniqueInput
+  }
+
+  /**
+   * UssdShortMessage updateMany
+   */
+  export type UssdShortMessageUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update UssdShortMessages.
+     */
+    data: XOR<UssdShortMessageUpdateManyMutationInput, UssdShortMessageUncheckedUpdateManyInput>
+    /**
+     * Filter which UssdShortMessages to update
+     */
+    where?: UssdShortMessageWhereInput
+  }
+
+  /**
+   * UssdShortMessage upsert
+   */
+  export type UssdShortMessageUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UssdShortMessage
+     */
+    select?: UssdShortMessageSelect<ExtArgs> | null
+    /**
+     * The filter to search for the UssdShortMessage to update in case it exists.
+     */
+    where: UssdShortMessageWhereUniqueInput
+    /**
+     * In case the UssdShortMessage found by the `where` argument doesn't exist, create a new UssdShortMessage with this data.
+     */
+    create: XOR<UssdShortMessageCreateInput, UssdShortMessageUncheckedCreateInput>
+    /**
+     * In case the UssdShortMessage was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<UssdShortMessageUpdateInput, UssdShortMessageUncheckedUpdateInput>
+  }
+
+  /**
+   * UssdShortMessage delete
+   */
+  export type UssdShortMessageDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UssdShortMessage
+     */
+    select?: UssdShortMessageSelect<ExtArgs> | null
+    /**
+     * Filter which UssdShortMessage to delete.
+     */
+    where: UssdShortMessageWhereUniqueInput
+  }
+
+  /**
+   * UssdShortMessage deleteMany
+   */
+  export type UssdShortMessageDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which UssdShortMessages to delete
+     */
+    where?: UssdShortMessageWhereInput
+  }
+
+  /**
+   * UssdShortMessage without action
+   */
+  export type UssdShortMessageDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UssdShortMessage
+     */
+    select?: UssdShortMessageSelect<ExtArgs> | null
   }
 
 
@@ -23952,6 +26282,10 @@ export namespace Prisma {
     district: 'district',
     isVerified: 'isVerified',
     passwordHash: 'passwordHash',
+    preferredLanguage: 'preferredLanguage',
+    ussdPin: 'ussdPin',
+    ussdPinSetAt: 'ussdPinSetAt',
+    lastUssdActivity: 'lastUssdActivity',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
   };
@@ -24156,13 +26490,53 @@ export namespace Prisma {
     id: 'id',
     sessionId: 'sessionId',
     phone: 'phone',
+    userId: 'userId',
+    language: 'language',
+    currentMenu: 'currentMenu',
     currentStep: 'currentStep',
+    menuStack: 'menuStack',
     tempData: 'tempData',
-    createdAt: 'createdAt',
-    updatedAt: 'updatedAt'
+    inputHistory: 'inputHistory',
+    startedAt: 'startedAt',
+    lastActivityAt: 'lastActivityAt',
+    isActive: 'isActive',
+    endedAt: 'endedAt',
+    endReason: 'endReason'
   };
 
   export type UssdSessionScalarFieldEnum = (typeof UssdSessionScalarFieldEnum)[keyof typeof UssdSessionScalarFieldEnum]
+
+
+  export const UssdAuditLogScalarFieldEnum: {
+    id: 'id',
+    sessionId: 'sessionId',
+    phone: 'phone',
+    userId: 'userId',
+    menu: 'menu',
+    step: 'step',
+    userInput: 'userInput',
+    systemResponse: 'systemResponse',
+    action: 'action',
+    metadata: 'metadata',
+    timestamp: 'timestamp'
+  };
+
+  export type UssdAuditLogScalarFieldEnum = (typeof UssdAuditLogScalarFieldEnum)[keyof typeof UssdAuditLogScalarFieldEnum]
+
+
+  export const UssdShortMessageScalarFieldEnum: {
+    id: 'id',
+    toPhone: 'toPhone',
+    message: 'message',
+    triggerAction: 'triggerAction',
+    status: 'status',
+    attemptCount: 'attemptCount',
+    sentAt: 'sentAt',
+    errorMessage: 'errorMessage',
+    createdAt: 'createdAt'
+  };
+
+  export type UssdShortMessageScalarFieldEnum = (typeof UssdShortMessageScalarFieldEnum)[keyof typeof UssdShortMessageScalarFieldEnum]
 
 
   export const PreOrderScalarFieldEnum: {
@@ -24275,6 +26649,13 @@ export namespace Prisma {
   };
 
   export type NullableJsonNullValueInput = (typeof NullableJsonNullValueInput)[keyof typeof NullableJsonNullValueInput]
+
+
+  export const JsonNullValueInput: {
+    JsonNull: typeof JsonNull
+  };
+
+  export type JsonNullValueInput = (typeof JsonNullValueInput)[keyof typeof JsonNullValueInput]
 
 
   export const QueryMode: {
@@ -24504,6 +26885,20 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'UssdMessageStatus'
+   */
+  export type EnumUssdMessageStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'UssdMessageStatus'>
+    
+
+
+  /**
+   * Reference to a field of type 'UssdMessageStatus[]'
+   */
+  export type ListEnumUssdMessageStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'UssdMessageStatus[]'>
+    
+
+
+  /**
    * Reference to a field of type 'PreOrderStatus'
    */
   export type EnumPreOrderStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'PreOrderStatus'>
@@ -24534,6 +26929,10 @@ export namespace Prisma {
     district?: StringNullableFilter<"User"> | string | null
     isVerified?: BoolFilter<"User"> | boolean
     passwordHash?: StringNullableFilter<"User"> | string | null
+    preferredLanguage?: StringFilter<"User"> | string
+    ussdPin?: StringNullableFilter<"User"> | string | null
+    ussdPinSetAt?: DateTimeNullableFilter<"User"> | Date | string | null
+    lastUssdActivity?: DateTimeNullableFilter<"User"> | Date | string | null
     createdAt?: DateTimeFilter<"User"> | Date | string
     updatedAt?: DateTimeFilter<"User"> | Date | string
     farmerProfile?: XOR<FarmerProfileNullableRelationFilter, FarmerProfileWhereInput> | null
@@ -24554,6 +26953,7 @@ export namespace Prisma {
     configsUpdated?: SystemConfigListRelationFilter
     ban?: XOR<UserBanNullableRelationFilter, UserBanWhereInput> | null
     bansIssued?: UserBanListRelationFilter
+    ussdSessions?: UssdSessionListRelationFilter
   }
 
   export type UserOrderByWithRelationInput = {
@@ -24567,6 +26967,10 @@ export namespace Prisma {
     district?: SortOrderInput | SortOrder
     isVerified?: SortOrder
     passwordHash?: SortOrderInput | SortOrder
+    preferredLanguage?: SortOrder
+    ussdPin?: SortOrderInput | SortOrder
+    ussdPinSetAt?: SortOrderInput | SortOrder
+    lastUssdActivity?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     farmerProfile?: FarmerProfileOrderByWithRelationInput
@@ -24587,6 +26991,7 @@ export namespace Prisma {
     configsUpdated?: SystemConfigOrderByRelationAggregateInput
     ban?: UserBanOrderByWithRelationInput
     bansIssued?: UserBanOrderByRelationAggregateInput
+    ussdSessions?: UssdSessionOrderByRelationAggregateInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -24603,6 +27008,10 @@ export namespace Prisma {
     district?: StringNullableFilter<"User"> | string | null
     isVerified?: BoolFilter<"User"> | boolean
     passwordHash?: StringNullableFilter<"User"> | string | null
+    preferredLanguage?: StringFilter<"User"> | string
+    ussdPin?: StringNullableFilter<"User"> | string | null
+    ussdPinSetAt?: DateTimeNullableFilter<"User"> | Date | string | null
+    lastUssdActivity?: DateTimeNullableFilter<"User"> | Date | string | null
     createdAt?: DateTimeFilter<"User"> | Date | string
     updatedAt?: DateTimeFilter<"User"> | Date | string
     farmerProfile?: XOR<FarmerProfileNullableRelationFilter, FarmerProfileWhereInput> | null
@@ -24623,6 +27032,7 @@ export namespace Prisma {
     configsUpdated?: SystemConfigListRelationFilter
     ban?: XOR<UserBanNullableRelationFilter, UserBanWhereInput> | null
     bansIssued?: UserBanListRelationFilter
+    ussdSessions?: UssdSessionListRelationFilter
   }, "id" | "phone">
 
   export type UserOrderByWithAggregationInput = {
@@ -24636,6 +27046,10 @@ export namespace Prisma {
     district?: SortOrderInput | SortOrder
     isVerified?: SortOrder
     passwordHash?: SortOrderInput | SortOrder
+    preferredLanguage?: SortOrder
+    ussdPin?: SortOrderInput | SortOrder
+    ussdPinSetAt?: SortOrderInput | SortOrder
+    lastUssdActivity?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: UserCountOrderByAggregateInput
@@ -24659,6 +27073,10 @@ export namespace Prisma {
     district?: StringNullableWithAggregatesFilter<"User"> | string | null
     isVerified?: BoolWithAggregatesFilter<"User"> | boolean
     passwordHash?: StringNullableWithAggregatesFilter<"User"> | string | null
+    preferredLanguage?: StringWithAggregatesFilter<"User"> | string
+    ussdPin?: StringNullableWithAggregatesFilter<"User"> | string | null
+    ussdPinSetAt?: DateTimeNullableWithAggregatesFilter<"User"> | Date | string | null
+    lastUssdActivity?: DateTimeNullableWithAggregatesFilter<"User"> | Date | string | null
     createdAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
   }
@@ -25697,20 +28115,38 @@ export namespace Prisma {
     id?: StringFilter<"UssdSession"> | string
     sessionId?: StringFilter<"UssdSession"> | string
     phone?: StringFilter<"UssdSession"> | string
+    userId?: StringNullableFilter<"UssdSession"> | string | null
+    language?: StringFilter<"UssdSession"> | string
+    currentMenu?: StringFilter<"UssdSession"> | string
     currentStep?: StringFilter<"UssdSession"> | string
-    tempData?: JsonNullableFilter<"UssdSession">
-    createdAt?: DateTimeFilter<"UssdSession"> | Date | string
-    updatedAt?: DateTimeFilter<"UssdSession"> | Date | string
+    menuStack?: JsonFilter<"UssdSession">
+    tempData?: JsonFilter<"UssdSession">
+    inputHistory?: JsonFilter<"UssdSession">
+    startedAt?: DateTimeFilter<"UssdSession"> | Date | string
+    lastActivityAt?: DateTimeFilter<"UssdSession"> | Date | string
+    isActive?: BoolFilter<"UssdSession"> | boolean
+    endedAt?: DateTimeNullableFilter<"UssdSession"> | Date | string | null
+    endReason?: StringNullableFilter<"UssdSession"> | string | null
+    user?: XOR<UserNullableRelationFilter, UserWhereInput> | null
   }
 
   export type UssdSessionOrderByWithRelationInput = {
     id?: SortOrder
     sessionId?: SortOrder
     phone?: SortOrder
+    userId?: SortOrderInput | SortOrder
+    language?: SortOrder
+    currentMenu?: SortOrder
     currentStep?: SortOrder
-    tempData?: SortOrderInput | SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
+    menuStack?: SortOrder
+    tempData?: SortOrder
+    inputHistory?: SortOrder
+    startedAt?: SortOrder
+    lastActivityAt?: SortOrder
+    isActive?: SortOrder
+    endedAt?: SortOrderInput | SortOrder
+    endReason?: SortOrderInput | SortOrder
+    user?: UserOrderByWithRelationInput
   }
 
   export type UssdSessionWhereUniqueInput = Prisma.AtLeast<{
@@ -25720,20 +28156,37 @@ export namespace Prisma {
     OR?: UssdSessionWhereInput[]
     NOT?: UssdSessionWhereInput | UssdSessionWhereInput[]
     phone?: StringFilter<"UssdSession"> | string
+    userId?: StringNullableFilter<"UssdSession"> | string | null
+    language?: StringFilter<"UssdSession"> | string
+    currentMenu?: StringFilter<"UssdSession"> | string
     currentStep?: StringFilter<"UssdSession"> | string
-    tempData?: JsonNullableFilter<"UssdSession">
-    createdAt?: DateTimeFilter<"UssdSession"> | Date | string
-    updatedAt?: DateTimeFilter<"UssdSession"> | Date | string
+    menuStack?: JsonFilter<"UssdSession">
+    tempData?: JsonFilter<"UssdSession">
+    inputHistory?: JsonFilter<"UssdSession">
+    startedAt?: DateTimeFilter<"UssdSession"> | Date | string
+    lastActivityAt?: DateTimeFilter<"UssdSession"> | Date | string
+    isActive?: BoolFilter<"UssdSession"> | boolean
+    endedAt?: DateTimeNullableFilter<"UssdSession"> | Date | string | null
+    endReason?: StringNullableFilter<"UssdSession"> | string | null
+    user?: XOR<UserNullableRelationFilter, UserWhereInput> | null
   }, "id" | "sessionId">
 
   export type UssdSessionOrderByWithAggregationInput = {
     id?: SortOrder
     sessionId?: SortOrder
     phone?: SortOrder
+    userId?: SortOrderInput | SortOrder
+    language?: SortOrder
+    currentMenu?: SortOrder
     currentStep?: SortOrder
-    tempData?: SortOrderInput | SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
+    menuStack?: SortOrder
+    tempData?: SortOrder
+    inputHistory?: SortOrder
+    startedAt?: SortOrder
+    lastActivityAt?: SortOrder
+    isActive?: SortOrder
+    endedAt?: SortOrderInput | SortOrder
+    endReason?: SortOrderInput | SortOrder
     _count?: UssdSessionCountOrderByAggregateInput
     _max?: UssdSessionMaxOrderByAggregateInput
     _min?: UssdSessionMinOrderByAggregateInput
@@ -25746,10 +28199,174 @@ export namespace Prisma {
     id?: StringWithAggregatesFilter<"UssdSession"> | string
     sessionId?: StringWithAggregatesFilter<"UssdSession"> | string
     phone?: StringWithAggregatesFilter<"UssdSession"> | string
+    userId?: StringNullableWithAggregatesFilter<"UssdSession"> | string | null
+    language?: StringWithAggregatesFilter<"UssdSession"> | string
+    currentMenu?: StringWithAggregatesFilter<"UssdSession"> | string
     currentStep?: StringWithAggregatesFilter<"UssdSession"> | string
-    tempData?: JsonNullableWithAggregatesFilter<"UssdSession">
-    createdAt?: DateTimeWithAggregatesFilter<"UssdSession"> | Date | string
-    updatedAt?: DateTimeWithAggregatesFilter<"UssdSession"> | Date | string
+    menuStack?: JsonWithAggregatesFilter<"UssdSession">
+    tempData?: JsonWithAggregatesFilter<"UssdSession">
+    inputHistory?: JsonWithAggregatesFilter<"UssdSession">
+    startedAt?: DateTimeWithAggregatesFilter<"UssdSession"> | Date | string
+    lastActivityAt?: DateTimeWithAggregatesFilter<"UssdSession"> | Date | string
+    isActive?: BoolWithAggregatesFilter<"UssdSession"> | boolean
+    endedAt?: DateTimeNullableWithAggregatesFilter<"UssdSession"> | Date | string | null
+    endReason?: StringNullableWithAggregatesFilter<"UssdSession"> | string | null
+  }
+
+  export type UssdAuditLogWhereInput = {
+    AND?: UssdAuditLogWhereInput | UssdAuditLogWhereInput[]
+    OR?: UssdAuditLogWhereInput[]
+    NOT?: UssdAuditLogWhereInput | UssdAuditLogWhereInput[]
+    id?: StringFilter<"UssdAuditLog"> | string
+    sessionId?: StringFilter<"UssdAuditLog"> | string
+    phone?: StringFilter<"UssdAuditLog"> | string
+    userId?: StringNullableFilter<"UssdAuditLog"> | string | null
+    menu?: StringFilter<"UssdAuditLog"> | string
+    step?: StringFilter<"UssdAuditLog"> | string
+    userInput?: StringNullableFilter<"UssdAuditLog"> | string | null
+    systemResponse?: StringFilter<"UssdAuditLog"> | string
+    action?: StringNullableFilter<"UssdAuditLog"> | string | null
+    metadata?: JsonNullableFilter<"UssdAuditLog">
+    timestamp?: DateTimeFilter<"UssdAuditLog"> | Date | string
+  }
+
+  export type UssdAuditLogOrderByWithRelationInput = {
+    id?: SortOrder
+    sessionId?: SortOrder
+    phone?: SortOrder
+    userId?: SortOrderInput | SortOrder
+    menu?: SortOrder
+    step?: SortOrder
+    userInput?: SortOrderInput | SortOrder
+    systemResponse?: SortOrder
+    action?: SortOrderInput | SortOrder
+    metadata?: SortOrderInput | SortOrder
+    timestamp?: SortOrder
+  }
+
+  export type UssdAuditLogWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: UssdAuditLogWhereInput | UssdAuditLogWhereInput[]
+    OR?: UssdAuditLogWhereInput[]
+    NOT?: UssdAuditLogWhereInput | UssdAuditLogWhereInput[]
+    sessionId?: StringFilter<"UssdAuditLog"> | string
+    phone?: StringFilter<"UssdAuditLog"> | string
+    userId?: StringNullableFilter<"UssdAuditLog"> | string | null
+    menu?: StringFilter<"UssdAuditLog"> | string
+    step?: StringFilter<"UssdAuditLog"> | string
+    userInput?: StringNullableFilter<"UssdAuditLog"> | string | null
+    systemResponse?: StringFilter<"UssdAuditLog"> | string
+    action?: StringNullableFilter<"UssdAuditLog"> | string | null
+    metadata?: JsonNullableFilter<"UssdAuditLog">
+    timestamp?: DateTimeFilter<"UssdAuditLog"> | Date | string
+  }, "id">
+
+  export type UssdAuditLogOrderByWithAggregationInput = {
+    id?: SortOrder
+    sessionId?: SortOrder
+    phone?: SortOrder
+    userId?: SortOrderInput | SortOrder
+    menu?: SortOrder
+    step?: SortOrder
+    userInput?: SortOrderInput | SortOrder
+    systemResponse?: SortOrder
+    action?: SortOrderInput | SortOrder
+    metadata?: SortOrderInput | SortOrder
+    timestamp?: SortOrder
+    _count?: UssdAuditLogCountOrderByAggregateInput
+    _max?: UssdAuditLogMaxOrderByAggregateInput
+    _min?: UssdAuditLogMinOrderByAggregateInput
+  }
+
+  export type UssdAuditLogScalarWhereWithAggregatesInput = {
+    AND?: UssdAuditLogScalarWhereWithAggregatesInput | UssdAuditLogScalarWhereWithAggregatesInput[]
+    OR?: UssdAuditLogScalarWhereWithAggregatesInput[]
+    NOT?: UssdAuditLogScalarWhereWithAggregatesInput | UssdAuditLogScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"UssdAuditLog"> | string
+    sessionId?: StringWithAggregatesFilter<"UssdAuditLog"> | string
+    phone?: StringWithAggregatesFilter<"UssdAuditLog"> | string
+    userId?: StringNullableWithAggregatesFilter<"UssdAuditLog"> | string | null
+    menu?: StringWithAggregatesFilter<"UssdAuditLog"> | string
+    step?: StringWithAggregatesFilter<"UssdAuditLog"> | string
+    userInput?: StringNullableWithAggregatesFilter<"UssdAuditLog"> | string | null
+    systemResponse?: StringWithAggregatesFilter<"UssdAuditLog"> | string
+    action?: StringNullableWithAggregatesFilter<"UssdAuditLog"> | string | null
+    metadata?: JsonNullableWithAggregatesFilter<"UssdAuditLog">
+    timestamp?: DateTimeWithAggregatesFilter<"UssdAuditLog"> | Date | string
+  }
+
+  export type UssdShortMessageWhereInput = {
+    AND?: UssdShortMessageWhereInput | UssdShortMessageWhereInput[]
+    OR?: UssdShortMessageWhereInput[]
+    NOT?: UssdShortMessageWhereInput | UssdShortMessageWhereInput[]
+    id?: StringFilter<"UssdShortMessage"> | string
+    toPhone?: StringFilter<"UssdShortMessage"> | string
+    message?: StringFilter<"UssdShortMessage"> | string
+    triggerAction?: StringFilter<"UssdShortMessage"> | string
+    status?: EnumUssdMessageStatusFilter<"UssdShortMessage"> | $Enums.UssdMessageStatus
+    attemptCount?: IntFilter<"UssdShortMessage"> | number
+    sentAt?: DateTimeNullableFilter<"UssdShortMessage"> | Date | string | null
+    errorMessage?: StringNullableFilter<"UssdShortMessage"> | string | null
+    createdAt?: DateTimeFilter<"UssdShortMessage"> | Date | string
+  }
+
+  export type UssdShortMessageOrderByWithRelationInput = {
+    id?: SortOrder
+    toPhone?: SortOrder
+    message?: SortOrder
+    triggerAction?: SortOrder
+    status?: SortOrder
+    attemptCount?: SortOrder
+    sentAt?: SortOrderInput | SortOrder
+    errorMessage?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type UssdShortMessageWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: UssdShortMessageWhereInput | UssdShortMessageWhereInput[]
+    OR?: UssdShortMessageWhereInput[]
+    NOT?: UssdShortMessageWhereInput | UssdShortMessageWhereInput[]
+    toPhone?: StringFilter<"UssdShortMessage"> | string
+    message?: StringFilter<"UssdShortMessage"> | string
+    triggerAction?: StringFilter<"UssdShortMessage"> | string
+    status?: EnumUssdMessageStatusFilter<"UssdShortMessage"> | $Enums.UssdMessageStatus
+    attemptCount?: IntFilter<"UssdShortMessage"> | number
+    sentAt?: DateTimeNullableFilter<"UssdShortMessage"> | Date | string | null
+    errorMessage?: StringNullableFilter<"UssdShortMessage"> | string | null
+    createdAt?: DateTimeFilter<"UssdShortMessage"> | Date | string
+  }, "id">
+
+  export type UssdShortMessageOrderByWithAggregationInput = {
+    id?: SortOrder
+    toPhone?: SortOrder
+    message?: SortOrder
+    triggerAction?: SortOrder
+    status?: SortOrder
+    attemptCount?: SortOrder
+    sentAt?: SortOrderInput | SortOrder
+    errorMessage?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    _count?: UssdShortMessageCountOrderByAggregateInput
+    _avg?: UssdShortMessageAvgOrderByAggregateInput
+    _max?: UssdShortMessageMaxOrderByAggregateInput
+    _min?: UssdShortMessageMinOrderByAggregateInput
+    _sum?: UssdShortMessageSumOrderByAggregateInput
+  }
+
+  export type UssdShortMessageScalarWhereWithAggregatesInput = {
+    AND?: UssdShortMessageScalarWhereWithAggregatesInput | UssdShortMessageScalarWhereWithAggregatesInput[]
+    OR?: UssdShortMessageScalarWhereWithAggregatesInput[]
+    NOT?: UssdShortMessageScalarWhereWithAggregatesInput | UssdShortMessageScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"UssdShortMessage"> | string
+    toPhone?: StringWithAggregatesFilter<"UssdShortMessage"> | string
+    message?: StringWithAggregatesFilter<"UssdShortMessage"> | string
+    triggerAction?: StringWithAggregatesFilter<"UssdShortMessage"> | string
+    status?: EnumUssdMessageStatusWithAggregatesFilter<"UssdShortMessage"> | $Enums.UssdMessageStatus
+    attemptCount?: IntWithAggregatesFilter<"UssdShortMessage"> | number
+    sentAt?: DateTimeNullableWithAggregatesFilter<"UssdShortMessage"> | Date | string | null
+    errorMessage?: StringNullableWithAggregatesFilter<"UssdShortMessage"> | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"UssdShortMessage"> | Date | string
   }
 
   export type PreOrderWhereInput = {
@@ -26264,6 +28881,10 @@ export namespace Prisma {
     district?: string | null
     isVerified?: boolean
     passwordHash?: string | null
+    preferredLanguage?: string
+    ussdPin?: string | null
+    ussdPinSetAt?: Date | string | null
+    lastUssdActivity?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     farmerProfile?: FarmerProfileCreateNestedOneWithoutUserInput
@@ -26284,6 +28905,7 @@ export namespace Prisma {
     configsUpdated?: SystemConfigCreateNestedManyWithoutUpdaterInput
     ban?: UserBanCreateNestedOneWithoutUserInput
     bansIssued?: UserBanCreateNestedManyWithoutBannerInput
+    ussdSessions?: UssdSessionCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -26297,6 +28919,10 @@ export namespace Prisma {
     district?: string | null
     isVerified?: boolean
     passwordHash?: string | null
+    preferredLanguage?: string
+    ussdPin?: string | null
+    ussdPinSetAt?: Date | string | null
+    lastUssdActivity?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     farmerProfile?: FarmerProfileUncheckedCreateNestedOneWithoutUserInput
@@ -26317,6 +28943,7 @@ export namespace Prisma {
     configsUpdated?: SystemConfigUncheckedCreateNestedManyWithoutUpdaterInput
     ban?: UserBanUncheckedCreateNestedOneWithoutUserInput
     bansIssued?: UserBanUncheckedCreateNestedManyWithoutBannerInput
+    ussdSessions?: UssdSessionUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserUpdateInput = {
@@ -26330,6 +28957,10 @@ export namespace Prisma {
     district?: NullableStringFieldUpdateOperationsInput | string | null
     isVerified?: BoolFieldUpdateOperationsInput | boolean
     passwordHash?: NullableStringFieldUpdateOperationsInput | string | null
+    preferredLanguage?: StringFieldUpdateOperationsInput | string
+    ussdPin?: NullableStringFieldUpdateOperationsInput | string | null
+    ussdPinSetAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lastUssdActivity?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     farmerProfile?: FarmerProfileUpdateOneWithoutUserNestedInput
@@ -26350,6 +28981,7 @@ export namespace Prisma {
     configsUpdated?: SystemConfigUpdateManyWithoutUpdaterNestedInput
     ban?: UserBanUpdateOneWithoutUserNestedInput
     bansIssued?: UserBanUpdateManyWithoutBannerNestedInput
+    ussdSessions?: UssdSessionUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -26363,6 +28995,10 @@ export namespace Prisma {
     district?: NullableStringFieldUpdateOperationsInput | string | null
     isVerified?: BoolFieldUpdateOperationsInput | boolean
     passwordHash?: NullableStringFieldUpdateOperationsInput | string | null
+    preferredLanguage?: StringFieldUpdateOperationsInput | string
+    ussdPin?: NullableStringFieldUpdateOperationsInput | string | null
+    ussdPinSetAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lastUssdActivity?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     farmerProfile?: FarmerProfileUncheckedUpdateOneWithoutUserNestedInput
@@ -26383,6 +29019,7 @@ export namespace Prisma {
     configsUpdated?: SystemConfigUncheckedUpdateManyWithoutUpdaterNestedInput
     ban?: UserBanUncheckedUpdateOneWithoutUserNestedInput
     bansIssued?: UserBanUncheckedUpdateManyWithoutBannerNestedInput
+    ussdSessions?: UssdSessionUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -26396,6 +29033,10 @@ export namespace Prisma {
     district?: string | null
     isVerified?: boolean
     passwordHash?: string | null
+    preferredLanguage?: string
+    ussdPin?: string | null
+    ussdPinSetAt?: Date | string | null
+    lastUssdActivity?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -26411,6 +29052,10 @@ export namespace Prisma {
     district?: NullableStringFieldUpdateOperationsInput | string | null
     isVerified?: BoolFieldUpdateOperationsInput | boolean
     passwordHash?: NullableStringFieldUpdateOperationsInput | string | null
+    preferredLanguage?: StringFieldUpdateOperationsInput | string
+    ussdPin?: NullableStringFieldUpdateOperationsInput | string | null
+    ussdPinSetAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lastUssdActivity?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -26426,6 +29071,10 @@ export namespace Prisma {
     district?: NullableStringFieldUpdateOperationsInput | string | null
     isVerified?: BoolFieldUpdateOperationsInput | boolean
     passwordHash?: NullableStringFieldUpdateOperationsInput | string | null
+    preferredLanguage?: StringFieldUpdateOperationsInput | string
+    ussdPin?: NullableStringFieldUpdateOperationsInput | string | null
+    ussdPinSetAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lastUssdActivity?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -27546,70 +30195,307 @@ export namespace Prisma {
     id?: string
     sessionId: string
     phone: string
+    language?: string
+    currentMenu: string
     currentStep: string
-    tempData?: NullableJsonNullValueInput | InputJsonValue
-    createdAt?: Date | string
-    updatedAt?: Date | string
+    menuStack?: JsonNullValueInput | InputJsonValue
+    tempData?: JsonNullValueInput | InputJsonValue
+    inputHistory?: JsonNullValueInput | InputJsonValue
+    startedAt?: Date | string
+    lastActivityAt?: Date | string
+    isActive?: boolean
+    endedAt?: Date | string | null
+    endReason?: string | null
+    user?: UserCreateNestedOneWithoutUssdSessionsInput
   }
 
   export type UssdSessionUncheckedCreateInput = {
     id?: string
     sessionId: string
     phone: string
+    userId?: string | null
+    language?: string
+    currentMenu: string
     currentStep: string
-    tempData?: NullableJsonNullValueInput | InputJsonValue
-    createdAt?: Date | string
-    updatedAt?: Date | string
+    menuStack?: JsonNullValueInput | InputJsonValue
+    tempData?: JsonNullValueInput | InputJsonValue
+    inputHistory?: JsonNullValueInput | InputJsonValue
+    startedAt?: Date | string
+    lastActivityAt?: Date | string
+    isActive?: boolean
+    endedAt?: Date | string | null
+    endReason?: string | null
   }
 
   export type UssdSessionUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     sessionId?: StringFieldUpdateOperationsInput | string
     phone?: StringFieldUpdateOperationsInput | string
+    language?: StringFieldUpdateOperationsInput | string
+    currentMenu?: StringFieldUpdateOperationsInput | string
     currentStep?: StringFieldUpdateOperationsInput | string
-    tempData?: NullableJsonNullValueInput | InputJsonValue
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    menuStack?: JsonNullValueInput | InputJsonValue
+    tempData?: JsonNullValueInput | InputJsonValue
+    inputHistory?: JsonNullValueInput | InputJsonValue
+    startedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    lastActivityAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    endedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    endReason?: NullableStringFieldUpdateOperationsInput | string | null
+    user?: UserUpdateOneWithoutUssdSessionsNestedInput
   }
 
   export type UssdSessionUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     sessionId?: StringFieldUpdateOperationsInput | string
     phone?: StringFieldUpdateOperationsInput | string
+    userId?: NullableStringFieldUpdateOperationsInput | string | null
+    language?: StringFieldUpdateOperationsInput | string
+    currentMenu?: StringFieldUpdateOperationsInput | string
     currentStep?: StringFieldUpdateOperationsInput | string
-    tempData?: NullableJsonNullValueInput | InputJsonValue
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    menuStack?: JsonNullValueInput | InputJsonValue
+    tempData?: JsonNullValueInput | InputJsonValue
+    inputHistory?: JsonNullValueInput | InputJsonValue
+    startedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    lastActivityAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    endedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    endReason?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type UssdSessionCreateManyInput = {
     id?: string
     sessionId: string
     phone: string
+    userId?: string | null
+    language?: string
+    currentMenu: string
     currentStep: string
-    tempData?: NullableJsonNullValueInput | InputJsonValue
-    createdAt?: Date | string
-    updatedAt?: Date | string
+    menuStack?: JsonNullValueInput | InputJsonValue
+    tempData?: JsonNullValueInput | InputJsonValue
+    inputHistory?: JsonNullValueInput | InputJsonValue
+    startedAt?: Date | string
+    lastActivityAt?: Date | string
+    isActive?: boolean
+    endedAt?: Date | string | null
+    endReason?: string | null
   }
 
   export type UssdSessionUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
     sessionId?: StringFieldUpdateOperationsInput | string
     phone?: StringFieldUpdateOperationsInput | string
+    language?: StringFieldUpdateOperationsInput | string
+    currentMenu?: StringFieldUpdateOperationsInput | string
     currentStep?: StringFieldUpdateOperationsInput | string
-    tempData?: NullableJsonNullValueInput | InputJsonValue
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    menuStack?: JsonNullValueInput | InputJsonValue
+    tempData?: JsonNullValueInput | InputJsonValue
+    inputHistory?: JsonNullValueInput | InputJsonValue
+    startedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    lastActivityAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    endedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    endReason?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type UssdSessionUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     sessionId?: StringFieldUpdateOperationsInput | string
     phone?: StringFieldUpdateOperationsInput | string
+    userId?: NullableStringFieldUpdateOperationsInput | string | null
+    language?: StringFieldUpdateOperationsInput | string
+    currentMenu?: StringFieldUpdateOperationsInput | string
     currentStep?: StringFieldUpdateOperationsInput | string
-    tempData?: NullableJsonNullValueInput | InputJsonValue
+    menuStack?: JsonNullValueInput | InputJsonValue
+    tempData?: JsonNullValueInput | InputJsonValue
+    inputHistory?: JsonNullValueInput | InputJsonValue
+    startedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    lastActivityAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    endedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    endReason?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type UssdAuditLogCreateInput = {
+    id?: string
+    sessionId: string
+    phone: string
+    userId?: string | null
+    menu: string
+    step: string
+    userInput?: string | null
+    systemResponse: string
+    action?: string | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    timestamp?: Date | string
+  }
+
+  export type UssdAuditLogUncheckedCreateInput = {
+    id?: string
+    sessionId: string
+    phone: string
+    userId?: string | null
+    menu: string
+    step: string
+    userInput?: string | null
+    systemResponse: string
+    action?: string | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    timestamp?: Date | string
+  }
+
+  export type UssdAuditLogUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    sessionId?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
+    userId?: NullableStringFieldUpdateOperationsInput | string | null
+    menu?: StringFieldUpdateOperationsInput | string
+    step?: StringFieldUpdateOperationsInput | string
+    userInput?: NullableStringFieldUpdateOperationsInput | string | null
+    systemResponse?: StringFieldUpdateOperationsInput | string
+    action?: NullableStringFieldUpdateOperationsInput | string | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type UssdAuditLogUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    sessionId?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
+    userId?: NullableStringFieldUpdateOperationsInput | string | null
+    menu?: StringFieldUpdateOperationsInput | string
+    step?: StringFieldUpdateOperationsInput | string
+    userInput?: NullableStringFieldUpdateOperationsInput | string | null
+    systemResponse?: StringFieldUpdateOperationsInput | string
+    action?: NullableStringFieldUpdateOperationsInput | string | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type UssdAuditLogCreateManyInput = {
+    id?: string
+    sessionId: string
+    phone: string
+    userId?: string | null
+    menu: string
+    step: string
+    userInput?: string | null
+    systemResponse: string
+    action?: string | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    timestamp?: Date | string
+  }
+
+  export type UssdAuditLogUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    sessionId?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
+    userId?: NullableStringFieldUpdateOperationsInput | string | null
+    menu?: StringFieldUpdateOperationsInput | string
+    step?: StringFieldUpdateOperationsInput | string
+    userInput?: NullableStringFieldUpdateOperationsInput | string | null
+    systemResponse?: StringFieldUpdateOperationsInput | string
+    action?: NullableStringFieldUpdateOperationsInput | string | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type UssdAuditLogUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    sessionId?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
+    userId?: NullableStringFieldUpdateOperationsInput | string | null
+    menu?: StringFieldUpdateOperationsInput | string
+    step?: StringFieldUpdateOperationsInput | string
+    userInput?: NullableStringFieldUpdateOperationsInput | string | null
+    systemResponse?: StringFieldUpdateOperationsInput | string
+    action?: NullableStringFieldUpdateOperationsInput | string | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type UssdShortMessageCreateInput = {
+    id?: string
+    toPhone: string
+    message: string
+    triggerAction: string
+    status: $Enums.UssdMessageStatus
+    attemptCount?: number
+    sentAt?: Date | string | null
+    errorMessage?: string | null
+    createdAt?: Date | string
+  }
+
+  export type UssdShortMessageUncheckedCreateInput = {
+    id?: string
+    toPhone: string
+    message: string
+    triggerAction: string
+    status: $Enums.UssdMessageStatus
+    attemptCount?: number
+    sentAt?: Date | string | null
+    errorMessage?: string | null
+    createdAt?: Date | string
+  }
+
+  export type UssdShortMessageUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    toPhone?: StringFieldUpdateOperationsInput | string
+    message?: StringFieldUpdateOperationsInput | string
+    triggerAction?: StringFieldUpdateOperationsInput | string
+    status?: EnumUssdMessageStatusFieldUpdateOperationsInput | $Enums.UssdMessageStatus
+    attemptCount?: IntFieldUpdateOperationsInput | number
+    sentAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    errorMessage?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type UssdShortMessageUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    toPhone?: StringFieldUpdateOperationsInput | string
+    message?: StringFieldUpdateOperationsInput | string
+    triggerAction?: StringFieldUpdateOperationsInput | string
+    status?: EnumUssdMessageStatusFieldUpdateOperationsInput | $Enums.UssdMessageStatus
+    attemptCount?: IntFieldUpdateOperationsInput | number
+    sentAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    errorMessage?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type UssdShortMessageCreateManyInput = {
+    id?: string
+    toPhone: string
+    message: string
+    triggerAction: string
+    status: $Enums.UssdMessageStatus
+    attemptCount?: number
+    sentAt?: Date | string | null
+    errorMessage?: string | null
+    createdAt?: Date | string
+  }
+
+  export type UssdShortMessageUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    toPhone?: StringFieldUpdateOperationsInput | string
+    message?: StringFieldUpdateOperationsInput | string
+    triggerAction?: StringFieldUpdateOperationsInput | string
+    status?: EnumUssdMessageStatusFieldUpdateOperationsInput | $Enums.UssdMessageStatus
+    attemptCount?: IntFieldUpdateOperationsInput | number
+    sentAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    errorMessage?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type UssdShortMessageUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    toPhone?: StringFieldUpdateOperationsInput | string
+    message?: StringFieldUpdateOperationsInput | string
+    triggerAction?: StringFieldUpdateOperationsInput | string
+    status?: EnumUssdMessageStatusFieldUpdateOperationsInput | $Enums.UssdMessageStatus
+    attemptCount?: IntFieldUpdateOperationsInput | number
+    sentAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    errorMessage?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type PreOrderCreateInput = {
@@ -28210,6 +31096,17 @@ export namespace Prisma {
     not?: NestedBoolFilter<$PrismaModel> | boolean
   }
 
+  export type DateTimeNullableFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
+  }
+
   export type DateTimeFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
@@ -28313,6 +31210,12 @@ export namespace Prisma {
     none?: UserBanWhereInput
   }
 
+  export type UssdSessionListRelationFilter = {
+    every?: UssdSessionWhereInput
+    some?: UssdSessionWhereInput
+    none?: UssdSessionWhereInput
+  }
+
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
@@ -28366,6 +31269,10 @@ export namespace Prisma {
     _count?: SortOrder
   }
 
+  export type UssdSessionOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
   export type UserCountOrderByAggregateInput = {
     id?: SortOrder
     phone?: SortOrder
@@ -28377,6 +31284,10 @@ export namespace Prisma {
     district?: SortOrder
     isVerified?: SortOrder
     passwordHash?: SortOrder
+    preferredLanguage?: SortOrder
+    ussdPin?: SortOrder
+    ussdPinSetAt?: SortOrder
+    lastUssdActivity?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -28397,6 +31308,10 @@ export namespace Prisma {
     district?: SortOrder
     isVerified?: SortOrder
     passwordHash?: SortOrder
+    preferredLanguage?: SortOrder
+    ussdPin?: SortOrder
+    ussdPinSetAt?: SortOrder
+    lastUssdActivity?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -28412,6 +31327,10 @@ export namespace Prisma {
     district?: SortOrder
     isVerified?: SortOrder
     passwordHash?: SortOrder
+    preferredLanguage?: SortOrder
+    ussdPin?: SortOrder
+    ussdPinSetAt?: SortOrder
+    lastUssdActivity?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -28489,6 +31408,20 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedBoolFilter<$PrismaModel>
     _max?: NestedBoolFilter<$PrismaModel>
+  }
+
+  export type DateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedDateTimeNullableFilter<$PrismaModel>
+    _max?: NestedDateTimeNullableFilter<$PrismaModel>
   }
 
   export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
@@ -28732,17 +31665,6 @@ export namespace Prisma {
     not?: NestedEnumCropTypeFilter<$PrismaModel> | $Enums.CropType
   }
 
-  export type DateTimeNullableFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
-  }
-
   export type EnumQualityGradeFilter<$PrismaModel = never> = {
     equals?: $Enums.QualityGrade | EnumQualityGradeFieldRefInput<$PrismaModel>
     in?: $Enums.QualityGrade[] | ListEnumQualityGradeFieldRefInput<$PrismaModel>
@@ -28852,20 +31774,6 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumCropTypeFilter<$PrismaModel>
     _max?: NestedEnumCropTypeFilter<$PrismaModel>
-  }
-
-  export type DateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedDateTimeNullableFilter<$PrismaModel>
-    _max?: NestedDateTimeNullableFilter<$PrismaModel>
   }
 
   export type EnumQualityGradeWithAggregatesFilter<$PrismaModel = never> = {
@@ -29391,33 +32299,201 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
+  export type JsonFilter<$PrismaModel = never> = 
+    | PatchUndefined<
+        Either<Required<JsonFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonFilterBase<$PrismaModel>>, 'path'>>,
+        Required<JsonFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<JsonFilterBase<$PrismaModel>>, 'path'>>
+
+  export type JsonFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string[]
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+  }
 
   export type UssdSessionCountOrderByAggregateInput = {
     id?: SortOrder
     sessionId?: SortOrder
     phone?: SortOrder
+    userId?: SortOrder
+    language?: SortOrder
+    currentMenu?: SortOrder
     currentStep?: SortOrder
+    menuStack?: SortOrder
     tempData?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
+    inputHistory?: SortOrder
+    startedAt?: SortOrder
+    lastActivityAt?: SortOrder
+    isActive?: SortOrder
+    endedAt?: SortOrder
+    endReason?: SortOrder
   }
 
   export type UssdSessionMaxOrderByAggregateInput = {
     id?: SortOrder
     sessionId?: SortOrder
     phone?: SortOrder
+    userId?: SortOrder
+    language?: SortOrder
+    currentMenu?: SortOrder
     currentStep?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
+    startedAt?: SortOrder
+    lastActivityAt?: SortOrder
+    isActive?: SortOrder
+    endedAt?: SortOrder
+    endReason?: SortOrder
   }
 
   export type UssdSessionMinOrderByAggregateInput = {
     id?: SortOrder
     sessionId?: SortOrder
     phone?: SortOrder
+    userId?: SortOrder
+    language?: SortOrder
+    currentMenu?: SortOrder
     currentStep?: SortOrder
+    startedAt?: SortOrder
+    lastActivityAt?: SortOrder
+    isActive?: SortOrder
+    endedAt?: SortOrder
+    endReason?: SortOrder
+  }
+  export type JsonWithAggregatesFilter<$PrismaModel = never> = 
+    | PatchUndefined<
+        Either<Required<JsonWithAggregatesFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonWithAggregatesFilterBase<$PrismaModel>>, 'path'>>,
+        Required<JsonWithAggregatesFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<JsonWithAggregatesFilterBase<$PrismaModel>>, 'path'>>
+
+  export type JsonWithAggregatesFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string[]
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedJsonFilter<$PrismaModel>
+    _max?: NestedJsonFilter<$PrismaModel>
+  }
+
+  export type UssdAuditLogCountOrderByAggregateInput = {
+    id?: SortOrder
+    sessionId?: SortOrder
+    phone?: SortOrder
+    userId?: SortOrder
+    menu?: SortOrder
+    step?: SortOrder
+    userInput?: SortOrder
+    systemResponse?: SortOrder
+    action?: SortOrder
+    metadata?: SortOrder
+    timestamp?: SortOrder
+  }
+
+  export type UssdAuditLogMaxOrderByAggregateInput = {
+    id?: SortOrder
+    sessionId?: SortOrder
+    phone?: SortOrder
+    userId?: SortOrder
+    menu?: SortOrder
+    step?: SortOrder
+    userInput?: SortOrder
+    systemResponse?: SortOrder
+    action?: SortOrder
+    timestamp?: SortOrder
+  }
+
+  export type UssdAuditLogMinOrderByAggregateInput = {
+    id?: SortOrder
+    sessionId?: SortOrder
+    phone?: SortOrder
+    userId?: SortOrder
+    menu?: SortOrder
+    step?: SortOrder
+    userInput?: SortOrder
+    systemResponse?: SortOrder
+    action?: SortOrder
+    timestamp?: SortOrder
+  }
+
+  export type EnumUssdMessageStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.UssdMessageStatus | EnumUssdMessageStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.UssdMessageStatus[] | ListEnumUssdMessageStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.UssdMessageStatus[] | ListEnumUssdMessageStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumUssdMessageStatusFilter<$PrismaModel> | $Enums.UssdMessageStatus
+  }
+
+  export type UssdShortMessageCountOrderByAggregateInput = {
+    id?: SortOrder
+    toPhone?: SortOrder
+    message?: SortOrder
+    triggerAction?: SortOrder
+    status?: SortOrder
+    attemptCount?: SortOrder
+    sentAt?: SortOrder
+    errorMessage?: SortOrder
     createdAt?: SortOrder
-    updatedAt?: SortOrder
+  }
+
+  export type UssdShortMessageAvgOrderByAggregateInput = {
+    attemptCount?: SortOrder
+  }
+
+  export type UssdShortMessageMaxOrderByAggregateInput = {
+    id?: SortOrder
+    toPhone?: SortOrder
+    message?: SortOrder
+    triggerAction?: SortOrder
+    status?: SortOrder
+    attemptCount?: SortOrder
+    sentAt?: SortOrder
+    errorMessage?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type UssdShortMessageMinOrderByAggregateInput = {
+    id?: SortOrder
+    toPhone?: SortOrder
+    message?: SortOrder
+    triggerAction?: SortOrder
+    status?: SortOrder
+    attemptCount?: SortOrder
+    sentAt?: SortOrder
+    errorMessage?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type UssdShortMessageSumOrderByAggregateInput = {
+    attemptCount?: SortOrder
+  }
+
+  export type EnumUssdMessageStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.UssdMessageStatus | EnumUssdMessageStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.UssdMessageStatus[] | ListEnumUssdMessageStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.UssdMessageStatus[] | ListEnumUssdMessageStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumUssdMessageStatusWithAggregatesFilter<$PrismaModel> | $Enums.UssdMessageStatus
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumUssdMessageStatusFilter<$PrismaModel>
+    _max?: NestedEnumUssdMessageStatusFilter<$PrismaModel>
   }
 
   export type EnumPreOrderStatusFilter<$PrismaModel = never> = {
@@ -29841,6 +32917,13 @@ export namespace Prisma {
     connect?: UserBanWhereUniqueInput | UserBanWhereUniqueInput[]
   }
 
+  export type UssdSessionCreateNestedManyWithoutUserInput = {
+    create?: XOR<UssdSessionCreateWithoutUserInput, UssdSessionUncheckedCreateWithoutUserInput> | UssdSessionCreateWithoutUserInput[] | UssdSessionUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: UssdSessionCreateOrConnectWithoutUserInput | UssdSessionCreateOrConnectWithoutUserInput[]
+    createMany?: UssdSessionCreateManyUserInputEnvelope
+    connect?: UssdSessionWhereUniqueInput | UssdSessionWhereUniqueInput[]
+  }
+
   export type FarmerProfileUncheckedCreateNestedOneWithoutUserInput = {
     create?: XOR<FarmerProfileCreateWithoutUserInput, FarmerProfileUncheckedCreateWithoutUserInput>
     connectOrCreate?: FarmerProfileCreateOrConnectWithoutUserInput
@@ -29963,6 +33046,13 @@ export namespace Prisma {
     connect?: UserBanWhereUniqueInput | UserBanWhereUniqueInput[]
   }
 
+  export type UssdSessionUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<UssdSessionCreateWithoutUserInput, UssdSessionUncheckedCreateWithoutUserInput> | UssdSessionCreateWithoutUserInput[] | UssdSessionUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: UssdSessionCreateOrConnectWithoutUserInput | UssdSessionCreateOrConnectWithoutUserInput[]
+    createMany?: UssdSessionCreateManyUserInputEnvelope
+    connect?: UssdSessionWhereUniqueInput | UssdSessionWhereUniqueInput[]
+  }
+
   export type StringFieldUpdateOperationsInput = {
     set?: string
   }
@@ -29985,6 +33075,10 @@ export namespace Prisma {
 
   export type BoolFieldUpdateOperationsInput = {
     set?: boolean
+  }
+
+  export type NullableDateTimeFieldUpdateOperationsInput = {
+    set?: Date | string | null
   }
 
   export type DateTimeFieldUpdateOperationsInput = {
@@ -30227,6 +33321,20 @@ export namespace Prisma {
     deleteMany?: UserBanScalarWhereInput | UserBanScalarWhereInput[]
   }
 
+  export type UssdSessionUpdateManyWithoutUserNestedInput = {
+    create?: XOR<UssdSessionCreateWithoutUserInput, UssdSessionUncheckedCreateWithoutUserInput> | UssdSessionCreateWithoutUserInput[] | UssdSessionUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: UssdSessionCreateOrConnectWithoutUserInput | UssdSessionCreateOrConnectWithoutUserInput[]
+    upsert?: UssdSessionUpsertWithWhereUniqueWithoutUserInput | UssdSessionUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: UssdSessionCreateManyUserInputEnvelope
+    set?: UssdSessionWhereUniqueInput | UssdSessionWhereUniqueInput[]
+    disconnect?: UssdSessionWhereUniqueInput | UssdSessionWhereUniqueInput[]
+    delete?: UssdSessionWhereUniqueInput | UssdSessionWhereUniqueInput[]
+    connect?: UssdSessionWhereUniqueInput | UssdSessionWhereUniqueInput[]
+    update?: UssdSessionUpdateWithWhereUniqueWithoutUserInput | UssdSessionUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: UssdSessionUpdateManyWithWhereWithoutUserInput | UssdSessionUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: UssdSessionScalarWhereInput | UssdSessionScalarWhereInput[]
+  }
+
   export type FarmerProfileUncheckedUpdateOneWithoutUserNestedInput = {
     create?: XOR<FarmerProfileCreateWithoutUserInput, FarmerProfileUncheckedCreateWithoutUserInput>
     connectOrCreate?: FarmerProfileCreateOrConnectWithoutUserInput
@@ -30463,6 +33571,20 @@ export namespace Prisma {
     deleteMany?: UserBanScalarWhereInput | UserBanScalarWhereInput[]
   }
 
+  export type UssdSessionUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<UssdSessionCreateWithoutUserInput, UssdSessionUncheckedCreateWithoutUserInput> | UssdSessionCreateWithoutUserInput[] | UssdSessionUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: UssdSessionCreateOrConnectWithoutUserInput | UssdSessionCreateOrConnectWithoutUserInput[]
+    upsert?: UssdSessionUpsertWithWhereUniqueWithoutUserInput | UssdSessionUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: UssdSessionCreateManyUserInputEnvelope
+    set?: UssdSessionWhereUniqueInput | UssdSessionWhereUniqueInput[]
+    disconnect?: UssdSessionWhereUniqueInput | UssdSessionWhereUniqueInput[]
+    delete?: UssdSessionWhereUniqueInput | UssdSessionWhereUniqueInput[]
+    connect?: UssdSessionWhereUniqueInput | UssdSessionWhereUniqueInput[]
+    update?: UssdSessionUpdateWithWhereUniqueWithoutUserInput | UssdSessionUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: UssdSessionUpdateManyWithWhereWithoutUserInput | UssdSessionUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: UssdSessionScalarWhereInput | UssdSessionScalarWhereInput[]
+  }
+
   export type FarmerProfileCreateprimaryCropsInput = {
     set: string[]
   }
@@ -30611,10 +33733,6 @@ export namespace Prisma {
   export type ProduceListingUpdateimagesInput = {
     set?: string[]
     push?: string | string[]
-  }
-
-  export type NullableDateTimeFieldUpdateOperationsInput = {
-    set?: Date | string | null
   }
 
   export type EnumQualityGradeFieldUpdateOperationsInput = {
@@ -31131,6 +34249,26 @@ export namespace Prisma {
     update?: XOR<XOR<OrderUpdateToOneWithWhereWithoutMessagesInput, OrderUpdateWithoutMessagesInput>, OrderUncheckedUpdateWithoutMessagesInput>
   }
 
+  export type UserCreateNestedOneWithoutUssdSessionsInput = {
+    create?: XOR<UserCreateWithoutUssdSessionsInput, UserUncheckedCreateWithoutUssdSessionsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutUssdSessionsInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type UserUpdateOneWithoutUssdSessionsNestedInput = {
+    create?: XOR<UserCreateWithoutUssdSessionsInput, UserUncheckedCreateWithoutUssdSessionsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutUssdSessionsInput
+    upsert?: UserUpsertWithoutUssdSessionsInput
+    disconnect?: UserWhereInput | boolean
+    delete?: UserWhereInput | boolean
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutUssdSessionsInput, UserUpdateWithoutUssdSessionsInput>, UserUncheckedUpdateWithoutUssdSessionsInput>
+  }
+
+  export type EnumUssdMessageStatusFieldUpdateOperationsInput = {
+    set?: $Enums.UssdMessageStatus
+  }
+
   export type UserCreateNestedOneWithoutPreOrdersInput = {
     create?: XOR<UserCreateWithoutPreOrdersInput, UserUncheckedCreateWithoutPreOrdersInput>
     connectOrCreate?: UserCreateOrConnectWithoutPreOrdersInput
@@ -31400,6 +34538,17 @@ export namespace Prisma {
     not?: NestedBoolFilter<$PrismaModel> | boolean
   }
 
+  export type NestedDateTimeNullableFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
+  }
+
   export type NestedDateTimeFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
@@ -31501,6 +34650,20 @@ export namespace Prisma {
     _max?: NestedBoolFilter<$PrismaModel>
   }
 
+  export type NestedDateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedDateTimeNullableFilter<$PrismaModel>
+    _max?: NestedDateTimeNullableFilter<$PrismaModel>
+  }
+
   export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
@@ -31582,17 +34745,6 @@ export namespace Prisma {
     not?: NestedEnumCropTypeFilter<$PrismaModel> | $Enums.CropType
   }
 
-  export type NestedDateTimeNullableFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
-  }
-
   export type NestedEnumQualityGradeFilter<$PrismaModel = never> = {
     equals?: $Enums.QualityGrade | EnumQualityGradeFieldRefInput<$PrismaModel>
     in?: $Enums.QualityGrade[] | ListEnumQualityGradeFieldRefInput<$PrismaModel>
@@ -31615,20 +34767,6 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumCropTypeFilter<$PrismaModel>
     _max?: NestedEnumCropTypeFilter<$PrismaModel>
-  }
-
-  export type NestedDateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedDateTimeNullableFilter<$PrismaModel>
-    _max?: NestedDateTimeNullableFilter<$PrismaModel>
   }
 
   export type NestedEnumQualityGradeWithAggregatesFilter<$PrismaModel = never> = {
@@ -31739,6 +34877,45 @@ export namespace Prisma {
     gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
     gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
     not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+  }
+  export type NestedJsonFilter<$PrismaModel = never> = 
+    | PatchUndefined<
+        Either<Required<NestedJsonFilterBase<$PrismaModel>>, Exclude<keyof Required<NestedJsonFilterBase<$PrismaModel>>, 'path'>>,
+        Required<NestedJsonFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<NestedJsonFilterBase<$PrismaModel>>, 'path'>>
+
+  export type NestedJsonFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string[]
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+  }
+
+  export type NestedEnumUssdMessageStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.UssdMessageStatus | EnumUssdMessageStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.UssdMessageStatus[] | ListEnumUssdMessageStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.UssdMessageStatus[] | ListEnumUssdMessageStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumUssdMessageStatusFilter<$PrismaModel> | $Enums.UssdMessageStatus
+  }
+
+  export type NestedEnumUssdMessageStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.UssdMessageStatus | EnumUssdMessageStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.UssdMessageStatus[] | ListEnumUssdMessageStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.UssdMessageStatus[] | ListEnumUssdMessageStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumUssdMessageStatusWithAggregatesFilter<$PrismaModel> | $Enums.UssdMessageStatus
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumUssdMessageStatusFilter<$PrismaModel>
+    _max?: NestedEnumUssdMessageStatusFilter<$PrismaModel>
   }
 
   export type NestedEnumPreOrderStatusFilter<$PrismaModel = never> = {
@@ -32372,6 +35549,50 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type UssdSessionCreateWithoutUserInput = {
+    id?: string
+    sessionId: string
+    phone: string
+    language?: string
+    currentMenu: string
+    currentStep: string
+    menuStack?: JsonNullValueInput | InputJsonValue
+    tempData?: JsonNullValueInput | InputJsonValue
+    inputHistory?: JsonNullValueInput | InputJsonValue
+    startedAt?: Date | string
+    lastActivityAt?: Date | string
+    isActive?: boolean
+    endedAt?: Date | string | null
+    endReason?: string | null
+  }
+
+  export type UssdSessionUncheckedCreateWithoutUserInput = {
+    id?: string
+    sessionId: string
+    phone: string
+    language?: string
+    currentMenu: string
+    currentStep: string
+    menuStack?: JsonNullValueInput | InputJsonValue
+    tempData?: JsonNullValueInput | InputJsonValue
+    inputHistory?: JsonNullValueInput | InputJsonValue
+    startedAt?: Date | string
+    lastActivityAt?: Date | string
+    isActive?: boolean
+    endedAt?: Date | string | null
+    endReason?: string | null
+  }
+
+  export type UssdSessionCreateOrConnectWithoutUserInput = {
+    where: UssdSessionWhereUniqueInput
+    create: XOR<UssdSessionCreateWithoutUserInput, UssdSessionUncheckedCreateWithoutUserInput>
+  }
+
+  export type UssdSessionCreateManyUserInputEnvelope = {
+    data: UssdSessionCreateManyUserInput | UssdSessionCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
   export type FarmerProfileUpsertWithoutUserInput = {
     update: XOR<FarmerProfileUpdateWithoutUserInput, FarmerProfileUncheckedUpdateWithoutUserInput>
     create: XOR<FarmerProfileCreateWithoutUserInput, FarmerProfileUncheckedCreateWithoutUserInput>
@@ -32925,6 +36146,43 @@ export namespace Prisma {
     isActive?: BoolFilter<"UserBan"> | boolean
   }
 
+  export type UssdSessionUpsertWithWhereUniqueWithoutUserInput = {
+    where: UssdSessionWhereUniqueInput
+    update: XOR<UssdSessionUpdateWithoutUserInput, UssdSessionUncheckedUpdateWithoutUserInput>
+    create: XOR<UssdSessionCreateWithoutUserInput, UssdSessionUncheckedCreateWithoutUserInput>
+  }
+
+  export type UssdSessionUpdateWithWhereUniqueWithoutUserInput = {
+    where: UssdSessionWhereUniqueInput
+    data: XOR<UssdSessionUpdateWithoutUserInput, UssdSessionUncheckedUpdateWithoutUserInput>
+  }
+
+  export type UssdSessionUpdateManyWithWhereWithoutUserInput = {
+    where: UssdSessionScalarWhereInput
+    data: XOR<UssdSessionUpdateManyMutationInput, UssdSessionUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type UssdSessionScalarWhereInput = {
+    AND?: UssdSessionScalarWhereInput | UssdSessionScalarWhereInput[]
+    OR?: UssdSessionScalarWhereInput[]
+    NOT?: UssdSessionScalarWhereInput | UssdSessionScalarWhereInput[]
+    id?: StringFilter<"UssdSession"> | string
+    sessionId?: StringFilter<"UssdSession"> | string
+    phone?: StringFilter<"UssdSession"> | string
+    userId?: StringNullableFilter<"UssdSession"> | string | null
+    language?: StringFilter<"UssdSession"> | string
+    currentMenu?: StringFilter<"UssdSession"> | string
+    currentStep?: StringFilter<"UssdSession"> | string
+    menuStack?: JsonFilter<"UssdSession">
+    tempData?: JsonFilter<"UssdSession">
+    inputHistory?: JsonFilter<"UssdSession">
+    startedAt?: DateTimeFilter<"UssdSession"> | Date | string
+    lastActivityAt?: DateTimeFilter<"UssdSession"> | Date | string
+    isActive?: BoolFilter<"UssdSession"> | boolean
+    endedAt?: DateTimeNullableFilter<"UssdSession"> | Date | string | null
+    endReason?: StringNullableFilter<"UssdSession"> | string | null
+  }
+
   export type UserCreateWithoutFarmerProfileInput = {
     id?: string
     phone: string
@@ -32936,6 +36194,10 @@ export namespace Prisma {
     district?: string | null
     isVerified?: boolean
     passwordHash?: string | null
+    preferredLanguage?: string
+    ussdPin?: string | null
+    ussdPinSetAt?: Date | string | null
+    lastUssdActivity?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     buyerProfile?: BuyerProfileCreateNestedOneWithoutUserInput
@@ -32955,6 +36217,7 @@ export namespace Prisma {
     configsUpdated?: SystemConfigCreateNestedManyWithoutUpdaterInput
     ban?: UserBanCreateNestedOneWithoutUserInput
     bansIssued?: UserBanCreateNestedManyWithoutBannerInput
+    ussdSessions?: UssdSessionCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutFarmerProfileInput = {
@@ -32968,6 +36231,10 @@ export namespace Prisma {
     district?: string | null
     isVerified?: boolean
     passwordHash?: string | null
+    preferredLanguage?: string
+    ussdPin?: string | null
+    ussdPinSetAt?: Date | string | null
+    lastUssdActivity?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     buyerProfile?: BuyerProfileUncheckedCreateNestedOneWithoutUserInput
@@ -32987,6 +36254,7 @@ export namespace Prisma {
     configsUpdated?: SystemConfigUncheckedCreateNestedManyWithoutUpdaterInput
     ban?: UserBanUncheckedCreateNestedOneWithoutUserInput
     bansIssued?: UserBanUncheckedCreateNestedManyWithoutBannerInput
+    ussdSessions?: UssdSessionUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutFarmerProfileInput = {
@@ -33016,6 +36284,10 @@ export namespace Prisma {
     district?: NullableStringFieldUpdateOperationsInput | string | null
     isVerified?: BoolFieldUpdateOperationsInput | boolean
     passwordHash?: NullableStringFieldUpdateOperationsInput | string | null
+    preferredLanguage?: StringFieldUpdateOperationsInput | string
+    ussdPin?: NullableStringFieldUpdateOperationsInput | string | null
+    ussdPinSetAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lastUssdActivity?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     buyerProfile?: BuyerProfileUpdateOneWithoutUserNestedInput
@@ -33035,6 +36307,7 @@ export namespace Prisma {
     configsUpdated?: SystemConfigUpdateManyWithoutUpdaterNestedInput
     ban?: UserBanUpdateOneWithoutUserNestedInput
     bansIssued?: UserBanUpdateManyWithoutBannerNestedInput
+    ussdSessions?: UssdSessionUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutFarmerProfileInput = {
@@ -33048,6 +36321,10 @@ export namespace Prisma {
     district?: NullableStringFieldUpdateOperationsInput | string | null
     isVerified?: BoolFieldUpdateOperationsInput | boolean
     passwordHash?: NullableStringFieldUpdateOperationsInput | string | null
+    preferredLanguage?: StringFieldUpdateOperationsInput | string
+    ussdPin?: NullableStringFieldUpdateOperationsInput | string | null
+    ussdPinSetAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lastUssdActivity?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     buyerProfile?: BuyerProfileUncheckedUpdateOneWithoutUserNestedInput
@@ -33067,6 +36344,7 @@ export namespace Prisma {
     configsUpdated?: SystemConfigUncheckedUpdateManyWithoutUpdaterNestedInput
     ban?: UserBanUncheckedUpdateOneWithoutUserNestedInput
     bansIssued?: UserBanUncheckedUpdateManyWithoutBannerNestedInput
+    ussdSessions?: UssdSessionUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutBuyerProfileInput = {
@@ -33080,6 +36358,10 @@ export namespace Prisma {
     district?: string | null
     isVerified?: boolean
     passwordHash?: string | null
+    preferredLanguage?: string
+    ussdPin?: string | null
+    ussdPinSetAt?: Date | string | null
+    lastUssdActivity?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     farmerProfile?: FarmerProfileCreateNestedOneWithoutUserInput
@@ -33099,6 +36381,7 @@ export namespace Prisma {
     configsUpdated?: SystemConfigCreateNestedManyWithoutUpdaterInput
     ban?: UserBanCreateNestedOneWithoutUserInput
     bansIssued?: UserBanCreateNestedManyWithoutBannerInput
+    ussdSessions?: UssdSessionCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutBuyerProfileInput = {
@@ -33112,6 +36395,10 @@ export namespace Prisma {
     district?: string | null
     isVerified?: boolean
     passwordHash?: string | null
+    preferredLanguage?: string
+    ussdPin?: string | null
+    ussdPinSetAt?: Date | string | null
+    lastUssdActivity?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     farmerProfile?: FarmerProfileUncheckedCreateNestedOneWithoutUserInput
@@ -33131,6 +36418,7 @@ export namespace Prisma {
     configsUpdated?: SystemConfigUncheckedCreateNestedManyWithoutUpdaterInput
     ban?: UserBanUncheckedCreateNestedOneWithoutUserInput
     bansIssued?: UserBanUncheckedCreateNestedManyWithoutBannerInput
+    ussdSessions?: UssdSessionUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutBuyerProfileInput = {
@@ -33160,6 +36448,10 @@ export namespace Prisma {
     district?: NullableStringFieldUpdateOperationsInput | string | null
     isVerified?: BoolFieldUpdateOperationsInput | boolean
     passwordHash?: NullableStringFieldUpdateOperationsInput | string | null
+    preferredLanguage?: StringFieldUpdateOperationsInput | string
+    ussdPin?: NullableStringFieldUpdateOperationsInput | string | null
+    ussdPinSetAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lastUssdActivity?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     farmerProfile?: FarmerProfileUpdateOneWithoutUserNestedInput
@@ -33179,6 +36471,7 @@ export namespace Prisma {
     configsUpdated?: SystemConfigUpdateManyWithoutUpdaterNestedInput
     ban?: UserBanUpdateOneWithoutUserNestedInput
     bansIssued?: UserBanUpdateManyWithoutBannerNestedInput
+    ussdSessions?: UssdSessionUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutBuyerProfileInput = {
@@ -33192,6 +36485,10 @@ export namespace Prisma {
     district?: NullableStringFieldUpdateOperationsInput | string | null
     isVerified?: BoolFieldUpdateOperationsInput | boolean
     passwordHash?: NullableStringFieldUpdateOperationsInput | string | null
+    preferredLanguage?: StringFieldUpdateOperationsInput | string
+    ussdPin?: NullableStringFieldUpdateOperationsInput | string | null
+    ussdPinSetAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lastUssdActivity?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     farmerProfile?: FarmerProfileUncheckedUpdateOneWithoutUserNestedInput
@@ -33211,6 +36508,7 @@ export namespace Prisma {
     configsUpdated?: SystemConfigUncheckedUpdateManyWithoutUpdaterNestedInput
     ban?: UserBanUncheckedUpdateOneWithoutUserNestedInput
     bansIssued?: UserBanUncheckedUpdateManyWithoutBannerNestedInput
+    ussdSessions?: UssdSessionUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutTransportProfileInput = {
@@ -33224,6 +36522,10 @@ export namespace Prisma {
     district?: string | null
     isVerified?: boolean
     passwordHash?: string | null
+    preferredLanguage?: string
+    ussdPin?: string | null
+    ussdPinSetAt?: Date | string | null
+    lastUssdActivity?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     farmerProfile?: FarmerProfileCreateNestedOneWithoutUserInput
@@ -33243,6 +36545,7 @@ export namespace Prisma {
     configsUpdated?: SystemConfigCreateNestedManyWithoutUpdaterInput
     ban?: UserBanCreateNestedOneWithoutUserInput
     bansIssued?: UserBanCreateNestedManyWithoutBannerInput
+    ussdSessions?: UssdSessionCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutTransportProfileInput = {
@@ -33256,6 +36559,10 @@ export namespace Prisma {
     district?: string | null
     isVerified?: boolean
     passwordHash?: string | null
+    preferredLanguage?: string
+    ussdPin?: string | null
+    ussdPinSetAt?: Date | string | null
+    lastUssdActivity?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     farmerProfile?: FarmerProfileUncheckedCreateNestedOneWithoutUserInput
@@ -33275,6 +36582,7 @@ export namespace Prisma {
     configsUpdated?: SystemConfigUncheckedCreateNestedManyWithoutUpdaterInput
     ban?: UserBanUncheckedCreateNestedOneWithoutUserInput
     bansIssued?: UserBanUncheckedCreateNestedManyWithoutBannerInput
+    ussdSessions?: UssdSessionUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutTransportProfileInput = {
@@ -33304,6 +36612,10 @@ export namespace Prisma {
     district?: NullableStringFieldUpdateOperationsInput | string | null
     isVerified?: BoolFieldUpdateOperationsInput | boolean
     passwordHash?: NullableStringFieldUpdateOperationsInput | string | null
+    preferredLanguage?: StringFieldUpdateOperationsInput | string
+    ussdPin?: NullableStringFieldUpdateOperationsInput | string | null
+    ussdPinSetAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lastUssdActivity?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     farmerProfile?: FarmerProfileUpdateOneWithoutUserNestedInput
@@ -33323,6 +36635,7 @@ export namespace Prisma {
     configsUpdated?: SystemConfigUpdateManyWithoutUpdaterNestedInput
     ban?: UserBanUpdateOneWithoutUserNestedInput
     bansIssued?: UserBanUpdateManyWithoutBannerNestedInput
+    ussdSessions?: UssdSessionUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutTransportProfileInput = {
@@ -33336,6 +36649,10 @@ export namespace Prisma {
     district?: NullableStringFieldUpdateOperationsInput | string | null
     isVerified?: BoolFieldUpdateOperationsInput | boolean
     passwordHash?: NullableStringFieldUpdateOperationsInput | string | null
+    preferredLanguage?: StringFieldUpdateOperationsInput | string
+    ussdPin?: NullableStringFieldUpdateOperationsInput | string | null
+    ussdPinSetAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lastUssdActivity?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     farmerProfile?: FarmerProfileUncheckedUpdateOneWithoutUserNestedInput
@@ -33355,6 +36672,7 @@ export namespace Prisma {
     configsUpdated?: SystemConfigUncheckedUpdateManyWithoutUpdaterNestedInput
     ban?: UserBanUncheckedUpdateOneWithoutUserNestedInput
     bansIssued?: UserBanUncheckedUpdateManyWithoutBannerNestedInput
+    ussdSessions?: UssdSessionUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutListingsInput = {
@@ -33368,6 +36686,10 @@ export namespace Prisma {
     district?: string | null
     isVerified?: boolean
     passwordHash?: string | null
+    preferredLanguage?: string
+    ussdPin?: string | null
+    ussdPinSetAt?: Date | string | null
+    lastUssdActivity?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     farmerProfile?: FarmerProfileCreateNestedOneWithoutUserInput
@@ -33387,6 +36709,7 @@ export namespace Prisma {
     configsUpdated?: SystemConfigCreateNestedManyWithoutUpdaterInput
     ban?: UserBanCreateNestedOneWithoutUserInput
     bansIssued?: UserBanCreateNestedManyWithoutBannerInput
+    ussdSessions?: UssdSessionCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutListingsInput = {
@@ -33400,6 +36723,10 @@ export namespace Prisma {
     district?: string | null
     isVerified?: boolean
     passwordHash?: string | null
+    preferredLanguage?: string
+    ussdPin?: string | null
+    ussdPinSetAt?: Date | string | null
+    lastUssdActivity?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     farmerProfile?: FarmerProfileUncheckedCreateNestedOneWithoutUserInput
@@ -33419,6 +36746,7 @@ export namespace Prisma {
     configsUpdated?: SystemConfigUncheckedCreateNestedManyWithoutUpdaterInput
     ban?: UserBanUncheckedCreateNestedOneWithoutUserInput
     bansIssued?: UserBanUncheckedCreateNestedManyWithoutBannerInput
+    ussdSessions?: UssdSessionUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutListingsInput = {
@@ -33632,6 +36960,10 @@ export namespace Prisma {
     district?: NullableStringFieldUpdateOperationsInput | string | null
     isVerified?: BoolFieldUpdateOperationsInput | boolean
     passwordHash?: NullableStringFieldUpdateOperationsInput | string | null
+    preferredLanguage?: StringFieldUpdateOperationsInput | string
+    ussdPin?: NullableStringFieldUpdateOperationsInput | string | null
+    ussdPinSetAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lastUssdActivity?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     farmerProfile?: FarmerProfileUpdateOneWithoutUserNestedInput
@@ -33651,6 +36983,7 @@ export namespace Prisma {
     configsUpdated?: SystemConfigUpdateManyWithoutUpdaterNestedInput
     ban?: UserBanUpdateOneWithoutUserNestedInput
     bansIssued?: UserBanUpdateManyWithoutBannerNestedInput
+    ussdSessions?: UssdSessionUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutListingsInput = {
@@ -33664,6 +36997,10 @@ export namespace Prisma {
     district?: NullableStringFieldUpdateOperationsInput | string | null
     isVerified?: BoolFieldUpdateOperationsInput | boolean
     passwordHash?: NullableStringFieldUpdateOperationsInput | string | null
+    preferredLanguage?: StringFieldUpdateOperationsInput | string
+    ussdPin?: NullableStringFieldUpdateOperationsInput | string | null
+    ussdPinSetAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lastUssdActivity?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     farmerProfile?: FarmerProfileUncheckedUpdateOneWithoutUserNestedInput
@@ -33683,6 +37020,7 @@ export namespace Prisma {
     configsUpdated?: SystemConfigUncheckedUpdateManyWithoutUpdaterNestedInput
     ban?: UserBanUncheckedUpdateOneWithoutUserNestedInput
     bansIssued?: UserBanUncheckedUpdateManyWithoutBannerNestedInput
+    ussdSessions?: UssdSessionUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type OrderUpsertWithWhereUniqueWithoutListingInput = {
@@ -33979,6 +37317,10 @@ export namespace Prisma {
     district?: string | null
     isVerified?: boolean
     passwordHash?: string | null
+    preferredLanguage?: string
+    ussdPin?: string | null
+    ussdPinSetAt?: Date | string | null
+    lastUssdActivity?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     farmerProfile?: FarmerProfileCreateNestedOneWithoutUserInput
@@ -33998,6 +37340,7 @@ export namespace Prisma {
     configsUpdated?: SystemConfigCreateNestedManyWithoutUpdaterInput
     ban?: UserBanCreateNestedOneWithoutUserInput
     bansIssued?: UserBanCreateNestedManyWithoutBannerInput
+    ussdSessions?: UssdSessionCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutRecordedTraceEventsInput = {
@@ -34011,6 +37354,10 @@ export namespace Prisma {
     district?: string | null
     isVerified?: boolean
     passwordHash?: string | null
+    preferredLanguage?: string
+    ussdPin?: string | null
+    ussdPinSetAt?: Date | string | null
+    lastUssdActivity?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     farmerProfile?: FarmerProfileUncheckedCreateNestedOneWithoutUserInput
@@ -34030,6 +37377,7 @@ export namespace Prisma {
     configsUpdated?: SystemConfigUncheckedCreateNestedManyWithoutUpdaterInput
     ban?: UserBanUncheckedCreateNestedOneWithoutUserInput
     bansIssued?: UserBanUncheckedCreateNestedManyWithoutBannerInput
+    ussdSessions?: UssdSessionUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutRecordedTraceEventsInput = {
@@ -34118,6 +37466,10 @@ export namespace Prisma {
     district?: NullableStringFieldUpdateOperationsInput | string | null
     isVerified?: BoolFieldUpdateOperationsInput | boolean
     passwordHash?: NullableStringFieldUpdateOperationsInput | string | null
+    preferredLanguage?: StringFieldUpdateOperationsInput | string
+    ussdPin?: NullableStringFieldUpdateOperationsInput | string | null
+    ussdPinSetAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lastUssdActivity?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     farmerProfile?: FarmerProfileUpdateOneWithoutUserNestedInput
@@ -34137,6 +37489,7 @@ export namespace Prisma {
     configsUpdated?: SystemConfigUpdateManyWithoutUpdaterNestedInput
     ban?: UserBanUpdateOneWithoutUserNestedInput
     bansIssued?: UserBanUpdateManyWithoutBannerNestedInput
+    ussdSessions?: UssdSessionUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutRecordedTraceEventsInput = {
@@ -34150,6 +37503,10 @@ export namespace Prisma {
     district?: NullableStringFieldUpdateOperationsInput | string | null
     isVerified?: BoolFieldUpdateOperationsInput | boolean
     passwordHash?: NullableStringFieldUpdateOperationsInput | string | null
+    preferredLanguage?: StringFieldUpdateOperationsInput | string
+    ussdPin?: NullableStringFieldUpdateOperationsInput | string | null
+    ussdPinSetAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lastUssdActivity?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     farmerProfile?: FarmerProfileUncheckedUpdateOneWithoutUserNestedInput
@@ -34169,6 +37526,7 @@ export namespace Prisma {
     configsUpdated?: SystemConfigUncheckedUpdateManyWithoutUpdaterNestedInput
     ban?: UserBanUncheckedUpdateOneWithoutUserNestedInput
     bansIssued?: UserBanUncheckedUpdateManyWithoutBannerNestedInput
+    ussdSessions?: UssdSessionUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutOrdersInput = {
@@ -34182,6 +37540,10 @@ export namespace Prisma {
     district?: string | null
     isVerified?: boolean
     passwordHash?: string | null
+    preferredLanguage?: string
+    ussdPin?: string | null
+    ussdPinSetAt?: Date | string | null
+    lastUssdActivity?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     farmerProfile?: FarmerProfileCreateNestedOneWithoutUserInput
@@ -34201,6 +37563,7 @@ export namespace Prisma {
     configsUpdated?: SystemConfigCreateNestedManyWithoutUpdaterInput
     ban?: UserBanCreateNestedOneWithoutUserInput
     bansIssued?: UserBanCreateNestedManyWithoutBannerInput
+    ussdSessions?: UssdSessionCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutOrdersInput = {
@@ -34214,6 +37577,10 @@ export namespace Prisma {
     district?: string | null
     isVerified?: boolean
     passwordHash?: string | null
+    preferredLanguage?: string
+    ussdPin?: string | null
+    ussdPinSetAt?: Date | string | null
+    lastUssdActivity?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     farmerProfile?: FarmerProfileUncheckedCreateNestedOneWithoutUserInput
@@ -34233,6 +37600,7 @@ export namespace Prisma {
     configsUpdated?: SystemConfigUncheckedCreateNestedManyWithoutUpdaterInput
     ban?: UserBanUncheckedCreateNestedOneWithoutUserInput
     bansIssued?: UserBanUncheckedCreateNestedManyWithoutBannerInput
+    ussdSessions?: UssdSessionUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutOrdersInput = {
@@ -34467,6 +37835,10 @@ export namespace Prisma {
     district?: NullableStringFieldUpdateOperationsInput | string | null
     isVerified?: BoolFieldUpdateOperationsInput | boolean
     passwordHash?: NullableStringFieldUpdateOperationsInput | string | null
+    preferredLanguage?: StringFieldUpdateOperationsInput | string
+    ussdPin?: NullableStringFieldUpdateOperationsInput | string | null
+    ussdPinSetAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lastUssdActivity?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     farmerProfile?: FarmerProfileUpdateOneWithoutUserNestedInput
@@ -34486,6 +37858,7 @@ export namespace Prisma {
     configsUpdated?: SystemConfigUpdateManyWithoutUpdaterNestedInput
     ban?: UserBanUpdateOneWithoutUserNestedInput
     bansIssued?: UserBanUpdateManyWithoutBannerNestedInput
+    ussdSessions?: UssdSessionUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutOrdersInput = {
@@ -34499,6 +37872,10 @@ export namespace Prisma {
     district?: NullableStringFieldUpdateOperationsInput | string | null
     isVerified?: BoolFieldUpdateOperationsInput | boolean
     passwordHash?: NullableStringFieldUpdateOperationsInput | string | null
+    preferredLanguage?: StringFieldUpdateOperationsInput | string
+    ussdPin?: NullableStringFieldUpdateOperationsInput | string | null
+    ussdPinSetAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lastUssdActivity?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     farmerProfile?: FarmerProfileUncheckedUpdateOneWithoutUserNestedInput
@@ -34518,6 +37895,7 @@ export namespace Prisma {
     configsUpdated?: SystemConfigUncheckedUpdateManyWithoutUpdaterNestedInput
     ban?: UserBanUncheckedUpdateOneWithoutUserNestedInput
     bansIssued?: UserBanUncheckedUpdateManyWithoutBannerNestedInput
+    ussdSessions?: UssdSessionUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type ProduceListingUpsertWithoutOrdersInput = {
@@ -34765,6 +38143,10 @@ export namespace Prisma {
     district?: string | null
     isVerified?: boolean
     passwordHash?: string | null
+    preferredLanguage?: string
+    ussdPin?: string | null
+    ussdPinSetAt?: Date | string | null
+    lastUssdActivity?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     farmerProfile?: FarmerProfileCreateNestedOneWithoutUserInput
@@ -34784,6 +38166,7 @@ export namespace Prisma {
     configsUpdated?: SystemConfigCreateNestedManyWithoutUpdaterInput
     ban?: UserBanCreateNestedOneWithoutUserInput
     bansIssued?: UserBanCreateNestedManyWithoutBannerInput
+    ussdSessions?: UssdSessionCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutDeliveriesInput = {
@@ -34797,6 +38180,10 @@ export namespace Prisma {
     district?: string | null
     isVerified?: boolean
     passwordHash?: string | null
+    preferredLanguage?: string
+    ussdPin?: string | null
+    ussdPinSetAt?: Date | string | null
+    lastUssdActivity?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     farmerProfile?: FarmerProfileUncheckedCreateNestedOneWithoutUserInput
@@ -34816,6 +38203,7 @@ export namespace Prisma {
     configsUpdated?: SystemConfigUncheckedCreateNestedManyWithoutUpdaterInput
     ban?: UserBanUncheckedCreateNestedOneWithoutUserInput
     bansIssued?: UserBanUncheckedCreateNestedManyWithoutBannerInput
+    ussdSessions?: UssdSessionUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutDeliveriesInput = {
@@ -34890,6 +38278,10 @@ export namespace Prisma {
     district?: NullableStringFieldUpdateOperationsInput | string | null
     isVerified?: BoolFieldUpdateOperationsInput | boolean
     passwordHash?: NullableStringFieldUpdateOperationsInput | string | null
+    preferredLanguage?: StringFieldUpdateOperationsInput | string
+    ussdPin?: NullableStringFieldUpdateOperationsInput | string | null
+    ussdPinSetAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lastUssdActivity?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     farmerProfile?: FarmerProfileUpdateOneWithoutUserNestedInput
@@ -34909,6 +38301,7 @@ export namespace Prisma {
     configsUpdated?: SystemConfigUpdateManyWithoutUpdaterNestedInput
     ban?: UserBanUpdateOneWithoutUserNestedInput
     bansIssued?: UserBanUpdateManyWithoutBannerNestedInput
+    ussdSessions?: UssdSessionUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutDeliveriesInput = {
@@ -34922,6 +38315,10 @@ export namespace Prisma {
     district?: NullableStringFieldUpdateOperationsInput | string | null
     isVerified?: BoolFieldUpdateOperationsInput | boolean
     passwordHash?: NullableStringFieldUpdateOperationsInput | string | null
+    preferredLanguage?: StringFieldUpdateOperationsInput | string
+    ussdPin?: NullableStringFieldUpdateOperationsInput | string | null
+    ussdPinSetAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lastUssdActivity?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     farmerProfile?: FarmerProfileUncheckedUpdateOneWithoutUserNestedInput
@@ -34941,6 +38338,7 @@ export namespace Prisma {
     configsUpdated?: SystemConfigUncheckedUpdateManyWithoutUpdaterNestedInput
     ban?: UserBanUncheckedUpdateOneWithoutUserNestedInput
     bansIssued?: UserBanUncheckedUpdateManyWithoutBannerNestedInput
+    ussdSessions?: UssdSessionUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutSentReviewsInput = {
@@ -34954,6 +38352,10 @@ export namespace Prisma {
     district?: string | null
     isVerified?: boolean
     passwordHash?: string | null
+    preferredLanguage?: string
+    ussdPin?: string | null
+    ussdPinSetAt?: Date | string | null
+    lastUssdActivity?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     farmerProfile?: FarmerProfileCreateNestedOneWithoutUserInput
@@ -34973,6 +38375,7 @@ export namespace Prisma {
     configsUpdated?: SystemConfigCreateNestedManyWithoutUpdaterInput
     ban?: UserBanCreateNestedOneWithoutUserInput
     bansIssued?: UserBanCreateNestedManyWithoutBannerInput
+    ussdSessions?: UssdSessionCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutSentReviewsInput = {
@@ -34986,6 +38389,10 @@ export namespace Prisma {
     district?: string | null
     isVerified?: boolean
     passwordHash?: string | null
+    preferredLanguage?: string
+    ussdPin?: string | null
+    ussdPinSetAt?: Date | string | null
+    lastUssdActivity?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     farmerProfile?: FarmerProfileUncheckedCreateNestedOneWithoutUserInput
@@ -35005,6 +38412,7 @@ export namespace Prisma {
     configsUpdated?: SystemConfigUncheckedCreateNestedManyWithoutUpdaterInput
     ban?: UserBanUncheckedCreateNestedOneWithoutUserInput
     bansIssued?: UserBanUncheckedCreateNestedManyWithoutBannerInput
+    ussdSessions?: UssdSessionUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutSentReviewsInput = {
@@ -35023,6 +38431,10 @@ export namespace Prisma {
     district?: string | null
     isVerified?: boolean
     passwordHash?: string | null
+    preferredLanguage?: string
+    ussdPin?: string | null
+    ussdPinSetAt?: Date | string | null
+    lastUssdActivity?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     farmerProfile?: FarmerProfileCreateNestedOneWithoutUserInput
@@ -35042,6 +38454,7 @@ export namespace Prisma {
     configsUpdated?: SystemConfigCreateNestedManyWithoutUpdaterInput
     ban?: UserBanCreateNestedOneWithoutUserInput
     bansIssued?: UserBanCreateNestedManyWithoutBannerInput
+    ussdSessions?: UssdSessionCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutReceivedReviewsInput = {
@@ -35055,6 +38468,10 @@ export namespace Prisma {
     district?: string | null
     isVerified?: boolean
     passwordHash?: string | null
+    preferredLanguage?: string
+    ussdPin?: string | null
+    ussdPinSetAt?: Date | string | null
+    lastUssdActivity?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     farmerProfile?: FarmerProfileUncheckedCreateNestedOneWithoutUserInput
@@ -35074,6 +38491,7 @@ export namespace Prisma {
     configsUpdated?: SystemConfigUncheckedCreateNestedManyWithoutUpdaterInput
     ban?: UserBanUncheckedCreateNestedOneWithoutUserInput
     bansIssued?: UserBanUncheckedCreateNestedManyWithoutBannerInput
+    ussdSessions?: UssdSessionUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutReceivedReviewsInput = {
@@ -35142,6 +38560,10 @@ export namespace Prisma {
     district?: NullableStringFieldUpdateOperationsInput | string | null
     isVerified?: BoolFieldUpdateOperationsInput | boolean
     passwordHash?: NullableStringFieldUpdateOperationsInput | string | null
+    preferredLanguage?: StringFieldUpdateOperationsInput | string
+    ussdPin?: NullableStringFieldUpdateOperationsInput | string | null
+    ussdPinSetAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lastUssdActivity?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     farmerProfile?: FarmerProfileUpdateOneWithoutUserNestedInput
@@ -35161,6 +38583,7 @@ export namespace Prisma {
     configsUpdated?: SystemConfigUpdateManyWithoutUpdaterNestedInput
     ban?: UserBanUpdateOneWithoutUserNestedInput
     bansIssued?: UserBanUpdateManyWithoutBannerNestedInput
+    ussdSessions?: UssdSessionUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutSentReviewsInput = {
@@ -35174,6 +38597,10 @@ export namespace Prisma {
     district?: NullableStringFieldUpdateOperationsInput | string | null
     isVerified?: BoolFieldUpdateOperationsInput | boolean
     passwordHash?: NullableStringFieldUpdateOperationsInput | string | null
+    preferredLanguage?: StringFieldUpdateOperationsInput | string
+    ussdPin?: NullableStringFieldUpdateOperationsInput | string | null
+    ussdPinSetAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lastUssdActivity?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     farmerProfile?: FarmerProfileUncheckedUpdateOneWithoutUserNestedInput
@@ -35193,6 +38620,7 @@ export namespace Prisma {
     configsUpdated?: SystemConfigUncheckedUpdateManyWithoutUpdaterNestedInput
     ban?: UserBanUncheckedUpdateOneWithoutUserNestedInput
     bansIssued?: UserBanUncheckedUpdateManyWithoutBannerNestedInput
+    ussdSessions?: UssdSessionUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserUpsertWithoutReceivedReviewsInput = {
@@ -35217,6 +38645,10 @@ export namespace Prisma {
     district?: NullableStringFieldUpdateOperationsInput | string | null
     isVerified?: BoolFieldUpdateOperationsInput | boolean
     passwordHash?: NullableStringFieldUpdateOperationsInput | string | null
+    preferredLanguage?: StringFieldUpdateOperationsInput | string
+    ussdPin?: NullableStringFieldUpdateOperationsInput | string | null
+    ussdPinSetAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lastUssdActivity?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     farmerProfile?: FarmerProfileUpdateOneWithoutUserNestedInput
@@ -35236,6 +38668,7 @@ export namespace Prisma {
     configsUpdated?: SystemConfigUpdateManyWithoutUpdaterNestedInput
     ban?: UserBanUpdateOneWithoutUserNestedInput
     bansIssued?: UserBanUpdateManyWithoutBannerNestedInput
+    ussdSessions?: UssdSessionUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutReceivedReviewsInput = {
@@ -35249,6 +38682,10 @@ export namespace Prisma {
     district?: NullableStringFieldUpdateOperationsInput | string | null
     isVerified?: BoolFieldUpdateOperationsInput | boolean
     passwordHash?: NullableStringFieldUpdateOperationsInput | string | null
+    preferredLanguage?: StringFieldUpdateOperationsInput | string
+    ussdPin?: NullableStringFieldUpdateOperationsInput | string | null
+    ussdPinSetAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lastUssdActivity?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     farmerProfile?: FarmerProfileUncheckedUpdateOneWithoutUserNestedInput
@@ -35268,6 +38705,7 @@ export namespace Prisma {
     configsUpdated?: SystemConfigUncheckedUpdateManyWithoutUpdaterNestedInput
     ban?: UserBanUncheckedUpdateOneWithoutUserNestedInput
     bansIssued?: UserBanUncheckedUpdateManyWithoutBannerNestedInput
+    ussdSessions?: UssdSessionUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type OrderUpsertWithoutReviewsInput = {
@@ -35326,6 +38764,10 @@ export namespace Prisma {
     district?: string | null
     isVerified?: boolean
     passwordHash?: string | null
+    preferredLanguage?: string
+    ussdPin?: string | null
+    ussdPinSetAt?: Date | string | null
+    lastUssdActivity?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     farmerProfile?: FarmerProfileCreateNestedOneWithoutUserInput
@@ -35345,6 +38787,7 @@ export namespace Prisma {
     configsUpdated?: SystemConfigCreateNestedManyWithoutUpdaterInput
     ban?: UserBanCreateNestedOneWithoutUserInput
     bansIssued?: UserBanCreateNestedManyWithoutBannerInput
+    ussdSessions?: UssdSessionCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutNotificationsInput = {
@@ -35358,6 +38801,10 @@ export namespace Prisma {
     district?: string | null
     isVerified?: boolean
     passwordHash?: string | null
+    preferredLanguage?: string
+    ussdPin?: string | null
+    ussdPinSetAt?: Date | string | null
+    lastUssdActivity?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     farmerProfile?: FarmerProfileUncheckedCreateNestedOneWithoutUserInput
@@ -35377,6 +38824,7 @@ export namespace Prisma {
     configsUpdated?: SystemConfigUncheckedCreateNestedManyWithoutUpdaterInput
     ban?: UserBanUncheckedCreateNestedOneWithoutUserInput
     bansIssued?: UserBanUncheckedCreateNestedManyWithoutBannerInput
+    ussdSessions?: UssdSessionUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutNotificationsInput = {
@@ -35406,6 +38854,10 @@ export namespace Prisma {
     district?: NullableStringFieldUpdateOperationsInput | string | null
     isVerified?: BoolFieldUpdateOperationsInput | boolean
     passwordHash?: NullableStringFieldUpdateOperationsInput | string | null
+    preferredLanguage?: StringFieldUpdateOperationsInput | string
+    ussdPin?: NullableStringFieldUpdateOperationsInput | string | null
+    ussdPinSetAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lastUssdActivity?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     farmerProfile?: FarmerProfileUpdateOneWithoutUserNestedInput
@@ -35425,6 +38877,7 @@ export namespace Prisma {
     configsUpdated?: SystemConfigUpdateManyWithoutUpdaterNestedInput
     ban?: UserBanUpdateOneWithoutUserNestedInput
     bansIssued?: UserBanUpdateManyWithoutBannerNestedInput
+    ussdSessions?: UssdSessionUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutNotificationsInput = {
@@ -35438,6 +38891,10 @@ export namespace Prisma {
     district?: NullableStringFieldUpdateOperationsInput | string | null
     isVerified?: BoolFieldUpdateOperationsInput | boolean
     passwordHash?: NullableStringFieldUpdateOperationsInput | string | null
+    preferredLanguage?: StringFieldUpdateOperationsInput | string
+    ussdPin?: NullableStringFieldUpdateOperationsInput | string | null
+    ussdPinSetAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lastUssdActivity?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     farmerProfile?: FarmerProfileUncheckedUpdateOneWithoutUserNestedInput
@@ -35457,6 +38914,7 @@ export namespace Prisma {
     configsUpdated?: SystemConfigUncheckedUpdateManyWithoutUpdaterNestedInput
     ban?: UserBanUncheckedUpdateOneWithoutUserNestedInput
     bansIssued?: UserBanUncheckedUpdateManyWithoutBannerNestedInput
+    ussdSessions?: UssdSessionUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutSentMessagesInput = {
@@ -35470,6 +38928,10 @@ export namespace Prisma {
     district?: string | null
     isVerified?: boolean
     passwordHash?: string | null
+    preferredLanguage?: string
+    ussdPin?: string | null
+    ussdPinSetAt?: Date | string | null
+    lastUssdActivity?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     farmerProfile?: FarmerProfileCreateNestedOneWithoutUserInput
@@ -35489,6 +38951,7 @@ export namespace Prisma {
     configsUpdated?: SystemConfigCreateNestedManyWithoutUpdaterInput
     ban?: UserBanCreateNestedOneWithoutUserInput
     bansIssued?: UserBanCreateNestedManyWithoutBannerInput
+    ussdSessions?: UssdSessionCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutSentMessagesInput = {
@@ -35502,6 +38965,10 @@ export namespace Prisma {
     district?: string | null
     isVerified?: boolean
     passwordHash?: string | null
+    preferredLanguage?: string
+    ussdPin?: string | null
+    ussdPinSetAt?: Date | string | null
+    lastUssdActivity?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     farmerProfile?: FarmerProfileUncheckedCreateNestedOneWithoutUserInput
@@ -35521,6 +38988,7 @@ export namespace Prisma {
     configsUpdated?: SystemConfigUncheckedCreateNestedManyWithoutUpdaterInput
     ban?: UserBanUncheckedCreateNestedOneWithoutUserInput
     bansIssued?: UserBanUncheckedCreateNestedManyWithoutBannerInput
+    ussdSessions?: UssdSessionUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutSentMessagesInput = {
@@ -35539,6 +39007,10 @@ export namespace Prisma {
     district?: string | null
     isVerified?: boolean
     passwordHash?: string | null
+    preferredLanguage?: string
+    ussdPin?: string | null
+    ussdPinSetAt?: Date | string | null
+    lastUssdActivity?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     farmerProfile?: FarmerProfileCreateNestedOneWithoutUserInput
@@ -35558,6 +39030,7 @@ export namespace Prisma {
     configsUpdated?: SystemConfigCreateNestedManyWithoutUpdaterInput
     ban?: UserBanCreateNestedOneWithoutUserInput
     bansIssued?: UserBanCreateNestedManyWithoutBannerInput
+    ussdSessions?: UssdSessionCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutReceivedMessagesInput = {
@@ -35571,6 +39044,10 @@ export namespace Prisma {
     district?: string | null
     isVerified?: boolean
     passwordHash?: string | null
+    preferredLanguage?: string
+    ussdPin?: string | null
+    ussdPinSetAt?: Date | string | null
+    lastUssdActivity?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     farmerProfile?: FarmerProfileUncheckedCreateNestedOneWithoutUserInput
@@ -35590,6 +39067,7 @@ export namespace Prisma {
     configsUpdated?: SystemConfigUncheckedCreateNestedManyWithoutUpdaterInput
     ban?: UserBanUncheckedCreateNestedOneWithoutUserInput
     bansIssued?: UserBanUncheckedCreateNestedManyWithoutBannerInput
+    ussdSessions?: UssdSessionUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutReceivedMessagesInput = {
@@ -35658,6 +39136,10 @@ export namespace Prisma {
     district?: NullableStringFieldUpdateOperationsInput | string | null
     isVerified?: BoolFieldUpdateOperationsInput | boolean
     passwordHash?: NullableStringFieldUpdateOperationsInput | string | null
+    preferredLanguage?: StringFieldUpdateOperationsInput | string
+    ussdPin?: NullableStringFieldUpdateOperationsInput | string | null
+    ussdPinSetAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lastUssdActivity?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     farmerProfile?: FarmerProfileUpdateOneWithoutUserNestedInput
@@ -35677,6 +39159,7 @@ export namespace Prisma {
     configsUpdated?: SystemConfigUpdateManyWithoutUpdaterNestedInput
     ban?: UserBanUpdateOneWithoutUserNestedInput
     bansIssued?: UserBanUpdateManyWithoutBannerNestedInput
+    ussdSessions?: UssdSessionUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutSentMessagesInput = {
@@ -35690,6 +39173,10 @@ export namespace Prisma {
     district?: NullableStringFieldUpdateOperationsInput | string | null
     isVerified?: BoolFieldUpdateOperationsInput | boolean
     passwordHash?: NullableStringFieldUpdateOperationsInput | string | null
+    preferredLanguage?: StringFieldUpdateOperationsInput | string
+    ussdPin?: NullableStringFieldUpdateOperationsInput | string | null
+    ussdPinSetAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lastUssdActivity?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     farmerProfile?: FarmerProfileUncheckedUpdateOneWithoutUserNestedInput
@@ -35709,6 +39196,7 @@ export namespace Prisma {
     configsUpdated?: SystemConfigUncheckedUpdateManyWithoutUpdaterNestedInput
     ban?: UserBanUncheckedUpdateOneWithoutUserNestedInput
     bansIssued?: UserBanUncheckedUpdateManyWithoutBannerNestedInput
+    ussdSessions?: UssdSessionUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserUpsertWithoutReceivedMessagesInput = {
@@ -35733,6 +39221,10 @@ export namespace Prisma {
     district?: NullableStringFieldUpdateOperationsInput | string | null
     isVerified?: BoolFieldUpdateOperationsInput | boolean
     passwordHash?: NullableStringFieldUpdateOperationsInput | string | null
+    preferredLanguage?: StringFieldUpdateOperationsInput | string
+    ussdPin?: NullableStringFieldUpdateOperationsInput | string | null
+    ussdPinSetAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lastUssdActivity?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     farmerProfile?: FarmerProfileUpdateOneWithoutUserNestedInput
@@ -35752,6 +39244,7 @@ export namespace Prisma {
     configsUpdated?: SystemConfigUpdateManyWithoutUpdaterNestedInput
     ban?: UserBanUpdateOneWithoutUserNestedInput
     bansIssued?: UserBanUpdateManyWithoutBannerNestedInput
+    ussdSessions?: UssdSessionUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutReceivedMessagesInput = {
@@ -35765,6 +39258,10 @@ export namespace Prisma {
     district?: NullableStringFieldUpdateOperationsInput | string | null
     isVerified?: BoolFieldUpdateOperationsInput | boolean
     passwordHash?: NullableStringFieldUpdateOperationsInput | string | null
+    preferredLanguage?: StringFieldUpdateOperationsInput | string
+    ussdPin?: NullableStringFieldUpdateOperationsInput | string | null
+    ussdPinSetAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lastUssdActivity?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     farmerProfile?: FarmerProfileUncheckedUpdateOneWithoutUserNestedInput
@@ -35784,6 +39281,7 @@ export namespace Prisma {
     configsUpdated?: SystemConfigUncheckedUpdateManyWithoutUpdaterNestedInput
     ban?: UserBanUncheckedUpdateOneWithoutUserNestedInput
     bansIssued?: UserBanUncheckedUpdateManyWithoutBannerNestedInput
+    ussdSessions?: UssdSessionUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type OrderUpsertWithoutMessagesInput = {
@@ -35831,6 +39329,170 @@ export namespace Prisma {
     preOrder?: PreOrderUncheckedUpdateOneWithoutFulfilledOrderNestedInput
   }
 
+  export type UserCreateWithoutUssdSessionsInput = {
+    id?: string
+    phone: string
+    name: string
+    role: $Enums.Role
+    latitude?: number | null
+    longitude?: number | null
+    region?: string | null
+    district?: string | null
+    isVerified?: boolean
+    passwordHash?: string | null
+    preferredLanguage?: string
+    ussdPin?: string | null
+    ussdPinSetAt?: Date | string | null
+    lastUssdActivity?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    farmerProfile?: FarmerProfileCreateNestedOneWithoutUserInput
+    buyerProfile?: BuyerProfileCreateNestedOneWithoutUserInput
+    transportProfile?: TransportProfileCreateNestedOneWithoutUserInput
+    listings?: ProduceListingCreateNestedManyWithoutFarmerInput
+    orders?: OrderCreateNestedManyWithoutBuyerInput
+    deliveries?: DeliveryRequestCreateNestedManyWithoutTransportProviderInput
+    sentReviews?: ReviewCreateNestedManyWithoutFromUserInput
+    receivedReviews?: ReviewCreateNestedManyWithoutToUserInput
+    notifications?: NotificationCreateNestedManyWithoutUserInput
+    sentMessages?: MessageCreateNestedManyWithoutFromUserInput
+    receivedMessages?: MessageCreateNestedManyWithoutToUserInput
+    recordedTraceEvents?: TraceEventCreateNestedManyWithoutRecordedByUserInput
+    preOrders?: PreOrderCreateNestedManyWithoutBuyerInput
+    plantingLogs?: PlantingLogCreateNestedManyWithoutFarmerInput
+    auditLogs?: AuditLogCreateNestedManyWithoutActorInput
+    configsUpdated?: SystemConfigCreateNestedManyWithoutUpdaterInput
+    ban?: UserBanCreateNestedOneWithoutUserInput
+    bansIssued?: UserBanCreateNestedManyWithoutBannerInput
+  }
+
+  export type UserUncheckedCreateWithoutUssdSessionsInput = {
+    id?: string
+    phone: string
+    name: string
+    role: $Enums.Role
+    latitude?: number | null
+    longitude?: number | null
+    region?: string | null
+    district?: string | null
+    isVerified?: boolean
+    passwordHash?: string | null
+    preferredLanguage?: string
+    ussdPin?: string | null
+    ussdPinSetAt?: Date | string | null
+    lastUssdActivity?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    farmerProfile?: FarmerProfileUncheckedCreateNestedOneWithoutUserInput
+    buyerProfile?: BuyerProfileUncheckedCreateNestedOneWithoutUserInput
+    transportProfile?: TransportProfileUncheckedCreateNestedOneWithoutUserInput
+    listings?: ProduceListingUncheckedCreateNestedManyWithoutFarmerInput
+    orders?: OrderUncheckedCreateNestedManyWithoutBuyerInput
+    deliveries?: DeliveryRequestUncheckedCreateNestedManyWithoutTransportProviderInput
+    sentReviews?: ReviewUncheckedCreateNestedManyWithoutFromUserInput
+    receivedReviews?: ReviewUncheckedCreateNestedManyWithoutToUserInput
+    notifications?: NotificationUncheckedCreateNestedManyWithoutUserInput
+    sentMessages?: MessageUncheckedCreateNestedManyWithoutFromUserInput
+    receivedMessages?: MessageUncheckedCreateNestedManyWithoutToUserInput
+    recordedTraceEvents?: TraceEventUncheckedCreateNestedManyWithoutRecordedByUserInput
+    preOrders?: PreOrderUncheckedCreateNestedManyWithoutBuyerInput
+    plantingLogs?: PlantingLogUncheckedCreateNestedManyWithoutFarmerInput
+    auditLogs?: AuditLogUncheckedCreateNestedManyWithoutActorInput
+    configsUpdated?: SystemConfigUncheckedCreateNestedManyWithoutUpdaterInput
+    ban?: UserBanUncheckedCreateNestedOneWithoutUserInput
+    bansIssued?: UserBanUncheckedCreateNestedManyWithoutBannerInput
+  }
+
+  export type UserCreateOrConnectWithoutUssdSessionsInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutUssdSessionsInput, UserUncheckedCreateWithoutUssdSessionsInput>
+  }
+
+  export type UserUpsertWithoutUssdSessionsInput = {
+    update: XOR<UserUpdateWithoutUssdSessionsInput, UserUncheckedUpdateWithoutUssdSessionsInput>
+    create: XOR<UserCreateWithoutUssdSessionsInput, UserUncheckedCreateWithoutUssdSessionsInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutUssdSessionsInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutUssdSessionsInput, UserUncheckedUpdateWithoutUssdSessionsInput>
+  }
+
+  export type UserUpdateWithoutUssdSessionsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    latitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    longitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    region?: NullableStringFieldUpdateOperationsInput | string | null
+    district?: NullableStringFieldUpdateOperationsInput | string | null
+    isVerified?: BoolFieldUpdateOperationsInput | boolean
+    passwordHash?: NullableStringFieldUpdateOperationsInput | string | null
+    preferredLanguage?: StringFieldUpdateOperationsInput | string
+    ussdPin?: NullableStringFieldUpdateOperationsInput | string | null
+    ussdPinSetAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lastUssdActivity?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    farmerProfile?: FarmerProfileUpdateOneWithoutUserNestedInput
+    buyerProfile?: BuyerProfileUpdateOneWithoutUserNestedInput
+    transportProfile?: TransportProfileUpdateOneWithoutUserNestedInput
+    listings?: ProduceListingUpdateManyWithoutFarmerNestedInput
+    orders?: OrderUpdateManyWithoutBuyerNestedInput
+    deliveries?: DeliveryRequestUpdateManyWithoutTransportProviderNestedInput
+    sentReviews?: ReviewUpdateManyWithoutFromUserNestedInput
+    receivedReviews?: ReviewUpdateManyWithoutToUserNestedInput
+    notifications?: NotificationUpdateManyWithoutUserNestedInput
+    sentMessages?: MessageUpdateManyWithoutFromUserNestedInput
+    receivedMessages?: MessageUpdateManyWithoutToUserNestedInput
+    recordedTraceEvents?: TraceEventUpdateManyWithoutRecordedByUserNestedInput
+    preOrders?: PreOrderUpdateManyWithoutBuyerNestedInput
+    plantingLogs?: PlantingLogUpdateManyWithoutFarmerNestedInput
+    auditLogs?: AuditLogUpdateManyWithoutActorNestedInput
+    configsUpdated?: SystemConfigUpdateManyWithoutUpdaterNestedInput
+    ban?: UserBanUpdateOneWithoutUserNestedInput
+    bansIssued?: UserBanUpdateManyWithoutBannerNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutUssdSessionsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    latitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    longitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    region?: NullableStringFieldUpdateOperationsInput | string | null
+    district?: NullableStringFieldUpdateOperationsInput | string | null
+    isVerified?: BoolFieldUpdateOperationsInput | boolean
+    passwordHash?: NullableStringFieldUpdateOperationsInput | string | null
+    preferredLanguage?: StringFieldUpdateOperationsInput | string
+    ussdPin?: NullableStringFieldUpdateOperationsInput | string | null
+    ussdPinSetAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lastUssdActivity?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    farmerProfile?: FarmerProfileUncheckedUpdateOneWithoutUserNestedInput
+    buyerProfile?: BuyerProfileUncheckedUpdateOneWithoutUserNestedInput
+    transportProfile?: TransportProfileUncheckedUpdateOneWithoutUserNestedInput
+    listings?: ProduceListingUncheckedUpdateManyWithoutFarmerNestedInput
+    orders?: OrderUncheckedUpdateManyWithoutBuyerNestedInput
+    deliveries?: DeliveryRequestUncheckedUpdateManyWithoutTransportProviderNestedInput
+    sentReviews?: ReviewUncheckedUpdateManyWithoutFromUserNestedInput
+    receivedReviews?: ReviewUncheckedUpdateManyWithoutToUserNestedInput
+    notifications?: NotificationUncheckedUpdateManyWithoutUserNestedInput
+    sentMessages?: MessageUncheckedUpdateManyWithoutFromUserNestedInput
+    receivedMessages?: MessageUncheckedUpdateManyWithoutToUserNestedInput
+    recordedTraceEvents?: TraceEventUncheckedUpdateManyWithoutRecordedByUserNestedInput
+    preOrders?: PreOrderUncheckedUpdateManyWithoutBuyerNestedInput
+    plantingLogs?: PlantingLogUncheckedUpdateManyWithoutFarmerNestedInput
+    auditLogs?: AuditLogUncheckedUpdateManyWithoutActorNestedInput
+    configsUpdated?: SystemConfigUncheckedUpdateManyWithoutUpdaterNestedInput
+    ban?: UserBanUncheckedUpdateOneWithoutUserNestedInput
+    bansIssued?: UserBanUncheckedUpdateManyWithoutBannerNestedInput
+  }
+
   export type UserCreateWithoutPreOrdersInput = {
     id?: string
     phone: string
@@ -35842,6 +39504,10 @@ export namespace Prisma {
     district?: string | null
     isVerified?: boolean
     passwordHash?: string | null
+    preferredLanguage?: string
+    ussdPin?: string | null
+    ussdPinSetAt?: Date | string | null
+    lastUssdActivity?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     farmerProfile?: FarmerProfileCreateNestedOneWithoutUserInput
@@ -35861,6 +39527,7 @@ export namespace Prisma {
     configsUpdated?: SystemConfigCreateNestedManyWithoutUpdaterInput
     ban?: UserBanCreateNestedOneWithoutUserInput
     bansIssued?: UserBanCreateNestedManyWithoutBannerInput
+    ussdSessions?: UssdSessionCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutPreOrdersInput = {
@@ -35874,6 +39541,10 @@ export namespace Prisma {
     district?: string | null
     isVerified?: boolean
     passwordHash?: string | null
+    preferredLanguage?: string
+    ussdPin?: string | null
+    ussdPinSetAt?: Date | string | null
+    lastUssdActivity?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     farmerProfile?: FarmerProfileUncheckedCreateNestedOneWithoutUserInput
@@ -35893,6 +39564,7 @@ export namespace Prisma {
     configsUpdated?: SystemConfigUncheckedCreateNestedManyWithoutUpdaterInput
     ban?: UserBanUncheckedCreateNestedOneWithoutUserInput
     bansIssued?: UserBanUncheckedCreateNestedManyWithoutBannerInput
+    ussdSessions?: UssdSessionUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutPreOrdersInput = {
@@ -36014,6 +39686,10 @@ export namespace Prisma {
     district?: NullableStringFieldUpdateOperationsInput | string | null
     isVerified?: BoolFieldUpdateOperationsInput | boolean
     passwordHash?: NullableStringFieldUpdateOperationsInput | string | null
+    preferredLanguage?: StringFieldUpdateOperationsInput | string
+    ussdPin?: NullableStringFieldUpdateOperationsInput | string | null
+    ussdPinSetAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lastUssdActivity?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     farmerProfile?: FarmerProfileUpdateOneWithoutUserNestedInput
@@ -36033,6 +39709,7 @@ export namespace Prisma {
     configsUpdated?: SystemConfigUpdateManyWithoutUpdaterNestedInput
     ban?: UserBanUpdateOneWithoutUserNestedInput
     bansIssued?: UserBanUpdateManyWithoutBannerNestedInput
+    ussdSessions?: UssdSessionUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutPreOrdersInput = {
@@ -36046,6 +39723,10 @@ export namespace Prisma {
     district?: NullableStringFieldUpdateOperationsInput | string | null
     isVerified?: BoolFieldUpdateOperationsInput | boolean
     passwordHash?: NullableStringFieldUpdateOperationsInput | string | null
+    preferredLanguage?: StringFieldUpdateOperationsInput | string
+    ussdPin?: NullableStringFieldUpdateOperationsInput | string | null
+    ussdPinSetAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lastUssdActivity?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     farmerProfile?: FarmerProfileUncheckedUpdateOneWithoutUserNestedInput
@@ -36065,6 +39746,7 @@ export namespace Prisma {
     configsUpdated?: SystemConfigUncheckedUpdateManyWithoutUpdaterNestedInput
     ban?: UserBanUncheckedUpdateOneWithoutUserNestedInput
     bansIssued?: UserBanUncheckedUpdateManyWithoutBannerNestedInput
+    ussdSessions?: UssdSessionUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type ProduceListingUpsertWithoutPreOrdersInput = {
@@ -36182,6 +39864,10 @@ export namespace Prisma {
     district?: string | null
     isVerified?: boolean
     passwordHash?: string | null
+    preferredLanguage?: string
+    ussdPin?: string | null
+    ussdPinSetAt?: Date | string | null
+    lastUssdActivity?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     farmerProfile?: FarmerProfileCreateNestedOneWithoutUserInput
@@ -36201,6 +39887,7 @@ export namespace Prisma {
     configsUpdated?: SystemConfigCreateNestedManyWithoutUpdaterInput
     ban?: UserBanCreateNestedOneWithoutUserInput
     bansIssued?: UserBanCreateNestedManyWithoutBannerInput
+    ussdSessions?: UssdSessionCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutPlantingLogsInput = {
@@ -36214,6 +39901,10 @@ export namespace Prisma {
     district?: string | null
     isVerified?: boolean
     passwordHash?: string | null
+    preferredLanguage?: string
+    ussdPin?: string | null
+    ussdPinSetAt?: Date | string | null
+    lastUssdActivity?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     farmerProfile?: FarmerProfileUncheckedCreateNestedOneWithoutUserInput
@@ -36233,6 +39924,7 @@ export namespace Prisma {
     configsUpdated?: SystemConfigUncheckedCreateNestedManyWithoutUpdaterInput
     ban?: UserBanUncheckedCreateNestedOneWithoutUserInput
     bansIssued?: UserBanUncheckedCreateNestedManyWithoutBannerInput
+    ussdSessions?: UssdSessionUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutPlantingLogsInput = {
@@ -36352,6 +40044,10 @@ export namespace Prisma {
     district?: NullableStringFieldUpdateOperationsInput | string | null
     isVerified?: BoolFieldUpdateOperationsInput | boolean
     passwordHash?: NullableStringFieldUpdateOperationsInput | string | null
+    preferredLanguage?: StringFieldUpdateOperationsInput | string
+    ussdPin?: NullableStringFieldUpdateOperationsInput | string | null
+    ussdPinSetAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lastUssdActivity?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     farmerProfile?: FarmerProfileUpdateOneWithoutUserNestedInput
@@ -36371,6 +40067,7 @@ export namespace Prisma {
     configsUpdated?: SystemConfigUpdateManyWithoutUpdaterNestedInput
     ban?: UserBanUpdateOneWithoutUserNestedInput
     bansIssued?: UserBanUpdateManyWithoutBannerNestedInput
+    ussdSessions?: UssdSessionUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutPlantingLogsInput = {
@@ -36384,6 +40081,10 @@ export namespace Prisma {
     district?: NullableStringFieldUpdateOperationsInput | string | null
     isVerified?: BoolFieldUpdateOperationsInput | boolean
     passwordHash?: NullableStringFieldUpdateOperationsInput | string | null
+    preferredLanguage?: StringFieldUpdateOperationsInput | string
+    ussdPin?: NullableStringFieldUpdateOperationsInput | string | null
+    ussdPinSetAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lastUssdActivity?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     farmerProfile?: FarmerProfileUncheckedUpdateOneWithoutUserNestedInput
@@ -36403,6 +40104,7 @@ export namespace Prisma {
     configsUpdated?: SystemConfigUncheckedUpdateManyWithoutUpdaterNestedInput
     ban?: UserBanUncheckedUpdateOneWithoutUserNestedInput
     bansIssued?: UserBanUncheckedUpdateManyWithoutBannerNestedInput
+    ussdSessions?: UssdSessionUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type PlantingInputUpsertWithWhereUniqueWithoutPlantingLogInput = {
@@ -36539,6 +40241,10 @@ export namespace Prisma {
     district?: string | null
     isVerified?: boolean
     passwordHash?: string | null
+    preferredLanguage?: string
+    ussdPin?: string | null
+    ussdPinSetAt?: Date | string | null
+    lastUssdActivity?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     farmerProfile?: FarmerProfileCreateNestedOneWithoutUserInput
@@ -36558,6 +40264,7 @@ export namespace Prisma {
     configsUpdated?: SystemConfigCreateNestedManyWithoutUpdaterInput
     ban?: UserBanCreateNestedOneWithoutUserInput
     bansIssued?: UserBanCreateNestedManyWithoutBannerInput
+    ussdSessions?: UssdSessionCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutAuditLogsInput = {
@@ -36571,6 +40278,10 @@ export namespace Prisma {
     district?: string | null
     isVerified?: boolean
     passwordHash?: string | null
+    preferredLanguage?: string
+    ussdPin?: string | null
+    ussdPinSetAt?: Date | string | null
+    lastUssdActivity?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     farmerProfile?: FarmerProfileUncheckedCreateNestedOneWithoutUserInput
@@ -36590,6 +40301,7 @@ export namespace Prisma {
     configsUpdated?: SystemConfigUncheckedCreateNestedManyWithoutUpdaterInput
     ban?: UserBanUncheckedCreateNestedOneWithoutUserInput
     bansIssued?: UserBanUncheckedCreateNestedManyWithoutBannerInput
+    ussdSessions?: UssdSessionUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutAuditLogsInput = {
@@ -36619,6 +40331,10 @@ export namespace Prisma {
     district?: NullableStringFieldUpdateOperationsInput | string | null
     isVerified?: BoolFieldUpdateOperationsInput | boolean
     passwordHash?: NullableStringFieldUpdateOperationsInput | string | null
+    preferredLanguage?: StringFieldUpdateOperationsInput | string
+    ussdPin?: NullableStringFieldUpdateOperationsInput | string | null
+    ussdPinSetAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lastUssdActivity?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     farmerProfile?: FarmerProfileUpdateOneWithoutUserNestedInput
@@ -36638,6 +40354,7 @@ export namespace Prisma {
     configsUpdated?: SystemConfigUpdateManyWithoutUpdaterNestedInput
     ban?: UserBanUpdateOneWithoutUserNestedInput
     bansIssued?: UserBanUpdateManyWithoutBannerNestedInput
+    ussdSessions?: UssdSessionUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutAuditLogsInput = {
@@ -36651,6 +40368,10 @@ export namespace Prisma {
     district?: NullableStringFieldUpdateOperationsInput | string | null
     isVerified?: BoolFieldUpdateOperationsInput | boolean
     passwordHash?: NullableStringFieldUpdateOperationsInput | string | null
+    preferredLanguage?: StringFieldUpdateOperationsInput | string
+    ussdPin?: NullableStringFieldUpdateOperationsInput | string | null
+    ussdPinSetAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lastUssdActivity?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     farmerProfile?: FarmerProfileUncheckedUpdateOneWithoutUserNestedInput
@@ -36670,6 +40391,7 @@ export namespace Prisma {
     configsUpdated?: SystemConfigUncheckedUpdateManyWithoutUpdaterNestedInput
     ban?: UserBanUncheckedUpdateOneWithoutUserNestedInput
     bansIssued?: UserBanUncheckedUpdateManyWithoutBannerNestedInput
+    ussdSessions?: UssdSessionUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutConfigsUpdatedInput = {
@@ -36683,6 +40405,10 @@ export namespace Prisma {
     district?: string | null
     isVerified?: boolean
     passwordHash?: string | null
+    preferredLanguage?: string
+    ussdPin?: string | null
+    ussdPinSetAt?: Date | string | null
+    lastUssdActivity?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     farmerProfile?: FarmerProfileCreateNestedOneWithoutUserInput
@@ -36702,6 +40428,7 @@ export namespace Prisma {
     auditLogs?: AuditLogCreateNestedManyWithoutActorInput
     ban?: UserBanCreateNestedOneWithoutUserInput
     bansIssued?: UserBanCreateNestedManyWithoutBannerInput
+    ussdSessions?: UssdSessionCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutConfigsUpdatedInput = {
@@ -36715,6 +40442,10 @@ export namespace Prisma {
     district?: string | null
     isVerified?: boolean
     passwordHash?: string | null
+    preferredLanguage?: string
+    ussdPin?: string | null
+    ussdPinSetAt?: Date | string | null
+    lastUssdActivity?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     farmerProfile?: FarmerProfileUncheckedCreateNestedOneWithoutUserInput
@@ -36734,6 +40465,7 @@ export namespace Prisma {
     auditLogs?: AuditLogUncheckedCreateNestedManyWithoutActorInput
     ban?: UserBanUncheckedCreateNestedOneWithoutUserInput
     bansIssued?: UserBanUncheckedCreateNestedManyWithoutBannerInput
+    ussdSessions?: UssdSessionUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutConfigsUpdatedInput = {
@@ -36763,6 +40495,10 @@ export namespace Prisma {
     district?: NullableStringFieldUpdateOperationsInput | string | null
     isVerified?: BoolFieldUpdateOperationsInput | boolean
     passwordHash?: NullableStringFieldUpdateOperationsInput | string | null
+    preferredLanguage?: StringFieldUpdateOperationsInput | string
+    ussdPin?: NullableStringFieldUpdateOperationsInput | string | null
+    ussdPinSetAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lastUssdActivity?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     farmerProfile?: FarmerProfileUpdateOneWithoutUserNestedInput
@@ -36782,6 +40518,7 @@ export namespace Prisma {
     auditLogs?: AuditLogUpdateManyWithoutActorNestedInput
     ban?: UserBanUpdateOneWithoutUserNestedInput
     bansIssued?: UserBanUpdateManyWithoutBannerNestedInput
+    ussdSessions?: UssdSessionUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutConfigsUpdatedInput = {
@@ -36795,6 +40532,10 @@ export namespace Prisma {
     district?: NullableStringFieldUpdateOperationsInput | string | null
     isVerified?: BoolFieldUpdateOperationsInput | boolean
     passwordHash?: NullableStringFieldUpdateOperationsInput | string | null
+    preferredLanguage?: StringFieldUpdateOperationsInput | string
+    ussdPin?: NullableStringFieldUpdateOperationsInput | string | null
+    ussdPinSetAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lastUssdActivity?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     farmerProfile?: FarmerProfileUncheckedUpdateOneWithoutUserNestedInput
@@ -36814,6 +40555,7 @@ export namespace Prisma {
     auditLogs?: AuditLogUncheckedUpdateManyWithoutActorNestedInput
     ban?: UserBanUncheckedUpdateOneWithoutUserNestedInput
     bansIssued?: UserBanUncheckedUpdateManyWithoutBannerNestedInput
+    ussdSessions?: UssdSessionUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutBanInput = {
@@ -36827,6 +40569,10 @@ export namespace Prisma {
     district?: string | null
     isVerified?: boolean
     passwordHash?: string | null
+    preferredLanguage?: string
+    ussdPin?: string | null
+    ussdPinSetAt?: Date | string | null
+    lastUssdActivity?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     farmerProfile?: FarmerProfileCreateNestedOneWithoutUserInput
@@ -36846,6 +40592,7 @@ export namespace Prisma {
     auditLogs?: AuditLogCreateNestedManyWithoutActorInput
     configsUpdated?: SystemConfigCreateNestedManyWithoutUpdaterInput
     bansIssued?: UserBanCreateNestedManyWithoutBannerInput
+    ussdSessions?: UssdSessionCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutBanInput = {
@@ -36859,6 +40606,10 @@ export namespace Prisma {
     district?: string | null
     isVerified?: boolean
     passwordHash?: string | null
+    preferredLanguage?: string
+    ussdPin?: string | null
+    ussdPinSetAt?: Date | string | null
+    lastUssdActivity?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     farmerProfile?: FarmerProfileUncheckedCreateNestedOneWithoutUserInput
@@ -36878,6 +40629,7 @@ export namespace Prisma {
     auditLogs?: AuditLogUncheckedCreateNestedManyWithoutActorInput
     configsUpdated?: SystemConfigUncheckedCreateNestedManyWithoutUpdaterInput
     bansIssued?: UserBanUncheckedCreateNestedManyWithoutBannerInput
+    ussdSessions?: UssdSessionUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutBanInput = {
@@ -36896,6 +40648,10 @@ export namespace Prisma {
     district?: string | null
     isVerified?: boolean
     passwordHash?: string | null
+    preferredLanguage?: string
+    ussdPin?: string | null
+    ussdPinSetAt?: Date | string | null
+    lastUssdActivity?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     farmerProfile?: FarmerProfileCreateNestedOneWithoutUserInput
@@ -36915,6 +40671,7 @@ export namespace Prisma {
     auditLogs?: AuditLogCreateNestedManyWithoutActorInput
     configsUpdated?: SystemConfigCreateNestedManyWithoutUpdaterInput
     ban?: UserBanCreateNestedOneWithoutUserInput
+    ussdSessions?: UssdSessionCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutBansIssuedInput = {
@@ -36928,6 +40685,10 @@ export namespace Prisma {
     district?: string | null
     isVerified?: boolean
     passwordHash?: string | null
+    preferredLanguage?: string
+    ussdPin?: string | null
+    ussdPinSetAt?: Date | string | null
+    lastUssdActivity?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     farmerProfile?: FarmerProfileUncheckedCreateNestedOneWithoutUserInput
@@ -36947,6 +40708,7 @@ export namespace Prisma {
     auditLogs?: AuditLogUncheckedCreateNestedManyWithoutActorInput
     configsUpdated?: SystemConfigUncheckedCreateNestedManyWithoutUpdaterInput
     ban?: UserBanUncheckedCreateNestedOneWithoutUserInput
+    ussdSessions?: UssdSessionUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutBansIssuedInput = {
@@ -36976,6 +40738,10 @@ export namespace Prisma {
     district?: NullableStringFieldUpdateOperationsInput | string | null
     isVerified?: BoolFieldUpdateOperationsInput | boolean
     passwordHash?: NullableStringFieldUpdateOperationsInput | string | null
+    preferredLanguage?: StringFieldUpdateOperationsInput | string
+    ussdPin?: NullableStringFieldUpdateOperationsInput | string | null
+    ussdPinSetAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lastUssdActivity?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     farmerProfile?: FarmerProfileUpdateOneWithoutUserNestedInput
@@ -36995,6 +40761,7 @@ export namespace Prisma {
     auditLogs?: AuditLogUpdateManyWithoutActorNestedInput
     configsUpdated?: SystemConfigUpdateManyWithoutUpdaterNestedInput
     bansIssued?: UserBanUpdateManyWithoutBannerNestedInput
+    ussdSessions?: UssdSessionUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutBanInput = {
@@ -37008,6 +40775,10 @@ export namespace Prisma {
     district?: NullableStringFieldUpdateOperationsInput | string | null
     isVerified?: BoolFieldUpdateOperationsInput | boolean
     passwordHash?: NullableStringFieldUpdateOperationsInput | string | null
+    preferredLanguage?: StringFieldUpdateOperationsInput | string
+    ussdPin?: NullableStringFieldUpdateOperationsInput | string | null
+    ussdPinSetAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lastUssdActivity?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     farmerProfile?: FarmerProfileUncheckedUpdateOneWithoutUserNestedInput
@@ -37027,6 +40798,7 @@ export namespace Prisma {
     auditLogs?: AuditLogUncheckedUpdateManyWithoutActorNestedInput
     configsUpdated?: SystemConfigUncheckedUpdateManyWithoutUpdaterNestedInput
     bansIssued?: UserBanUncheckedUpdateManyWithoutBannerNestedInput
+    ussdSessions?: UssdSessionUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserUpsertWithoutBansIssuedInput = {
@@ -37051,6 +40823,10 @@ export namespace Prisma {
     district?: NullableStringFieldUpdateOperationsInput | string | null
     isVerified?: BoolFieldUpdateOperationsInput | boolean
     passwordHash?: NullableStringFieldUpdateOperationsInput | string | null
+    preferredLanguage?: StringFieldUpdateOperationsInput | string
+    ussdPin?: NullableStringFieldUpdateOperationsInput | string | null
+    ussdPinSetAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lastUssdActivity?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     farmerProfile?: FarmerProfileUpdateOneWithoutUserNestedInput
@@ -37070,6 +40846,7 @@ export namespace Prisma {
     auditLogs?: AuditLogUpdateManyWithoutActorNestedInput
     configsUpdated?: SystemConfigUpdateManyWithoutUpdaterNestedInput
     ban?: UserBanUpdateOneWithoutUserNestedInput
+    ussdSessions?: UssdSessionUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutBansIssuedInput = {
@@ -37083,6 +40860,10 @@ export namespace Prisma {
     district?: NullableStringFieldUpdateOperationsInput | string | null
     isVerified?: BoolFieldUpdateOperationsInput | boolean
     passwordHash?: NullableStringFieldUpdateOperationsInput | string | null
+    preferredLanguage?: StringFieldUpdateOperationsInput | string
+    ussdPin?: NullableStringFieldUpdateOperationsInput | string | null
+    ussdPinSetAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lastUssdActivity?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     farmerProfile?: FarmerProfileUncheckedUpdateOneWithoutUserNestedInput
@@ -37102,6 +40883,7 @@ export namespace Prisma {
     auditLogs?: AuditLogUncheckedUpdateManyWithoutActorNestedInput
     configsUpdated?: SystemConfigUncheckedUpdateManyWithoutUpdaterNestedInput
     ban?: UserBanUncheckedUpdateOneWithoutUserNestedInput
+    ussdSessions?: UssdSessionUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type ProduceListingCreateManyFarmerInput = {
@@ -37279,6 +41061,23 @@ export namespace Prisma {
     bannedAt?: Date | string
     expiresAt?: Date | string | null
     isActive?: boolean
+  }
+
+  export type UssdSessionCreateManyUserInput = {
+    id?: string
+    sessionId: string
+    phone: string
+    language?: string
+    currentMenu: string
+    currentStep: string
+    menuStack?: JsonNullValueInput | InputJsonValue
+    tempData?: JsonNullValueInput | InputJsonValue
+    inputHistory?: JsonNullValueInput | InputJsonValue
+    startedAt?: Date | string
+    lastActivityAt?: Date | string
+    isActive?: boolean
+    endedAt?: Date | string | null
+    endReason?: string | null
   }
 
   export type ProduceListingUpdateWithoutFarmerInput = {
@@ -37832,6 +41631,57 @@ export namespace Prisma {
     isActive?: BoolFieldUpdateOperationsInput | boolean
   }
 
+  export type UssdSessionUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    sessionId?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
+    language?: StringFieldUpdateOperationsInput | string
+    currentMenu?: StringFieldUpdateOperationsInput | string
+    currentStep?: StringFieldUpdateOperationsInput | string
+    menuStack?: JsonNullValueInput | InputJsonValue
+    tempData?: JsonNullValueInput | InputJsonValue
+    inputHistory?: JsonNullValueInput | InputJsonValue
+    startedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    lastActivityAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    endedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    endReason?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type UssdSessionUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    sessionId?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
+    language?: StringFieldUpdateOperationsInput | string
+    currentMenu?: StringFieldUpdateOperationsInput | string
+    currentStep?: StringFieldUpdateOperationsInput | string
+    menuStack?: JsonNullValueInput | InputJsonValue
+    tempData?: JsonNullValueInput | InputJsonValue
+    inputHistory?: JsonNullValueInput | InputJsonValue
+    startedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    lastActivityAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    endedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    endReason?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type UssdSessionUncheckedUpdateManyWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    sessionId?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
+    language?: StringFieldUpdateOperationsInput | string
+    currentMenu?: StringFieldUpdateOperationsInput | string
+    currentStep?: StringFieldUpdateOperationsInput | string
+    menuStack?: JsonNullValueInput | InputJsonValue
+    tempData?: JsonNullValueInput | InputJsonValue
+    inputHistory?: JsonNullValueInput | InputJsonValue
+    startedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    lastActivityAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    endedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    endReason?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
   export type OrderCreateManyListingInput = {
     id?: string
     buyerId: string
@@ -38305,6 +42155,14 @@ export namespace Prisma {
      * @deprecated Use UssdSessionDefaultArgs instead
      */
     export type UssdSessionArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = UssdSessionDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use UssdAuditLogDefaultArgs instead
+     */
+    export type UssdAuditLogArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = UssdAuditLogDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use UssdShortMessageDefaultArgs instead
+     */
+    export type UssdShortMessageArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = UssdShortMessageDefaultArgs<ExtArgs>
     /**
      * @deprecated Use PreOrderDefaultArgs instead
      */

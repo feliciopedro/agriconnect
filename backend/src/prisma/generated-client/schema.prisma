@@ -80,18 +80,22 @@ enum TraceEventType {
 
 // User: unified table for all system users
 model User {
-  id           String   @id @default(uuid())
-  phone        String   @unique
-  name         String
-  role         Role
-  latitude     Float?
-  longitude    Float?
-  region       String?
-  district     String?
-  isVerified   Boolean  @default(false)
-  passwordHash String?
-  createdAt    DateTime @default(now())
-  updatedAt    DateTime @updatedAt
+  id                String    @id @default(uuid())
+  phone             String    @unique
+  name              String
+  role              Role
+  latitude          Float?
+  longitude         Float?
+  region            String?
+  district          String?
+  isVerified        Boolean   @default(false)
+  passwordHash      String?
+  preferredLanguage String    @default("en")
+  ussdPin           String?
+  ussdPinSetAt      DateTime?
+  lastUssdActivity  DateTime?
+  createdAt         DateTime  @default(now())
+  updatedAt         DateTime  @updatedAt
 
   // 1:1 Profiles
   farmerProfile    FarmerProfile?
@@ -114,6 +118,7 @@ model User {
   configsUpdated      SystemConfig[]    @relation("ConfigUpdater")
   ban                 UserBan?          @relation("BannedUser")
   bansIssued          UserBan[]         @relation("UserBanner")
+  ussdSessions        UssdSession[]
 
   @@index([role])
   @@index([latitude, longitude])
@@ -348,15 +353,62 @@ model OtpCode {
 
 // UssdSession: interactive session state machine
 model UssdSession {
-  id          String   @id @default(uuid())
-  sessionId   String   @unique
-  phone       String
-  currentStep String
-  tempData    Json?
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  id             String    @id @default(uuid())
+  sessionId      String    @unique
+  phone          String
+  userId         String?
+  user           User?     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  language       String    @default("en")
+  currentMenu    String
+  currentStep    String
+  menuStack      Json      @default("[]")
+  tempData       Json      @default("{}")
+  inputHistory   Json      @default("[]")
+  startedAt      DateTime  @default(now())
+  lastActivityAt DateTime  @updatedAt
+  isActive       Boolean   @default(true)
+  endedAt        DateTime?
+  endReason      String?
 
+  @@index([phone, isActive])
   @@index([sessionId])
+}
+
+model UssdAuditLog {
+  id             String   @id @default(uuid())
+  sessionId      String
+  phone          String
+  userId         String?
+  menu           String
+  step           String
+  userInput      String?
+  systemResponse String
+  action         String?
+  metadata       Json?
+  timestamp      DateTime @default(now())
+
+  @@index([phone, timestamp])
+  @@index([action])
+}
+
+model UssdShortMessage {
+  id            String            @id @default(uuid())
+  toPhone       String
+  message       String
+  triggerAction String
+  status        UssdMessageStatus
+  attemptCount  Int               @default(0)
+  sentAt        DateTime?
+  errorMessage  String?
+  createdAt     DateTime          @default(now())
+
+  @@index([status, createdAt])
+}
+
+enum UssdMessageStatus {
+  QUEUED
+  SENT
+  FAILED
 }
 
 // ─────────────────────────────────────────────────────────────────────────────

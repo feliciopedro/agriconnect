@@ -18,6 +18,7 @@ import {
   X,
   MapPin,
   Star,
+  SearchX,
 } from 'lucide-react';
 import toast from 'react-hot-toast';
 
@@ -279,13 +280,13 @@ export const MarketplacePage: React.FC = () => {
             <div className="flex md:hidden border border-[#E5E7EB] rounded-lg p-0.5 overflow-hidden">
               <button
                 onClick={() => setViewMode('grid')}
-                className={`p-1.5 rounded ${viewMode === 'grid' ? 'text-[#2D6A4F] bg-gray-100' : 'text-[#9CA3AF]'}`}
+                className={`p-1.5 rounded ${viewMode === 'grid' ? 'text-[#2D6A4F] bg-[#EAF4EE]' : 'text-[#9CA3AF]'}`}
               >
                 <Grid className="w-4 h-4" />
               </button>
               <button
                 onClick={() => setViewMode('map')}
-                className={`p-1.5 rounded ${viewMode === 'map' ? 'text-[#2D6A4F] bg-gray-100' : 'text-[#9CA3AF]'}`}
+                className={`p-1.5 rounded ${viewMode === 'map' ? 'text-[#2D6A4F] bg-[#EAF4EE]' : 'text-[#9CA3AF]'}`}
               >
                 <MapIcon className="w-4 h-4" />
               </button>
@@ -339,13 +340,13 @@ export const MarketplacePage: React.FC = () => {
             <div className="hidden md:flex border border-[#E5E7EB] rounded-lg p-0.5 overflow-hidden">
               <button
                 onClick={() => setViewMode('grid')}
-                className={`p-2 rounded cursor-pointer ${viewMode === 'grid' ? 'text-[#2D6A4F] bg-gray-100' : 'text-[#9CA3AF]'}`}
+                className={`p-2 rounded cursor-pointer ${viewMode === 'grid' ? 'text-[#2D6A4F] bg-[#EAF4EE]' : 'text-[#9CA3AF]'}`}
               >
                 <Grid className="w-4.5 h-4.5" />
               </button>
               <button
                 onClick={() => setViewMode('map')}
-                className={`p-2 rounded cursor-pointer ${viewMode === 'map' ? 'text-[#2D6A4F] bg-gray-100' : 'text-[#9CA3AF]'}`}
+                className={`p-2 rounded cursor-pointer ${viewMode === 'map' ? 'text-[#2D6A4F] bg-[#EAF4EE]' : 'text-[#9CA3AF]'}`}
               >
                 <MapIcon className="w-4.5 h-4.5" />
               </button>
@@ -390,20 +391,21 @@ export const MarketplacePage: React.FC = () => {
       {/* Grid vs Map View Render */}
       {loading ? (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {[1, 2, 3].map((i) => (
-            <Card key={i} className="animate-pulse flex flex-col space-y-4 h-[380px]">
-              <div className="w-full h-[180px] bg-gray-200 rounded-t-[10px] -mx-4 -mt-4 sm:-mx-5 sm:-mt-5" />
-              <div className="h-4 bg-gray-200 rounded w-1/3" />
-              <div className="h-6 bg-gray-200 rounded w-2/3" />
-              <div className="h-4 bg-gray-200 rounded w-1/2" />
+          {[1, 2, 3, 4, 5, 6].map((i) => (
+            <Card key={i} className="animate-pulse flex flex-col space-y-3 bg-white overflow-hidden">
+              <div className="w-full h-[180px] bg-[#E5E7EB] rounded-t-[10px] -mx-4 -mt-4 sm:-mx-5 sm:-mt-5" />
+              <div className="h-3.5 bg-[#E5E7EB] rounded w-1/3 mt-2" />
+              <div className="h-5 bg-[#E5E7EB] rounded w-2/3" />
+              <div className="h-3.5 bg-[#E5E7EB] rounded w-1/2" />
+              <div className="h-3.5 bg-[#E5E7EB] rounded w-2/5 mt-auto" />
             </Card>
           ))}
         </div>
       ) : filteredListings.length === 0 ? (
         <EmptyState
-          title="No listings found"
-          description="Try clearing filters or search parameters to see more listings."
-          icon={<Leaf className="w-12 h-12 text-[#9CA3AF]" />}
+          title="No produce matches your filters"
+          description="Try clearing your filters or search terms to see more listings."
+          icon={<SearchX className="w-12 h-12 text-[#9CA3AF]" />}
           action={
             <Button variant="secondary" onClick={clearAllFilters}>
               Clear All Filters

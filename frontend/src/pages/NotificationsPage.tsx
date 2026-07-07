@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
-import { ShoppingBag, Truck, MessageSquare, Settings, CheckCheck } from 'lucide-react';
+import { ShoppingBag, Truck, MessageSquare, Settings, CheckCheck, Bell } from 'lucide-react';
 import { NotificationsApi } from '../api/notifications.api';
 import { useAuth } from '../context/AuthContext';
 import toast from 'react-hot-toast';
@@ -153,11 +153,13 @@ export const NotificationsPage: React.FC = () => {
       <div className="space-y-3.5 bg-white">
         {notifications.length === 0 ? (
           <Card className="py-12 text-center border border-[#E5E7EB] bg-white flex flex-col items-center justify-center space-y-3">
-            <span className="text-4xl select-none">🔔</span>
+            <div className="w-14 h-14 bg-[#EAF4EE] border border-[#2D6A4F]/10 rounded-full flex items-center justify-center">
+              <Bell className="w-7 h-7 text-[#2D6A4F]" />
+            </div>
             <div>
-              <h3 className="text-base font-bold text-text-primary">No Notifications Yet</h3>
+              <h3 className="text-base font-bold text-text-primary">You're all caught up!</h3>
               <p className="text-xs text-text-secondary mt-1">
-                We'll let you know when there are updates on your listings, orders, or messaging threads.
+                We'll notify you when there are updates on your listings, orders, or messages.
               </p>
             </div>
           </Card>

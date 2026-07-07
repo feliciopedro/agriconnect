@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import api from '../api/axiosInstance';
 import type { HealthCheckResponse } from '../types';
+import { Spinner } from '../components/ui/Spinner';
 
 export const HealthStatus: React.FC = () => {
   const [healthData, setHealthData] = useState<HealthCheckResponse | null>(null);
@@ -36,7 +37,7 @@ export const HealthStatus: React.FC = () => {
 
       {loading ? (
         <div className="premium-card rounded-2xl p-12 text-center flex flex-col items-center justify-center space-y-4">
-          <div className="w-12 h-12 border-4 border-primary-green/20 border-t-primary-green rounded-full animate-spin" />
+          <Spinner size="lg" />
           <p className="text-text-secondary text-sm">Querying backend API health...</p>
         </div>
       ) : error ? (

@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { useQuery, useMutation } from '@tanstack/react-query';
-import { Search, Send, ArrowLeft, User as UserIcon, MessageSquare } from 'lucide-react';
+import { Search, Send, ArrowLeft, User as UserIcon, MessageSquare, MessageCircle } from 'lucide-react';
 import { MessagesApi } from '../api/messages.api';
 import { useAuth } from '../context/AuthContext';
 import { Badge } from '../components/ui/Badge';
@@ -324,7 +324,7 @@ export const MessagesPage: React.FC = () => {
                     <React.Fragment key={m.id}>
                       {showDateGroup && (
                         <div className="flex justify-center my-3 select-none">
-                          <span className="px-3 py-1 bg-gray-50 border border-gray-100 rounded-full text-[10px] font-extrabold text-[#9CA3AF] tracking-wider uppercase">
+                          <span className="px-3 py-1 bg-white border border-[#E5E7EB] rounded-full text-[10px] font-extrabold text-[#9CA3AF] tracking-wider uppercase">
                             {formatMessageDateGroup(m.createdAt)}
                           </span>
                         </div>
@@ -378,13 +378,13 @@ export const MessagesPage: React.FC = () => {
           </>
         ) : (
           <div className="h-full flex flex-col items-center justify-center text-[#9CA3AF] text-xs font-semibold space-y-3 p-12 bg-white">
-            <div className="w-14 h-14 bg-gray-50 border border-gray-150 rounded-full flex items-center justify-center">
-              <MessageSquare size={26} className="text-[#6B7280]" />
+            <div className="w-14 h-14 bg-[#EAF4EE] border border-[#2D6A4F]/10 rounded-full flex items-center justify-center">
+              <MessageCircle size={26} className="text-[#2D6A4F]" />
             </div>
             <div className="text-center space-y-1">
-              <h3 className="text-sm font-bold text-text-primary">Your Messages Inbox</h3>
+              <h3 className="text-sm font-bold text-text-primary">No messages yet</h3>
               <p className="max-w-[280px] text-text-secondary leading-normal">
-                Select an active conversation from the list to view chat logs and send direct replies.
+                Message a farmer from any listing page to start a conversation.
               </p>
             </div>
           </div>
