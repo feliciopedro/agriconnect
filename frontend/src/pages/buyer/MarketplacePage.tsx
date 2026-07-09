@@ -522,7 +522,15 @@ export const MarketplacePage: React.FC = () => {
 
                   {/* Card Footer action button */}
                   <div className="border-t border-[#E5E7EB] pt-3">
-                    <Button variant="primary" fullWidth size="md">
+                    <Button
+                      variant="primary"
+                      fullWidth
+                      size="md"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        navigate(`/marketplace/listings/${listing.id}`);
+                      }}
+                    >
                       Order Now
                     </Button>
                   </div>

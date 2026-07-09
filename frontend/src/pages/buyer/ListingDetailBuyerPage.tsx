@@ -25,7 +25,7 @@ import {
 import toast from 'react-hot-toast';
 
 // Leaflet imports
-import { MapContainer, TileLayer, Circle } from 'react-leaflet';
+import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 
 interface FreshnessInfo {
@@ -70,6 +70,59 @@ function getFreshnessInfo(harvestDateStr: string, expiryDateStr?: string): Fresh
     percentage,
   };
 }
+
+interface ListingDetailMapProps {
+  latitude: number;
+  longitude: number;
+}
+
+const ListingDetailMap: React.FC<ListingDetailMapProps> = ({ latitude, longitude }) => {
+  const mapContainerRef = React.useRef<HTMLDivElement>(null);
+  const mapInstanceRef = React.useRef<L.Map | null>(null);
+
+  useEffect(() => {
+    if (!mapContainerRef.current) return;
+
+    const container = mapContainerRef.current;
+    if ((container as any)._leaflet_id) {
+      delete (container as any)._leaflet_id;
+    }
+
+    try {
+      const map = L.map(container, {
+        center: [latitude, longitude],
+        zoom: 14,
+        zoomControl: false,
+        attributionControl: false,
+      });
+
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+
+      L.circle([latitude, longitude], {
+        radius: 500,
+        color: '#2D6A4F',
+        fillColor: '#2D6A4F',
+        fillOpacity: 0.25,
+      }).addTo(map);
+
+      mapInstanceRef.current = map;
+    } catch (err) {
+      console.error('Failed to initialize Leaflet map:', err);
+    }
+
+    return () => {
+      if (mapInstanceRef.current) {
+        mapInstanceRef.current.remove();
+        mapInstanceRef.current = null;
+      }
+      if (container) {
+        delete (container as any)._leaflet_id;
+      }
+    };
+  }, [latitude, longitude]);
+
+  return <div ref={mapContainerRef} className="w-full h-full" />;
+};
 
 export const ListingDetailBuyerPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -390,23 +443,7 @@ export const ListingDetailBuyerPage: React.FC = () => {
               Farm coordinates secured for transport match logic. Approximate loading location radius is shown below:
             </p>
             <div className="w-full h-[220px] rounded-xl overflow-hidden border border-[#E5E7EB] z-10 relative">
-              <MapContainer
-                center={[listing.latitude, listing.longitude]}
-                zoom={14}
-                className="w-full h-full"
-                zoomControl={false}
-              >
-                <TileLayer
-                  attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-                  url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                />
-                {/* Center circle showing approximate zone rather than direct exact coordinates */}
-                <Circle
-                  center={[listing.latitude, listing.longitude]}
-                  radius={500}
-                  pathOptions={{ color: '#2D6A4F', fillColor: '#2D6A4F', fillOpacity: 0.25 }}
-                />
-              </MapContainer>
+              <ListingDetailMap latitude={listing.latitude} longitude={listing.longitude} />
             </div>
           </Card>
 
