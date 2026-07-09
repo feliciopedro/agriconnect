@@ -270,9 +270,9 @@ export const MarketplacePage: React.FC = () => {
   return (
     <div className="bg-white min-h-screen pb-12 relative overflow-x-hidden">
       {/* Sticky top bar */}
-      <header className="sticky top-16 z-40 bg-white border-b border-[#E5E7EB] py-3.5 px-4 -mx-4 sm:-mx-6 lg:-mx-8">
+      <header className="sticky top-0 z-40 bg-white border-b border-[#E5E7EB] py-3.5 px-4 sm:px-6 lg:px-8 -mx-4 sm:-mx-6 lg:-mx-8">
         <div className="max-w-[1280px] mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
-          <div className="flex items-center justify-between w-full md:w-auto">
+          <div className="flex items-center justify-between w-full md:w-auto shrink-0">
             <h1 className="text-xl font-bold tracking-tight text-[#111827] font-display">
               Marketplace
             </h1>
@@ -294,7 +294,7 @@ export const MarketplacePage: React.FC = () => {
           </div>
 
           {/* Search bar */}
-          <div className="w-full md:max-w-md relative flex items-center">
+          <div className="w-full md:max-w-md flex-1 relative flex items-center">
             <Search className="absolute left-3.5 w-4 h-4 text-[#9CA3AF]" />
             <input
               type="text"
@@ -314,7 +314,7 @@ export const MarketplacePage: React.FC = () => {
           </div>
 
           {/* Toggle pill & Filter trigger */}
-          <div className="flex items-center gap-3 w-full md:w-auto justify-end">
+          <div className="flex items-center gap-3 w-full md:w-auto justify-end shrink-0">
             <button
               onClick={handleNearMeToggle}
               className={`px-3 py-1.5 text-xs font-semibold rounded-full border transition-all flex items-center gap-1.5 cursor-pointer ${
@@ -326,7 +326,7 @@ export const MarketplacePage: React.FC = () => {
               <MapPin className="w-3.5 h-3.5" />
               <span>Near Me</span>
             </button>
-
+ 
             <Button
               variant="secondary"
               size="sm"
@@ -335,7 +335,7 @@ export const MarketplacePage: React.FC = () => {
             >
               Filters
             </Button>
-
+ 
             {/* View toggle desktop */}
             <div className="hidden md:flex border border-[#E5E7EB] rounded-lg p-0.5 overflow-hidden">
               <button
