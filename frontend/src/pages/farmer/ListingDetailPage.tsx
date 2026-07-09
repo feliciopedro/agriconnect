@@ -11,18 +11,15 @@ import { CropTypeBadge } from '../../components/ui/CropTypeBadge';
 import {
   ArrowLeft,
   Copy,
-  Check,
-  ExternalLink,
-  QrCode,
-  Pencil,
   Trash2,
-  RefreshCw,
   MapPin,
   Calendar,
   Leaf,
   ChevronLeft,
   ChevronRight,
   ClipboardCheck,
+  Printer,
+  Edit2,
 } from 'lucide-react';
 import { Spinner } from '../../components/ui/Spinner';
 import toast from 'react-hot-toast';

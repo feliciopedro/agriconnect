@@ -107,8 +107,11 @@ export const DeliveryDetailPage: React.FC = () => {
           <ArrowLeft className="w-3.5 h-3.5" />
           <span>Deliveries Dashboard</span>
         </button>
-        <h1 className="text-2xl font-bold tracking-tight text-[#111827] font-display">
-          Logistics Route Summary
+        <h1 className="text-2xl font-bold tracking-tight text-[#111827] font-display flex items-center gap-2">
+          <span>Logistics Route Summary</span>
+          {delivery.isCarpool && (
+            <Badge variant="success" label="Shared Logistics (Carpool)" className="bg-emerald-100 text-emerald-800 text-xs font-bold" />
+          )}
         </h1>
       </div>
 
@@ -247,11 +250,19 @@ export const DeliveryDetailPage: React.FC = () => {
             </div>
             <div className="border-t border-[#E5E7EB] my-2.5" />
             <div className="flex justify-between items-baseline pt-1">
-              <span className="font-bold text-[#111827]">Total Payout Earnings</span>
+              <span className="font-bold text-[#111827]">
+                {delivery.isCarpool ? 'Carpool Split Cost' : 'Total Payout Earnings'}
+              </span>
               <span className="font-mono text-base font-extrabold text-[#C8960C]">
-                GHS {estimate.totalCost.toFixed(2)}
+                GHS {(delivery.isCarpool ? (delivery.carpoolSplitCost ?? 0) : estimate.totalCost).toFixed(2)}
               </span>
             </div>
+            {delivery.isCarpool && (
+              <div className="text-[10px] text-emerald-700 font-semibold bg-emerald-50 border border-emerald-200 p-2 rounded-lg mt-2 flex items-center justify-between">
+                <span>Shared Logistics Discount Active</span>
+                <span>Saved GHS {(estimate.totalCost - (delivery.carpoolSplitCost || 0)).toFixed(2)}</span>
+              </div>
+            )}
           </div>
         </Card>
       )}

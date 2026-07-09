@@ -210,7 +210,7 @@ export const TransportDashboardPage: React.FC = () => {
     );
   });
 
-  const estEarningsToday = completedToday.reduce((sum, j) => sum + (j.estimatedCost || 0), 0);
+  const estEarningsToday = completedToday.reduce((sum, j) => sum + (j.carpoolSplitCost || j.estimatedCost || 0), 0);
 
   return (
     <div className="bg-white min-h-screen pb-16 space-y-6 sm:space-y-8">
@@ -341,7 +341,8 @@ export const TransportDashboardPage: React.FC = () => {
                 const reqIds = group.members.map((m: any) => m.id);
                 
                 // Sums
-                const totalEarnings = group.members.reduce((sum: number, m: any) => sum + (m.estimatedCost || 0), 0);
+                const totalCarpoolEarnings = group.members.reduce((sum: number, m: any) => sum + (m.carpoolSplitCost || m.estimatedCost || 0), 0);
+                const totalStandaloneEarnings = group.members.reduce((sum: number, m: any) => sum + (m.estimatedCost || 0), 0);
                 const firstMember = group.members[0];
                 const distanceKm = firstMember?.routeDistanceKm || 12.5;
 
@@ -355,6 +356,7 @@ export const TransportDashboardPage: React.FC = () => {
                       <div className="space-y-1">
                         <div className="flex items-center gap-2">
                           <Badge variant="primary" label="Grouped Route" className="bg-[#EAF4EE] text-[#2D6A4F]" />
+                          <Badge variant="success" label="Shared Logistics (Carpool)" className="bg-emerald-100 text-emerald-800" />
                           <span className="text-[10px] text-text-muted font-mono">{group.routeGroupId.slice(0, 8)}</span>
                         </div>
                         <h4 className="text-sm font-bold text-text-primary">
@@ -382,11 +384,21 @@ export const TransportDashboardPage: React.FC = () => {
                             
                             return (
                               <div key={member.id} className="text-xs space-y-1 text-text-secondary">
-                                <div className="flex items-center gap-1.5 font-semibold text-text-primary">
-                                  <span className="w-4 h-4 rounded-full bg-[#EAF4EE] text-[#2D6A4F] text-[9px] flex items-center justify-center font-bold">
-                                    {idx + 1}
+                                <div className="flex items-center justify-between">
+                                  <div className="flex items-center gap-1.5 font-semibold text-text-primary">
+                                    <span className="w-4 h-4 rounded-full bg-[#EAF4EE] text-[#2D6A4F] text-[9px] flex items-center justify-center font-bold">
+                                      {idx + 1}
+                                    </span>
+                                    <span>Pickup from {farmerName}</span>
+                                  </div>
+                                  <span className="font-mono font-bold text-[#2D6A4F]">
+                                    GHS {(member.carpoolSplitCost || member.estimatedCost || 0).toFixed(2)} split
+                                    {member.carpoolSplitCost && (
+                                      <span className="text-[#9CA3AF] text-[10px] font-normal ml-1.5 line-through">
+                                        (GHS {member.estimatedCost.toFixed(2)})
+                                      </span>
+                                    )}
                                   </span>
-                                  <span>Pickup from {farmerName}</span>
                                 </div>
                                 <p className="pl-5 text-[#6B7280]">
                                   {member.order?.listing?.district || 'District'}, {member.order?.listing?.region || 'Region'} ({member.order?.listing?.cropType})
@@ -411,7 +423,8 @@ export const TransportDashboardPage: React.FC = () => {
                         <span className="mx-1.5">•</span>
                         <span>{distanceKm.toFixed(1)} km path</span>
                         <span className="mx-1.5">•</span>
-                        <span className="font-mono font-bold text-[#C8960C]">GHS {totalEarnings.toFixed(2)} total</span>
+                        <span className="font-mono font-bold text-[#2D6A4F]">GHS {totalCarpoolEarnings.toFixed(2)} combined fare</span>
+                        <span className="text-gray-400 text-[10px] ml-1.5">(Standalone: GHS {totalStandaloneEarnings.toFixed(2)})</span>
                       </div>
 
                       <Button
@@ -553,10 +566,16 @@ export const TransportDashboardPage: React.FC = () => {
                       <div className="space-y-0.5">
                         <div className="flex items-center gap-2">
                           <Badge variant="success" label="In Progress" className="bg-[#EAF4EE] text-[#2D6A4F] font-bold" />
+                          {job.isCarpool && (
+                            <Badge variant="success" label="Shared Logistics (Carpool)" className="bg-emerald-100 text-emerald-800 font-bold" />
+                          )}
                           <span className="font-mono text-[10px] text-text-muted">Batch: {job.order?.listing?.batchCode}</span>
                         </div>
-                        <h4 className="text-sm font-bold text-text-primary mt-1">
-                          Active Cargo Dispatch Group
+                        <h4 className="text-sm font-bold text-text-primary mt-1 flex items-center justify-between">
+                          <span>Active Cargo Dispatch Group</span>
+                          <span className="font-mono text-[#C8960C] text-xs">
+                            Payout: GHS {(job.isCarpool ? (job.carpoolSplitCost ?? 0) : job.estimatedCost || 0).toFixed(2)}
+                          </span>
                         </h4>
                       </div>
                       <Button
@@ -712,10 +731,15 @@ export const TransportDashboardPage: React.FC = () => {
                           </p>
                         </div>
 
-                        <div className="text-right">
-                          <span className="font-mono text-sm font-bold text-[#C8960C]">
-                            +GHS {(job.estimatedCost || 0).toFixed(2)}
+                        <div className="text-right flex flex-col items-end">
+                          <span className="font-mono text-sm font-bold text-[#2D6A4F]">
+                            +GHS {(job.carpoolSplitCost || job.estimatedCost || 0).toFixed(2)}
                           </span>
+                          {job.isCarpool && (
+                            <span className="text-[9px] bg-emerald-100 text-emerald-800 px-1 py-0.5 rounded font-medium mt-0.5">
+                              Carpool Split
+                            </span>
+                          )}
                         </div>
                       </Card>
                     ))}

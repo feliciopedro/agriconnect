@@ -458,16 +458,47 @@ export class DeliveryService {
     }
 
     // Save routing metrics and ETAs on the requests
+    const isCarpool = requests.length >= 2;
+    let totalWeightKg = 0;
+    let totalWeightSurcharge = 0;
+
+    const { BASE_FEE, RATE_PER_KM, WEIGHT_SURCHARGE_LIMIT, WEIGHT_SURCHARGE_RATE } = LogisticsConfig;
+    const totalDistanceKm = totalDistanceMeters / 1000;
+    const baseFee = BASE_FEE;
+    const distanceFee = totalDistanceKm * RATE_PER_KM;
+
+    if (isCarpool) {
+      for (const req of requests) {
+        const weightKg = req.order?.quantityKg || 0;
+        totalWeightKg += weightKg;
+        const weightSurcharge = weightKg > WEIGHT_SURCHARGE_LIMIT
+          ? (weightKg - WEIGHT_SURCHARGE_LIMIT) * WEIGHT_SURCHARGE_RATE
+          : 0.0;
+        totalWeightSurcharge += weightSurcharge;
+      }
+    }
+
+    const totalCarpoolCost = baseFee + distanceFee + totalWeightSurcharge;
+
     for (const req of requests) {
       const etas = stopEtasMap.get(req.id);
       const dropoffEta = etas?.dropoffEta || null;
+
+      let carpoolSplitCost = null;
+      if (isCarpool) {
+        const weightKg = req.order?.quantityKg || 0;
+        const shareRatio = totalWeightKg > 0 ? weightKg / totalWeightKg : (1 / requests.length);
+        carpoolSplitCost = parseFloat((totalCarpoolCost * shareRatio).toFixed(2));
+      }
 
       await prisma.deliveryRequest.update({
         where: { id: req.id },
         data: {
           eta: dropoffEta,
-          routeDistanceKm: parseFloat((totalDistanceMeters / 1000).toFixed(2)),
+          routeDistanceKm: parseFloat(totalDistanceKm.toFixed(2)),
           routeDurationMin: parseFloat((totalDurationSeconds / 60).toFixed(2)),
+          isCarpool,
+          carpoolSplitCost,
         },
       });
     }

@@ -278,6 +278,8 @@ model DeliveryRequest {
   scheduledDropoff    DateTime?
   estimatedCost       Float?
   status              DeliveryStatus @default(REQUESTED)
+  isCarpool           Boolean        @default(false)
+  carpoolSplitCost    Float?
   routeGroupId        String?
   routeSequence       Json?
   eta                 DateTime?

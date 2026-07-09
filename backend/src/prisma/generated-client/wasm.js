@@ -248,6 +248,8 @@ exports.Prisma.DeliveryRequestScalarFieldEnum = {
   scheduledDropoff: 'scheduledDropoff',
   estimatedCost: 'estimatedCost',
   status: 'status',
+  isCarpool: 'isCarpool',
+  carpoolSplitCost: 'carpoolSplitCost',
   routeGroupId: 'routeGroupId',
   routeSequence: 'routeSequence',
   eta: 'eta',

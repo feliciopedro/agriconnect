@@ -43,6 +43,8 @@ interface PaymentCardProps {
   cropType?: string;
   orderTotal?: number;
   deliveryCost?: number;
+  isCarpool?: boolean;
+  originalDeliveryCost?: number;
   reference?: string;
   onProceed?: () => void;
   onRefresh?: () => void;
@@ -115,9 +117,19 @@ const CheckoutState: React.FC<{
   cropType?: string;
   orderTotal?: number;
   deliveryCost?: number;
+  isCarpool?: boolean;
+  originalDeliveryCost?: number;
   onProceed?: () => void;
   isLoading?: boolean;
-}> = ({ cropType = 'Produce', orderTotal = 0, deliveryCost = 0, onProceed, isLoading }) => {
+}> = ({
+  cropType = 'Produce',
+  orderTotal = 0,
+  deliveryCost = 0,
+  isCarpool = false,
+  originalDeliveryCost = 0,
+  onProceed,
+  isLoading,
+}) => {
   const grandTotal = orderTotal + deliveryCost;
   const cropLabel = cropType.replace(/_/g, ' ');
 
@@ -139,11 +151,20 @@ const CheckoutState: React.FC<{
 
         {/* Delivery row */}
         <div className="flex items-center justify-between text-text-secondary">
-          <span>Est. delivery</span>
-          <span className="font-medium text-text-primary">
+          <span>
+            {isCarpool ? 'Delivery (Shared Carpool)' : 'Est. delivery'}
+          </span>
+          <span className={`font-medium ${isCarpool ? 'text-[#2D6A4F]' : 'text-text-primary'}`}>
             {deliveryCost > 0 ? `GHS ${deliveryCost.toFixed(2)}` : 'GHS 0.00'}
           </span>
         </div>
+
+        {isCarpool && originalDeliveryCost > deliveryCost && (
+          <div className="flex items-center justify-between text-emerald-800 text-[11px] bg-emerald-50 border border-emerald-100 p-2 rounded-lg font-semibold">
+            <span>Carpool Split Savings</span>
+            <span>-GHS {(originalDeliveryCost - deliveryCost).toFixed(2)}</span>
+          </div>
+        )}
 
         {/* Divider */}
         <div className="border-t border-[#E5E7EB] pt-2 flex items-center justify-between">
@@ -198,6 +219,8 @@ export const PaymentCard: React.FC<PaymentCardProps> = ({
   cropType,
   orderTotal,
   deliveryCost,
+  isCarpool,
+  originalDeliveryCost,
   reference,
   onProceed,
   onRefresh,
@@ -217,6 +240,8 @@ export const PaymentCard: React.FC<PaymentCardProps> = ({
           cropType={cropType}
           orderTotal={orderTotal}
           deliveryCost={deliveryCost}
+          isCarpool={isCarpool}
+          originalDeliveryCost={originalDeliveryCost}
           onProceed={onProceed}
           isLoading={isLoading}
         />

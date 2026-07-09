@@ -105,6 +105,8 @@ export interface DeliveryRequest {
   currentLongitude?: number;
   routeDistanceKm?: number;
   routeDurationMin?: number;
+  isCarpool?: boolean;
+  carpoolSplitCost?: number;
   createdAt: string;
   updatedAt: string;
 }

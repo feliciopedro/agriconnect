@@ -12130,6 +12130,7 @@ export namespace Prisma {
     dropoffLatitude: number | null
     dropoffLongitude: number | null
     estimatedCost: number | null
+    carpoolSplitCost: number | null
     currentLatitude: number | null
     currentLongitude: number | null
     routeDistanceKm: number | null
@@ -12142,6 +12143,7 @@ export namespace Prisma {
     dropoffLatitude: number | null
     dropoffLongitude: number | null
     estimatedCost: number | null
+    carpoolSplitCost: number | null
     currentLatitude: number | null
     currentLongitude: number | null
     routeDistanceKm: number | null
@@ -12160,6 +12162,8 @@ export namespace Prisma {
     scheduledDropoff: Date | null
     estimatedCost: number | null
     status: $Enums.DeliveryStatus | null
+    isCarpool: boolean | null
+    carpoolSplitCost: number | null
     routeGroupId: string | null
     eta: Date | null
     currentLatitude: number | null
@@ -12182,6 +12186,8 @@ export namespace Prisma {
     scheduledDropoff: Date | null
     estimatedCost: number | null
     status: $Enums.DeliveryStatus | null
+    isCarpool: boolean | null
+    carpoolSplitCost: number | null
     routeGroupId: string | null
     eta: Date | null
     currentLatitude: number | null
@@ -12204,6 +12210,8 @@ export namespace Prisma {
     scheduledDropoff: number
     estimatedCost: number
     status: number
+    isCarpool: number
+    carpoolSplitCost: number
     routeGroupId: number
     routeSequence: number
     eta: number
@@ -12223,6 +12231,7 @@ export namespace Prisma {
     dropoffLatitude?: true
     dropoffLongitude?: true
     estimatedCost?: true
+    carpoolSplitCost?: true
     currentLatitude?: true
     currentLongitude?: true
     routeDistanceKm?: true
@@ -12235,6 +12244,7 @@ export namespace Prisma {
     dropoffLatitude?: true
     dropoffLongitude?: true
     estimatedCost?: true
+    carpoolSplitCost?: true
     currentLatitude?: true
     currentLongitude?: true
     routeDistanceKm?: true
@@ -12253,6 +12263,8 @@ export namespace Prisma {
     scheduledDropoff?: true
     estimatedCost?: true
     status?: true
+    isCarpool?: true
+    carpoolSplitCost?: true
     routeGroupId?: true
     eta?: true
     currentLatitude?: true
@@ -12275,6 +12287,8 @@ export namespace Prisma {
     scheduledDropoff?: true
     estimatedCost?: true
     status?: true
+    isCarpool?: true
+    carpoolSplitCost?: true
     routeGroupId?: true
     eta?: true
     currentLatitude?: true
@@ -12297,6 +12311,8 @@ export namespace Prisma {
     scheduledDropoff?: true
     estimatedCost?: true
     status?: true
+    isCarpool?: true
+    carpoolSplitCost?: true
     routeGroupId?: true
     routeSequence?: true
     eta?: true
@@ -12407,6 +12423,8 @@ export namespace Prisma {
     scheduledDropoff: Date | null
     estimatedCost: number | null
     status: $Enums.DeliveryStatus
+    isCarpool: boolean
+    carpoolSplitCost: number | null
     routeGroupId: string | null
     routeSequence: JsonValue | null
     eta: Date | null
@@ -12449,6 +12467,8 @@ export namespace Prisma {
     scheduledDropoff?: boolean
     estimatedCost?: boolean
     status?: boolean
+    isCarpool?: boolean
+    carpoolSplitCost?: boolean
     routeGroupId?: boolean
     routeSequence?: boolean
     eta?: boolean
@@ -12474,6 +12494,8 @@ export namespace Prisma {
     scheduledDropoff?: boolean
     estimatedCost?: boolean
     status?: boolean
+    isCarpool?: boolean
+    carpoolSplitCost?: boolean
     routeGroupId?: boolean
     routeSequence?: boolean
     eta?: boolean
@@ -12499,6 +12521,8 @@ export namespace Prisma {
     scheduledDropoff?: boolean
     estimatedCost?: boolean
     status?: boolean
+    isCarpool?: boolean
+    carpoolSplitCost?: boolean
     routeGroupId?: boolean
     routeSequence?: boolean
     eta?: boolean
@@ -12537,6 +12561,8 @@ export namespace Prisma {
       scheduledDropoff: Date | null
       estimatedCost: number | null
       status: $Enums.DeliveryStatus
+      isCarpool: boolean
+      carpoolSplitCost: number | null
       routeGroupId: string | null
       routeSequence: Prisma.JsonValue | null
       eta: Date | null
@@ -12952,6 +12978,8 @@ export namespace Prisma {
     readonly scheduledDropoff: FieldRef<"DeliveryRequest", 'DateTime'>
     readonly estimatedCost: FieldRef<"DeliveryRequest", 'Float'>
     readonly status: FieldRef<"DeliveryRequest", 'DeliveryStatus'>
+    readonly isCarpool: FieldRef<"DeliveryRequest", 'Boolean'>
+    readonly carpoolSplitCost: FieldRef<"DeliveryRequest", 'Float'>
     readonly routeGroupId: FieldRef<"DeliveryRequest", 'String'>
     readonly routeSequence: FieldRef<"DeliveryRequest", 'Json'>
     readonly eta: FieldRef<"DeliveryRequest", 'DateTime'>
@@ -26470,6 +26498,8 @@ export namespace Prisma {
     scheduledDropoff: 'scheduledDropoff',
     estimatedCost: 'estimatedCost',
     status: 'status',
+    isCarpool: 'isCarpool',
+    carpoolSplitCost: 'carpoolSplitCost',
     routeGroupId: 'routeGroupId',
     routeSequence: 'routeSequence',
     eta: 'eta',
@@ -27787,6 +27817,8 @@ export namespace Prisma {
     scheduledDropoff?: DateTimeNullableFilter<"DeliveryRequest"> | Date | string | null
     estimatedCost?: FloatNullableFilter<"DeliveryRequest"> | number | null
     status?: EnumDeliveryStatusFilter<"DeliveryRequest"> | $Enums.DeliveryStatus
+    isCarpool?: BoolFilter<"DeliveryRequest"> | boolean
+    carpoolSplitCost?: FloatNullableFilter<"DeliveryRequest"> | number | null
     routeGroupId?: StringNullableFilter<"DeliveryRequest"> | string | null
     routeSequence?: JsonNullableFilter<"DeliveryRequest">
     eta?: DateTimeNullableFilter<"DeliveryRequest"> | Date | string | null
@@ -27812,6 +27844,8 @@ export namespace Prisma {
     scheduledDropoff?: SortOrderInput | SortOrder
     estimatedCost?: SortOrderInput | SortOrder
     status?: SortOrder
+    isCarpool?: SortOrder
+    carpoolSplitCost?: SortOrderInput | SortOrder
     routeGroupId?: SortOrderInput | SortOrder
     routeSequence?: SortOrderInput | SortOrder
     eta?: SortOrderInput | SortOrder
@@ -27840,6 +27874,8 @@ export namespace Prisma {
     scheduledDropoff?: DateTimeNullableFilter<"DeliveryRequest"> | Date | string | null
     estimatedCost?: FloatNullableFilter<"DeliveryRequest"> | number | null
     status?: EnumDeliveryStatusFilter<"DeliveryRequest"> | $Enums.DeliveryStatus
+    isCarpool?: BoolFilter<"DeliveryRequest"> | boolean
+    carpoolSplitCost?: FloatNullableFilter<"DeliveryRequest"> | number | null
     routeGroupId?: StringNullableFilter<"DeliveryRequest"> | string | null
     routeSequence?: JsonNullableFilter<"DeliveryRequest">
     eta?: DateTimeNullableFilter<"DeliveryRequest"> | Date | string | null
@@ -27865,6 +27901,8 @@ export namespace Prisma {
     scheduledDropoff?: SortOrderInput | SortOrder
     estimatedCost?: SortOrderInput | SortOrder
     status?: SortOrder
+    isCarpool?: SortOrder
+    carpoolSplitCost?: SortOrderInput | SortOrder
     routeGroupId?: SortOrderInput | SortOrder
     routeSequence?: SortOrderInput | SortOrder
     eta?: SortOrderInput | SortOrder
@@ -27896,6 +27934,8 @@ export namespace Prisma {
     scheduledDropoff?: DateTimeNullableWithAggregatesFilter<"DeliveryRequest"> | Date | string | null
     estimatedCost?: FloatNullableWithAggregatesFilter<"DeliveryRequest"> | number | null
     status?: EnumDeliveryStatusWithAggregatesFilter<"DeliveryRequest"> | $Enums.DeliveryStatus
+    isCarpool?: BoolWithAggregatesFilter<"DeliveryRequest"> | boolean
+    carpoolSplitCost?: FloatNullableWithAggregatesFilter<"DeliveryRequest"> | number | null
     routeGroupId?: StringNullableWithAggregatesFilter<"DeliveryRequest"> | string | null
     routeSequence?: JsonNullableWithAggregatesFilter<"DeliveryRequest">
     eta?: DateTimeNullableWithAggregatesFilter<"DeliveryRequest"> | Date | string | null
@@ -29857,6 +29897,8 @@ export namespace Prisma {
     scheduledDropoff?: Date | string | null
     estimatedCost?: number | null
     status?: $Enums.DeliveryStatus
+    isCarpool?: boolean
+    carpoolSplitCost?: number | null
     routeGroupId?: string | null
     routeSequence?: NullableJsonNullValueInput | InputJsonValue
     eta?: Date | string | null
@@ -29882,6 +29924,8 @@ export namespace Prisma {
     scheduledDropoff?: Date | string | null
     estimatedCost?: number | null
     status?: $Enums.DeliveryStatus
+    isCarpool?: boolean
+    carpoolSplitCost?: number | null
     routeGroupId?: string | null
     routeSequence?: NullableJsonNullValueInput | InputJsonValue
     eta?: Date | string | null
@@ -29903,6 +29947,8 @@ export namespace Prisma {
     scheduledDropoff?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     estimatedCost?: NullableFloatFieldUpdateOperationsInput | number | null
     status?: EnumDeliveryStatusFieldUpdateOperationsInput | $Enums.DeliveryStatus
+    isCarpool?: BoolFieldUpdateOperationsInput | boolean
+    carpoolSplitCost?: NullableFloatFieldUpdateOperationsInput | number | null
     routeGroupId?: NullableStringFieldUpdateOperationsInput | string | null
     routeSequence?: NullableJsonNullValueInput | InputJsonValue
     eta?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -29928,6 +29974,8 @@ export namespace Prisma {
     scheduledDropoff?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     estimatedCost?: NullableFloatFieldUpdateOperationsInput | number | null
     status?: EnumDeliveryStatusFieldUpdateOperationsInput | $Enums.DeliveryStatus
+    isCarpool?: BoolFieldUpdateOperationsInput | boolean
+    carpoolSplitCost?: NullableFloatFieldUpdateOperationsInput | number | null
     routeGroupId?: NullableStringFieldUpdateOperationsInput | string | null
     routeSequence?: NullableJsonNullValueInput | InputJsonValue
     eta?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -29951,6 +29999,8 @@ export namespace Prisma {
     scheduledDropoff?: Date | string | null
     estimatedCost?: number | null
     status?: $Enums.DeliveryStatus
+    isCarpool?: boolean
+    carpoolSplitCost?: number | null
     routeGroupId?: string | null
     routeSequence?: NullableJsonNullValueInput | InputJsonValue
     eta?: Date | string | null
@@ -29972,6 +30022,8 @@ export namespace Prisma {
     scheduledDropoff?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     estimatedCost?: NullableFloatFieldUpdateOperationsInput | number | null
     status?: EnumDeliveryStatusFieldUpdateOperationsInput | $Enums.DeliveryStatus
+    isCarpool?: BoolFieldUpdateOperationsInput | boolean
+    carpoolSplitCost?: NullableFloatFieldUpdateOperationsInput | number | null
     routeGroupId?: NullableStringFieldUpdateOperationsInput | string | null
     routeSequence?: NullableJsonNullValueInput | InputJsonValue
     eta?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -29995,6 +30047,8 @@ export namespace Prisma {
     scheduledDropoff?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     estimatedCost?: NullableFloatFieldUpdateOperationsInput | number | null
     status?: EnumDeliveryStatusFieldUpdateOperationsInput | $Enums.DeliveryStatus
+    isCarpool?: BoolFieldUpdateOperationsInput | boolean
+    carpoolSplitCost?: NullableFloatFieldUpdateOperationsInput | number | null
     routeGroupId?: NullableStringFieldUpdateOperationsInput | string | null
     routeSequence?: NullableJsonNullValueInput | InputJsonValue
     eta?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -32170,6 +32224,8 @@ export namespace Prisma {
     scheduledDropoff?: SortOrder
     estimatedCost?: SortOrder
     status?: SortOrder
+    isCarpool?: SortOrder
+    carpoolSplitCost?: SortOrder
     routeGroupId?: SortOrder
     routeSequence?: SortOrder
     eta?: SortOrder
@@ -32187,6 +32243,7 @@ export namespace Prisma {
     dropoffLatitude?: SortOrder
     dropoffLongitude?: SortOrder
     estimatedCost?: SortOrder
+    carpoolSplitCost?: SortOrder
     currentLatitude?: SortOrder
     currentLongitude?: SortOrder
     routeDistanceKm?: SortOrder
@@ -32205,6 +32262,8 @@ export namespace Prisma {
     scheduledDropoff?: SortOrder
     estimatedCost?: SortOrder
     status?: SortOrder
+    isCarpool?: SortOrder
+    carpoolSplitCost?: SortOrder
     routeGroupId?: SortOrder
     eta?: SortOrder
     currentLatitude?: SortOrder
@@ -32227,6 +32286,8 @@ export namespace Prisma {
     scheduledDropoff?: SortOrder
     estimatedCost?: SortOrder
     status?: SortOrder
+    isCarpool?: SortOrder
+    carpoolSplitCost?: SortOrder
     routeGroupId?: SortOrder
     eta?: SortOrder
     currentLatitude?: SortOrder
@@ -32243,6 +32304,7 @@ export namespace Prisma {
     dropoffLatitude?: SortOrder
     dropoffLongitude?: SortOrder
     estimatedCost?: SortOrder
+    carpoolSplitCost?: SortOrder
     currentLatitude?: SortOrder
     currentLongitude?: SortOrder
     routeDistanceKm?: SortOrder
@@ -35277,6 +35339,8 @@ export namespace Prisma {
     scheduledDropoff?: Date | string | null
     estimatedCost?: number | null
     status?: $Enums.DeliveryStatus
+    isCarpool?: boolean
+    carpoolSplitCost?: number | null
     routeGroupId?: string | null
     routeSequence?: NullableJsonNullValueInput | InputJsonValue
     eta?: Date | string | null
@@ -35300,6 +35364,8 @@ export namespace Prisma {
     scheduledDropoff?: Date | string | null
     estimatedCost?: number | null
     status?: $Enums.DeliveryStatus
+    isCarpool?: boolean
+    carpoolSplitCost?: number | null
     routeGroupId?: string | null
     routeSequence?: NullableJsonNullValueInput | InputJsonValue
     eta?: Date | string | null
@@ -35947,6 +36013,8 @@ export namespace Prisma {
     scheduledDropoff?: DateTimeNullableFilter<"DeliveryRequest"> | Date | string | null
     estimatedCost?: FloatNullableFilter<"DeliveryRequest"> | number | null
     status?: EnumDeliveryStatusFilter<"DeliveryRequest"> | $Enums.DeliveryStatus
+    isCarpool?: BoolFilter<"DeliveryRequest"> | boolean
+    carpoolSplitCost?: FloatNullableFilter<"DeliveryRequest"> | number | null
     routeGroupId?: StringNullableFilter<"DeliveryRequest"> | string | null
     routeSequence?: JsonNullableFilter<"DeliveryRequest">
     eta?: DateTimeNullableFilter<"DeliveryRequest"> | Date | string | null
@@ -37860,6 +37928,8 @@ export namespace Prisma {
     scheduledDropoff?: Date | string | null
     estimatedCost?: number | null
     status?: $Enums.DeliveryStatus
+    isCarpool?: boolean
+    carpoolSplitCost?: number | null
     routeGroupId?: string | null
     routeSequence?: NullableJsonNullValueInput | InputJsonValue
     eta?: Date | string | null
@@ -37883,6 +37953,8 @@ export namespace Prisma {
     scheduledDropoff?: Date | string | null
     estimatedCost?: number | null
     status?: $Enums.DeliveryStatus
+    isCarpool?: boolean
+    carpoolSplitCost?: number | null
     routeGroupId?: string | null
     routeSequence?: NullableJsonNullValueInput | InputJsonValue
     eta?: Date | string | null
@@ -38171,6 +38243,8 @@ export namespace Prisma {
     scheduledDropoff?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     estimatedCost?: NullableFloatFieldUpdateOperationsInput | number | null
     status?: EnumDeliveryStatusFieldUpdateOperationsInput | $Enums.DeliveryStatus
+    isCarpool?: BoolFieldUpdateOperationsInput | boolean
+    carpoolSplitCost?: NullableFloatFieldUpdateOperationsInput | number | null
     routeGroupId?: NullableStringFieldUpdateOperationsInput | string | null
     routeSequence?: NullableJsonNullValueInput | InputJsonValue
     eta?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -38194,6 +38268,8 @@ export namespace Prisma {
     scheduledDropoff?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     estimatedCost?: NullableFloatFieldUpdateOperationsInput | number | null
     status?: EnumDeliveryStatusFieldUpdateOperationsInput | $Enums.DeliveryStatus
+    isCarpool?: BoolFieldUpdateOperationsInput | boolean
+    carpoolSplitCost?: NullableFloatFieldUpdateOperationsInput | number | null
     routeGroupId?: NullableStringFieldUpdateOperationsInput | string | null
     routeSequence?: NullableJsonNullValueInput | InputJsonValue
     eta?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -41199,6 +41275,8 @@ export namespace Prisma {
     scheduledDropoff?: Date | string | null
     estimatedCost?: number | null
     status?: $Enums.DeliveryStatus
+    isCarpool?: boolean
+    carpoolSplitCost?: number | null
     routeGroupId?: string | null
     routeSequence?: NullableJsonNullValueInput | InputJsonValue
     eta?: Date | string | null
@@ -41480,6 +41558,8 @@ export namespace Prisma {
     scheduledDropoff?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     estimatedCost?: NullableFloatFieldUpdateOperationsInput | number | null
     status?: EnumDeliveryStatusFieldUpdateOperationsInput | $Enums.DeliveryStatus
+    isCarpool?: BoolFieldUpdateOperationsInput | boolean
+    carpoolSplitCost?: NullableFloatFieldUpdateOperationsInput | number | null
     routeGroupId?: NullableStringFieldUpdateOperationsInput | string | null
     routeSequence?: NullableJsonNullValueInput | InputJsonValue
     eta?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -41503,6 +41583,8 @@ export namespace Prisma {
     scheduledDropoff?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     estimatedCost?: NullableFloatFieldUpdateOperationsInput | number | null
     status?: EnumDeliveryStatusFieldUpdateOperationsInput | $Enums.DeliveryStatus
+    isCarpool?: BoolFieldUpdateOperationsInput | boolean
+    carpoolSplitCost?: NullableFloatFieldUpdateOperationsInput | number | null
     routeGroupId?: NullableStringFieldUpdateOperationsInput | string | null
     routeSequence?: NullableJsonNullValueInput | InputJsonValue
     eta?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -41525,6 +41607,8 @@ export namespace Prisma {
     scheduledDropoff?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     estimatedCost?: NullableFloatFieldUpdateOperationsInput | number | null
     status?: EnumDeliveryStatusFieldUpdateOperationsInput | $Enums.DeliveryStatus
+    isCarpool?: BoolFieldUpdateOperationsInput | boolean
+    carpoolSplitCost?: NullableFloatFieldUpdateOperationsInput | number | null
     routeGroupId?: NullableStringFieldUpdateOperationsInput | string | null
     routeSequence?: NullableJsonNullValueInput | InputJsonValue
     eta?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null

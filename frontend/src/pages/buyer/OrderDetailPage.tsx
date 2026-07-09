@@ -189,7 +189,6 @@ export const OrderDetailPage: React.FC = () => {
   const isPending = order.status === 'PENDING';
   const isCancelled = order.status === 'CANCELLED';
   const isDelivered = order.status === 'DELIVERED';
-  const isUnpaid = order.paymentStatus === 'UNPAID';
 
   const batchCode = order.listing?.batchCode || 'N/A';
   const farmerName = order.listing?.farmer?.name || 'Local Farmer';
@@ -287,7 +286,15 @@ export const OrderDetailPage: React.FC = () => {
               state={paymentCardState}
               cropType={order.listing?.cropType}
               orderTotal={order.totalPrice}
-              deliveryCost={0}
+              deliveryCost={
+                order.deliveryRequest
+                  ? order.deliveryRequest.isCarpool
+                    ? order.deliveryRequest.carpoolSplitCost || 0
+                    : order.deliveryRequest.estimatedCost || 0
+                  : 0
+              }
+              isCarpool={order.deliveryRequest?.isCarpool || false}
+              originalDeliveryCost={order.deliveryRequest?.estimatedCost || 0}
               reference={paymentRef}
               onProceed={handleProceedToPayment}
               onRefresh={handleRefreshVerify}
@@ -307,9 +314,16 @@ export const OrderDetailPage: React.FC = () => {
                   Delivery Mode: {order.deliveryPreference || 'FARM GATE PICKUP'}
                 </p>
                 {order.deliveryRequest ? (
-                  <p className="text-text-secondary">
-                    Transporter matched! Distance: {order.deliveryRequest.routeDistanceKm || 'N/A'} km.
-                  </p>
+                  <div className="space-y-1">
+                    <p className="text-text-secondary">
+                      Transporter matched! Distance: {order.deliveryRequest.routeDistanceKm || 'N/A'} km.
+                    </p>
+                    {order.deliveryRequest.isCarpool && (
+                      <div className="inline-flex items-center gap-1.5 px-2 py-0.5 bg-emerald-100 border border-emerald-200 text-emerald-800 rounded font-semibold text-[10px] mt-1">
+                        <span>Shared Carpool active (Saved GHS {((order.deliveryRequest.estimatedCost || 0) - (order.deliveryRequest.carpoolSplitCost || 0)).toFixed(2)})</span>
+                      </div>
+                    )}
+                  </div>
                 ) : (
                   <p className="text-text-secondary">
                     Waiting for transporter match confirmation once farmer approves the order.
