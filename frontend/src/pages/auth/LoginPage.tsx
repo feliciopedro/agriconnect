@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { Leaf, ShoppingBag, Truck, ArrowLeft } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 import { AuthApi } from '../../api/auth.api';
@@ -11,13 +11,16 @@ import type { Role } from '../../types';
 
 export const LoginPage: React.FC = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  const mode = searchParams.get('mode');
   const { login } = useAuth();
 
   const [step, setStep] = useState<1 | 2>(1);
   const [phone, setPhone] = useState('');
   const [password, setPassword] = useState('');
   const [selectedRole, setSelectedRole] = useState<Role>('FARMER');
-  const [isFirstTime, setIsFirstTime] = useState(true);
+  const [isFirstTime, setIsFirstTime] = useState(mode === 'register');
   const [loginMethod, setLoginMethod] = useState<'otp' | 'password'>('password');
 
   // OTP inputs refs & state

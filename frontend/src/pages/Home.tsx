@@ -121,10 +121,10 @@ export const Home: React.FC = () => {
           </nav>
 
           <div className="flex items-center gap-3">
-            <Link to="/login" className="btn btn-secondary h-10 min-h-[40px] px-4 py-2 text-xs font-bold transition-all duration-200">
+            <Link to="/login?mode=login" className="btn btn-secondary h-10 min-h-[40px] px-4 py-2 text-xs font-bold transition-all duration-200">
               Sign In
             </Link>
-            <Link to="/login" className="btn btn-primary h-10 min-h-[40px] px-4 py-2 text-xs font-bold transition-all duration-200 shadow-sm">
+            <Link to="/login?mode=register" className="btn btn-primary h-10 min-h-[40px] px-4 py-2 text-xs font-bold transition-all duration-200 shadow-sm">
               Get Started
             </Link>
           </div>
