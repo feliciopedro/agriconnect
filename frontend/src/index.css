@@ -46,6 +46,7 @@
   margin-bottom: 16px;
 }
 
+@layer components {
 /* Cards system */
 .premium-card {
   @apply bg-white border border-border rounded-card shadow-card transition-all duration-200 ease-out;
@@ -193,6 +194,7 @@
 .stat-card-label {
   @apply text-text-secondary;
   font-size: 13px;
+}
 }
 
 /* ── App Shell animations ────────────────────────────────────────────────── */
