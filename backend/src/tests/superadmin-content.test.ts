@@ -23,6 +23,9 @@ jest.mock('../prisma/client', () => ({
     auditLog: {
       create: jest.fn().mockResolvedValue({}),
     },
+    user: {
+      findUnique: jest.fn().mockResolvedValue({ id: 'u1', phone: '123' }),
+    },
     $transaction: jest.fn(),
   },
 }));

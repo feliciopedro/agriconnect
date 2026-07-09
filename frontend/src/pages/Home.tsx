@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
 
 interface MockListing {
   id: string;
@@ -13,7 +14,16 @@ interface MockListing {
 }
 
 export const Home: React.FC = () => {
+  const { isAuthenticated, role } = useAuth();
   const [filter, setFilter] = useState<'all' | 'crop' | 'buyer' | 'transport'>('all');
+
+  // If user is already authenticated, redirect to their role-specific dashboard
+  if (isAuthenticated) {
+    if (role === 'FARMER') return <Navigate to="/farmer" replace />;
+    if (role === 'BUYER') return <Navigate to="/marketplace" replace />;
+    if (role === 'TRANSPORT' || role === 'TRANSPORTER') return <Navigate to="/transporter" replace />;
+    if (role === 'ADMIN' || role === 'SUPERADMIN') return <Navigate to="/admin" replace />;
+  }
 
   const mockListings: MockListing[] = [
     {
@@ -81,9 +91,50 @@ export const Home: React.FC = () => {
     : mockListings.filter((l) => l.type === filter);
 
   return (
-    <div className="space-y-6 sm:space-y-8 bg-white">
-      {/* Hero Section */}
-      <section className="relative rounded-[10px] overflow-hidden bg-gradient-to-tr from-primary-light via-white to-primary-light border border-border-default shadow-[0_1px_4px_rgba(0,0,0,0.06)]">
+    <div className="min-h-screen bg-[#F9FAFB]">
+      {/* Public Header */}
+      <header className="border-b border-[#E5E7EB] bg-white sticky top-0 z-50 shadow-sm">
+        <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <span className="text-2xl">🌱</span>
+            <Link
+              to="/"
+              className="font-display text-[20px] font-extrabold text-[#2D6A4F] leading-none tracking-tight hover:opacity-90 transition-opacity"
+            >
+              AgriConnect
+            </Link>
+            <span className="hidden sm:inline-flex items-center text-[10px] text-[#2D6A4F] font-bold bg-[#EAF4EE] px-2 py-0.5 rounded-full select-none">
+              Ghana
+            </span>
+          </div>
+
+          <nav className="hidden md:flex items-center gap-6">
+            <a href="#feed" className="text-sm font-semibold text-[#6B7280] hover:text-[#2D6A4F] transition-colors">
+              Marketplace Feed
+            </a>
+            <Link to="/trace/BAT-TOM-001" className="text-sm font-semibold text-[#6B7280] hover:text-[#2D6A4F] transition-colors">
+              Traceability Demo
+            </Link>
+            <a href="#stats" className="text-sm font-semibold text-[#6B7280] hover:text-[#2D6A4F] transition-colors">
+              Impact Stats
+            </a>
+          </nav>
+
+          <div className="flex items-center gap-3">
+            <Link to="/login" className="btn btn-secondary h-10 min-h-[40px] px-4 py-2 text-xs font-bold transition-all duration-200">
+              Sign In
+            </Link>
+            <Link to="/login" className="btn btn-primary h-10 min-h-[40px] px-4 py-2 text-xs font-bold transition-all duration-200 shadow-sm">
+              Get Started
+            </Link>
+          </div>
+        </div>
+      </header>
+
+      {/* Main Content Area */}
+      <main className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 space-y-10 sm:space-y-16">
+        {/* Hero Section */}
+        <section className="relative rounded-[10px] overflow-hidden bg-gradient-to-tr from-[#EAF4EE] via-white to-[#EAF4EE] border border-[#E5E7EB] shadow-[0_1px_4px_rgba(0,0,0,0.06)]">
         <div className="absolute top-0 right-0 w-96 h-96 bg-primary-green/5 rounded-full blur-3xl -z-10" />
         <div className="absolute bottom-0 left-0 w-96 h-96 bg-primary-green/5 rounded-full blur-3xl -z-10" />
 
@@ -102,24 +153,25 @@ export const Home: React.FC = () => {
             directly with commercial buyers and transport logistics providers to reduce waste and boost profits.
           </p>
           <div className="flex flex-wrap justify-center gap-4 pt-2">
-            <button
+            <a
+              href="#feed"
               onClick={() => setFilter('all')}
               className="btn btn-primary shadow-sm"
             >
               Explore Marketplace
-            </button>
-            <Link
-              to="/health"
+            </a>
+            <a
+              href="#stats"
               className="btn btn-secondary shadow-sm"
             >
-              Check Backend Connectivity
-            </Link>
+              How It Works
+            </a>
           </div>
         </div>
       </section>
 
       {/* Stats Counter Row */}
-      <section className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6">
+      <section id="stats" className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6">
         <div className="stat-card stat-card-green flex items-center justify-between">
           <div>
             <p className="stat-card-label">Registered Farmers</p>
@@ -144,7 +196,7 @@ export const Home: React.FC = () => {
       </section>
 
       {/* Marketplace Listings Section */}
-      <section className="space-y-6">
+      <section id="feed" className="space-y-6">
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
           <div>
             <h2 className="text-[18px] sm:text-[20px] font-bold text-text-primary">Live Marketplace Feed</h2>
@@ -163,7 +215,7 @@ export const Home: React.FC = () => {
                 onClick={() => setFilter(tab.id as any)}
                 className={`px-4 py-2 rounded-lg text-xs font-semibold border transition-all-custom cursor-pointer ${
                   filter === tab.id
-                    ? 'bg-primary-light text-primary-green border-primary-green/30'
+                    ? 'bg-[#EAF4EE] text-[#2D6A4F] border-[#2D6A4F]/30'
                     : 'bg-white text-text-secondary border-border-default hover:bg-[#F9FAFB] hover:text-text-primary'
                 }`}
               >
@@ -202,7 +254,7 @@ export const Home: React.FC = () => {
                 <p className="text-sm text-text-secondary leading-relaxed line-clamp-3">{listing.detail}</p>
               </div>
 
-              <div className="pt-4 border-t border-border-default flex items-center justify-between">
+              <div className="pt-4 border-t border-[#E5E7EB] flex items-center justify-between">
                 <div>
                   {listing.price && (
                     <span className="text-sm font-bold text-accent-gold font-mono">
@@ -223,6 +275,7 @@ export const Home: React.FC = () => {
           ))}
         </div>
       </section>
+      </main>
     </div>
   );
 };

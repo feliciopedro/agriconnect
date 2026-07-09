@@ -66,6 +66,73 @@ function getDistanceKm(lat1: number, lon1: number, lat2: number, lon2: number) {
   return R * c;
 }
 
+interface MiniRouteMapProps {
+  job: DeliveryRequest;
+  myLat: number;
+  myLng: number;
+  farmerName: string;
+  buyerName: string;
+}
+
+const MiniRouteMap: React.FC<MiniRouteMapProps> = ({ job, myLat, myLng, farmerName, buyerName }) => {
+  const mapContainerRef = React.useRef<HTMLDivElement>(null);
+  const mapInstanceRef = React.useRef<L.Map | null>(null);
+
+  useEffect(() => {
+    if (!mapContainerRef.current) return;
+
+    const container = mapContainerRef.current;
+    if ((container as any)._leaflet_id) {
+      delete (container as any)._leaflet_id;
+    }
+
+    try {
+      const map = L.map(container, {
+        center: [myLat, myLng],
+        zoom: 12,
+        zoomControl: false,
+        attributionControl: false,
+      });
+
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+
+      // Transporter location
+      L.marker([myLat, myLng], { icon: userTransporterIcon }).addTo(map)
+        .bindPopup('<span class="text-xs font-semibold">Your Location</span>');
+
+      // Pickup stop pin
+      L.marker([job.pickupLatitude, job.pickupLongitude], { icon: pickupIcon }).addTo(map)
+        .bindPopup(`<span class="text-xs font-semibold">Pickup: ${farmerName}</span>`);
+
+      // Dropoff stop pin
+      L.marker([job.dropoffLatitude, job.dropoffLongitude], { icon: dropoffIcon }).addTo(map)
+        .bindPopup(`<span class="text-xs font-semibold">Dropoff: ${buyerName}</span>`);
+
+      // Polyline route path
+      L.polyline([
+        [job.pickupLatitude, job.pickupLongitude],
+        [job.dropoffLatitude, job.dropoffLongitude]
+      ], { color: '#2D6A4F', weight: 3 }).addTo(map);
+
+      mapInstanceRef.current = map;
+    } catch (err) {
+      console.error('Failed to initialize Leaflet map:', err);
+    }
+
+    return () => {
+      if (mapInstanceRef.current) {
+        mapInstanceRef.current.remove();
+        mapInstanceRef.current = null;
+      }
+      if (container) {
+        delete (container as any)._leaflet_id;
+      }
+    };
+  }, [job, myLat, myLng, farmerName, buyerName]);
+
+  return <div ref={mapContainerRef} className="w-full h-full" />;
+};
+
 export const TransportDashboardPage: React.FC = () => {
   const { user, token, login } = useAuth();
   const navigate = useNavigate();
@@ -311,7 +378,7 @@ export const TransportDashboardPage: React.FC = () => {
         </div>
       ) : activeTab === 'available' ? (
         /* AVAILABLE TAB ROUTING GRID */
-        <div className="space-y-6">
+        <div key="available-tab" className="space-y-6">
           {/* Availability notice */}
           {!isAvailable && (
             <div className="p-4 bg-amber-50 border border-amber-200 text-amber-800 rounded-xl text-xs flex items-start gap-2.5">
@@ -522,7 +589,7 @@ export const TransportDashboardPage: React.FC = () => {
         </div>
       ) : (
         /* MY JOBS TABS */
-        <div className="space-y-6">
+        <div key="my-jobs-tab" className="space-y-6">
           {myJobs.length === 0 ? (
             <EmptyState
               title="No jobs accepted"
@@ -590,34 +657,13 @@ export const TransportDashboardPage: React.FC = () => {
 
                     {/* Embedded MiniRouteMap */}
                     <div className="w-full h-[180px] rounded-xl overflow-hidden border border-[#E5E7EB] z-10 relative">
-                      <MapContainer
-                        center={[myLat, myLng]}
-                        zoom={12}
-                        className="w-full h-full"
-                        zoomControl={false}
-                      >
-                        <TileLayer
-                          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-                          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                        />
-                        {/* Current transporter */}
-                        <Marker position={[myLat, myLng]} icon={userTransporterIcon}>
-                          <Popup><span className="text-xs font-semibold">Your Location</span></Popup>
-                        </Marker>
-
-                        {/* Pickup stop pin */}
-                        <Marker position={[job.pickupLatitude, job.pickupLongitude]} icon={pickupIcon}>
-                          <Popup><span className="text-xs font-semibold">Pickup: {farmerName}</span></Popup>
-                        </Marker>
-
-                        {/* Dropoff stop pin */}
-                        <Marker position={[job.dropoffLatitude, job.dropoffLongitude]} icon={dropoffIcon}>
-                          <Popup><span className="text-xs font-semibold">Dropoff: {buyerName}</span></Popup>
-                        </Marker>
-
-                        {/* Polyline route link */}
-                        <Polyline positions={routeLineCoords} pathOptions={{ color: '#2D6A4F', weight: 3 }} />
-                      </MapContainer>
+                      <MiniRouteMap
+                        job={job}
+                        myLat={myLat}
+                        myLng={myLng}
+                        farmerName={farmerName}
+                        buyerName={buyerName}
+                      />
                     </div>
 
                     {/* Ordered stop list sequence */}

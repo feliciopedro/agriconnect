@@ -71,6 +71,7 @@ function App() {
               <Suspense fallback={<PageLoader />}>
               <Routes>
                 {/* Public routes */}
+                <Route path="/" element={<Home />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/trace/:batchCode" element={<TracePublicPage />} />
 
@@ -89,7 +90,6 @@ function App() {
                           element={
                             <Layout>
                               <Routes>
-                                <Route path="/"                              element={<Home />} />
                                 <Route path="/profile"                       element={<ProfilePage />} />
                                 <Route path="/health"                        element={<HealthStatus />} />
 
