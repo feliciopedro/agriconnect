@@ -22,8 +22,7 @@ import {
 import { Spinner } from '../../components/ui/Spinner';
 import toast from 'react-hot-toast';
 
-// Leaflet map imports
-import { MapContainer, TileLayer, Marker, Popup, Polyline } from 'react-leaflet';
+// Leaflet icon imports
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 
@@ -617,11 +616,6 @@ export const TransportDashboardPage: React.FC = () => {
 
                 const nextStopLat = isMatched ? job.pickupLatitude : job.dropoffLatitude;
                 const nextStopLng = isMatched ? job.pickupLongitude : job.dropoffLongitude;
-
-                const routeLineCoords: [number, number][] = [
-                  [job.pickupLatitude, job.pickupLongitude],
-                  [job.dropoffLatitude, job.dropoffLongitude],
-                ];
 
                 return (
                   <Card
