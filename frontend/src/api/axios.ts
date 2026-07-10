@@ -14,8 +14,13 @@ export class AppError extends Error {
   }
 }
 
+let rawBaseURL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+if (rawBaseURL && !rawBaseURL.endsWith('/api') && !rawBaseURL.endsWith('/api/')) {
+  rawBaseURL = rawBaseURL.replace(/\/$/, '') + '/api';
+}
+
 const api = axios.create({
-  baseURL: import.meta.env.VITE_API_URL || 'http://localhost:5000/api',
+  baseURL: rawBaseURL,
   timeout: 15000,
   headers: {
     'Content-Type': 'application/json',
