@@ -1,15 +1,13 @@
 import React, { useState } from 'react';
 import { Link, Navigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import toast from 'react-hot-toast';
 import {
   ArrowRight,
   Leaf,
   ShoppingBag,
   Truck,
   MapPin,
-  Calendar,
-  Lock,
-  Star,
   CheckCircle2,
   TrendingUp,
   ShieldCheck,
