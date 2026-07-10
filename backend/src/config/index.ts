@@ -22,7 +22,7 @@ const parsed = envSchema.safeParse(process.env);
 if (!parsed.success) {
   console.error('❌ Invalid or missing environment configuration:');
   console.error(JSON.stringify(parsed.error.format(), null, 2));
-  process.exit(1);
+  throw new Error('Invalid or missing environment configuration. Check server logs for details.');
 }
 
 export const config = parsed.data;

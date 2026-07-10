@@ -1,14 +1,19 @@
 import multer from 'multer';
 import path from 'path';
 import fs from 'fs';
+import os from 'os';
 import { Request, Response, NextFunction } from 'express';
 import { createError } from '../utils/errors';
 
-// Disk storage destination dynamically mapped to root uploads/{userId} directory
+// Use /tmp on serverless (Vercel) since the filesystem is read-only outside /tmp.
+// Locally, use 'uploads/' in the project root as before.
+const isServerless = !!process.env.VERCEL;
+
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     const userId = req.user?.userId || 'anonymous';
-    const uploadDir = path.join(process.cwd(), `uploads/${userId}`);
+    const baseDir = isServerless ? os.tmpdir() : process.cwd();
+    const uploadDir = path.join(baseDir, `uploads/${userId}`);
     
     // Ensure nested uploads directory exists
     fs.mkdirSync(uploadDir, { recursive: true });
