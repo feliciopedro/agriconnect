@@ -1,7 +1,7 @@
 import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
-import { ShieldCheck, Copy, CheckCircle, Share2, Search } from 'lucide-react';
+import { ShieldCheck, Copy, CheckCircle, Share2, Search, ArrowLeft } from 'lucide-react';
 import toast from 'react-hot-toast';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
@@ -9,6 +9,7 @@ import { TraceApi } from '../api/trace.api';
 import { Card } from '../components/ui/Card';
 import { Badge } from '../components/ui/Badge';
 import { Button } from '../components/ui/Button';
+import { useAuth } from '../context/AuthContext';
 
 // Skeleton Component for loading states
 const SkeletonCard: React.FC<{ className?: string }> = ({ className }) => (
@@ -17,6 +18,7 @@ const SkeletonCard: React.FC<{ className?: string }> = ({ className }) => (
 
 export const TracePublicPage: React.FC = () => {
   const { batchCode } = useParams<{ batchCode: string }>();
+  const { isAuthenticated } = useAuth();
 
   // Map DOM element references
   const mapRef = React.useRef<HTMLDivElement>(null);
@@ -208,6 +210,17 @@ export const TracePublicPage: React.FC = () => {
     <div className="min-h-screen bg-white py-8 px-4 flex flex-col items-center">
       <div className="w-full max-w-[680px] space-y-8 bg-white">
         
+        {/* Back to Home Link */}
+        <div className="flex justify-start -mb-2">
+          <Link
+            to="/"
+            className="group flex items-center gap-2 text-sm font-semibold text-text-secondary hover:text-[#2D6A4F] transition-all duration-200"
+          >
+            <ArrowLeft size={16} className="shrink-0 transform group-hover:-translate-x-1 transition-transform duration-200" />
+            <span>Back to Home</span>
+          </Link>
+        </div>
+
         {/* Top Brand Bar */}
         <div className="flex justify-between items-center pb-4 border-b border-[#E5E7EB] bg-white">
           <Link to="/" className="text-xl font-bold text-[#2D6A4F] tracking-tight font-display">
@@ -405,8 +418,8 @@ export const TracePublicPage: React.FC = () => {
             </Button>
             {data.status === 'AVAILABLE' && (
               <Link
-                to={`/login?redirect=/buyer/listings/${data.id}`}
-                className="btn btn-primary h-11 px-6 shadow-sm cursor-pointer"
+                to={isAuthenticated ? `/marketplace/listings/${data.id}` : `/login?redirect=/marketplace/listings/${data.id}`}
+                className="btn btn-primary h-11 px-6 shadow-sm cursor-pointer font-bold transition-all duration-200 hover:scale-[1.02]"
               >
                 Order this produce
               </Link>

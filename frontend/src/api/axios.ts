@@ -54,7 +54,18 @@ api.interceptors.response.use(
         }
       }
 
-      const message = data?.message || data?.error || 'An error occurred on the server';
+      let message = 'An error occurred on the server';
+      if (data) {
+        if (typeof data.message === 'string') {
+          message = data.message;
+        } else if (data.error) {
+          if (typeof data.error === 'string') {
+            message = data.error;
+          } else if (typeof data.error === 'object' && typeof data.error.message === 'string') {
+            message = data.error.message;
+          }
+        }
+      }
       return Promise.reject(new AppError(message, status, error));
     } else if (error.request) {
       return Promise.reject(new AppError('No response received from the server. Check your network.', undefined, error));

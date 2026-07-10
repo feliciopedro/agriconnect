@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation, Link } from 'react-router-dom';
 import { Leaf, ShoppingBag, Truck, ArrowLeft } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 import { AuthApi } from '../../api/auth.api';
@@ -14,7 +14,18 @@ export const LoginPage: React.FC = () => {
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
   const mode = searchParams.get('mode');
-  const { login } = useAuth();
+  const { login, isAuthenticated, user } = useAuth();
+  const redirectPath = searchParams.get('redirect') || '/';
+
+  useEffect(() => {
+    if (isAuthenticated && user) {
+      if (user.name === 'New User') {
+        navigate('/setup-profile', { replace: true });
+      } else {
+        navigate(redirectPath, { replace: true });
+      }
+    }
+  }, [isAuthenticated, user, navigate, redirectPath]);
 
   const [step, setStep] = useState<1 | 2>(1);
   const [phone, setPhone] = useState('');
@@ -73,7 +84,7 @@ export const LoginPage: React.FC = () => {
       if (data.user.name === 'New User') {
         navigate('/setup-profile');
       } else {
-        navigate('/');
+        navigate(redirectPath);
       }
     },
     onError: (error: any) => {
@@ -94,7 +105,7 @@ export const LoginPage: React.FC = () => {
       if (data.user.name === 'New User') {
         navigate('/setup-profile');
       } else {
-        navigate('/');
+        navigate(redirectPath);
       }
     },
     onError: (error: any) => {
@@ -166,11 +177,23 @@ export const LoginPage: React.FC = () => {
   return (
     <div className="min-h-screen flex items-center justify-center bg-white px-4">
       <Card className="w-full max-w-[420px] p-6 space-y-6 bg-white border border-[#E5E7EB] shadow-card">
+        {/* Back to Home Link */}
+        <div className="flex justify-start">
+          <Link
+            to="/"
+            className="flex items-center gap-1.5 text-xs font-semibold text-[#6B7280] hover:text-[#2D6A4F] transition-colors"
+          >
+            <ArrowLeft size={14} /> Back to Home
+          </Link>
+        </div>
+
         {/* Header info */}
         <div className="text-center space-y-2 bg-white">
-          <h2 className="text-3xl font-extrabold text-[#2D6A4F] font-display">
-            AgriConnect
-          </h2>
+          <Link to="/" className="inline-block hover:opacity-90 transition-opacity">
+            <h2 className="text-3xl font-extrabold text-[#2D6A4F] font-display">
+              AgriConnect
+            </h2>
+          </Link>
           <p className="text-sm text-text-secondary">
             Connecting Ghana's vegetable farmers, buyers, and transport providers
           </p>

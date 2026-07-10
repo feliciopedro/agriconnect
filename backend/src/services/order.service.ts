@@ -113,6 +113,7 @@ export class OrderService {
       await AuditLogService.log(
         {
           userId: buyerId,
+          actorRole: Role.BUYER,
           action: 'CREATE',
           entityName: 'Order',
           entityId: order.id,
@@ -330,6 +331,7 @@ export class OrderService {
       await AuditLogService.log(
         {
           userId: requestingUserId,
+          actorRole: Role.BUYER,
           action: 'CANCEL',
           entityName: 'Order',
           entityId: orderId,
@@ -388,6 +390,7 @@ export class OrderService {
       await AuditLogService.log(
         {
           userId: order.buyerId, // System / Webhook trigger
+          actorRole: Role.BUYER,
           action: 'CONFIRM',
           entityName: 'Order',
           entityId: orderId,
