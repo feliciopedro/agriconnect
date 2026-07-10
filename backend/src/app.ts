@@ -16,9 +16,28 @@ const app = express();
 
 // Security and core middleware
 app.use(helmet());
+// Robust CORS configuration supporting local dev and Vercel subdomains
+const allowedOrigins = [
+  config.FRONTEND_URL,
+  'http://localhost:5173',
+  'http://localhost:3000'
+];
+
 app.use(
   cors({
-    origin: config.FRONTEND_URL,
+    origin: (origin, callback) => {
+      if (!origin) return callback(null, true);
+      const cleanOrigin = origin.replace(/\/$/, '');
+      const isAllowed = allowedOrigins.some(o => o && o.replace(/\/$/, '') === cleanOrigin) || 
+                        cleanOrigin.endsWith('.vercel.app');
+      
+      if (isAllowed) {
+        callback(null, true);
+      } else {
+        console.warn(`CORS blocked request from origin: ${origin}`);
+        callback(new Error('Not allowed by CORS'));
+      }
+    },
     credentials: true,
   })
 );
