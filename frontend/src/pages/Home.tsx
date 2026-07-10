@@ -622,7 +622,13 @@ export const Home: React.FC = () => {
                     </span>
                   )}
                 </div>
-                <button className="btn btn-secondary h-[36px] min-h-[36px] px-3 py-1 rounded-lg text-xs">
+                <button
+                  onClick={() => {
+                    toast('Create a free account to contact this seller directly.', { icon: '🔒' });
+                    window.location.href = '/login?mode=register';
+                  }}
+                  className="btn btn-secondary h-[36px] min-h-[36px] px-3 py-1 rounded-lg text-xs"
+                >
                   Contact
                 </button>
               </div>
