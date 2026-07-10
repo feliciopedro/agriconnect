@@ -20,9 +20,12 @@ const envSchema = z.object({
 const parsed = envSchema.safeParse(process.env);
 
 if (!parsed.success) {
-  console.error('❌ Invalid or missing environment configuration:');
+  const missing = Object.entries(parsed.error.format())
+    .filter(([key]) => key !== '_errors')
+    .map(([key]) => key);
+  console.error('❌ Invalid or missing environment configuration:', missing);
   console.error(JSON.stringify(parsed.error.format(), null, 2));
-  throw new Error('Invalid or missing environment configuration. Check server logs for details.');
+  throw new Error(`Missing environment variables: ${missing.join(', ')}`);
 }
 
 export const config = parsed.data;
