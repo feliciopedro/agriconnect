@@ -1,5 +1,3 @@
-import type { VercelRequest, VercelResponse } from '@vercel/node';
-
 let app: any;
 let initError: Error | null = null;
 
@@ -18,15 +16,17 @@ try {
   initError = err;
 }
 
-export default function handler(req: VercelRequest, res: VercelResponse) {
+export default function handler(req: any, res: any) {
   if (initError || !app) {
-    return res.status(500).json({
+    res.statusCode = 500;
+    res.setHeader('Content-Type', 'application/json');
+    return res.end(JSON.stringify({
       error: {
         message: 'Server failed to start',
         detail: initError?.message || 'Unknown startup error',
         code: 'STARTUP_FAILURE',
       },
-    });
+    }));
   }
   return app(req, res);
 }
