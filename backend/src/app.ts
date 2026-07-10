@@ -78,6 +78,13 @@ const logFormat = config.NODE_ENV === 'production' ? 'combined' : 'dev';
 app.use(morgan(logFormat));
 
 // Mount main routing sub-routes
+app.get('/', (req, res) => {
+  res.status(200).json({
+    status: 'ok',
+    message: 'AgriConnect API Hub is online'
+  });
+});
+
 app.use(checkMaintenanceMode);
 app.use('/api', apiRoutes);
 

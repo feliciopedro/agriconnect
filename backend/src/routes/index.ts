@@ -30,6 +30,13 @@ import { DeliveryController } from '../controllers/delivery.controller';
 
 const router = Router();
 
+router.get('/', (req, res) => {
+  res.status(200).json({
+    status: 'ok',
+    message: 'Welcome to the AgriConnect Backend API Services'
+  });
+});
+
 router.use('/health', healthRoutes);
 router.use('/auth', authRoutes);
 router.use('/listings', listingRoutes);
