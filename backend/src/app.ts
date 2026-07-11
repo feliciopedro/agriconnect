@@ -92,6 +92,11 @@ app.post(
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+// Serve static uploads folder (handles local process.cwd() and Vercel OS tmp directory)
+const isServerless = !!process.env.VERCEL;
+const baseDir = isServerless ? require('os').tmpdir() : process.cwd();
+app.use('/uploads', express.static(require('path').join(baseDir, 'uploads')));
+
 // Logging
 const logFormat = config.NODE_ENV === 'production' ? 'combined' : 'dev';
 app.use(morgan(logFormat));
