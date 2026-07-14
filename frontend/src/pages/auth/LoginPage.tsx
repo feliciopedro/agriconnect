@@ -15,7 +15,9 @@ export const LoginPage: React.FC = () => {
   const searchParams = new URLSearchParams(location.search);
   const mode = searchParams.get('mode');
   const { login, isAuthenticated, user } = useAuth();
-  const redirectPath = searchParams.get('redirect') || '/';
+  
+  const isAdminPortal = location.pathname === '/admin-portal';
+  const redirectPath = searchParams.get('redirect') || (isAdminPortal ? '/admin' : '/');
 
   useEffect(() => {
     if (isAuthenticated && user) {
@@ -30,7 +32,7 @@ export const LoginPage: React.FC = () => {
   const [step, setStep] = useState<1 | 2>(1);
   const [phone, setPhone] = useState('');
   const [password, setPassword] = useState('');
-  const [selectedRole, setSelectedRole] = useState<Role>('FARMER');
+  const [selectedRole, setSelectedRole] = useState<Role>(isAdminPortal ? 'ADMIN' : 'FARMER');
   const [isFirstTime, setIsFirstTime] = useState(mode === 'register');
   const [loginMethod, setLoginMethod] = useState<'otp' | 'password'>('password');
 
@@ -191,11 +193,13 @@ export const LoginPage: React.FC = () => {
         <div className="text-center space-y-2 bg-white">
           <Link to="/" className="inline-block hover:opacity-90 transition-opacity">
             <h2 className="text-3xl font-extrabold text-[#2D6A4F] font-display">
-              AgriConnect
+              {isAdminPortal ? "AgriConnect Admin" : "AgriConnect"}
             </h2>
           </Link>
           <p className="text-sm text-text-secondary">
-            Connecting Ghana's vegetable farmers, buyers, and transport providers
+            {isAdminPortal
+              ? "Verified administrator and support manager portal login"
+              : "Connecting Ghana's vegetable farmers, buyers, and transport providers"}
           </p>
         </div>
 
@@ -263,7 +267,7 @@ export const LoginPage: React.FC = () => {
           step === 1 ? (
             <form onSubmit={handleSendOtp} className="space-y-6">
               {/* Role selector - only on signup registration flow */}
-              {isFirstTime && (
+              {isFirstTime && !isAdminPortal && (
                 <div className="space-y-2.5">
                   <label className="text-sm font-semibold text-text-secondary">Select your platform role</label>
                   <div className="grid grid-cols-1 gap-2">

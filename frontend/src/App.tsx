@@ -73,6 +73,7 @@ function App() {
                 {/* Public routes */}
                 <Route path="/" element={<Home />} />
                 <Route path="/login" element={<Login />} />
+                <Route path="/admin-portal" element={<Login />} />
                 <Route path="/trace/:batchCode" element={<TracePublicPage />} />
 
                 {/* Protected routes */}
