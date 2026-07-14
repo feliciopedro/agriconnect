@@ -49,6 +49,7 @@ export const ListingDetailPage: React.FC = () => {
   const [activeImageIdx, setActiveImageIdx] = useState<number>(0);
   const [copied, setCopied] = useState<boolean>(false);
   const [qrDownloading, setQrDownloading] = useState<boolean>(false);
+  const [labelDownloading, setLabelDownloading] = useState<boolean>(false);
 
   const fetchDetails = async () => {
     if (!id) return;
@@ -104,6 +105,28 @@ export const ListingDetailPage: React.FC = () => {
       toast.error('Failed to download QR code');
     } finally {
       setQrDownloading(false);
+    }
+  };
+
+  const handleDownloadPdfLabel = async () => {
+    if (!listing) return;
+    setLabelDownloading(true);
+    try {
+      const blob = await ListingsApi.getTraceLabelPdf(listing.id);
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `traceability-label-${listing.batchCode}.pdf`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      window.URL.revokeObjectURL(url);
+      toast.success('Traceability label PDF downloaded successfully!');
+    } catch (err: any) {
+      console.error(err);
+      toast.error(err.message || 'Failed to download traceability label');
+    } finally {
+      setLabelDownloading(false);
     }
   };
 
@@ -434,6 +457,17 @@ export const ListingDetailPage: React.FC = () => {
                 isLoading={qrDownloading}
               >
                 Download QR Code
+              </Button>
+
+              {/* QR Traceability Label PDF trigger */}
+              <Button
+                variant="secondary"
+                fullWidth
+                leftIcon={<Printer className="w-4 h-4" />}
+                onClick={handleDownloadPdfLabel}
+                isLoading={labelDownloading}
+              >
+                Print PDF Trace Label
               </Button>
 
               <div className="border-t border-[#E5E7EB] pt-4 flex flex-col gap-2">

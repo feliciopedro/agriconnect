@@ -268,6 +268,7 @@ export class ListingService {
           select: {
             name: true,
             phone: true,
+            region: true,
             farmerProfile: {
               select: {
                 avgRating: true,

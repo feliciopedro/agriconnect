@@ -12,6 +12,7 @@ const router = Router();
 router.get('/', ListingController.searchListings);
 router.get('/:id', validate(ListingIdParamSchema, 'params'), ListingController.getListingById);
 router.get('/:id/qrcode', validate(ListingIdParamSchema, 'params'), ListingController.getListingQrCode);
+router.get('/:id/trace-label', validate(ListingIdParamSchema, 'params'), ListingController.getTraceLabel);
 
 // Farmer protected modification routes
 router.post(

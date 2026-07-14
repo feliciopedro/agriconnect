@@ -101,6 +101,16 @@ export const ListingsApi = {
     });
     return response.data;
   },
+
+  /**
+   * Fetch PDF Traceability Label for a listing as a Blob.
+   */
+  getTraceLabelPdf: async (id: string): Promise<Blob> => {
+    const response = await api.get(`/listings/${id}/trace-label`, {
+      responseType: 'blob',
+    });
+    return response.data;
+  },
 };
 
 export default ListingsApi;
