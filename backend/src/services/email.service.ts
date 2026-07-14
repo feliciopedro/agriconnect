@@ -2,7 +2,7 @@ import nodemailer from 'nodemailer';
 
 export class EmailService {
   private static transporter = nodemailer.createTransport(
-    process.env.SMTP_HOST && process.env.SMTP_USER
+    (process.env.SMTP_HOST && process.env.SMTP_USER
       ? {
           host: process.env.SMTP_HOST,
           port: process.env.SMTP_PORT ? parseInt(process.env.SMTP_PORT, 10) : 587,
@@ -14,7 +14,7 @@ export class EmailService {
         }
       : {
           jsonTransport: true,
-        }
+        }) as any
   );
 
   /**
