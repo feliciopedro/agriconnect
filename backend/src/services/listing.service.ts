@@ -4,6 +4,7 @@ import { createError } from '../utils/errors';
 import { CropType, ListingStatus, TraceEventType, Prisma } from '../prisma/generated-client';
 import { PreOrderService } from './preorder.service';
 import { AuditLogService } from './audit.service';
+import { DemandAlertService } from './demandAlert.service';
 
 export interface SearchFilters {
   cropType?: CropType;
@@ -119,8 +120,6 @@ export class ListingService {
       return newListing;
     });
 
-    // Fire-and-forget: match open pre-orders to this new listing.
-    // Runs asynchronously so listing creation never blocks or fails because of this.
     PreOrderService.matchPreOrderToListing({
       id: listing.id,
       cropType: listing.cropType,
@@ -130,6 +129,17 @@ export class ListingService {
       farmerId,
       farmer: { region: farmer?.region },
     }).catch((err) => console.error('[PreOrder] matchPreOrderToListing error:', err));
+
+    // Fire-and-forget: scan and dispatch automated crop alerts to interested buyers
+    DemandAlertService.processNewListingAlerts({
+      id: listing.id,
+      cropType: listing.cropType,
+      quantityKg: listing.quantityKg,
+      pricePerKg: listing.pricePerKg,
+      region: farmer?.region,
+      farmerId,
+      farmer: { name: farmer?.name },
+    }).catch((err) => console.error('[CropAlert] processNewListingAlerts error:', err));
 
     return listing;
   }

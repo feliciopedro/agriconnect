@@ -129,6 +129,7 @@ model User {
   ussdSessions       UssdSession[]
   createdCoOps       CoOpGroup[]        @relation("CreatedCoOps")
   coOpContributions  CoOpMember[]       @relation("CoOpContributions")
+  cropAlerts         BuyerCropAlert[]   @relation("BuyerCropAlerts")
 
   @@index([role])
   @@index([latitude, longitude])
@@ -602,4 +603,21 @@ model CoOpMember {
 
   @@unique([coOpGroupId, buyerId])
   @@index([buyerId])
+}
+
+model BuyerCropAlert {
+  id             String      @id @default(uuid())
+  buyerId        String
+  buyer          User        @relation("BuyerCropAlerts", fields: [buyerId], references: [id], onDelete: Cascade)
+  cropType       CropType
+  minQuantityKg  Float?      // only match if listing has at least this quantity
+  maxPricePerKg  Float?      // only match if price per kg <= this
+  region         String?     // e.g. "Greater Accra" (null = any region)
+  isActive       Boolean     @default(true)
+  createdAt      DateTime    @default(now())
+  updatedAt      DateTime    @updatedAt
+
+  @@unique([buyerId, cropType])
+  @@index([buyerId])
+  @@index([cropType, isActive])
 }

@@ -458,6 +458,18 @@ exports.Prisma.CoOpMemberScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.BuyerCropAlertScalarFieldEnum = {
+  id: 'id',
+  buyerId: 'buyerId',
+  cropType: 'cropType',
+  minQuantityKg: 'minQuantityKg',
+  maxPricePerKg: 'maxPricePerKg',
+  region: 'region',
+  isActive: 'isActive',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -610,7 +622,8 @@ exports.Prisma.ModelName = {
   UserBan: 'UserBan',
   StoredFile: 'StoredFile',
   CoOpGroup: 'CoOpGroup',
-  CoOpMember: 'CoOpMember'
+  CoOpMember: 'CoOpMember',
+  BuyerCropAlert: 'BuyerCropAlert'
 };
 
 /**

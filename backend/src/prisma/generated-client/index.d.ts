@@ -138,6 +138,11 @@ export type CoOpGroup = $Result.DefaultSelection<Prisma.$CoOpGroupPayload>
  * 
  */
 export type CoOpMember = $Result.DefaultSelection<Prisma.$CoOpMemberPayload>
+/**
+ * Model BuyerCropAlert
+ * 
+ */
+export type BuyerCropAlert = $Result.DefaultSelection<Prisma.$BuyerCropAlertPayload>
 
 /**
  * Enums
@@ -705,6 +710,16 @@ export class PrismaClient<
     * ```
     */
   get coOpMember(): Prisma.CoOpMemberDelegate<ExtArgs>;
+
+  /**
+   * `prisma.buyerCropAlert`: Exposes CRUD operations for the **BuyerCropAlert** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more BuyerCropAlerts
+    * const buyerCropAlerts = await prisma.buyerCropAlert.findMany()
+    * ```
+    */
+  get buyerCropAlert(): Prisma.BuyerCropAlertDelegate<ExtArgs>;
 }
 
 export namespace Prisma {
@@ -1170,7 +1185,8 @@ export namespace Prisma {
     UserBan: 'UserBan',
     StoredFile: 'StoredFile',
     CoOpGroup: 'CoOpGroup',
-    CoOpMember: 'CoOpMember'
+    CoOpMember: 'CoOpMember',
+    BuyerCropAlert: 'BuyerCropAlert'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -1186,7 +1202,7 @@ export namespace Prisma {
 
   export type TypeMap<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, ClientOptions = {}> = {
     meta: {
-      modelProps: "user" | "farmerProfile" | "buyerProfile" | "transportProfile" | "produceListing" | "traceabilityRecord" | "traceEvent" | "order" | "deliveryRequest" | "review" | "notification" | "message" | "otpCode" | "ussdSession" | "ussdAuditLog" | "ussdShortMessage" | "preOrder" | "plantingLog" | "plantingInput" | "auditLog" | "systemConfig" | "userBan" | "storedFile" | "coOpGroup" | "coOpMember"
+      modelProps: "user" | "farmerProfile" | "buyerProfile" | "transportProfile" | "produceListing" | "traceabilityRecord" | "traceEvent" | "order" | "deliveryRequest" | "review" | "notification" | "message" | "otpCode" | "ussdSession" | "ussdAuditLog" | "ussdShortMessage" | "preOrder" | "plantingLog" | "plantingInput" | "auditLog" | "systemConfig" | "userBan" | "storedFile" | "coOpGroup" | "coOpMember" | "buyerCropAlert"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -2940,6 +2956,76 @@ export namespace Prisma {
           }
         }
       }
+      BuyerCropAlert: {
+        payload: Prisma.$BuyerCropAlertPayload<ExtArgs>
+        fields: Prisma.BuyerCropAlertFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.BuyerCropAlertFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BuyerCropAlertPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.BuyerCropAlertFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BuyerCropAlertPayload>
+          }
+          findFirst: {
+            args: Prisma.BuyerCropAlertFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BuyerCropAlertPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.BuyerCropAlertFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BuyerCropAlertPayload>
+          }
+          findMany: {
+            args: Prisma.BuyerCropAlertFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BuyerCropAlertPayload>[]
+          }
+          create: {
+            args: Prisma.BuyerCropAlertCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BuyerCropAlertPayload>
+          }
+          createMany: {
+            args: Prisma.BuyerCropAlertCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.BuyerCropAlertCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BuyerCropAlertPayload>[]
+          }
+          delete: {
+            args: Prisma.BuyerCropAlertDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BuyerCropAlertPayload>
+          }
+          update: {
+            args: Prisma.BuyerCropAlertUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BuyerCropAlertPayload>
+          }
+          deleteMany: {
+            args: Prisma.BuyerCropAlertDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.BuyerCropAlertUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.BuyerCropAlertUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BuyerCropAlertPayload>
+          }
+          aggregate: {
+            args: Prisma.BuyerCropAlertAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateBuyerCropAlert>
+          }
+          groupBy: {
+            args: Prisma.BuyerCropAlertGroupByArgs<ExtArgs>
+            result: $Utils.Optional<BuyerCropAlertGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.BuyerCropAlertCountArgs<ExtArgs>
+            result: $Utils.Optional<BuyerCropAlertCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -3118,6 +3204,7 @@ export namespace Prisma {
     ussdSessions: number
     createdCoOps: number
     coOpContributions: number
+    cropAlerts: number
   }
 
   export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -3138,6 +3225,7 @@ export namespace Prisma {
     ussdSessions?: boolean | UserCountOutputTypeCountUssdSessionsArgs
     createdCoOps?: boolean | UserCountOutputTypeCountCreatedCoOpsArgs
     coOpContributions?: boolean | UserCountOutputTypeCountCoOpContributionsArgs
+    cropAlerts?: boolean | UserCountOutputTypeCountCropAlertsArgs
   }
 
   // Custom InputTypes
@@ -3268,6 +3356,13 @@ export namespace Prisma {
    */
   export type UserCountOutputTypeCountCoOpContributionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: CoOpMemberWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountCropAlertsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: BuyerCropAlertWhereInput
   }
 
 
@@ -3763,6 +3858,7 @@ export namespace Prisma {
     ussdSessions?: boolean | User$ussdSessionsArgs<ExtArgs>
     createdCoOps?: boolean | User$createdCoOpsArgs<ExtArgs>
     coOpContributions?: boolean | User$coOpContributionsArgs<ExtArgs>
+    cropAlerts?: boolean | User$cropAlertsArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
@@ -3828,6 +3924,7 @@ export namespace Prisma {
     ussdSessions?: boolean | User$ussdSessionsArgs<ExtArgs>
     createdCoOps?: boolean | User$createdCoOpsArgs<ExtArgs>
     coOpContributions?: boolean | User$coOpContributionsArgs<ExtArgs>
+    cropAlerts?: boolean | User$cropAlertsArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type UserIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -3856,6 +3953,7 @@ export namespace Prisma {
       ussdSessions: Prisma.$UssdSessionPayload<ExtArgs>[]
       createdCoOps: Prisma.$CoOpGroupPayload<ExtArgs>[]
       coOpContributions: Prisma.$CoOpMemberPayload<ExtArgs>[]
+      cropAlerts: Prisma.$BuyerCropAlertPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -4260,6 +4358,7 @@ export namespace Prisma {
     ussdSessions<T extends User$ussdSessionsArgs<ExtArgs> = {}>(args?: Subset<T, User$ussdSessionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UssdSessionPayload<ExtArgs>, T, "findMany"> | Null>
     createdCoOps<T extends User$createdCoOpsArgs<ExtArgs> = {}>(args?: Subset<T, User$createdCoOpsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CoOpGroupPayload<ExtArgs>, T, "findMany"> | Null>
     coOpContributions<T extends User$coOpContributionsArgs<ExtArgs> = {}>(args?: Subset<T, User$coOpContributionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CoOpMemberPayload<ExtArgs>, T, "findMany"> | Null>
+    cropAlerts<T extends User$cropAlertsArgs<ExtArgs> = {}>(args?: Subset<T, User$cropAlertsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BuyerCropAlertPayload<ExtArgs>, T, "findMany"> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -5017,6 +5116,26 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: CoOpMemberScalarFieldEnum | CoOpMemberScalarFieldEnum[]
+  }
+
+  /**
+   * User.cropAlerts
+   */
+  export type User$cropAlertsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BuyerCropAlert
+     */
+    select?: BuyerCropAlertSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BuyerCropAlertInclude<ExtArgs> | null
+    where?: BuyerCropAlertWhereInput
+    orderBy?: BuyerCropAlertOrderByWithRelationInput | BuyerCropAlertOrderByWithRelationInput[]
+    cursor?: BuyerCropAlertWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: BuyerCropAlertScalarFieldEnum | BuyerCropAlertScalarFieldEnum[]
   }
 
   /**
@@ -29743,6 +29862,1025 @@ export namespace Prisma {
 
 
   /**
+   * Model BuyerCropAlert
+   */
+
+  export type AggregateBuyerCropAlert = {
+    _count: BuyerCropAlertCountAggregateOutputType | null
+    _avg: BuyerCropAlertAvgAggregateOutputType | null
+    _sum: BuyerCropAlertSumAggregateOutputType | null
+    _min: BuyerCropAlertMinAggregateOutputType | null
+    _max: BuyerCropAlertMaxAggregateOutputType | null
+  }
+
+  export type BuyerCropAlertAvgAggregateOutputType = {
+    minQuantityKg: number | null
+    maxPricePerKg: number | null
+  }
+
+  export type BuyerCropAlertSumAggregateOutputType = {
+    minQuantityKg: number | null
+    maxPricePerKg: number | null
+  }
+
+  export type BuyerCropAlertMinAggregateOutputType = {
+    id: string | null
+    buyerId: string | null
+    cropType: $Enums.CropType | null
+    minQuantityKg: number | null
+    maxPricePerKg: number | null
+    region: string | null
+    isActive: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type BuyerCropAlertMaxAggregateOutputType = {
+    id: string | null
+    buyerId: string | null
+    cropType: $Enums.CropType | null
+    minQuantityKg: number | null
+    maxPricePerKg: number | null
+    region: string | null
+    isActive: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type BuyerCropAlertCountAggregateOutputType = {
+    id: number
+    buyerId: number
+    cropType: number
+    minQuantityKg: number
+    maxPricePerKg: number
+    region: number
+    isActive: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type BuyerCropAlertAvgAggregateInputType = {
+    minQuantityKg?: true
+    maxPricePerKg?: true
+  }
+
+  export type BuyerCropAlertSumAggregateInputType = {
+    minQuantityKg?: true
+    maxPricePerKg?: true
+  }
+
+  export type BuyerCropAlertMinAggregateInputType = {
+    id?: true
+    buyerId?: true
+    cropType?: true
+    minQuantityKg?: true
+    maxPricePerKg?: true
+    region?: true
+    isActive?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type BuyerCropAlertMaxAggregateInputType = {
+    id?: true
+    buyerId?: true
+    cropType?: true
+    minQuantityKg?: true
+    maxPricePerKg?: true
+    region?: true
+    isActive?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type BuyerCropAlertCountAggregateInputType = {
+    id?: true
+    buyerId?: true
+    cropType?: true
+    minQuantityKg?: true
+    maxPricePerKg?: true
+    region?: true
+    isActive?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type BuyerCropAlertAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which BuyerCropAlert to aggregate.
+     */
+    where?: BuyerCropAlertWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of BuyerCropAlerts to fetch.
+     */
+    orderBy?: BuyerCropAlertOrderByWithRelationInput | BuyerCropAlertOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: BuyerCropAlertWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` BuyerCropAlerts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` BuyerCropAlerts.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned BuyerCropAlerts
+    **/
+    _count?: true | BuyerCropAlertCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: BuyerCropAlertAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: BuyerCropAlertSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: BuyerCropAlertMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: BuyerCropAlertMaxAggregateInputType
+  }
+
+  export type GetBuyerCropAlertAggregateType<T extends BuyerCropAlertAggregateArgs> = {
+        [P in keyof T & keyof AggregateBuyerCropAlert]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateBuyerCropAlert[P]>
+      : GetScalarType<T[P], AggregateBuyerCropAlert[P]>
+  }
+
+
+
+
+  export type BuyerCropAlertGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: BuyerCropAlertWhereInput
+    orderBy?: BuyerCropAlertOrderByWithAggregationInput | BuyerCropAlertOrderByWithAggregationInput[]
+    by: BuyerCropAlertScalarFieldEnum[] | BuyerCropAlertScalarFieldEnum
+    having?: BuyerCropAlertScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: BuyerCropAlertCountAggregateInputType | true
+    _avg?: BuyerCropAlertAvgAggregateInputType
+    _sum?: BuyerCropAlertSumAggregateInputType
+    _min?: BuyerCropAlertMinAggregateInputType
+    _max?: BuyerCropAlertMaxAggregateInputType
+  }
+
+  export type BuyerCropAlertGroupByOutputType = {
+    id: string
+    buyerId: string
+    cropType: $Enums.CropType
+    minQuantityKg: number | null
+    maxPricePerKg: number | null
+    region: string | null
+    isActive: boolean
+    createdAt: Date
+    updatedAt: Date
+    _count: BuyerCropAlertCountAggregateOutputType | null
+    _avg: BuyerCropAlertAvgAggregateOutputType | null
+    _sum: BuyerCropAlertSumAggregateOutputType | null
+    _min: BuyerCropAlertMinAggregateOutputType | null
+    _max: BuyerCropAlertMaxAggregateOutputType | null
+  }
+
+  type GetBuyerCropAlertGroupByPayload<T extends BuyerCropAlertGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<BuyerCropAlertGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof BuyerCropAlertGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], BuyerCropAlertGroupByOutputType[P]>
+            : GetScalarType<T[P], BuyerCropAlertGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type BuyerCropAlertSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    buyerId?: boolean
+    cropType?: boolean
+    minQuantityKg?: boolean
+    maxPricePerKg?: boolean
+    region?: boolean
+    isActive?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    buyer?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["buyerCropAlert"]>
+
+  export type BuyerCropAlertSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    buyerId?: boolean
+    cropType?: boolean
+    minQuantityKg?: boolean
+    maxPricePerKg?: boolean
+    region?: boolean
+    isActive?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    buyer?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["buyerCropAlert"]>
+
+  export type BuyerCropAlertSelectScalar = {
+    id?: boolean
+    buyerId?: boolean
+    cropType?: boolean
+    minQuantityKg?: boolean
+    maxPricePerKg?: boolean
+    region?: boolean
+    isActive?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type BuyerCropAlertInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    buyer?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type BuyerCropAlertIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    buyer?: boolean | UserDefaultArgs<ExtArgs>
+  }
+
+  export type $BuyerCropAlertPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "BuyerCropAlert"
+    objects: {
+      buyer: Prisma.$UserPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      buyerId: string
+      cropType: $Enums.CropType
+      minQuantityKg: number | null
+      maxPricePerKg: number | null
+      region: string | null
+      isActive: boolean
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["buyerCropAlert"]>
+    composites: {}
+  }
+
+  type BuyerCropAlertGetPayload<S extends boolean | null | undefined | BuyerCropAlertDefaultArgs> = $Result.GetResult<Prisma.$BuyerCropAlertPayload, S>
+
+  type BuyerCropAlertCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<BuyerCropAlertFindManyArgs, 'select' | 'include' | 'distinct'> & {
+      select?: BuyerCropAlertCountAggregateInputType | true
+    }
+
+  export interface BuyerCropAlertDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['BuyerCropAlert'], meta: { name: 'BuyerCropAlert' } }
+    /**
+     * Find zero or one BuyerCropAlert that matches the filter.
+     * @param {BuyerCropAlertFindUniqueArgs} args - Arguments to find a BuyerCropAlert
+     * @example
+     * // Get one BuyerCropAlert
+     * const buyerCropAlert = await prisma.buyerCropAlert.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends BuyerCropAlertFindUniqueArgs>(args: SelectSubset<T, BuyerCropAlertFindUniqueArgs<ExtArgs>>): Prisma__BuyerCropAlertClient<$Result.GetResult<Prisma.$BuyerCropAlertPayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
+
+    /**
+     * Find one BuyerCropAlert that matches the filter or throw an error with `error.code='P2025'` 
+     * if no matches were found.
+     * @param {BuyerCropAlertFindUniqueOrThrowArgs} args - Arguments to find a BuyerCropAlert
+     * @example
+     * // Get one BuyerCropAlert
+     * const buyerCropAlert = await prisma.buyerCropAlert.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends BuyerCropAlertFindUniqueOrThrowArgs>(args: SelectSubset<T, BuyerCropAlertFindUniqueOrThrowArgs<ExtArgs>>): Prisma__BuyerCropAlertClient<$Result.GetResult<Prisma.$BuyerCropAlertPayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
+
+    /**
+     * Find the first BuyerCropAlert that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BuyerCropAlertFindFirstArgs} args - Arguments to find a BuyerCropAlert
+     * @example
+     * // Get one BuyerCropAlert
+     * const buyerCropAlert = await prisma.buyerCropAlert.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends BuyerCropAlertFindFirstArgs>(args?: SelectSubset<T, BuyerCropAlertFindFirstArgs<ExtArgs>>): Prisma__BuyerCropAlertClient<$Result.GetResult<Prisma.$BuyerCropAlertPayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
+
+    /**
+     * Find the first BuyerCropAlert that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BuyerCropAlertFindFirstOrThrowArgs} args - Arguments to find a BuyerCropAlert
+     * @example
+     * // Get one BuyerCropAlert
+     * const buyerCropAlert = await prisma.buyerCropAlert.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends BuyerCropAlertFindFirstOrThrowArgs>(args?: SelectSubset<T, BuyerCropAlertFindFirstOrThrowArgs<ExtArgs>>): Prisma__BuyerCropAlertClient<$Result.GetResult<Prisma.$BuyerCropAlertPayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
+
+    /**
+     * Find zero or more BuyerCropAlerts that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BuyerCropAlertFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all BuyerCropAlerts
+     * const buyerCropAlerts = await prisma.buyerCropAlert.findMany()
+     * 
+     * // Get first 10 BuyerCropAlerts
+     * const buyerCropAlerts = await prisma.buyerCropAlert.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const buyerCropAlertWithIdOnly = await prisma.buyerCropAlert.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends BuyerCropAlertFindManyArgs>(args?: SelectSubset<T, BuyerCropAlertFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BuyerCropAlertPayload<ExtArgs>, T, "findMany">>
+
+    /**
+     * Create a BuyerCropAlert.
+     * @param {BuyerCropAlertCreateArgs} args - Arguments to create a BuyerCropAlert.
+     * @example
+     * // Create one BuyerCropAlert
+     * const BuyerCropAlert = await prisma.buyerCropAlert.create({
+     *   data: {
+     *     // ... data to create a BuyerCropAlert
+     *   }
+     * })
+     * 
+     */
+    create<T extends BuyerCropAlertCreateArgs>(args: SelectSubset<T, BuyerCropAlertCreateArgs<ExtArgs>>): Prisma__BuyerCropAlertClient<$Result.GetResult<Prisma.$BuyerCropAlertPayload<ExtArgs>, T, "create">, never, ExtArgs>
+
+    /**
+     * Create many BuyerCropAlerts.
+     * @param {BuyerCropAlertCreateManyArgs} args - Arguments to create many BuyerCropAlerts.
+     * @example
+     * // Create many BuyerCropAlerts
+     * const buyerCropAlert = await prisma.buyerCropAlert.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends BuyerCropAlertCreateManyArgs>(args?: SelectSubset<T, BuyerCropAlertCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many BuyerCropAlerts and returns the data saved in the database.
+     * @param {BuyerCropAlertCreateManyAndReturnArgs} args - Arguments to create many BuyerCropAlerts.
+     * @example
+     * // Create many BuyerCropAlerts
+     * const buyerCropAlert = await prisma.buyerCropAlert.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many BuyerCropAlerts and only return the `id`
+     * const buyerCropAlertWithIdOnly = await prisma.buyerCropAlert.createManyAndReturn({ 
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends BuyerCropAlertCreateManyAndReturnArgs>(args?: SelectSubset<T, BuyerCropAlertCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BuyerCropAlertPayload<ExtArgs>, T, "createManyAndReturn">>
+
+    /**
+     * Delete a BuyerCropAlert.
+     * @param {BuyerCropAlertDeleteArgs} args - Arguments to delete one BuyerCropAlert.
+     * @example
+     * // Delete one BuyerCropAlert
+     * const BuyerCropAlert = await prisma.buyerCropAlert.delete({
+     *   where: {
+     *     // ... filter to delete one BuyerCropAlert
+     *   }
+     * })
+     * 
+     */
+    delete<T extends BuyerCropAlertDeleteArgs>(args: SelectSubset<T, BuyerCropAlertDeleteArgs<ExtArgs>>): Prisma__BuyerCropAlertClient<$Result.GetResult<Prisma.$BuyerCropAlertPayload<ExtArgs>, T, "delete">, never, ExtArgs>
+
+    /**
+     * Update one BuyerCropAlert.
+     * @param {BuyerCropAlertUpdateArgs} args - Arguments to update one BuyerCropAlert.
+     * @example
+     * // Update one BuyerCropAlert
+     * const buyerCropAlert = await prisma.buyerCropAlert.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends BuyerCropAlertUpdateArgs>(args: SelectSubset<T, BuyerCropAlertUpdateArgs<ExtArgs>>): Prisma__BuyerCropAlertClient<$Result.GetResult<Prisma.$BuyerCropAlertPayload<ExtArgs>, T, "update">, never, ExtArgs>
+
+    /**
+     * Delete zero or more BuyerCropAlerts.
+     * @param {BuyerCropAlertDeleteManyArgs} args - Arguments to filter BuyerCropAlerts to delete.
+     * @example
+     * // Delete a few BuyerCropAlerts
+     * const { count } = await prisma.buyerCropAlert.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends BuyerCropAlertDeleteManyArgs>(args?: SelectSubset<T, BuyerCropAlertDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more BuyerCropAlerts.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BuyerCropAlertUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many BuyerCropAlerts
+     * const buyerCropAlert = await prisma.buyerCropAlert.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends BuyerCropAlertUpdateManyArgs>(args: SelectSubset<T, BuyerCropAlertUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one BuyerCropAlert.
+     * @param {BuyerCropAlertUpsertArgs} args - Arguments to update or create a BuyerCropAlert.
+     * @example
+     * // Update or create a BuyerCropAlert
+     * const buyerCropAlert = await prisma.buyerCropAlert.upsert({
+     *   create: {
+     *     // ... data to create a BuyerCropAlert
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the BuyerCropAlert we want to update
+     *   }
+     * })
+     */
+    upsert<T extends BuyerCropAlertUpsertArgs>(args: SelectSubset<T, BuyerCropAlertUpsertArgs<ExtArgs>>): Prisma__BuyerCropAlertClient<$Result.GetResult<Prisma.$BuyerCropAlertPayload<ExtArgs>, T, "upsert">, never, ExtArgs>
+
+
+    /**
+     * Count the number of BuyerCropAlerts.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BuyerCropAlertCountArgs} args - Arguments to filter BuyerCropAlerts to count.
+     * @example
+     * // Count the number of BuyerCropAlerts
+     * const count = await prisma.buyerCropAlert.count({
+     *   where: {
+     *     // ... the filter for the BuyerCropAlerts we want to count
+     *   }
+     * })
+    **/
+    count<T extends BuyerCropAlertCountArgs>(
+      args?: Subset<T, BuyerCropAlertCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], BuyerCropAlertCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a BuyerCropAlert.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BuyerCropAlertAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends BuyerCropAlertAggregateArgs>(args: Subset<T, BuyerCropAlertAggregateArgs>): Prisma.PrismaPromise<GetBuyerCropAlertAggregateType<T>>
+
+    /**
+     * Group by BuyerCropAlert.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BuyerCropAlertGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends BuyerCropAlertGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: BuyerCropAlertGroupByArgs['orderBy'] }
+        : { orderBy?: BuyerCropAlertGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, BuyerCropAlertGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetBuyerCropAlertGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the BuyerCropAlert model
+   */
+  readonly fields: BuyerCropAlertFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for BuyerCropAlert.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__BuyerCropAlertClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    buyer<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the BuyerCropAlert model
+   */ 
+  interface BuyerCropAlertFieldRefs {
+    readonly id: FieldRef<"BuyerCropAlert", 'String'>
+    readonly buyerId: FieldRef<"BuyerCropAlert", 'String'>
+    readonly cropType: FieldRef<"BuyerCropAlert", 'CropType'>
+    readonly minQuantityKg: FieldRef<"BuyerCropAlert", 'Float'>
+    readonly maxPricePerKg: FieldRef<"BuyerCropAlert", 'Float'>
+    readonly region: FieldRef<"BuyerCropAlert", 'String'>
+    readonly isActive: FieldRef<"BuyerCropAlert", 'Boolean'>
+    readonly createdAt: FieldRef<"BuyerCropAlert", 'DateTime'>
+    readonly updatedAt: FieldRef<"BuyerCropAlert", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * BuyerCropAlert findUnique
+   */
+  export type BuyerCropAlertFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BuyerCropAlert
+     */
+    select?: BuyerCropAlertSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BuyerCropAlertInclude<ExtArgs> | null
+    /**
+     * Filter, which BuyerCropAlert to fetch.
+     */
+    where: BuyerCropAlertWhereUniqueInput
+  }
+
+  /**
+   * BuyerCropAlert findUniqueOrThrow
+   */
+  export type BuyerCropAlertFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BuyerCropAlert
+     */
+    select?: BuyerCropAlertSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BuyerCropAlertInclude<ExtArgs> | null
+    /**
+     * Filter, which BuyerCropAlert to fetch.
+     */
+    where: BuyerCropAlertWhereUniqueInput
+  }
+
+  /**
+   * BuyerCropAlert findFirst
+   */
+  export type BuyerCropAlertFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BuyerCropAlert
+     */
+    select?: BuyerCropAlertSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BuyerCropAlertInclude<ExtArgs> | null
+    /**
+     * Filter, which BuyerCropAlert to fetch.
+     */
+    where?: BuyerCropAlertWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of BuyerCropAlerts to fetch.
+     */
+    orderBy?: BuyerCropAlertOrderByWithRelationInput | BuyerCropAlertOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for BuyerCropAlerts.
+     */
+    cursor?: BuyerCropAlertWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` BuyerCropAlerts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` BuyerCropAlerts.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of BuyerCropAlerts.
+     */
+    distinct?: BuyerCropAlertScalarFieldEnum | BuyerCropAlertScalarFieldEnum[]
+  }
+
+  /**
+   * BuyerCropAlert findFirstOrThrow
+   */
+  export type BuyerCropAlertFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BuyerCropAlert
+     */
+    select?: BuyerCropAlertSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BuyerCropAlertInclude<ExtArgs> | null
+    /**
+     * Filter, which BuyerCropAlert to fetch.
+     */
+    where?: BuyerCropAlertWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of BuyerCropAlerts to fetch.
+     */
+    orderBy?: BuyerCropAlertOrderByWithRelationInput | BuyerCropAlertOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for BuyerCropAlerts.
+     */
+    cursor?: BuyerCropAlertWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` BuyerCropAlerts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` BuyerCropAlerts.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of BuyerCropAlerts.
+     */
+    distinct?: BuyerCropAlertScalarFieldEnum | BuyerCropAlertScalarFieldEnum[]
+  }
+
+  /**
+   * BuyerCropAlert findMany
+   */
+  export type BuyerCropAlertFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BuyerCropAlert
+     */
+    select?: BuyerCropAlertSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BuyerCropAlertInclude<ExtArgs> | null
+    /**
+     * Filter, which BuyerCropAlerts to fetch.
+     */
+    where?: BuyerCropAlertWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of BuyerCropAlerts to fetch.
+     */
+    orderBy?: BuyerCropAlertOrderByWithRelationInput | BuyerCropAlertOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing BuyerCropAlerts.
+     */
+    cursor?: BuyerCropAlertWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` BuyerCropAlerts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` BuyerCropAlerts.
+     */
+    skip?: number
+    distinct?: BuyerCropAlertScalarFieldEnum | BuyerCropAlertScalarFieldEnum[]
+  }
+
+  /**
+   * BuyerCropAlert create
+   */
+  export type BuyerCropAlertCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BuyerCropAlert
+     */
+    select?: BuyerCropAlertSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BuyerCropAlertInclude<ExtArgs> | null
+    /**
+     * The data needed to create a BuyerCropAlert.
+     */
+    data: XOR<BuyerCropAlertCreateInput, BuyerCropAlertUncheckedCreateInput>
+  }
+
+  /**
+   * BuyerCropAlert createMany
+   */
+  export type BuyerCropAlertCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many BuyerCropAlerts.
+     */
+    data: BuyerCropAlertCreateManyInput | BuyerCropAlertCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * BuyerCropAlert createManyAndReturn
+   */
+  export type BuyerCropAlertCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BuyerCropAlert
+     */
+    select?: BuyerCropAlertSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * The data used to create many BuyerCropAlerts.
+     */
+    data: BuyerCropAlertCreateManyInput | BuyerCropAlertCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BuyerCropAlertIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * BuyerCropAlert update
+   */
+  export type BuyerCropAlertUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BuyerCropAlert
+     */
+    select?: BuyerCropAlertSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BuyerCropAlertInclude<ExtArgs> | null
+    /**
+     * The data needed to update a BuyerCropAlert.
+     */
+    data: XOR<BuyerCropAlertUpdateInput, BuyerCropAlertUncheckedUpdateInput>
+    /**
+     * Choose, which BuyerCropAlert to update.
+     */
+    where: BuyerCropAlertWhereUniqueInput
+  }
+
+  /**
+   * BuyerCropAlert updateMany
+   */
+  export type BuyerCropAlertUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update BuyerCropAlerts.
+     */
+    data: XOR<BuyerCropAlertUpdateManyMutationInput, BuyerCropAlertUncheckedUpdateManyInput>
+    /**
+     * Filter which BuyerCropAlerts to update
+     */
+    where?: BuyerCropAlertWhereInput
+  }
+
+  /**
+   * BuyerCropAlert upsert
+   */
+  export type BuyerCropAlertUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BuyerCropAlert
+     */
+    select?: BuyerCropAlertSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BuyerCropAlertInclude<ExtArgs> | null
+    /**
+     * The filter to search for the BuyerCropAlert to update in case it exists.
+     */
+    where: BuyerCropAlertWhereUniqueInput
+    /**
+     * In case the BuyerCropAlert found by the `where` argument doesn't exist, create a new BuyerCropAlert with this data.
+     */
+    create: XOR<BuyerCropAlertCreateInput, BuyerCropAlertUncheckedCreateInput>
+    /**
+     * In case the BuyerCropAlert was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<BuyerCropAlertUpdateInput, BuyerCropAlertUncheckedUpdateInput>
+  }
+
+  /**
+   * BuyerCropAlert delete
+   */
+  export type BuyerCropAlertDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BuyerCropAlert
+     */
+    select?: BuyerCropAlertSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BuyerCropAlertInclude<ExtArgs> | null
+    /**
+     * Filter which BuyerCropAlert to delete.
+     */
+    where: BuyerCropAlertWhereUniqueInput
+  }
+
+  /**
+   * BuyerCropAlert deleteMany
+   */
+  export type BuyerCropAlertDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which BuyerCropAlerts to delete
+     */
+    where?: BuyerCropAlertWhereInput
+  }
+
+  /**
+   * BuyerCropAlert without action
+   */
+  export type BuyerCropAlertDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BuyerCropAlert
+     */
+    select?: BuyerCropAlertSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BuyerCropAlertInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -30167,6 +31305,21 @@ export namespace Prisma {
   export type CoOpMemberScalarFieldEnum = (typeof CoOpMemberScalarFieldEnum)[keyof typeof CoOpMemberScalarFieldEnum]
 
 
+  export const BuyerCropAlertScalarFieldEnum: {
+    id: 'id',
+    buyerId: 'buyerId',
+    cropType: 'cropType',
+    minQuantityKg: 'minQuantityKg',
+    maxPricePerKg: 'maxPricePerKg',
+    region: 'region',
+    isActive: 'isActive',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type BuyerCropAlertScalarFieldEnum = (typeof BuyerCropAlertScalarFieldEnum)[keyof typeof BuyerCropAlertScalarFieldEnum]
+
+
   export const SortOrder: {
     asc: 'asc',
     desc: 'desc'
@@ -30517,6 +31670,7 @@ export namespace Prisma {
     ussdSessions?: UssdSessionListRelationFilter
     createdCoOps?: CoOpGroupListRelationFilter
     coOpContributions?: CoOpMemberListRelationFilter
+    cropAlerts?: BuyerCropAlertListRelationFilter
   }
 
   export type UserOrderByWithRelationInput = {
@@ -30558,6 +31712,7 @@ export namespace Prisma {
     ussdSessions?: UssdSessionOrderByRelationAggregateInput
     createdCoOps?: CoOpGroupOrderByRelationAggregateInput
     coOpContributions?: CoOpMemberOrderByRelationAggregateInput
+    cropAlerts?: BuyerCropAlertOrderByRelationAggregateInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -30602,6 +31757,7 @@ export namespace Prisma {
     ussdSessions?: UssdSessionListRelationFilter
     createdCoOps?: CoOpGroupListRelationFilter
     coOpContributions?: CoOpMemberListRelationFilter
+    cropAlerts?: BuyerCropAlertListRelationFilter
   }, "id" | "phone">
 
   export type UserOrderByWithAggregationInput = {
@@ -32691,6 +33847,84 @@ export namespace Prisma {
     updatedAt?: DateTimeWithAggregatesFilter<"CoOpMember"> | Date | string
   }
 
+  export type BuyerCropAlertWhereInput = {
+    AND?: BuyerCropAlertWhereInput | BuyerCropAlertWhereInput[]
+    OR?: BuyerCropAlertWhereInput[]
+    NOT?: BuyerCropAlertWhereInput | BuyerCropAlertWhereInput[]
+    id?: StringFilter<"BuyerCropAlert"> | string
+    buyerId?: StringFilter<"BuyerCropAlert"> | string
+    cropType?: EnumCropTypeFilter<"BuyerCropAlert"> | $Enums.CropType
+    minQuantityKg?: FloatNullableFilter<"BuyerCropAlert"> | number | null
+    maxPricePerKg?: FloatNullableFilter<"BuyerCropAlert"> | number | null
+    region?: StringNullableFilter<"BuyerCropAlert"> | string | null
+    isActive?: BoolFilter<"BuyerCropAlert"> | boolean
+    createdAt?: DateTimeFilter<"BuyerCropAlert"> | Date | string
+    updatedAt?: DateTimeFilter<"BuyerCropAlert"> | Date | string
+    buyer?: XOR<UserRelationFilter, UserWhereInput>
+  }
+
+  export type BuyerCropAlertOrderByWithRelationInput = {
+    id?: SortOrder
+    buyerId?: SortOrder
+    cropType?: SortOrder
+    minQuantityKg?: SortOrderInput | SortOrder
+    maxPricePerKg?: SortOrderInput | SortOrder
+    region?: SortOrderInput | SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    buyer?: UserOrderByWithRelationInput
+  }
+
+  export type BuyerCropAlertWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    buyerId_cropType?: BuyerCropAlertBuyerIdCropTypeCompoundUniqueInput
+    AND?: BuyerCropAlertWhereInput | BuyerCropAlertWhereInput[]
+    OR?: BuyerCropAlertWhereInput[]
+    NOT?: BuyerCropAlertWhereInput | BuyerCropAlertWhereInput[]
+    buyerId?: StringFilter<"BuyerCropAlert"> | string
+    cropType?: EnumCropTypeFilter<"BuyerCropAlert"> | $Enums.CropType
+    minQuantityKg?: FloatNullableFilter<"BuyerCropAlert"> | number | null
+    maxPricePerKg?: FloatNullableFilter<"BuyerCropAlert"> | number | null
+    region?: StringNullableFilter<"BuyerCropAlert"> | string | null
+    isActive?: BoolFilter<"BuyerCropAlert"> | boolean
+    createdAt?: DateTimeFilter<"BuyerCropAlert"> | Date | string
+    updatedAt?: DateTimeFilter<"BuyerCropAlert"> | Date | string
+    buyer?: XOR<UserRelationFilter, UserWhereInput>
+  }, "id" | "buyerId_cropType">
+
+  export type BuyerCropAlertOrderByWithAggregationInput = {
+    id?: SortOrder
+    buyerId?: SortOrder
+    cropType?: SortOrder
+    minQuantityKg?: SortOrderInput | SortOrder
+    maxPricePerKg?: SortOrderInput | SortOrder
+    region?: SortOrderInput | SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: BuyerCropAlertCountOrderByAggregateInput
+    _avg?: BuyerCropAlertAvgOrderByAggregateInput
+    _max?: BuyerCropAlertMaxOrderByAggregateInput
+    _min?: BuyerCropAlertMinOrderByAggregateInput
+    _sum?: BuyerCropAlertSumOrderByAggregateInput
+  }
+
+  export type BuyerCropAlertScalarWhereWithAggregatesInput = {
+    AND?: BuyerCropAlertScalarWhereWithAggregatesInput | BuyerCropAlertScalarWhereWithAggregatesInput[]
+    OR?: BuyerCropAlertScalarWhereWithAggregatesInput[]
+    NOT?: BuyerCropAlertScalarWhereWithAggregatesInput | BuyerCropAlertScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"BuyerCropAlert"> | string
+    buyerId?: StringWithAggregatesFilter<"BuyerCropAlert"> | string
+    cropType?: EnumCropTypeWithAggregatesFilter<"BuyerCropAlert"> | $Enums.CropType
+    minQuantityKg?: FloatNullableWithAggregatesFilter<"BuyerCropAlert"> | number | null
+    maxPricePerKg?: FloatNullableWithAggregatesFilter<"BuyerCropAlert"> | number | null
+    region?: StringNullableWithAggregatesFilter<"BuyerCropAlert"> | string | null
+    isActive?: BoolWithAggregatesFilter<"BuyerCropAlert"> | boolean
+    createdAt?: DateTimeWithAggregatesFilter<"BuyerCropAlert"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"BuyerCropAlert"> | Date | string
+  }
+
   export type UserCreateInput = {
     id?: string
     phone: string
@@ -32730,6 +33964,7 @@ export namespace Prisma {
     ussdSessions?: UssdSessionCreateNestedManyWithoutUserInput
     createdCoOps?: CoOpGroupCreateNestedManyWithoutCreatorInput
     coOpContributions?: CoOpMemberCreateNestedManyWithoutBuyerInput
+    cropAlerts?: BuyerCropAlertCreateNestedManyWithoutBuyerInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -32771,6 +34006,7 @@ export namespace Prisma {
     ussdSessions?: UssdSessionUncheckedCreateNestedManyWithoutUserInput
     createdCoOps?: CoOpGroupUncheckedCreateNestedManyWithoutCreatorInput
     coOpContributions?: CoOpMemberUncheckedCreateNestedManyWithoutBuyerInput
+    cropAlerts?: BuyerCropAlertUncheckedCreateNestedManyWithoutBuyerInput
   }
 
   export type UserUpdateInput = {
@@ -32812,6 +34048,7 @@ export namespace Prisma {
     ussdSessions?: UssdSessionUpdateManyWithoutUserNestedInput
     createdCoOps?: CoOpGroupUpdateManyWithoutCreatorNestedInput
     coOpContributions?: CoOpMemberUpdateManyWithoutBuyerNestedInput
+    cropAlerts?: BuyerCropAlertUpdateManyWithoutBuyerNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -32853,6 +34090,7 @@ export namespace Prisma {
     ussdSessions?: UssdSessionUncheckedUpdateManyWithoutUserNestedInput
     createdCoOps?: CoOpGroupUncheckedUpdateManyWithoutCreatorNestedInput
     coOpContributions?: CoOpMemberUncheckedUpdateManyWithoutBuyerNestedInput
+    cropAlerts?: BuyerCropAlertUncheckedUpdateManyWithoutBuyerNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -35145,6 +36383,89 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type BuyerCropAlertCreateInput = {
+    id?: string
+    cropType: $Enums.CropType
+    minQuantityKg?: number | null
+    maxPricePerKg?: number | null
+    region?: string | null
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    buyer: UserCreateNestedOneWithoutCropAlertsInput
+  }
+
+  export type BuyerCropAlertUncheckedCreateInput = {
+    id?: string
+    buyerId: string
+    cropType: $Enums.CropType
+    minQuantityKg?: number | null
+    maxPricePerKg?: number | null
+    region?: string | null
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type BuyerCropAlertUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    cropType?: EnumCropTypeFieldUpdateOperationsInput | $Enums.CropType
+    minQuantityKg?: NullableFloatFieldUpdateOperationsInput | number | null
+    maxPricePerKg?: NullableFloatFieldUpdateOperationsInput | number | null
+    region?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    buyer?: UserUpdateOneRequiredWithoutCropAlertsNestedInput
+  }
+
+  export type BuyerCropAlertUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    buyerId?: StringFieldUpdateOperationsInput | string
+    cropType?: EnumCropTypeFieldUpdateOperationsInput | $Enums.CropType
+    minQuantityKg?: NullableFloatFieldUpdateOperationsInput | number | null
+    maxPricePerKg?: NullableFloatFieldUpdateOperationsInput | number | null
+    region?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type BuyerCropAlertCreateManyInput = {
+    id?: string
+    buyerId: string
+    cropType: $Enums.CropType
+    minQuantityKg?: number | null
+    maxPricePerKg?: number | null
+    region?: string | null
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type BuyerCropAlertUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    cropType?: EnumCropTypeFieldUpdateOperationsInput | $Enums.CropType
+    minQuantityKg?: NullableFloatFieldUpdateOperationsInput | number | null
+    maxPricePerKg?: NullableFloatFieldUpdateOperationsInput | number | null
+    region?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type BuyerCropAlertUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    buyerId?: StringFieldUpdateOperationsInput | string
+    cropType?: EnumCropTypeFieldUpdateOperationsInput | $Enums.CropType
+    minQuantityKg?: NullableFloatFieldUpdateOperationsInput | number | null
+    maxPricePerKg?: NullableFloatFieldUpdateOperationsInput | number | null
+    region?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type StringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -35330,6 +36651,12 @@ export namespace Prisma {
     none?: CoOpMemberWhereInput
   }
 
+  export type BuyerCropAlertListRelationFilter = {
+    every?: BuyerCropAlertWhereInput
+    some?: BuyerCropAlertWhereInput
+    none?: BuyerCropAlertWhereInput
+  }
+
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
@@ -35392,6 +36719,10 @@ export namespace Prisma {
   }
 
   export type CoOpMemberOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type BuyerCropAlertOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -37102,6 +38433,57 @@ export namespace Prisma {
     paidAmount?: SortOrder
   }
 
+  export type BuyerCropAlertBuyerIdCropTypeCompoundUniqueInput = {
+    buyerId: string
+    cropType: $Enums.CropType
+  }
+
+  export type BuyerCropAlertCountOrderByAggregateInput = {
+    id?: SortOrder
+    buyerId?: SortOrder
+    cropType?: SortOrder
+    minQuantityKg?: SortOrder
+    maxPricePerKg?: SortOrder
+    region?: SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type BuyerCropAlertAvgOrderByAggregateInput = {
+    minQuantityKg?: SortOrder
+    maxPricePerKg?: SortOrder
+  }
+
+  export type BuyerCropAlertMaxOrderByAggregateInput = {
+    id?: SortOrder
+    buyerId?: SortOrder
+    cropType?: SortOrder
+    minQuantityKg?: SortOrder
+    maxPricePerKg?: SortOrder
+    region?: SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type BuyerCropAlertMinOrderByAggregateInput = {
+    id?: SortOrder
+    buyerId?: SortOrder
+    cropType?: SortOrder
+    minQuantityKg?: SortOrder
+    maxPricePerKg?: SortOrder
+    region?: SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type BuyerCropAlertSumOrderByAggregateInput = {
+    minQuantityKg?: SortOrder
+    maxPricePerKg?: SortOrder
+  }
+
   export type FarmerProfileCreateNestedOneWithoutUserInput = {
     create?: XOR<FarmerProfileCreateWithoutUserInput, FarmerProfileUncheckedCreateWithoutUserInput>
     connectOrCreate?: FarmerProfileCreateOrConnectWithoutUserInput
@@ -37245,6 +38627,13 @@ export namespace Prisma {
     connect?: CoOpMemberWhereUniqueInput | CoOpMemberWhereUniqueInput[]
   }
 
+  export type BuyerCropAlertCreateNestedManyWithoutBuyerInput = {
+    create?: XOR<BuyerCropAlertCreateWithoutBuyerInput, BuyerCropAlertUncheckedCreateWithoutBuyerInput> | BuyerCropAlertCreateWithoutBuyerInput[] | BuyerCropAlertUncheckedCreateWithoutBuyerInput[]
+    connectOrCreate?: BuyerCropAlertCreateOrConnectWithoutBuyerInput | BuyerCropAlertCreateOrConnectWithoutBuyerInput[]
+    createMany?: BuyerCropAlertCreateManyBuyerInputEnvelope
+    connect?: BuyerCropAlertWhereUniqueInput | BuyerCropAlertWhereUniqueInput[]
+  }
+
   export type FarmerProfileUncheckedCreateNestedOneWithoutUserInput = {
     create?: XOR<FarmerProfileCreateWithoutUserInput, FarmerProfileUncheckedCreateWithoutUserInput>
     connectOrCreate?: FarmerProfileCreateOrConnectWithoutUserInput
@@ -37386,6 +38775,13 @@ export namespace Prisma {
     connectOrCreate?: CoOpMemberCreateOrConnectWithoutBuyerInput | CoOpMemberCreateOrConnectWithoutBuyerInput[]
     createMany?: CoOpMemberCreateManyBuyerInputEnvelope
     connect?: CoOpMemberWhereUniqueInput | CoOpMemberWhereUniqueInput[]
+  }
+
+  export type BuyerCropAlertUncheckedCreateNestedManyWithoutBuyerInput = {
+    create?: XOR<BuyerCropAlertCreateWithoutBuyerInput, BuyerCropAlertUncheckedCreateWithoutBuyerInput> | BuyerCropAlertCreateWithoutBuyerInput[] | BuyerCropAlertUncheckedCreateWithoutBuyerInput[]
+    connectOrCreate?: BuyerCropAlertCreateOrConnectWithoutBuyerInput | BuyerCropAlertCreateOrConnectWithoutBuyerInput[]
+    createMany?: BuyerCropAlertCreateManyBuyerInputEnvelope
+    connect?: BuyerCropAlertWhereUniqueInput | BuyerCropAlertWhereUniqueInput[]
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -37698,6 +39094,20 @@ export namespace Prisma {
     deleteMany?: CoOpMemberScalarWhereInput | CoOpMemberScalarWhereInput[]
   }
 
+  export type BuyerCropAlertUpdateManyWithoutBuyerNestedInput = {
+    create?: XOR<BuyerCropAlertCreateWithoutBuyerInput, BuyerCropAlertUncheckedCreateWithoutBuyerInput> | BuyerCropAlertCreateWithoutBuyerInput[] | BuyerCropAlertUncheckedCreateWithoutBuyerInput[]
+    connectOrCreate?: BuyerCropAlertCreateOrConnectWithoutBuyerInput | BuyerCropAlertCreateOrConnectWithoutBuyerInput[]
+    upsert?: BuyerCropAlertUpsertWithWhereUniqueWithoutBuyerInput | BuyerCropAlertUpsertWithWhereUniqueWithoutBuyerInput[]
+    createMany?: BuyerCropAlertCreateManyBuyerInputEnvelope
+    set?: BuyerCropAlertWhereUniqueInput | BuyerCropAlertWhereUniqueInput[]
+    disconnect?: BuyerCropAlertWhereUniqueInput | BuyerCropAlertWhereUniqueInput[]
+    delete?: BuyerCropAlertWhereUniqueInput | BuyerCropAlertWhereUniqueInput[]
+    connect?: BuyerCropAlertWhereUniqueInput | BuyerCropAlertWhereUniqueInput[]
+    update?: BuyerCropAlertUpdateWithWhereUniqueWithoutBuyerInput | BuyerCropAlertUpdateWithWhereUniqueWithoutBuyerInput[]
+    updateMany?: BuyerCropAlertUpdateManyWithWhereWithoutBuyerInput | BuyerCropAlertUpdateManyWithWhereWithoutBuyerInput[]
+    deleteMany?: BuyerCropAlertScalarWhereInput | BuyerCropAlertScalarWhereInput[]
+  }
+
   export type FarmerProfileUncheckedUpdateOneWithoutUserNestedInput = {
     create?: XOR<FarmerProfileCreateWithoutUserInput, FarmerProfileUncheckedCreateWithoutUserInput>
     connectOrCreate?: FarmerProfileCreateOrConnectWithoutUserInput
@@ -37974,6 +39384,20 @@ export namespace Prisma {
     update?: CoOpMemberUpdateWithWhereUniqueWithoutBuyerInput | CoOpMemberUpdateWithWhereUniqueWithoutBuyerInput[]
     updateMany?: CoOpMemberUpdateManyWithWhereWithoutBuyerInput | CoOpMemberUpdateManyWithWhereWithoutBuyerInput[]
     deleteMany?: CoOpMemberScalarWhereInput | CoOpMemberScalarWhereInput[]
+  }
+
+  export type BuyerCropAlertUncheckedUpdateManyWithoutBuyerNestedInput = {
+    create?: XOR<BuyerCropAlertCreateWithoutBuyerInput, BuyerCropAlertUncheckedCreateWithoutBuyerInput> | BuyerCropAlertCreateWithoutBuyerInput[] | BuyerCropAlertUncheckedCreateWithoutBuyerInput[]
+    connectOrCreate?: BuyerCropAlertCreateOrConnectWithoutBuyerInput | BuyerCropAlertCreateOrConnectWithoutBuyerInput[]
+    upsert?: BuyerCropAlertUpsertWithWhereUniqueWithoutBuyerInput | BuyerCropAlertUpsertWithWhereUniqueWithoutBuyerInput[]
+    createMany?: BuyerCropAlertCreateManyBuyerInputEnvelope
+    set?: BuyerCropAlertWhereUniqueInput | BuyerCropAlertWhereUniqueInput[]
+    disconnect?: BuyerCropAlertWhereUniqueInput | BuyerCropAlertWhereUniqueInput[]
+    delete?: BuyerCropAlertWhereUniqueInput | BuyerCropAlertWhereUniqueInput[]
+    connect?: BuyerCropAlertWhereUniqueInput | BuyerCropAlertWhereUniqueInput[]
+    update?: BuyerCropAlertUpdateWithWhereUniqueWithoutBuyerInput | BuyerCropAlertUpdateWithWhereUniqueWithoutBuyerInput[]
+    updateMany?: BuyerCropAlertUpdateManyWithWhereWithoutBuyerInput | BuyerCropAlertUpdateManyWithWhereWithoutBuyerInput[]
+    deleteMany?: BuyerCropAlertScalarWhereInput | BuyerCropAlertScalarWhereInput[]
   }
 
   export type FarmerProfileCreateprimaryCropsInput = {
@@ -39072,6 +40496,20 @@ export namespace Prisma {
     delete?: OrderWhereInput | boolean
     connect?: OrderWhereUniqueInput
     update?: XOR<XOR<OrderUpdateToOneWithWhereWithoutCoOpMemberInput, OrderUpdateWithoutCoOpMemberInput>, OrderUncheckedUpdateWithoutCoOpMemberInput>
+  }
+
+  export type UserCreateNestedOneWithoutCropAlertsInput = {
+    create?: XOR<UserCreateWithoutCropAlertsInput, UserUncheckedCreateWithoutCropAlertsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutCropAlertsInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type UserUpdateOneRequiredWithoutCropAlertsNestedInput = {
+    create?: XOR<UserCreateWithoutCropAlertsInput, UserUncheckedCreateWithoutCropAlertsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutCropAlertsInput
+    upsert?: UserUpsertWithoutCropAlertsInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutCropAlertsInput, UserUpdateWithoutCropAlertsInput>, UserUncheckedUpdateWithoutCropAlertsInput>
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -40294,6 +41732,38 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type BuyerCropAlertCreateWithoutBuyerInput = {
+    id?: string
+    cropType: $Enums.CropType
+    minQuantityKg?: number | null
+    maxPricePerKg?: number | null
+    region?: string | null
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type BuyerCropAlertUncheckedCreateWithoutBuyerInput = {
+    id?: string
+    cropType: $Enums.CropType
+    minQuantityKg?: number | null
+    maxPricePerKg?: number | null
+    region?: string | null
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type BuyerCropAlertCreateOrConnectWithoutBuyerInput = {
+    where: BuyerCropAlertWhereUniqueInput
+    create: XOR<BuyerCropAlertCreateWithoutBuyerInput, BuyerCropAlertUncheckedCreateWithoutBuyerInput>
+  }
+
+  export type BuyerCropAlertCreateManyBuyerInputEnvelope = {
+    data: BuyerCropAlertCreateManyBuyerInput | BuyerCropAlertCreateManyBuyerInput[]
+    skipDuplicates?: boolean
+  }
+
   export type FarmerProfileUpsertWithoutUserInput = {
     update: XOR<FarmerProfileUpdateWithoutUserInput, FarmerProfileUncheckedUpdateWithoutUserInput>
     create: XOR<FarmerProfileCreateWithoutUserInput, FarmerProfileUncheckedCreateWithoutUserInput>
@@ -40951,6 +42421,37 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"CoOpMember"> | Date | string
   }
 
+  export type BuyerCropAlertUpsertWithWhereUniqueWithoutBuyerInput = {
+    where: BuyerCropAlertWhereUniqueInput
+    update: XOR<BuyerCropAlertUpdateWithoutBuyerInput, BuyerCropAlertUncheckedUpdateWithoutBuyerInput>
+    create: XOR<BuyerCropAlertCreateWithoutBuyerInput, BuyerCropAlertUncheckedCreateWithoutBuyerInput>
+  }
+
+  export type BuyerCropAlertUpdateWithWhereUniqueWithoutBuyerInput = {
+    where: BuyerCropAlertWhereUniqueInput
+    data: XOR<BuyerCropAlertUpdateWithoutBuyerInput, BuyerCropAlertUncheckedUpdateWithoutBuyerInput>
+  }
+
+  export type BuyerCropAlertUpdateManyWithWhereWithoutBuyerInput = {
+    where: BuyerCropAlertScalarWhereInput
+    data: XOR<BuyerCropAlertUpdateManyMutationInput, BuyerCropAlertUncheckedUpdateManyWithoutBuyerInput>
+  }
+
+  export type BuyerCropAlertScalarWhereInput = {
+    AND?: BuyerCropAlertScalarWhereInput | BuyerCropAlertScalarWhereInput[]
+    OR?: BuyerCropAlertScalarWhereInput[]
+    NOT?: BuyerCropAlertScalarWhereInput | BuyerCropAlertScalarWhereInput[]
+    id?: StringFilter<"BuyerCropAlert"> | string
+    buyerId?: StringFilter<"BuyerCropAlert"> | string
+    cropType?: EnumCropTypeFilter<"BuyerCropAlert"> | $Enums.CropType
+    minQuantityKg?: FloatNullableFilter<"BuyerCropAlert"> | number | null
+    maxPricePerKg?: FloatNullableFilter<"BuyerCropAlert"> | number | null
+    region?: StringNullableFilter<"BuyerCropAlert"> | string | null
+    isActive?: BoolFilter<"BuyerCropAlert"> | boolean
+    createdAt?: DateTimeFilter<"BuyerCropAlert"> | Date | string
+    updatedAt?: DateTimeFilter<"BuyerCropAlert"> | Date | string
+  }
+
   export type UserCreateWithoutFarmerProfileInput = {
     id?: string
     phone: string
@@ -40989,6 +42490,7 @@ export namespace Prisma {
     ussdSessions?: UssdSessionCreateNestedManyWithoutUserInput
     createdCoOps?: CoOpGroupCreateNestedManyWithoutCreatorInput
     coOpContributions?: CoOpMemberCreateNestedManyWithoutBuyerInput
+    cropAlerts?: BuyerCropAlertCreateNestedManyWithoutBuyerInput
   }
 
   export type UserUncheckedCreateWithoutFarmerProfileInput = {
@@ -41029,6 +42531,7 @@ export namespace Prisma {
     ussdSessions?: UssdSessionUncheckedCreateNestedManyWithoutUserInput
     createdCoOps?: CoOpGroupUncheckedCreateNestedManyWithoutCreatorInput
     coOpContributions?: CoOpMemberUncheckedCreateNestedManyWithoutBuyerInput
+    cropAlerts?: BuyerCropAlertUncheckedCreateNestedManyWithoutBuyerInput
   }
 
   export type UserCreateOrConnectWithoutFarmerProfileInput = {
@@ -41085,6 +42588,7 @@ export namespace Prisma {
     ussdSessions?: UssdSessionUpdateManyWithoutUserNestedInput
     createdCoOps?: CoOpGroupUpdateManyWithoutCreatorNestedInput
     coOpContributions?: CoOpMemberUpdateManyWithoutBuyerNestedInput
+    cropAlerts?: BuyerCropAlertUpdateManyWithoutBuyerNestedInput
   }
 
   export type UserUncheckedUpdateWithoutFarmerProfileInput = {
@@ -41125,6 +42629,7 @@ export namespace Prisma {
     ussdSessions?: UssdSessionUncheckedUpdateManyWithoutUserNestedInput
     createdCoOps?: CoOpGroupUncheckedUpdateManyWithoutCreatorNestedInput
     coOpContributions?: CoOpMemberUncheckedUpdateManyWithoutBuyerNestedInput
+    cropAlerts?: BuyerCropAlertUncheckedUpdateManyWithoutBuyerNestedInput
   }
 
   export type UserCreateWithoutBuyerProfileInput = {
@@ -41165,6 +42670,7 @@ export namespace Prisma {
     ussdSessions?: UssdSessionCreateNestedManyWithoutUserInput
     createdCoOps?: CoOpGroupCreateNestedManyWithoutCreatorInput
     coOpContributions?: CoOpMemberCreateNestedManyWithoutBuyerInput
+    cropAlerts?: BuyerCropAlertCreateNestedManyWithoutBuyerInput
   }
 
   export type UserUncheckedCreateWithoutBuyerProfileInput = {
@@ -41205,6 +42711,7 @@ export namespace Prisma {
     ussdSessions?: UssdSessionUncheckedCreateNestedManyWithoutUserInput
     createdCoOps?: CoOpGroupUncheckedCreateNestedManyWithoutCreatorInput
     coOpContributions?: CoOpMemberUncheckedCreateNestedManyWithoutBuyerInput
+    cropAlerts?: BuyerCropAlertUncheckedCreateNestedManyWithoutBuyerInput
   }
 
   export type UserCreateOrConnectWithoutBuyerProfileInput = {
@@ -41261,6 +42768,7 @@ export namespace Prisma {
     ussdSessions?: UssdSessionUpdateManyWithoutUserNestedInput
     createdCoOps?: CoOpGroupUpdateManyWithoutCreatorNestedInput
     coOpContributions?: CoOpMemberUpdateManyWithoutBuyerNestedInput
+    cropAlerts?: BuyerCropAlertUpdateManyWithoutBuyerNestedInput
   }
 
   export type UserUncheckedUpdateWithoutBuyerProfileInput = {
@@ -41301,6 +42809,7 @@ export namespace Prisma {
     ussdSessions?: UssdSessionUncheckedUpdateManyWithoutUserNestedInput
     createdCoOps?: CoOpGroupUncheckedUpdateManyWithoutCreatorNestedInput
     coOpContributions?: CoOpMemberUncheckedUpdateManyWithoutBuyerNestedInput
+    cropAlerts?: BuyerCropAlertUncheckedUpdateManyWithoutBuyerNestedInput
   }
 
   export type UserCreateWithoutTransportProfileInput = {
@@ -41341,6 +42850,7 @@ export namespace Prisma {
     ussdSessions?: UssdSessionCreateNestedManyWithoutUserInput
     createdCoOps?: CoOpGroupCreateNestedManyWithoutCreatorInput
     coOpContributions?: CoOpMemberCreateNestedManyWithoutBuyerInput
+    cropAlerts?: BuyerCropAlertCreateNestedManyWithoutBuyerInput
   }
 
   export type UserUncheckedCreateWithoutTransportProfileInput = {
@@ -41381,6 +42891,7 @@ export namespace Prisma {
     ussdSessions?: UssdSessionUncheckedCreateNestedManyWithoutUserInput
     createdCoOps?: CoOpGroupUncheckedCreateNestedManyWithoutCreatorInput
     coOpContributions?: CoOpMemberUncheckedCreateNestedManyWithoutBuyerInput
+    cropAlerts?: BuyerCropAlertUncheckedCreateNestedManyWithoutBuyerInput
   }
 
   export type UserCreateOrConnectWithoutTransportProfileInput = {
@@ -41437,6 +42948,7 @@ export namespace Prisma {
     ussdSessions?: UssdSessionUpdateManyWithoutUserNestedInput
     createdCoOps?: CoOpGroupUpdateManyWithoutCreatorNestedInput
     coOpContributions?: CoOpMemberUpdateManyWithoutBuyerNestedInput
+    cropAlerts?: BuyerCropAlertUpdateManyWithoutBuyerNestedInput
   }
 
   export type UserUncheckedUpdateWithoutTransportProfileInput = {
@@ -41477,6 +42989,7 @@ export namespace Prisma {
     ussdSessions?: UssdSessionUncheckedUpdateManyWithoutUserNestedInput
     createdCoOps?: CoOpGroupUncheckedUpdateManyWithoutCreatorNestedInput
     coOpContributions?: CoOpMemberUncheckedUpdateManyWithoutBuyerNestedInput
+    cropAlerts?: BuyerCropAlertUncheckedUpdateManyWithoutBuyerNestedInput
   }
 
   export type UserCreateWithoutListingsInput = {
@@ -41517,6 +43030,7 @@ export namespace Prisma {
     ussdSessions?: UssdSessionCreateNestedManyWithoutUserInput
     createdCoOps?: CoOpGroupCreateNestedManyWithoutCreatorInput
     coOpContributions?: CoOpMemberCreateNestedManyWithoutBuyerInput
+    cropAlerts?: BuyerCropAlertCreateNestedManyWithoutBuyerInput
   }
 
   export type UserUncheckedCreateWithoutListingsInput = {
@@ -41557,6 +43071,7 @@ export namespace Prisma {
     ussdSessions?: UssdSessionUncheckedCreateNestedManyWithoutUserInput
     createdCoOps?: CoOpGroupUncheckedCreateNestedManyWithoutCreatorInput
     coOpContributions?: CoOpMemberUncheckedCreateNestedManyWithoutBuyerInput
+    cropAlerts?: BuyerCropAlertUncheckedCreateNestedManyWithoutBuyerInput
   }
 
   export type UserCreateOrConnectWithoutListingsInput = {
@@ -41835,6 +43350,7 @@ export namespace Prisma {
     ussdSessions?: UssdSessionUpdateManyWithoutUserNestedInput
     createdCoOps?: CoOpGroupUpdateManyWithoutCreatorNestedInput
     coOpContributions?: CoOpMemberUpdateManyWithoutBuyerNestedInput
+    cropAlerts?: BuyerCropAlertUpdateManyWithoutBuyerNestedInput
   }
 
   export type UserUncheckedUpdateWithoutListingsInput = {
@@ -41875,6 +43391,7 @@ export namespace Prisma {
     ussdSessions?: UssdSessionUncheckedUpdateManyWithoutUserNestedInput
     createdCoOps?: CoOpGroupUncheckedUpdateManyWithoutCreatorNestedInput
     coOpContributions?: CoOpMemberUncheckedUpdateManyWithoutBuyerNestedInput
+    cropAlerts?: BuyerCropAlertUncheckedUpdateManyWithoutBuyerNestedInput
   }
 
   export type OrderUpsertWithWhereUniqueWithoutListingInput = {
@@ -42226,6 +43743,7 @@ export namespace Prisma {
     ussdSessions?: UssdSessionCreateNestedManyWithoutUserInput
     createdCoOps?: CoOpGroupCreateNestedManyWithoutCreatorInput
     coOpContributions?: CoOpMemberCreateNestedManyWithoutBuyerInput
+    cropAlerts?: BuyerCropAlertCreateNestedManyWithoutBuyerInput
   }
 
   export type UserUncheckedCreateWithoutRecordedTraceEventsInput = {
@@ -42266,6 +43784,7 @@ export namespace Prisma {
     ussdSessions?: UssdSessionUncheckedCreateNestedManyWithoutUserInput
     createdCoOps?: CoOpGroupUncheckedCreateNestedManyWithoutCreatorInput
     coOpContributions?: CoOpMemberUncheckedCreateNestedManyWithoutBuyerInput
+    cropAlerts?: BuyerCropAlertUncheckedCreateNestedManyWithoutBuyerInput
   }
 
   export type UserCreateOrConnectWithoutRecordedTraceEventsInput = {
@@ -42385,6 +43904,7 @@ export namespace Prisma {
     ussdSessions?: UssdSessionUpdateManyWithoutUserNestedInput
     createdCoOps?: CoOpGroupUpdateManyWithoutCreatorNestedInput
     coOpContributions?: CoOpMemberUpdateManyWithoutBuyerNestedInput
+    cropAlerts?: BuyerCropAlertUpdateManyWithoutBuyerNestedInput
   }
 
   export type UserUncheckedUpdateWithoutRecordedTraceEventsInput = {
@@ -42425,6 +43945,7 @@ export namespace Prisma {
     ussdSessions?: UssdSessionUncheckedUpdateManyWithoutUserNestedInput
     createdCoOps?: CoOpGroupUncheckedUpdateManyWithoutCreatorNestedInput
     coOpContributions?: CoOpMemberUncheckedUpdateManyWithoutBuyerNestedInput
+    cropAlerts?: BuyerCropAlertUncheckedUpdateManyWithoutBuyerNestedInput
   }
 
   export type UserCreateWithoutOrdersInput = {
@@ -42465,6 +43986,7 @@ export namespace Prisma {
     ussdSessions?: UssdSessionCreateNestedManyWithoutUserInput
     createdCoOps?: CoOpGroupCreateNestedManyWithoutCreatorInput
     coOpContributions?: CoOpMemberCreateNestedManyWithoutBuyerInput
+    cropAlerts?: BuyerCropAlertCreateNestedManyWithoutBuyerInput
   }
 
   export type UserUncheckedCreateWithoutOrdersInput = {
@@ -42505,6 +44027,7 @@ export namespace Prisma {
     ussdSessions?: UssdSessionUncheckedCreateNestedManyWithoutUserInput
     createdCoOps?: CoOpGroupUncheckedCreateNestedManyWithoutCreatorInput
     coOpContributions?: CoOpMemberUncheckedCreateNestedManyWithoutBuyerInput
+    cropAlerts?: BuyerCropAlertUncheckedCreateNestedManyWithoutBuyerInput
   }
 
   export type UserCreateOrConnectWithoutOrdersInput = {
@@ -42803,6 +44326,7 @@ export namespace Prisma {
     ussdSessions?: UssdSessionUpdateManyWithoutUserNestedInput
     createdCoOps?: CoOpGroupUpdateManyWithoutCreatorNestedInput
     coOpContributions?: CoOpMemberUpdateManyWithoutBuyerNestedInput
+    cropAlerts?: BuyerCropAlertUpdateManyWithoutBuyerNestedInput
   }
 
   export type UserUncheckedUpdateWithoutOrdersInput = {
@@ -42843,6 +44367,7 @@ export namespace Prisma {
     ussdSessions?: UssdSessionUncheckedUpdateManyWithoutUserNestedInput
     createdCoOps?: CoOpGroupUncheckedUpdateManyWithoutCreatorNestedInput
     coOpContributions?: CoOpMemberUncheckedUpdateManyWithoutBuyerNestedInput
+    cropAlerts?: BuyerCropAlertUncheckedUpdateManyWithoutBuyerNestedInput
   }
 
   export type ProduceListingUpsertWithoutOrdersInput = {
@@ -43164,6 +44689,7 @@ export namespace Prisma {
     ussdSessions?: UssdSessionCreateNestedManyWithoutUserInput
     createdCoOps?: CoOpGroupCreateNestedManyWithoutCreatorInput
     coOpContributions?: CoOpMemberCreateNestedManyWithoutBuyerInput
+    cropAlerts?: BuyerCropAlertCreateNestedManyWithoutBuyerInput
   }
 
   export type UserUncheckedCreateWithoutDeliveriesInput = {
@@ -43204,6 +44730,7 @@ export namespace Prisma {
     ussdSessions?: UssdSessionUncheckedCreateNestedManyWithoutUserInput
     createdCoOps?: CoOpGroupUncheckedCreateNestedManyWithoutCreatorInput
     coOpContributions?: CoOpMemberUncheckedCreateNestedManyWithoutBuyerInput
+    cropAlerts?: BuyerCropAlertUncheckedCreateNestedManyWithoutBuyerInput
   }
 
   export type UserCreateOrConnectWithoutDeliveriesInput = {
@@ -43309,6 +44836,7 @@ export namespace Prisma {
     ussdSessions?: UssdSessionUpdateManyWithoutUserNestedInput
     createdCoOps?: CoOpGroupUpdateManyWithoutCreatorNestedInput
     coOpContributions?: CoOpMemberUpdateManyWithoutBuyerNestedInput
+    cropAlerts?: BuyerCropAlertUpdateManyWithoutBuyerNestedInput
   }
 
   export type UserUncheckedUpdateWithoutDeliveriesInput = {
@@ -43349,6 +44877,7 @@ export namespace Prisma {
     ussdSessions?: UssdSessionUncheckedUpdateManyWithoutUserNestedInput
     createdCoOps?: CoOpGroupUncheckedUpdateManyWithoutCreatorNestedInput
     coOpContributions?: CoOpMemberUncheckedUpdateManyWithoutBuyerNestedInput
+    cropAlerts?: BuyerCropAlertUncheckedUpdateManyWithoutBuyerNestedInput
   }
 
   export type UserCreateWithoutSentReviewsInput = {
@@ -43389,6 +44918,7 @@ export namespace Prisma {
     ussdSessions?: UssdSessionCreateNestedManyWithoutUserInput
     createdCoOps?: CoOpGroupCreateNestedManyWithoutCreatorInput
     coOpContributions?: CoOpMemberCreateNestedManyWithoutBuyerInput
+    cropAlerts?: BuyerCropAlertCreateNestedManyWithoutBuyerInput
   }
 
   export type UserUncheckedCreateWithoutSentReviewsInput = {
@@ -43429,6 +44959,7 @@ export namespace Prisma {
     ussdSessions?: UssdSessionUncheckedCreateNestedManyWithoutUserInput
     createdCoOps?: CoOpGroupUncheckedCreateNestedManyWithoutCreatorInput
     coOpContributions?: CoOpMemberUncheckedCreateNestedManyWithoutBuyerInput
+    cropAlerts?: BuyerCropAlertUncheckedCreateNestedManyWithoutBuyerInput
   }
 
   export type UserCreateOrConnectWithoutSentReviewsInput = {
@@ -43474,6 +45005,7 @@ export namespace Prisma {
     ussdSessions?: UssdSessionCreateNestedManyWithoutUserInput
     createdCoOps?: CoOpGroupCreateNestedManyWithoutCreatorInput
     coOpContributions?: CoOpMemberCreateNestedManyWithoutBuyerInput
+    cropAlerts?: BuyerCropAlertCreateNestedManyWithoutBuyerInput
   }
 
   export type UserUncheckedCreateWithoutReceivedReviewsInput = {
@@ -43514,6 +45046,7 @@ export namespace Prisma {
     ussdSessions?: UssdSessionUncheckedCreateNestedManyWithoutUserInput
     createdCoOps?: CoOpGroupUncheckedCreateNestedManyWithoutCreatorInput
     coOpContributions?: CoOpMemberUncheckedCreateNestedManyWithoutBuyerInput
+    cropAlerts?: BuyerCropAlertUncheckedCreateNestedManyWithoutBuyerInput
   }
 
   export type UserCreateOrConnectWithoutReceivedReviewsInput = {
@@ -43613,6 +45146,7 @@ export namespace Prisma {
     ussdSessions?: UssdSessionUpdateManyWithoutUserNestedInput
     createdCoOps?: CoOpGroupUpdateManyWithoutCreatorNestedInput
     coOpContributions?: CoOpMemberUpdateManyWithoutBuyerNestedInput
+    cropAlerts?: BuyerCropAlertUpdateManyWithoutBuyerNestedInput
   }
 
   export type UserUncheckedUpdateWithoutSentReviewsInput = {
@@ -43653,6 +45187,7 @@ export namespace Prisma {
     ussdSessions?: UssdSessionUncheckedUpdateManyWithoutUserNestedInput
     createdCoOps?: CoOpGroupUncheckedUpdateManyWithoutCreatorNestedInput
     coOpContributions?: CoOpMemberUncheckedUpdateManyWithoutBuyerNestedInput
+    cropAlerts?: BuyerCropAlertUncheckedUpdateManyWithoutBuyerNestedInput
   }
 
   export type UserUpsertWithoutReceivedReviewsInput = {
@@ -43704,6 +45239,7 @@ export namespace Prisma {
     ussdSessions?: UssdSessionUpdateManyWithoutUserNestedInput
     createdCoOps?: CoOpGroupUpdateManyWithoutCreatorNestedInput
     coOpContributions?: CoOpMemberUpdateManyWithoutBuyerNestedInput
+    cropAlerts?: BuyerCropAlertUpdateManyWithoutBuyerNestedInput
   }
 
   export type UserUncheckedUpdateWithoutReceivedReviewsInput = {
@@ -43744,6 +45280,7 @@ export namespace Prisma {
     ussdSessions?: UssdSessionUncheckedUpdateManyWithoutUserNestedInput
     createdCoOps?: CoOpGroupUncheckedUpdateManyWithoutCreatorNestedInput
     coOpContributions?: CoOpMemberUncheckedUpdateManyWithoutBuyerNestedInput
+    cropAlerts?: BuyerCropAlertUncheckedUpdateManyWithoutBuyerNestedInput
   }
 
   export type OrderUpsertWithoutReviewsInput = {
@@ -43833,6 +45370,7 @@ export namespace Prisma {
     ussdSessions?: UssdSessionCreateNestedManyWithoutUserInput
     createdCoOps?: CoOpGroupCreateNestedManyWithoutCreatorInput
     coOpContributions?: CoOpMemberCreateNestedManyWithoutBuyerInput
+    cropAlerts?: BuyerCropAlertCreateNestedManyWithoutBuyerInput
   }
 
   export type UserUncheckedCreateWithoutNotificationsInput = {
@@ -43873,6 +45411,7 @@ export namespace Prisma {
     ussdSessions?: UssdSessionUncheckedCreateNestedManyWithoutUserInput
     createdCoOps?: CoOpGroupUncheckedCreateNestedManyWithoutCreatorInput
     coOpContributions?: CoOpMemberUncheckedCreateNestedManyWithoutBuyerInput
+    cropAlerts?: BuyerCropAlertUncheckedCreateNestedManyWithoutBuyerInput
   }
 
   export type UserCreateOrConnectWithoutNotificationsInput = {
@@ -43929,6 +45468,7 @@ export namespace Prisma {
     ussdSessions?: UssdSessionUpdateManyWithoutUserNestedInput
     createdCoOps?: CoOpGroupUpdateManyWithoutCreatorNestedInput
     coOpContributions?: CoOpMemberUpdateManyWithoutBuyerNestedInput
+    cropAlerts?: BuyerCropAlertUpdateManyWithoutBuyerNestedInput
   }
 
   export type UserUncheckedUpdateWithoutNotificationsInput = {
@@ -43969,6 +45509,7 @@ export namespace Prisma {
     ussdSessions?: UssdSessionUncheckedUpdateManyWithoutUserNestedInput
     createdCoOps?: CoOpGroupUncheckedUpdateManyWithoutCreatorNestedInput
     coOpContributions?: CoOpMemberUncheckedUpdateManyWithoutBuyerNestedInput
+    cropAlerts?: BuyerCropAlertUncheckedUpdateManyWithoutBuyerNestedInput
   }
 
   export type UserCreateWithoutSentMessagesInput = {
@@ -44009,6 +45550,7 @@ export namespace Prisma {
     ussdSessions?: UssdSessionCreateNestedManyWithoutUserInput
     createdCoOps?: CoOpGroupCreateNestedManyWithoutCreatorInput
     coOpContributions?: CoOpMemberCreateNestedManyWithoutBuyerInput
+    cropAlerts?: BuyerCropAlertCreateNestedManyWithoutBuyerInput
   }
 
   export type UserUncheckedCreateWithoutSentMessagesInput = {
@@ -44049,6 +45591,7 @@ export namespace Prisma {
     ussdSessions?: UssdSessionUncheckedCreateNestedManyWithoutUserInput
     createdCoOps?: CoOpGroupUncheckedCreateNestedManyWithoutCreatorInput
     coOpContributions?: CoOpMemberUncheckedCreateNestedManyWithoutBuyerInput
+    cropAlerts?: BuyerCropAlertUncheckedCreateNestedManyWithoutBuyerInput
   }
 
   export type UserCreateOrConnectWithoutSentMessagesInput = {
@@ -44094,6 +45637,7 @@ export namespace Prisma {
     ussdSessions?: UssdSessionCreateNestedManyWithoutUserInput
     createdCoOps?: CoOpGroupCreateNestedManyWithoutCreatorInput
     coOpContributions?: CoOpMemberCreateNestedManyWithoutBuyerInput
+    cropAlerts?: BuyerCropAlertCreateNestedManyWithoutBuyerInput
   }
 
   export type UserUncheckedCreateWithoutReceivedMessagesInput = {
@@ -44134,6 +45678,7 @@ export namespace Prisma {
     ussdSessions?: UssdSessionUncheckedCreateNestedManyWithoutUserInput
     createdCoOps?: CoOpGroupUncheckedCreateNestedManyWithoutCreatorInput
     coOpContributions?: CoOpMemberUncheckedCreateNestedManyWithoutBuyerInput
+    cropAlerts?: BuyerCropAlertUncheckedCreateNestedManyWithoutBuyerInput
   }
 
   export type UserCreateOrConnectWithoutReceivedMessagesInput = {
@@ -44233,6 +45778,7 @@ export namespace Prisma {
     ussdSessions?: UssdSessionUpdateManyWithoutUserNestedInput
     createdCoOps?: CoOpGroupUpdateManyWithoutCreatorNestedInput
     coOpContributions?: CoOpMemberUpdateManyWithoutBuyerNestedInput
+    cropAlerts?: BuyerCropAlertUpdateManyWithoutBuyerNestedInput
   }
 
   export type UserUncheckedUpdateWithoutSentMessagesInput = {
@@ -44273,6 +45819,7 @@ export namespace Prisma {
     ussdSessions?: UssdSessionUncheckedUpdateManyWithoutUserNestedInput
     createdCoOps?: CoOpGroupUncheckedUpdateManyWithoutCreatorNestedInput
     coOpContributions?: CoOpMemberUncheckedUpdateManyWithoutBuyerNestedInput
+    cropAlerts?: BuyerCropAlertUncheckedUpdateManyWithoutBuyerNestedInput
   }
 
   export type UserUpsertWithoutReceivedMessagesInput = {
@@ -44324,6 +45871,7 @@ export namespace Prisma {
     ussdSessions?: UssdSessionUpdateManyWithoutUserNestedInput
     createdCoOps?: CoOpGroupUpdateManyWithoutCreatorNestedInput
     coOpContributions?: CoOpMemberUpdateManyWithoutBuyerNestedInput
+    cropAlerts?: BuyerCropAlertUpdateManyWithoutBuyerNestedInput
   }
 
   export type UserUncheckedUpdateWithoutReceivedMessagesInput = {
@@ -44364,6 +45912,7 @@ export namespace Prisma {
     ussdSessions?: UssdSessionUncheckedUpdateManyWithoutUserNestedInput
     createdCoOps?: CoOpGroupUncheckedUpdateManyWithoutCreatorNestedInput
     coOpContributions?: CoOpMemberUncheckedUpdateManyWithoutBuyerNestedInput
+    cropAlerts?: BuyerCropAlertUncheckedUpdateManyWithoutBuyerNestedInput
   }
 
   export type OrderUpsertWithoutMessagesInput = {
@@ -44453,6 +46002,7 @@ export namespace Prisma {
     bansIssued?: UserBanCreateNestedManyWithoutBannerInput
     createdCoOps?: CoOpGroupCreateNestedManyWithoutCreatorInput
     coOpContributions?: CoOpMemberCreateNestedManyWithoutBuyerInput
+    cropAlerts?: BuyerCropAlertCreateNestedManyWithoutBuyerInput
   }
 
   export type UserUncheckedCreateWithoutUssdSessionsInput = {
@@ -44493,6 +46043,7 @@ export namespace Prisma {
     bansIssued?: UserBanUncheckedCreateNestedManyWithoutBannerInput
     createdCoOps?: CoOpGroupUncheckedCreateNestedManyWithoutCreatorInput
     coOpContributions?: CoOpMemberUncheckedCreateNestedManyWithoutBuyerInput
+    cropAlerts?: BuyerCropAlertUncheckedCreateNestedManyWithoutBuyerInput
   }
 
   export type UserCreateOrConnectWithoutUssdSessionsInput = {
@@ -44549,6 +46100,7 @@ export namespace Prisma {
     bansIssued?: UserBanUpdateManyWithoutBannerNestedInput
     createdCoOps?: CoOpGroupUpdateManyWithoutCreatorNestedInput
     coOpContributions?: CoOpMemberUpdateManyWithoutBuyerNestedInput
+    cropAlerts?: BuyerCropAlertUpdateManyWithoutBuyerNestedInput
   }
 
   export type UserUncheckedUpdateWithoutUssdSessionsInput = {
@@ -44589,6 +46141,7 @@ export namespace Prisma {
     bansIssued?: UserBanUncheckedUpdateManyWithoutBannerNestedInput
     createdCoOps?: CoOpGroupUncheckedUpdateManyWithoutCreatorNestedInput
     coOpContributions?: CoOpMemberUncheckedUpdateManyWithoutBuyerNestedInput
+    cropAlerts?: BuyerCropAlertUncheckedUpdateManyWithoutBuyerNestedInput
   }
 
   export type UserCreateWithoutPreOrdersInput = {
@@ -44629,6 +46182,7 @@ export namespace Prisma {
     ussdSessions?: UssdSessionCreateNestedManyWithoutUserInput
     createdCoOps?: CoOpGroupCreateNestedManyWithoutCreatorInput
     coOpContributions?: CoOpMemberCreateNestedManyWithoutBuyerInput
+    cropAlerts?: BuyerCropAlertCreateNestedManyWithoutBuyerInput
   }
 
   export type UserUncheckedCreateWithoutPreOrdersInput = {
@@ -44669,6 +46223,7 @@ export namespace Prisma {
     ussdSessions?: UssdSessionUncheckedCreateNestedManyWithoutUserInput
     createdCoOps?: CoOpGroupUncheckedCreateNestedManyWithoutCreatorInput
     coOpContributions?: CoOpMemberUncheckedCreateNestedManyWithoutBuyerInput
+    cropAlerts?: BuyerCropAlertUncheckedCreateNestedManyWithoutBuyerInput
   }
 
   export type UserCreateOrConnectWithoutPreOrdersInput = {
@@ -44825,6 +46380,7 @@ export namespace Prisma {
     ussdSessions?: UssdSessionUpdateManyWithoutUserNestedInput
     createdCoOps?: CoOpGroupUpdateManyWithoutCreatorNestedInput
     coOpContributions?: CoOpMemberUpdateManyWithoutBuyerNestedInput
+    cropAlerts?: BuyerCropAlertUpdateManyWithoutBuyerNestedInput
   }
 
   export type UserUncheckedUpdateWithoutPreOrdersInput = {
@@ -44865,6 +46421,7 @@ export namespace Prisma {
     ussdSessions?: UssdSessionUncheckedUpdateManyWithoutUserNestedInput
     createdCoOps?: CoOpGroupUncheckedUpdateManyWithoutCreatorNestedInput
     coOpContributions?: CoOpMemberUncheckedUpdateManyWithoutBuyerNestedInput
+    cropAlerts?: BuyerCropAlertUncheckedUpdateManyWithoutBuyerNestedInput
   }
 
   export type ProduceListingUpsertWithoutPreOrdersInput = {
@@ -45017,6 +46574,7 @@ export namespace Prisma {
     ussdSessions?: UssdSessionCreateNestedManyWithoutUserInput
     createdCoOps?: CoOpGroupCreateNestedManyWithoutCreatorInput
     coOpContributions?: CoOpMemberCreateNestedManyWithoutBuyerInput
+    cropAlerts?: BuyerCropAlertCreateNestedManyWithoutBuyerInput
   }
 
   export type UserUncheckedCreateWithoutPlantingLogsInput = {
@@ -45057,6 +46615,7 @@ export namespace Prisma {
     ussdSessions?: UssdSessionUncheckedCreateNestedManyWithoutUserInput
     createdCoOps?: CoOpGroupUncheckedCreateNestedManyWithoutCreatorInput
     coOpContributions?: CoOpMemberUncheckedCreateNestedManyWithoutBuyerInput
+    cropAlerts?: BuyerCropAlertUncheckedCreateNestedManyWithoutBuyerInput
   }
 
   export type UserCreateOrConnectWithoutPlantingLogsInput = {
@@ -45207,6 +46766,7 @@ export namespace Prisma {
     ussdSessions?: UssdSessionUpdateManyWithoutUserNestedInput
     createdCoOps?: CoOpGroupUpdateManyWithoutCreatorNestedInput
     coOpContributions?: CoOpMemberUpdateManyWithoutBuyerNestedInput
+    cropAlerts?: BuyerCropAlertUpdateManyWithoutBuyerNestedInput
   }
 
   export type UserUncheckedUpdateWithoutPlantingLogsInput = {
@@ -45247,6 +46807,7 @@ export namespace Prisma {
     ussdSessions?: UssdSessionUncheckedUpdateManyWithoutUserNestedInput
     createdCoOps?: CoOpGroupUncheckedUpdateManyWithoutCreatorNestedInput
     coOpContributions?: CoOpMemberUncheckedUpdateManyWithoutBuyerNestedInput
+    cropAlerts?: BuyerCropAlertUncheckedUpdateManyWithoutBuyerNestedInput
   }
 
   export type PlantingInputUpsertWithWhereUniqueWithoutPlantingLogInput = {
@@ -45410,6 +46971,7 @@ export namespace Prisma {
     ussdSessions?: UssdSessionCreateNestedManyWithoutUserInput
     createdCoOps?: CoOpGroupCreateNestedManyWithoutCreatorInput
     coOpContributions?: CoOpMemberCreateNestedManyWithoutBuyerInput
+    cropAlerts?: BuyerCropAlertCreateNestedManyWithoutBuyerInput
   }
 
   export type UserUncheckedCreateWithoutAuditLogsInput = {
@@ -45450,6 +47012,7 @@ export namespace Prisma {
     ussdSessions?: UssdSessionUncheckedCreateNestedManyWithoutUserInput
     createdCoOps?: CoOpGroupUncheckedCreateNestedManyWithoutCreatorInput
     coOpContributions?: CoOpMemberUncheckedCreateNestedManyWithoutBuyerInput
+    cropAlerts?: BuyerCropAlertUncheckedCreateNestedManyWithoutBuyerInput
   }
 
   export type UserCreateOrConnectWithoutAuditLogsInput = {
@@ -45506,6 +47069,7 @@ export namespace Prisma {
     ussdSessions?: UssdSessionUpdateManyWithoutUserNestedInput
     createdCoOps?: CoOpGroupUpdateManyWithoutCreatorNestedInput
     coOpContributions?: CoOpMemberUpdateManyWithoutBuyerNestedInput
+    cropAlerts?: BuyerCropAlertUpdateManyWithoutBuyerNestedInput
   }
 
   export type UserUncheckedUpdateWithoutAuditLogsInput = {
@@ -45546,6 +47110,7 @@ export namespace Prisma {
     ussdSessions?: UssdSessionUncheckedUpdateManyWithoutUserNestedInput
     createdCoOps?: CoOpGroupUncheckedUpdateManyWithoutCreatorNestedInput
     coOpContributions?: CoOpMemberUncheckedUpdateManyWithoutBuyerNestedInput
+    cropAlerts?: BuyerCropAlertUncheckedUpdateManyWithoutBuyerNestedInput
   }
 
   export type UserCreateWithoutConfigsUpdatedInput = {
@@ -45586,6 +47151,7 @@ export namespace Prisma {
     ussdSessions?: UssdSessionCreateNestedManyWithoutUserInput
     createdCoOps?: CoOpGroupCreateNestedManyWithoutCreatorInput
     coOpContributions?: CoOpMemberCreateNestedManyWithoutBuyerInput
+    cropAlerts?: BuyerCropAlertCreateNestedManyWithoutBuyerInput
   }
 
   export type UserUncheckedCreateWithoutConfigsUpdatedInput = {
@@ -45626,6 +47192,7 @@ export namespace Prisma {
     ussdSessions?: UssdSessionUncheckedCreateNestedManyWithoutUserInput
     createdCoOps?: CoOpGroupUncheckedCreateNestedManyWithoutCreatorInput
     coOpContributions?: CoOpMemberUncheckedCreateNestedManyWithoutBuyerInput
+    cropAlerts?: BuyerCropAlertUncheckedCreateNestedManyWithoutBuyerInput
   }
 
   export type UserCreateOrConnectWithoutConfigsUpdatedInput = {
@@ -45682,6 +47249,7 @@ export namespace Prisma {
     ussdSessions?: UssdSessionUpdateManyWithoutUserNestedInput
     createdCoOps?: CoOpGroupUpdateManyWithoutCreatorNestedInput
     coOpContributions?: CoOpMemberUpdateManyWithoutBuyerNestedInput
+    cropAlerts?: BuyerCropAlertUpdateManyWithoutBuyerNestedInput
   }
 
   export type UserUncheckedUpdateWithoutConfigsUpdatedInput = {
@@ -45722,6 +47290,7 @@ export namespace Prisma {
     ussdSessions?: UssdSessionUncheckedUpdateManyWithoutUserNestedInput
     createdCoOps?: CoOpGroupUncheckedUpdateManyWithoutCreatorNestedInput
     coOpContributions?: CoOpMemberUncheckedUpdateManyWithoutBuyerNestedInput
+    cropAlerts?: BuyerCropAlertUncheckedUpdateManyWithoutBuyerNestedInput
   }
 
   export type UserCreateWithoutBanInput = {
@@ -45762,6 +47331,7 @@ export namespace Prisma {
     ussdSessions?: UssdSessionCreateNestedManyWithoutUserInput
     createdCoOps?: CoOpGroupCreateNestedManyWithoutCreatorInput
     coOpContributions?: CoOpMemberCreateNestedManyWithoutBuyerInput
+    cropAlerts?: BuyerCropAlertCreateNestedManyWithoutBuyerInput
   }
 
   export type UserUncheckedCreateWithoutBanInput = {
@@ -45802,6 +47372,7 @@ export namespace Prisma {
     ussdSessions?: UssdSessionUncheckedCreateNestedManyWithoutUserInput
     createdCoOps?: CoOpGroupUncheckedCreateNestedManyWithoutCreatorInput
     coOpContributions?: CoOpMemberUncheckedCreateNestedManyWithoutBuyerInput
+    cropAlerts?: BuyerCropAlertUncheckedCreateNestedManyWithoutBuyerInput
   }
 
   export type UserCreateOrConnectWithoutBanInput = {
@@ -45847,6 +47418,7 @@ export namespace Prisma {
     ussdSessions?: UssdSessionCreateNestedManyWithoutUserInput
     createdCoOps?: CoOpGroupCreateNestedManyWithoutCreatorInput
     coOpContributions?: CoOpMemberCreateNestedManyWithoutBuyerInput
+    cropAlerts?: BuyerCropAlertCreateNestedManyWithoutBuyerInput
   }
 
   export type UserUncheckedCreateWithoutBansIssuedInput = {
@@ -45887,6 +47459,7 @@ export namespace Prisma {
     ussdSessions?: UssdSessionUncheckedCreateNestedManyWithoutUserInput
     createdCoOps?: CoOpGroupUncheckedCreateNestedManyWithoutCreatorInput
     coOpContributions?: CoOpMemberUncheckedCreateNestedManyWithoutBuyerInput
+    cropAlerts?: BuyerCropAlertUncheckedCreateNestedManyWithoutBuyerInput
   }
 
   export type UserCreateOrConnectWithoutBansIssuedInput = {
@@ -45943,6 +47516,7 @@ export namespace Prisma {
     ussdSessions?: UssdSessionUpdateManyWithoutUserNestedInput
     createdCoOps?: CoOpGroupUpdateManyWithoutCreatorNestedInput
     coOpContributions?: CoOpMemberUpdateManyWithoutBuyerNestedInput
+    cropAlerts?: BuyerCropAlertUpdateManyWithoutBuyerNestedInput
   }
 
   export type UserUncheckedUpdateWithoutBanInput = {
@@ -45983,6 +47557,7 @@ export namespace Prisma {
     ussdSessions?: UssdSessionUncheckedUpdateManyWithoutUserNestedInput
     createdCoOps?: CoOpGroupUncheckedUpdateManyWithoutCreatorNestedInput
     coOpContributions?: CoOpMemberUncheckedUpdateManyWithoutBuyerNestedInput
+    cropAlerts?: BuyerCropAlertUncheckedUpdateManyWithoutBuyerNestedInput
   }
 
   export type UserUpsertWithoutBansIssuedInput = {
@@ -46034,6 +47609,7 @@ export namespace Prisma {
     ussdSessions?: UssdSessionUpdateManyWithoutUserNestedInput
     createdCoOps?: CoOpGroupUpdateManyWithoutCreatorNestedInput
     coOpContributions?: CoOpMemberUpdateManyWithoutBuyerNestedInput
+    cropAlerts?: BuyerCropAlertUpdateManyWithoutBuyerNestedInput
   }
 
   export type UserUncheckedUpdateWithoutBansIssuedInput = {
@@ -46074,6 +47650,7 @@ export namespace Prisma {
     ussdSessions?: UssdSessionUncheckedUpdateManyWithoutUserNestedInput
     createdCoOps?: CoOpGroupUncheckedUpdateManyWithoutCreatorNestedInput
     coOpContributions?: CoOpMemberUncheckedUpdateManyWithoutBuyerNestedInput
+    cropAlerts?: BuyerCropAlertUncheckedUpdateManyWithoutBuyerNestedInput
   }
 
   export type ProduceListingCreateWithoutCoOpsInput = {
@@ -46171,6 +47748,7 @@ export namespace Prisma {
     bansIssued?: UserBanCreateNestedManyWithoutBannerInput
     ussdSessions?: UssdSessionCreateNestedManyWithoutUserInput
     coOpContributions?: CoOpMemberCreateNestedManyWithoutBuyerInput
+    cropAlerts?: BuyerCropAlertCreateNestedManyWithoutBuyerInput
   }
 
   export type UserUncheckedCreateWithoutCreatedCoOpsInput = {
@@ -46211,6 +47789,7 @@ export namespace Prisma {
     bansIssued?: UserBanUncheckedCreateNestedManyWithoutBannerInput
     ussdSessions?: UssdSessionUncheckedCreateNestedManyWithoutUserInput
     coOpContributions?: CoOpMemberUncheckedCreateNestedManyWithoutBuyerInput
+    cropAlerts?: BuyerCropAlertUncheckedCreateNestedManyWithoutBuyerInput
   }
 
   export type UserCreateOrConnectWithoutCreatedCoOpsInput = {
@@ -46364,6 +47943,7 @@ export namespace Prisma {
     bansIssued?: UserBanUpdateManyWithoutBannerNestedInput
     ussdSessions?: UssdSessionUpdateManyWithoutUserNestedInput
     coOpContributions?: CoOpMemberUpdateManyWithoutBuyerNestedInput
+    cropAlerts?: BuyerCropAlertUpdateManyWithoutBuyerNestedInput
   }
 
   export type UserUncheckedUpdateWithoutCreatedCoOpsInput = {
@@ -46404,6 +47984,7 @@ export namespace Prisma {
     bansIssued?: UserBanUncheckedUpdateManyWithoutBannerNestedInput
     ussdSessions?: UssdSessionUncheckedUpdateManyWithoutUserNestedInput
     coOpContributions?: CoOpMemberUncheckedUpdateManyWithoutBuyerNestedInput
+    cropAlerts?: BuyerCropAlertUncheckedUpdateManyWithoutBuyerNestedInput
   }
 
   export type CoOpMemberUpsertWithWhereUniqueWithoutCoOpGroupInput = {
@@ -46489,6 +48070,7 @@ export namespace Prisma {
     bansIssued?: UserBanCreateNestedManyWithoutBannerInput
     ussdSessions?: UssdSessionCreateNestedManyWithoutUserInput
     createdCoOps?: CoOpGroupCreateNestedManyWithoutCreatorInput
+    cropAlerts?: BuyerCropAlertCreateNestedManyWithoutBuyerInput
   }
 
   export type UserUncheckedCreateWithoutCoOpContributionsInput = {
@@ -46529,6 +48111,7 @@ export namespace Prisma {
     bansIssued?: UserBanUncheckedCreateNestedManyWithoutBannerInput
     ussdSessions?: UssdSessionUncheckedCreateNestedManyWithoutUserInput
     createdCoOps?: CoOpGroupUncheckedCreateNestedManyWithoutCreatorInput
+    cropAlerts?: BuyerCropAlertUncheckedCreateNestedManyWithoutBuyerInput
   }
 
   export type UserCreateOrConnectWithoutCoOpContributionsInput = {
@@ -46663,6 +48246,7 @@ export namespace Prisma {
     bansIssued?: UserBanUpdateManyWithoutBannerNestedInput
     ussdSessions?: UssdSessionUpdateManyWithoutUserNestedInput
     createdCoOps?: CoOpGroupUpdateManyWithoutCreatorNestedInput
+    cropAlerts?: BuyerCropAlertUpdateManyWithoutBuyerNestedInput
   }
 
   export type UserUncheckedUpdateWithoutCoOpContributionsInput = {
@@ -46703,6 +48287,7 @@ export namespace Prisma {
     bansIssued?: UserBanUncheckedUpdateManyWithoutBannerNestedInput
     ussdSessions?: UssdSessionUncheckedUpdateManyWithoutUserNestedInput
     createdCoOps?: CoOpGroupUncheckedUpdateManyWithoutCreatorNestedInput
+    cropAlerts?: BuyerCropAlertUncheckedUpdateManyWithoutBuyerNestedInput
   }
 
   export type OrderUpsertWithoutCoOpMemberInput = {
@@ -46752,6 +48337,186 @@ export namespace Prisma {
     reviews?: ReviewUncheckedUpdateManyWithoutOrderNestedInput
     messages?: MessageUncheckedUpdateManyWithoutOrderNestedInput
     preOrder?: PreOrderUncheckedUpdateOneWithoutFulfilledOrderNestedInput
+  }
+
+  export type UserCreateWithoutCropAlertsInput = {
+    id?: string
+    phone: string
+    name: string
+    role: $Enums.Role
+    latitude?: number | null
+    longitude?: number | null
+    region?: string | null
+    district?: string | null
+    isVerified?: boolean
+    passwordHash?: string | null
+    preferredLanguage?: string
+    ussdPin?: string | null
+    ussdPinSetAt?: Date | string | null
+    lastUssdActivity?: Date | string | null
+    lockoutUntil?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    farmerProfile?: FarmerProfileCreateNestedOneWithoutUserInput
+    buyerProfile?: BuyerProfileCreateNestedOneWithoutUserInput
+    transportProfile?: TransportProfileCreateNestedOneWithoutUserInput
+    listings?: ProduceListingCreateNestedManyWithoutFarmerInput
+    orders?: OrderCreateNestedManyWithoutBuyerInput
+    deliveries?: DeliveryRequestCreateNestedManyWithoutTransportProviderInput
+    sentReviews?: ReviewCreateNestedManyWithoutFromUserInput
+    receivedReviews?: ReviewCreateNestedManyWithoutToUserInput
+    notifications?: NotificationCreateNestedManyWithoutUserInput
+    sentMessages?: MessageCreateNestedManyWithoutFromUserInput
+    receivedMessages?: MessageCreateNestedManyWithoutToUserInput
+    recordedTraceEvents?: TraceEventCreateNestedManyWithoutRecordedByUserInput
+    preOrders?: PreOrderCreateNestedManyWithoutBuyerInput
+    plantingLogs?: PlantingLogCreateNestedManyWithoutFarmerInput
+    auditLogs?: AuditLogCreateNestedManyWithoutActorInput
+    configsUpdated?: SystemConfigCreateNestedManyWithoutUpdaterInput
+    ban?: UserBanCreateNestedOneWithoutUserInput
+    bansIssued?: UserBanCreateNestedManyWithoutBannerInput
+    ussdSessions?: UssdSessionCreateNestedManyWithoutUserInput
+    createdCoOps?: CoOpGroupCreateNestedManyWithoutCreatorInput
+    coOpContributions?: CoOpMemberCreateNestedManyWithoutBuyerInput
+  }
+
+  export type UserUncheckedCreateWithoutCropAlertsInput = {
+    id?: string
+    phone: string
+    name: string
+    role: $Enums.Role
+    latitude?: number | null
+    longitude?: number | null
+    region?: string | null
+    district?: string | null
+    isVerified?: boolean
+    passwordHash?: string | null
+    preferredLanguage?: string
+    ussdPin?: string | null
+    ussdPinSetAt?: Date | string | null
+    lastUssdActivity?: Date | string | null
+    lockoutUntil?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    farmerProfile?: FarmerProfileUncheckedCreateNestedOneWithoutUserInput
+    buyerProfile?: BuyerProfileUncheckedCreateNestedOneWithoutUserInput
+    transportProfile?: TransportProfileUncheckedCreateNestedOneWithoutUserInput
+    listings?: ProduceListingUncheckedCreateNestedManyWithoutFarmerInput
+    orders?: OrderUncheckedCreateNestedManyWithoutBuyerInput
+    deliveries?: DeliveryRequestUncheckedCreateNestedManyWithoutTransportProviderInput
+    sentReviews?: ReviewUncheckedCreateNestedManyWithoutFromUserInput
+    receivedReviews?: ReviewUncheckedCreateNestedManyWithoutToUserInput
+    notifications?: NotificationUncheckedCreateNestedManyWithoutUserInput
+    sentMessages?: MessageUncheckedCreateNestedManyWithoutFromUserInput
+    receivedMessages?: MessageUncheckedCreateNestedManyWithoutToUserInput
+    recordedTraceEvents?: TraceEventUncheckedCreateNestedManyWithoutRecordedByUserInput
+    preOrders?: PreOrderUncheckedCreateNestedManyWithoutBuyerInput
+    plantingLogs?: PlantingLogUncheckedCreateNestedManyWithoutFarmerInput
+    auditLogs?: AuditLogUncheckedCreateNestedManyWithoutActorInput
+    configsUpdated?: SystemConfigUncheckedCreateNestedManyWithoutUpdaterInput
+    ban?: UserBanUncheckedCreateNestedOneWithoutUserInput
+    bansIssued?: UserBanUncheckedCreateNestedManyWithoutBannerInput
+    ussdSessions?: UssdSessionUncheckedCreateNestedManyWithoutUserInput
+    createdCoOps?: CoOpGroupUncheckedCreateNestedManyWithoutCreatorInput
+    coOpContributions?: CoOpMemberUncheckedCreateNestedManyWithoutBuyerInput
+  }
+
+  export type UserCreateOrConnectWithoutCropAlertsInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutCropAlertsInput, UserUncheckedCreateWithoutCropAlertsInput>
+  }
+
+  export type UserUpsertWithoutCropAlertsInput = {
+    update: XOR<UserUpdateWithoutCropAlertsInput, UserUncheckedUpdateWithoutCropAlertsInput>
+    create: XOR<UserCreateWithoutCropAlertsInput, UserUncheckedCreateWithoutCropAlertsInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutCropAlertsInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutCropAlertsInput, UserUncheckedUpdateWithoutCropAlertsInput>
+  }
+
+  export type UserUpdateWithoutCropAlertsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    latitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    longitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    region?: NullableStringFieldUpdateOperationsInput | string | null
+    district?: NullableStringFieldUpdateOperationsInput | string | null
+    isVerified?: BoolFieldUpdateOperationsInput | boolean
+    passwordHash?: NullableStringFieldUpdateOperationsInput | string | null
+    preferredLanguage?: StringFieldUpdateOperationsInput | string
+    ussdPin?: NullableStringFieldUpdateOperationsInput | string | null
+    ussdPinSetAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lastUssdActivity?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lockoutUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    farmerProfile?: FarmerProfileUpdateOneWithoutUserNestedInput
+    buyerProfile?: BuyerProfileUpdateOneWithoutUserNestedInput
+    transportProfile?: TransportProfileUpdateOneWithoutUserNestedInput
+    listings?: ProduceListingUpdateManyWithoutFarmerNestedInput
+    orders?: OrderUpdateManyWithoutBuyerNestedInput
+    deliveries?: DeliveryRequestUpdateManyWithoutTransportProviderNestedInput
+    sentReviews?: ReviewUpdateManyWithoutFromUserNestedInput
+    receivedReviews?: ReviewUpdateManyWithoutToUserNestedInput
+    notifications?: NotificationUpdateManyWithoutUserNestedInput
+    sentMessages?: MessageUpdateManyWithoutFromUserNestedInput
+    receivedMessages?: MessageUpdateManyWithoutToUserNestedInput
+    recordedTraceEvents?: TraceEventUpdateManyWithoutRecordedByUserNestedInput
+    preOrders?: PreOrderUpdateManyWithoutBuyerNestedInput
+    plantingLogs?: PlantingLogUpdateManyWithoutFarmerNestedInput
+    auditLogs?: AuditLogUpdateManyWithoutActorNestedInput
+    configsUpdated?: SystemConfigUpdateManyWithoutUpdaterNestedInput
+    ban?: UserBanUpdateOneWithoutUserNestedInput
+    bansIssued?: UserBanUpdateManyWithoutBannerNestedInput
+    ussdSessions?: UssdSessionUpdateManyWithoutUserNestedInput
+    createdCoOps?: CoOpGroupUpdateManyWithoutCreatorNestedInput
+    coOpContributions?: CoOpMemberUpdateManyWithoutBuyerNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutCropAlertsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    latitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    longitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    region?: NullableStringFieldUpdateOperationsInput | string | null
+    district?: NullableStringFieldUpdateOperationsInput | string | null
+    isVerified?: BoolFieldUpdateOperationsInput | boolean
+    passwordHash?: NullableStringFieldUpdateOperationsInput | string | null
+    preferredLanguage?: StringFieldUpdateOperationsInput | string
+    ussdPin?: NullableStringFieldUpdateOperationsInput | string | null
+    ussdPinSetAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lastUssdActivity?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lockoutUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    farmerProfile?: FarmerProfileUncheckedUpdateOneWithoutUserNestedInput
+    buyerProfile?: BuyerProfileUncheckedUpdateOneWithoutUserNestedInput
+    transportProfile?: TransportProfileUncheckedUpdateOneWithoutUserNestedInput
+    listings?: ProduceListingUncheckedUpdateManyWithoutFarmerNestedInput
+    orders?: OrderUncheckedUpdateManyWithoutBuyerNestedInput
+    deliveries?: DeliveryRequestUncheckedUpdateManyWithoutTransportProviderNestedInput
+    sentReviews?: ReviewUncheckedUpdateManyWithoutFromUserNestedInput
+    receivedReviews?: ReviewUncheckedUpdateManyWithoutToUserNestedInput
+    notifications?: NotificationUncheckedUpdateManyWithoutUserNestedInput
+    sentMessages?: MessageUncheckedUpdateManyWithoutFromUserNestedInput
+    receivedMessages?: MessageUncheckedUpdateManyWithoutToUserNestedInput
+    recordedTraceEvents?: TraceEventUncheckedUpdateManyWithoutRecordedByUserNestedInput
+    preOrders?: PreOrderUncheckedUpdateManyWithoutBuyerNestedInput
+    plantingLogs?: PlantingLogUncheckedUpdateManyWithoutFarmerNestedInput
+    auditLogs?: AuditLogUncheckedUpdateManyWithoutActorNestedInput
+    configsUpdated?: SystemConfigUncheckedUpdateManyWithoutUpdaterNestedInput
+    ban?: UserBanUncheckedUpdateOneWithoutUserNestedInput
+    bansIssued?: UserBanUncheckedUpdateManyWithoutBannerNestedInput
+    ussdSessions?: UssdSessionUncheckedUpdateManyWithoutUserNestedInput
+    createdCoOps?: CoOpGroupUncheckedUpdateManyWithoutCreatorNestedInput
+    coOpContributions?: CoOpMemberUncheckedUpdateManyWithoutBuyerNestedInput
   }
 
   export type ProduceListingCreateManyFarmerInput = {
@@ -46971,6 +48736,17 @@ export namespace Prisma {
     paymentStatus?: $Enums.PaymentStatus
     paystackRef?: string | null
     orderId?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type BuyerCropAlertCreateManyBuyerInput = {
+    id?: string
+    cropType: $Enums.CropType
+    minQuantityKg?: number | null
+    maxPricePerKg?: number | null
+    region?: string | null
+    isActive?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -47664,6 +49440,39 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type BuyerCropAlertUpdateWithoutBuyerInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    cropType?: EnumCropTypeFieldUpdateOperationsInput | $Enums.CropType
+    minQuantityKg?: NullableFloatFieldUpdateOperationsInput | number | null
+    maxPricePerKg?: NullableFloatFieldUpdateOperationsInput | number | null
+    region?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type BuyerCropAlertUncheckedUpdateWithoutBuyerInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    cropType?: EnumCropTypeFieldUpdateOperationsInput | $Enums.CropType
+    minQuantityKg?: NullableFloatFieldUpdateOperationsInput | number | null
+    maxPricePerKg?: NullableFloatFieldUpdateOperationsInput | number | null
+    region?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type BuyerCropAlertUncheckedUpdateManyWithoutBuyerInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    cropType?: EnumCropTypeFieldUpdateOperationsInput | $Enums.CropType
+    minQuantityKg?: NullableFloatFieldUpdateOperationsInput | number | null
+    maxPricePerKg?: NullableFloatFieldUpdateOperationsInput | number | null
+    region?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type OrderCreateManyListingInput = {
     id?: string
     buyerId: string
@@ -48291,6 +50100,10 @@ export namespace Prisma {
      * @deprecated Use CoOpMemberDefaultArgs instead
      */
     export type CoOpMemberArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = CoOpMemberDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use BuyerCropAlertDefaultArgs instead
+     */
+    export type BuyerCropAlertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = BuyerCropAlertDefaultArgs<ExtArgs>
 
   /**
    * Batch Payload for updateMany & deleteMany & createMany

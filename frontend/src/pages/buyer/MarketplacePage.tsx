@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import { ListingsApi } from '../../api/listings.api';
 import type { ProduceListing } from '../../types';
+import { CropAlertApi, type BuyerCropAlert } from '../../api/cropAlert.api';
 import { Card } from '../../components/ui/Card';
 import { Badge } from '../../components/ui/Badge';
 import { Button } from '../../components/ui/Button';
@@ -142,6 +143,47 @@ export const MarketplacePage: React.FC = () => {
   const [userLat, setUserLat] = useState<number>(5.6037);
   const [userLng, setUserLng] = useState<number>(-0.187);
   const [nearMeActive, setNearMeActive] = useState<boolean>(false);
+
+  // Crop Alerts States
+  const [alerts, setAlerts] = useState<BuyerCropAlert[]>([]);
+  const [loadingAlerts, setLoadingAlerts] = useState<boolean>(false);
+  const [togglingAlert, setTogglingAlert] = useState<string | null>(null);
+
+  const fetchAlerts = async () => {
+    setLoadingAlerts(true);
+    try {
+      const data = await CropAlertApi.getMyAlerts();
+      setAlerts(data);
+    } catch (err) {
+      console.error('Failed to load crop alerts:', err);
+    } finally {
+      setLoadingAlerts(false);
+    }
+  };
+
+  useEffect(() => {
+    if (drawerOpen) {
+      fetchAlerts();
+    }
+  }, [drawerOpen]);
+
+  const handleToggleAlert = async (cropType: string, existingAlert: BuyerCropAlert | undefined, currentStatus: boolean) => {
+    setTogglingAlert(cropType);
+    try {
+      if (existingAlert) {
+        await CropAlertApi.toggleAlert(existingAlert.id, !currentStatus);
+        toast.success(`${cropType.replace('_', ' ')} alerts ${!currentStatus ? 'enabled' : 'disabled'}`);
+      } else {
+        await CropAlertApi.createAlert({ cropType });
+        toast.success(`${cropType.replace('_', ' ')} alerts enabled`);
+      }
+      await fetchAlerts();
+    } catch (err: any) {
+      toast.error(err.message || 'Failed to toggle crop alert preference');
+    } finally {
+      setTogglingAlert(null);
+    }
+  };
 
   const fetchListings = async () => {
     setLoading(true);
@@ -717,6 +759,50 @@ export const MarketplacePage: React.FC = () => {
                   );
                 })}
               </div>
+            </div>
+
+            {/* Real-time Crop Match Alerts */}
+            <div className="border-t border-[#F3F4F6] pt-5 space-y-3">
+              <div className="flex justify-between items-center">
+                <label className="text-sm font-bold text-[#111827]">Demand-Match SMS Alerts</label>
+                <Badge variant="primary" label="New!" />
+              </div>
+              <p className="text-[11px] text-text-secondary leading-relaxed">
+                Receive instant SMS notifications and dashboard matches the moment any farmer lists a matching crop!
+              </p>
+
+              {loadingAlerts ? (
+                <div className="flex justify-center py-2">
+                  <div className="w-5 h-5 border-2 border-primary-green/20 border-t-primary-green rounded-full animate-spin" />
+                </div>
+              ) : (
+                <div className="space-y-2 pt-1.5">
+                  {['TOMATO', 'PEPPER', 'GARDEN_EGG', 'OKRA', 'LEAFY_GREENS'].map((crop) => {
+                    const existingAlert = alerts.find(a => a.cropType === crop);
+                    const isAlertActive = existingAlert ? existingAlert.isActive : false;
+                    const cropLabel = crop.replace('_', ' ').toLowerCase().replace(/\b\w/g, c => c.toUpperCase());
+
+                    return (
+                      <div key={crop} className="flex justify-between items-center py-1.5">
+                        <span className="text-xs font-semibold text-text-secondary">{cropLabel} Match Alert</span>
+                        <button
+                          onClick={() => handleToggleAlert(crop, existingAlert, isAlertActive)}
+                          disabled={togglingAlert === crop}
+                          className={`w-9 h-5 rounded-full p-0.5 transition-colors cursor-pointer focus:outline-none ${
+                            isAlertActive ? 'bg-[#2D6A4F]' : 'bg-gray-200'
+                          }`}
+                        >
+                          <div
+                            className={`w-4 h-4 bg-white rounded-full shadow-md transform transition-transform duration-200 ${
+                              isAlertActive ? 'translate-x-4' : 'translate-x-0'
+                            }`}
+                          />
+                        </button>
+                      </div>
+                    );
+                  })}
+                </div>
+              )}
             </div>
           </div>
 

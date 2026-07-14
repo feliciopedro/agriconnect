@@ -57,6 +57,7 @@ export const T = {
     welcome_new: "Welcome to AgriConnect! You are registered as a {role}. Dial *920*11# to start. PIN: {pin} (change in app).",
     lang_changed: "AgriConnect: Language changed to {lang}. Dial *920*11# to continue.",
     otp_code: "Your AgriConnect verification code is: {code}. Valid for 5 minutes.",
+    crop_alert_match: "🔔 Demand-Match Alert! A new listing of {crop} has been posted: {qty}kg available at GHS {price}/kg in {region}. Check AgriConnect to order now!",
   },
   tw: {
     welcome:         "Akwaaba AgriConnect",
