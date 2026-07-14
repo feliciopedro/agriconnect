@@ -149,6 +149,15 @@ export class AuthService {
           transportProfile: true,
         },
       });
+
+      // Notify Super Admin asynchronously
+      const { EmailService } = require('./email.service');
+      EmailService.notifySuperAdminOnRegistration({
+        id: user.id,
+        phone: user.phone,
+        role: user.role,
+        name: user.name,
+      }).catch((err: any) => console.error('[EmailService] Super Admin registration email notification failed:', err));
     }
 
     // 4. Generate JWT payload and token
