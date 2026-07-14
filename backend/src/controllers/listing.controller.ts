@@ -17,6 +17,34 @@ export class ListingController {
       ? files.map((file) => `uploads/${farmerId}/${file.filename}`)
       : [];
 
+    // Persist files to PostgreSQL for persistent storage on Vercel
+    if (files && files.length > 0) {
+      const fs = require('fs');
+      const prisma = require('../prisma/client').default;
+      for (const file of files) {
+        try {
+          const fileData = await fs.promises.readFile(file.path);
+          const base64Data = fileData.toString('base64');
+          const dbPath = `uploads/${farmerId}/${file.filename}`;
+          
+          await (prisma as any).storedFile.upsert({
+            where: { filename: dbPath },
+            update: {
+              mimeType: file.mimetype,
+              fileData: base64Data,
+            },
+            create: {
+              filename: dbPath,
+              mimeType: file.mimetype,
+              fileData: base64Data,
+            },
+          });
+        } catch (err) {
+          console.error(`Failed to persist file ${file.filename} to DB:`, err);
+        }
+      }
+    }
+
     const listing = await ListingService.createListing(farmerId, req.body, imagePaths);
     res.status(201).json(listing);
   }

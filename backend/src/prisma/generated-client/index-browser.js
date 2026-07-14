@@ -425,6 +425,14 @@ exports.Prisma.UserBanScalarFieldEnum = {
   isActive: 'isActive'
 };
 
+exports.Prisma.StoredFileScalarFieldEnum = {
+  id: 'id',
+  filename: 'filename',
+  mimeType: 'mimeType',
+  fileData: 'fileData',
+  createdAt: 'createdAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -567,7 +575,8 @@ exports.Prisma.ModelName = {
   PlantingInput: 'PlantingInput',
   AuditLog: 'AuditLog',
   SystemConfig: 'SystemConfig',
-  UserBan: 'UserBan'
+  UserBan: 'UserBan',
+  StoredFile: 'StoredFile'
 };
 
 /**

@@ -547,3 +547,11 @@ model UserBan {
   expiresAt DateTime?
   isActive  Boolean   @default(true)
 }
+
+model StoredFile {
+  id        String   @id @default(uuid())
+  filename  String   @unique
+  mimeType  String
+  fileData  String   // base64 data
+  createdAt DateTime @default(now())
+}

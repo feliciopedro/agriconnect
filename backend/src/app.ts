@@ -92,10 +92,39 @@ app.post(
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Serve static uploads folder (handles local process.cwd() and Vercel OS tmp directory)
-const isServerless = !!process.env.VERCEL;
-const baseDir = isServerless ? require('os').tmpdir() : process.cwd();
-app.use('/uploads', express.static(require('path').join(baseDir, 'uploads')));
+// Serve uploaded images with PostgreSQL database fallback for serverless persistence
+app.get('/uploads/:userId/:filename', async (req, res) => {
+  const { userId, filename } = req.params;
+  const dbPath = `uploads/${userId}/${filename}`;
+  
+  // 1. First attempt to serve directly from local disk (fast local/dev cache)
+  const isServerlessEnv = !!process.env.VERCEL;
+  const targetDir = isServerlessEnv ? require('os').tmpdir() : process.cwd();
+  const diskPath = require('path').join(targetDir, 'uploads', userId, filename);
+  
+  if (require('fs').existsSync(diskPath)) {
+    return res.sendFile(diskPath);
+  }
+  
+  // 2. Fallback to reading the persistent version from Neon PostgreSQL database
+  try {
+    const prisma = require('./prisma/client').default;
+    const storedFile = await (prisma as any).storedFile.findUnique({
+      where: { filename: dbPath }
+    });
+    
+    if (storedFile) {
+      const fileBuffer = Buffer.from(storedFile.fileData, 'base64');
+      res.setHeader('Content-Type', storedFile.mimeType);
+      res.setHeader('Cache-Control', 'public, max-age=31536000'); // 1-year cache control
+      return res.send(fileBuffer);
+    }
+  } catch (err) {
+    console.error(`Failed to retrieve file ${dbPath} from database fallback:`, err);
+  }
+  
+  return res.status(404).send('File not found');
+});
 
 // Logging
 const logFormat = config.NODE_ENV === 'production' ? 'combined' : 'dev';
