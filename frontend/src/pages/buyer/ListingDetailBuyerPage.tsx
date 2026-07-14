@@ -4,6 +4,7 @@ import { useAuth } from '../../context/AuthContext';
 import { ListingsApi } from '../../api/listings.api';
 import type { DetailedListing } from '../../api/listings.api';
 import { OrdersApi } from '../../api/orders.api';
+import { CoOpApi, type CoOpGroup } from '../../api/coop.api';
 import { Card } from '../../components/ui/Card';
 import { Badge } from '../../components/ui/Badge';
 import { Button } from '../../components/ui/Button';
@@ -140,6 +141,15 @@ export const ListingDetailBuyerPage: React.FC = () => {
   const [orderError, setOrderError] = useState<string>('');
   const [ordering, setOrdering] = useState<boolean>(false);
 
+  // Co-op States
+  const [coOps, setCoOps] = useState<CoOpGroup[]>([]);
+  const [fetchingCoOps, setFetchingCoOps] = useState<boolean>(false);
+  const [showCreateCoOp, setShowCreateCoOp] = useState<boolean>(false);
+  const [coOpTarget, setCoOpTarget] = useState<string>('500');
+  const [coOpContribution, setCoOpContribution] = useState<string>('100');
+  const [joinQuantities, setJoinQuantities] = useState<Record<string, string>>({});
+  const [pendingPaymentMember, setPendingPaymentMember] = useState<any | null>(null);
+
   const fetchListing = async () => {
     if (!id) return;
     setLoading(true);
@@ -155,9 +165,83 @@ export const ListingDetailBuyerPage: React.FC = () => {
     }
   };
 
+  const fetchCoOps = async () => {
+    if (!id) return;
+    setFetchingCoOps(true);
+    try {
+      const data = await CoOpApi.getActiveCoOps(id);
+      setCoOps(data);
+    } catch (err) {
+      console.error('Failed to fetch active co-ops:', err);
+    } finally {
+      setFetchingCoOps(false);
+    }
+  };
+
   useEffect(() => {
     fetchListing();
+    fetchCoOps();
   }, [id]);
+
+  const handleCreateCoOp = async () => {
+    if (!id) return;
+    const target = parseFloat(coOpTarget);
+    const contrib = parseFloat(coOpContribution);
+
+    if (isNaN(target) || target <= 0) {
+      toast.error('Please enter a valid target quantity');
+      return;
+    }
+    if (isNaN(contrib) || contrib <= 0 || contrib > target) {
+      toast.error('Your share must be greater than zero and less than or equal to the target');
+      return;
+    }
+
+    try {
+      const result = await CoOpApi.createCoOp(id, target, contrib);
+      toast.success('Co-op group created successfully! Complete payment to activate.');
+      
+      const creatorMember = result.members.find((m: any) => m.buyerId === result.creatorId);
+      setPendingPaymentMember(creatorMember || result.members[0]);
+      
+      setShowCreateCoOp(false);
+      fetchCoOps();
+    } catch (err: any) {
+      toast.error(err.message || 'Failed to create co-op group buy');
+    }
+  };
+
+  const handleJoinCoOp = async (coOpGroupId: string, qty: number) => {
+    if (isNaN(qty) || qty <= 0) {
+      toast.error('Please enter a valid contribution size');
+      return;
+    }
+
+    try {
+      const result = await CoOpApi.joinCoOp(coOpGroupId, qty);
+      toast.success('Successfully requested to join co-op group buy! Complete payment to activate.');
+      
+      setPendingPaymentMember(result);
+      
+      setJoinQuantities((prev) => ({ ...prev, [coOpGroupId]: '' }));
+      fetchCoOps();
+    } catch (err: any) {
+      toast.error(err.message || 'Failed to join co-op group buy');
+    }
+  };
+
+  const handleSimulateCoOpPayment = async () => {
+    if (!pendingPaymentMember) return;
+    try {
+      await CoOpApi.simulatePayment(pendingPaymentMember.id);
+      toast.success('Simulated payment successful! Group buy updated.');
+      setPendingPaymentMember(null);
+      fetchCoOps();
+      fetchListing();
+    } catch (err: any) {
+      toast.error(err.message || 'Failed to verify payment simulation');
+    }
+  };
 
   if (loading) {
     return (
@@ -533,8 +617,220 @@ export const ListingDetailBuyerPage: React.FC = () => {
               <ArrowRight className="w-3.5 h-3.5" />
             </Link>
           </div>
+
+          {/* Co-operative Group Buy Card */}
+          <Card className="border border-[#E5E7EB] p-5 space-y-4 bg-[#F9FAFB] rounded-2xl">
+            <div className="border-b border-[#E5E7EB] pb-2 flex justify-between items-center">
+              <h3 className="text-sm font-bold text-[#111827]">
+                Co-operative Group Buy
+              </h3>
+              <Badge variant="success" label="Save Delivery GHS" />
+            </div>
+            
+            <p className="text-xs text-text-secondary leading-relaxed">
+              Co-purchase wholesale batches of produce with neighboring buyers. Once the target weight is met, your orders are confirmed and delivery routes are automatically pooled!
+            </p>
+
+            {/* List of Active Co-Ops */}
+            {fetchingCoOps ? (
+              <div className="flex justify-center py-4">
+                <div className="w-6 h-6 border-2 border-primary-green/20 border-t-primary-green rounded-full animate-spin" />
+              </div>
+            ) : coOps.length > 0 ? (
+              <div className="space-y-3">
+                <p className="text-[10px] font-bold text-slate-500 uppercase tracking-wider">
+                  Open Group Buys:
+                </p>
+                {coOps.map((group) => {
+                  const contributed = group.members.filter((m: any) => m.paymentStatus === 'PAID').reduce((sum: number, m: any) => sum + m.quantityKg, 0);
+                  const progress = Math.min(100, Math.round((contributed / group.targetQuantity) * 100));
+                  const hoursLeft = Math.max(0, Math.round((new Date(group.deadline).getTime() - Date.now()) / (1000 * 60 * 60)));
+                  const spaceRemaining = group.targetQuantity - contributed;
+
+                  return (
+                    <div key={group.id} className="p-4 bg-white border border-[#E5E7EB] rounded-2xl space-y-3 shadow-sm">
+                      <div className="flex justify-between items-start">
+                        <div>
+                          <p className="text-xs font-bold text-[#111827]">
+                            Group by {group.creator?.name || 'Buyer'}
+                          </p>
+                          <p className="text-[10px] text-text-secondary">
+                            Expires in {hoursLeft} hours
+                          </p>
+                        </div>
+                        <span className="text-xs font-mono font-bold text-[#2D6A4F] bg-[#EAF4EE] px-2 py-0.5 rounded">
+                          {progress}% filled
+                        </span>
+                      </div>
+
+                      {/* Progress Bar */}
+                      <div className="space-y-1">
+                        <div className="w-full h-2 bg-slate-100 rounded-full overflow-hidden">
+                          <div className="h-full bg-[#2D6A4F]" style={{ width: `${progress}%` }} />
+                        </div>
+                        <div className="flex justify-between text-[10px] text-text-secondary font-mono">
+                          <span>Contributed: {contributed} kg</span>
+                          <span>Target: {group.targetQuantity} kg</span>
+                        </div>
+                      </div>
+
+                      {/* Join Sub-Form */}
+                      {spaceRemaining > 0 && (
+                        <div className="pt-2 flex items-end gap-2">
+                          <div className="flex-1">
+                            <input
+                              type="number"
+                              placeholder="Qty (kg)"
+                              min="5"
+                              max={spaceRemaining}
+                              className="w-full h-[36px] px-3 border border-[#E5E7EB] rounded-xl text-xs"
+                              value={joinQuantities[group.id] || ''}
+                              onChange={(e) => setJoinQuantities(prev => ({ ...prev, [group.id]: e.target.value }))}
+                            />
+                          </div>
+                          <Button
+                            variant="secondary"
+                            size="sm"
+                            disabled={!joinQuantities[group.id] || parseFloat(joinQuantities[group.id]) <= 0 || parseFloat(joinQuantities[group.id]) > spaceRemaining}
+                            onClick={() => handleJoinCoOp(group.id, parseFloat(joinQuantities[group.id]))}
+                          >
+                            Join
+                          </Button>
+                        </div>
+                      )}
+                      <p className="text-[9px] text-slate-400 italic">
+                        {spaceRemaining} kg remaining space
+                      </p>
+                    </div>
+                  );
+                })}
+              </div>
+            ) : (
+              <p className="text-xs text-text-secondary text-center py-4 bg-slate-50 border border-dashed border-[#E5E7EB] rounded-2xl italic">
+                No active group buys for this crop yet.
+              </p>
+            )}
+
+            {/* Toggle Start Group Buy Form */}
+            {!showCreateCoOp ? (
+              <Button
+                variant="outline"
+                fullWidth
+                size="sm"
+                onClick={() => setShowCreateCoOp(true)}
+              >
+                Start a new Group Buy
+              </Button>
+            ) : (
+              <div className="p-4 bg-white border border-[#E5E7EB] rounded-2xl space-y-4 shadow-sm">
+                <h4 className="text-xs font-bold text-text-primary border-b pb-1.5">
+                  Configure Co-op Parameters
+                </h4>
+                
+                <div className="space-y-3">
+                  <div>
+                    <label className="text-[10px] font-bold text-text-primary">Co-op Target Quantity (kg)</label>
+                    <input
+                      type="number"
+                      min="50"
+                      max={listing.remainingKg}
+                      className="w-full h-[38px] px-3 mt-1 border border-[#E5E7EB] rounded-xl text-xs"
+                      value={coOpTarget}
+                      onChange={(e) => setCoOpTarget(e.target.value)}
+                    />
+                  </div>
+
+                  <div>
+                    <label className="text-[10px] font-bold text-text-primary">Your Initial Share (kg)</label>
+                    <input
+                      type="number"
+                      min="10"
+                      max={coOpTarget}
+                      className="w-full h-[38px] px-3 mt-1 border border-[#E5E7EB] rounded-xl text-xs"
+                      value={coOpContribution}
+                      onChange={(e) => setCoOpContribution(e.target.value)}
+                    />
+                  </div>
+                </div>
+
+                <div className="flex gap-2 pt-2">
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    className="flex-1"
+                    onClick={() => setShowCreateCoOp(false)}
+                  >
+                    Cancel
+                  </Button>
+                  <Button
+                    variant="primary"
+                    size="sm"
+                    className="flex-1"
+                    disabled={!coOpTarget || !coOpContribution || parseFloat(coOpContribution) > parseFloat(coOpTarget)}
+                    onClick={handleCreateCoOp}
+                  >
+                    Launch Group
+                  </Button>
+                </div>
+              </div>
+            )}
+          </Card>
         </div>
       </div>
+
+      {/* Payment Simulation Modal */}
+      {pendingPaymentMember && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4">
+          <div className="w-full max-w-md bg-white border border-[#E5E7EB] rounded-3xl p-6 space-y-6 shadow-2xl animate-in fade-in zoom-in duration-200">
+            <div className="text-center space-y-2">
+              <div className="w-12 h-12 rounded-full bg-[#EAF4EE] text-[#2D6A4F] font-bold flex items-center justify-center mx-auto text-xl">
+                💳
+              </div>
+              <h3 className="text-lg font-bold text-[#111827]">
+                Complete Co-Op Share Payment
+              </h3>
+              <p className="text-xs text-text-secondary">
+                Simulate paystack checkout verification for your co-op contribution.
+              </p>
+            </div>
+
+            <div className="p-4 bg-slate-50 rounded-2xl text-xs space-y-3 font-medium text-slate-700">
+              <div className="flex justify-between">
+                <span>Produce Crop</span>
+                <span className="font-bold text-text-primary">{listing.cropType}</span>
+              </div>
+              <div className="flex justify-between">
+                <span>Contribution Share</span>
+                <span className="font-mono font-bold text-text-primary">{pendingPaymentMember.quantityKg} kg</span>
+              </div>
+              <div className="flex justify-between border-t border-[#E5E7EB] pt-2.5">
+                <span>Amount to Pay</span>
+                <span className="font-mono font-extrabold text-base text-[#2D6A4F]">
+                  GHS {pendingPaymentMember.paidAmount.toFixed(2)}
+                </span>
+              </div>
+            </div>
+
+            <div className="flex flex-col gap-2.5">
+              <Button
+                variant="primary"
+                fullWidth
+                size="lg"
+                onClick={handleSimulateCoOpPayment}
+              >
+                Simulate Successful Payment
+              </Button>
+              <Button
+                variant="ghost"
+                fullWidth
+                onClick={() => setPendingPaymentMember(null)}
+              >
+                Close & Pay Later
+              </Button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
