@@ -24,6 +24,7 @@ import superadminContentRoutes from './superadmin/content.routes';
 import superadminConfigRoutes from './superadmin/config.routes';
 import superadminAuditRoutes from './superadmin/audit.routes';
 import superadminUssdRoutes from './superadmin/ussd.routes';
+import coopRoutes from './coop.routes';
 import { authenticateToken, requireRole } from '../middleware/auth.middleware';
 import { Role } from '../prisma/generated-client';
 import { DeliveryController } from '../controllers/delivery.controller';
@@ -61,6 +62,7 @@ router.use('/preorders', preorderRoutes);
 router.use('/demand', demandRoutes);
 router.use('/farm', farmRoutes);
 router.use('/orders', invoiceRoutes);
+router.use('/coops', coopRoutes);
 router.use('/', analyticsRoutes);
 router.use('/', smsRoutes);
 

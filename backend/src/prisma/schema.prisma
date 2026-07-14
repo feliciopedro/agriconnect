@@ -127,6 +127,8 @@ model User {
   ban                UserBan?           @relation("BannedUser")
   bansIssued         UserBan[]          @relation("UserBanner")
   ussdSessions       UssdSession[]
+  createdCoOps       CoOpGroup[]        @relation("CreatedCoOps")
+  coOpContributions  CoOpMember[]       @relation("CoOpContributions")
 
   @@index([role])
   @@index([latitude, longitude])
@@ -197,6 +199,7 @@ model ProduceListing {
   traceability       TraceabilityRecord?
   traceEvents        TraceEvent[]
   preOrders          PreOrder[]          @relation("PreOrderListing")
+  coOps              CoOpGroup[]
   plantingLogId      String?
   plantingLog        PlantingLog?        @relation(fields: [plantingLogId], references: [id], onDelete: SetNull)
 
@@ -258,6 +261,7 @@ model Order {
   reviews           Review[]
   messages          Message[]
   preOrder          PreOrder?        @relation("PreOrderOrder")
+  coOpMember        CoOpMember?      @relation("CoOpMemberOrder")
 
   @@index([buyerId])
   @@index([listingId])
@@ -554,4 +558,48 @@ model StoredFile {
   mimeType  String
   fileData  String   // base64 data
   createdAt DateTime @default(now())
+}
+
+enum CoOpStatus {
+  AWAITING_CONTRIBUTIONS
+  SUCCESSFUL
+  EXPIRED
+  CANCELLED
+}
+
+model CoOpGroup {
+  id             String          @id @default(uuid())
+  listingId      String
+  listing        ProduceListing  @relation(fields: [listingId], references: [id], onDelete: Cascade)
+  creatorId      String
+  creator        User            @relation("CreatedCoOps", fields: [creatorId], references: [id], onDelete: Cascade)
+  targetQuantity Float           // target kg to reach
+  currentQuantity Float          @default(0) // total kg contributed so far
+  deadline       DateTime
+  status         CoOpStatus      @default(AWAITING_CONTRIBUTIONS)
+  createdAt      DateTime        @default(now())
+  updatedAt      DateTime        @updatedAt
+  members        CoOpMember[]
+
+  @@index([listingId])
+  @@index([status])
+}
+
+model CoOpMember {
+  id             String          @id @default(uuid())
+  coOpGroupId    String
+  coOpGroup      CoOpGroup       @relation(fields: [coOpGroupId], references: [id], onDelete: Cascade)
+  buyerId        String
+  buyer          User            @relation("CoOpContributions", fields: [buyerId], references: [id], onDelete: Cascade)
+  quantityKg     Float           // contributed kg
+  paidAmount     Float           // quantityKg * pricePerKg
+  paymentStatus  PaymentStatus   @default(UNPAID)
+  paystackRef    String?
+  orderId        String?         @unique // populated once co-op is successful
+  order          Order?          @relation("CoOpMemberOrder", fields: [orderId], references: [id], onDelete: SetNull)
+  createdAt      DateTime        @default(now())
+  updatedAt      DateTime        @updatedAt
+
+  @@unique([coOpGroupId, buyerId])
+  @@index([buyerId])
 }

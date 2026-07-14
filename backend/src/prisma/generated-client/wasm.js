@@ -433,6 +433,31 @@ exports.Prisma.StoredFileScalarFieldEnum = {
   createdAt: 'createdAt'
 };
 
+exports.Prisma.CoOpGroupScalarFieldEnum = {
+  id: 'id',
+  listingId: 'listingId',
+  creatorId: 'creatorId',
+  targetQuantity: 'targetQuantity',
+  currentQuantity: 'currentQuantity',
+  deadline: 'deadline',
+  status: 'status',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.CoOpMemberScalarFieldEnum = {
+  id: 'id',
+  coOpGroupId: 'coOpGroupId',
+  buyerId: 'buyerId',
+  quantityKg: 'quantityKg',
+  paidAmount: 'paidAmount',
+  paymentStatus: 'paymentStatus',
+  paystackRef: 'paystackRef',
+  orderId: 'orderId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -553,6 +578,13 @@ exports.PreOrderStatus = exports.$Enums.PreOrderStatus = {
   EXPIRED: 'EXPIRED'
 };
 
+exports.CoOpStatus = exports.$Enums.CoOpStatus = {
+  AWAITING_CONTRIBUTIONS: 'AWAITING_CONTRIBUTIONS',
+  SUCCESSFUL: 'SUCCESSFUL',
+  EXPIRED: 'EXPIRED',
+  CANCELLED: 'CANCELLED'
+};
+
 exports.Prisma.ModelName = {
   User: 'User',
   FarmerProfile: 'FarmerProfile',
@@ -576,7 +608,9 @@ exports.Prisma.ModelName = {
   AuditLog: 'AuditLog',
   SystemConfig: 'SystemConfig',
   UserBan: 'UserBan',
-  StoredFile: 'StoredFile'
+  StoredFile: 'StoredFile',
+  CoOpGroup: 'CoOpGroup',
+  CoOpMember: 'CoOpMember'
 };
 
 /**

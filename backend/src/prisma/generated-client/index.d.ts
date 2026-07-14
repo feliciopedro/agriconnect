@@ -128,6 +128,16 @@ export type UserBan = $Result.DefaultSelection<Prisma.$UserBanPayload>
  * 
  */
 export type StoredFile = $Result.DefaultSelection<Prisma.$StoredFilePayload>
+/**
+ * Model CoOpGroup
+ * 
+ */
+export type CoOpGroup = $Result.DefaultSelection<Prisma.$CoOpGroupPayload>
+/**
+ * Model CoOpMember
+ * 
+ */
+export type CoOpMember = $Result.DefaultSelection<Prisma.$CoOpMemberPayload>
 
 /**
  * Enums
@@ -259,6 +269,16 @@ export const PreOrderStatus: {
 
 export type PreOrderStatus = (typeof PreOrderStatus)[keyof typeof PreOrderStatus]
 
+
+export const CoOpStatus: {
+  AWAITING_CONTRIBUTIONS: 'AWAITING_CONTRIBUTIONS',
+  SUCCESSFUL: 'SUCCESSFUL',
+  EXPIRED: 'EXPIRED',
+  CANCELLED: 'CANCELLED'
+};
+
+export type CoOpStatus = (typeof CoOpStatus)[keyof typeof CoOpStatus]
+
 }
 
 export type Role = $Enums.Role
@@ -308,6 +328,10 @@ export const UssdMessageStatus: typeof $Enums.UssdMessageStatus
 export type PreOrderStatus = $Enums.PreOrderStatus
 
 export const PreOrderStatus: typeof $Enums.PreOrderStatus
+
+export type CoOpStatus = $Enums.CoOpStatus
+
+export const CoOpStatus: typeof $Enums.CoOpStatus
 
 /**
  * ##  Prisma Client ʲˢ
@@ -661,6 +685,26 @@ export class PrismaClient<
     * ```
     */
   get storedFile(): Prisma.StoredFileDelegate<ExtArgs>;
+
+  /**
+   * `prisma.coOpGroup`: Exposes CRUD operations for the **CoOpGroup** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more CoOpGroups
+    * const coOpGroups = await prisma.coOpGroup.findMany()
+    * ```
+    */
+  get coOpGroup(): Prisma.CoOpGroupDelegate<ExtArgs>;
+
+  /**
+   * `prisma.coOpMember`: Exposes CRUD operations for the **CoOpMember** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more CoOpMembers
+    * const coOpMembers = await prisma.coOpMember.findMany()
+    * ```
+    */
+  get coOpMember(): Prisma.CoOpMemberDelegate<ExtArgs>;
 }
 
 export namespace Prisma {
@@ -1124,7 +1168,9 @@ export namespace Prisma {
     AuditLog: 'AuditLog',
     SystemConfig: 'SystemConfig',
     UserBan: 'UserBan',
-    StoredFile: 'StoredFile'
+    StoredFile: 'StoredFile',
+    CoOpGroup: 'CoOpGroup',
+    CoOpMember: 'CoOpMember'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -1140,7 +1186,7 @@ export namespace Prisma {
 
   export type TypeMap<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, ClientOptions = {}> = {
     meta: {
-      modelProps: "user" | "farmerProfile" | "buyerProfile" | "transportProfile" | "produceListing" | "traceabilityRecord" | "traceEvent" | "order" | "deliveryRequest" | "review" | "notification" | "message" | "otpCode" | "ussdSession" | "ussdAuditLog" | "ussdShortMessage" | "preOrder" | "plantingLog" | "plantingInput" | "auditLog" | "systemConfig" | "userBan" | "storedFile"
+      modelProps: "user" | "farmerProfile" | "buyerProfile" | "transportProfile" | "produceListing" | "traceabilityRecord" | "traceEvent" | "order" | "deliveryRequest" | "review" | "notification" | "message" | "otpCode" | "ussdSession" | "ussdAuditLog" | "ussdShortMessage" | "preOrder" | "plantingLog" | "plantingInput" | "auditLog" | "systemConfig" | "userBan" | "storedFile" | "coOpGroup" | "coOpMember"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -2754,6 +2800,146 @@ export namespace Prisma {
           }
         }
       }
+      CoOpGroup: {
+        payload: Prisma.$CoOpGroupPayload<ExtArgs>
+        fields: Prisma.CoOpGroupFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.CoOpGroupFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CoOpGroupPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.CoOpGroupFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CoOpGroupPayload>
+          }
+          findFirst: {
+            args: Prisma.CoOpGroupFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CoOpGroupPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.CoOpGroupFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CoOpGroupPayload>
+          }
+          findMany: {
+            args: Prisma.CoOpGroupFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CoOpGroupPayload>[]
+          }
+          create: {
+            args: Prisma.CoOpGroupCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CoOpGroupPayload>
+          }
+          createMany: {
+            args: Prisma.CoOpGroupCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.CoOpGroupCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CoOpGroupPayload>[]
+          }
+          delete: {
+            args: Prisma.CoOpGroupDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CoOpGroupPayload>
+          }
+          update: {
+            args: Prisma.CoOpGroupUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CoOpGroupPayload>
+          }
+          deleteMany: {
+            args: Prisma.CoOpGroupDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.CoOpGroupUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.CoOpGroupUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CoOpGroupPayload>
+          }
+          aggregate: {
+            args: Prisma.CoOpGroupAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateCoOpGroup>
+          }
+          groupBy: {
+            args: Prisma.CoOpGroupGroupByArgs<ExtArgs>
+            result: $Utils.Optional<CoOpGroupGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.CoOpGroupCountArgs<ExtArgs>
+            result: $Utils.Optional<CoOpGroupCountAggregateOutputType> | number
+          }
+        }
+      }
+      CoOpMember: {
+        payload: Prisma.$CoOpMemberPayload<ExtArgs>
+        fields: Prisma.CoOpMemberFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.CoOpMemberFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CoOpMemberPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.CoOpMemberFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CoOpMemberPayload>
+          }
+          findFirst: {
+            args: Prisma.CoOpMemberFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CoOpMemberPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.CoOpMemberFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CoOpMemberPayload>
+          }
+          findMany: {
+            args: Prisma.CoOpMemberFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CoOpMemberPayload>[]
+          }
+          create: {
+            args: Prisma.CoOpMemberCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CoOpMemberPayload>
+          }
+          createMany: {
+            args: Prisma.CoOpMemberCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.CoOpMemberCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CoOpMemberPayload>[]
+          }
+          delete: {
+            args: Prisma.CoOpMemberDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CoOpMemberPayload>
+          }
+          update: {
+            args: Prisma.CoOpMemberUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CoOpMemberPayload>
+          }
+          deleteMany: {
+            args: Prisma.CoOpMemberDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.CoOpMemberUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.CoOpMemberUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CoOpMemberPayload>
+          }
+          aggregate: {
+            args: Prisma.CoOpMemberAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateCoOpMember>
+          }
+          groupBy: {
+            args: Prisma.CoOpMemberGroupByArgs<ExtArgs>
+            result: $Utils.Optional<CoOpMemberGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.CoOpMemberCountArgs<ExtArgs>
+            result: $Utils.Optional<CoOpMemberCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -2930,6 +3116,8 @@ export namespace Prisma {
     configsUpdated: number
     bansIssued: number
     ussdSessions: number
+    createdCoOps: number
+    coOpContributions: number
   }
 
   export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -2948,6 +3136,8 @@ export namespace Prisma {
     configsUpdated?: boolean | UserCountOutputTypeCountConfigsUpdatedArgs
     bansIssued?: boolean | UserCountOutputTypeCountBansIssuedArgs
     ussdSessions?: boolean | UserCountOutputTypeCountUssdSessionsArgs
+    createdCoOps?: boolean | UserCountOutputTypeCountCreatedCoOpsArgs
+    coOpContributions?: boolean | UserCountOutputTypeCountCoOpContributionsArgs
   }
 
   // Custom InputTypes
@@ -3066,6 +3256,20 @@ export namespace Prisma {
     where?: UssdSessionWhereInput
   }
 
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountCreatedCoOpsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: CoOpGroupWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountCoOpContributionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: CoOpMemberWhereInput
+  }
+
 
   /**
    * Count Type ProduceListingCountOutputType
@@ -3075,12 +3279,14 @@ export namespace Prisma {
     orders: number
     traceEvents: number
     preOrders: number
+    coOps: number
   }
 
   export type ProduceListingCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     orders?: boolean | ProduceListingCountOutputTypeCountOrdersArgs
     traceEvents?: boolean | ProduceListingCountOutputTypeCountTraceEventsArgs
     preOrders?: boolean | ProduceListingCountOutputTypeCountPreOrdersArgs
+    coOps?: boolean | ProduceListingCountOutputTypeCountCoOpsArgs
   }
 
   // Custom InputTypes
@@ -3113,6 +3319,13 @@ export namespace Prisma {
    */
   export type ProduceListingCountOutputTypeCountPreOrdersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: PreOrderWhereInput
+  }
+
+  /**
+   * ProduceListingCountOutputType without action
+   */
+  export type ProduceListingCountOutputTypeCountCoOpsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: CoOpGroupWhereInput
   }
 
 
@@ -3193,6 +3406,37 @@ export namespace Prisma {
    */
   export type PlantingLogCountOutputTypeCountListingsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: ProduceListingWhereInput
+  }
+
+
+  /**
+   * Count Type CoOpGroupCountOutputType
+   */
+
+  export type CoOpGroupCountOutputType = {
+    members: number
+  }
+
+  export type CoOpGroupCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    members?: boolean | CoOpGroupCountOutputTypeCountMembersArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * CoOpGroupCountOutputType without action
+   */
+  export type CoOpGroupCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CoOpGroupCountOutputType
+     */
+    select?: CoOpGroupCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * CoOpGroupCountOutputType without action
+   */
+  export type CoOpGroupCountOutputTypeCountMembersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: CoOpMemberWhereInput
   }
 
 
@@ -3517,6 +3761,8 @@ export namespace Prisma {
     ban?: boolean | User$banArgs<ExtArgs>
     bansIssued?: boolean | User$bansIssuedArgs<ExtArgs>
     ussdSessions?: boolean | User$ussdSessionsArgs<ExtArgs>
+    createdCoOps?: boolean | User$createdCoOpsArgs<ExtArgs>
+    coOpContributions?: boolean | User$coOpContributionsArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
@@ -3580,6 +3826,8 @@ export namespace Prisma {
     ban?: boolean | User$banArgs<ExtArgs>
     bansIssued?: boolean | User$bansIssuedArgs<ExtArgs>
     ussdSessions?: boolean | User$ussdSessionsArgs<ExtArgs>
+    createdCoOps?: boolean | User$createdCoOpsArgs<ExtArgs>
+    coOpContributions?: boolean | User$coOpContributionsArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type UserIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -3606,6 +3854,8 @@ export namespace Prisma {
       ban: Prisma.$UserBanPayload<ExtArgs> | null
       bansIssued: Prisma.$UserBanPayload<ExtArgs>[]
       ussdSessions: Prisma.$UssdSessionPayload<ExtArgs>[]
+      createdCoOps: Prisma.$CoOpGroupPayload<ExtArgs>[]
+      coOpContributions: Prisma.$CoOpMemberPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -4008,6 +4258,8 @@ export namespace Prisma {
     ban<T extends User$banArgs<ExtArgs> = {}>(args?: Subset<T, User$banArgs<ExtArgs>>): Prisma__UserBanClient<$Result.GetResult<Prisma.$UserBanPayload<ExtArgs>, T, "findUniqueOrThrow"> | null, null, ExtArgs>
     bansIssued<T extends User$bansIssuedArgs<ExtArgs> = {}>(args?: Subset<T, User$bansIssuedArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserBanPayload<ExtArgs>, T, "findMany"> | Null>
     ussdSessions<T extends User$ussdSessionsArgs<ExtArgs> = {}>(args?: Subset<T, User$ussdSessionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UssdSessionPayload<ExtArgs>, T, "findMany"> | Null>
+    createdCoOps<T extends User$createdCoOpsArgs<ExtArgs> = {}>(args?: Subset<T, User$createdCoOpsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CoOpGroupPayload<ExtArgs>, T, "findMany"> | Null>
+    coOpContributions<T extends User$coOpContributionsArgs<ExtArgs> = {}>(args?: Subset<T, User$coOpContributionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CoOpMemberPayload<ExtArgs>, T, "findMany"> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -4725,6 +4977,46 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: UssdSessionScalarFieldEnum | UssdSessionScalarFieldEnum[]
+  }
+
+  /**
+   * User.createdCoOps
+   */
+  export type User$createdCoOpsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CoOpGroup
+     */
+    select?: CoOpGroupSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CoOpGroupInclude<ExtArgs> | null
+    where?: CoOpGroupWhereInput
+    orderBy?: CoOpGroupOrderByWithRelationInput | CoOpGroupOrderByWithRelationInput[]
+    cursor?: CoOpGroupWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: CoOpGroupScalarFieldEnum | CoOpGroupScalarFieldEnum[]
+  }
+
+  /**
+   * User.coOpContributions
+   */
+  export type User$coOpContributionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CoOpMember
+     */
+    select?: CoOpMemberSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CoOpMemberInclude<ExtArgs> | null
+    where?: CoOpMemberWhereInput
+    orderBy?: CoOpMemberOrderByWithRelationInput | CoOpMemberOrderByWithRelationInput[]
+    cursor?: CoOpMemberWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: CoOpMemberScalarFieldEnum | CoOpMemberScalarFieldEnum[]
   }
 
   /**
@@ -8110,6 +8402,7 @@ export namespace Prisma {
     traceability?: boolean | ProduceListing$traceabilityArgs<ExtArgs>
     traceEvents?: boolean | ProduceListing$traceEventsArgs<ExtArgs>
     preOrders?: boolean | ProduceListing$preOrdersArgs<ExtArgs>
+    coOps?: boolean | ProduceListing$coOpsArgs<ExtArgs>
     plantingLog?: boolean | ProduceListing$plantingLogArgs<ExtArgs>
     _count?: boolean | ProduceListingCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["produceListing"]>
@@ -8166,6 +8459,7 @@ export namespace Prisma {
     traceability?: boolean | ProduceListing$traceabilityArgs<ExtArgs>
     traceEvents?: boolean | ProduceListing$traceEventsArgs<ExtArgs>
     preOrders?: boolean | ProduceListing$preOrdersArgs<ExtArgs>
+    coOps?: boolean | ProduceListing$coOpsArgs<ExtArgs>
     plantingLog?: boolean | ProduceListing$plantingLogArgs<ExtArgs>
     _count?: boolean | ProduceListingCountOutputTypeDefaultArgs<ExtArgs>
   }
@@ -8182,6 +8476,7 @@ export namespace Prisma {
       traceability: Prisma.$TraceabilityRecordPayload<ExtArgs> | null
       traceEvents: Prisma.$TraceEventPayload<ExtArgs>[]
       preOrders: Prisma.$PreOrderPayload<ExtArgs>[]
+      coOps: Prisma.$CoOpGroupPayload<ExtArgs>[]
       plantingLog: Prisma.$PlantingLogPayload<ExtArgs> | null
     }
     scalars: $Extensions.GetPayloadResult<{
@@ -8573,6 +8868,7 @@ export namespace Prisma {
     traceability<T extends ProduceListing$traceabilityArgs<ExtArgs> = {}>(args?: Subset<T, ProduceListing$traceabilityArgs<ExtArgs>>): Prisma__TraceabilityRecordClient<$Result.GetResult<Prisma.$TraceabilityRecordPayload<ExtArgs>, T, "findUniqueOrThrow"> | null, null, ExtArgs>
     traceEvents<T extends ProduceListing$traceEventsArgs<ExtArgs> = {}>(args?: Subset<T, ProduceListing$traceEventsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TraceEventPayload<ExtArgs>, T, "findMany"> | Null>
     preOrders<T extends ProduceListing$preOrdersArgs<ExtArgs> = {}>(args?: Subset<T, ProduceListing$preOrdersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PreOrderPayload<ExtArgs>, T, "findMany"> | Null>
+    coOps<T extends ProduceListing$coOpsArgs<ExtArgs> = {}>(args?: Subset<T, ProduceListing$coOpsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CoOpGroupPayload<ExtArgs>, T, "findMany"> | Null>
     plantingLog<T extends ProduceListing$plantingLogArgs<ExtArgs> = {}>(args?: Subset<T, ProduceListing$plantingLogArgs<ExtArgs>>): Prisma__PlantingLogClient<$Result.GetResult<Prisma.$PlantingLogPayload<ExtArgs>, T, "findUniqueOrThrow"> | null, null, ExtArgs>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -9012,6 +9308,26 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: PreOrderScalarFieldEnum | PreOrderScalarFieldEnum[]
+  }
+
+  /**
+   * ProduceListing.coOps
+   */
+  export type ProduceListing$coOpsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CoOpGroup
+     */
+    select?: CoOpGroupSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CoOpGroupInclude<ExtArgs> | null
+    where?: CoOpGroupWhereInput
+    orderBy?: CoOpGroupOrderByWithRelationInput | CoOpGroupOrderByWithRelationInput[]
+    cursor?: CoOpGroupWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: CoOpGroupScalarFieldEnum | CoOpGroupScalarFieldEnum[]
   }
 
   /**
@@ -11313,6 +11629,7 @@ export namespace Prisma {
     reviews?: boolean | Order$reviewsArgs<ExtArgs>
     messages?: boolean | Order$messagesArgs<ExtArgs>
     preOrder?: boolean | Order$preOrderArgs<ExtArgs>
+    coOpMember?: boolean | Order$coOpMemberArgs<ExtArgs>
     _count?: boolean | OrderCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["order"]>
 
@@ -11355,6 +11672,7 @@ export namespace Prisma {
     reviews?: boolean | Order$reviewsArgs<ExtArgs>
     messages?: boolean | Order$messagesArgs<ExtArgs>
     preOrder?: boolean | Order$preOrderArgs<ExtArgs>
+    coOpMember?: boolean | Order$coOpMemberArgs<ExtArgs>
     _count?: boolean | OrderCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type OrderIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -11371,6 +11689,7 @@ export namespace Prisma {
       reviews: Prisma.$ReviewPayload<ExtArgs>[]
       messages: Prisma.$MessagePayload<ExtArgs>[]
       preOrder: Prisma.$PreOrderPayload<ExtArgs> | null
+      coOpMember: Prisma.$CoOpMemberPayload<ExtArgs> | null
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -11755,6 +12074,7 @@ export namespace Prisma {
     reviews<T extends Order$reviewsArgs<ExtArgs> = {}>(args?: Subset<T, Order$reviewsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ReviewPayload<ExtArgs>, T, "findMany"> | Null>
     messages<T extends Order$messagesArgs<ExtArgs> = {}>(args?: Subset<T, Order$messagesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MessagePayload<ExtArgs>, T, "findMany"> | Null>
     preOrder<T extends Order$preOrderArgs<ExtArgs> = {}>(args?: Subset<T, Order$preOrderArgs<ExtArgs>>): Prisma__PreOrderClient<$Result.GetResult<Prisma.$PreOrderPayload<ExtArgs>, T, "findUniqueOrThrow"> | null, null, ExtArgs>
+    coOpMember<T extends Order$coOpMemberArgs<ExtArgs> = {}>(args?: Subset<T, Order$coOpMemberArgs<ExtArgs>>): Prisma__CoOpMemberClient<$Result.GetResult<Prisma.$CoOpMemberPayload<ExtArgs>, T, "findUniqueOrThrow"> | null, null, ExtArgs>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -12181,6 +12501,21 @@ export namespace Prisma {
      */
     include?: PreOrderInclude<ExtArgs> | null
     where?: PreOrderWhereInput
+  }
+
+  /**
+   * Order.coOpMember
+   */
+  export type Order$coOpMemberArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CoOpMember
+     */
+    select?: CoOpMemberSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CoOpMemberInclude<ExtArgs> | null
+    where?: CoOpMemberWhereInput
   }
 
   /**
@@ -27299,6 +27634,2115 @@ export namespace Prisma {
 
 
   /**
+   * Model CoOpGroup
+   */
+
+  export type AggregateCoOpGroup = {
+    _count: CoOpGroupCountAggregateOutputType | null
+    _avg: CoOpGroupAvgAggregateOutputType | null
+    _sum: CoOpGroupSumAggregateOutputType | null
+    _min: CoOpGroupMinAggregateOutputType | null
+    _max: CoOpGroupMaxAggregateOutputType | null
+  }
+
+  export type CoOpGroupAvgAggregateOutputType = {
+    targetQuantity: number | null
+    currentQuantity: number | null
+  }
+
+  export type CoOpGroupSumAggregateOutputType = {
+    targetQuantity: number | null
+    currentQuantity: number | null
+  }
+
+  export type CoOpGroupMinAggregateOutputType = {
+    id: string | null
+    listingId: string | null
+    creatorId: string | null
+    targetQuantity: number | null
+    currentQuantity: number | null
+    deadline: Date | null
+    status: $Enums.CoOpStatus | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type CoOpGroupMaxAggregateOutputType = {
+    id: string | null
+    listingId: string | null
+    creatorId: string | null
+    targetQuantity: number | null
+    currentQuantity: number | null
+    deadline: Date | null
+    status: $Enums.CoOpStatus | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type CoOpGroupCountAggregateOutputType = {
+    id: number
+    listingId: number
+    creatorId: number
+    targetQuantity: number
+    currentQuantity: number
+    deadline: number
+    status: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type CoOpGroupAvgAggregateInputType = {
+    targetQuantity?: true
+    currentQuantity?: true
+  }
+
+  export type CoOpGroupSumAggregateInputType = {
+    targetQuantity?: true
+    currentQuantity?: true
+  }
+
+  export type CoOpGroupMinAggregateInputType = {
+    id?: true
+    listingId?: true
+    creatorId?: true
+    targetQuantity?: true
+    currentQuantity?: true
+    deadline?: true
+    status?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type CoOpGroupMaxAggregateInputType = {
+    id?: true
+    listingId?: true
+    creatorId?: true
+    targetQuantity?: true
+    currentQuantity?: true
+    deadline?: true
+    status?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type CoOpGroupCountAggregateInputType = {
+    id?: true
+    listingId?: true
+    creatorId?: true
+    targetQuantity?: true
+    currentQuantity?: true
+    deadline?: true
+    status?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type CoOpGroupAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which CoOpGroup to aggregate.
+     */
+    where?: CoOpGroupWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CoOpGroups to fetch.
+     */
+    orderBy?: CoOpGroupOrderByWithRelationInput | CoOpGroupOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: CoOpGroupWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CoOpGroups from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CoOpGroups.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned CoOpGroups
+    **/
+    _count?: true | CoOpGroupCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: CoOpGroupAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: CoOpGroupSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: CoOpGroupMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: CoOpGroupMaxAggregateInputType
+  }
+
+  export type GetCoOpGroupAggregateType<T extends CoOpGroupAggregateArgs> = {
+        [P in keyof T & keyof AggregateCoOpGroup]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateCoOpGroup[P]>
+      : GetScalarType<T[P], AggregateCoOpGroup[P]>
+  }
+
+
+
+
+  export type CoOpGroupGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: CoOpGroupWhereInput
+    orderBy?: CoOpGroupOrderByWithAggregationInput | CoOpGroupOrderByWithAggregationInput[]
+    by: CoOpGroupScalarFieldEnum[] | CoOpGroupScalarFieldEnum
+    having?: CoOpGroupScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: CoOpGroupCountAggregateInputType | true
+    _avg?: CoOpGroupAvgAggregateInputType
+    _sum?: CoOpGroupSumAggregateInputType
+    _min?: CoOpGroupMinAggregateInputType
+    _max?: CoOpGroupMaxAggregateInputType
+  }
+
+  export type CoOpGroupGroupByOutputType = {
+    id: string
+    listingId: string
+    creatorId: string
+    targetQuantity: number
+    currentQuantity: number
+    deadline: Date
+    status: $Enums.CoOpStatus
+    createdAt: Date
+    updatedAt: Date
+    _count: CoOpGroupCountAggregateOutputType | null
+    _avg: CoOpGroupAvgAggregateOutputType | null
+    _sum: CoOpGroupSumAggregateOutputType | null
+    _min: CoOpGroupMinAggregateOutputType | null
+    _max: CoOpGroupMaxAggregateOutputType | null
+  }
+
+  type GetCoOpGroupGroupByPayload<T extends CoOpGroupGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<CoOpGroupGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof CoOpGroupGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], CoOpGroupGroupByOutputType[P]>
+            : GetScalarType<T[P], CoOpGroupGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type CoOpGroupSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    listingId?: boolean
+    creatorId?: boolean
+    targetQuantity?: boolean
+    currentQuantity?: boolean
+    deadline?: boolean
+    status?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    listing?: boolean | ProduceListingDefaultArgs<ExtArgs>
+    creator?: boolean | UserDefaultArgs<ExtArgs>
+    members?: boolean | CoOpGroup$membersArgs<ExtArgs>
+    _count?: boolean | CoOpGroupCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["coOpGroup"]>
+
+  export type CoOpGroupSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    listingId?: boolean
+    creatorId?: boolean
+    targetQuantity?: boolean
+    currentQuantity?: boolean
+    deadline?: boolean
+    status?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    listing?: boolean | ProduceListingDefaultArgs<ExtArgs>
+    creator?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["coOpGroup"]>
+
+  export type CoOpGroupSelectScalar = {
+    id?: boolean
+    listingId?: boolean
+    creatorId?: boolean
+    targetQuantity?: boolean
+    currentQuantity?: boolean
+    deadline?: boolean
+    status?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type CoOpGroupInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    listing?: boolean | ProduceListingDefaultArgs<ExtArgs>
+    creator?: boolean | UserDefaultArgs<ExtArgs>
+    members?: boolean | CoOpGroup$membersArgs<ExtArgs>
+    _count?: boolean | CoOpGroupCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type CoOpGroupIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    listing?: boolean | ProduceListingDefaultArgs<ExtArgs>
+    creator?: boolean | UserDefaultArgs<ExtArgs>
+  }
+
+  export type $CoOpGroupPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "CoOpGroup"
+    objects: {
+      listing: Prisma.$ProduceListingPayload<ExtArgs>
+      creator: Prisma.$UserPayload<ExtArgs>
+      members: Prisma.$CoOpMemberPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      listingId: string
+      creatorId: string
+      targetQuantity: number
+      currentQuantity: number
+      deadline: Date
+      status: $Enums.CoOpStatus
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["coOpGroup"]>
+    composites: {}
+  }
+
+  type CoOpGroupGetPayload<S extends boolean | null | undefined | CoOpGroupDefaultArgs> = $Result.GetResult<Prisma.$CoOpGroupPayload, S>
+
+  type CoOpGroupCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<CoOpGroupFindManyArgs, 'select' | 'include' | 'distinct'> & {
+      select?: CoOpGroupCountAggregateInputType | true
+    }
+
+  export interface CoOpGroupDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['CoOpGroup'], meta: { name: 'CoOpGroup' } }
+    /**
+     * Find zero or one CoOpGroup that matches the filter.
+     * @param {CoOpGroupFindUniqueArgs} args - Arguments to find a CoOpGroup
+     * @example
+     * // Get one CoOpGroup
+     * const coOpGroup = await prisma.coOpGroup.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends CoOpGroupFindUniqueArgs>(args: SelectSubset<T, CoOpGroupFindUniqueArgs<ExtArgs>>): Prisma__CoOpGroupClient<$Result.GetResult<Prisma.$CoOpGroupPayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
+
+    /**
+     * Find one CoOpGroup that matches the filter or throw an error with `error.code='P2025'` 
+     * if no matches were found.
+     * @param {CoOpGroupFindUniqueOrThrowArgs} args - Arguments to find a CoOpGroup
+     * @example
+     * // Get one CoOpGroup
+     * const coOpGroup = await prisma.coOpGroup.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends CoOpGroupFindUniqueOrThrowArgs>(args: SelectSubset<T, CoOpGroupFindUniqueOrThrowArgs<ExtArgs>>): Prisma__CoOpGroupClient<$Result.GetResult<Prisma.$CoOpGroupPayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
+
+    /**
+     * Find the first CoOpGroup that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CoOpGroupFindFirstArgs} args - Arguments to find a CoOpGroup
+     * @example
+     * // Get one CoOpGroup
+     * const coOpGroup = await prisma.coOpGroup.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends CoOpGroupFindFirstArgs>(args?: SelectSubset<T, CoOpGroupFindFirstArgs<ExtArgs>>): Prisma__CoOpGroupClient<$Result.GetResult<Prisma.$CoOpGroupPayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
+
+    /**
+     * Find the first CoOpGroup that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CoOpGroupFindFirstOrThrowArgs} args - Arguments to find a CoOpGroup
+     * @example
+     * // Get one CoOpGroup
+     * const coOpGroup = await prisma.coOpGroup.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends CoOpGroupFindFirstOrThrowArgs>(args?: SelectSubset<T, CoOpGroupFindFirstOrThrowArgs<ExtArgs>>): Prisma__CoOpGroupClient<$Result.GetResult<Prisma.$CoOpGroupPayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
+
+    /**
+     * Find zero or more CoOpGroups that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CoOpGroupFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all CoOpGroups
+     * const coOpGroups = await prisma.coOpGroup.findMany()
+     * 
+     * // Get first 10 CoOpGroups
+     * const coOpGroups = await prisma.coOpGroup.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const coOpGroupWithIdOnly = await prisma.coOpGroup.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends CoOpGroupFindManyArgs>(args?: SelectSubset<T, CoOpGroupFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CoOpGroupPayload<ExtArgs>, T, "findMany">>
+
+    /**
+     * Create a CoOpGroup.
+     * @param {CoOpGroupCreateArgs} args - Arguments to create a CoOpGroup.
+     * @example
+     * // Create one CoOpGroup
+     * const CoOpGroup = await prisma.coOpGroup.create({
+     *   data: {
+     *     // ... data to create a CoOpGroup
+     *   }
+     * })
+     * 
+     */
+    create<T extends CoOpGroupCreateArgs>(args: SelectSubset<T, CoOpGroupCreateArgs<ExtArgs>>): Prisma__CoOpGroupClient<$Result.GetResult<Prisma.$CoOpGroupPayload<ExtArgs>, T, "create">, never, ExtArgs>
+
+    /**
+     * Create many CoOpGroups.
+     * @param {CoOpGroupCreateManyArgs} args - Arguments to create many CoOpGroups.
+     * @example
+     * // Create many CoOpGroups
+     * const coOpGroup = await prisma.coOpGroup.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends CoOpGroupCreateManyArgs>(args?: SelectSubset<T, CoOpGroupCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many CoOpGroups and returns the data saved in the database.
+     * @param {CoOpGroupCreateManyAndReturnArgs} args - Arguments to create many CoOpGroups.
+     * @example
+     * // Create many CoOpGroups
+     * const coOpGroup = await prisma.coOpGroup.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many CoOpGroups and only return the `id`
+     * const coOpGroupWithIdOnly = await prisma.coOpGroup.createManyAndReturn({ 
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends CoOpGroupCreateManyAndReturnArgs>(args?: SelectSubset<T, CoOpGroupCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CoOpGroupPayload<ExtArgs>, T, "createManyAndReturn">>
+
+    /**
+     * Delete a CoOpGroup.
+     * @param {CoOpGroupDeleteArgs} args - Arguments to delete one CoOpGroup.
+     * @example
+     * // Delete one CoOpGroup
+     * const CoOpGroup = await prisma.coOpGroup.delete({
+     *   where: {
+     *     // ... filter to delete one CoOpGroup
+     *   }
+     * })
+     * 
+     */
+    delete<T extends CoOpGroupDeleteArgs>(args: SelectSubset<T, CoOpGroupDeleteArgs<ExtArgs>>): Prisma__CoOpGroupClient<$Result.GetResult<Prisma.$CoOpGroupPayload<ExtArgs>, T, "delete">, never, ExtArgs>
+
+    /**
+     * Update one CoOpGroup.
+     * @param {CoOpGroupUpdateArgs} args - Arguments to update one CoOpGroup.
+     * @example
+     * // Update one CoOpGroup
+     * const coOpGroup = await prisma.coOpGroup.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends CoOpGroupUpdateArgs>(args: SelectSubset<T, CoOpGroupUpdateArgs<ExtArgs>>): Prisma__CoOpGroupClient<$Result.GetResult<Prisma.$CoOpGroupPayload<ExtArgs>, T, "update">, never, ExtArgs>
+
+    /**
+     * Delete zero or more CoOpGroups.
+     * @param {CoOpGroupDeleteManyArgs} args - Arguments to filter CoOpGroups to delete.
+     * @example
+     * // Delete a few CoOpGroups
+     * const { count } = await prisma.coOpGroup.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends CoOpGroupDeleteManyArgs>(args?: SelectSubset<T, CoOpGroupDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more CoOpGroups.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CoOpGroupUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many CoOpGroups
+     * const coOpGroup = await prisma.coOpGroup.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends CoOpGroupUpdateManyArgs>(args: SelectSubset<T, CoOpGroupUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one CoOpGroup.
+     * @param {CoOpGroupUpsertArgs} args - Arguments to update or create a CoOpGroup.
+     * @example
+     * // Update or create a CoOpGroup
+     * const coOpGroup = await prisma.coOpGroup.upsert({
+     *   create: {
+     *     // ... data to create a CoOpGroup
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the CoOpGroup we want to update
+     *   }
+     * })
+     */
+    upsert<T extends CoOpGroupUpsertArgs>(args: SelectSubset<T, CoOpGroupUpsertArgs<ExtArgs>>): Prisma__CoOpGroupClient<$Result.GetResult<Prisma.$CoOpGroupPayload<ExtArgs>, T, "upsert">, never, ExtArgs>
+
+
+    /**
+     * Count the number of CoOpGroups.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CoOpGroupCountArgs} args - Arguments to filter CoOpGroups to count.
+     * @example
+     * // Count the number of CoOpGroups
+     * const count = await prisma.coOpGroup.count({
+     *   where: {
+     *     // ... the filter for the CoOpGroups we want to count
+     *   }
+     * })
+    **/
+    count<T extends CoOpGroupCountArgs>(
+      args?: Subset<T, CoOpGroupCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], CoOpGroupCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a CoOpGroup.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CoOpGroupAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends CoOpGroupAggregateArgs>(args: Subset<T, CoOpGroupAggregateArgs>): Prisma.PrismaPromise<GetCoOpGroupAggregateType<T>>
+
+    /**
+     * Group by CoOpGroup.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CoOpGroupGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends CoOpGroupGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: CoOpGroupGroupByArgs['orderBy'] }
+        : { orderBy?: CoOpGroupGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, CoOpGroupGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetCoOpGroupGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the CoOpGroup model
+   */
+  readonly fields: CoOpGroupFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for CoOpGroup.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__CoOpGroupClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    listing<T extends ProduceListingDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ProduceListingDefaultArgs<ExtArgs>>): Prisma__ProduceListingClient<$Result.GetResult<Prisma.$ProduceListingPayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
+    creator<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
+    members<T extends CoOpGroup$membersArgs<ExtArgs> = {}>(args?: Subset<T, CoOpGroup$membersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CoOpMemberPayload<ExtArgs>, T, "findMany"> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the CoOpGroup model
+   */ 
+  interface CoOpGroupFieldRefs {
+    readonly id: FieldRef<"CoOpGroup", 'String'>
+    readonly listingId: FieldRef<"CoOpGroup", 'String'>
+    readonly creatorId: FieldRef<"CoOpGroup", 'String'>
+    readonly targetQuantity: FieldRef<"CoOpGroup", 'Float'>
+    readonly currentQuantity: FieldRef<"CoOpGroup", 'Float'>
+    readonly deadline: FieldRef<"CoOpGroup", 'DateTime'>
+    readonly status: FieldRef<"CoOpGroup", 'CoOpStatus'>
+    readonly createdAt: FieldRef<"CoOpGroup", 'DateTime'>
+    readonly updatedAt: FieldRef<"CoOpGroup", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * CoOpGroup findUnique
+   */
+  export type CoOpGroupFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CoOpGroup
+     */
+    select?: CoOpGroupSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CoOpGroupInclude<ExtArgs> | null
+    /**
+     * Filter, which CoOpGroup to fetch.
+     */
+    where: CoOpGroupWhereUniqueInput
+  }
+
+  /**
+   * CoOpGroup findUniqueOrThrow
+   */
+  export type CoOpGroupFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CoOpGroup
+     */
+    select?: CoOpGroupSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CoOpGroupInclude<ExtArgs> | null
+    /**
+     * Filter, which CoOpGroup to fetch.
+     */
+    where: CoOpGroupWhereUniqueInput
+  }
+
+  /**
+   * CoOpGroup findFirst
+   */
+  export type CoOpGroupFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CoOpGroup
+     */
+    select?: CoOpGroupSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CoOpGroupInclude<ExtArgs> | null
+    /**
+     * Filter, which CoOpGroup to fetch.
+     */
+    where?: CoOpGroupWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CoOpGroups to fetch.
+     */
+    orderBy?: CoOpGroupOrderByWithRelationInput | CoOpGroupOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for CoOpGroups.
+     */
+    cursor?: CoOpGroupWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CoOpGroups from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CoOpGroups.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of CoOpGroups.
+     */
+    distinct?: CoOpGroupScalarFieldEnum | CoOpGroupScalarFieldEnum[]
+  }
+
+  /**
+   * CoOpGroup findFirstOrThrow
+   */
+  export type CoOpGroupFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CoOpGroup
+     */
+    select?: CoOpGroupSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CoOpGroupInclude<ExtArgs> | null
+    /**
+     * Filter, which CoOpGroup to fetch.
+     */
+    where?: CoOpGroupWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CoOpGroups to fetch.
+     */
+    orderBy?: CoOpGroupOrderByWithRelationInput | CoOpGroupOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for CoOpGroups.
+     */
+    cursor?: CoOpGroupWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CoOpGroups from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CoOpGroups.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of CoOpGroups.
+     */
+    distinct?: CoOpGroupScalarFieldEnum | CoOpGroupScalarFieldEnum[]
+  }
+
+  /**
+   * CoOpGroup findMany
+   */
+  export type CoOpGroupFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CoOpGroup
+     */
+    select?: CoOpGroupSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CoOpGroupInclude<ExtArgs> | null
+    /**
+     * Filter, which CoOpGroups to fetch.
+     */
+    where?: CoOpGroupWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CoOpGroups to fetch.
+     */
+    orderBy?: CoOpGroupOrderByWithRelationInput | CoOpGroupOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing CoOpGroups.
+     */
+    cursor?: CoOpGroupWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CoOpGroups from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CoOpGroups.
+     */
+    skip?: number
+    distinct?: CoOpGroupScalarFieldEnum | CoOpGroupScalarFieldEnum[]
+  }
+
+  /**
+   * CoOpGroup create
+   */
+  export type CoOpGroupCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CoOpGroup
+     */
+    select?: CoOpGroupSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CoOpGroupInclude<ExtArgs> | null
+    /**
+     * The data needed to create a CoOpGroup.
+     */
+    data: XOR<CoOpGroupCreateInput, CoOpGroupUncheckedCreateInput>
+  }
+
+  /**
+   * CoOpGroup createMany
+   */
+  export type CoOpGroupCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many CoOpGroups.
+     */
+    data: CoOpGroupCreateManyInput | CoOpGroupCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * CoOpGroup createManyAndReturn
+   */
+  export type CoOpGroupCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CoOpGroup
+     */
+    select?: CoOpGroupSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * The data used to create many CoOpGroups.
+     */
+    data: CoOpGroupCreateManyInput | CoOpGroupCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CoOpGroupIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * CoOpGroup update
+   */
+  export type CoOpGroupUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CoOpGroup
+     */
+    select?: CoOpGroupSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CoOpGroupInclude<ExtArgs> | null
+    /**
+     * The data needed to update a CoOpGroup.
+     */
+    data: XOR<CoOpGroupUpdateInput, CoOpGroupUncheckedUpdateInput>
+    /**
+     * Choose, which CoOpGroup to update.
+     */
+    where: CoOpGroupWhereUniqueInput
+  }
+
+  /**
+   * CoOpGroup updateMany
+   */
+  export type CoOpGroupUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update CoOpGroups.
+     */
+    data: XOR<CoOpGroupUpdateManyMutationInput, CoOpGroupUncheckedUpdateManyInput>
+    /**
+     * Filter which CoOpGroups to update
+     */
+    where?: CoOpGroupWhereInput
+  }
+
+  /**
+   * CoOpGroup upsert
+   */
+  export type CoOpGroupUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CoOpGroup
+     */
+    select?: CoOpGroupSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CoOpGroupInclude<ExtArgs> | null
+    /**
+     * The filter to search for the CoOpGroup to update in case it exists.
+     */
+    where: CoOpGroupWhereUniqueInput
+    /**
+     * In case the CoOpGroup found by the `where` argument doesn't exist, create a new CoOpGroup with this data.
+     */
+    create: XOR<CoOpGroupCreateInput, CoOpGroupUncheckedCreateInput>
+    /**
+     * In case the CoOpGroup was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<CoOpGroupUpdateInput, CoOpGroupUncheckedUpdateInput>
+  }
+
+  /**
+   * CoOpGroup delete
+   */
+  export type CoOpGroupDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CoOpGroup
+     */
+    select?: CoOpGroupSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CoOpGroupInclude<ExtArgs> | null
+    /**
+     * Filter which CoOpGroup to delete.
+     */
+    where: CoOpGroupWhereUniqueInput
+  }
+
+  /**
+   * CoOpGroup deleteMany
+   */
+  export type CoOpGroupDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which CoOpGroups to delete
+     */
+    where?: CoOpGroupWhereInput
+  }
+
+  /**
+   * CoOpGroup.members
+   */
+  export type CoOpGroup$membersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CoOpMember
+     */
+    select?: CoOpMemberSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CoOpMemberInclude<ExtArgs> | null
+    where?: CoOpMemberWhereInput
+    orderBy?: CoOpMemberOrderByWithRelationInput | CoOpMemberOrderByWithRelationInput[]
+    cursor?: CoOpMemberWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: CoOpMemberScalarFieldEnum | CoOpMemberScalarFieldEnum[]
+  }
+
+  /**
+   * CoOpGroup without action
+   */
+  export type CoOpGroupDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CoOpGroup
+     */
+    select?: CoOpGroupSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CoOpGroupInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model CoOpMember
+   */
+
+  export type AggregateCoOpMember = {
+    _count: CoOpMemberCountAggregateOutputType | null
+    _avg: CoOpMemberAvgAggregateOutputType | null
+    _sum: CoOpMemberSumAggregateOutputType | null
+    _min: CoOpMemberMinAggregateOutputType | null
+    _max: CoOpMemberMaxAggregateOutputType | null
+  }
+
+  export type CoOpMemberAvgAggregateOutputType = {
+    quantityKg: number | null
+    paidAmount: number | null
+  }
+
+  export type CoOpMemberSumAggregateOutputType = {
+    quantityKg: number | null
+    paidAmount: number | null
+  }
+
+  export type CoOpMemberMinAggregateOutputType = {
+    id: string | null
+    coOpGroupId: string | null
+    buyerId: string | null
+    quantityKg: number | null
+    paidAmount: number | null
+    paymentStatus: $Enums.PaymentStatus | null
+    paystackRef: string | null
+    orderId: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type CoOpMemberMaxAggregateOutputType = {
+    id: string | null
+    coOpGroupId: string | null
+    buyerId: string | null
+    quantityKg: number | null
+    paidAmount: number | null
+    paymentStatus: $Enums.PaymentStatus | null
+    paystackRef: string | null
+    orderId: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type CoOpMemberCountAggregateOutputType = {
+    id: number
+    coOpGroupId: number
+    buyerId: number
+    quantityKg: number
+    paidAmount: number
+    paymentStatus: number
+    paystackRef: number
+    orderId: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type CoOpMemberAvgAggregateInputType = {
+    quantityKg?: true
+    paidAmount?: true
+  }
+
+  export type CoOpMemberSumAggregateInputType = {
+    quantityKg?: true
+    paidAmount?: true
+  }
+
+  export type CoOpMemberMinAggregateInputType = {
+    id?: true
+    coOpGroupId?: true
+    buyerId?: true
+    quantityKg?: true
+    paidAmount?: true
+    paymentStatus?: true
+    paystackRef?: true
+    orderId?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type CoOpMemberMaxAggregateInputType = {
+    id?: true
+    coOpGroupId?: true
+    buyerId?: true
+    quantityKg?: true
+    paidAmount?: true
+    paymentStatus?: true
+    paystackRef?: true
+    orderId?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type CoOpMemberCountAggregateInputType = {
+    id?: true
+    coOpGroupId?: true
+    buyerId?: true
+    quantityKg?: true
+    paidAmount?: true
+    paymentStatus?: true
+    paystackRef?: true
+    orderId?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type CoOpMemberAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which CoOpMember to aggregate.
+     */
+    where?: CoOpMemberWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CoOpMembers to fetch.
+     */
+    orderBy?: CoOpMemberOrderByWithRelationInput | CoOpMemberOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: CoOpMemberWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CoOpMembers from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CoOpMembers.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned CoOpMembers
+    **/
+    _count?: true | CoOpMemberCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: CoOpMemberAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: CoOpMemberSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: CoOpMemberMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: CoOpMemberMaxAggregateInputType
+  }
+
+  export type GetCoOpMemberAggregateType<T extends CoOpMemberAggregateArgs> = {
+        [P in keyof T & keyof AggregateCoOpMember]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateCoOpMember[P]>
+      : GetScalarType<T[P], AggregateCoOpMember[P]>
+  }
+
+
+
+
+  export type CoOpMemberGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: CoOpMemberWhereInput
+    orderBy?: CoOpMemberOrderByWithAggregationInput | CoOpMemberOrderByWithAggregationInput[]
+    by: CoOpMemberScalarFieldEnum[] | CoOpMemberScalarFieldEnum
+    having?: CoOpMemberScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: CoOpMemberCountAggregateInputType | true
+    _avg?: CoOpMemberAvgAggregateInputType
+    _sum?: CoOpMemberSumAggregateInputType
+    _min?: CoOpMemberMinAggregateInputType
+    _max?: CoOpMemberMaxAggregateInputType
+  }
+
+  export type CoOpMemberGroupByOutputType = {
+    id: string
+    coOpGroupId: string
+    buyerId: string
+    quantityKg: number
+    paidAmount: number
+    paymentStatus: $Enums.PaymentStatus
+    paystackRef: string | null
+    orderId: string | null
+    createdAt: Date
+    updatedAt: Date
+    _count: CoOpMemberCountAggregateOutputType | null
+    _avg: CoOpMemberAvgAggregateOutputType | null
+    _sum: CoOpMemberSumAggregateOutputType | null
+    _min: CoOpMemberMinAggregateOutputType | null
+    _max: CoOpMemberMaxAggregateOutputType | null
+  }
+
+  type GetCoOpMemberGroupByPayload<T extends CoOpMemberGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<CoOpMemberGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof CoOpMemberGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], CoOpMemberGroupByOutputType[P]>
+            : GetScalarType<T[P], CoOpMemberGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type CoOpMemberSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    coOpGroupId?: boolean
+    buyerId?: boolean
+    quantityKg?: boolean
+    paidAmount?: boolean
+    paymentStatus?: boolean
+    paystackRef?: boolean
+    orderId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    coOpGroup?: boolean | CoOpGroupDefaultArgs<ExtArgs>
+    buyer?: boolean | UserDefaultArgs<ExtArgs>
+    order?: boolean | CoOpMember$orderArgs<ExtArgs>
+  }, ExtArgs["result"]["coOpMember"]>
+
+  export type CoOpMemberSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    coOpGroupId?: boolean
+    buyerId?: boolean
+    quantityKg?: boolean
+    paidAmount?: boolean
+    paymentStatus?: boolean
+    paystackRef?: boolean
+    orderId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    coOpGroup?: boolean | CoOpGroupDefaultArgs<ExtArgs>
+    buyer?: boolean | UserDefaultArgs<ExtArgs>
+    order?: boolean | CoOpMember$orderArgs<ExtArgs>
+  }, ExtArgs["result"]["coOpMember"]>
+
+  export type CoOpMemberSelectScalar = {
+    id?: boolean
+    coOpGroupId?: boolean
+    buyerId?: boolean
+    quantityKg?: boolean
+    paidAmount?: boolean
+    paymentStatus?: boolean
+    paystackRef?: boolean
+    orderId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type CoOpMemberInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    coOpGroup?: boolean | CoOpGroupDefaultArgs<ExtArgs>
+    buyer?: boolean | UserDefaultArgs<ExtArgs>
+    order?: boolean | CoOpMember$orderArgs<ExtArgs>
+  }
+  export type CoOpMemberIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    coOpGroup?: boolean | CoOpGroupDefaultArgs<ExtArgs>
+    buyer?: boolean | UserDefaultArgs<ExtArgs>
+    order?: boolean | CoOpMember$orderArgs<ExtArgs>
+  }
+
+  export type $CoOpMemberPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "CoOpMember"
+    objects: {
+      coOpGroup: Prisma.$CoOpGroupPayload<ExtArgs>
+      buyer: Prisma.$UserPayload<ExtArgs>
+      order: Prisma.$OrderPayload<ExtArgs> | null
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      coOpGroupId: string
+      buyerId: string
+      quantityKg: number
+      paidAmount: number
+      paymentStatus: $Enums.PaymentStatus
+      paystackRef: string | null
+      orderId: string | null
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["coOpMember"]>
+    composites: {}
+  }
+
+  type CoOpMemberGetPayload<S extends boolean | null | undefined | CoOpMemberDefaultArgs> = $Result.GetResult<Prisma.$CoOpMemberPayload, S>
+
+  type CoOpMemberCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<CoOpMemberFindManyArgs, 'select' | 'include' | 'distinct'> & {
+      select?: CoOpMemberCountAggregateInputType | true
+    }
+
+  export interface CoOpMemberDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['CoOpMember'], meta: { name: 'CoOpMember' } }
+    /**
+     * Find zero or one CoOpMember that matches the filter.
+     * @param {CoOpMemberFindUniqueArgs} args - Arguments to find a CoOpMember
+     * @example
+     * // Get one CoOpMember
+     * const coOpMember = await prisma.coOpMember.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends CoOpMemberFindUniqueArgs>(args: SelectSubset<T, CoOpMemberFindUniqueArgs<ExtArgs>>): Prisma__CoOpMemberClient<$Result.GetResult<Prisma.$CoOpMemberPayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
+
+    /**
+     * Find one CoOpMember that matches the filter or throw an error with `error.code='P2025'` 
+     * if no matches were found.
+     * @param {CoOpMemberFindUniqueOrThrowArgs} args - Arguments to find a CoOpMember
+     * @example
+     * // Get one CoOpMember
+     * const coOpMember = await prisma.coOpMember.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends CoOpMemberFindUniqueOrThrowArgs>(args: SelectSubset<T, CoOpMemberFindUniqueOrThrowArgs<ExtArgs>>): Prisma__CoOpMemberClient<$Result.GetResult<Prisma.$CoOpMemberPayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
+
+    /**
+     * Find the first CoOpMember that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CoOpMemberFindFirstArgs} args - Arguments to find a CoOpMember
+     * @example
+     * // Get one CoOpMember
+     * const coOpMember = await prisma.coOpMember.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends CoOpMemberFindFirstArgs>(args?: SelectSubset<T, CoOpMemberFindFirstArgs<ExtArgs>>): Prisma__CoOpMemberClient<$Result.GetResult<Prisma.$CoOpMemberPayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
+
+    /**
+     * Find the first CoOpMember that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CoOpMemberFindFirstOrThrowArgs} args - Arguments to find a CoOpMember
+     * @example
+     * // Get one CoOpMember
+     * const coOpMember = await prisma.coOpMember.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends CoOpMemberFindFirstOrThrowArgs>(args?: SelectSubset<T, CoOpMemberFindFirstOrThrowArgs<ExtArgs>>): Prisma__CoOpMemberClient<$Result.GetResult<Prisma.$CoOpMemberPayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
+
+    /**
+     * Find zero or more CoOpMembers that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CoOpMemberFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all CoOpMembers
+     * const coOpMembers = await prisma.coOpMember.findMany()
+     * 
+     * // Get first 10 CoOpMembers
+     * const coOpMembers = await prisma.coOpMember.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const coOpMemberWithIdOnly = await prisma.coOpMember.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends CoOpMemberFindManyArgs>(args?: SelectSubset<T, CoOpMemberFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CoOpMemberPayload<ExtArgs>, T, "findMany">>
+
+    /**
+     * Create a CoOpMember.
+     * @param {CoOpMemberCreateArgs} args - Arguments to create a CoOpMember.
+     * @example
+     * // Create one CoOpMember
+     * const CoOpMember = await prisma.coOpMember.create({
+     *   data: {
+     *     // ... data to create a CoOpMember
+     *   }
+     * })
+     * 
+     */
+    create<T extends CoOpMemberCreateArgs>(args: SelectSubset<T, CoOpMemberCreateArgs<ExtArgs>>): Prisma__CoOpMemberClient<$Result.GetResult<Prisma.$CoOpMemberPayload<ExtArgs>, T, "create">, never, ExtArgs>
+
+    /**
+     * Create many CoOpMembers.
+     * @param {CoOpMemberCreateManyArgs} args - Arguments to create many CoOpMembers.
+     * @example
+     * // Create many CoOpMembers
+     * const coOpMember = await prisma.coOpMember.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends CoOpMemberCreateManyArgs>(args?: SelectSubset<T, CoOpMemberCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many CoOpMembers and returns the data saved in the database.
+     * @param {CoOpMemberCreateManyAndReturnArgs} args - Arguments to create many CoOpMembers.
+     * @example
+     * // Create many CoOpMembers
+     * const coOpMember = await prisma.coOpMember.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many CoOpMembers and only return the `id`
+     * const coOpMemberWithIdOnly = await prisma.coOpMember.createManyAndReturn({ 
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends CoOpMemberCreateManyAndReturnArgs>(args?: SelectSubset<T, CoOpMemberCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CoOpMemberPayload<ExtArgs>, T, "createManyAndReturn">>
+
+    /**
+     * Delete a CoOpMember.
+     * @param {CoOpMemberDeleteArgs} args - Arguments to delete one CoOpMember.
+     * @example
+     * // Delete one CoOpMember
+     * const CoOpMember = await prisma.coOpMember.delete({
+     *   where: {
+     *     // ... filter to delete one CoOpMember
+     *   }
+     * })
+     * 
+     */
+    delete<T extends CoOpMemberDeleteArgs>(args: SelectSubset<T, CoOpMemberDeleteArgs<ExtArgs>>): Prisma__CoOpMemberClient<$Result.GetResult<Prisma.$CoOpMemberPayload<ExtArgs>, T, "delete">, never, ExtArgs>
+
+    /**
+     * Update one CoOpMember.
+     * @param {CoOpMemberUpdateArgs} args - Arguments to update one CoOpMember.
+     * @example
+     * // Update one CoOpMember
+     * const coOpMember = await prisma.coOpMember.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends CoOpMemberUpdateArgs>(args: SelectSubset<T, CoOpMemberUpdateArgs<ExtArgs>>): Prisma__CoOpMemberClient<$Result.GetResult<Prisma.$CoOpMemberPayload<ExtArgs>, T, "update">, never, ExtArgs>
+
+    /**
+     * Delete zero or more CoOpMembers.
+     * @param {CoOpMemberDeleteManyArgs} args - Arguments to filter CoOpMembers to delete.
+     * @example
+     * // Delete a few CoOpMembers
+     * const { count } = await prisma.coOpMember.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends CoOpMemberDeleteManyArgs>(args?: SelectSubset<T, CoOpMemberDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more CoOpMembers.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CoOpMemberUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many CoOpMembers
+     * const coOpMember = await prisma.coOpMember.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends CoOpMemberUpdateManyArgs>(args: SelectSubset<T, CoOpMemberUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one CoOpMember.
+     * @param {CoOpMemberUpsertArgs} args - Arguments to update or create a CoOpMember.
+     * @example
+     * // Update or create a CoOpMember
+     * const coOpMember = await prisma.coOpMember.upsert({
+     *   create: {
+     *     // ... data to create a CoOpMember
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the CoOpMember we want to update
+     *   }
+     * })
+     */
+    upsert<T extends CoOpMemberUpsertArgs>(args: SelectSubset<T, CoOpMemberUpsertArgs<ExtArgs>>): Prisma__CoOpMemberClient<$Result.GetResult<Prisma.$CoOpMemberPayload<ExtArgs>, T, "upsert">, never, ExtArgs>
+
+
+    /**
+     * Count the number of CoOpMembers.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CoOpMemberCountArgs} args - Arguments to filter CoOpMembers to count.
+     * @example
+     * // Count the number of CoOpMembers
+     * const count = await prisma.coOpMember.count({
+     *   where: {
+     *     // ... the filter for the CoOpMembers we want to count
+     *   }
+     * })
+    **/
+    count<T extends CoOpMemberCountArgs>(
+      args?: Subset<T, CoOpMemberCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], CoOpMemberCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a CoOpMember.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CoOpMemberAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends CoOpMemberAggregateArgs>(args: Subset<T, CoOpMemberAggregateArgs>): Prisma.PrismaPromise<GetCoOpMemberAggregateType<T>>
+
+    /**
+     * Group by CoOpMember.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CoOpMemberGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends CoOpMemberGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: CoOpMemberGroupByArgs['orderBy'] }
+        : { orderBy?: CoOpMemberGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, CoOpMemberGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetCoOpMemberGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the CoOpMember model
+   */
+  readonly fields: CoOpMemberFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for CoOpMember.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__CoOpMemberClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    coOpGroup<T extends CoOpGroupDefaultArgs<ExtArgs> = {}>(args?: Subset<T, CoOpGroupDefaultArgs<ExtArgs>>): Prisma__CoOpGroupClient<$Result.GetResult<Prisma.$CoOpGroupPayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
+    buyer<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
+    order<T extends CoOpMember$orderArgs<ExtArgs> = {}>(args?: Subset<T, CoOpMember$orderArgs<ExtArgs>>): Prisma__OrderClient<$Result.GetResult<Prisma.$OrderPayload<ExtArgs>, T, "findUniqueOrThrow"> | null, null, ExtArgs>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the CoOpMember model
+   */ 
+  interface CoOpMemberFieldRefs {
+    readonly id: FieldRef<"CoOpMember", 'String'>
+    readonly coOpGroupId: FieldRef<"CoOpMember", 'String'>
+    readonly buyerId: FieldRef<"CoOpMember", 'String'>
+    readonly quantityKg: FieldRef<"CoOpMember", 'Float'>
+    readonly paidAmount: FieldRef<"CoOpMember", 'Float'>
+    readonly paymentStatus: FieldRef<"CoOpMember", 'PaymentStatus'>
+    readonly paystackRef: FieldRef<"CoOpMember", 'String'>
+    readonly orderId: FieldRef<"CoOpMember", 'String'>
+    readonly createdAt: FieldRef<"CoOpMember", 'DateTime'>
+    readonly updatedAt: FieldRef<"CoOpMember", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * CoOpMember findUnique
+   */
+  export type CoOpMemberFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CoOpMember
+     */
+    select?: CoOpMemberSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CoOpMemberInclude<ExtArgs> | null
+    /**
+     * Filter, which CoOpMember to fetch.
+     */
+    where: CoOpMemberWhereUniqueInput
+  }
+
+  /**
+   * CoOpMember findUniqueOrThrow
+   */
+  export type CoOpMemberFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CoOpMember
+     */
+    select?: CoOpMemberSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CoOpMemberInclude<ExtArgs> | null
+    /**
+     * Filter, which CoOpMember to fetch.
+     */
+    where: CoOpMemberWhereUniqueInput
+  }
+
+  /**
+   * CoOpMember findFirst
+   */
+  export type CoOpMemberFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CoOpMember
+     */
+    select?: CoOpMemberSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CoOpMemberInclude<ExtArgs> | null
+    /**
+     * Filter, which CoOpMember to fetch.
+     */
+    where?: CoOpMemberWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CoOpMembers to fetch.
+     */
+    orderBy?: CoOpMemberOrderByWithRelationInput | CoOpMemberOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for CoOpMembers.
+     */
+    cursor?: CoOpMemberWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CoOpMembers from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CoOpMembers.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of CoOpMembers.
+     */
+    distinct?: CoOpMemberScalarFieldEnum | CoOpMemberScalarFieldEnum[]
+  }
+
+  /**
+   * CoOpMember findFirstOrThrow
+   */
+  export type CoOpMemberFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CoOpMember
+     */
+    select?: CoOpMemberSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CoOpMemberInclude<ExtArgs> | null
+    /**
+     * Filter, which CoOpMember to fetch.
+     */
+    where?: CoOpMemberWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CoOpMembers to fetch.
+     */
+    orderBy?: CoOpMemberOrderByWithRelationInput | CoOpMemberOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for CoOpMembers.
+     */
+    cursor?: CoOpMemberWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CoOpMembers from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CoOpMembers.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of CoOpMembers.
+     */
+    distinct?: CoOpMemberScalarFieldEnum | CoOpMemberScalarFieldEnum[]
+  }
+
+  /**
+   * CoOpMember findMany
+   */
+  export type CoOpMemberFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CoOpMember
+     */
+    select?: CoOpMemberSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CoOpMemberInclude<ExtArgs> | null
+    /**
+     * Filter, which CoOpMembers to fetch.
+     */
+    where?: CoOpMemberWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CoOpMembers to fetch.
+     */
+    orderBy?: CoOpMemberOrderByWithRelationInput | CoOpMemberOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing CoOpMembers.
+     */
+    cursor?: CoOpMemberWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CoOpMembers from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CoOpMembers.
+     */
+    skip?: number
+    distinct?: CoOpMemberScalarFieldEnum | CoOpMemberScalarFieldEnum[]
+  }
+
+  /**
+   * CoOpMember create
+   */
+  export type CoOpMemberCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CoOpMember
+     */
+    select?: CoOpMemberSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CoOpMemberInclude<ExtArgs> | null
+    /**
+     * The data needed to create a CoOpMember.
+     */
+    data: XOR<CoOpMemberCreateInput, CoOpMemberUncheckedCreateInput>
+  }
+
+  /**
+   * CoOpMember createMany
+   */
+  export type CoOpMemberCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many CoOpMembers.
+     */
+    data: CoOpMemberCreateManyInput | CoOpMemberCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * CoOpMember createManyAndReturn
+   */
+  export type CoOpMemberCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CoOpMember
+     */
+    select?: CoOpMemberSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * The data used to create many CoOpMembers.
+     */
+    data: CoOpMemberCreateManyInput | CoOpMemberCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CoOpMemberIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * CoOpMember update
+   */
+  export type CoOpMemberUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CoOpMember
+     */
+    select?: CoOpMemberSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CoOpMemberInclude<ExtArgs> | null
+    /**
+     * The data needed to update a CoOpMember.
+     */
+    data: XOR<CoOpMemberUpdateInput, CoOpMemberUncheckedUpdateInput>
+    /**
+     * Choose, which CoOpMember to update.
+     */
+    where: CoOpMemberWhereUniqueInput
+  }
+
+  /**
+   * CoOpMember updateMany
+   */
+  export type CoOpMemberUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update CoOpMembers.
+     */
+    data: XOR<CoOpMemberUpdateManyMutationInput, CoOpMemberUncheckedUpdateManyInput>
+    /**
+     * Filter which CoOpMembers to update
+     */
+    where?: CoOpMemberWhereInput
+  }
+
+  /**
+   * CoOpMember upsert
+   */
+  export type CoOpMemberUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CoOpMember
+     */
+    select?: CoOpMemberSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CoOpMemberInclude<ExtArgs> | null
+    /**
+     * The filter to search for the CoOpMember to update in case it exists.
+     */
+    where: CoOpMemberWhereUniqueInput
+    /**
+     * In case the CoOpMember found by the `where` argument doesn't exist, create a new CoOpMember with this data.
+     */
+    create: XOR<CoOpMemberCreateInput, CoOpMemberUncheckedCreateInput>
+    /**
+     * In case the CoOpMember was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<CoOpMemberUpdateInput, CoOpMemberUncheckedUpdateInput>
+  }
+
+  /**
+   * CoOpMember delete
+   */
+  export type CoOpMemberDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CoOpMember
+     */
+    select?: CoOpMemberSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CoOpMemberInclude<ExtArgs> | null
+    /**
+     * Filter which CoOpMember to delete.
+     */
+    where: CoOpMemberWhereUniqueInput
+  }
+
+  /**
+   * CoOpMember deleteMany
+   */
+  export type CoOpMemberDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which CoOpMembers to delete
+     */
+    where?: CoOpMemberWhereInput
+  }
+
+  /**
+   * CoOpMember.order
+   */
+  export type CoOpMember$orderArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Order
+     */
+    select?: OrderSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: OrderInclude<ExtArgs> | null
+    where?: OrderWhereInput
+  }
+
+  /**
+   * CoOpMember without action
+   */
+  export type CoOpMemberDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CoOpMember
+     */
+    select?: CoOpMemberSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CoOpMemberInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -27692,6 +30136,37 @@ export namespace Prisma {
   export type StoredFileScalarFieldEnum = (typeof StoredFileScalarFieldEnum)[keyof typeof StoredFileScalarFieldEnum]
 
 
+  export const CoOpGroupScalarFieldEnum: {
+    id: 'id',
+    listingId: 'listingId',
+    creatorId: 'creatorId',
+    targetQuantity: 'targetQuantity',
+    currentQuantity: 'currentQuantity',
+    deadline: 'deadline',
+    status: 'status',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type CoOpGroupScalarFieldEnum = (typeof CoOpGroupScalarFieldEnum)[keyof typeof CoOpGroupScalarFieldEnum]
+
+
+  export const CoOpMemberScalarFieldEnum: {
+    id: 'id',
+    coOpGroupId: 'coOpGroupId',
+    buyerId: 'buyerId',
+    quantityKg: 'quantityKg',
+    paidAmount: 'paidAmount',
+    paymentStatus: 'paymentStatus',
+    paystackRef: 'paystackRef',
+    orderId: 'orderId',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type CoOpMemberScalarFieldEnum = (typeof CoOpMemberScalarFieldEnum)[keyof typeof CoOpMemberScalarFieldEnum]
+
+
   export const SortOrder: {
     asc: 'asc',
     desc: 'desc'
@@ -27981,6 +30456,20 @@ export namespace Prisma {
    */
   export type ListEnumPreOrderStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'PreOrderStatus[]'>
     
+
+
+  /**
+   * Reference to a field of type 'CoOpStatus'
+   */
+  export type EnumCoOpStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'CoOpStatus'>
+    
+
+
+  /**
+   * Reference to a field of type 'CoOpStatus[]'
+   */
+  export type ListEnumCoOpStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'CoOpStatus[]'>
+    
   /**
    * Deep Input Types
    */
@@ -28026,6 +30515,8 @@ export namespace Prisma {
     ban?: XOR<UserBanNullableRelationFilter, UserBanWhereInput> | null
     bansIssued?: UserBanListRelationFilter
     ussdSessions?: UssdSessionListRelationFilter
+    createdCoOps?: CoOpGroupListRelationFilter
+    coOpContributions?: CoOpMemberListRelationFilter
   }
 
   export type UserOrderByWithRelationInput = {
@@ -28065,6 +30556,8 @@ export namespace Prisma {
     ban?: UserBanOrderByWithRelationInput
     bansIssued?: UserBanOrderByRelationAggregateInput
     ussdSessions?: UssdSessionOrderByRelationAggregateInput
+    createdCoOps?: CoOpGroupOrderByRelationAggregateInput
+    coOpContributions?: CoOpMemberOrderByRelationAggregateInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -28107,6 +30600,8 @@ export namespace Prisma {
     ban?: XOR<UserBanNullableRelationFilter, UserBanWhereInput> | null
     bansIssued?: UserBanListRelationFilter
     ussdSessions?: UssdSessionListRelationFilter
+    createdCoOps?: CoOpGroupListRelationFilter
+    coOpContributions?: CoOpMemberListRelationFilter
   }, "id" | "phone">
 
   export type UserOrderByWithAggregationInput = {
@@ -28406,6 +30901,7 @@ export namespace Prisma {
     traceability?: XOR<TraceabilityRecordNullableRelationFilter, TraceabilityRecordWhereInput> | null
     traceEvents?: TraceEventListRelationFilter
     preOrders?: PreOrderListRelationFilter
+    coOps?: CoOpGroupListRelationFilter
     plantingLog?: XOR<PlantingLogNullableRelationFilter, PlantingLogWhereInput> | null
   }
 
@@ -28434,6 +30930,7 @@ export namespace Prisma {
     traceability?: TraceabilityRecordOrderByWithRelationInput
     traceEvents?: TraceEventOrderByRelationAggregateInput
     preOrders?: PreOrderOrderByRelationAggregateInput
+    coOps?: CoOpGroupOrderByRelationAggregateInput
     plantingLog?: PlantingLogOrderByWithRelationInput
   }
 
@@ -28465,6 +30962,7 @@ export namespace Prisma {
     traceability?: XOR<TraceabilityRecordNullableRelationFilter, TraceabilityRecordWhereInput> | null
     traceEvents?: TraceEventListRelationFilter
     preOrders?: PreOrderListRelationFilter
+    coOps?: CoOpGroupListRelationFilter
     plantingLog?: XOR<PlantingLogNullableRelationFilter, PlantingLogWhereInput> | null
   }, "id" | "batchCode">
 
@@ -28692,6 +31190,7 @@ export namespace Prisma {
     reviews?: ReviewListRelationFilter
     messages?: MessageListRelationFilter
     preOrder?: XOR<PreOrderNullableRelationFilter, PreOrderWhereInput> | null
+    coOpMember?: XOR<CoOpMemberNullableRelationFilter, CoOpMemberWhereInput> | null
   }
 
   export type OrderOrderByWithRelationInput = {
@@ -28713,6 +31212,7 @@ export namespace Prisma {
     reviews?: ReviewOrderByRelationAggregateInput
     messages?: MessageOrderByRelationAggregateInput
     preOrder?: PreOrderOrderByWithRelationInput
+    coOpMember?: CoOpMemberOrderByWithRelationInput
   }
 
   export type OrderWhereUniqueInput = Prisma.AtLeast<{
@@ -28737,6 +31237,7 @@ export namespace Prisma {
     reviews?: ReviewListRelationFilter
     messages?: MessageListRelationFilter
     preOrder?: XOR<PreOrderNullableRelationFilter, PreOrderWhereInput> | null
+    coOpMember?: XOR<CoOpMemberNullableRelationFilter, CoOpMemberWhereInput> | null
   }, "id">
 
   export type OrderOrderByWithAggregationInput = {
@@ -30018,6 +32519,178 @@ export namespace Prisma {
     createdAt?: DateTimeWithAggregatesFilter<"StoredFile"> | Date | string
   }
 
+  export type CoOpGroupWhereInput = {
+    AND?: CoOpGroupWhereInput | CoOpGroupWhereInput[]
+    OR?: CoOpGroupWhereInput[]
+    NOT?: CoOpGroupWhereInput | CoOpGroupWhereInput[]
+    id?: StringFilter<"CoOpGroup"> | string
+    listingId?: StringFilter<"CoOpGroup"> | string
+    creatorId?: StringFilter<"CoOpGroup"> | string
+    targetQuantity?: FloatFilter<"CoOpGroup"> | number
+    currentQuantity?: FloatFilter<"CoOpGroup"> | number
+    deadline?: DateTimeFilter<"CoOpGroup"> | Date | string
+    status?: EnumCoOpStatusFilter<"CoOpGroup"> | $Enums.CoOpStatus
+    createdAt?: DateTimeFilter<"CoOpGroup"> | Date | string
+    updatedAt?: DateTimeFilter<"CoOpGroup"> | Date | string
+    listing?: XOR<ProduceListingRelationFilter, ProduceListingWhereInput>
+    creator?: XOR<UserRelationFilter, UserWhereInput>
+    members?: CoOpMemberListRelationFilter
+  }
+
+  export type CoOpGroupOrderByWithRelationInput = {
+    id?: SortOrder
+    listingId?: SortOrder
+    creatorId?: SortOrder
+    targetQuantity?: SortOrder
+    currentQuantity?: SortOrder
+    deadline?: SortOrder
+    status?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    listing?: ProduceListingOrderByWithRelationInput
+    creator?: UserOrderByWithRelationInput
+    members?: CoOpMemberOrderByRelationAggregateInput
+  }
+
+  export type CoOpGroupWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: CoOpGroupWhereInput | CoOpGroupWhereInput[]
+    OR?: CoOpGroupWhereInput[]
+    NOT?: CoOpGroupWhereInput | CoOpGroupWhereInput[]
+    listingId?: StringFilter<"CoOpGroup"> | string
+    creatorId?: StringFilter<"CoOpGroup"> | string
+    targetQuantity?: FloatFilter<"CoOpGroup"> | number
+    currentQuantity?: FloatFilter<"CoOpGroup"> | number
+    deadline?: DateTimeFilter<"CoOpGroup"> | Date | string
+    status?: EnumCoOpStatusFilter<"CoOpGroup"> | $Enums.CoOpStatus
+    createdAt?: DateTimeFilter<"CoOpGroup"> | Date | string
+    updatedAt?: DateTimeFilter<"CoOpGroup"> | Date | string
+    listing?: XOR<ProduceListingRelationFilter, ProduceListingWhereInput>
+    creator?: XOR<UserRelationFilter, UserWhereInput>
+    members?: CoOpMemberListRelationFilter
+  }, "id">
+
+  export type CoOpGroupOrderByWithAggregationInput = {
+    id?: SortOrder
+    listingId?: SortOrder
+    creatorId?: SortOrder
+    targetQuantity?: SortOrder
+    currentQuantity?: SortOrder
+    deadline?: SortOrder
+    status?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: CoOpGroupCountOrderByAggregateInput
+    _avg?: CoOpGroupAvgOrderByAggregateInput
+    _max?: CoOpGroupMaxOrderByAggregateInput
+    _min?: CoOpGroupMinOrderByAggregateInput
+    _sum?: CoOpGroupSumOrderByAggregateInput
+  }
+
+  export type CoOpGroupScalarWhereWithAggregatesInput = {
+    AND?: CoOpGroupScalarWhereWithAggregatesInput | CoOpGroupScalarWhereWithAggregatesInput[]
+    OR?: CoOpGroupScalarWhereWithAggregatesInput[]
+    NOT?: CoOpGroupScalarWhereWithAggregatesInput | CoOpGroupScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"CoOpGroup"> | string
+    listingId?: StringWithAggregatesFilter<"CoOpGroup"> | string
+    creatorId?: StringWithAggregatesFilter<"CoOpGroup"> | string
+    targetQuantity?: FloatWithAggregatesFilter<"CoOpGroup"> | number
+    currentQuantity?: FloatWithAggregatesFilter<"CoOpGroup"> | number
+    deadline?: DateTimeWithAggregatesFilter<"CoOpGroup"> | Date | string
+    status?: EnumCoOpStatusWithAggregatesFilter<"CoOpGroup"> | $Enums.CoOpStatus
+    createdAt?: DateTimeWithAggregatesFilter<"CoOpGroup"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"CoOpGroup"> | Date | string
+  }
+
+  export type CoOpMemberWhereInput = {
+    AND?: CoOpMemberWhereInput | CoOpMemberWhereInput[]
+    OR?: CoOpMemberWhereInput[]
+    NOT?: CoOpMemberWhereInput | CoOpMemberWhereInput[]
+    id?: StringFilter<"CoOpMember"> | string
+    coOpGroupId?: StringFilter<"CoOpMember"> | string
+    buyerId?: StringFilter<"CoOpMember"> | string
+    quantityKg?: FloatFilter<"CoOpMember"> | number
+    paidAmount?: FloatFilter<"CoOpMember"> | number
+    paymentStatus?: EnumPaymentStatusFilter<"CoOpMember"> | $Enums.PaymentStatus
+    paystackRef?: StringNullableFilter<"CoOpMember"> | string | null
+    orderId?: StringNullableFilter<"CoOpMember"> | string | null
+    createdAt?: DateTimeFilter<"CoOpMember"> | Date | string
+    updatedAt?: DateTimeFilter<"CoOpMember"> | Date | string
+    coOpGroup?: XOR<CoOpGroupRelationFilter, CoOpGroupWhereInput>
+    buyer?: XOR<UserRelationFilter, UserWhereInput>
+    order?: XOR<OrderNullableRelationFilter, OrderWhereInput> | null
+  }
+
+  export type CoOpMemberOrderByWithRelationInput = {
+    id?: SortOrder
+    coOpGroupId?: SortOrder
+    buyerId?: SortOrder
+    quantityKg?: SortOrder
+    paidAmount?: SortOrder
+    paymentStatus?: SortOrder
+    paystackRef?: SortOrderInput | SortOrder
+    orderId?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    coOpGroup?: CoOpGroupOrderByWithRelationInput
+    buyer?: UserOrderByWithRelationInput
+    order?: OrderOrderByWithRelationInput
+  }
+
+  export type CoOpMemberWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    orderId?: string
+    coOpGroupId_buyerId?: CoOpMemberCoOpGroupIdBuyerIdCompoundUniqueInput
+    AND?: CoOpMemberWhereInput | CoOpMemberWhereInput[]
+    OR?: CoOpMemberWhereInput[]
+    NOT?: CoOpMemberWhereInput | CoOpMemberWhereInput[]
+    coOpGroupId?: StringFilter<"CoOpMember"> | string
+    buyerId?: StringFilter<"CoOpMember"> | string
+    quantityKg?: FloatFilter<"CoOpMember"> | number
+    paidAmount?: FloatFilter<"CoOpMember"> | number
+    paymentStatus?: EnumPaymentStatusFilter<"CoOpMember"> | $Enums.PaymentStatus
+    paystackRef?: StringNullableFilter<"CoOpMember"> | string | null
+    createdAt?: DateTimeFilter<"CoOpMember"> | Date | string
+    updatedAt?: DateTimeFilter<"CoOpMember"> | Date | string
+    coOpGroup?: XOR<CoOpGroupRelationFilter, CoOpGroupWhereInput>
+    buyer?: XOR<UserRelationFilter, UserWhereInput>
+    order?: XOR<OrderNullableRelationFilter, OrderWhereInput> | null
+  }, "id" | "orderId" | "coOpGroupId_buyerId">
+
+  export type CoOpMemberOrderByWithAggregationInput = {
+    id?: SortOrder
+    coOpGroupId?: SortOrder
+    buyerId?: SortOrder
+    quantityKg?: SortOrder
+    paidAmount?: SortOrder
+    paymentStatus?: SortOrder
+    paystackRef?: SortOrderInput | SortOrder
+    orderId?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: CoOpMemberCountOrderByAggregateInput
+    _avg?: CoOpMemberAvgOrderByAggregateInput
+    _max?: CoOpMemberMaxOrderByAggregateInput
+    _min?: CoOpMemberMinOrderByAggregateInput
+    _sum?: CoOpMemberSumOrderByAggregateInput
+  }
+
+  export type CoOpMemberScalarWhereWithAggregatesInput = {
+    AND?: CoOpMemberScalarWhereWithAggregatesInput | CoOpMemberScalarWhereWithAggregatesInput[]
+    OR?: CoOpMemberScalarWhereWithAggregatesInput[]
+    NOT?: CoOpMemberScalarWhereWithAggregatesInput | CoOpMemberScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"CoOpMember"> | string
+    coOpGroupId?: StringWithAggregatesFilter<"CoOpMember"> | string
+    buyerId?: StringWithAggregatesFilter<"CoOpMember"> | string
+    quantityKg?: FloatWithAggregatesFilter<"CoOpMember"> | number
+    paidAmount?: FloatWithAggregatesFilter<"CoOpMember"> | number
+    paymentStatus?: EnumPaymentStatusWithAggregatesFilter<"CoOpMember"> | $Enums.PaymentStatus
+    paystackRef?: StringNullableWithAggregatesFilter<"CoOpMember"> | string | null
+    orderId?: StringNullableWithAggregatesFilter<"CoOpMember"> | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"CoOpMember"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"CoOpMember"> | Date | string
+  }
+
   export type UserCreateInput = {
     id?: string
     phone: string
@@ -30055,6 +32728,8 @@ export namespace Prisma {
     ban?: UserBanCreateNestedOneWithoutUserInput
     bansIssued?: UserBanCreateNestedManyWithoutBannerInput
     ussdSessions?: UssdSessionCreateNestedManyWithoutUserInput
+    createdCoOps?: CoOpGroupCreateNestedManyWithoutCreatorInput
+    coOpContributions?: CoOpMemberCreateNestedManyWithoutBuyerInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -30094,6 +32769,8 @@ export namespace Prisma {
     ban?: UserBanUncheckedCreateNestedOneWithoutUserInput
     bansIssued?: UserBanUncheckedCreateNestedManyWithoutBannerInput
     ussdSessions?: UssdSessionUncheckedCreateNestedManyWithoutUserInput
+    createdCoOps?: CoOpGroupUncheckedCreateNestedManyWithoutCreatorInput
+    coOpContributions?: CoOpMemberUncheckedCreateNestedManyWithoutBuyerInput
   }
 
   export type UserUpdateInput = {
@@ -30133,6 +32810,8 @@ export namespace Prisma {
     ban?: UserBanUpdateOneWithoutUserNestedInput
     bansIssued?: UserBanUpdateManyWithoutBannerNestedInput
     ussdSessions?: UssdSessionUpdateManyWithoutUserNestedInput
+    createdCoOps?: CoOpGroupUpdateManyWithoutCreatorNestedInput
+    coOpContributions?: CoOpMemberUpdateManyWithoutBuyerNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -30172,6 +32851,8 @@ export namespace Prisma {
     ban?: UserBanUncheckedUpdateOneWithoutUserNestedInput
     bansIssued?: UserBanUncheckedUpdateManyWithoutBannerNestedInput
     ussdSessions?: UssdSessionUncheckedUpdateManyWithoutUserNestedInput
+    createdCoOps?: CoOpGroupUncheckedUpdateManyWithoutCreatorNestedInput
+    coOpContributions?: CoOpMemberUncheckedUpdateManyWithoutBuyerNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -30492,6 +33173,7 @@ export namespace Prisma {
     traceability?: TraceabilityRecordCreateNestedOneWithoutListingInput
     traceEvents?: TraceEventCreateNestedManyWithoutListingInput
     preOrders?: PreOrderCreateNestedManyWithoutMatchedListingInput
+    coOps?: CoOpGroupCreateNestedManyWithoutListingInput
     plantingLog?: PlantingLogCreateNestedOneWithoutListingsInput
   }
 
@@ -30519,6 +33201,7 @@ export namespace Prisma {
     traceability?: TraceabilityRecordUncheckedCreateNestedOneWithoutListingInput
     traceEvents?: TraceEventUncheckedCreateNestedManyWithoutListingInput
     preOrders?: PreOrderUncheckedCreateNestedManyWithoutMatchedListingInput
+    coOps?: CoOpGroupUncheckedCreateNestedManyWithoutListingInput
   }
 
   export type ProduceListingUpdateInput = {
@@ -30544,6 +33227,7 @@ export namespace Prisma {
     traceability?: TraceabilityRecordUpdateOneWithoutListingNestedInput
     traceEvents?: TraceEventUpdateManyWithoutListingNestedInput
     preOrders?: PreOrderUpdateManyWithoutMatchedListingNestedInput
+    coOps?: CoOpGroupUpdateManyWithoutListingNestedInput
     plantingLog?: PlantingLogUpdateOneWithoutListingsNestedInput
   }
 
@@ -30571,6 +33255,7 @@ export namespace Prisma {
     traceability?: TraceabilityRecordUncheckedUpdateOneWithoutListingNestedInput
     traceEvents?: TraceEventUncheckedUpdateManyWithoutListingNestedInput
     preOrders?: PreOrderUncheckedUpdateManyWithoutMatchedListingNestedInput
+    coOps?: CoOpGroupUncheckedUpdateManyWithoutListingNestedInput
   }
 
   export type ProduceListingCreateManyInput = {
@@ -30812,6 +33497,7 @@ export namespace Prisma {
     reviews?: ReviewCreateNestedManyWithoutOrderInput
     messages?: MessageCreateNestedManyWithoutOrderInput
     preOrder?: PreOrderCreateNestedOneWithoutFulfilledOrderInput
+    coOpMember?: CoOpMemberCreateNestedOneWithoutOrderInput
   }
 
   export type OrderUncheckedCreateInput = {
@@ -30831,6 +33517,7 @@ export namespace Prisma {
     reviews?: ReviewUncheckedCreateNestedManyWithoutOrderInput
     messages?: MessageUncheckedCreateNestedManyWithoutOrderInput
     preOrder?: PreOrderUncheckedCreateNestedOneWithoutFulfilledOrderInput
+    coOpMember?: CoOpMemberUncheckedCreateNestedOneWithoutOrderInput
   }
 
   export type OrderUpdateInput = {
@@ -30850,6 +33537,7 @@ export namespace Prisma {
     reviews?: ReviewUpdateManyWithoutOrderNestedInput
     messages?: MessageUpdateManyWithoutOrderNestedInput
     preOrder?: PreOrderUpdateOneWithoutFulfilledOrderNestedInput
+    coOpMember?: CoOpMemberUpdateOneWithoutOrderNestedInput
   }
 
   export type OrderUncheckedUpdateInput = {
@@ -30869,6 +33557,7 @@ export namespace Prisma {
     reviews?: ReviewUncheckedUpdateManyWithoutOrderNestedInput
     messages?: MessageUncheckedUpdateManyWithoutOrderNestedInput
     preOrder?: PreOrderUncheckedUpdateOneWithoutFulfilledOrderNestedInput
+    coOpMember?: CoOpMemberUncheckedUpdateOneWithoutOrderNestedInput
   }
 
   export type OrderCreateManyInput = {
@@ -32282,6 +34971,180 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type CoOpGroupCreateInput = {
+    id?: string
+    targetQuantity: number
+    currentQuantity?: number
+    deadline: Date | string
+    status?: $Enums.CoOpStatus
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    listing: ProduceListingCreateNestedOneWithoutCoOpsInput
+    creator: UserCreateNestedOneWithoutCreatedCoOpsInput
+    members?: CoOpMemberCreateNestedManyWithoutCoOpGroupInput
+  }
+
+  export type CoOpGroupUncheckedCreateInput = {
+    id?: string
+    listingId: string
+    creatorId: string
+    targetQuantity: number
+    currentQuantity?: number
+    deadline: Date | string
+    status?: $Enums.CoOpStatus
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    members?: CoOpMemberUncheckedCreateNestedManyWithoutCoOpGroupInput
+  }
+
+  export type CoOpGroupUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    targetQuantity?: FloatFieldUpdateOperationsInput | number
+    currentQuantity?: FloatFieldUpdateOperationsInput | number
+    deadline?: DateTimeFieldUpdateOperationsInput | Date | string
+    status?: EnumCoOpStatusFieldUpdateOperationsInput | $Enums.CoOpStatus
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    listing?: ProduceListingUpdateOneRequiredWithoutCoOpsNestedInput
+    creator?: UserUpdateOneRequiredWithoutCreatedCoOpsNestedInput
+    members?: CoOpMemberUpdateManyWithoutCoOpGroupNestedInput
+  }
+
+  export type CoOpGroupUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    listingId?: StringFieldUpdateOperationsInput | string
+    creatorId?: StringFieldUpdateOperationsInput | string
+    targetQuantity?: FloatFieldUpdateOperationsInput | number
+    currentQuantity?: FloatFieldUpdateOperationsInput | number
+    deadline?: DateTimeFieldUpdateOperationsInput | Date | string
+    status?: EnumCoOpStatusFieldUpdateOperationsInput | $Enums.CoOpStatus
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    members?: CoOpMemberUncheckedUpdateManyWithoutCoOpGroupNestedInput
+  }
+
+  export type CoOpGroupCreateManyInput = {
+    id?: string
+    listingId: string
+    creatorId: string
+    targetQuantity: number
+    currentQuantity?: number
+    deadline: Date | string
+    status?: $Enums.CoOpStatus
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type CoOpGroupUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    targetQuantity?: FloatFieldUpdateOperationsInput | number
+    currentQuantity?: FloatFieldUpdateOperationsInput | number
+    deadline?: DateTimeFieldUpdateOperationsInput | Date | string
+    status?: EnumCoOpStatusFieldUpdateOperationsInput | $Enums.CoOpStatus
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CoOpGroupUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    listingId?: StringFieldUpdateOperationsInput | string
+    creatorId?: StringFieldUpdateOperationsInput | string
+    targetQuantity?: FloatFieldUpdateOperationsInput | number
+    currentQuantity?: FloatFieldUpdateOperationsInput | number
+    deadline?: DateTimeFieldUpdateOperationsInput | Date | string
+    status?: EnumCoOpStatusFieldUpdateOperationsInput | $Enums.CoOpStatus
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CoOpMemberCreateInput = {
+    id?: string
+    quantityKg: number
+    paidAmount: number
+    paymentStatus?: $Enums.PaymentStatus
+    paystackRef?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    coOpGroup: CoOpGroupCreateNestedOneWithoutMembersInput
+    buyer: UserCreateNestedOneWithoutCoOpContributionsInput
+    order?: OrderCreateNestedOneWithoutCoOpMemberInput
+  }
+
+  export type CoOpMemberUncheckedCreateInput = {
+    id?: string
+    coOpGroupId: string
+    buyerId: string
+    quantityKg: number
+    paidAmount: number
+    paymentStatus?: $Enums.PaymentStatus
+    paystackRef?: string | null
+    orderId?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type CoOpMemberUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    quantityKg?: FloatFieldUpdateOperationsInput | number
+    paidAmount?: FloatFieldUpdateOperationsInput | number
+    paymentStatus?: EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
+    paystackRef?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    coOpGroup?: CoOpGroupUpdateOneRequiredWithoutMembersNestedInput
+    buyer?: UserUpdateOneRequiredWithoutCoOpContributionsNestedInput
+    order?: OrderUpdateOneWithoutCoOpMemberNestedInput
+  }
+
+  export type CoOpMemberUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    coOpGroupId?: StringFieldUpdateOperationsInput | string
+    buyerId?: StringFieldUpdateOperationsInput | string
+    quantityKg?: FloatFieldUpdateOperationsInput | number
+    paidAmount?: FloatFieldUpdateOperationsInput | number
+    paymentStatus?: EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
+    paystackRef?: NullableStringFieldUpdateOperationsInput | string | null
+    orderId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CoOpMemberCreateManyInput = {
+    id?: string
+    coOpGroupId: string
+    buyerId: string
+    quantityKg: number
+    paidAmount: number
+    paymentStatus?: $Enums.PaymentStatus
+    paystackRef?: string | null
+    orderId?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type CoOpMemberUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    quantityKg?: FloatFieldUpdateOperationsInput | number
+    paidAmount?: FloatFieldUpdateOperationsInput | number
+    paymentStatus?: EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
+    paystackRef?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CoOpMemberUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    coOpGroupId?: StringFieldUpdateOperationsInput | string
+    buyerId?: StringFieldUpdateOperationsInput | string
+    quantityKg?: FloatFieldUpdateOperationsInput | number
+    paidAmount?: FloatFieldUpdateOperationsInput | number
+    paymentStatus?: EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
+    paystackRef?: NullableStringFieldUpdateOperationsInput | string | null
+    orderId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type StringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -32455,6 +35318,18 @@ export namespace Prisma {
     none?: UssdSessionWhereInput
   }
 
+  export type CoOpGroupListRelationFilter = {
+    every?: CoOpGroupWhereInput
+    some?: CoOpGroupWhereInput
+    none?: CoOpGroupWhereInput
+  }
+
+  export type CoOpMemberListRelationFilter = {
+    every?: CoOpMemberWhereInput
+    some?: CoOpMemberWhereInput
+    none?: CoOpMemberWhereInput
+  }
+
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
@@ -32509,6 +35384,14 @@ export namespace Prisma {
   }
 
   export type UssdSessionOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type CoOpGroupOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type CoOpMemberOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -33182,6 +36065,11 @@ export namespace Prisma {
   export type PreOrderNullableRelationFilter = {
     is?: PreOrderWhereInput | null
     isNot?: PreOrderWhereInput | null
+  }
+
+  export type CoOpMemberNullableRelationFilter = {
+    is?: CoOpMemberWhereInput | null
+    isNot?: CoOpMemberWhereInput | null
   }
 
   export type OrderCountOrderByAggregateInput = {
@@ -34092,6 +36980,128 @@ export namespace Prisma {
     createdAt?: SortOrder
   }
 
+  export type EnumCoOpStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.CoOpStatus | EnumCoOpStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.CoOpStatus[] | ListEnumCoOpStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.CoOpStatus[] | ListEnumCoOpStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumCoOpStatusFilter<$PrismaModel> | $Enums.CoOpStatus
+  }
+
+  export type CoOpGroupCountOrderByAggregateInput = {
+    id?: SortOrder
+    listingId?: SortOrder
+    creatorId?: SortOrder
+    targetQuantity?: SortOrder
+    currentQuantity?: SortOrder
+    deadline?: SortOrder
+    status?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type CoOpGroupAvgOrderByAggregateInput = {
+    targetQuantity?: SortOrder
+    currentQuantity?: SortOrder
+  }
+
+  export type CoOpGroupMaxOrderByAggregateInput = {
+    id?: SortOrder
+    listingId?: SortOrder
+    creatorId?: SortOrder
+    targetQuantity?: SortOrder
+    currentQuantity?: SortOrder
+    deadline?: SortOrder
+    status?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type CoOpGroupMinOrderByAggregateInput = {
+    id?: SortOrder
+    listingId?: SortOrder
+    creatorId?: SortOrder
+    targetQuantity?: SortOrder
+    currentQuantity?: SortOrder
+    deadline?: SortOrder
+    status?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type CoOpGroupSumOrderByAggregateInput = {
+    targetQuantity?: SortOrder
+    currentQuantity?: SortOrder
+  }
+
+  export type EnumCoOpStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.CoOpStatus | EnumCoOpStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.CoOpStatus[] | ListEnumCoOpStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.CoOpStatus[] | ListEnumCoOpStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumCoOpStatusWithAggregatesFilter<$PrismaModel> | $Enums.CoOpStatus
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumCoOpStatusFilter<$PrismaModel>
+    _max?: NestedEnumCoOpStatusFilter<$PrismaModel>
+  }
+
+  export type CoOpGroupRelationFilter = {
+    is?: CoOpGroupWhereInput
+    isNot?: CoOpGroupWhereInput
+  }
+
+  export type CoOpMemberCoOpGroupIdBuyerIdCompoundUniqueInput = {
+    coOpGroupId: string
+    buyerId: string
+  }
+
+  export type CoOpMemberCountOrderByAggregateInput = {
+    id?: SortOrder
+    coOpGroupId?: SortOrder
+    buyerId?: SortOrder
+    quantityKg?: SortOrder
+    paidAmount?: SortOrder
+    paymentStatus?: SortOrder
+    paystackRef?: SortOrder
+    orderId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type CoOpMemberAvgOrderByAggregateInput = {
+    quantityKg?: SortOrder
+    paidAmount?: SortOrder
+  }
+
+  export type CoOpMemberMaxOrderByAggregateInput = {
+    id?: SortOrder
+    coOpGroupId?: SortOrder
+    buyerId?: SortOrder
+    quantityKg?: SortOrder
+    paidAmount?: SortOrder
+    paymentStatus?: SortOrder
+    paystackRef?: SortOrder
+    orderId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type CoOpMemberMinOrderByAggregateInput = {
+    id?: SortOrder
+    coOpGroupId?: SortOrder
+    buyerId?: SortOrder
+    quantityKg?: SortOrder
+    paidAmount?: SortOrder
+    paymentStatus?: SortOrder
+    paystackRef?: SortOrder
+    orderId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type CoOpMemberSumOrderByAggregateInput = {
+    quantityKg?: SortOrder
+    paidAmount?: SortOrder
+  }
+
   export type FarmerProfileCreateNestedOneWithoutUserInput = {
     create?: XOR<FarmerProfileCreateWithoutUserInput, FarmerProfileUncheckedCreateWithoutUserInput>
     connectOrCreate?: FarmerProfileCreateOrConnectWithoutUserInput
@@ -34221,6 +37231,20 @@ export namespace Prisma {
     connect?: UssdSessionWhereUniqueInput | UssdSessionWhereUniqueInput[]
   }
 
+  export type CoOpGroupCreateNestedManyWithoutCreatorInput = {
+    create?: XOR<CoOpGroupCreateWithoutCreatorInput, CoOpGroupUncheckedCreateWithoutCreatorInput> | CoOpGroupCreateWithoutCreatorInput[] | CoOpGroupUncheckedCreateWithoutCreatorInput[]
+    connectOrCreate?: CoOpGroupCreateOrConnectWithoutCreatorInput | CoOpGroupCreateOrConnectWithoutCreatorInput[]
+    createMany?: CoOpGroupCreateManyCreatorInputEnvelope
+    connect?: CoOpGroupWhereUniqueInput | CoOpGroupWhereUniqueInput[]
+  }
+
+  export type CoOpMemberCreateNestedManyWithoutBuyerInput = {
+    create?: XOR<CoOpMemberCreateWithoutBuyerInput, CoOpMemberUncheckedCreateWithoutBuyerInput> | CoOpMemberCreateWithoutBuyerInput[] | CoOpMemberUncheckedCreateWithoutBuyerInput[]
+    connectOrCreate?: CoOpMemberCreateOrConnectWithoutBuyerInput | CoOpMemberCreateOrConnectWithoutBuyerInput[]
+    createMany?: CoOpMemberCreateManyBuyerInputEnvelope
+    connect?: CoOpMemberWhereUniqueInput | CoOpMemberWhereUniqueInput[]
+  }
+
   export type FarmerProfileUncheckedCreateNestedOneWithoutUserInput = {
     create?: XOR<FarmerProfileCreateWithoutUserInput, FarmerProfileUncheckedCreateWithoutUserInput>
     connectOrCreate?: FarmerProfileCreateOrConnectWithoutUserInput
@@ -34348,6 +37372,20 @@ export namespace Prisma {
     connectOrCreate?: UssdSessionCreateOrConnectWithoutUserInput | UssdSessionCreateOrConnectWithoutUserInput[]
     createMany?: UssdSessionCreateManyUserInputEnvelope
     connect?: UssdSessionWhereUniqueInput | UssdSessionWhereUniqueInput[]
+  }
+
+  export type CoOpGroupUncheckedCreateNestedManyWithoutCreatorInput = {
+    create?: XOR<CoOpGroupCreateWithoutCreatorInput, CoOpGroupUncheckedCreateWithoutCreatorInput> | CoOpGroupCreateWithoutCreatorInput[] | CoOpGroupUncheckedCreateWithoutCreatorInput[]
+    connectOrCreate?: CoOpGroupCreateOrConnectWithoutCreatorInput | CoOpGroupCreateOrConnectWithoutCreatorInput[]
+    createMany?: CoOpGroupCreateManyCreatorInputEnvelope
+    connect?: CoOpGroupWhereUniqueInput | CoOpGroupWhereUniqueInput[]
+  }
+
+  export type CoOpMemberUncheckedCreateNestedManyWithoutBuyerInput = {
+    create?: XOR<CoOpMemberCreateWithoutBuyerInput, CoOpMemberUncheckedCreateWithoutBuyerInput> | CoOpMemberCreateWithoutBuyerInput[] | CoOpMemberUncheckedCreateWithoutBuyerInput[]
+    connectOrCreate?: CoOpMemberCreateOrConnectWithoutBuyerInput | CoOpMemberCreateOrConnectWithoutBuyerInput[]
+    createMany?: CoOpMemberCreateManyBuyerInputEnvelope
+    connect?: CoOpMemberWhereUniqueInput | CoOpMemberWhereUniqueInput[]
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -34632,6 +37670,34 @@ export namespace Prisma {
     deleteMany?: UssdSessionScalarWhereInput | UssdSessionScalarWhereInput[]
   }
 
+  export type CoOpGroupUpdateManyWithoutCreatorNestedInput = {
+    create?: XOR<CoOpGroupCreateWithoutCreatorInput, CoOpGroupUncheckedCreateWithoutCreatorInput> | CoOpGroupCreateWithoutCreatorInput[] | CoOpGroupUncheckedCreateWithoutCreatorInput[]
+    connectOrCreate?: CoOpGroupCreateOrConnectWithoutCreatorInput | CoOpGroupCreateOrConnectWithoutCreatorInput[]
+    upsert?: CoOpGroupUpsertWithWhereUniqueWithoutCreatorInput | CoOpGroupUpsertWithWhereUniqueWithoutCreatorInput[]
+    createMany?: CoOpGroupCreateManyCreatorInputEnvelope
+    set?: CoOpGroupWhereUniqueInput | CoOpGroupWhereUniqueInput[]
+    disconnect?: CoOpGroupWhereUniqueInput | CoOpGroupWhereUniqueInput[]
+    delete?: CoOpGroupWhereUniqueInput | CoOpGroupWhereUniqueInput[]
+    connect?: CoOpGroupWhereUniqueInput | CoOpGroupWhereUniqueInput[]
+    update?: CoOpGroupUpdateWithWhereUniqueWithoutCreatorInput | CoOpGroupUpdateWithWhereUniqueWithoutCreatorInput[]
+    updateMany?: CoOpGroupUpdateManyWithWhereWithoutCreatorInput | CoOpGroupUpdateManyWithWhereWithoutCreatorInput[]
+    deleteMany?: CoOpGroupScalarWhereInput | CoOpGroupScalarWhereInput[]
+  }
+
+  export type CoOpMemberUpdateManyWithoutBuyerNestedInput = {
+    create?: XOR<CoOpMemberCreateWithoutBuyerInput, CoOpMemberUncheckedCreateWithoutBuyerInput> | CoOpMemberCreateWithoutBuyerInput[] | CoOpMemberUncheckedCreateWithoutBuyerInput[]
+    connectOrCreate?: CoOpMemberCreateOrConnectWithoutBuyerInput | CoOpMemberCreateOrConnectWithoutBuyerInput[]
+    upsert?: CoOpMemberUpsertWithWhereUniqueWithoutBuyerInput | CoOpMemberUpsertWithWhereUniqueWithoutBuyerInput[]
+    createMany?: CoOpMemberCreateManyBuyerInputEnvelope
+    set?: CoOpMemberWhereUniqueInput | CoOpMemberWhereUniqueInput[]
+    disconnect?: CoOpMemberWhereUniqueInput | CoOpMemberWhereUniqueInput[]
+    delete?: CoOpMemberWhereUniqueInput | CoOpMemberWhereUniqueInput[]
+    connect?: CoOpMemberWhereUniqueInput | CoOpMemberWhereUniqueInput[]
+    update?: CoOpMemberUpdateWithWhereUniqueWithoutBuyerInput | CoOpMemberUpdateWithWhereUniqueWithoutBuyerInput[]
+    updateMany?: CoOpMemberUpdateManyWithWhereWithoutBuyerInput | CoOpMemberUpdateManyWithWhereWithoutBuyerInput[]
+    deleteMany?: CoOpMemberScalarWhereInput | CoOpMemberScalarWhereInput[]
+  }
+
   export type FarmerProfileUncheckedUpdateOneWithoutUserNestedInput = {
     create?: XOR<FarmerProfileCreateWithoutUserInput, FarmerProfileUncheckedCreateWithoutUserInput>
     connectOrCreate?: FarmerProfileCreateOrConnectWithoutUserInput
@@ -34882,6 +37948,34 @@ export namespace Prisma {
     deleteMany?: UssdSessionScalarWhereInput | UssdSessionScalarWhereInput[]
   }
 
+  export type CoOpGroupUncheckedUpdateManyWithoutCreatorNestedInput = {
+    create?: XOR<CoOpGroupCreateWithoutCreatorInput, CoOpGroupUncheckedCreateWithoutCreatorInput> | CoOpGroupCreateWithoutCreatorInput[] | CoOpGroupUncheckedCreateWithoutCreatorInput[]
+    connectOrCreate?: CoOpGroupCreateOrConnectWithoutCreatorInput | CoOpGroupCreateOrConnectWithoutCreatorInput[]
+    upsert?: CoOpGroupUpsertWithWhereUniqueWithoutCreatorInput | CoOpGroupUpsertWithWhereUniqueWithoutCreatorInput[]
+    createMany?: CoOpGroupCreateManyCreatorInputEnvelope
+    set?: CoOpGroupWhereUniqueInput | CoOpGroupWhereUniqueInput[]
+    disconnect?: CoOpGroupWhereUniqueInput | CoOpGroupWhereUniqueInput[]
+    delete?: CoOpGroupWhereUniqueInput | CoOpGroupWhereUniqueInput[]
+    connect?: CoOpGroupWhereUniqueInput | CoOpGroupWhereUniqueInput[]
+    update?: CoOpGroupUpdateWithWhereUniqueWithoutCreatorInput | CoOpGroupUpdateWithWhereUniqueWithoutCreatorInput[]
+    updateMany?: CoOpGroupUpdateManyWithWhereWithoutCreatorInput | CoOpGroupUpdateManyWithWhereWithoutCreatorInput[]
+    deleteMany?: CoOpGroupScalarWhereInput | CoOpGroupScalarWhereInput[]
+  }
+
+  export type CoOpMemberUncheckedUpdateManyWithoutBuyerNestedInput = {
+    create?: XOR<CoOpMemberCreateWithoutBuyerInput, CoOpMemberUncheckedCreateWithoutBuyerInput> | CoOpMemberCreateWithoutBuyerInput[] | CoOpMemberUncheckedCreateWithoutBuyerInput[]
+    connectOrCreate?: CoOpMemberCreateOrConnectWithoutBuyerInput | CoOpMemberCreateOrConnectWithoutBuyerInput[]
+    upsert?: CoOpMemberUpsertWithWhereUniqueWithoutBuyerInput | CoOpMemberUpsertWithWhereUniqueWithoutBuyerInput[]
+    createMany?: CoOpMemberCreateManyBuyerInputEnvelope
+    set?: CoOpMemberWhereUniqueInput | CoOpMemberWhereUniqueInput[]
+    disconnect?: CoOpMemberWhereUniqueInput | CoOpMemberWhereUniqueInput[]
+    delete?: CoOpMemberWhereUniqueInput | CoOpMemberWhereUniqueInput[]
+    connect?: CoOpMemberWhereUniqueInput | CoOpMemberWhereUniqueInput[]
+    update?: CoOpMemberUpdateWithWhereUniqueWithoutBuyerInput | CoOpMemberUpdateWithWhereUniqueWithoutBuyerInput[]
+    updateMany?: CoOpMemberUpdateManyWithWhereWithoutBuyerInput | CoOpMemberUpdateManyWithWhereWithoutBuyerInput[]
+    deleteMany?: CoOpMemberScalarWhereInput | CoOpMemberScalarWhereInput[]
+  }
+
   export type FarmerProfileCreateprimaryCropsInput = {
     set: string[]
   }
@@ -34990,6 +38084,13 @@ export namespace Prisma {
     connect?: PreOrderWhereUniqueInput | PreOrderWhereUniqueInput[]
   }
 
+  export type CoOpGroupCreateNestedManyWithoutListingInput = {
+    create?: XOR<CoOpGroupCreateWithoutListingInput, CoOpGroupUncheckedCreateWithoutListingInput> | CoOpGroupCreateWithoutListingInput[] | CoOpGroupUncheckedCreateWithoutListingInput[]
+    connectOrCreate?: CoOpGroupCreateOrConnectWithoutListingInput | CoOpGroupCreateOrConnectWithoutListingInput[]
+    createMany?: CoOpGroupCreateManyListingInputEnvelope
+    connect?: CoOpGroupWhereUniqueInput | CoOpGroupWhereUniqueInput[]
+  }
+
   export type PlantingLogCreateNestedOneWithoutListingsInput = {
     create?: XOR<PlantingLogCreateWithoutListingsInput, PlantingLogUncheckedCreateWithoutListingsInput>
     connectOrCreate?: PlantingLogCreateOrConnectWithoutListingsInput
@@ -35021,6 +38122,13 @@ export namespace Prisma {
     connectOrCreate?: PreOrderCreateOrConnectWithoutMatchedListingInput | PreOrderCreateOrConnectWithoutMatchedListingInput[]
     createMany?: PreOrderCreateManyMatchedListingInputEnvelope
     connect?: PreOrderWhereUniqueInput | PreOrderWhereUniqueInput[]
+  }
+
+  export type CoOpGroupUncheckedCreateNestedManyWithoutListingInput = {
+    create?: XOR<CoOpGroupCreateWithoutListingInput, CoOpGroupUncheckedCreateWithoutListingInput> | CoOpGroupCreateWithoutListingInput[] | CoOpGroupUncheckedCreateWithoutListingInput[]
+    connectOrCreate?: CoOpGroupCreateOrConnectWithoutListingInput | CoOpGroupCreateOrConnectWithoutListingInput[]
+    createMany?: CoOpGroupCreateManyListingInputEnvelope
+    connect?: CoOpGroupWhereUniqueInput | CoOpGroupWhereUniqueInput[]
   }
 
   export type EnumCropTypeFieldUpdateOperationsInput = {
@@ -35104,6 +38212,20 @@ export namespace Prisma {
     deleteMany?: PreOrderScalarWhereInput | PreOrderScalarWhereInput[]
   }
 
+  export type CoOpGroupUpdateManyWithoutListingNestedInput = {
+    create?: XOR<CoOpGroupCreateWithoutListingInput, CoOpGroupUncheckedCreateWithoutListingInput> | CoOpGroupCreateWithoutListingInput[] | CoOpGroupUncheckedCreateWithoutListingInput[]
+    connectOrCreate?: CoOpGroupCreateOrConnectWithoutListingInput | CoOpGroupCreateOrConnectWithoutListingInput[]
+    upsert?: CoOpGroupUpsertWithWhereUniqueWithoutListingInput | CoOpGroupUpsertWithWhereUniqueWithoutListingInput[]
+    createMany?: CoOpGroupCreateManyListingInputEnvelope
+    set?: CoOpGroupWhereUniqueInput | CoOpGroupWhereUniqueInput[]
+    disconnect?: CoOpGroupWhereUniqueInput | CoOpGroupWhereUniqueInput[]
+    delete?: CoOpGroupWhereUniqueInput | CoOpGroupWhereUniqueInput[]
+    connect?: CoOpGroupWhereUniqueInput | CoOpGroupWhereUniqueInput[]
+    update?: CoOpGroupUpdateWithWhereUniqueWithoutListingInput | CoOpGroupUpdateWithWhereUniqueWithoutListingInput[]
+    updateMany?: CoOpGroupUpdateManyWithWhereWithoutListingInput | CoOpGroupUpdateManyWithWhereWithoutListingInput[]
+    deleteMany?: CoOpGroupScalarWhereInput | CoOpGroupScalarWhereInput[]
+  }
+
   export type PlantingLogUpdateOneWithoutListingsNestedInput = {
     create?: XOR<PlantingLogCreateWithoutListingsInput, PlantingLogUncheckedCreateWithoutListingsInput>
     connectOrCreate?: PlantingLogCreateOrConnectWithoutListingsInput
@@ -35164,6 +38286,20 @@ export namespace Prisma {
     update?: PreOrderUpdateWithWhereUniqueWithoutMatchedListingInput | PreOrderUpdateWithWhereUniqueWithoutMatchedListingInput[]
     updateMany?: PreOrderUpdateManyWithWhereWithoutMatchedListingInput | PreOrderUpdateManyWithWhereWithoutMatchedListingInput[]
     deleteMany?: PreOrderScalarWhereInput | PreOrderScalarWhereInput[]
+  }
+
+  export type CoOpGroupUncheckedUpdateManyWithoutListingNestedInput = {
+    create?: XOR<CoOpGroupCreateWithoutListingInput, CoOpGroupUncheckedCreateWithoutListingInput> | CoOpGroupCreateWithoutListingInput[] | CoOpGroupUncheckedCreateWithoutListingInput[]
+    connectOrCreate?: CoOpGroupCreateOrConnectWithoutListingInput | CoOpGroupCreateOrConnectWithoutListingInput[]
+    upsert?: CoOpGroupUpsertWithWhereUniqueWithoutListingInput | CoOpGroupUpsertWithWhereUniqueWithoutListingInput[]
+    createMany?: CoOpGroupCreateManyListingInputEnvelope
+    set?: CoOpGroupWhereUniqueInput | CoOpGroupWhereUniqueInput[]
+    disconnect?: CoOpGroupWhereUniqueInput | CoOpGroupWhereUniqueInput[]
+    delete?: CoOpGroupWhereUniqueInput | CoOpGroupWhereUniqueInput[]
+    connect?: CoOpGroupWhereUniqueInput | CoOpGroupWhereUniqueInput[]
+    update?: CoOpGroupUpdateWithWhereUniqueWithoutListingInput | CoOpGroupUpdateWithWhereUniqueWithoutListingInput[]
+    updateMany?: CoOpGroupUpdateManyWithWhereWithoutListingInput | CoOpGroupUpdateManyWithWhereWithoutListingInput[]
+    deleteMany?: CoOpGroupScalarWhereInput | CoOpGroupScalarWhereInput[]
   }
 
   export type TraceabilityRecordCreateinputsUsedInput = {
@@ -35270,6 +38406,12 @@ export namespace Prisma {
     connect?: PreOrderWhereUniqueInput
   }
 
+  export type CoOpMemberCreateNestedOneWithoutOrderInput = {
+    create?: XOR<CoOpMemberCreateWithoutOrderInput, CoOpMemberUncheckedCreateWithoutOrderInput>
+    connectOrCreate?: CoOpMemberCreateOrConnectWithoutOrderInput
+    connect?: CoOpMemberWhereUniqueInput
+  }
+
   export type DeliveryRequestUncheckedCreateNestedOneWithoutOrderInput = {
     create?: XOR<DeliveryRequestCreateWithoutOrderInput, DeliveryRequestUncheckedCreateWithoutOrderInput>
     connectOrCreate?: DeliveryRequestCreateOrConnectWithoutOrderInput
@@ -35294,6 +38436,12 @@ export namespace Prisma {
     create?: XOR<PreOrderCreateWithoutFulfilledOrderInput, PreOrderUncheckedCreateWithoutFulfilledOrderInput>
     connectOrCreate?: PreOrderCreateOrConnectWithoutFulfilledOrderInput
     connect?: PreOrderWhereUniqueInput
+  }
+
+  export type CoOpMemberUncheckedCreateNestedOneWithoutOrderInput = {
+    create?: XOR<CoOpMemberCreateWithoutOrderInput, CoOpMemberUncheckedCreateWithoutOrderInput>
+    connectOrCreate?: CoOpMemberCreateOrConnectWithoutOrderInput
+    connect?: CoOpMemberWhereUniqueInput
   }
 
   export type EnumOrderStatusFieldUpdateOperationsInput = {
@@ -35368,6 +38516,16 @@ export namespace Prisma {
     update?: XOR<XOR<PreOrderUpdateToOneWithWhereWithoutFulfilledOrderInput, PreOrderUpdateWithoutFulfilledOrderInput>, PreOrderUncheckedUpdateWithoutFulfilledOrderInput>
   }
 
+  export type CoOpMemberUpdateOneWithoutOrderNestedInput = {
+    create?: XOR<CoOpMemberCreateWithoutOrderInput, CoOpMemberUncheckedCreateWithoutOrderInput>
+    connectOrCreate?: CoOpMemberCreateOrConnectWithoutOrderInput
+    upsert?: CoOpMemberUpsertWithoutOrderInput
+    disconnect?: CoOpMemberWhereInput | boolean
+    delete?: CoOpMemberWhereInput | boolean
+    connect?: CoOpMemberWhereUniqueInput
+    update?: XOR<XOR<CoOpMemberUpdateToOneWithWhereWithoutOrderInput, CoOpMemberUpdateWithoutOrderInput>, CoOpMemberUncheckedUpdateWithoutOrderInput>
+  }
+
   export type DeliveryRequestUncheckedUpdateOneWithoutOrderNestedInput = {
     create?: XOR<DeliveryRequestCreateWithoutOrderInput, DeliveryRequestUncheckedCreateWithoutOrderInput>
     connectOrCreate?: DeliveryRequestCreateOrConnectWithoutOrderInput
@@ -35414,6 +38572,16 @@ export namespace Prisma {
     delete?: PreOrderWhereInput | boolean
     connect?: PreOrderWhereUniqueInput
     update?: XOR<XOR<PreOrderUpdateToOneWithWhereWithoutFulfilledOrderInput, PreOrderUpdateWithoutFulfilledOrderInput>, PreOrderUncheckedUpdateWithoutFulfilledOrderInput>
+  }
+
+  export type CoOpMemberUncheckedUpdateOneWithoutOrderNestedInput = {
+    create?: XOR<CoOpMemberCreateWithoutOrderInput, CoOpMemberUncheckedCreateWithoutOrderInput>
+    connectOrCreate?: CoOpMemberCreateOrConnectWithoutOrderInput
+    upsert?: CoOpMemberUpsertWithoutOrderInput
+    disconnect?: CoOpMemberWhereInput | boolean
+    delete?: CoOpMemberWhereInput | boolean
+    connect?: CoOpMemberWhereUniqueInput
+    update?: XOR<XOR<CoOpMemberUpdateToOneWithWhereWithoutOrderInput, CoOpMemberUpdateWithoutOrderInput>, CoOpMemberUncheckedUpdateWithoutOrderInput>
   }
 
   export type OrderCreateNestedOneWithoutDeliveryRequestInput = {
@@ -35786,6 +38954,124 @@ export namespace Prisma {
     upsert?: UserUpsertWithoutBansIssuedInput
     connect?: UserWhereUniqueInput
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutBansIssuedInput, UserUpdateWithoutBansIssuedInput>, UserUncheckedUpdateWithoutBansIssuedInput>
+  }
+
+  export type ProduceListingCreateNestedOneWithoutCoOpsInput = {
+    create?: XOR<ProduceListingCreateWithoutCoOpsInput, ProduceListingUncheckedCreateWithoutCoOpsInput>
+    connectOrCreate?: ProduceListingCreateOrConnectWithoutCoOpsInput
+    connect?: ProduceListingWhereUniqueInput
+  }
+
+  export type UserCreateNestedOneWithoutCreatedCoOpsInput = {
+    create?: XOR<UserCreateWithoutCreatedCoOpsInput, UserUncheckedCreateWithoutCreatedCoOpsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutCreatedCoOpsInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type CoOpMemberCreateNestedManyWithoutCoOpGroupInput = {
+    create?: XOR<CoOpMemberCreateWithoutCoOpGroupInput, CoOpMemberUncheckedCreateWithoutCoOpGroupInput> | CoOpMemberCreateWithoutCoOpGroupInput[] | CoOpMemberUncheckedCreateWithoutCoOpGroupInput[]
+    connectOrCreate?: CoOpMemberCreateOrConnectWithoutCoOpGroupInput | CoOpMemberCreateOrConnectWithoutCoOpGroupInput[]
+    createMany?: CoOpMemberCreateManyCoOpGroupInputEnvelope
+    connect?: CoOpMemberWhereUniqueInput | CoOpMemberWhereUniqueInput[]
+  }
+
+  export type CoOpMemberUncheckedCreateNestedManyWithoutCoOpGroupInput = {
+    create?: XOR<CoOpMemberCreateWithoutCoOpGroupInput, CoOpMemberUncheckedCreateWithoutCoOpGroupInput> | CoOpMemberCreateWithoutCoOpGroupInput[] | CoOpMemberUncheckedCreateWithoutCoOpGroupInput[]
+    connectOrCreate?: CoOpMemberCreateOrConnectWithoutCoOpGroupInput | CoOpMemberCreateOrConnectWithoutCoOpGroupInput[]
+    createMany?: CoOpMemberCreateManyCoOpGroupInputEnvelope
+    connect?: CoOpMemberWhereUniqueInput | CoOpMemberWhereUniqueInput[]
+  }
+
+  export type EnumCoOpStatusFieldUpdateOperationsInput = {
+    set?: $Enums.CoOpStatus
+  }
+
+  export type ProduceListingUpdateOneRequiredWithoutCoOpsNestedInput = {
+    create?: XOR<ProduceListingCreateWithoutCoOpsInput, ProduceListingUncheckedCreateWithoutCoOpsInput>
+    connectOrCreate?: ProduceListingCreateOrConnectWithoutCoOpsInput
+    upsert?: ProduceListingUpsertWithoutCoOpsInput
+    connect?: ProduceListingWhereUniqueInput
+    update?: XOR<XOR<ProduceListingUpdateToOneWithWhereWithoutCoOpsInput, ProduceListingUpdateWithoutCoOpsInput>, ProduceListingUncheckedUpdateWithoutCoOpsInput>
+  }
+
+  export type UserUpdateOneRequiredWithoutCreatedCoOpsNestedInput = {
+    create?: XOR<UserCreateWithoutCreatedCoOpsInput, UserUncheckedCreateWithoutCreatedCoOpsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutCreatedCoOpsInput
+    upsert?: UserUpsertWithoutCreatedCoOpsInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutCreatedCoOpsInput, UserUpdateWithoutCreatedCoOpsInput>, UserUncheckedUpdateWithoutCreatedCoOpsInput>
+  }
+
+  export type CoOpMemberUpdateManyWithoutCoOpGroupNestedInput = {
+    create?: XOR<CoOpMemberCreateWithoutCoOpGroupInput, CoOpMemberUncheckedCreateWithoutCoOpGroupInput> | CoOpMemberCreateWithoutCoOpGroupInput[] | CoOpMemberUncheckedCreateWithoutCoOpGroupInput[]
+    connectOrCreate?: CoOpMemberCreateOrConnectWithoutCoOpGroupInput | CoOpMemberCreateOrConnectWithoutCoOpGroupInput[]
+    upsert?: CoOpMemberUpsertWithWhereUniqueWithoutCoOpGroupInput | CoOpMemberUpsertWithWhereUniqueWithoutCoOpGroupInput[]
+    createMany?: CoOpMemberCreateManyCoOpGroupInputEnvelope
+    set?: CoOpMemberWhereUniqueInput | CoOpMemberWhereUniqueInput[]
+    disconnect?: CoOpMemberWhereUniqueInput | CoOpMemberWhereUniqueInput[]
+    delete?: CoOpMemberWhereUniqueInput | CoOpMemberWhereUniqueInput[]
+    connect?: CoOpMemberWhereUniqueInput | CoOpMemberWhereUniqueInput[]
+    update?: CoOpMemberUpdateWithWhereUniqueWithoutCoOpGroupInput | CoOpMemberUpdateWithWhereUniqueWithoutCoOpGroupInput[]
+    updateMany?: CoOpMemberUpdateManyWithWhereWithoutCoOpGroupInput | CoOpMemberUpdateManyWithWhereWithoutCoOpGroupInput[]
+    deleteMany?: CoOpMemberScalarWhereInput | CoOpMemberScalarWhereInput[]
+  }
+
+  export type CoOpMemberUncheckedUpdateManyWithoutCoOpGroupNestedInput = {
+    create?: XOR<CoOpMemberCreateWithoutCoOpGroupInput, CoOpMemberUncheckedCreateWithoutCoOpGroupInput> | CoOpMemberCreateWithoutCoOpGroupInput[] | CoOpMemberUncheckedCreateWithoutCoOpGroupInput[]
+    connectOrCreate?: CoOpMemberCreateOrConnectWithoutCoOpGroupInput | CoOpMemberCreateOrConnectWithoutCoOpGroupInput[]
+    upsert?: CoOpMemberUpsertWithWhereUniqueWithoutCoOpGroupInput | CoOpMemberUpsertWithWhereUniqueWithoutCoOpGroupInput[]
+    createMany?: CoOpMemberCreateManyCoOpGroupInputEnvelope
+    set?: CoOpMemberWhereUniqueInput | CoOpMemberWhereUniqueInput[]
+    disconnect?: CoOpMemberWhereUniqueInput | CoOpMemberWhereUniqueInput[]
+    delete?: CoOpMemberWhereUniqueInput | CoOpMemberWhereUniqueInput[]
+    connect?: CoOpMemberWhereUniqueInput | CoOpMemberWhereUniqueInput[]
+    update?: CoOpMemberUpdateWithWhereUniqueWithoutCoOpGroupInput | CoOpMemberUpdateWithWhereUniqueWithoutCoOpGroupInput[]
+    updateMany?: CoOpMemberUpdateManyWithWhereWithoutCoOpGroupInput | CoOpMemberUpdateManyWithWhereWithoutCoOpGroupInput[]
+    deleteMany?: CoOpMemberScalarWhereInput | CoOpMemberScalarWhereInput[]
+  }
+
+  export type CoOpGroupCreateNestedOneWithoutMembersInput = {
+    create?: XOR<CoOpGroupCreateWithoutMembersInput, CoOpGroupUncheckedCreateWithoutMembersInput>
+    connectOrCreate?: CoOpGroupCreateOrConnectWithoutMembersInput
+    connect?: CoOpGroupWhereUniqueInput
+  }
+
+  export type UserCreateNestedOneWithoutCoOpContributionsInput = {
+    create?: XOR<UserCreateWithoutCoOpContributionsInput, UserUncheckedCreateWithoutCoOpContributionsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutCoOpContributionsInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type OrderCreateNestedOneWithoutCoOpMemberInput = {
+    create?: XOR<OrderCreateWithoutCoOpMemberInput, OrderUncheckedCreateWithoutCoOpMemberInput>
+    connectOrCreate?: OrderCreateOrConnectWithoutCoOpMemberInput
+    connect?: OrderWhereUniqueInput
+  }
+
+  export type CoOpGroupUpdateOneRequiredWithoutMembersNestedInput = {
+    create?: XOR<CoOpGroupCreateWithoutMembersInput, CoOpGroupUncheckedCreateWithoutMembersInput>
+    connectOrCreate?: CoOpGroupCreateOrConnectWithoutMembersInput
+    upsert?: CoOpGroupUpsertWithoutMembersInput
+    connect?: CoOpGroupWhereUniqueInput
+    update?: XOR<XOR<CoOpGroupUpdateToOneWithWhereWithoutMembersInput, CoOpGroupUpdateWithoutMembersInput>, CoOpGroupUncheckedUpdateWithoutMembersInput>
+  }
+
+  export type UserUpdateOneRequiredWithoutCoOpContributionsNestedInput = {
+    create?: XOR<UserCreateWithoutCoOpContributionsInput, UserUncheckedCreateWithoutCoOpContributionsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutCoOpContributionsInput
+    upsert?: UserUpsertWithoutCoOpContributionsInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutCoOpContributionsInput, UserUpdateWithoutCoOpContributionsInput>, UserUncheckedUpdateWithoutCoOpContributionsInput>
+  }
+
+  export type OrderUpdateOneWithoutCoOpMemberNestedInput = {
+    create?: XOR<OrderCreateWithoutCoOpMemberInput, OrderUncheckedCreateWithoutCoOpMemberInput>
+    connectOrCreate?: OrderCreateOrConnectWithoutCoOpMemberInput
+    upsert?: OrderUpsertWithoutCoOpMemberInput
+    disconnect?: OrderWhereInput | boolean
+    delete?: OrderWhereInput | boolean
+    connect?: OrderWhereUniqueInput
+    update?: XOR<XOR<OrderUpdateToOneWithWhereWithoutCoOpMemberInput, OrderUpdateWithoutCoOpMemberInput>, OrderUncheckedUpdateWithoutCoOpMemberInput>
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -36253,6 +39539,23 @@ export namespace Prisma {
     _max?: NestedEnumPreOrderStatusFilter<$PrismaModel>
   }
 
+  export type NestedEnumCoOpStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.CoOpStatus | EnumCoOpStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.CoOpStatus[] | ListEnumCoOpStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.CoOpStatus[] | ListEnumCoOpStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumCoOpStatusFilter<$PrismaModel> | $Enums.CoOpStatus
+  }
+
+  export type NestedEnumCoOpStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.CoOpStatus | EnumCoOpStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.CoOpStatus[] | ListEnumCoOpStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.CoOpStatus[] | ListEnumCoOpStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumCoOpStatusWithAggregatesFilter<$PrismaModel> | $Enums.CoOpStatus
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumCoOpStatusFilter<$PrismaModel>
+    _max?: NestedEnumCoOpStatusFilter<$PrismaModel>
+  }
+
   export type FarmerProfileCreateWithoutUserInput = {
     id?: string
     farmSizeAcres?: number | null
@@ -36352,6 +39655,7 @@ export namespace Prisma {
     traceability?: TraceabilityRecordCreateNestedOneWithoutListingInput
     traceEvents?: TraceEventCreateNestedManyWithoutListingInput
     preOrders?: PreOrderCreateNestedManyWithoutMatchedListingInput
+    coOps?: CoOpGroupCreateNestedManyWithoutListingInput
     plantingLog?: PlantingLogCreateNestedOneWithoutListingsInput
   }
 
@@ -36378,6 +39682,7 @@ export namespace Prisma {
     traceability?: TraceabilityRecordUncheckedCreateNestedOneWithoutListingInput
     traceEvents?: TraceEventUncheckedCreateNestedManyWithoutListingInput
     preOrders?: PreOrderUncheckedCreateNestedManyWithoutMatchedListingInput
+    coOps?: CoOpGroupUncheckedCreateNestedManyWithoutListingInput
   }
 
   export type ProduceListingCreateOrConnectWithoutFarmerInput = {
@@ -36406,6 +39711,7 @@ export namespace Prisma {
     reviews?: ReviewCreateNestedManyWithoutOrderInput
     messages?: MessageCreateNestedManyWithoutOrderInput
     preOrder?: PreOrderCreateNestedOneWithoutFulfilledOrderInput
+    coOpMember?: CoOpMemberCreateNestedOneWithoutOrderInput
   }
 
   export type OrderUncheckedCreateWithoutBuyerInput = {
@@ -36424,6 +39730,7 @@ export namespace Prisma {
     reviews?: ReviewUncheckedCreateNestedManyWithoutOrderInput
     messages?: MessageUncheckedCreateNestedManyWithoutOrderInput
     preOrder?: PreOrderUncheckedCreateNestedOneWithoutFulfilledOrderInput
+    coOpMember?: CoOpMemberUncheckedCreateNestedOneWithoutOrderInput
   }
 
   export type OrderCreateOrConnectWithoutBuyerInput = {
@@ -36916,6 +40223,74 @@ export namespace Prisma {
 
   export type UssdSessionCreateManyUserInputEnvelope = {
     data: UssdSessionCreateManyUserInput | UssdSessionCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type CoOpGroupCreateWithoutCreatorInput = {
+    id?: string
+    targetQuantity: number
+    currentQuantity?: number
+    deadline: Date | string
+    status?: $Enums.CoOpStatus
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    listing: ProduceListingCreateNestedOneWithoutCoOpsInput
+    members?: CoOpMemberCreateNestedManyWithoutCoOpGroupInput
+  }
+
+  export type CoOpGroupUncheckedCreateWithoutCreatorInput = {
+    id?: string
+    listingId: string
+    targetQuantity: number
+    currentQuantity?: number
+    deadline: Date | string
+    status?: $Enums.CoOpStatus
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    members?: CoOpMemberUncheckedCreateNestedManyWithoutCoOpGroupInput
+  }
+
+  export type CoOpGroupCreateOrConnectWithoutCreatorInput = {
+    where: CoOpGroupWhereUniqueInput
+    create: XOR<CoOpGroupCreateWithoutCreatorInput, CoOpGroupUncheckedCreateWithoutCreatorInput>
+  }
+
+  export type CoOpGroupCreateManyCreatorInputEnvelope = {
+    data: CoOpGroupCreateManyCreatorInput | CoOpGroupCreateManyCreatorInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type CoOpMemberCreateWithoutBuyerInput = {
+    id?: string
+    quantityKg: number
+    paidAmount: number
+    paymentStatus?: $Enums.PaymentStatus
+    paystackRef?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    coOpGroup: CoOpGroupCreateNestedOneWithoutMembersInput
+    order?: OrderCreateNestedOneWithoutCoOpMemberInput
+  }
+
+  export type CoOpMemberUncheckedCreateWithoutBuyerInput = {
+    id?: string
+    coOpGroupId: string
+    quantityKg: number
+    paidAmount: number
+    paymentStatus?: $Enums.PaymentStatus
+    paystackRef?: string | null
+    orderId?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type CoOpMemberCreateOrConnectWithoutBuyerInput = {
+    where: CoOpMemberWhereUniqueInput
+    create: XOR<CoOpMemberCreateWithoutBuyerInput, CoOpMemberUncheckedCreateWithoutBuyerInput>
+  }
+
+  export type CoOpMemberCreateManyBuyerInputEnvelope = {
+    data: CoOpMemberCreateManyBuyerInput | CoOpMemberCreateManyBuyerInput[]
     skipDuplicates?: boolean
   }
 
@@ -37513,6 +40888,69 @@ export namespace Prisma {
     endReason?: StringNullableFilter<"UssdSession"> | string | null
   }
 
+  export type CoOpGroupUpsertWithWhereUniqueWithoutCreatorInput = {
+    where: CoOpGroupWhereUniqueInput
+    update: XOR<CoOpGroupUpdateWithoutCreatorInput, CoOpGroupUncheckedUpdateWithoutCreatorInput>
+    create: XOR<CoOpGroupCreateWithoutCreatorInput, CoOpGroupUncheckedCreateWithoutCreatorInput>
+  }
+
+  export type CoOpGroupUpdateWithWhereUniqueWithoutCreatorInput = {
+    where: CoOpGroupWhereUniqueInput
+    data: XOR<CoOpGroupUpdateWithoutCreatorInput, CoOpGroupUncheckedUpdateWithoutCreatorInput>
+  }
+
+  export type CoOpGroupUpdateManyWithWhereWithoutCreatorInput = {
+    where: CoOpGroupScalarWhereInput
+    data: XOR<CoOpGroupUpdateManyMutationInput, CoOpGroupUncheckedUpdateManyWithoutCreatorInput>
+  }
+
+  export type CoOpGroupScalarWhereInput = {
+    AND?: CoOpGroupScalarWhereInput | CoOpGroupScalarWhereInput[]
+    OR?: CoOpGroupScalarWhereInput[]
+    NOT?: CoOpGroupScalarWhereInput | CoOpGroupScalarWhereInput[]
+    id?: StringFilter<"CoOpGroup"> | string
+    listingId?: StringFilter<"CoOpGroup"> | string
+    creatorId?: StringFilter<"CoOpGroup"> | string
+    targetQuantity?: FloatFilter<"CoOpGroup"> | number
+    currentQuantity?: FloatFilter<"CoOpGroup"> | number
+    deadline?: DateTimeFilter<"CoOpGroup"> | Date | string
+    status?: EnumCoOpStatusFilter<"CoOpGroup"> | $Enums.CoOpStatus
+    createdAt?: DateTimeFilter<"CoOpGroup"> | Date | string
+    updatedAt?: DateTimeFilter<"CoOpGroup"> | Date | string
+  }
+
+  export type CoOpMemberUpsertWithWhereUniqueWithoutBuyerInput = {
+    where: CoOpMemberWhereUniqueInput
+    update: XOR<CoOpMemberUpdateWithoutBuyerInput, CoOpMemberUncheckedUpdateWithoutBuyerInput>
+    create: XOR<CoOpMemberCreateWithoutBuyerInput, CoOpMemberUncheckedCreateWithoutBuyerInput>
+  }
+
+  export type CoOpMemberUpdateWithWhereUniqueWithoutBuyerInput = {
+    where: CoOpMemberWhereUniqueInput
+    data: XOR<CoOpMemberUpdateWithoutBuyerInput, CoOpMemberUncheckedUpdateWithoutBuyerInput>
+  }
+
+  export type CoOpMemberUpdateManyWithWhereWithoutBuyerInput = {
+    where: CoOpMemberScalarWhereInput
+    data: XOR<CoOpMemberUpdateManyMutationInput, CoOpMemberUncheckedUpdateManyWithoutBuyerInput>
+  }
+
+  export type CoOpMemberScalarWhereInput = {
+    AND?: CoOpMemberScalarWhereInput | CoOpMemberScalarWhereInput[]
+    OR?: CoOpMemberScalarWhereInput[]
+    NOT?: CoOpMemberScalarWhereInput | CoOpMemberScalarWhereInput[]
+    id?: StringFilter<"CoOpMember"> | string
+    coOpGroupId?: StringFilter<"CoOpMember"> | string
+    buyerId?: StringFilter<"CoOpMember"> | string
+    quantityKg?: FloatFilter<"CoOpMember"> | number
+    paidAmount?: FloatFilter<"CoOpMember"> | number
+    paymentStatus?: EnumPaymentStatusFilter<"CoOpMember"> | $Enums.PaymentStatus
+    paystackRef?: StringNullableFilter<"CoOpMember"> | string | null
+    orderId?: StringNullableFilter<"CoOpMember"> | string | null
+    createdAt?: DateTimeFilter<"CoOpMember"> | Date | string
+    updatedAt?: DateTimeFilter<"CoOpMember"> | Date | string
+  }
+
   export type UserCreateWithoutFarmerProfileInput = {
     id?: string
     phone: string
@@ -37549,6 +40987,8 @@ export namespace Prisma {
     ban?: UserBanCreateNestedOneWithoutUserInput
     bansIssued?: UserBanCreateNestedManyWithoutBannerInput
     ussdSessions?: UssdSessionCreateNestedManyWithoutUserInput
+    createdCoOps?: CoOpGroupCreateNestedManyWithoutCreatorInput
+    coOpContributions?: CoOpMemberCreateNestedManyWithoutBuyerInput
   }
 
   export type UserUncheckedCreateWithoutFarmerProfileInput = {
@@ -37587,6 +41027,8 @@ export namespace Prisma {
     ban?: UserBanUncheckedCreateNestedOneWithoutUserInput
     bansIssued?: UserBanUncheckedCreateNestedManyWithoutBannerInput
     ussdSessions?: UssdSessionUncheckedCreateNestedManyWithoutUserInput
+    createdCoOps?: CoOpGroupUncheckedCreateNestedManyWithoutCreatorInput
+    coOpContributions?: CoOpMemberUncheckedCreateNestedManyWithoutBuyerInput
   }
 
   export type UserCreateOrConnectWithoutFarmerProfileInput = {
@@ -37641,6 +41083,8 @@ export namespace Prisma {
     ban?: UserBanUpdateOneWithoutUserNestedInput
     bansIssued?: UserBanUpdateManyWithoutBannerNestedInput
     ussdSessions?: UssdSessionUpdateManyWithoutUserNestedInput
+    createdCoOps?: CoOpGroupUpdateManyWithoutCreatorNestedInput
+    coOpContributions?: CoOpMemberUpdateManyWithoutBuyerNestedInput
   }
 
   export type UserUncheckedUpdateWithoutFarmerProfileInput = {
@@ -37679,6 +41123,8 @@ export namespace Prisma {
     ban?: UserBanUncheckedUpdateOneWithoutUserNestedInput
     bansIssued?: UserBanUncheckedUpdateManyWithoutBannerNestedInput
     ussdSessions?: UssdSessionUncheckedUpdateManyWithoutUserNestedInput
+    createdCoOps?: CoOpGroupUncheckedUpdateManyWithoutCreatorNestedInput
+    coOpContributions?: CoOpMemberUncheckedUpdateManyWithoutBuyerNestedInput
   }
 
   export type UserCreateWithoutBuyerProfileInput = {
@@ -37717,6 +41163,8 @@ export namespace Prisma {
     ban?: UserBanCreateNestedOneWithoutUserInput
     bansIssued?: UserBanCreateNestedManyWithoutBannerInput
     ussdSessions?: UssdSessionCreateNestedManyWithoutUserInput
+    createdCoOps?: CoOpGroupCreateNestedManyWithoutCreatorInput
+    coOpContributions?: CoOpMemberCreateNestedManyWithoutBuyerInput
   }
 
   export type UserUncheckedCreateWithoutBuyerProfileInput = {
@@ -37755,6 +41203,8 @@ export namespace Prisma {
     ban?: UserBanUncheckedCreateNestedOneWithoutUserInput
     bansIssued?: UserBanUncheckedCreateNestedManyWithoutBannerInput
     ussdSessions?: UssdSessionUncheckedCreateNestedManyWithoutUserInput
+    createdCoOps?: CoOpGroupUncheckedCreateNestedManyWithoutCreatorInput
+    coOpContributions?: CoOpMemberUncheckedCreateNestedManyWithoutBuyerInput
   }
 
   export type UserCreateOrConnectWithoutBuyerProfileInput = {
@@ -37809,6 +41259,8 @@ export namespace Prisma {
     ban?: UserBanUpdateOneWithoutUserNestedInput
     bansIssued?: UserBanUpdateManyWithoutBannerNestedInput
     ussdSessions?: UssdSessionUpdateManyWithoutUserNestedInput
+    createdCoOps?: CoOpGroupUpdateManyWithoutCreatorNestedInput
+    coOpContributions?: CoOpMemberUpdateManyWithoutBuyerNestedInput
   }
 
   export type UserUncheckedUpdateWithoutBuyerProfileInput = {
@@ -37847,6 +41299,8 @@ export namespace Prisma {
     ban?: UserBanUncheckedUpdateOneWithoutUserNestedInput
     bansIssued?: UserBanUncheckedUpdateManyWithoutBannerNestedInput
     ussdSessions?: UssdSessionUncheckedUpdateManyWithoutUserNestedInput
+    createdCoOps?: CoOpGroupUncheckedUpdateManyWithoutCreatorNestedInput
+    coOpContributions?: CoOpMemberUncheckedUpdateManyWithoutBuyerNestedInput
   }
 
   export type UserCreateWithoutTransportProfileInput = {
@@ -37885,6 +41339,8 @@ export namespace Prisma {
     ban?: UserBanCreateNestedOneWithoutUserInput
     bansIssued?: UserBanCreateNestedManyWithoutBannerInput
     ussdSessions?: UssdSessionCreateNestedManyWithoutUserInput
+    createdCoOps?: CoOpGroupCreateNestedManyWithoutCreatorInput
+    coOpContributions?: CoOpMemberCreateNestedManyWithoutBuyerInput
   }
 
   export type UserUncheckedCreateWithoutTransportProfileInput = {
@@ -37923,6 +41379,8 @@ export namespace Prisma {
     ban?: UserBanUncheckedCreateNestedOneWithoutUserInput
     bansIssued?: UserBanUncheckedCreateNestedManyWithoutBannerInput
     ussdSessions?: UssdSessionUncheckedCreateNestedManyWithoutUserInput
+    createdCoOps?: CoOpGroupUncheckedCreateNestedManyWithoutCreatorInput
+    coOpContributions?: CoOpMemberUncheckedCreateNestedManyWithoutBuyerInput
   }
 
   export type UserCreateOrConnectWithoutTransportProfileInput = {
@@ -37977,6 +41435,8 @@ export namespace Prisma {
     ban?: UserBanUpdateOneWithoutUserNestedInput
     bansIssued?: UserBanUpdateManyWithoutBannerNestedInput
     ussdSessions?: UssdSessionUpdateManyWithoutUserNestedInput
+    createdCoOps?: CoOpGroupUpdateManyWithoutCreatorNestedInput
+    coOpContributions?: CoOpMemberUpdateManyWithoutBuyerNestedInput
   }
 
   export type UserUncheckedUpdateWithoutTransportProfileInput = {
@@ -38015,6 +41475,8 @@ export namespace Prisma {
     ban?: UserBanUncheckedUpdateOneWithoutUserNestedInput
     bansIssued?: UserBanUncheckedUpdateManyWithoutBannerNestedInput
     ussdSessions?: UssdSessionUncheckedUpdateManyWithoutUserNestedInput
+    createdCoOps?: CoOpGroupUncheckedUpdateManyWithoutCreatorNestedInput
+    coOpContributions?: CoOpMemberUncheckedUpdateManyWithoutBuyerNestedInput
   }
 
   export type UserCreateWithoutListingsInput = {
@@ -38053,6 +41515,8 @@ export namespace Prisma {
     ban?: UserBanCreateNestedOneWithoutUserInput
     bansIssued?: UserBanCreateNestedManyWithoutBannerInput
     ussdSessions?: UssdSessionCreateNestedManyWithoutUserInput
+    createdCoOps?: CoOpGroupCreateNestedManyWithoutCreatorInput
+    coOpContributions?: CoOpMemberCreateNestedManyWithoutBuyerInput
   }
 
   export type UserUncheckedCreateWithoutListingsInput = {
@@ -38091,6 +41555,8 @@ export namespace Prisma {
     ban?: UserBanUncheckedCreateNestedOneWithoutUserInput
     bansIssued?: UserBanUncheckedCreateNestedManyWithoutBannerInput
     ussdSessions?: UssdSessionUncheckedCreateNestedManyWithoutUserInput
+    createdCoOps?: CoOpGroupUncheckedCreateNestedManyWithoutCreatorInput
+    coOpContributions?: CoOpMemberUncheckedCreateNestedManyWithoutBuyerInput
   }
 
   export type UserCreateOrConnectWithoutListingsInput = {
@@ -38114,6 +41580,7 @@ export namespace Prisma {
     reviews?: ReviewCreateNestedManyWithoutOrderInput
     messages?: MessageCreateNestedManyWithoutOrderInput
     preOrder?: PreOrderCreateNestedOneWithoutFulfilledOrderInput
+    coOpMember?: CoOpMemberCreateNestedOneWithoutOrderInput
   }
 
   export type OrderUncheckedCreateWithoutListingInput = {
@@ -38132,6 +41599,7 @@ export namespace Prisma {
     reviews?: ReviewUncheckedCreateNestedManyWithoutOrderInput
     messages?: MessageUncheckedCreateNestedManyWithoutOrderInput
     preOrder?: PreOrderUncheckedCreateNestedOneWithoutFulfilledOrderInput
+    coOpMember?: CoOpMemberUncheckedCreateNestedOneWithoutOrderInput
   }
 
   export type OrderCreateOrConnectWithoutListingInput = {
@@ -38249,6 +41717,40 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type CoOpGroupCreateWithoutListingInput = {
+    id?: string
+    targetQuantity: number
+    currentQuantity?: number
+    deadline: Date | string
+    status?: $Enums.CoOpStatus
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    creator: UserCreateNestedOneWithoutCreatedCoOpsInput
+    members?: CoOpMemberCreateNestedManyWithoutCoOpGroupInput
+  }
+
+  export type CoOpGroupUncheckedCreateWithoutListingInput = {
+    id?: string
+    creatorId: string
+    targetQuantity: number
+    currentQuantity?: number
+    deadline: Date | string
+    status?: $Enums.CoOpStatus
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    members?: CoOpMemberUncheckedCreateNestedManyWithoutCoOpGroupInput
+  }
+
+  export type CoOpGroupCreateOrConnectWithoutListingInput = {
+    where: CoOpGroupWhereUniqueInput
+    create: XOR<CoOpGroupCreateWithoutListingInput, CoOpGroupUncheckedCreateWithoutListingInput>
+  }
+
+  export type CoOpGroupCreateManyListingInputEnvelope = {
+    data: CoOpGroupCreateManyListingInput | CoOpGroupCreateManyListingInput[]
+    skipDuplicates?: boolean
+  }
+
   export type PlantingLogCreateWithoutListingsInput = {
     id?: string
     cropType: $Enums.CropType
@@ -38331,6 +41833,8 @@ export namespace Prisma {
     ban?: UserBanUpdateOneWithoutUserNestedInput
     bansIssued?: UserBanUpdateManyWithoutBannerNestedInput
     ussdSessions?: UssdSessionUpdateManyWithoutUserNestedInput
+    createdCoOps?: CoOpGroupUpdateManyWithoutCreatorNestedInput
+    coOpContributions?: CoOpMemberUpdateManyWithoutBuyerNestedInput
   }
 
   export type UserUncheckedUpdateWithoutListingsInput = {
@@ -38369,6 +41873,8 @@ export namespace Prisma {
     ban?: UserBanUncheckedUpdateOneWithoutUserNestedInput
     bansIssued?: UserBanUncheckedUpdateManyWithoutBannerNestedInput
     ussdSessions?: UssdSessionUncheckedUpdateManyWithoutUserNestedInput
+    createdCoOps?: CoOpGroupUncheckedUpdateManyWithoutCreatorNestedInput
+    coOpContributions?: CoOpMemberUncheckedUpdateManyWithoutBuyerNestedInput
   }
 
   export type OrderUpsertWithWhereUniqueWithoutListingInput = {
@@ -38448,6 +41954,22 @@ export namespace Prisma {
     data: XOR<PreOrderUpdateManyMutationInput, PreOrderUncheckedUpdateManyWithoutMatchedListingInput>
   }
 
+  export type CoOpGroupUpsertWithWhereUniqueWithoutListingInput = {
+    where: CoOpGroupWhereUniqueInput
+    update: XOR<CoOpGroupUpdateWithoutListingInput, CoOpGroupUncheckedUpdateWithoutListingInput>
+    create: XOR<CoOpGroupCreateWithoutListingInput, CoOpGroupUncheckedCreateWithoutListingInput>
+  }
+
+  export type CoOpGroupUpdateWithWhereUniqueWithoutListingInput = {
+    where: CoOpGroupWhereUniqueInput
+    data: XOR<CoOpGroupUpdateWithoutListingInput, CoOpGroupUncheckedUpdateWithoutListingInput>
+  }
+
+  export type CoOpGroupUpdateManyWithWhereWithoutListingInput = {
+    where: CoOpGroupScalarWhereInput
+    data: XOR<CoOpGroupUpdateManyMutationInput, CoOpGroupUncheckedUpdateManyWithoutListingInput>
+  }
+
   export type PlantingLogUpsertWithoutListingsInput = {
     update: XOR<PlantingLogUpdateWithoutListingsInput, PlantingLogUncheckedUpdateWithoutListingsInput>
     create: XOR<PlantingLogCreateWithoutListingsInput, PlantingLogUncheckedCreateWithoutListingsInput>
@@ -38511,6 +42033,7 @@ export namespace Prisma {
     orders?: OrderCreateNestedManyWithoutListingInput
     traceEvents?: TraceEventCreateNestedManyWithoutListingInput
     preOrders?: PreOrderCreateNestedManyWithoutMatchedListingInput
+    coOps?: CoOpGroupCreateNestedManyWithoutListingInput
     plantingLog?: PlantingLogCreateNestedOneWithoutListingsInput
   }
 
@@ -38537,6 +42060,7 @@ export namespace Prisma {
     orders?: OrderUncheckedCreateNestedManyWithoutListingInput
     traceEvents?: TraceEventUncheckedCreateNestedManyWithoutListingInput
     preOrders?: PreOrderUncheckedCreateNestedManyWithoutMatchedListingInput
+    coOps?: CoOpGroupUncheckedCreateNestedManyWithoutListingInput
   }
 
   export type ProduceListingCreateOrConnectWithoutTraceabilityInput = {
@@ -38577,6 +42101,7 @@ export namespace Prisma {
     orders?: OrderUpdateManyWithoutListingNestedInput
     traceEvents?: TraceEventUpdateManyWithoutListingNestedInput
     preOrders?: PreOrderUpdateManyWithoutMatchedListingNestedInput
+    coOps?: CoOpGroupUpdateManyWithoutListingNestedInput
     plantingLog?: PlantingLogUpdateOneWithoutListingsNestedInput
   }
 
@@ -38603,6 +42128,7 @@ export namespace Prisma {
     orders?: OrderUncheckedUpdateManyWithoutListingNestedInput
     traceEvents?: TraceEventUncheckedUpdateManyWithoutListingNestedInput
     preOrders?: PreOrderUncheckedUpdateManyWithoutMatchedListingNestedInput
+    coOps?: CoOpGroupUncheckedUpdateManyWithoutListingNestedInput
   }
 
   export type ProduceListingCreateWithoutTraceEventsInput = {
@@ -38627,6 +42153,7 @@ export namespace Prisma {
     orders?: OrderCreateNestedManyWithoutListingInput
     traceability?: TraceabilityRecordCreateNestedOneWithoutListingInput
     preOrders?: PreOrderCreateNestedManyWithoutMatchedListingInput
+    coOps?: CoOpGroupCreateNestedManyWithoutListingInput
     plantingLog?: PlantingLogCreateNestedOneWithoutListingsInput
   }
 
@@ -38653,6 +42180,7 @@ export namespace Prisma {
     orders?: OrderUncheckedCreateNestedManyWithoutListingInput
     traceability?: TraceabilityRecordUncheckedCreateNestedOneWithoutListingInput
     preOrders?: PreOrderUncheckedCreateNestedManyWithoutMatchedListingInput
+    coOps?: CoOpGroupUncheckedCreateNestedManyWithoutListingInput
   }
 
   export type ProduceListingCreateOrConnectWithoutTraceEventsInput = {
@@ -38696,6 +42224,8 @@ export namespace Prisma {
     ban?: UserBanCreateNestedOneWithoutUserInput
     bansIssued?: UserBanCreateNestedManyWithoutBannerInput
     ussdSessions?: UssdSessionCreateNestedManyWithoutUserInput
+    createdCoOps?: CoOpGroupCreateNestedManyWithoutCreatorInput
+    coOpContributions?: CoOpMemberCreateNestedManyWithoutBuyerInput
   }
 
   export type UserUncheckedCreateWithoutRecordedTraceEventsInput = {
@@ -38734,6 +42264,8 @@ export namespace Prisma {
     ban?: UserBanUncheckedCreateNestedOneWithoutUserInput
     bansIssued?: UserBanUncheckedCreateNestedManyWithoutBannerInput
     ussdSessions?: UssdSessionUncheckedCreateNestedManyWithoutUserInput
+    createdCoOps?: CoOpGroupUncheckedCreateNestedManyWithoutCreatorInput
+    coOpContributions?: CoOpMemberUncheckedCreateNestedManyWithoutBuyerInput
   }
 
   export type UserCreateOrConnectWithoutRecordedTraceEventsInput = {
@@ -38774,6 +42306,7 @@ export namespace Prisma {
     orders?: OrderUpdateManyWithoutListingNestedInput
     traceability?: TraceabilityRecordUpdateOneWithoutListingNestedInput
     preOrders?: PreOrderUpdateManyWithoutMatchedListingNestedInput
+    coOps?: CoOpGroupUpdateManyWithoutListingNestedInput
     plantingLog?: PlantingLogUpdateOneWithoutListingsNestedInput
   }
 
@@ -38800,6 +42333,7 @@ export namespace Prisma {
     orders?: OrderUncheckedUpdateManyWithoutListingNestedInput
     traceability?: TraceabilityRecordUncheckedUpdateOneWithoutListingNestedInput
     preOrders?: PreOrderUncheckedUpdateManyWithoutMatchedListingNestedInput
+    coOps?: CoOpGroupUncheckedUpdateManyWithoutListingNestedInput
   }
 
   export type UserUpsertWithoutRecordedTraceEventsInput = {
@@ -38849,6 +42383,8 @@ export namespace Prisma {
     ban?: UserBanUpdateOneWithoutUserNestedInput
     bansIssued?: UserBanUpdateManyWithoutBannerNestedInput
     ussdSessions?: UssdSessionUpdateManyWithoutUserNestedInput
+    createdCoOps?: CoOpGroupUpdateManyWithoutCreatorNestedInput
+    coOpContributions?: CoOpMemberUpdateManyWithoutBuyerNestedInput
   }
 
   export type UserUncheckedUpdateWithoutRecordedTraceEventsInput = {
@@ -38887,6 +42423,8 @@ export namespace Prisma {
     ban?: UserBanUncheckedUpdateOneWithoutUserNestedInput
     bansIssued?: UserBanUncheckedUpdateManyWithoutBannerNestedInput
     ussdSessions?: UssdSessionUncheckedUpdateManyWithoutUserNestedInput
+    createdCoOps?: CoOpGroupUncheckedUpdateManyWithoutCreatorNestedInput
+    coOpContributions?: CoOpMemberUncheckedUpdateManyWithoutBuyerNestedInput
   }
 
   export type UserCreateWithoutOrdersInput = {
@@ -38925,6 +42463,8 @@ export namespace Prisma {
     ban?: UserBanCreateNestedOneWithoutUserInput
     bansIssued?: UserBanCreateNestedManyWithoutBannerInput
     ussdSessions?: UssdSessionCreateNestedManyWithoutUserInput
+    createdCoOps?: CoOpGroupCreateNestedManyWithoutCreatorInput
+    coOpContributions?: CoOpMemberCreateNestedManyWithoutBuyerInput
   }
 
   export type UserUncheckedCreateWithoutOrdersInput = {
@@ -38963,6 +42503,8 @@ export namespace Prisma {
     ban?: UserBanUncheckedCreateNestedOneWithoutUserInput
     bansIssued?: UserBanUncheckedCreateNestedManyWithoutBannerInput
     ussdSessions?: UssdSessionUncheckedCreateNestedManyWithoutUserInput
+    createdCoOps?: CoOpGroupUncheckedCreateNestedManyWithoutCreatorInput
+    coOpContributions?: CoOpMemberUncheckedCreateNestedManyWithoutBuyerInput
   }
 
   export type UserCreateOrConnectWithoutOrdersInput = {
@@ -38992,6 +42534,7 @@ export namespace Prisma {
     traceability?: TraceabilityRecordCreateNestedOneWithoutListingInput
     traceEvents?: TraceEventCreateNestedManyWithoutListingInput
     preOrders?: PreOrderCreateNestedManyWithoutMatchedListingInput
+    coOps?: CoOpGroupCreateNestedManyWithoutListingInput
     plantingLog?: PlantingLogCreateNestedOneWithoutListingsInput
   }
 
@@ -39018,6 +42561,7 @@ export namespace Prisma {
     traceability?: TraceabilityRecordUncheckedCreateNestedOneWithoutListingInput
     traceEvents?: TraceEventUncheckedCreateNestedManyWithoutListingInput
     preOrders?: PreOrderUncheckedCreateNestedManyWithoutMatchedListingInput
+    coOps?: CoOpGroupUncheckedCreateNestedManyWithoutListingInput
   }
 
   export type ProduceListingCreateOrConnectWithoutOrdersInput = {
@@ -39181,6 +42725,35 @@ export namespace Prisma {
     create: XOR<PreOrderCreateWithoutFulfilledOrderInput, PreOrderUncheckedCreateWithoutFulfilledOrderInput>
   }
 
+  export type CoOpMemberCreateWithoutOrderInput = {
+    id?: string
+    quantityKg: number
+    paidAmount: number
+    paymentStatus?: $Enums.PaymentStatus
+    paystackRef?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    coOpGroup: CoOpGroupCreateNestedOneWithoutMembersInput
+    buyer: UserCreateNestedOneWithoutCoOpContributionsInput
+  }
+
+  export type CoOpMemberUncheckedCreateWithoutOrderInput = {
+    id?: string
+    coOpGroupId: string
+    buyerId: string
+    quantityKg: number
+    paidAmount: number
+    paymentStatus?: $Enums.PaymentStatus
+    paystackRef?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type CoOpMemberCreateOrConnectWithoutOrderInput = {
+    where: CoOpMemberWhereUniqueInput
+    create: XOR<CoOpMemberCreateWithoutOrderInput, CoOpMemberUncheckedCreateWithoutOrderInput>
+  }
+
   export type UserUpsertWithoutOrdersInput = {
     update: XOR<UserUpdateWithoutOrdersInput, UserUncheckedUpdateWithoutOrdersInput>
     create: XOR<UserCreateWithoutOrdersInput, UserUncheckedCreateWithoutOrdersInput>
@@ -39228,6 +42801,8 @@ export namespace Prisma {
     ban?: UserBanUpdateOneWithoutUserNestedInput
     bansIssued?: UserBanUpdateManyWithoutBannerNestedInput
     ussdSessions?: UssdSessionUpdateManyWithoutUserNestedInput
+    createdCoOps?: CoOpGroupUpdateManyWithoutCreatorNestedInput
+    coOpContributions?: CoOpMemberUpdateManyWithoutBuyerNestedInput
   }
 
   export type UserUncheckedUpdateWithoutOrdersInput = {
@@ -39266,6 +42841,8 @@ export namespace Prisma {
     ban?: UserBanUncheckedUpdateOneWithoutUserNestedInput
     bansIssued?: UserBanUncheckedUpdateManyWithoutBannerNestedInput
     ussdSessions?: UssdSessionUncheckedUpdateManyWithoutUserNestedInput
+    createdCoOps?: CoOpGroupUncheckedUpdateManyWithoutCreatorNestedInput
+    coOpContributions?: CoOpMemberUncheckedUpdateManyWithoutBuyerNestedInput
   }
 
   export type ProduceListingUpsertWithoutOrdersInput = {
@@ -39301,6 +42878,7 @@ export namespace Prisma {
     traceability?: TraceabilityRecordUpdateOneWithoutListingNestedInput
     traceEvents?: TraceEventUpdateManyWithoutListingNestedInput
     preOrders?: PreOrderUpdateManyWithoutMatchedListingNestedInput
+    coOps?: CoOpGroupUpdateManyWithoutListingNestedInput
     plantingLog?: PlantingLogUpdateOneWithoutListingsNestedInput
   }
 
@@ -39327,6 +42905,7 @@ export namespace Prisma {
     traceability?: TraceabilityRecordUncheckedUpdateOneWithoutListingNestedInput
     traceEvents?: TraceEventUncheckedUpdateManyWithoutListingNestedInput
     preOrders?: PreOrderUncheckedUpdateManyWithoutMatchedListingNestedInput
+    coOps?: CoOpGroupUncheckedUpdateManyWithoutListingNestedInput
   }
 
   export type DeliveryRequestUpsertWithoutOrderInput = {
@@ -39469,6 +43048,41 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type CoOpMemberUpsertWithoutOrderInput = {
+    update: XOR<CoOpMemberUpdateWithoutOrderInput, CoOpMemberUncheckedUpdateWithoutOrderInput>
+    create: XOR<CoOpMemberCreateWithoutOrderInput, CoOpMemberUncheckedCreateWithoutOrderInput>
+    where?: CoOpMemberWhereInput
+  }
+
+  export type CoOpMemberUpdateToOneWithWhereWithoutOrderInput = {
+    where?: CoOpMemberWhereInput
+    data: XOR<CoOpMemberUpdateWithoutOrderInput, CoOpMemberUncheckedUpdateWithoutOrderInput>
+  }
+
+  export type CoOpMemberUpdateWithoutOrderInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    quantityKg?: FloatFieldUpdateOperationsInput | number
+    paidAmount?: FloatFieldUpdateOperationsInput | number
+    paymentStatus?: EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
+    paystackRef?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    coOpGroup?: CoOpGroupUpdateOneRequiredWithoutMembersNestedInput
+    buyer?: UserUpdateOneRequiredWithoutCoOpContributionsNestedInput
+  }
+
+  export type CoOpMemberUncheckedUpdateWithoutOrderInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    coOpGroupId?: StringFieldUpdateOperationsInput | string
+    buyerId?: StringFieldUpdateOperationsInput | string
+    quantityKg?: FloatFieldUpdateOperationsInput | number
+    paidAmount?: FloatFieldUpdateOperationsInput | number
+    paymentStatus?: EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
+    paystackRef?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type OrderCreateWithoutDeliveryRequestInput = {
     id?: string
     quantityKg: number
@@ -39485,6 +43099,7 @@ export namespace Prisma {
     reviews?: ReviewCreateNestedManyWithoutOrderInput
     messages?: MessageCreateNestedManyWithoutOrderInput
     preOrder?: PreOrderCreateNestedOneWithoutFulfilledOrderInput
+    coOpMember?: CoOpMemberCreateNestedOneWithoutOrderInput
   }
 
   export type OrderUncheckedCreateWithoutDeliveryRequestInput = {
@@ -39503,6 +43118,7 @@ export namespace Prisma {
     reviews?: ReviewUncheckedCreateNestedManyWithoutOrderInput
     messages?: MessageUncheckedCreateNestedManyWithoutOrderInput
     preOrder?: PreOrderUncheckedCreateNestedOneWithoutFulfilledOrderInput
+    coOpMember?: CoOpMemberUncheckedCreateNestedOneWithoutOrderInput
   }
 
   export type OrderCreateOrConnectWithoutDeliveryRequestInput = {
@@ -39546,6 +43162,8 @@ export namespace Prisma {
     ban?: UserBanCreateNestedOneWithoutUserInput
     bansIssued?: UserBanCreateNestedManyWithoutBannerInput
     ussdSessions?: UssdSessionCreateNestedManyWithoutUserInput
+    createdCoOps?: CoOpGroupCreateNestedManyWithoutCreatorInput
+    coOpContributions?: CoOpMemberCreateNestedManyWithoutBuyerInput
   }
 
   export type UserUncheckedCreateWithoutDeliveriesInput = {
@@ -39584,6 +43202,8 @@ export namespace Prisma {
     ban?: UserBanUncheckedCreateNestedOneWithoutUserInput
     bansIssued?: UserBanUncheckedCreateNestedManyWithoutBannerInput
     ussdSessions?: UssdSessionUncheckedCreateNestedManyWithoutUserInput
+    createdCoOps?: CoOpGroupUncheckedCreateNestedManyWithoutCreatorInput
+    coOpContributions?: CoOpMemberUncheckedCreateNestedManyWithoutBuyerInput
   }
 
   export type UserCreateOrConnectWithoutDeliveriesInput = {
@@ -39618,6 +43238,7 @@ export namespace Prisma {
     reviews?: ReviewUpdateManyWithoutOrderNestedInput
     messages?: MessageUpdateManyWithoutOrderNestedInput
     preOrder?: PreOrderUpdateOneWithoutFulfilledOrderNestedInput
+    coOpMember?: CoOpMemberUpdateOneWithoutOrderNestedInput
   }
 
   export type OrderUncheckedUpdateWithoutDeliveryRequestInput = {
@@ -39636,6 +43257,7 @@ export namespace Prisma {
     reviews?: ReviewUncheckedUpdateManyWithoutOrderNestedInput
     messages?: MessageUncheckedUpdateManyWithoutOrderNestedInput
     preOrder?: PreOrderUncheckedUpdateOneWithoutFulfilledOrderNestedInput
+    coOpMember?: CoOpMemberUncheckedUpdateOneWithoutOrderNestedInput
   }
 
   export type UserUpsertWithoutDeliveriesInput = {
@@ -39685,6 +43307,8 @@ export namespace Prisma {
     ban?: UserBanUpdateOneWithoutUserNestedInput
     bansIssued?: UserBanUpdateManyWithoutBannerNestedInput
     ussdSessions?: UssdSessionUpdateManyWithoutUserNestedInput
+    createdCoOps?: CoOpGroupUpdateManyWithoutCreatorNestedInput
+    coOpContributions?: CoOpMemberUpdateManyWithoutBuyerNestedInput
   }
 
   export type UserUncheckedUpdateWithoutDeliveriesInput = {
@@ -39723,6 +43347,8 @@ export namespace Prisma {
     ban?: UserBanUncheckedUpdateOneWithoutUserNestedInput
     bansIssued?: UserBanUncheckedUpdateManyWithoutBannerNestedInput
     ussdSessions?: UssdSessionUncheckedUpdateManyWithoutUserNestedInput
+    createdCoOps?: CoOpGroupUncheckedUpdateManyWithoutCreatorNestedInput
+    coOpContributions?: CoOpMemberUncheckedUpdateManyWithoutBuyerNestedInput
   }
 
   export type UserCreateWithoutSentReviewsInput = {
@@ -39761,6 +43387,8 @@ export namespace Prisma {
     ban?: UserBanCreateNestedOneWithoutUserInput
     bansIssued?: UserBanCreateNestedManyWithoutBannerInput
     ussdSessions?: UssdSessionCreateNestedManyWithoutUserInput
+    createdCoOps?: CoOpGroupCreateNestedManyWithoutCreatorInput
+    coOpContributions?: CoOpMemberCreateNestedManyWithoutBuyerInput
   }
 
   export type UserUncheckedCreateWithoutSentReviewsInput = {
@@ -39799,6 +43427,8 @@ export namespace Prisma {
     ban?: UserBanUncheckedCreateNestedOneWithoutUserInput
     bansIssued?: UserBanUncheckedCreateNestedManyWithoutBannerInput
     ussdSessions?: UssdSessionUncheckedCreateNestedManyWithoutUserInput
+    createdCoOps?: CoOpGroupUncheckedCreateNestedManyWithoutCreatorInput
+    coOpContributions?: CoOpMemberUncheckedCreateNestedManyWithoutBuyerInput
   }
 
   export type UserCreateOrConnectWithoutSentReviewsInput = {
@@ -39842,6 +43472,8 @@ export namespace Prisma {
     ban?: UserBanCreateNestedOneWithoutUserInput
     bansIssued?: UserBanCreateNestedManyWithoutBannerInput
     ussdSessions?: UssdSessionCreateNestedManyWithoutUserInput
+    createdCoOps?: CoOpGroupCreateNestedManyWithoutCreatorInput
+    coOpContributions?: CoOpMemberCreateNestedManyWithoutBuyerInput
   }
 
   export type UserUncheckedCreateWithoutReceivedReviewsInput = {
@@ -39880,6 +43512,8 @@ export namespace Prisma {
     ban?: UserBanUncheckedCreateNestedOneWithoutUserInput
     bansIssued?: UserBanUncheckedCreateNestedManyWithoutBannerInput
     ussdSessions?: UssdSessionUncheckedCreateNestedManyWithoutUserInput
+    createdCoOps?: CoOpGroupUncheckedCreateNestedManyWithoutCreatorInput
+    coOpContributions?: CoOpMemberUncheckedCreateNestedManyWithoutBuyerInput
   }
 
   export type UserCreateOrConnectWithoutReceivedReviewsInput = {
@@ -39903,6 +43537,7 @@ export namespace Prisma {
     deliveryRequest?: DeliveryRequestCreateNestedOneWithoutOrderInput
     messages?: MessageCreateNestedManyWithoutOrderInput
     preOrder?: PreOrderCreateNestedOneWithoutFulfilledOrderInput
+    coOpMember?: CoOpMemberCreateNestedOneWithoutOrderInput
   }
 
   export type OrderUncheckedCreateWithoutReviewsInput = {
@@ -39921,6 +43556,7 @@ export namespace Prisma {
     deliveryRequest?: DeliveryRequestUncheckedCreateNestedOneWithoutOrderInput
     messages?: MessageUncheckedCreateNestedManyWithoutOrderInput
     preOrder?: PreOrderUncheckedCreateNestedOneWithoutFulfilledOrderInput
+    coOpMember?: CoOpMemberUncheckedCreateNestedOneWithoutOrderInput
   }
 
   export type OrderCreateOrConnectWithoutReviewsInput = {
@@ -39975,6 +43611,8 @@ export namespace Prisma {
     ban?: UserBanUpdateOneWithoutUserNestedInput
     bansIssued?: UserBanUpdateManyWithoutBannerNestedInput
     ussdSessions?: UssdSessionUpdateManyWithoutUserNestedInput
+    createdCoOps?: CoOpGroupUpdateManyWithoutCreatorNestedInput
+    coOpContributions?: CoOpMemberUpdateManyWithoutBuyerNestedInput
   }
 
   export type UserUncheckedUpdateWithoutSentReviewsInput = {
@@ -40013,6 +43651,8 @@ export namespace Prisma {
     ban?: UserBanUncheckedUpdateOneWithoutUserNestedInput
     bansIssued?: UserBanUncheckedUpdateManyWithoutBannerNestedInput
     ussdSessions?: UssdSessionUncheckedUpdateManyWithoutUserNestedInput
+    createdCoOps?: CoOpGroupUncheckedUpdateManyWithoutCreatorNestedInput
+    coOpContributions?: CoOpMemberUncheckedUpdateManyWithoutBuyerNestedInput
   }
 
   export type UserUpsertWithoutReceivedReviewsInput = {
@@ -40062,6 +43702,8 @@ export namespace Prisma {
     ban?: UserBanUpdateOneWithoutUserNestedInput
     bansIssued?: UserBanUpdateManyWithoutBannerNestedInput
     ussdSessions?: UssdSessionUpdateManyWithoutUserNestedInput
+    createdCoOps?: CoOpGroupUpdateManyWithoutCreatorNestedInput
+    coOpContributions?: CoOpMemberUpdateManyWithoutBuyerNestedInput
   }
 
   export type UserUncheckedUpdateWithoutReceivedReviewsInput = {
@@ -40100,6 +43742,8 @@ export namespace Prisma {
     ban?: UserBanUncheckedUpdateOneWithoutUserNestedInput
     bansIssued?: UserBanUncheckedUpdateManyWithoutBannerNestedInput
     ussdSessions?: UssdSessionUncheckedUpdateManyWithoutUserNestedInput
+    createdCoOps?: CoOpGroupUncheckedUpdateManyWithoutCreatorNestedInput
+    coOpContributions?: CoOpMemberUncheckedUpdateManyWithoutBuyerNestedInput
   }
 
   export type OrderUpsertWithoutReviewsInput = {
@@ -40129,6 +43773,7 @@ export namespace Prisma {
     deliveryRequest?: DeliveryRequestUpdateOneWithoutOrderNestedInput
     messages?: MessageUpdateManyWithoutOrderNestedInput
     preOrder?: PreOrderUpdateOneWithoutFulfilledOrderNestedInput
+    coOpMember?: CoOpMemberUpdateOneWithoutOrderNestedInput
   }
 
   export type OrderUncheckedUpdateWithoutReviewsInput = {
@@ -40147,6 +43792,7 @@ export namespace Prisma {
     deliveryRequest?: DeliveryRequestUncheckedUpdateOneWithoutOrderNestedInput
     messages?: MessageUncheckedUpdateManyWithoutOrderNestedInput
     preOrder?: PreOrderUncheckedUpdateOneWithoutFulfilledOrderNestedInput
+    coOpMember?: CoOpMemberUncheckedUpdateOneWithoutOrderNestedInput
   }
 
   export type UserCreateWithoutNotificationsInput = {
@@ -40185,6 +43831,8 @@ export namespace Prisma {
     ban?: UserBanCreateNestedOneWithoutUserInput
     bansIssued?: UserBanCreateNestedManyWithoutBannerInput
     ussdSessions?: UssdSessionCreateNestedManyWithoutUserInput
+    createdCoOps?: CoOpGroupCreateNestedManyWithoutCreatorInput
+    coOpContributions?: CoOpMemberCreateNestedManyWithoutBuyerInput
   }
 
   export type UserUncheckedCreateWithoutNotificationsInput = {
@@ -40223,6 +43871,8 @@ export namespace Prisma {
     ban?: UserBanUncheckedCreateNestedOneWithoutUserInput
     bansIssued?: UserBanUncheckedCreateNestedManyWithoutBannerInput
     ussdSessions?: UssdSessionUncheckedCreateNestedManyWithoutUserInput
+    createdCoOps?: CoOpGroupUncheckedCreateNestedManyWithoutCreatorInput
+    coOpContributions?: CoOpMemberUncheckedCreateNestedManyWithoutBuyerInput
   }
 
   export type UserCreateOrConnectWithoutNotificationsInput = {
@@ -40277,6 +43927,8 @@ export namespace Prisma {
     ban?: UserBanUpdateOneWithoutUserNestedInput
     bansIssued?: UserBanUpdateManyWithoutBannerNestedInput
     ussdSessions?: UssdSessionUpdateManyWithoutUserNestedInput
+    createdCoOps?: CoOpGroupUpdateManyWithoutCreatorNestedInput
+    coOpContributions?: CoOpMemberUpdateManyWithoutBuyerNestedInput
   }
 
   export type UserUncheckedUpdateWithoutNotificationsInput = {
@@ -40315,6 +43967,8 @@ export namespace Prisma {
     ban?: UserBanUncheckedUpdateOneWithoutUserNestedInput
     bansIssued?: UserBanUncheckedUpdateManyWithoutBannerNestedInput
     ussdSessions?: UssdSessionUncheckedUpdateManyWithoutUserNestedInput
+    createdCoOps?: CoOpGroupUncheckedUpdateManyWithoutCreatorNestedInput
+    coOpContributions?: CoOpMemberUncheckedUpdateManyWithoutBuyerNestedInput
   }
 
   export type UserCreateWithoutSentMessagesInput = {
@@ -40353,6 +44007,8 @@ export namespace Prisma {
     ban?: UserBanCreateNestedOneWithoutUserInput
     bansIssued?: UserBanCreateNestedManyWithoutBannerInput
     ussdSessions?: UssdSessionCreateNestedManyWithoutUserInput
+    createdCoOps?: CoOpGroupCreateNestedManyWithoutCreatorInput
+    coOpContributions?: CoOpMemberCreateNestedManyWithoutBuyerInput
   }
 
   export type UserUncheckedCreateWithoutSentMessagesInput = {
@@ -40391,6 +44047,8 @@ export namespace Prisma {
     ban?: UserBanUncheckedCreateNestedOneWithoutUserInput
     bansIssued?: UserBanUncheckedCreateNestedManyWithoutBannerInput
     ussdSessions?: UssdSessionUncheckedCreateNestedManyWithoutUserInput
+    createdCoOps?: CoOpGroupUncheckedCreateNestedManyWithoutCreatorInput
+    coOpContributions?: CoOpMemberUncheckedCreateNestedManyWithoutBuyerInput
   }
 
   export type UserCreateOrConnectWithoutSentMessagesInput = {
@@ -40434,6 +44092,8 @@ export namespace Prisma {
     ban?: UserBanCreateNestedOneWithoutUserInput
     bansIssued?: UserBanCreateNestedManyWithoutBannerInput
     ussdSessions?: UssdSessionCreateNestedManyWithoutUserInput
+    createdCoOps?: CoOpGroupCreateNestedManyWithoutCreatorInput
+    coOpContributions?: CoOpMemberCreateNestedManyWithoutBuyerInput
   }
 
   export type UserUncheckedCreateWithoutReceivedMessagesInput = {
@@ -40472,6 +44132,8 @@ export namespace Prisma {
     ban?: UserBanUncheckedCreateNestedOneWithoutUserInput
     bansIssued?: UserBanUncheckedCreateNestedManyWithoutBannerInput
     ussdSessions?: UssdSessionUncheckedCreateNestedManyWithoutUserInput
+    createdCoOps?: CoOpGroupUncheckedCreateNestedManyWithoutCreatorInput
+    coOpContributions?: CoOpMemberUncheckedCreateNestedManyWithoutBuyerInput
   }
 
   export type UserCreateOrConnectWithoutReceivedMessagesInput = {
@@ -40495,6 +44157,7 @@ export namespace Prisma {
     deliveryRequest?: DeliveryRequestCreateNestedOneWithoutOrderInput
     reviews?: ReviewCreateNestedManyWithoutOrderInput
     preOrder?: PreOrderCreateNestedOneWithoutFulfilledOrderInput
+    coOpMember?: CoOpMemberCreateNestedOneWithoutOrderInput
   }
 
   export type OrderUncheckedCreateWithoutMessagesInput = {
@@ -40513,6 +44176,7 @@ export namespace Prisma {
     deliveryRequest?: DeliveryRequestUncheckedCreateNestedOneWithoutOrderInput
     reviews?: ReviewUncheckedCreateNestedManyWithoutOrderInput
     preOrder?: PreOrderUncheckedCreateNestedOneWithoutFulfilledOrderInput
+    coOpMember?: CoOpMemberUncheckedCreateNestedOneWithoutOrderInput
   }
 
   export type OrderCreateOrConnectWithoutMessagesInput = {
@@ -40567,6 +44231,8 @@ export namespace Prisma {
     ban?: UserBanUpdateOneWithoutUserNestedInput
     bansIssued?: UserBanUpdateManyWithoutBannerNestedInput
     ussdSessions?: UssdSessionUpdateManyWithoutUserNestedInput
+    createdCoOps?: CoOpGroupUpdateManyWithoutCreatorNestedInput
+    coOpContributions?: CoOpMemberUpdateManyWithoutBuyerNestedInput
   }
 
   export type UserUncheckedUpdateWithoutSentMessagesInput = {
@@ -40605,6 +44271,8 @@ export namespace Prisma {
     ban?: UserBanUncheckedUpdateOneWithoutUserNestedInput
     bansIssued?: UserBanUncheckedUpdateManyWithoutBannerNestedInput
     ussdSessions?: UssdSessionUncheckedUpdateManyWithoutUserNestedInput
+    createdCoOps?: CoOpGroupUncheckedUpdateManyWithoutCreatorNestedInput
+    coOpContributions?: CoOpMemberUncheckedUpdateManyWithoutBuyerNestedInput
   }
 
   export type UserUpsertWithoutReceivedMessagesInput = {
@@ -40654,6 +44322,8 @@ export namespace Prisma {
     ban?: UserBanUpdateOneWithoutUserNestedInput
     bansIssued?: UserBanUpdateManyWithoutBannerNestedInput
     ussdSessions?: UssdSessionUpdateManyWithoutUserNestedInput
+    createdCoOps?: CoOpGroupUpdateManyWithoutCreatorNestedInput
+    coOpContributions?: CoOpMemberUpdateManyWithoutBuyerNestedInput
   }
 
   export type UserUncheckedUpdateWithoutReceivedMessagesInput = {
@@ -40692,6 +44362,8 @@ export namespace Prisma {
     ban?: UserBanUncheckedUpdateOneWithoutUserNestedInput
     bansIssued?: UserBanUncheckedUpdateManyWithoutBannerNestedInput
     ussdSessions?: UssdSessionUncheckedUpdateManyWithoutUserNestedInput
+    createdCoOps?: CoOpGroupUncheckedUpdateManyWithoutCreatorNestedInput
+    coOpContributions?: CoOpMemberUncheckedUpdateManyWithoutBuyerNestedInput
   }
 
   export type OrderUpsertWithoutMessagesInput = {
@@ -40721,6 +44393,7 @@ export namespace Prisma {
     deliveryRequest?: DeliveryRequestUpdateOneWithoutOrderNestedInput
     reviews?: ReviewUpdateManyWithoutOrderNestedInput
     preOrder?: PreOrderUpdateOneWithoutFulfilledOrderNestedInput
+    coOpMember?: CoOpMemberUpdateOneWithoutOrderNestedInput
   }
 
   export type OrderUncheckedUpdateWithoutMessagesInput = {
@@ -40739,6 +44412,7 @@ export namespace Prisma {
     deliveryRequest?: DeliveryRequestUncheckedUpdateOneWithoutOrderNestedInput
     reviews?: ReviewUncheckedUpdateManyWithoutOrderNestedInput
     preOrder?: PreOrderUncheckedUpdateOneWithoutFulfilledOrderNestedInput
+    coOpMember?: CoOpMemberUncheckedUpdateOneWithoutOrderNestedInput
   }
 
   export type UserCreateWithoutUssdSessionsInput = {
@@ -40777,6 +44451,8 @@ export namespace Prisma {
     configsUpdated?: SystemConfigCreateNestedManyWithoutUpdaterInput
     ban?: UserBanCreateNestedOneWithoutUserInput
     bansIssued?: UserBanCreateNestedManyWithoutBannerInput
+    createdCoOps?: CoOpGroupCreateNestedManyWithoutCreatorInput
+    coOpContributions?: CoOpMemberCreateNestedManyWithoutBuyerInput
   }
 
   export type UserUncheckedCreateWithoutUssdSessionsInput = {
@@ -40815,6 +44491,8 @@ export namespace Prisma {
     configsUpdated?: SystemConfigUncheckedCreateNestedManyWithoutUpdaterInput
     ban?: UserBanUncheckedCreateNestedOneWithoutUserInput
     bansIssued?: UserBanUncheckedCreateNestedManyWithoutBannerInput
+    createdCoOps?: CoOpGroupUncheckedCreateNestedManyWithoutCreatorInput
+    coOpContributions?: CoOpMemberUncheckedCreateNestedManyWithoutBuyerInput
   }
 
   export type UserCreateOrConnectWithoutUssdSessionsInput = {
@@ -40869,6 +44547,8 @@ export namespace Prisma {
     configsUpdated?: SystemConfigUpdateManyWithoutUpdaterNestedInput
     ban?: UserBanUpdateOneWithoutUserNestedInput
     bansIssued?: UserBanUpdateManyWithoutBannerNestedInput
+    createdCoOps?: CoOpGroupUpdateManyWithoutCreatorNestedInput
+    coOpContributions?: CoOpMemberUpdateManyWithoutBuyerNestedInput
   }
 
   export type UserUncheckedUpdateWithoutUssdSessionsInput = {
@@ -40907,6 +44587,8 @@ export namespace Prisma {
     configsUpdated?: SystemConfigUncheckedUpdateManyWithoutUpdaterNestedInput
     ban?: UserBanUncheckedUpdateOneWithoutUserNestedInput
     bansIssued?: UserBanUncheckedUpdateManyWithoutBannerNestedInput
+    createdCoOps?: CoOpGroupUncheckedUpdateManyWithoutCreatorNestedInput
+    coOpContributions?: CoOpMemberUncheckedUpdateManyWithoutBuyerNestedInput
   }
 
   export type UserCreateWithoutPreOrdersInput = {
@@ -40945,6 +44627,8 @@ export namespace Prisma {
     ban?: UserBanCreateNestedOneWithoutUserInput
     bansIssued?: UserBanCreateNestedManyWithoutBannerInput
     ussdSessions?: UssdSessionCreateNestedManyWithoutUserInput
+    createdCoOps?: CoOpGroupCreateNestedManyWithoutCreatorInput
+    coOpContributions?: CoOpMemberCreateNestedManyWithoutBuyerInput
   }
 
   export type UserUncheckedCreateWithoutPreOrdersInput = {
@@ -40983,6 +44667,8 @@ export namespace Prisma {
     ban?: UserBanUncheckedCreateNestedOneWithoutUserInput
     bansIssued?: UserBanUncheckedCreateNestedManyWithoutBannerInput
     ussdSessions?: UssdSessionUncheckedCreateNestedManyWithoutUserInput
+    createdCoOps?: CoOpGroupUncheckedCreateNestedManyWithoutCreatorInput
+    coOpContributions?: CoOpMemberUncheckedCreateNestedManyWithoutBuyerInput
   }
 
   export type UserCreateOrConnectWithoutPreOrdersInput = {
@@ -41012,6 +44698,7 @@ export namespace Prisma {
     orders?: OrderCreateNestedManyWithoutListingInput
     traceability?: TraceabilityRecordCreateNestedOneWithoutListingInput
     traceEvents?: TraceEventCreateNestedManyWithoutListingInput
+    coOps?: CoOpGroupCreateNestedManyWithoutListingInput
     plantingLog?: PlantingLogCreateNestedOneWithoutListingsInput
   }
 
@@ -41038,6 +44725,7 @@ export namespace Prisma {
     orders?: OrderUncheckedCreateNestedManyWithoutListingInput
     traceability?: TraceabilityRecordUncheckedCreateNestedOneWithoutListingInput
     traceEvents?: TraceEventUncheckedCreateNestedManyWithoutListingInput
+    coOps?: CoOpGroupUncheckedCreateNestedManyWithoutListingInput
   }
 
   export type ProduceListingCreateOrConnectWithoutPreOrdersInput = {
@@ -41061,6 +44749,7 @@ export namespace Prisma {
     deliveryRequest?: DeliveryRequestCreateNestedOneWithoutOrderInput
     reviews?: ReviewCreateNestedManyWithoutOrderInput
     messages?: MessageCreateNestedManyWithoutOrderInput
+    coOpMember?: CoOpMemberCreateNestedOneWithoutOrderInput
   }
 
   export type OrderUncheckedCreateWithoutPreOrderInput = {
@@ -41079,6 +44768,7 @@ export namespace Prisma {
     deliveryRequest?: DeliveryRequestUncheckedCreateNestedOneWithoutOrderInput
     reviews?: ReviewUncheckedCreateNestedManyWithoutOrderInput
     messages?: MessageUncheckedCreateNestedManyWithoutOrderInput
+    coOpMember?: CoOpMemberUncheckedCreateNestedOneWithoutOrderInput
   }
 
   export type OrderCreateOrConnectWithoutPreOrderInput = {
@@ -41133,6 +44823,8 @@ export namespace Prisma {
     ban?: UserBanUpdateOneWithoutUserNestedInput
     bansIssued?: UserBanUpdateManyWithoutBannerNestedInput
     ussdSessions?: UssdSessionUpdateManyWithoutUserNestedInput
+    createdCoOps?: CoOpGroupUpdateManyWithoutCreatorNestedInput
+    coOpContributions?: CoOpMemberUpdateManyWithoutBuyerNestedInput
   }
 
   export type UserUncheckedUpdateWithoutPreOrdersInput = {
@@ -41171,6 +44863,8 @@ export namespace Prisma {
     ban?: UserBanUncheckedUpdateOneWithoutUserNestedInput
     bansIssued?: UserBanUncheckedUpdateManyWithoutBannerNestedInput
     ussdSessions?: UssdSessionUncheckedUpdateManyWithoutUserNestedInput
+    createdCoOps?: CoOpGroupUncheckedUpdateManyWithoutCreatorNestedInput
+    coOpContributions?: CoOpMemberUncheckedUpdateManyWithoutBuyerNestedInput
   }
 
   export type ProduceListingUpsertWithoutPreOrdersInput = {
@@ -41206,6 +44900,7 @@ export namespace Prisma {
     orders?: OrderUpdateManyWithoutListingNestedInput
     traceability?: TraceabilityRecordUpdateOneWithoutListingNestedInput
     traceEvents?: TraceEventUpdateManyWithoutListingNestedInput
+    coOps?: CoOpGroupUpdateManyWithoutListingNestedInput
     plantingLog?: PlantingLogUpdateOneWithoutListingsNestedInput
   }
 
@@ -41232,6 +44927,7 @@ export namespace Prisma {
     orders?: OrderUncheckedUpdateManyWithoutListingNestedInput
     traceability?: TraceabilityRecordUncheckedUpdateOneWithoutListingNestedInput
     traceEvents?: TraceEventUncheckedUpdateManyWithoutListingNestedInput
+    coOps?: CoOpGroupUncheckedUpdateManyWithoutListingNestedInput
   }
 
   export type OrderUpsertWithoutPreOrderInput = {
@@ -41261,6 +44957,7 @@ export namespace Prisma {
     deliveryRequest?: DeliveryRequestUpdateOneWithoutOrderNestedInput
     reviews?: ReviewUpdateManyWithoutOrderNestedInput
     messages?: MessageUpdateManyWithoutOrderNestedInput
+    coOpMember?: CoOpMemberUpdateOneWithoutOrderNestedInput
   }
 
   export type OrderUncheckedUpdateWithoutPreOrderInput = {
@@ -41279,6 +44976,7 @@ export namespace Prisma {
     deliveryRequest?: DeliveryRequestUncheckedUpdateOneWithoutOrderNestedInput
     reviews?: ReviewUncheckedUpdateManyWithoutOrderNestedInput
     messages?: MessageUncheckedUpdateManyWithoutOrderNestedInput
+    coOpMember?: CoOpMemberUncheckedUpdateOneWithoutOrderNestedInput
   }
 
   export type UserCreateWithoutPlantingLogsInput = {
@@ -41317,6 +45015,8 @@ export namespace Prisma {
     ban?: UserBanCreateNestedOneWithoutUserInput
     bansIssued?: UserBanCreateNestedManyWithoutBannerInput
     ussdSessions?: UssdSessionCreateNestedManyWithoutUserInput
+    createdCoOps?: CoOpGroupCreateNestedManyWithoutCreatorInput
+    coOpContributions?: CoOpMemberCreateNestedManyWithoutBuyerInput
   }
 
   export type UserUncheckedCreateWithoutPlantingLogsInput = {
@@ -41355,6 +45055,8 @@ export namespace Prisma {
     ban?: UserBanUncheckedCreateNestedOneWithoutUserInput
     bansIssued?: UserBanUncheckedCreateNestedManyWithoutBannerInput
     ussdSessions?: UssdSessionUncheckedCreateNestedManyWithoutUserInput
+    createdCoOps?: CoOpGroupUncheckedCreateNestedManyWithoutCreatorInput
+    coOpContributions?: CoOpMemberUncheckedCreateNestedManyWithoutBuyerInput
   }
 
   export type UserCreateOrConnectWithoutPlantingLogsInput = {
@@ -41417,6 +45119,7 @@ export namespace Prisma {
     traceability?: TraceabilityRecordCreateNestedOneWithoutListingInput
     traceEvents?: TraceEventCreateNestedManyWithoutListingInput
     preOrders?: PreOrderCreateNestedManyWithoutMatchedListingInput
+    coOps?: CoOpGroupCreateNestedManyWithoutListingInput
   }
 
   export type ProduceListingUncheckedCreateWithoutPlantingLogInput = {
@@ -41442,6 +45145,7 @@ export namespace Prisma {
     traceability?: TraceabilityRecordUncheckedCreateNestedOneWithoutListingInput
     traceEvents?: TraceEventUncheckedCreateNestedManyWithoutListingInput
     preOrders?: PreOrderUncheckedCreateNestedManyWithoutMatchedListingInput
+    coOps?: CoOpGroupUncheckedCreateNestedManyWithoutListingInput
   }
 
   export type ProduceListingCreateOrConnectWithoutPlantingLogInput = {
@@ -41501,6 +45205,8 @@ export namespace Prisma {
     ban?: UserBanUpdateOneWithoutUserNestedInput
     bansIssued?: UserBanUpdateManyWithoutBannerNestedInput
     ussdSessions?: UssdSessionUpdateManyWithoutUserNestedInput
+    createdCoOps?: CoOpGroupUpdateManyWithoutCreatorNestedInput
+    coOpContributions?: CoOpMemberUpdateManyWithoutBuyerNestedInput
   }
 
   export type UserUncheckedUpdateWithoutPlantingLogsInput = {
@@ -41539,6 +45245,8 @@ export namespace Prisma {
     ban?: UserBanUncheckedUpdateOneWithoutUserNestedInput
     bansIssued?: UserBanUncheckedUpdateManyWithoutBannerNestedInput
     ussdSessions?: UssdSessionUncheckedUpdateManyWithoutUserNestedInput
+    createdCoOps?: CoOpGroupUncheckedUpdateManyWithoutCreatorNestedInput
+    coOpContributions?: CoOpMemberUncheckedUpdateManyWithoutBuyerNestedInput
   }
 
   export type PlantingInputUpsertWithWhereUniqueWithoutPlantingLogInput = {
@@ -41700,6 +45408,8 @@ export namespace Prisma {
     ban?: UserBanCreateNestedOneWithoutUserInput
     bansIssued?: UserBanCreateNestedManyWithoutBannerInput
     ussdSessions?: UssdSessionCreateNestedManyWithoutUserInput
+    createdCoOps?: CoOpGroupCreateNestedManyWithoutCreatorInput
+    coOpContributions?: CoOpMemberCreateNestedManyWithoutBuyerInput
   }
 
   export type UserUncheckedCreateWithoutAuditLogsInput = {
@@ -41738,6 +45448,8 @@ export namespace Prisma {
     ban?: UserBanUncheckedCreateNestedOneWithoutUserInput
     bansIssued?: UserBanUncheckedCreateNestedManyWithoutBannerInput
     ussdSessions?: UssdSessionUncheckedCreateNestedManyWithoutUserInput
+    createdCoOps?: CoOpGroupUncheckedCreateNestedManyWithoutCreatorInput
+    coOpContributions?: CoOpMemberUncheckedCreateNestedManyWithoutBuyerInput
   }
 
   export type UserCreateOrConnectWithoutAuditLogsInput = {
@@ -41792,6 +45504,8 @@ export namespace Prisma {
     ban?: UserBanUpdateOneWithoutUserNestedInput
     bansIssued?: UserBanUpdateManyWithoutBannerNestedInput
     ussdSessions?: UssdSessionUpdateManyWithoutUserNestedInput
+    createdCoOps?: CoOpGroupUpdateManyWithoutCreatorNestedInput
+    coOpContributions?: CoOpMemberUpdateManyWithoutBuyerNestedInput
   }
 
   export type UserUncheckedUpdateWithoutAuditLogsInput = {
@@ -41830,6 +45544,8 @@ export namespace Prisma {
     ban?: UserBanUncheckedUpdateOneWithoutUserNestedInput
     bansIssued?: UserBanUncheckedUpdateManyWithoutBannerNestedInput
     ussdSessions?: UssdSessionUncheckedUpdateManyWithoutUserNestedInput
+    createdCoOps?: CoOpGroupUncheckedUpdateManyWithoutCreatorNestedInput
+    coOpContributions?: CoOpMemberUncheckedUpdateManyWithoutBuyerNestedInput
   }
 
   export type UserCreateWithoutConfigsUpdatedInput = {
@@ -41868,6 +45584,8 @@ export namespace Prisma {
     ban?: UserBanCreateNestedOneWithoutUserInput
     bansIssued?: UserBanCreateNestedManyWithoutBannerInput
     ussdSessions?: UssdSessionCreateNestedManyWithoutUserInput
+    createdCoOps?: CoOpGroupCreateNestedManyWithoutCreatorInput
+    coOpContributions?: CoOpMemberCreateNestedManyWithoutBuyerInput
   }
 
   export type UserUncheckedCreateWithoutConfigsUpdatedInput = {
@@ -41906,6 +45624,8 @@ export namespace Prisma {
     ban?: UserBanUncheckedCreateNestedOneWithoutUserInput
     bansIssued?: UserBanUncheckedCreateNestedManyWithoutBannerInput
     ussdSessions?: UssdSessionUncheckedCreateNestedManyWithoutUserInput
+    createdCoOps?: CoOpGroupUncheckedCreateNestedManyWithoutCreatorInput
+    coOpContributions?: CoOpMemberUncheckedCreateNestedManyWithoutBuyerInput
   }
 
   export type UserCreateOrConnectWithoutConfigsUpdatedInput = {
@@ -41960,6 +45680,8 @@ export namespace Prisma {
     ban?: UserBanUpdateOneWithoutUserNestedInput
     bansIssued?: UserBanUpdateManyWithoutBannerNestedInput
     ussdSessions?: UssdSessionUpdateManyWithoutUserNestedInput
+    createdCoOps?: CoOpGroupUpdateManyWithoutCreatorNestedInput
+    coOpContributions?: CoOpMemberUpdateManyWithoutBuyerNestedInput
   }
 
   export type UserUncheckedUpdateWithoutConfigsUpdatedInput = {
@@ -41998,6 +45720,8 @@ export namespace Prisma {
     ban?: UserBanUncheckedUpdateOneWithoutUserNestedInput
     bansIssued?: UserBanUncheckedUpdateManyWithoutBannerNestedInput
     ussdSessions?: UssdSessionUncheckedUpdateManyWithoutUserNestedInput
+    createdCoOps?: CoOpGroupUncheckedUpdateManyWithoutCreatorNestedInput
+    coOpContributions?: CoOpMemberUncheckedUpdateManyWithoutBuyerNestedInput
   }
 
   export type UserCreateWithoutBanInput = {
@@ -42036,6 +45760,8 @@ export namespace Prisma {
     configsUpdated?: SystemConfigCreateNestedManyWithoutUpdaterInput
     bansIssued?: UserBanCreateNestedManyWithoutBannerInput
     ussdSessions?: UssdSessionCreateNestedManyWithoutUserInput
+    createdCoOps?: CoOpGroupCreateNestedManyWithoutCreatorInput
+    coOpContributions?: CoOpMemberCreateNestedManyWithoutBuyerInput
   }
 
   export type UserUncheckedCreateWithoutBanInput = {
@@ -42074,6 +45800,8 @@ export namespace Prisma {
     configsUpdated?: SystemConfigUncheckedCreateNestedManyWithoutUpdaterInput
     bansIssued?: UserBanUncheckedCreateNestedManyWithoutBannerInput
     ussdSessions?: UssdSessionUncheckedCreateNestedManyWithoutUserInput
+    createdCoOps?: CoOpGroupUncheckedCreateNestedManyWithoutCreatorInput
+    coOpContributions?: CoOpMemberUncheckedCreateNestedManyWithoutBuyerInput
   }
 
   export type UserCreateOrConnectWithoutBanInput = {
@@ -42117,6 +45845,8 @@ export namespace Prisma {
     configsUpdated?: SystemConfigCreateNestedManyWithoutUpdaterInput
     ban?: UserBanCreateNestedOneWithoutUserInput
     ussdSessions?: UssdSessionCreateNestedManyWithoutUserInput
+    createdCoOps?: CoOpGroupCreateNestedManyWithoutCreatorInput
+    coOpContributions?: CoOpMemberCreateNestedManyWithoutBuyerInput
   }
 
   export type UserUncheckedCreateWithoutBansIssuedInput = {
@@ -42155,6 +45885,8 @@ export namespace Prisma {
     configsUpdated?: SystemConfigUncheckedCreateNestedManyWithoutUpdaterInput
     ban?: UserBanUncheckedCreateNestedOneWithoutUserInput
     ussdSessions?: UssdSessionUncheckedCreateNestedManyWithoutUserInput
+    createdCoOps?: CoOpGroupUncheckedCreateNestedManyWithoutCreatorInput
+    coOpContributions?: CoOpMemberUncheckedCreateNestedManyWithoutBuyerInput
   }
 
   export type UserCreateOrConnectWithoutBansIssuedInput = {
@@ -42209,6 +45941,8 @@ export namespace Prisma {
     configsUpdated?: SystemConfigUpdateManyWithoutUpdaterNestedInput
     bansIssued?: UserBanUpdateManyWithoutBannerNestedInput
     ussdSessions?: UssdSessionUpdateManyWithoutUserNestedInput
+    createdCoOps?: CoOpGroupUpdateManyWithoutCreatorNestedInput
+    coOpContributions?: CoOpMemberUpdateManyWithoutBuyerNestedInput
   }
 
   export type UserUncheckedUpdateWithoutBanInput = {
@@ -42247,6 +45981,8 @@ export namespace Prisma {
     configsUpdated?: SystemConfigUncheckedUpdateManyWithoutUpdaterNestedInput
     bansIssued?: UserBanUncheckedUpdateManyWithoutBannerNestedInput
     ussdSessions?: UssdSessionUncheckedUpdateManyWithoutUserNestedInput
+    createdCoOps?: CoOpGroupUncheckedUpdateManyWithoutCreatorNestedInput
+    coOpContributions?: CoOpMemberUncheckedUpdateManyWithoutBuyerNestedInput
   }
 
   export type UserUpsertWithoutBansIssuedInput = {
@@ -42296,6 +46032,8 @@ export namespace Prisma {
     configsUpdated?: SystemConfigUpdateManyWithoutUpdaterNestedInput
     ban?: UserBanUpdateOneWithoutUserNestedInput
     ussdSessions?: UssdSessionUpdateManyWithoutUserNestedInput
+    createdCoOps?: CoOpGroupUpdateManyWithoutCreatorNestedInput
+    coOpContributions?: CoOpMemberUpdateManyWithoutBuyerNestedInput
   }
 
   export type UserUncheckedUpdateWithoutBansIssuedInput = {
@@ -42334,6 +46072,686 @@ export namespace Prisma {
     configsUpdated?: SystemConfigUncheckedUpdateManyWithoutUpdaterNestedInput
     ban?: UserBanUncheckedUpdateOneWithoutUserNestedInput
     ussdSessions?: UssdSessionUncheckedUpdateManyWithoutUserNestedInput
+    createdCoOps?: CoOpGroupUncheckedUpdateManyWithoutCreatorNestedInput
+    coOpContributions?: CoOpMemberUncheckedUpdateManyWithoutBuyerNestedInput
+  }
+
+  export type ProduceListingCreateWithoutCoOpsInput = {
+    id?: string
+    cropType: $Enums.CropType
+    quantityKg: number
+    remainingKg: number
+    pricePerKg: number
+    images?: ProduceListingCreateimagesInput | string[]
+    harvestDate: Date | string
+    expiryEstimate?: Date | string | null
+    qualityGrade?: $Enums.QualityGrade
+    qualityGradeSource?: string
+    status?: $Enums.ListingStatus
+    latitude: number
+    longitude: number
+    batchCode: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    source?: $Enums.CreationSource
+    farmer: UserCreateNestedOneWithoutListingsInput
+    orders?: OrderCreateNestedManyWithoutListingInput
+    traceability?: TraceabilityRecordCreateNestedOneWithoutListingInput
+    traceEvents?: TraceEventCreateNestedManyWithoutListingInput
+    preOrders?: PreOrderCreateNestedManyWithoutMatchedListingInput
+    plantingLog?: PlantingLogCreateNestedOneWithoutListingsInput
+  }
+
+  export type ProduceListingUncheckedCreateWithoutCoOpsInput = {
+    id?: string
+    farmerId: string
+    cropType: $Enums.CropType
+    quantityKg: number
+    remainingKg: number
+    pricePerKg: number
+    images?: ProduceListingCreateimagesInput | string[]
+    harvestDate: Date | string
+    expiryEstimate?: Date | string | null
+    qualityGrade?: $Enums.QualityGrade
+    qualityGradeSource?: string
+    status?: $Enums.ListingStatus
+    latitude: number
+    longitude: number
+    batchCode: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    source?: $Enums.CreationSource
+    plantingLogId?: string | null
+    orders?: OrderUncheckedCreateNestedManyWithoutListingInput
+    traceability?: TraceabilityRecordUncheckedCreateNestedOneWithoutListingInput
+    traceEvents?: TraceEventUncheckedCreateNestedManyWithoutListingInput
+    preOrders?: PreOrderUncheckedCreateNestedManyWithoutMatchedListingInput
+  }
+
+  export type ProduceListingCreateOrConnectWithoutCoOpsInput = {
+    where: ProduceListingWhereUniqueInput
+    create: XOR<ProduceListingCreateWithoutCoOpsInput, ProduceListingUncheckedCreateWithoutCoOpsInput>
+  }
+
+  export type UserCreateWithoutCreatedCoOpsInput = {
+    id?: string
+    phone: string
+    name: string
+    role: $Enums.Role
+    latitude?: number | null
+    longitude?: number | null
+    region?: string | null
+    district?: string | null
+    isVerified?: boolean
+    passwordHash?: string | null
+    preferredLanguage?: string
+    ussdPin?: string | null
+    ussdPinSetAt?: Date | string | null
+    lastUssdActivity?: Date | string | null
+    lockoutUntil?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    farmerProfile?: FarmerProfileCreateNestedOneWithoutUserInput
+    buyerProfile?: BuyerProfileCreateNestedOneWithoutUserInput
+    transportProfile?: TransportProfileCreateNestedOneWithoutUserInput
+    listings?: ProduceListingCreateNestedManyWithoutFarmerInput
+    orders?: OrderCreateNestedManyWithoutBuyerInput
+    deliveries?: DeliveryRequestCreateNestedManyWithoutTransportProviderInput
+    sentReviews?: ReviewCreateNestedManyWithoutFromUserInput
+    receivedReviews?: ReviewCreateNestedManyWithoutToUserInput
+    notifications?: NotificationCreateNestedManyWithoutUserInput
+    sentMessages?: MessageCreateNestedManyWithoutFromUserInput
+    receivedMessages?: MessageCreateNestedManyWithoutToUserInput
+    recordedTraceEvents?: TraceEventCreateNestedManyWithoutRecordedByUserInput
+    preOrders?: PreOrderCreateNestedManyWithoutBuyerInput
+    plantingLogs?: PlantingLogCreateNestedManyWithoutFarmerInput
+    auditLogs?: AuditLogCreateNestedManyWithoutActorInput
+    configsUpdated?: SystemConfigCreateNestedManyWithoutUpdaterInput
+    ban?: UserBanCreateNestedOneWithoutUserInput
+    bansIssued?: UserBanCreateNestedManyWithoutBannerInput
+    ussdSessions?: UssdSessionCreateNestedManyWithoutUserInput
+    coOpContributions?: CoOpMemberCreateNestedManyWithoutBuyerInput
+  }
+
+  export type UserUncheckedCreateWithoutCreatedCoOpsInput = {
+    id?: string
+    phone: string
+    name: string
+    role: $Enums.Role
+    latitude?: number | null
+    longitude?: number | null
+    region?: string | null
+    district?: string | null
+    isVerified?: boolean
+    passwordHash?: string | null
+    preferredLanguage?: string
+    ussdPin?: string | null
+    ussdPinSetAt?: Date | string | null
+    lastUssdActivity?: Date | string | null
+    lockoutUntil?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    farmerProfile?: FarmerProfileUncheckedCreateNestedOneWithoutUserInput
+    buyerProfile?: BuyerProfileUncheckedCreateNestedOneWithoutUserInput
+    transportProfile?: TransportProfileUncheckedCreateNestedOneWithoutUserInput
+    listings?: ProduceListingUncheckedCreateNestedManyWithoutFarmerInput
+    orders?: OrderUncheckedCreateNestedManyWithoutBuyerInput
+    deliveries?: DeliveryRequestUncheckedCreateNestedManyWithoutTransportProviderInput
+    sentReviews?: ReviewUncheckedCreateNestedManyWithoutFromUserInput
+    receivedReviews?: ReviewUncheckedCreateNestedManyWithoutToUserInput
+    notifications?: NotificationUncheckedCreateNestedManyWithoutUserInput
+    sentMessages?: MessageUncheckedCreateNestedManyWithoutFromUserInput
+    receivedMessages?: MessageUncheckedCreateNestedManyWithoutToUserInput
+    recordedTraceEvents?: TraceEventUncheckedCreateNestedManyWithoutRecordedByUserInput
+    preOrders?: PreOrderUncheckedCreateNestedManyWithoutBuyerInput
+    plantingLogs?: PlantingLogUncheckedCreateNestedManyWithoutFarmerInput
+    auditLogs?: AuditLogUncheckedCreateNestedManyWithoutActorInput
+    configsUpdated?: SystemConfigUncheckedCreateNestedManyWithoutUpdaterInput
+    ban?: UserBanUncheckedCreateNestedOneWithoutUserInput
+    bansIssued?: UserBanUncheckedCreateNestedManyWithoutBannerInput
+    ussdSessions?: UssdSessionUncheckedCreateNestedManyWithoutUserInput
+    coOpContributions?: CoOpMemberUncheckedCreateNestedManyWithoutBuyerInput
+  }
+
+  export type UserCreateOrConnectWithoutCreatedCoOpsInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutCreatedCoOpsInput, UserUncheckedCreateWithoutCreatedCoOpsInput>
+  }
+
+  export type CoOpMemberCreateWithoutCoOpGroupInput = {
+    id?: string
+    quantityKg: number
+    paidAmount: number
+    paymentStatus?: $Enums.PaymentStatus
+    paystackRef?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    buyer: UserCreateNestedOneWithoutCoOpContributionsInput
+    order?: OrderCreateNestedOneWithoutCoOpMemberInput
+  }
+
+  export type CoOpMemberUncheckedCreateWithoutCoOpGroupInput = {
+    id?: string
+    buyerId: string
+    quantityKg: number
+    paidAmount: number
+    paymentStatus?: $Enums.PaymentStatus
+    paystackRef?: string | null
+    orderId?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type CoOpMemberCreateOrConnectWithoutCoOpGroupInput = {
+    where: CoOpMemberWhereUniqueInput
+    create: XOR<CoOpMemberCreateWithoutCoOpGroupInput, CoOpMemberUncheckedCreateWithoutCoOpGroupInput>
+  }
+
+  export type CoOpMemberCreateManyCoOpGroupInputEnvelope = {
+    data: CoOpMemberCreateManyCoOpGroupInput | CoOpMemberCreateManyCoOpGroupInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type ProduceListingUpsertWithoutCoOpsInput = {
+    update: XOR<ProduceListingUpdateWithoutCoOpsInput, ProduceListingUncheckedUpdateWithoutCoOpsInput>
+    create: XOR<ProduceListingCreateWithoutCoOpsInput, ProduceListingUncheckedCreateWithoutCoOpsInput>
+    where?: ProduceListingWhereInput
+  }
+
+  export type ProduceListingUpdateToOneWithWhereWithoutCoOpsInput = {
+    where?: ProduceListingWhereInput
+    data: XOR<ProduceListingUpdateWithoutCoOpsInput, ProduceListingUncheckedUpdateWithoutCoOpsInput>
+  }
+
+  export type ProduceListingUpdateWithoutCoOpsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    cropType?: EnumCropTypeFieldUpdateOperationsInput | $Enums.CropType
+    quantityKg?: FloatFieldUpdateOperationsInput | number
+    remainingKg?: FloatFieldUpdateOperationsInput | number
+    pricePerKg?: FloatFieldUpdateOperationsInput | number
+    images?: ProduceListingUpdateimagesInput | string[]
+    harvestDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    expiryEstimate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    qualityGrade?: EnumQualityGradeFieldUpdateOperationsInput | $Enums.QualityGrade
+    qualityGradeSource?: StringFieldUpdateOperationsInput | string
+    status?: EnumListingStatusFieldUpdateOperationsInput | $Enums.ListingStatus
+    latitude?: FloatFieldUpdateOperationsInput | number
+    longitude?: FloatFieldUpdateOperationsInput | number
+    batchCode?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    source?: EnumCreationSourceFieldUpdateOperationsInput | $Enums.CreationSource
+    farmer?: UserUpdateOneRequiredWithoutListingsNestedInput
+    orders?: OrderUpdateManyWithoutListingNestedInput
+    traceability?: TraceabilityRecordUpdateOneWithoutListingNestedInput
+    traceEvents?: TraceEventUpdateManyWithoutListingNestedInput
+    preOrders?: PreOrderUpdateManyWithoutMatchedListingNestedInput
+    plantingLog?: PlantingLogUpdateOneWithoutListingsNestedInput
+  }
+
+  export type ProduceListingUncheckedUpdateWithoutCoOpsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    farmerId?: StringFieldUpdateOperationsInput | string
+    cropType?: EnumCropTypeFieldUpdateOperationsInput | $Enums.CropType
+    quantityKg?: FloatFieldUpdateOperationsInput | number
+    remainingKg?: FloatFieldUpdateOperationsInput | number
+    pricePerKg?: FloatFieldUpdateOperationsInput | number
+    images?: ProduceListingUpdateimagesInput | string[]
+    harvestDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    expiryEstimate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    qualityGrade?: EnumQualityGradeFieldUpdateOperationsInput | $Enums.QualityGrade
+    qualityGradeSource?: StringFieldUpdateOperationsInput | string
+    status?: EnumListingStatusFieldUpdateOperationsInput | $Enums.ListingStatus
+    latitude?: FloatFieldUpdateOperationsInput | number
+    longitude?: FloatFieldUpdateOperationsInput | number
+    batchCode?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    source?: EnumCreationSourceFieldUpdateOperationsInput | $Enums.CreationSource
+    plantingLogId?: NullableStringFieldUpdateOperationsInput | string | null
+    orders?: OrderUncheckedUpdateManyWithoutListingNestedInput
+    traceability?: TraceabilityRecordUncheckedUpdateOneWithoutListingNestedInput
+    traceEvents?: TraceEventUncheckedUpdateManyWithoutListingNestedInput
+    preOrders?: PreOrderUncheckedUpdateManyWithoutMatchedListingNestedInput
+  }
+
+  export type UserUpsertWithoutCreatedCoOpsInput = {
+    update: XOR<UserUpdateWithoutCreatedCoOpsInput, UserUncheckedUpdateWithoutCreatedCoOpsInput>
+    create: XOR<UserCreateWithoutCreatedCoOpsInput, UserUncheckedCreateWithoutCreatedCoOpsInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutCreatedCoOpsInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutCreatedCoOpsInput, UserUncheckedUpdateWithoutCreatedCoOpsInput>
+  }
+
+  export type UserUpdateWithoutCreatedCoOpsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    latitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    longitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    region?: NullableStringFieldUpdateOperationsInput | string | null
+    district?: NullableStringFieldUpdateOperationsInput | string | null
+    isVerified?: BoolFieldUpdateOperationsInput | boolean
+    passwordHash?: NullableStringFieldUpdateOperationsInput | string | null
+    preferredLanguage?: StringFieldUpdateOperationsInput | string
+    ussdPin?: NullableStringFieldUpdateOperationsInput | string | null
+    ussdPinSetAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lastUssdActivity?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lockoutUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    farmerProfile?: FarmerProfileUpdateOneWithoutUserNestedInput
+    buyerProfile?: BuyerProfileUpdateOneWithoutUserNestedInput
+    transportProfile?: TransportProfileUpdateOneWithoutUserNestedInput
+    listings?: ProduceListingUpdateManyWithoutFarmerNestedInput
+    orders?: OrderUpdateManyWithoutBuyerNestedInput
+    deliveries?: DeliveryRequestUpdateManyWithoutTransportProviderNestedInput
+    sentReviews?: ReviewUpdateManyWithoutFromUserNestedInput
+    receivedReviews?: ReviewUpdateManyWithoutToUserNestedInput
+    notifications?: NotificationUpdateManyWithoutUserNestedInput
+    sentMessages?: MessageUpdateManyWithoutFromUserNestedInput
+    receivedMessages?: MessageUpdateManyWithoutToUserNestedInput
+    recordedTraceEvents?: TraceEventUpdateManyWithoutRecordedByUserNestedInput
+    preOrders?: PreOrderUpdateManyWithoutBuyerNestedInput
+    plantingLogs?: PlantingLogUpdateManyWithoutFarmerNestedInput
+    auditLogs?: AuditLogUpdateManyWithoutActorNestedInput
+    configsUpdated?: SystemConfigUpdateManyWithoutUpdaterNestedInput
+    ban?: UserBanUpdateOneWithoutUserNestedInput
+    bansIssued?: UserBanUpdateManyWithoutBannerNestedInput
+    ussdSessions?: UssdSessionUpdateManyWithoutUserNestedInput
+    coOpContributions?: CoOpMemberUpdateManyWithoutBuyerNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutCreatedCoOpsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    latitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    longitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    region?: NullableStringFieldUpdateOperationsInput | string | null
+    district?: NullableStringFieldUpdateOperationsInput | string | null
+    isVerified?: BoolFieldUpdateOperationsInput | boolean
+    passwordHash?: NullableStringFieldUpdateOperationsInput | string | null
+    preferredLanguage?: StringFieldUpdateOperationsInput | string
+    ussdPin?: NullableStringFieldUpdateOperationsInput | string | null
+    ussdPinSetAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lastUssdActivity?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lockoutUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    farmerProfile?: FarmerProfileUncheckedUpdateOneWithoutUserNestedInput
+    buyerProfile?: BuyerProfileUncheckedUpdateOneWithoutUserNestedInput
+    transportProfile?: TransportProfileUncheckedUpdateOneWithoutUserNestedInput
+    listings?: ProduceListingUncheckedUpdateManyWithoutFarmerNestedInput
+    orders?: OrderUncheckedUpdateManyWithoutBuyerNestedInput
+    deliveries?: DeliveryRequestUncheckedUpdateManyWithoutTransportProviderNestedInput
+    sentReviews?: ReviewUncheckedUpdateManyWithoutFromUserNestedInput
+    receivedReviews?: ReviewUncheckedUpdateManyWithoutToUserNestedInput
+    notifications?: NotificationUncheckedUpdateManyWithoutUserNestedInput
+    sentMessages?: MessageUncheckedUpdateManyWithoutFromUserNestedInput
+    receivedMessages?: MessageUncheckedUpdateManyWithoutToUserNestedInput
+    recordedTraceEvents?: TraceEventUncheckedUpdateManyWithoutRecordedByUserNestedInput
+    preOrders?: PreOrderUncheckedUpdateManyWithoutBuyerNestedInput
+    plantingLogs?: PlantingLogUncheckedUpdateManyWithoutFarmerNestedInput
+    auditLogs?: AuditLogUncheckedUpdateManyWithoutActorNestedInput
+    configsUpdated?: SystemConfigUncheckedUpdateManyWithoutUpdaterNestedInput
+    ban?: UserBanUncheckedUpdateOneWithoutUserNestedInput
+    bansIssued?: UserBanUncheckedUpdateManyWithoutBannerNestedInput
+    ussdSessions?: UssdSessionUncheckedUpdateManyWithoutUserNestedInput
+    coOpContributions?: CoOpMemberUncheckedUpdateManyWithoutBuyerNestedInput
+  }
+
+  export type CoOpMemberUpsertWithWhereUniqueWithoutCoOpGroupInput = {
+    where: CoOpMemberWhereUniqueInput
+    update: XOR<CoOpMemberUpdateWithoutCoOpGroupInput, CoOpMemberUncheckedUpdateWithoutCoOpGroupInput>
+    create: XOR<CoOpMemberCreateWithoutCoOpGroupInput, CoOpMemberUncheckedCreateWithoutCoOpGroupInput>
+  }
+
+  export type CoOpMemberUpdateWithWhereUniqueWithoutCoOpGroupInput = {
+    where: CoOpMemberWhereUniqueInput
+    data: XOR<CoOpMemberUpdateWithoutCoOpGroupInput, CoOpMemberUncheckedUpdateWithoutCoOpGroupInput>
+  }
+
+  export type CoOpMemberUpdateManyWithWhereWithoutCoOpGroupInput = {
+    where: CoOpMemberScalarWhereInput
+    data: XOR<CoOpMemberUpdateManyMutationInput, CoOpMemberUncheckedUpdateManyWithoutCoOpGroupInput>
+  }
+
+  export type CoOpGroupCreateWithoutMembersInput = {
+    id?: string
+    targetQuantity: number
+    currentQuantity?: number
+    deadline: Date | string
+    status?: $Enums.CoOpStatus
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    listing: ProduceListingCreateNestedOneWithoutCoOpsInput
+    creator: UserCreateNestedOneWithoutCreatedCoOpsInput
+  }
+
+  export type CoOpGroupUncheckedCreateWithoutMembersInput = {
+    id?: string
+    listingId: string
+    creatorId: string
+    targetQuantity: number
+    currentQuantity?: number
+    deadline: Date | string
+    status?: $Enums.CoOpStatus
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type CoOpGroupCreateOrConnectWithoutMembersInput = {
+    where: CoOpGroupWhereUniqueInput
+    create: XOR<CoOpGroupCreateWithoutMembersInput, CoOpGroupUncheckedCreateWithoutMembersInput>
+  }
+
+  export type UserCreateWithoutCoOpContributionsInput = {
+    id?: string
+    phone: string
+    name: string
+    role: $Enums.Role
+    latitude?: number | null
+    longitude?: number | null
+    region?: string | null
+    district?: string | null
+    isVerified?: boolean
+    passwordHash?: string | null
+    preferredLanguage?: string
+    ussdPin?: string | null
+    ussdPinSetAt?: Date | string | null
+    lastUssdActivity?: Date | string | null
+    lockoutUntil?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    farmerProfile?: FarmerProfileCreateNestedOneWithoutUserInput
+    buyerProfile?: BuyerProfileCreateNestedOneWithoutUserInput
+    transportProfile?: TransportProfileCreateNestedOneWithoutUserInput
+    listings?: ProduceListingCreateNestedManyWithoutFarmerInput
+    orders?: OrderCreateNestedManyWithoutBuyerInput
+    deliveries?: DeliveryRequestCreateNestedManyWithoutTransportProviderInput
+    sentReviews?: ReviewCreateNestedManyWithoutFromUserInput
+    receivedReviews?: ReviewCreateNestedManyWithoutToUserInput
+    notifications?: NotificationCreateNestedManyWithoutUserInput
+    sentMessages?: MessageCreateNestedManyWithoutFromUserInput
+    receivedMessages?: MessageCreateNestedManyWithoutToUserInput
+    recordedTraceEvents?: TraceEventCreateNestedManyWithoutRecordedByUserInput
+    preOrders?: PreOrderCreateNestedManyWithoutBuyerInput
+    plantingLogs?: PlantingLogCreateNestedManyWithoutFarmerInput
+    auditLogs?: AuditLogCreateNestedManyWithoutActorInput
+    configsUpdated?: SystemConfigCreateNestedManyWithoutUpdaterInput
+    ban?: UserBanCreateNestedOneWithoutUserInput
+    bansIssued?: UserBanCreateNestedManyWithoutBannerInput
+    ussdSessions?: UssdSessionCreateNestedManyWithoutUserInput
+    createdCoOps?: CoOpGroupCreateNestedManyWithoutCreatorInput
+  }
+
+  export type UserUncheckedCreateWithoutCoOpContributionsInput = {
+    id?: string
+    phone: string
+    name: string
+    role: $Enums.Role
+    latitude?: number | null
+    longitude?: number | null
+    region?: string | null
+    district?: string | null
+    isVerified?: boolean
+    passwordHash?: string | null
+    preferredLanguage?: string
+    ussdPin?: string | null
+    ussdPinSetAt?: Date | string | null
+    lastUssdActivity?: Date | string | null
+    lockoutUntil?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    farmerProfile?: FarmerProfileUncheckedCreateNestedOneWithoutUserInput
+    buyerProfile?: BuyerProfileUncheckedCreateNestedOneWithoutUserInput
+    transportProfile?: TransportProfileUncheckedCreateNestedOneWithoutUserInput
+    listings?: ProduceListingUncheckedCreateNestedManyWithoutFarmerInput
+    orders?: OrderUncheckedCreateNestedManyWithoutBuyerInput
+    deliveries?: DeliveryRequestUncheckedCreateNestedManyWithoutTransportProviderInput
+    sentReviews?: ReviewUncheckedCreateNestedManyWithoutFromUserInput
+    receivedReviews?: ReviewUncheckedCreateNestedManyWithoutToUserInput
+    notifications?: NotificationUncheckedCreateNestedManyWithoutUserInput
+    sentMessages?: MessageUncheckedCreateNestedManyWithoutFromUserInput
+    receivedMessages?: MessageUncheckedCreateNestedManyWithoutToUserInput
+    recordedTraceEvents?: TraceEventUncheckedCreateNestedManyWithoutRecordedByUserInput
+    preOrders?: PreOrderUncheckedCreateNestedManyWithoutBuyerInput
+    plantingLogs?: PlantingLogUncheckedCreateNestedManyWithoutFarmerInput
+    auditLogs?: AuditLogUncheckedCreateNestedManyWithoutActorInput
+    configsUpdated?: SystemConfigUncheckedCreateNestedManyWithoutUpdaterInput
+    ban?: UserBanUncheckedCreateNestedOneWithoutUserInput
+    bansIssued?: UserBanUncheckedCreateNestedManyWithoutBannerInput
+    ussdSessions?: UssdSessionUncheckedCreateNestedManyWithoutUserInput
+    createdCoOps?: CoOpGroupUncheckedCreateNestedManyWithoutCreatorInput
+  }
+
+  export type UserCreateOrConnectWithoutCoOpContributionsInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutCoOpContributionsInput, UserUncheckedCreateWithoutCoOpContributionsInput>
+  }
+
+  export type OrderCreateWithoutCoOpMemberInput = {
+    id?: string
+    quantityKg: number
+    totalPrice: number
+    status?: $Enums.OrderStatus
+    paymentStatus?: $Enums.PaymentStatus
+    paystackReference?: string | null
+    depositCredit?: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    source?: $Enums.CreationSource
+    buyer: UserCreateNestedOneWithoutOrdersInput
+    listing: ProduceListingCreateNestedOneWithoutOrdersInput
+    deliveryRequest?: DeliveryRequestCreateNestedOneWithoutOrderInput
+    reviews?: ReviewCreateNestedManyWithoutOrderInput
+    messages?: MessageCreateNestedManyWithoutOrderInput
+    preOrder?: PreOrderCreateNestedOneWithoutFulfilledOrderInput
+  }
+
+  export type OrderUncheckedCreateWithoutCoOpMemberInput = {
+    id?: string
+    buyerId: string
+    listingId: string
+    quantityKg: number
+    totalPrice: number
+    status?: $Enums.OrderStatus
+    paymentStatus?: $Enums.PaymentStatus
+    paystackReference?: string | null
+    depositCredit?: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    source?: $Enums.CreationSource
+    deliveryRequest?: DeliveryRequestUncheckedCreateNestedOneWithoutOrderInput
+    reviews?: ReviewUncheckedCreateNestedManyWithoutOrderInput
+    messages?: MessageUncheckedCreateNestedManyWithoutOrderInput
+    preOrder?: PreOrderUncheckedCreateNestedOneWithoutFulfilledOrderInput
+  }
+
+  export type OrderCreateOrConnectWithoutCoOpMemberInput = {
+    where: OrderWhereUniqueInput
+    create: XOR<OrderCreateWithoutCoOpMemberInput, OrderUncheckedCreateWithoutCoOpMemberInput>
+  }
+
+  export type CoOpGroupUpsertWithoutMembersInput = {
+    update: XOR<CoOpGroupUpdateWithoutMembersInput, CoOpGroupUncheckedUpdateWithoutMembersInput>
+    create: XOR<CoOpGroupCreateWithoutMembersInput, CoOpGroupUncheckedCreateWithoutMembersInput>
+    where?: CoOpGroupWhereInput
+  }
+
+  export type CoOpGroupUpdateToOneWithWhereWithoutMembersInput = {
+    where?: CoOpGroupWhereInput
+    data: XOR<CoOpGroupUpdateWithoutMembersInput, CoOpGroupUncheckedUpdateWithoutMembersInput>
+  }
+
+  export type CoOpGroupUpdateWithoutMembersInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    targetQuantity?: FloatFieldUpdateOperationsInput | number
+    currentQuantity?: FloatFieldUpdateOperationsInput | number
+    deadline?: DateTimeFieldUpdateOperationsInput | Date | string
+    status?: EnumCoOpStatusFieldUpdateOperationsInput | $Enums.CoOpStatus
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    listing?: ProduceListingUpdateOneRequiredWithoutCoOpsNestedInput
+    creator?: UserUpdateOneRequiredWithoutCreatedCoOpsNestedInput
+  }
+
+  export type CoOpGroupUncheckedUpdateWithoutMembersInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    listingId?: StringFieldUpdateOperationsInput | string
+    creatorId?: StringFieldUpdateOperationsInput | string
+    targetQuantity?: FloatFieldUpdateOperationsInput | number
+    currentQuantity?: FloatFieldUpdateOperationsInput | number
+    deadline?: DateTimeFieldUpdateOperationsInput | Date | string
+    status?: EnumCoOpStatusFieldUpdateOperationsInput | $Enums.CoOpStatus
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type UserUpsertWithoutCoOpContributionsInput = {
+    update: XOR<UserUpdateWithoutCoOpContributionsInput, UserUncheckedUpdateWithoutCoOpContributionsInput>
+    create: XOR<UserCreateWithoutCoOpContributionsInput, UserUncheckedCreateWithoutCoOpContributionsInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutCoOpContributionsInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutCoOpContributionsInput, UserUncheckedUpdateWithoutCoOpContributionsInput>
+  }
+
+  export type UserUpdateWithoutCoOpContributionsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    latitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    longitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    region?: NullableStringFieldUpdateOperationsInput | string | null
+    district?: NullableStringFieldUpdateOperationsInput | string | null
+    isVerified?: BoolFieldUpdateOperationsInput | boolean
+    passwordHash?: NullableStringFieldUpdateOperationsInput | string | null
+    preferredLanguage?: StringFieldUpdateOperationsInput | string
+    ussdPin?: NullableStringFieldUpdateOperationsInput | string | null
+    ussdPinSetAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lastUssdActivity?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lockoutUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    farmerProfile?: FarmerProfileUpdateOneWithoutUserNestedInput
+    buyerProfile?: BuyerProfileUpdateOneWithoutUserNestedInput
+    transportProfile?: TransportProfileUpdateOneWithoutUserNestedInput
+    listings?: ProduceListingUpdateManyWithoutFarmerNestedInput
+    orders?: OrderUpdateManyWithoutBuyerNestedInput
+    deliveries?: DeliveryRequestUpdateManyWithoutTransportProviderNestedInput
+    sentReviews?: ReviewUpdateManyWithoutFromUserNestedInput
+    receivedReviews?: ReviewUpdateManyWithoutToUserNestedInput
+    notifications?: NotificationUpdateManyWithoutUserNestedInput
+    sentMessages?: MessageUpdateManyWithoutFromUserNestedInput
+    receivedMessages?: MessageUpdateManyWithoutToUserNestedInput
+    recordedTraceEvents?: TraceEventUpdateManyWithoutRecordedByUserNestedInput
+    preOrders?: PreOrderUpdateManyWithoutBuyerNestedInput
+    plantingLogs?: PlantingLogUpdateManyWithoutFarmerNestedInput
+    auditLogs?: AuditLogUpdateManyWithoutActorNestedInput
+    configsUpdated?: SystemConfigUpdateManyWithoutUpdaterNestedInput
+    ban?: UserBanUpdateOneWithoutUserNestedInput
+    bansIssued?: UserBanUpdateManyWithoutBannerNestedInput
+    ussdSessions?: UssdSessionUpdateManyWithoutUserNestedInput
+    createdCoOps?: CoOpGroupUpdateManyWithoutCreatorNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutCoOpContributionsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    latitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    longitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    region?: NullableStringFieldUpdateOperationsInput | string | null
+    district?: NullableStringFieldUpdateOperationsInput | string | null
+    isVerified?: BoolFieldUpdateOperationsInput | boolean
+    passwordHash?: NullableStringFieldUpdateOperationsInput | string | null
+    preferredLanguage?: StringFieldUpdateOperationsInput | string
+    ussdPin?: NullableStringFieldUpdateOperationsInput | string | null
+    ussdPinSetAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lastUssdActivity?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lockoutUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    farmerProfile?: FarmerProfileUncheckedUpdateOneWithoutUserNestedInput
+    buyerProfile?: BuyerProfileUncheckedUpdateOneWithoutUserNestedInput
+    transportProfile?: TransportProfileUncheckedUpdateOneWithoutUserNestedInput
+    listings?: ProduceListingUncheckedUpdateManyWithoutFarmerNestedInput
+    orders?: OrderUncheckedUpdateManyWithoutBuyerNestedInput
+    deliveries?: DeliveryRequestUncheckedUpdateManyWithoutTransportProviderNestedInput
+    sentReviews?: ReviewUncheckedUpdateManyWithoutFromUserNestedInput
+    receivedReviews?: ReviewUncheckedUpdateManyWithoutToUserNestedInput
+    notifications?: NotificationUncheckedUpdateManyWithoutUserNestedInput
+    sentMessages?: MessageUncheckedUpdateManyWithoutFromUserNestedInput
+    receivedMessages?: MessageUncheckedUpdateManyWithoutToUserNestedInput
+    recordedTraceEvents?: TraceEventUncheckedUpdateManyWithoutRecordedByUserNestedInput
+    preOrders?: PreOrderUncheckedUpdateManyWithoutBuyerNestedInput
+    plantingLogs?: PlantingLogUncheckedUpdateManyWithoutFarmerNestedInput
+    auditLogs?: AuditLogUncheckedUpdateManyWithoutActorNestedInput
+    configsUpdated?: SystemConfigUncheckedUpdateManyWithoutUpdaterNestedInput
+    ban?: UserBanUncheckedUpdateOneWithoutUserNestedInput
+    bansIssued?: UserBanUncheckedUpdateManyWithoutBannerNestedInput
+    ussdSessions?: UssdSessionUncheckedUpdateManyWithoutUserNestedInput
+    createdCoOps?: CoOpGroupUncheckedUpdateManyWithoutCreatorNestedInput
+  }
+
+  export type OrderUpsertWithoutCoOpMemberInput = {
+    update: XOR<OrderUpdateWithoutCoOpMemberInput, OrderUncheckedUpdateWithoutCoOpMemberInput>
+    create: XOR<OrderCreateWithoutCoOpMemberInput, OrderUncheckedCreateWithoutCoOpMemberInput>
+    where?: OrderWhereInput
+  }
+
+  export type OrderUpdateToOneWithWhereWithoutCoOpMemberInput = {
+    where?: OrderWhereInput
+    data: XOR<OrderUpdateWithoutCoOpMemberInput, OrderUncheckedUpdateWithoutCoOpMemberInput>
+  }
+
+  export type OrderUpdateWithoutCoOpMemberInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    quantityKg?: FloatFieldUpdateOperationsInput | number
+    totalPrice?: FloatFieldUpdateOperationsInput | number
+    status?: EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
+    paymentStatus?: EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
+    paystackReference?: NullableStringFieldUpdateOperationsInput | string | null
+    depositCredit?: FloatFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    source?: EnumCreationSourceFieldUpdateOperationsInput | $Enums.CreationSource
+    buyer?: UserUpdateOneRequiredWithoutOrdersNestedInput
+    listing?: ProduceListingUpdateOneRequiredWithoutOrdersNestedInput
+    deliveryRequest?: DeliveryRequestUpdateOneWithoutOrderNestedInput
+    reviews?: ReviewUpdateManyWithoutOrderNestedInput
+    messages?: MessageUpdateManyWithoutOrderNestedInput
+    preOrder?: PreOrderUpdateOneWithoutFulfilledOrderNestedInput
+  }
+
+  export type OrderUncheckedUpdateWithoutCoOpMemberInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    buyerId?: StringFieldUpdateOperationsInput | string
+    listingId?: StringFieldUpdateOperationsInput | string
+    quantityKg?: FloatFieldUpdateOperationsInput | number
+    totalPrice?: FloatFieldUpdateOperationsInput | number
+    status?: EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
+    paymentStatus?: EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
+    paystackReference?: NullableStringFieldUpdateOperationsInput | string | null
+    depositCredit?: FloatFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    source?: EnumCreationSourceFieldUpdateOperationsInput | $Enums.CreationSource
+    deliveryRequest?: DeliveryRequestUncheckedUpdateOneWithoutOrderNestedInput
+    reviews?: ReviewUncheckedUpdateManyWithoutOrderNestedInput
+    messages?: MessageUncheckedUpdateManyWithoutOrderNestedInput
+    preOrder?: PreOrderUncheckedUpdateOneWithoutFulfilledOrderNestedInput
   }
 
   export type ProduceListingCreateManyFarmerInput = {
@@ -42534,6 +46952,29 @@ export namespace Prisma {
     endReason?: string | null
   }
 
+  export type CoOpGroupCreateManyCreatorInput = {
+    id?: string
+    listingId: string
+    targetQuantity: number
+    currentQuantity?: number
+    deadline: Date | string
+    status?: $Enums.CoOpStatus
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type CoOpMemberCreateManyBuyerInput = {
+    id?: string
+    coOpGroupId: string
+    quantityKg: number
+    paidAmount: number
+    paymentStatus?: $Enums.PaymentStatus
+    paystackRef?: string | null
+    orderId?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
   export type ProduceListingUpdateWithoutFarmerInput = {
     id?: StringFieldUpdateOperationsInput | string
     cropType?: EnumCropTypeFieldUpdateOperationsInput | $Enums.CropType
@@ -42556,6 +46997,7 @@ export namespace Prisma {
     traceability?: TraceabilityRecordUpdateOneWithoutListingNestedInput
     traceEvents?: TraceEventUpdateManyWithoutListingNestedInput
     preOrders?: PreOrderUpdateManyWithoutMatchedListingNestedInput
+    coOps?: CoOpGroupUpdateManyWithoutListingNestedInput
     plantingLog?: PlantingLogUpdateOneWithoutListingsNestedInput
   }
 
@@ -42582,6 +47024,7 @@ export namespace Prisma {
     traceability?: TraceabilityRecordUncheckedUpdateOneWithoutListingNestedInput
     traceEvents?: TraceEventUncheckedUpdateManyWithoutListingNestedInput
     preOrders?: PreOrderUncheckedUpdateManyWithoutMatchedListingNestedInput
+    coOps?: CoOpGroupUncheckedUpdateManyWithoutListingNestedInput
   }
 
   export type ProduceListingUncheckedUpdateManyWithoutFarmerInput = {
@@ -42621,6 +47064,7 @@ export namespace Prisma {
     reviews?: ReviewUpdateManyWithoutOrderNestedInput
     messages?: MessageUpdateManyWithoutOrderNestedInput
     preOrder?: PreOrderUpdateOneWithoutFulfilledOrderNestedInput
+    coOpMember?: CoOpMemberUpdateOneWithoutOrderNestedInput
   }
 
   export type OrderUncheckedUpdateWithoutBuyerInput = {
@@ -42639,6 +47083,7 @@ export namespace Prisma {
     reviews?: ReviewUncheckedUpdateManyWithoutOrderNestedInput
     messages?: MessageUncheckedUpdateManyWithoutOrderNestedInput
     preOrder?: PreOrderUncheckedUpdateOneWithoutFulfilledOrderNestedInput
+    coOpMember?: CoOpMemberUncheckedUpdateOneWithoutOrderNestedInput
   }
 
   export type OrderUncheckedUpdateManyWithoutBuyerInput = {
@@ -43148,6 +47593,77 @@ export namespace Prisma {
     endReason?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
+  export type CoOpGroupUpdateWithoutCreatorInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    targetQuantity?: FloatFieldUpdateOperationsInput | number
+    currentQuantity?: FloatFieldUpdateOperationsInput | number
+    deadline?: DateTimeFieldUpdateOperationsInput | Date | string
+    status?: EnumCoOpStatusFieldUpdateOperationsInput | $Enums.CoOpStatus
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    listing?: ProduceListingUpdateOneRequiredWithoutCoOpsNestedInput
+    members?: CoOpMemberUpdateManyWithoutCoOpGroupNestedInput
+  }
+
+  export type CoOpGroupUncheckedUpdateWithoutCreatorInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    listingId?: StringFieldUpdateOperationsInput | string
+    targetQuantity?: FloatFieldUpdateOperationsInput | number
+    currentQuantity?: FloatFieldUpdateOperationsInput | number
+    deadline?: DateTimeFieldUpdateOperationsInput | Date | string
+    status?: EnumCoOpStatusFieldUpdateOperationsInput | $Enums.CoOpStatus
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    members?: CoOpMemberUncheckedUpdateManyWithoutCoOpGroupNestedInput
+  }
+
+  export type CoOpGroupUncheckedUpdateManyWithoutCreatorInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    listingId?: StringFieldUpdateOperationsInput | string
+    targetQuantity?: FloatFieldUpdateOperationsInput | number
+    currentQuantity?: FloatFieldUpdateOperationsInput | number
+    deadline?: DateTimeFieldUpdateOperationsInput | Date | string
+    status?: EnumCoOpStatusFieldUpdateOperationsInput | $Enums.CoOpStatus
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CoOpMemberUpdateWithoutBuyerInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    quantityKg?: FloatFieldUpdateOperationsInput | number
+    paidAmount?: FloatFieldUpdateOperationsInput | number
+    paymentStatus?: EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
+    paystackRef?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    coOpGroup?: CoOpGroupUpdateOneRequiredWithoutMembersNestedInput
+    order?: OrderUpdateOneWithoutCoOpMemberNestedInput
+  }
+
+  export type CoOpMemberUncheckedUpdateWithoutBuyerInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    coOpGroupId?: StringFieldUpdateOperationsInput | string
+    quantityKg?: FloatFieldUpdateOperationsInput | number
+    paidAmount?: FloatFieldUpdateOperationsInput | number
+    paymentStatus?: EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
+    paystackRef?: NullableStringFieldUpdateOperationsInput | string | null
+    orderId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CoOpMemberUncheckedUpdateManyWithoutBuyerInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    coOpGroupId?: StringFieldUpdateOperationsInput | string
+    quantityKg?: FloatFieldUpdateOperationsInput | number
+    paidAmount?: FloatFieldUpdateOperationsInput | number
+    paymentStatus?: EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
+    paystackRef?: NullableStringFieldUpdateOperationsInput | string | null
+    orderId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type OrderCreateManyListingInput = {
     id?: string
     buyerId: string
@@ -43193,6 +47709,17 @@ export namespace Prisma {
     updatedAt?: Date | string
   }
 
+  export type CoOpGroupCreateManyListingInput = {
+    id?: string
+    creatorId: string
+    targetQuantity: number
+    currentQuantity?: number
+    deadline: Date | string
+    status?: $Enums.CoOpStatus
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
   export type OrderUpdateWithoutListingInput = {
     id?: StringFieldUpdateOperationsInput | string
     quantityKg?: FloatFieldUpdateOperationsInput | number
@@ -43209,6 +47736,7 @@ export namespace Prisma {
     reviews?: ReviewUpdateManyWithoutOrderNestedInput
     messages?: MessageUpdateManyWithoutOrderNestedInput
     preOrder?: PreOrderUpdateOneWithoutFulfilledOrderNestedInput
+    coOpMember?: CoOpMemberUpdateOneWithoutOrderNestedInput
   }
 
   export type OrderUncheckedUpdateWithoutListingInput = {
@@ -43227,6 +47755,7 @@ export namespace Prisma {
     reviews?: ReviewUncheckedUpdateManyWithoutOrderNestedInput
     messages?: MessageUncheckedUpdateManyWithoutOrderNestedInput
     preOrder?: PreOrderUncheckedUpdateOneWithoutFulfilledOrderNestedInput
+    coOpMember?: CoOpMemberUncheckedUpdateOneWithoutOrderNestedInput
   }
 
   export type OrderUncheckedUpdateManyWithoutListingInput = {
@@ -43332,6 +47861,41 @@ export namespace Prisma {
     paystackReference?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumPreOrderStatusFieldUpdateOperationsInput | $Enums.PreOrderStatus
     fulfilledOrderId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CoOpGroupUpdateWithoutListingInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    targetQuantity?: FloatFieldUpdateOperationsInput | number
+    currentQuantity?: FloatFieldUpdateOperationsInput | number
+    deadline?: DateTimeFieldUpdateOperationsInput | Date | string
+    status?: EnumCoOpStatusFieldUpdateOperationsInput | $Enums.CoOpStatus
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    creator?: UserUpdateOneRequiredWithoutCreatedCoOpsNestedInput
+    members?: CoOpMemberUpdateManyWithoutCoOpGroupNestedInput
+  }
+
+  export type CoOpGroupUncheckedUpdateWithoutListingInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    creatorId?: StringFieldUpdateOperationsInput | string
+    targetQuantity?: FloatFieldUpdateOperationsInput | number
+    currentQuantity?: FloatFieldUpdateOperationsInput | number
+    deadline?: DateTimeFieldUpdateOperationsInput | Date | string
+    status?: EnumCoOpStatusFieldUpdateOperationsInput | $Enums.CoOpStatus
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    members?: CoOpMemberUncheckedUpdateManyWithoutCoOpGroupNestedInput
+  }
+
+  export type CoOpGroupUncheckedUpdateManyWithoutListingInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    creatorId?: StringFieldUpdateOperationsInput | string
+    targetQuantity?: FloatFieldUpdateOperationsInput | number
+    currentQuantity?: FloatFieldUpdateOperationsInput | number
+    deadline?: DateTimeFieldUpdateOperationsInput | Date | string
+    status?: EnumCoOpStatusFieldUpdateOperationsInput | $Enums.CoOpStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -43504,6 +48068,7 @@ export namespace Prisma {
     traceability?: TraceabilityRecordUpdateOneWithoutListingNestedInput
     traceEvents?: TraceEventUpdateManyWithoutListingNestedInput
     preOrders?: PreOrderUpdateManyWithoutMatchedListingNestedInput
+    coOps?: CoOpGroupUpdateManyWithoutListingNestedInput
   }
 
   export type ProduceListingUncheckedUpdateWithoutPlantingLogInput = {
@@ -43529,6 +48094,7 @@ export namespace Prisma {
     traceability?: TraceabilityRecordUncheckedUpdateOneWithoutListingNestedInput
     traceEvents?: TraceEventUncheckedUpdateManyWithoutListingNestedInput
     preOrders?: PreOrderUncheckedUpdateManyWithoutMatchedListingNestedInput
+    coOps?: CoOpGroupUncheckedUpdateManyWithoutListingNestedInput
   }
 
   export type ProduceListingUncheckedUpdateManyWithoutPlantingLogInput = {
@@ -43552,6 +48118,54 @@ export namespace Prisma {
     source?: EnumCreationSourceFieldUpdateOperationsInput | $Enums.CreationSource
   }
 
+  export type CoOpMemberCreateManyCoOpGroupInput = {
+    id?: string
+    buyerId: string
+    quantityKg: number
+    paidAmount: number
+    paymentStatus?: $Enums.PaymentStatus
+    paystackRef?: string | null
+    orderId?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type CoOpMemberUpdateWithoutCoOpGroupInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    quantityKg?: FloatFieldUpdateOperationsInput | number
+    paidAmount?: FloatFieldUpdateOperationsInput | number
+    paymentStatus?: EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
+    paystackRef?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    buyer?: UserUpdateOneRequiredWithoutCoOpContributionsNestedInput
+    order?: OrderUpdateOneWithoutCoOpMemberNestedInput
+  }
+
+  export type CoOpMemberUncheckedUpdateWithoutCoOpGroupInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    buyerId?: StringFieldUpdateOperationsInput | string
+    quantityKg?: FloatFieldUpdateOperationsInput | number
+    paidAmount?: FloatFieldUpdateOperationsInput | number
+    paymentStatus?: EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
+    paystackRef?: NullableStringFieldUpdateOperationsInput | string | null
+    orderId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CoOpMemberUncheckedUpdateManyWithoutCoOpGroupInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    buyerId?: StringFieldUpdateOperationsInput | string
+    quantityKg?: FloatFieldUpdateOperationsInput | number
+    paidAmount?: FloatFieldUpdateOperationsInput | number
+    paymentStatus?: EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
+    paystackRef?: NullableStringFieldUpdateOperationsInput | string | null
+    orderId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
 
 
   /**
@@ -43573,6 +48187,10 @@ export namespace Prisma {
      * @deprecated Use PlantingLogCountOutputTypeDefaultArgs instead
      */
     export type PlantingLogCountOutputTypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = PlantingLogCountOutputTypeDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use CoOpGroupCountOutputTypeDefaultArgs instead
+     */
+    export type CoOpGroupCountOutputTypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = CoOpGroupCountOutputTypeDefaultArgs<ExtArgs>
     /**
      * @deprecated Use UserDefaultArgs instead
      */
@@ -43665,6 +48283,14 @@ export namespace Prisma {
      * @deprecated Use StoredFileDefaultArgs instead
      */
     export type StoredFileArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = StoredFileDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use CoOpGroupDefaultArgs instead
+     */
+    export type CoOpGroupArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = CoOpGroupDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use CoOpMemberDefaultArgs instead
+     */
+    export type CoOpMemberArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = CoOpMemberDefaultArgs<ExtArgs>
 
   /**
    * Batch Payload for updateMany & deleteMany & createMany
