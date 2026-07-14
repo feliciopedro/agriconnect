@@ -26,10 +26,10 @@ export class ListingService {
   public static async createListing(farmerId: string, data: any, imagePaths: string[]) {
     const batchCode = generateBatchCode(data.cropType);
 
-    // Fetch farmer's region for pre-order matching
+    // Fetch farmer's region for pre-order matching and crop alerts
     const farmer = await prisma.user.findUnique({
       where: { id: farmerId },
-      select: { region: true },
+      select: { region: true, name: true },
     });
 
     // Resolve optional planting log linkage and auto-populate traceability
