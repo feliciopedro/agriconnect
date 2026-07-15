@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
+import { FlashSalesStrip } from '../../components/flashsale/FlashSalesStrip';
 import { ListingsApi } from '../../api/listings.api';
 import type { ProduceListing } from '../../types';
 import { CropAlertApi, type BuyerCropAlert } from '../../api/cropAlert.api';
@@ -121,7 +122,7 @@ function getFreshnessInfo(harvestDateStr: string, expiryDateStr?: string): Fresh
 }
 
 export const MarketplacePage: React.FC = () => {
-  useAuth();
+  const { user } = useAuth();
   const navigate = useNavigate();
 
   // Search & Basic states
@@ -396,6 +397,12 @@ export const MarketplacePage: React.FC = () => {
           </div>
         </div>
       </header>
+
+      {/* Spoilage Flash Sales Strip */}
+      <FlashSalesStrip
+        buyerLatitude={nearMeActive ? userLat : user?.latitude || undefined}
+        buyerLongitude={nearMeActive ? userLng : user?.longitude || undefined}
+      />
 
       {/* Crop filter strip */}
       <div className="py-4 overflow-x-auto flex gap-2 -mx-4 px-4 scrollbar-hide select-none">

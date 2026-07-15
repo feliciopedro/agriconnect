@@ -33,8 +33,8 @@ router.get('/', async (req, res) => {
   if (lat !== undefined && lng !== undefined) {
     flashSales = await prisma.$queryRaw<any[]>`
       SELECT fs.*, 
-             l."cropType", l."images", l."qualityGrade", l."pricePerKg" as "originalPrice",
-             u."name" as "farmerName", u."latitude" as "farmerLatitude", u."longitude" as "farmerLongitude",
+             l."cropType", l."images", l."qualityGrade", l."pricePerKg" as "originalPrice", l."harvestDate", l."batchCode",
+             u."name" as "farmerName", u."region" as "farmerRegion", u."latitude" as "farmerLatitude", u."longitude" as "farmerLongitude",
              (6371 * acos(cos(radians(${lat})) * cos(radians(u."latitude")) * cos(radians(u."longitude") - radians(${lng})) + sin(radians(${lat})) * sin(radians(u."latitude")))) AS distance_km
       FROM "FlashSale" fs
       JOIN "ProduceListing" l ON fs."listingId" = l.id
@@ -52,7 +52,7 @@ router.get('/', async (req, res) => {
         listing: {
           include: {
             farmer: {
-              select: { name: true, latitude: true, longitude: true },
+              select: { name: true, region: true, latitude: true, longitude: true },
             },
           },
         },
@@ -66,7 +66,10 @@ router.get('/', async (req, res) => {
       images: fs.listing.images,
       qualityGrade: fs.listing.qualityGrade,
       originalPrice: fs.listing.pricePerKg,
+      harvestDate: fs.listing.harvestDate,
+      batchCode: fs.listing.batchCode,
       farmerName: fs.listing.farmer.name,
+      farmerRegion: fs.listing.farmer.region,
       farmerLatitude: fs.listing.farmer.latitude,
       farmerLongitude: fs.listing.farmer.longitude,
     }));
@@ -79,9 +82,40 @@ router.get('/', async (req, res) => {
     const soldPercent = fs.quantityKg > 0 ? parseFloat(((fs.soldKg / fs.quantityKg) * 100).toFixed(1)) : 0;
 
     return {
-      ...fs,
+      id: fs.id,
+      listingId: fs.listingId,
+      farmerId: fs.farmerId,
+      originalPricePerKg: fs.originalPricePerKg,
+      discountPercent: fs.discountPercent,
+      flashPricePerKg: fs.flashPricePerKg,
+      quantityKg: fs.quantityKg,
+      soldKg: fs.soldKg,
+      riskBand: fs.riskBand,
+      riskScore: fs.riskScore,
+      status: fs.status,
+      expiresAt: fs.expiresAt,
+      farmerApproved: fs.farmerApproved,
+      notificationsSent: fs.notificationsSent,
+      buyersClaimed: fs.buyersClaimed,
+      createdAt: fs.createdAt,
+      updatedAt: fs.updatedAt,
+      distance_km: fs.distance_km,
       secondsRemaining,
       soldPercent,
+      listing: {
+        cropType: fs.cropType,
+        images: fs.images || [],
+        qualityGrade: fs.qualityGrade || 'UNGRADED',
+        harvestDate: fs.harvestDate,
+        farmer: {
+          name: fs.farmerName || 'Local Farmer',
+          avgRating: 5.0,
+          region: fs.farmerRegion || 'Eastern Region',
+        },
+        latitude: fs.farmerLatitude,
+        longitude: fs.farmerLongitude,
+        batchCode: fs.batchCode,
+      }
     };
   });
 
@@ -264,6 +298,29 @@ router.post('/claims/:claimId/confirm', authenticateToken, requireRole(Role.BUYE
   const order = await FlashSaleService.confirmClaim(claimId, buyerId);
   res.status(200).json(order);
 });
+
+/**
+ * POST /api/flash-sales/claims/:claimId/release
+ * Require role BUYER — releases pending claim reservation early
+ */
+router.post('/claims/:claimId/release', authenticateToken, requireRole(Role.BUYER), async (req, res) => {
+  const { claimId } = req.params;
+  const buyerId = req.user!.userId;
+
+  const claim = await prisma.flashSaleClaim.findUnique({
+    where: { id: claimId },
+  });
+  if (!claim) {
+    throw createError('Claim not found', 'NOT_FOUND', 404);
+  }
+  if (claim.buyerId !== buyerId) {
+    throw createError('Unauthorized to release this claim', 'UNAUTHORIZED', 403);
+  }
+
+  await FlashSaleService.expireClaim(claimId);
+  res.status(200).json({ message: 'Claim released successfully' });
+});
+
 
 /**
  * POST /api/flash-sales/:id/approve

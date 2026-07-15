@@ -26,6 +26,8 @@ export interface User {
   district?: string;
   preferredLanguage?: string;
   ussdPinSetAt?: string;
+  latitude?: number;
+  longitude?: number;
   transportProfile?: TransportProfile;
   createdAt: string;
   updatedAt: string;
@@ -149,4 +151,4 @@ export interface HealthCheckResponse {
   };
 }
 
-export * from './flashSale.types';
+export type { FlashSale, FlashSaleClaim } from './flashSale.types';

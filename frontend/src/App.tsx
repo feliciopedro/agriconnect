@@ -16,6 +16,7 @@ import { FarmerDashboardPage } from './pages/farmer/FarmerDashboardPage';
 import { NewListingPage } from './pages/farmer/NewListingPage';
 import { ListingDetailPage } from './pages/farmer/ListingDetailPage';
 import { MarketplacePage } from './pages/buyer/MarketplacePage';
+import { FlashSalesPage } from './pages/FlashSalesPage';
 import { ListingDetailBuyerPage } from './pages/buyer/ListingDetailBuyerPage';
 import { OrdersPage } from './pages/buyer/OrdersPage';
 import { OrderDetailPage } from './pages/buyer/OrderDetailPage';
@@ -103,6 +104,7 @@ function App() {
                                 {/* Buyer */}
                                 <Route path="/marketplace"                   element={<MarketplacePage />} />
                                 <Route path="/marketplace/listings/:id"      element={<ListingDetailBuyerPage />} />
+                                <Route path="/flash-sales"                   element={<FlashSalesPage />} />
                                 <Route path="/orders"                        element={<OrdersPage />} />
                                 <Route path="/orders/:id"                    element={<OrderDetailPage />} />
 

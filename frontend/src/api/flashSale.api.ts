@@ -13,6 +13,10 @@ export const flashSaleApi = {
   confirmClaim: (claimId: string) =>
     api.post(`/flash-sales/claims/${claimId}/confirm`),
 
+  releaseClaim: (claimId: string) =>
+    api.post(`/flash-sales/claims/${claimId}/release`),
+
+
   createFlashSale: (listingId: string, discountPercent: number) =>
     api.post('/flash-sales', { listingId, discountPercent }),
 
