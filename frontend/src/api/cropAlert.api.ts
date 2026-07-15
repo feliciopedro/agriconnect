@@ -42,6 +42,6 @@ export const CropAlertApi = {
       `/crop-alerts/${alertId}/toggle`,
       { isActive }
     );
-    return response.result;
+    return response.data.result;
   },
 };

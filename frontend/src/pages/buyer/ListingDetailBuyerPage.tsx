@@ -714,7 +714,7 @@ export const ListingDetailBuyerPage: React.FC = () => {
             {/* Toggle Start Group Buy Form */}
             {!showCreateCoOp ? (
               <Button
-                variant="outline"
+                variant="secondary"
                 fullWidth
                 size="sm"
                 onClick={() => setShowCreateCoOp(true)}
