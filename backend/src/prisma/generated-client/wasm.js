@@ -139,7 +139,9 @@ exports.Prisma.UserScalarFieldEnum = {
   lastUssdActivity: 'lastUssdActivity',
   lockoutUntil: 'lockoutUntil',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  flashSaleOptOut: 'flashSaleOptOut',
+  flashSaleRadius: 'flashSaleRadius'
 };
 
 exports.Prisma.FarmerProfileScalarFieldEnum = {
@@ -195,7 +197,11 @@ exports.Prisma.ProduceListingScalarFieldEnum = {
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
   source: 'source',
-  plantingLogId: 'plantingLogId'
+  plantingLogId: 'plantingLogId',
+  currentRiskBand: 'currentRiskBand',
+  currentRiskScore: 'currentRiskScore',
+  lastRiskCalculatedAt: 'lastRiskCalculatedAt',
+  activeFlashSaleId: 'activeFlashSaleId'
 };
 
 exports.Prisma.TraceabilityRecordScalarFieldEnum = {
@@ -470,6 +476,63 @@ exports.Prisma.BuyerCropAlertScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.SpoilageRiskLogScalarFieldEnum = {
+  id: 'id',
+  listingId: 'listingId',
+  previousBand: 'previousBand',
+  newBand: 'newBand',
+  riskScore: 'riskScore',
+  hoursUntilExpiry: 'hoursUntilExpiry',
+  remainingKg: 'remainingKg',
+  calculatedAt: 'calculatedAt',
+  triggeredFlashSale: 'triggeredFlashSale'
+};
+
+exports.Prisma.FlashSaleScalarFieldEnum = {
+  id: 'id',
+  listingId: 'listingId',
+  farmerId: 'farmerId',
+  originalPricePerKg: 'originalPricePerKg',
+  discountPercent: 'discountPercent',
+  flashPricePerKg: 'flashPricePerKg',
+  quantityKg: 'quantityKg',
+  soldKg: 'soldKg',
+  riskBand: 'riskBand',
+  riskScore: 'riskScore',
+  status: 'status',
+  expiresAt: 'expiresAt',
+  farmerApproved: 'farmerApproved',
+  cancelledAt: 'cancelledAt',
+  cancelReason: 'cancelReason',
+  notificationsSent: 'notificationsSent',
+  buyersClaimed: 'buyersClaimed',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.FlashSaleClaimScalarFieldEnum = {
+  id: 'id',
+  flashSaleId: 'flashSaleId',
+  buyerId: 'buyerId',
+  quantityKg: 'quantityKg',
+  pricePerKg: 'pricePerKg',
+  totalPrice: 'totalPrice',
+  orderId: 'orderId',
+  status: 'status',
+  claimedAt: 'claimedAt',
+  expiresAt: 'expiresAt'
+};
+
+exports.Prisma.FlashSaleNotificationScalarFieldEnum = {
+  id: 'id',
+  flashSaleId: 'flashSaleId',
+  buyerId: 'buyerId',
+  channel: 'channel',
+  status: 'status',
+  sentAt: 'sentAt',
+  clickedAt: 'clickedAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -544,6 +607,13 @@ exports.CreationSource = exports.$Enums.CreationSource = {
   SMS: 'SMS'
 };
 
+exports.SpoilageRiskBand = exports.$Enums.SpoilageRiskBand = {
+  LOW: 'LOW',
+  MEDIUM: 'MEDIUM',
+  HIGH: 'HIGH',
+  CRITICAL: 'CRITICAL'
+};
+
 exports.TraceEventType = exports.$Enums.TraceEventType = {
   HARVESTED: 'HARVESTED',
   LISTED: 'LISTED',
@@ -597,6 +667,33 @@ exports.CoOpStatus = exports.$Enums.CoOpStatus = {
   CANCELLED: 'CANCELLED'
 };
 
+exports.FlashSaleStatus = exports.$Enums.FlashSaleStatus = {
+  ACTIVE: 'ACTIVE',
+  SOLD: 'SOLD',
+  EXPIRED: 'EXPIRED',
+  CANCELLED: 'CANCELLED'
+};
+
+exports.FlashSaleClaimStatus = exports.$Enums.FlashSaleClaimStatus = {
+  PENDING: 'PENDING',
+  CONFIRMED: 'CONFIRMED',
+  EXPIRED: 'EXPIRED',
+  CANCELLED: 'CANCELLED'
+};
+
+exports.NotificationChannel = exports.$Enums.NotificationChannel = {
+  IN_APP: 'IN_APP',
+  SMS: 'SMS',
+  PUSH: 'PUSH'
+};
+
+exports.FlashSaleNotificationStatus = exports.$Enums.FlashSaleNotificationStatus = {
+  QUEUED: 'QUEUED',
+  SENT: 'SENT',
+  FAILED: 'FAILED',
+  CLICKED: 'CLICKED'
+};
+
 exports.Prisma.ModelName = {
   User: 'User',
   FarmerProfile: 'FarmerProfile',
@@ -623,7 +720,11 @@ exports.Prisma.ModelName = {
   StoredFile: 'StoredFile',
   CoOpGroup: 'CoOpGroup',
   CoOpMember: 'CoOpMember',
-  BuyerCropAlert: 'BuyerCropAlert'
+  BuyerCropAlert: 'BuyerCropAlert',
+  SpoilageRiskLog: 'SpoilageRiskLog',
+  FlashSale: 'FlashSale',
+  FlashSaleClaim: 'FlashSaleClaim',
+  FlashSaleNotification: 'FlashSaleNotification'
 };
 
 /**

@@ -17,6 +17,10 @@ async function main() {
   const defaultHash = hashPassword('password123');
 
   // 1. Clean existing records in dependency order
+  await (prisma as any).spoilageRiskLog.deleteMany();
+  await (prisma as any).flashSaleClaim.deleteMany();
+  await (prisma as any).flashSaleNotification.deleteMany();
+  await (prisma as any).flashSale.deleteMany();
   await prisma.review.deleteMany();
   await prisma.deliveryRequest.deleteMany();
   await prisma.preOrder.deleteMany();
@@ -613,6 +617,256 @@ async function main() {
     preOrderCount++;
   }
   console.log(`🛒 Seeded ${preOrderCount} Pre-Orders (demand signals).`);
+
+  // 6.5. Seed Spoilage Risk and Flash Sales
+  console.log('🌾 Seeding Spoilage Flash Sales & Risk Logs...');
+
+  // Get referenced IDs
+  const seedFarmer = await prisma.user.findFirst({ where: { role: Role.FARMER } });
+  const seedBuyer = await prisma.user.findFirst({ where: { role: Role.BUYER } });
+  
+  if (!seedFarmer || !seedBuyer) {
+    throw new Error('Farmer or Buyer not found for seeding flash sales');
+  }
+
+  // Create 3 listings with expiryEstimate within 12 hours, status=AVAILABLE
+  const listingsToCreate = [
+    {
+      cropType: CropType.TOMATO,
+      quantityKg: 100,
+      pricePerKg: 10,
+      hoursOffset: 4,
+      currentRiskBand: 'CRITICAL',
+      currentRiskScore: 92.5,
+    },
+    {
+      cropType: CropType.PEPPER,
+      quantityKg: 200,
+      pricePerKg: 15,
+      hoursOffset: 6,
+      currentRiskBand: 'CRITICAL',
+      currentRiskScore: 88.0,
+    },
+    {
+      cropType: CropType.GARDEN_EGG,
+      quantityKg: 150,
+      pricePerKg: 8,
+      hoursOffset: 9,
+      currentRiskBand: 'CRITICAL',
+      currentRiskScore: 82.0,
+    },
+  ];
+
+  const spawnedListings: any[] = [];
+  let listingIdx = 1;
+  for (const item of listingsToCreate) {
+    const list = await prisma.produceListing.create({
+      data: {
+        farmerId: seedFarmer.id,
+        cropType: item.cropType,
+        quantityKg: item.quantityKg,
+        remainingKg: item.quantityKg,
+        pricePerKg: item.pricePerKg,
+        harvestDate: new Date(Date.now() - 48 * 60 * 60 * 1000),
+        expiryEstimate: new Date(Date.now() + item.hoursOffset * 60 * 60 * 1000),
+        qualityGrade: QualityGrade.B,
+        qualityGradeSource: 'AI',
+        status: ListingStatus.AVAILABLE,
+        latitude: seedFarmer.latitude || 6.0945,
+        longitude: seedFarmer.longitude || -0.2591,
+        batchCode: `BAT-FLASH-00${listingIdx}`,
+        source: 'WEB',
+        currentRiskBand: item.currentRiskBand as any,
+        currentRiskScore: item.currentRiskScore,
+        lastRiskCalculatedAt: new Date(),
+      },
+    });
+    spawnedListings.push(list);
+    listingIdx++;
+
+    // Seed SpoilageRiskLog
+    await (prisma as any).spoilageRiskLog.create({
+      data: {
+        listingId: list.id,
+        previousBand: 'HIGH',
+        newBand: item.currentRiskBand as any,
+        riskScore: item.currentRiskScore,
+        hoursUntilExpiry: item.hoursOffset,
+        remainingKg: item.quantityKg,
+        triggeredFlashSale: true,
+      },
+    });
+  }
+
+  // Create 2 FlashSale records in ACTIVE status
+  const sale1 = await (prisma as any).flashSale.create({
+    data: {
+      listingId: spawnedListings[0].id,
+      farmerId: seedFarmer.id,
+      originalPricePerKg: 10,
+      discountPercent: 30,
+      flashPricePerKg: 7,
+      quantityKg: 100,
+      soldKg: 40,
+      riskBand: 'CRITICAL',
+      riskScore: 92.5,
+      status: 'ACTIVE',
+      expiresAt: new Date(Date.now() + 4 * 60 * 60 * 1000),
+      farmerApproved: true,
+      notificationsSent: 1,
+      buyersClaimed: 1,
+    },
+  });
+
+  await (prisma as any).flashSaleClaim.create({
+    data: {
+      flashSaleId: sale1.id,
+      buyerId: seedBuyer.id,
+      quantityKg: 40,
+      pricePerKg: 7,
+      totalPrice: 280,
+      status: 'PENDING',
+      expiresAt: new Date(Date.now() + 15 * 60 * 1000),
+    },
+  });
+
+  const sale2 = await (prisma as any).flashSale.create({
+    data: {
+      listingId: spawnedListings[1].id,
+      farmerId: seedFarmer.id,
+      originalPricePerKg: 15,
+      discountPercent: 40,
+      flashPricePerKg: 9,
+      quantityKg: 200,
+      soldKg: 110,
+      riskBand: 'CRITICAL',
+      riskScore: 88.0,
+      status: 'ACTIVE',
+      expiresAt: new Date(Date.now() + 6 * 60 * 60 * 1000),
+      farmerApproved: true,
+      notificationsSent: 2,
+      buyersClaimed: 2,
+    },
+  });
+
+  await (prisma as any).flashSaleClaim.create({
+    data: {
+      flashSaleId: sale2.id,
+      buyerId: seedBuyer.id,
+      quantityKg: 50,
+      pricePerKg: 9,
+      totalPrice: 450,
+      status: 'CONFIRMED',
+      expiresAt: new Date(Date.now() - 5 * 60 * 1000),
+    },
+  });
+
+  const seedBuyer2 = await prisma.user.findFirst({
+    where: { role: Role.BUYER, id: { not: seedBuyer.id } },
+  });
+  if (seedBuyer2) {
+    await (prisma as any).flashSaleClaim.create({
+      data: {
+        flashSaleId: sale2.id,
+        buyerId: seedBuyer2.id,
+        quantityKg: 60,
+        pricePerKg: 9,
+        totalPrice: 540,
+        status: 'PENDING',
+        expiresAt: new Date(Date.now() + 10 * 60 * 1000),
+      },
+    });
+  }
+
+  // Create 1 FlashSale record in EXPIRED status
+  const expiredListing = await prisma.produceListing.create({
+    data: {
+      farmerId: seedFarmer.id,
+      cropType: CropType.OKRA,
+      quantityKg: 80,
+      remainingKg: 80,
+      pricePerKg: 6,
+      harvestDate: new Date(Date.now() - 5 * 24 * 60 * 60 * 1000),
+      expiryEstimate: new Date(Date.now() - 2 * 60 * 60 * 1000),
+      qualityGrade: QualityGrade.C,
+      qualityGradeSource: 'MANUAL',
+      status: ListingStatus.EXPIRED,
+      latitude: seedFarmer.latitude || 6.0945,
+      longitude: seedFarmer.longitude || -0.2591,
+      batchCode: `BAT-FLASH-EXP`,
+      source: 'WEB',
+      currentRiskBand: 'CRITICAL',
+      currentRiskScore: 100,
+    },
+  });
+
+  await (prisma as any).flashSale.create({
+    data: {
+      listingId: expiredListing.id,
+      farmerId: seedFarmer.id,
+      originalPricePerKg: 6,
+      discountPercent: 50,
+      flashPricePerKg: 3,
+      quantityKg: 80,
+      soldKg: 0,
+      riskBand: 'CRITICAL',
+      riskScore: 100,
+      status: 'EXPIRED',
+      expiresAt: new Date(Date.now() - 2 * 60 * 60 * 1000),
+      farmerApproved: false,
+    },
+  });
+
+  // Create 1 FlashSale record in SOLD status
+  const soldListing = await prisma.produceListing.create({
+    data: {
+      farmerId: seedFarmer.id,
+      cropType: CropType.TOMATO,
+      quantityKg: 120,
+      remainingKg: 0,
+      pricePerKg: 12,
+      harvestDate: new Date(Date.now() - 3 * 24 * 60 * 60 * 1000),
+      expiryEstimate: new Date(Date.now() + 10 * 60 * 1000),
+      qualityGrade: QualityGrade.A,
+      qualityGradeSource: 'AI',
+      status: ListingStatus.SOLD_OUT,
+      latitude: seedFarmer.latitude || 6.0945,
+      longitude: seedFarmer.longitude || -0.2591,
+      batchCode: `BAT-FLASH-SOLD`,
+      source: 'WEB',
+      currentRiskBand: 'CRITICAL',
+      currentRiskScore: 98.0,
+    },
+  });
+
+  await (prisma as any).flashSale.create({
+    data: {
+      listingId: soldListing.id,
+      farmerId: seedFarmer.id,
+      originalPricePerKg: 12,
+      discountPercent: 25,
+      flashPricePerKg: 9,
+      quantityKg: 120,
+      soldKg: 120,
+      riskBand: 'CRITICAL',
+      riskScore: 98.0,
+      status: 'SOLD',
+      expiresAt: new Date(Date.now() + 10 * 60 * 1000),
+      farmerApproved: true,
+      buyersClaimed: 1,
+    },
+  });
+
+  // Seed notification for buyer
+  await (prisma as any).flashSaleNotification.create({
+    data: {
+      flashSaleId: sale1.id,
+      buyerId: seedBuyer.id,
+      channel: 'SMS',
+      status: 'SENT',
+      sentAt: new Date(),
+    },
+  });
 
   // 7. Print database summary counts
   const totalUsers = await prisma.user.count();

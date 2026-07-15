@@ -143,6 +143,26 @@ export type CoOpMember = $Result.DefaultSelection<Prisma.$CoOpMemberPayload>
  * 
  */
 export type BuyerCropAlert = $Result.DefaultSelection<Prisma.$BuyerCropAlertPayload>
+/**
+ * Model SpoilageRiskLog
+ * 
+ */
+export type SpoilageRiskLog = $Result.DefaultSelection<Prisma.$SpoilageRiskLogPayload>
+/**
+ * Model FlashSale
+ * 
+ */
+export type FlashSale = $Result.DefaultSelection<Prisma.$FlashSalePayload>
+/**
+ * Model FlashSaleClaim
+ * 
+ */
+export type FlashSaleClaim = $Result.DefaultSelection<Prisma.$FlashSaleClaimPayload>
+/**
+ * Model FlashSaleNotification
+ * 
+ */
+export type FlashSaleNotification = $Result.DefaultSelection<Prisma.$FlashSaleNotificationPayload>
 
 /**
  * Enums
@@ -209,6 +229,16 @@ export const CreationSource: {
 };
 
 export type CreationSource = (typeof CreationSource)[keyof typeof CreationSource]
+
+
+export const SpoilageRiskBand: {
+  LOW: 'LOW',
+  MEDIUM: 'MEDIUM',
+  HIGH: 'HIGH',
+  CRITICAL: 'CRITICAL'
+};
+
+export type SpoilageRiskBand = (typeof SpoilageRiskBand)[keyof typeof SpoilageRiskBand]
 
 
 export const TraceEventType: {
@@ -284,6 +314,45 @@ export const CoOpStatus: {
 
 export type CoOpStatus = (typeof CoOpStatus)[keyof typeof CoOpStatus]
 
+
+export const FlashSaleStatus: {
+  ACTIVE: 'ACTIVE',
+  SOLD: 'SOLD',
+  EXPIRED: 'EXPIRED',
+  CANCELLED: 'CANCELLED'
+};
+
+export type FlashSaleStatus = (typeof FlashSaleStatus)[keyof typeof FlashSaleStatus]
+
+
+export const FlashSaleClaimStatus: {
+  PENDING: 'PENDING',
+  CONFIRMED: 'CONFIRMED',
+  EXPIRED: 'EXPIRED',
+  CANCELLED: 'CANCELLED'
+};
+
+export type FlashSaleClaimStatus = (typeof FlashSaleClaimStatus)[keyof typeof FlashSaleClaimStatus]
+
+
+export const NotificationChannel: {
+  IN_APP: 'IN_APP',
+  SMS: 'SMS',
+  PUSH: 'PUSH'
+};
+
+export type NotificationChannel = (typeof NotificationChannel)[keyof typeof NotificationChannel]
+
+
+export const FlashSaleNotificationStatus: {
+  QUEUED: 'QUEUED',
+  SENT: 'SENT',
+  FAILED: 'FAILED',
+  CLICKED: 'CLICKED'
+};
+
+export type FlashSaleNotificationStatus = (typeof FlashSaleNotificationStatus)[keyof typeof FlashSaleNotificationStatus]
+
 }
 
 export type Role = $Enums.Role
@@ -309,6 +378,10 @@ export const ListingStatus: typeof $Enums.ListingStatus
 export type CreationSource = $Enums.CreationSource
 
 export const CreationSource: typeof $Enums.CreationSource
+
+export type SpoilageRiskBand = $Enums.SpoilageRiskBand
+
+export const SpoilageRiskBand: typeof $Enums.SpoilageRiskBand
 
 export type TraceEventType = $Enums.TraceEventType
 
@@ -337,6 +410,22 @@ export const PreOrderStatus: typeof $Enums.PreOrderStatus
 export type CoOpStatus = $Enums.CoOpStatus
 
 export const CoOpStatus: typeof $Enums.CoOpStatus
+
+export type FlashSaleStatus = $Enums.FlashSaleStatus
+
+export const FlashSaleStatus: typeof $Enums.FlashSaleStatus
+
+export type FlashSaleClaimStatus = $Enums.FlashSaleClaimStatus
+
+export const FlashSaleClaimStatus: typeof $Enums.FlashSaleClaimStatus
+
+export type NotificationChannel = $Enums.NotificationChannel
+
+export const NotificationChannel: typeof $Enums.NotificationChannel
+
+export type FlashSaleNotificationStatus = $Enums.FlashSaleNotificationStatus
+
+export const FlashSaleNotificationStatus: typeof $Enums.FlashSaleNotificationStatus
 
 /**
  * ##  Prisma Client ʲˢ
@@ -720,6 +809,46 @@ export class PrismaClient<
     * ```
     */
   get buyerCropAlert(): Prisma.BuyerCropAlertDelegate<ExtArgs>;
+
+  /**
+   * `prisma.spoilageRiskLog`: Exposes CRUD operations for the **SpoilageRiskLog** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more SpoilageRiskLogs
+    * const spoilageRiskLogs = await prisma.spoilageRiskLog.findMany()
+    * ```
+    */
+  get spoilageRiskLog(): Prisma.SpoilageRiskLogDelegate<ExtArgs>;
+
+  /**
+   * `prisma.flashSale`: Exposes CRUD operations for the **FlashSale** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more FlashSales
+    * const flashSales = await prisma.flashSale.findMany()
+    * ```
+    */
+  get flashSale(): Prisma.FlashSaleDelegate<ExtArgs>;
+
+  /**
+   * `prisma.flashSaleClaim`: Exposes CRUD operations for the **FlashSaleClaim** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more FlashSaleClaims
+    * const flashSaleClaims = await prisma.flashSaleClaim.findMany()
+    * ```
+    */
+  get flashSaleClaim(): Prisma.FlashSaleClaimDelegate<ExtArgs>;
+
+  /**
+   * `prisma.flashSaleNotification`: Exposes CRUD operations for the **FlashSaleNotification** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more FlashSaleNotifications
+    * const flashSaleNotifications = await prisma.flashSaleNotification.findMany()
+    * ```
+    */
+  get flashSaleNotification(): Prisma.FlashSaleNotificationDelegate<ExtArgs>;
 }
 
 export namespace Prisma {
@@ -1186,7 +1315,11 @@ export namespace Prisma {
     StoredFile: 'StoredFile',
     CoOpGroup: 'CoOpGroup',
     CoOpMember: 'CoOpMember',
-    BuyerCropAlert: 'BuyerCropAlert'
+    BuyerCropAlert: 'BuyerCropAlert',
+    SpoilageRiskLog: 'SpoilageRiskLog',
+    FlashSale: 'FlashSale',
+    FlashSaleClaim: 'FlashSaleClaim',
+    FlashSaleNotification: 'FlashSaleNotification'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -1202,7 +1335,7 @@ export namespace Prisma {
 
   export type TypeMap<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, ClientOptions = {}> = {
     meta: {
-      modelProps: "user" | "farmerProfile" | "buyerProfile" | "transportProfile" | "produceListing" | "traceabilityRecord" | "traceEvent" | "order" | "deliveryRequest" | "review" | "notification" | "message" | "otpCode" | "ussdSession" | "ussdAuditLog" | "ussdShortMessage" | "preOrder" | "plantingLog" | "plantingInput" | "auditLog" | "systemConfig" | "userBan" | "storedFile" | "coOpGroup" | "coOpMember" | "buyerCropAlert"
+      modelProps: "user" | "farmerProfile" | "buyerProfile" | "transportProfile" | "produceListing" | "traceabilityRecord" | "traceEvent" | "order" | "deliveryRequest" | "review" | "notification" | "message" | "otpCode" | "ussdSession" | "ussdAuditLog" | "ussdShortMessage" | "preOrder" | "plantingLog" | "plantingInput" | "auditLog" | "systemConfig" | "userBan" | "storedFile" | "coOpGroup" | "coOpMember" | "buyerCropAlert" | "spoilageRiskLog" | "flashSale" | "flashSaleClaim" | "flashSaleNotification"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -3026,6 +3159,286 @@ export namespace Prisma {
           }
         }
       }
+      SpoilageRiskLog: {
+        payload: Prisma.$SpoilageRiskLogPayload<ExtArgs>
+        fields: Prisma.SpoilageRiskLogFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.SpoilageRiskLogFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SpoilageRiskLogPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.SpoilageRiskLogFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SpoilageRiskLogPayload>
+          }
+          findFirst: {
+            args: Prisma.SpoilageRiskLogFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SpoilageRiskLogPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.SpoilageRiskLogFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SpoilageRiskLogPayload>
+          }
+          findMany: {
+            args: Prisma.SpoilageRiskLogFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SpoilageRiskLogPayload>[]
+          }
+          create: {
+            args: Prisma.SpoilageRiskLogCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SpoilageRiskLogPayload>
+          }
+          createMany: {
+            args: Prisma.SpoilageRiskLogCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.SpoilageRiskLogCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SpoilageRiskLogPayload>[]
+          }
+          delete: {
+            args: Prisma.SpoilageRiskLogDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SpoilageRiskLogPayload>
+          }
+          update: {
+            args: Prisma.SpoilageRiskLogUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SpoilageRiskLogPayload>
+          }
+          deleteMany: {
+            args: Prisma.SpoilageRiskLogDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.SpoilageRiskLogUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.SpoilageRiskLogUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SpoilageRiskLogPayload>
+          }
+          aggregate: {
+            args: Prisma.SpoilageRiskLogAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateSpoilageRiskLog>
+          }
+          groupBy: {
+            args: Prisma.SpoilageRiskLogGroupByArgs<ExtArgs>
+            result: $Utils.Optional<SpoilageRiskLogGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.SpoilageRiskLogCountArgs<ExtArgs>
+            result: $Utils.Optional<SpoilageRiskLogCountAggregateOutputType> | number
+          }
+        }
+      }
+      FlashSale: {
+        payload: Prisma.$FlashSalePayload<ExtArgs>
+        fields: Prisma.FlashSaleFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.FlashSaleFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FlashSalePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.FlashSaleFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FlashSalePayload>
+          }
+          findFirst: {
+            args: Prisma.FlashSaleFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FlashSalePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.FlashSaleFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FlashSalePayload>
+          }
+          findMany: {
+            args: Prisma.FlashSaleFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FlashSalePayload>[]
+          }
+          create: {
+            args: Prisma.FlashSaleCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FlashSalePayload>
+          }
+          createMany: {
+            args: Prisma.FlashSaleCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.FlashSaleCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FlashSalePayload>[]
+          }
+          delete: {
+            args: Prisma.FlashSaleDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FlashSalePayload>
+          }
+          update: {
+            args: Prisma.FlashSaleUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FlashSalePayload>
+          }
+          deleteMany: {
+            args: Prisma.FlashSaleDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.FlashSaleUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.FlashSaleUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FlashSalePayload>
+          }
+          aggregate: {
+            args: Prisma.FlashSaleAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateFlashSale>
+          }
+          groupBy: {
+            args: Prisma.FlashSaleGroupByArgs<ExtArgs>
+            result: $Utils.Optional<FlashSaleGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.FlashSaleCountArgs<ExtArgs>
+            result: $Utils.Optional<FlashSaleCountAggregateOutputType> | number
+          }
+        }
+      }
+      FlashSaleClaim: {
+        payload: Prisma.$FlashSaleClaimPayload<ExtArgs>
+        fields: Prisma.FlashSaleClaimFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.FlashSaleClaimFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FlashSaleClaimPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.FlashSaleClaimFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FlashSaleClaimPayload>
+          }
+          findFirst: {
+            args: Prisma.FlashSaleClaimFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FlashSaleClaimPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.FlashSaleClaimFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FlashSaleClaimPayload>
+          }
+          findMany: {
+            args: Prisma.FlashSaleClaimFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FlashSaleClaimPayload>[]
+          }
+          create: {
+            args: Prisma.FlashSaleClaimCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FlashSaleClaimPayload>
+          }
+          createMany: {
+            args: Prisma.FlashSaleClaimCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.FlashSaleClaimCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FlashSaleClaimPayload>[]
+          }
+          delete: {
+            args: Prisma.FlashSaleClaimDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FlashSaleClaimPayload>
+          }
+          update: {
+            args: Prisma.FlashSaleClaimUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FlashSaleClaimPayload>
+          }
+          deleteMany: {
+            args: Prisma.FlashSaleClaimDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.FlashSaleClaimUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.FlashSaleClaimUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FlashSaleClaimPayload>
+          }
+          aggregate: {
+            args: Prisma.FlashSaleClaimAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateFlashSaleClaim>
+          }
+          groupBy: {
+            args: Prisma.FlashSaleClaimGroupByArgs<ExtArgs>
+            result: $Utils.Optional<FlashSaleClaimGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.FlashSaleClaimCountArgs<ExtArgs>
+            result: $Utils.Optional<FlashSaleClaimCountAggregateOutputType> | number
+          }
+        }
+      }
+      FlashSaleNotification: {
+        payload: Prisma.$FlashSaleNotificationPayload<ExtArgs>
+        fields: Prisma.FlashSaleNotificationFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.FlashSaleNotificationFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FlashSaleNotificationPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.FlashSaleNotificationFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FlashSaleNotificationPayload>
+          }
+          findFirst: {
+            args: Prisma.FlashSaleNotificationFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FlashSaleNotificationPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.FlashSaleNotificationFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FlashSaleNotificationPayload>
+          }
+          findMany: {
+            args: Prisma.FlashSaleNotificationFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FlashSaleNotificationPayload>[]
+          }
+          create: {
+            args: Prisma.FlashSaleNotificationCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FlashSaleNotificationPayload>
+          }
+          createMany: {
+            args: Prisma.FlashSaleNotificationCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.FlashSaleNotificationCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FlashSaleNotificationPayload>[]
+          }
+          delete: {
+            args: Prisma.FlashSaleNotificationDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FlashSaleNotificationPayload>
+          }
+          update: {
+            args: Prisma.FlashSaleNotificationUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FlashSaleNotificationPayload>
+          }
+          deleteMany: {
+            args: Prisma.FlashSaleNotificationDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.FlashSaleNotificationUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.FlashSaleNotificationUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FlashSaleNotificationPayload>
+          }
+          aggregate: {
+            args: Prisma.FlashSaleNotificationAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateFlashSaleNotification>
+          }
+          groupBy: {
+            args: Prisma.FlashSaleNotificationGroupByArgs<ExtArgs>
+            result: $Utils.Optional<FlashSaleNotificationGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.FlashSaleNotificationCountArgs<ExtArgs>
+            result: $Utils.Optional<FlashSaleNotificationCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -3205,6 +3618,9 @@ export namespace Prisma {
     createdCoOps: number
     coOpContributions: number
     cropAlerts: number
+    flashSalesCreated: number
+    flashSaleClaims: number
+    flashSaleNotifications: number
   }
 
   export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -3226,6 +3642,9 @@ export namespace Prisma {
     createdCoOps?: boolean | UserCountOutputTypeCountCreatedCoOpsArgs
     coOpContributions?: boolean | UserCountOutputTypeCountCoOpContributionsArgs
     cropAlerts?: boolean | UserCountOutputTypeCountCropAlertsArgs
+    flashSalesCreated?: boolean | UserCountOutputTypeCountFlashSalesCreatedArgs
+    flashSaleClaims?: boolean | UserCountOutputTypeCountFlashSaleClaimsArgs
+    flashSaleNotifications?: boolean | UserCountOutputTypeCountFlashSaleNotificationsArgs
   }
 
   // Custom InputTypes
@@ -3365,6 +3784,27 @@ export namespace Prisma {
     where?: BuyerCropAlertWhereInput
   }
 
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountFlashSalesCreatedArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: FlashSaleWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountFlashSaleClaimsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: FlashSaleClaimWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountFlashSaleNotificationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: FlashSaleNotificationWhereInput
+  }
+
 
   /**
    * Count Type ProduceListingCountOutputType
@@ -3375,6 +3815,7 @@ export namespace Prisma {
     traceEvents: number
     preOrders: number
     coOps: number
+    spoilageRiskLogs: number
   }
 
   export type ProduceListingCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -3382,6 +3823,7 @@ export namespace Prisma {
     traceEvents?: boolean | ProduceListingCountOutputTypeCountTraceEventsArgs
     preOrders?: boolean | ProduceListingCountOutputTypeCountPreOrdersArgs
     coOps?: boolean | ProduceListingCountOutputTypeCountCoOpsArgs
+    spoilageRiskLogs?: boolean | ProduceListingCountOutputTypeCountSpoilageRiskLogsArgs
   }
 
   // Custom InputTypes
@@ -3423,6 +3865,13 @@ export namespace Prisma {
     where?: CoOpGroupWhereInput
   }
 
+  /**
+   * ProduceListingCountOutputType without action
+   */
+  export type ProduceListingCountOutputTypeCountSpoilageRiskLogsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: SpoilageRiskLogWhereInput
+  }
+
 
   /**
    * Count Type OrderCountOutputType
@@ -3431,11 +3880,13 @@ export namespace Prisma {
   export type OrderCountOutputType = {
     reviews: number
     messages: number
+    flashSaleClaims: number
   }
 
   export type OrderCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     reviews?: boolean | OrderCountOutputTypeCountReviewsArgs
     messages?: boolean | OrderCountOutputTypeCountMessagesArgs
+    flashSaleClaims?: boolean | OrderCountOutputTypeCountFlashSaleClaimsArgs
   }
 
   // Custom InputTypes
@@ -3461,6 +3912,13 @@ export namespace Prisma {
    */
   export type OrderCountOutputTypeCountMessagesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: MessageWhereInput
+  }
+
+  /**
+   * OrderCountOutputType without action
+   */
+  export type OrderCountOutputTypeCountFlashSaleClaimsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: FlashSaleClaimWhereInput
   }
 
 
@@ -3536,6 +3994,46 @@ export namespace Prisma {
 
 
   /**
+   * Count Type FlashSaleCountOutputType
+   */
+
+  export type FlashSaleCountOutputType = {
+    claims: number
+    notifications: number
+  }
+
+  export type FlashSaleCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    claims?: boolean | FlashSaleCountOutputTypeCountClaimsArgs
+    notifications?: boolean | FlashSaleCountOutputTypeCountNotificationsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * FlashSaleCountOutputType without action
+   */
+  export type FlashSaleCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FlashSaleCountOutputType
+     */
+    select?: FlashSaleCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * FlashSaleCountOutputType without action
+   */
+  export type FlashSaleCountOutputTypeCountClaimsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: FlashSaleClaimWhereInput
+  }
+
+  /**
+   * FlashSaleCountOutputType without action
+   */
+  export type FlashSaleCountOutputTypeCountNotificationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: FlashSaleNotificationWhereInput
+  }
+
+
+  /**
    * Models
    */
 
@@ -3554,11 +4052,13 @@ export namespace Prisma {
   export type UserAvgAggregateOutputType = {
     latitude: number | null
     longitude: number | null
+    flashSaleRadius: number | null
   }
 
   export type UserSumAggregateOutputType = {
     latitude: number | null
     longitude: number | null
+    flashSaleRadius: number | null
   }
 
   export type UserMinAggregateOutputType = {
@@ -3579,6 +4079,8 @@ export namespace Prisma {
     lockoutUntil: Date | null
     createdAt: Date | null
     updatedAt: Date | null
+    flashSaleOptOut: boolean | null
+    flashSaleRadius: number | null
   }
 
   export type UserMaxAggregateOutputType = {
@@ -3599,6 +4101,8 @@ export namespace Prisma {
     lockoutUntil: Date | null
     createdAt: Date | null
     updatedAt: Date | null
+    flashSaleOptOut: boolean | null
+    flashSaleRadius: number | null
   }
 
   export type UserCountAggregateOutputType = {
@@ -3619,6 +4123,8 @@ export namespace Prisma {
     lockoutUntil: number
     createdAt: number
     updatedAt: number
+    flashSaleOptOut: number
+    flashSaleRadius: number
     _all: number
   }
 
@@ -3626,11 +4132,13 @@ export namespace Prisma {
   export type UserAvgAggregateInputType = {
     latitude?: true
     longitude?: true
+    flashSaleRadius?: true
   }
 
   export type UserSumAggregateInputType = {
     latitude?: true
     longitude?: true
+    flashSaleRadius?: true
   }
 
   export type UserMinAggregateInputType = {
@@ -3651,6 +4159,8 @@ export namespace Prisma {
     lockoutUntil?: true
     createdAt?: true
     updatedAt?: true
+    flashSaleOptOut?: true
+    flashSaleRadius?: true
   }
 
   export type UserMaxAggregateInputType = {
@@ -3671,6 +4181,8 @@ export namespace Prisma {
     lockoutUntil?: true
     createdAt?: true
     updatedAt?: true
+    flashSaleOptOut?: true
+    flashSaleRadius?: true
   }
 
   export type UserCountAggregateInputType = {
@@ -3691,6 +4203,8 @@ export namespace Prisma {
     lockoutUntil?: true
     createdAt?: true
     updatedAt?: true
+    flashSaleOptOut?: true
+    flashSaleRadius?: true
     _all?: true
   }
 
@@ -3798,6 +4312,8 @@ export namespace Prisma {
     lockoutUntil: Date | null
     createdAt: Date
     updatedAt: Date
+    flashSaleOptOut: boolean
+    flashSaleRadius: number
     _count: UserCountAggregateOutputType | null
     _avg: UserAvgAggregateOutputType | null
     _sum: UserSumAggregateOutputType | null
@@ -3837,6 +4353,8 @@ export namespace Prisma {
     lockoutUntil?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    flashSaleOptOut?: boolean
+    flashSaleRadius?: boolean
     farmerProfile?: boolean | User$farmerProfileArgs<ExtArgs>
     buyerProfile?: boolean | User$buyerProfileArgs<ExtArgs>
     transportProfile?: boolean | User$transportProfileArgs<ExtArgs>
@@ -3859,6 +4377,9 @@ export namespace Prisma {
     createdCoOps?: boolean | User$createdCoOpsArgs<ExtArgs>
     coOpContributions?: boolean | User$coOpContributionsArgs<ExtArgs>
     cropAlerts?: boolean | User$cropAlertsArgs<ExtArgs>
+    flashSalesCreated?: boolean | User$flashSalesCreatedArgs<ExtArgs>
+    flashSaleClaims?: boolean | User$flashSaleClaimsArgs<ExtArgs>
+    flashSaleNotifications?: boolean | User$flashSaleNotificationsArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
@@ -3880,6 +4401,8 @@ export namespace Prisma {
     lockoutUntil?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    flashSaleOptOut?: boolean
+    flashSaleRadius?: boolean
   }, ExtArgs["result"]["user"]>
 
   export type UserSelectScalar = {
@@ -3900,6 +4423,8 @@ export namespace Prisma {
     lockoutUntil?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    flashSaleOptOut?: boolean
+    flashSaleRadius?: boolean
   }
 
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -3925,6 +4450,9 @@ export namespace Prisma {
     createdCoOps?: boolean | User$createdCoOpsArgs<ExtArgs>
     coOpContributions?: boolean | User$coOpContributionsArgs<ExtArgs>
     cropAlerts?: boolean | User$cropAlertsArgs<ExtArgs>
+    flashSalesCreated?: boolean | User$flashSalesCreatedArgs<ExtArgs>
+    flashSaleClaims?: boolean | User$flashSaleClaimsArgs<ExtArgs>
+    flashSaleNotifications?: boolean | User$flashSaleNotificationsArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type UserIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -3954,6 +4482,9 @@ export namespace Prisma {
       createdCoOps: Prisma.$CoOpGroupPayload<ExtArgs>[]
       coOpContributions: Prisma.$CoOpMemberPayload<ExtArgs>[]
       cropAlerts: Prisma.$BuyerCropAlertPayload<ExtArgs>[]
+      flashSalesCreated: Prisma.$FlashSalePayload<ExtArgs>[]
+      flashSaleClaims: Prisma.$FlashSaleClaimPayload<ExtArgs>[]
+      flashSaleNotifications: Prisma.$FlashSaleNotificationPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -3973,6 +4504,8 @@ export namespace Prisma {
       lockoutUntil: Date | null
       createdAt: Date
       updatedAt: Date
+      flashSaleOptOut: boolean
+      flashSaleRadius: number
     }, ExtArgs["result"]["user"]>
     composites: {}
   }
@@ -4359,6 +4892,9 @@ export namespace Prisma {
     createdCoOps<T extends User$createdCoOpsArgs<ExtArgs> = {}>(args?: Subset<T, User$createdCoOpsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CoOpGroupPayload<ExtArgs>, T, "findMany"> | Null>
     coOpContributions<T extends User$coOpContributionsArgs<ExtArgs> = {}>(args?: Subset<T, User$coOpContributionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CoOpMemberPayload<ExtArgs>, T, "findMany"> | Null>
     cropAlerts<T extends User$cropAlertsArgs<ExtArgs> = {}>(args?: Subset<T, User$cropAlertsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BuyerCropAlertPayload<ExtArgs>, T, "findMany"> | Null>
+    flashSalesCreated<T extends User$flashSalesCreatedArgs<ExtArgs> = {}>(args?: Subset<T, User$flashSalesCreatedArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FlashSalePayload<ExtArgs>, T, "findMany"> | Null>
+    flashSaleClaims<T extends User$flashSaleClaimsArgs<ExtArgs> = {}>(args?: Subset<T, User$flashSaleClaimsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FlashSaleClaimPayload<ExtArgs>, T, "findMany"> | Null>
+    flashSaleNotifications<T extends User$flashSaleNotificationsArgs<ExtArgs> = {}>(args?: Subset<T, User$flashSaleNotificationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FlashSaleNotificationPayload<ExtArgs>, T, "findMany"> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -4405,6 +4941,8 @@ export namespace Prisma {
     readonly lockoutUntil: FieldRef<"User", 'DateTime'>
     readonly createdAt: FieldRef<"User", 'DateTime'>
     readonly updatedAt: FieldRef<"User", 'DateTime'>
+    readonly flashSaleOptOut: FieldRef<"User", 'Boolean'>
+    readonly flashSaleRadius: FieldRef<"User", 'Int'>
   }
     
 
@@ -5136,6 +5674,66 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: BuyerCropAlertScalarFieldEnum | BuyerCropAlertScalarFieldEnum[]
+  }
+
+  /**
+   * User.flashSalesCreated
+   */
+  export type User$flashSalesCreatedArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FlashSale
+     */
+    select?: FlashSaleSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FlashSaleInclude<ExtArgs> | null
+    where?: FlashSaleWhereInput
+    orderBy?: FlashSaleOrderByWithRelationInput | FlashSaleOrderByWithRelationInput[]
+    cursor?: FlashSaleWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: FlashSaleScalarFieldEnum | FlashSaleScalarFieldEnum[]
+  }
+
+  /**
+   * User.flashSaleClaims
+   */
+  export type User$flashSaleClaimsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FlashSaleClaim
+     */
+    select?: FlashSaleClaimSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FlashSaleClaimInclude<ExtArgs> | null
+    where?: FlashSaleClaimWhereInput
+    orderBy?: FlashSaleClaimOrderByWithRelationInput | FlashSaleClaimOrderByWithRelationInput[]
+    cursor?: FlashSaleClaimWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: FlashSaleClaimScalarFieldEnum | FlashSaleClaimScalarFieldEnum[]
+  }
+
+  /**
+   * User.flashSaleNotifications
+   */
+  export type User$flashSaleNotificationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FlashSaleNotification
+     */
+    select?: FlashSaleNotificationSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FlashSaleNotificationInclude<ExtArgs> | null
+    where?: FlashSaleNotificationWhereInput
+    orderBy?: FlashSaleNotificationOrderByWithRelationInput | FlashSaleNotificationOrderByWithRelationInput[]
+    cursor?: FlashSaleNotificationWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: FlashSaleNotificationScalarFieldEnum | FlashSaleNotificationScalarFieldEnum[]
   }
 
   /**
@@ -8212,6 +8810,7 @@ export namespace Prisma {
     pricePerKg: number | null
     latitude: number | null
     longitude: number | null
+    currentRiskScore: number | null
   }
 
   export type ProduceListingSumAggregateOutputType = {
@@ -8220,6 +8819,7 @@ export namespace Prisma {
     pricePerKg: number | null
     latitude: number | null
     longitude: number | null
+    currentRiskScore: number | null
   }
 
   export type ProduceListingMinAggregateOutputType = {
@@ -8241,6 +8841,10 @@ export namespace Prisma {
     updatedAt: Date | null
     source: $Enums.CreationSource | null
     plantingLogId: string | null
+    currentRiskBand: $Enums.SpoilageRiskBand | null
+    currentRiskScore: number | null
+    lastRiskCalculatedAt: Date | null
+    activeFlashSaleId: string | null
   }
 
   export type ProduceListingMaxAggregateOutputType = {
@@ -8262,6 +8866,10 @@ export namespace Prisma {
     updatedAt: Date | null
     source: $Enums.CreationSource | null
     plantingLogId: string | null
+    currentRiskBand: $Enums.SpoilageRiskBand | null
+    currentRiskScore: number | null
+    lastRiskCalculatedAt: Date | null
+    activeFlashSaleId: string | null
   }
 
   export type ProduceListingCountAggregateOutputType = {
@@ -8284,6 +8892,10 @@ export namespace Prisma {
     updatedAt: number
     source: number
     plantingLogId: number
+    currentRiskBand: number
+    currentRiskScore: number
+    lastRiskCalculatedAt: number
+    activeFlashSaleId: number
     _all: number
   }
 
@@ -8294,6 +8906,7 @@ export namespace Prisma {
     pricePerKg?: true
     latitude?: true
     longitude?: true
+    currentRiskScore?: true
   }
 
   export type ProduceListingSumAggregateInputType = {
@@ -8302,6 +8915,7 @@ export namespace Prisma {
     pricePerKg?: true
     latitude?: true
     longitude?: true
+    currentRiskScore?: true
   }
 
   export type ProduceListingMinAggregateInputType = {
@@ -8323,6 +8937,10 @@ export namespace Prisma {
     updatedAt?: true
     source?: true
     plantingLogId?: true
+    currentRiskBand?: true
+    currentRiskScore?: true
+    lastRiskCalculatedAt?: true
+    activeFlashSaleId?: true
   }
 
   export type ProduceListingMaxAggregateInputType = {
@@ -8344,6 +8962,10 @@ export namespace Prisma {
     updatedAt?: true
     source?: true
     plantingLogId?: true
+    currentRiskBand?: true
+    currentRiskScore?: true
+    lastRiskCalculatedAt?: true
+    activeFlashSaleId?: true
   }
 
   export type ProduceListingCountAggregateInputType = {
@@ -8366,6 +8988,10 @@ export namespace Prisma {
     updatedAt?: true
     source?: true
     plantingLogId?: true
+    currentRiskBand?: true
+    currentRiskScore?: true
+    lastRiskCalculatedAt?: true
+    activeFlashSaleId?: true
     _all?: true
   }
 
@@ -8475,6 +9101,10 @@ export namespace Prisma {
     updatedAt: Date
     source: $Enums.CreationSource
     plantingLogId: string | null
+    currentRiskBand: $Enums.SpoilageRiskBand
+    currentRiskScore: number
+    lastRiskCalculatedAt: Date | null
+    activeFlashSaleId: string | null
     _count: ProduceListingCountAggregateOutputType | null
     _avg: ProduceListingAvgAggregateOutputType | null
     _sum: ProduceListingSumAggregateOutputType | null
@@ -8516,6 +9146,10 @@ export namespace Prisma {
     updatedAt?: boolean
     source?: boolean
     plantingLogId?: boolean
+    currentRiskBand?: boolean
+    currentRiskScore?: boolean
+    lastRiskCalculatedAt?: boolean
+    activeFlashSaleId?: boolean
     farmer?: boolean | UserDefaultArgs<ExtArgs>
     orders?: boolean | ProduceListing$ordersArgs<ExtArgs>
     traceability?: boolean | ProduceListing$traceabilityArgs<ExtArgs>
@@ -8523,6 +9157,8 @@ export namespace Prisma {
     preOrders?: boolean | ProduceListing$preOrdersArgs<ExtArgs>
     coOps?: boolean | ProduceListing$coOpsArgs<ExtArgs>
     plantingLog?: boolean | ProduceListing$plantingLogArgs<ExtArgs>
+    spoilageRiskLogs?: boolean | ProduceListing$spoilageRiskLogsArgs<ExtArgs>
+    flashSale?: boolean | ProduceListing$flashSaleArgs<ExtArgs>
     _count?: boolean | ProduceListingCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["produceListing"]>
 
@@ -8546,6 +9182,10 @@ export namespace Prisma {
     updatedAt?: boolean
     source?: boolean
     plantingLogId?: boolean
+    currentRiskBand?: boolean
+    currentRiskScore?: boolean
+    lastRiskCalculatedAt?: boolean
+    activeFlashSaleId?: boolean
     farmer?: boolean | UserDefaultArgs<ExtArgs>
     plantingLog?: boolean | ProduceListing$plantingLogArgs<ExtArgs>
   }, ExtArgs["result"]["produceListing"]>
@@ -8570,6 +9210,10 @@ export namespace Prisma {
     updatedAt?: boolean
     source?: boolean
     plantingLogId?: boolean
+    currentRiskBand?: boolean
+    currentRiskScore?: boolean
+    lastRiskCalculatedAt?: boolean
+    activeFlashSaleId?: boolean
   }
 
   export type ProduceListingInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -8580,6 +9224,8 @@ export namespace Prisma {
     preOrders?: boolean | ProduceListing$preOrdersArgs<ExtArgs>
     coOps?: boolean | ProduceListing$coOpsArgs<ExtArgs>
     plantingLog?: boolean | ProduceListing$plantingLogArgs<ExtArgs>
+    spoilageRiskLogs?: boolean | ProduceListing$spoilageRiskLogsArgs<ExtArgs>
+    flashSale?: boolean | ProduceListing$flashSaleArgs<ExtArgs>
     _count?: boolean | ProduceListingCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type ProduceListingIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -8597,6 +9243,8 @@ export namespace Prisma {
       preOrders: Prisma.$PreOrderPayload<ExtArgs>[]
       coOps: Prisma.$CoOpGroupPayload<ExtArgs>[]
       plantingLog: Prisma.$PlantingLogPayload<ExtArgs> | null
+      spoilageRiskLogs: Prisma.$SpoilageRiskLogPayload<ExtArgs>[]
+      flashSale: Prisma.$FlashSalePayload<ExtArgs> | null
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -8618,6 +9266,10 @@ export namespace Prisma {
       updatedAt: Date
       source: $Enums.CreationSource
       plantingLogId: string | null
+      currentRiskBand: $Enums.SpoilageRiskBand
+      currentRiskScore: number
+      lastRiskCalculatedAt: Date | null
+      activeFlashSaleId: string | null
     }, ExtArgs["result"]["produceListing"]>
     composites: {}
   }
@@ -8989,6 +9641,8 @@ export namespace Prisma {
     preOrders<T extends ProduceListing$preOrdersArgs<ExtArgs> = {}>(args?: Subset<T, ProduceListing$preOrdersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PreOrderPayload<ExtArgs>, T, "findMany"> | Null>
     coOps<T extends ProduceListing$coOpsArgs<ExtArgs> = {}>(args?: Subset<T, ProduceListing$coOpsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CoOpGroupPayload<ExtArgs>, T, "findMany"> | Null>
     plantingLog<T extends ProduceListing$plantingLogArgs<ExtArgs> = {}>(args?: Subset<T, ProduceListing$plantingLogArgs<ExtArgs>>): Prisma__PlantingLogClient<$Result.GetResult<Prisma.$PlantingLogPayload<ExtArgs>, T, "findUniqueOrThrow"> | null, null, ExtArgs>
+    spoilageRiskLogs<T extends ProduceListing$spoilageRiskLogsArgs<ExtArgs> = {}>(args?: Subset<T, ProduceListing$spoilageRiskLogsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SpoilageRiskLogPayload<ExtArgs>, T, "findMany"> | Null>
+    flashSale<T extends ProduceListing$flashSaleArgs<ExtArgs> = {}>(args?: Subset<T, ProduceListing$flashSaleArgs<ExtArgs>>): Prisma__FlashSaleClient<$Result.GetResult<Prisma.$FlashSalePayload<ExtArgs>, T, "findUniqueOrThrow"> | null, null, ExtArgs>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -9037,6 +9691,10 @@ export namespace Prisma {
     readonly updatedAt: FieldRef<"ProduceListing", 'DateTime'>
     readonly source: FieldRef<"ProduceListing", 'CreationSource'>
     readonly plantingLogId: FieldRef<"ProduceListing", 'String'>
+    readonly currentRiskBand: FieldRef<"ProduceListing", 'SpoilageRiskBand'>
+    readonly currentRiskScore: FieldRef<"ProduceListing", 'Float'>
+    readonly lastRiskCalculatedAt: FieldRef<"ProduceListing", 'DateTime'>
+    readonly activeFlashSaleId: FieldRef<"ProduceListing", 'String'>
   }
     
 
@@ -9462,6 +10120,41 @@ export namespace Prisma {
      */
     include?: PlantingLogInclude<ExtArgs> | null
     where?: PlantingLogWhereInput
+  }
+
+  /**
+   * ProduceListing.spoilageRiskLogs
+   */
+  export type ProduceListing$spoilageRiskLogsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SpoilageRiskLog
+     */
+    select?: SpoilageRiskLogSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SpoilageRiskLogInclude<ExtArgs> | null
+    where?: SpoilageRiskLogWhereInput
+    orderBy?: SpoilageRiskLogOrderByWithRelationInput | SpoilageRiskLogOrderByWithRelationInput[]
+    cursor?: SpoilageRiskLogWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: SpoilageRiskLogScalarFieldEnum | SpoilageRiskLogScalarFieldEnum[]
+  }
+
+  /**
+   * ProduceListing.flashSale
+   */
+  export type ProduceListing$flashSaleArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FlashSale
+     */
+    select?: FlashSaleSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FlashSaleInclude<ExtArgs> | null
+    where?: FlashSaleWhereInput
   }
 
   /**
@@ -11749,6 +12442,7 @@ export namespace Prisma {
     messages?: boolean | Order$messagesArgs<ExtArgs>
     preOrder?: boolean | Order$preOrderArgs<ExtArgs>
     coOpMember?: boolean | Order$coOpMemberArgs<ExtArgs>
+    flashSaleClaims?: boolean | Order$flashSaleClaimsArgs<ExtArgs>
     _count?: boolean | OrderCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["order"]>
 
@@ -11792,6 +12486,7 @@ export namespace Prisma {
     messages?: boolean | Order$messagesArgs<ExtArgs>
     preOrder?: boolean | Order$preOrderArgs<ExtArgs>
     coOpMember?: boolean | Order$coOpMemberArgs<ExtArgs>
+    flashSaleClaims?: boolean | Order$flashSaleClaimsArgs<ExtArgs>
     _count?: boolean | OrderCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type OrderIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -11809,6 +12504,7 @@ export namespace Prisma {
       messages: Prisma.$MessagePayload<ExtArgs>[]
       preOrder: Prisma.$PreOrderPayload<ExtArgs> | null
       coOpMember: Prisma.$CoOpMemberPayload<ExtArgs> | null
+      flashSaleClaims: Prisma.$FlashSaleClaimPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -12194,6 +12890,7 @@ export namespace Prisma {
     messages<T extends Order$messagesArgs<ExtArgs> = {}>(args?: Subset<T, Order$messagesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MessagePayload<ExtArgs>, T, "findMany"> | Null>
     preOrder<T extends Order$preOrderArgs<ExtArgs> = {}>(args?: Subset<T, Order$preOrderArgs<ExtArgs>>): Prisma__PreOrderClient<$Result.GetResult<Prisma.$PreOrderPayload<ExtArgs>, T, "findUniqueOrThrow"> | null, null, ExtArgs>
     coOpMember<T extends Order$coOpMemberArgs<ExtArgs> = {}>(args?: Subset<T, Order$coOpMemberArgs<ExtArgs>>): Prisma__CoOpMemberClient<$Result.GetResult<Prisma.$CoOpMemberPayload<ExtArgs>, T, "findUniqueOrThrow"> | null, null, ExtArgs>
+    flashSaleClaims<T extends Order$flashSaleClaimsArgs<ExtArgs> = {}>(args?: Subset<T, Order$flashSaleClaimsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FlashSaleClaimPayload<ExtArgs>, T, "findMany"> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -12635,6 +13332,26 @@ export namespace Prisma {
      */
     include?: CoOpMemberInclude<ExtArgs> | null
     where?: CoOpMemberWhereInput
+  }
+
+  /**
+   * Order.flashSaleClaims
+   */
+  export type Order$flashSaleClaimsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FlashSaleClaim
+     */
+    select?: FlashSaleClaimSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FlashSaleClaimInclude<ExtArgs> | null
+    where?: FlashSaleClaimWhereInput
+    orderBy?: FlashSaleClaimOrderByWithRelationInput | FlashSaleClaimOrderByWithRelationInput[]
+    cursor?: FlashSaleClaimWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: FlashSaleClaimScalarFieldEnum | FlashSaleClaimScalarFieldEnum[]
   }
 
   /**
@@ -30881,6 +31598,4273 @@ export namespace Prisma {
 
 
   /**
+   * Model SpoilageRiskLog
+   */
+
+  export type AggregateSpoilageRiskLog = {
+    _count: SpoilageRiskLogCountAggregateOutputType | null
+    _avg: SpoilageRiskLogAvgAggregateOutputType | null
+    _sum: SpoilageRiskLogSumAggregateOutputType | null
+    _min: SpoilageRiskLogMinAggregateOutputType | null
+    _max: SpoilageRiskLogMaxAggregateOutputType | null
+  }
+
+  export type SpoilageRiskLogAvgAggregateOutputType = {
+    riskScore: number | null
+    hoursUntilExpiry: number | null
+    remainingKg: number | null
+  }
+
+  export type SpoilageRiskLogSumAggregateOutputType = {
+    riskScore: number | null
+    hoursUntilExpiry: number | null
+    remainingKg: number | null
+  }
+
+  export type SpoilageRiskLogMinAggregateOutputType = {
+    id: string | null
+    listingId: string | null
+    previousBand: $Enums.SpoilageRiskBand | null
+    newBand: $Enums.SpoilageRiskBand | null
+    riskScore: number | null
+    hoursUntilExpiry: number | null
+    remainingKg: number | null
+    calculatedAt: Date | null
+    triggeredFlashSale: boolean | null
+  }
+
+  export type SpoilageRiskLogMaxAggregateOutputType = {
+    id: string | null
+    listingId: string | null
+    previousBand: $Enums.SpoilageRiskBand | null
+    newBand: $Enums.SpoilageRiskBand | null
+    riskScore: number | null
+    hoursUntilExpiry: number | null
+    remainingKg: number | null
+    calculatedAt: Date | null
+    triggeredFlashSale: boolean | null
+  }
+
+  export type SpoilageRiskLogCountAggregateOutputType = {
+    id: number
+    listingId: number
+    previousBand: number
+    newBand: number
+    riskScore: number
+    hoursUntilExpiry: number
+    remainingKg: number
+    calculatedAt: number
+    triggeredFlashSale: number
+    _all: number
+  }
+
+
+  export type SpoilageRiskLogAvgAggregateInputType = {
+    riskScore?: true
+    hoursUntilExpiry?: true
+    remainingKg?: true
+  }
+
+  export type SpoilageRiskLogSumAggregateInputType = {
+    riskScore?: true
+    hoursUntilExpiry?: true
+    remainingKg?: true
+  }
+
+  export type SpoilageRiskLogMinAggregateInputType = {
+    id?: true
+    listingId?: true
+    previousBand?: true
+    newBand?: true
+    riskScore?: true
+    hoursUntilExpiry?: true
+    remainingKg?: true
+    calculatedAt?: true
+    triggeredFlashSale?: true
+  }
+
+  export type SpoilageRiskLogMaxAggregateInputType = {
+    id?: true
+    listingId?: true
+    previousBand?: true
+    newBand?: true
+    riskScore?: true
+    hoursUntilExpiry?: true
+    remainingKg?: true
+    calculatedAt?: true
+    triggeredFlashSale?: true
+  }
+
+  export type SpoilageRiskLogCountAggregateInputType = {
+    id?: true
+    listingId?: true
+    previousBand?: true
+    newBand?: true
+    riskScore?: true
+    hoursUntilExpiry?: true
+    remainingKg?: true
+    calculatedAt?: true
+    triggeredFlashSale?: true
+    _all?: true
+  }
+
+  export type SpoilageRiskLogAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which SpoilageRiskLog to aggregate.
+     */
+    where?: SpoilageRiskLogWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of SpoilageRiskLogs to fetch.
+     */
+    orderBy?: SpoilageRiskLogOrderByWithRelationInput | SpoilageRiskLogOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: SpoilageRiskLogWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` SpoilageRiskLogs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` SpoilageRiskLogs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned SpoilageRiskLogs
+    **/
+    _count?: true | SpoilageRiskLogCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: SpoilageRiskLogAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: SpoilageRiskLogSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: SpoilageRiskLogMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: SpoilageRiskLogMaxAggregateInputType
+  }
+
+  export type GetSpoilageRiskLogAggregateType<T extends SpoilageRiskLogAggregateArgs> = {
+        [P in keyof T & keyof AggregateSpoilageRiskLog]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateSpoilageRiskLog[P]>
+      : GetScalarType<T[P], AggregateSpoilageRiskLog[P]>
+  }
+
+
+
+
+  export type SpoilageRiskLogGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: SpoilageRiskLogWhereInput
+    orderBy?: SpoilageRiskLogOrderByWithAggregationInput | SpoilageRiskLogOrderByWithAggregationInput[]
+    by: SpoilageRiskLogScalarFieldEnum[] | SpoilageRiskLogScalarFieldEnum
+    having?: SpoilageRiskLogScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: SpoilageRiskLogCountAggregateInputType | true
+    _avg?: SpoilageRiskLogAvgAggregateInputType
+    _sum?: SpoilageRiskLogSumAggregateInputType
+    _min?: SpoilageRiskLogMinAggregateInputType
+    _max?: SpoilageRiskLogMaxAggregateInputType
+  }
+
+  export type SpoilageRiskLogGroupByOutputType = {
+    id: string
+    listingId: string
+    previousBand: $Enums.SpoilageRiskBand | null
+    newBand: $Enums.SpoilageRiskBand
+    riskScore: number
+    hoursUntilExpiry: number
+    remainingKg: number
+    calculatedAt: Date
+    triggeredFlashSale: boolean
+    _count: SpoilageRiskLogCountAggregateOutputType | null
+    _avg: SpoilageRiskLogAvgAggregateOutputType | null
+    _sum: SpoilageRiskLogSumAggregateOutputType | null
+    _min: SpoilageRiskLogMinAggregateOutputType | null
+    _max: SpoilageRiskLogMaxAggregateOutputType | null
+  }
+
+  type GetSpoilageRiskLogGroupByPayload<T extends SpoilageRiskLogGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<SpoilageRiskLogGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof SpoilageRiskLogGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], SpoilageRiskLogGroupByOutputType[P]>
+            : GetScalarType<T[P], SpoilageRiskLogGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type SpoilageRiskLogSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    listingId?: boolean
+    previousBand?: boolean
+    newBand?: boolean
+    riskScore?: boolean
+    hoursUntilExpiry?: boolean
+    remainingKg?: boolean
+    calculatedAt?: boolean
+    triggeredFlashSale?: boolean
+    listing?: boolean | ProduceListingDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["spoilageRiskLog"]>
+
+  export type SpoilageRiskLogSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    listingId?: boolean
+    previousBand?: boolean
+    newBand?: boolean
+    riskScore?: boolean
+    hoursUntilExpiry?: boolean
+    remainingKg?: boolean
+    calculatedAt?: boolean
+    triggeredFlashSale?: boolean
+    listing?: boolean | ProduceListingDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["spoilageRiskLog"]>
+
+  export type SpoilageRiskLogSelectScalar = {
+    id?: boolean
+    listingId?: boolean
+    previousBand?: boolean
+    newBand?: boolean
+    riskScore?: boolean
+    hoursUntilExpiry?: boolean
+    remainingKg?: boolean
+    calculatedAt?: boolean
+    triggeredFlashSale?: boolean
+  }
+
+  export type SpoilageRiskLogInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    listing?: boolean | ProduceListingDefaultArgs<ExtArgs>
+  }
+  export type SpoilageRiskLogIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    listing?: boolean | ProduceListingDefaultArgs<ExtArgs>
+  }
+
+  export type $SpoilageRiskLogPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "SpoilageRiskLog"
+    objects: {
+      listing: Prisma.$ProduceListingPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      listingId: string
+      previousBand: $Enums.SpoilageRiskBand | null
+      newBand: $Enums.SpoilageRiskBand
+      riskScore: number
+      hoursUntilExpiry: number
+      remainingKg: number
+      calculatedAt: Date
+      triggeredFlashSale: boolean
+    }, ExtArgs["result"]["spoilageRiskLog"]>
+    composites: {}
+  }
+
+  type SpoilageRiskLogGetPayload<S extends boolean | null | undefined | SpoilageRiskLogDefaultArgs> = $Result.GetResult<Prisma.$SpoilageRiskLogPayload, S>
+
+  type SpoilageRiskLogCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<SpoilageRiskLogFindManyArgs, 'select' | 'include' | 'distinct'> & {
+      select?: SpoilageRiskLogCountAggregateInputType | true
+    }
+
+  export interface SpoilageRiskLogDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['SpoilageRiskLog'], meta: { name: 'SpoilageRiskLog' } }
+    /**
+     * Find zero or one SpoilageRiskLog that matches the filter.
+     * @param {SpoilageRiskLogFindUniqueArgs} args - Arguments to find a SpoilageRiskLog
+     * @example
+     * // Get one SpoilageRiskLog
+     * const spoilageRiskLog = await prisma.spoilageRiskLog.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends SpoilageRiskLogFindUniqueArgs>(args: SelectSubset<T, SpoilageRiskLogFindUniqueArgs<ExtArgs>>): Prisma__SpoilageRiskLogClient<$Result.GetResult<Prisma.$SpoilageRiskLogPayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
+
+    /**
+     * Find one SpoilageRiskLog that matches the filter or throw an error with `error.code='P2025'` 
+     * if no matches were found.
+     * @param {SpoilageRiskLogFindUniqueOrThrowArgs} args - Arguments to find a SpoilageRiskLog
+     * @example
+     * // Get one SpoilageRiskLog
+     * const spoilageRiskLog = await prisma.spoilageRiskLog.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends SpoilageRiskLogFindUniqueOrThrowArgs>(args: SelectSubset<T, SpoilageRiskLogFindUniqueOrThrowArgs<ExtArgs>>): Prisma__SpoilageRiskLogClient<$Result.GetResult<Prisma.$SpoilageRiskLogPayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
+
+    /**
+     * Find the first SpoilageRiskLog that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SpoilageRiskLogFindFirstArgs} args - Arguments to find a SpoilageRiskLog
+     * @example
+     * // Get one SpoilageRiskLog
+     * const spoilageRiskLog = await prisma.spoilageRiskLog.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends SpoilageRiskLogFindFirstArgs>(args?: SelectSubset<T, SpoilageRiskLogFindFirstArgs<ExtArgs>>): Prisma__SpoilageRiskLogClient<$Result.GetResult<Prisma.$SpoilageRiskLogPayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
+
+    /**
+     * Find the first SpoilageRiskLog that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SpoilageRiskLogFindFirstOrThrowArgs} args - Arguments to find a SpoilageRiskLog
+     * @example
+     * // Get one SpoilageRiskLog
+     * const spoilageRiskLog = await prisma.spoilageRiskLog.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends SpoilageRiskLogFindFirstOrThrowArgs>(args?: SelectSubset<T, SpoilageRiskLogFindFirstOrThrowArgs<ExtArgs>>): Prisma__SpoilageRiskLogClient<$Result.GetResult<Prisma.$SpoilageRiskLogPayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
+
+    /**
+     * Find zero or more SpoilageRiskLogs that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SpoilageRiskLogFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all SpoilageRiskLogs
+     * const spoilageRiskLogs = await prisma.spoilageRiskLog.findMany()
+     * 
+     * // Get first 10 SpoilageRiskLogs
+     * const spoilageRiskLogs = await prisma.spoilageRiskLog.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const spoilageRiskLogWithIdOnly = await prisma.spoilageRiskLog.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends SpoilageRiskLogFindManyArgs>(args?: SelectSubset<T, SpoilageRiskLogFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SpoilageRiskLogPayload<ExtArgs>, T, "findMany">>
+
+    /**
+     * Create a SpoilageRiskLog.
+     * @param {SpoilageRiskLogCreateArgs} args - Arguments to create a SpoilageRiskLog.
+     * @example
+     * // Create one SpoilageRiskLog
+     * const SpoilageRiskLog = await prisma.spoilageRiskLog.create({
+     *   data: {
+     *     // ... data to create a SpoilageRiskLog
+     *   }
+     * })
+     * 
+     */
+    create<T extends SpoilageRiskLogCreateArgs>(args: SelectSubset<T, SpoilageRiskLogCreateArgs<ExtArgs>>): Prisma__SpoilageRiskLogClient<$Result.GetResult<Prisma.$SpoilageRiskLogPayload<ExtArgs>, T, "create">, never, ExtArgs>
+
+    /**
+     * Create many SpoilageRiskLogs.
+     * @param {SpoilageRiskLogCreateManyArgs} args - Arguments to create many SpoilageRiskLogs.
+     * @example
+     * // Create many SpoilageRiskLogs
+     * const spoilageRiskLog = await prisma.spoilageRiskLog.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends SpoilageRiskLogCreateManyArgs>(args?: SelectSubset<T, SpoilageRiskLogCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many SpoilageRiskLogs and returns the data saved in the database.
+     * @param {SpoilageRiskLogCreateManyAndReturnArgs} args - Arguments to create many SpoilageRiskLogs.
+     * @example
+     * // Create many SpoilageRiskLogs
+     * const spoilageRiskLog = await prisma.spoilageRiskLog.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many SpoilageRiskLogs and only return the `id`
+     * const spoilageRiskLogWithIdOnly = await prisma.spoilageRiskLog.createManyAndReturn({ 
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends SpoilageRiskLogCreateManyAndReturnArgs>(args?: SelectSubset<T, SpoilageRiskLogCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SpoilageRiskLogPayload<ExtArgs>, T, "createManyAndReturn">>
+
+    /**
+     * Delete a SpoilageRiskLog.
+     * @param {SpoilageRiskLogDeleteArgs} args - Arguments to delete one SpoilageRiskLog.
+     * @example
+     * // Delete one SpoilageRiskLog
+     * const SpoilageRiskLog = await prisma.spoilageRiskLog.delete({
+     *   where: {
+     *     // ... filter to delete one SpoilageRiskLog
+     *   }
+     * })
+     * 
+     */
+    delete<T extends SpoilageRiskLogDeleteArgs>(args: SelectSubset<T, SpoilageRiskLogDeleteArgs<ExtArgs>>): Prisma__SpoilageRiskLogClient<$Result.GetResult<Prisma.$SpoilageRiskLogPayload<ExtArgs>, T, "delete">, never, ExtArgs>
+
+    /**
+     * Update one SpoilageRiskLog.
+     * @param {SpoilageRiskLogUpdateArgs} args - Arguments to update one SpoilageRiskLog.
+     * @example
+     * // Update one SpoilageRiskLog
+     * const spoilageRiskLog = await prisma.spoilageRiskLog.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends SpoilageRiskLogUpdateArgs>(args: SelectSubset<T, SpoilageRiskLogUpdateArgs<ExtArgs>>): Prisma__SpoilageRiskLogClient<$Result.GetResult<Prisma.$SpoilageRiskLogPayload<ExtArgs>, T, "update">, never, ExtArgs>
+
+    /**
+     * Delete zero or more SpoilageRiskLogs.
+     * @param {SpoilageRiskLogDeleteManyArgs} args - Arguments to filter SpoilageRiskLogs to delete.
+     * @example
+     * // Delete a few SpoilageRiskLogs
+     * const { count } = await prisma.spoilageRiskLog.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends SpoilageRiskLogDeleteManyArgs>(args?: SelectSubset<T, SpoilageRiskLogDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more SpoilageRiskLogs.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SpoilageRiskLogUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many SpoilageRiskLogs
+     * const spoilageRiskLog = await prisma.spoilageRiskLog.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends SpoilageRiskLogUpdateManyArgs>(args: SelectSubset<T, SpoilageRiskLogUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one SpoilageRiskLog.
+     * @param {SpoilageRiskLogUpsertArgs} args - Arguments to update or create a SpoilageRiskLog.
+     * @example
+     * // Update or create a SpoilageRiskLog
+     * const spoilageRiskLog = await prisma.spoilageRiskLog.upsert({
+     *   create: {
+     *     // ... data to create a SpoilageRiskLog
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the SpoilageRiskLog we want to update
+     *   }
+     * })
+     */
+    upsert<T extends SpoilageRiskLogUpsertArgs>(args: SelectSubset<T, SpoilageRiskLogUpsertArgs<ExtArgs>>): Prisma__SpoilageRiskLogClient<$Result.GetResult<Prisma.$SpoilageRiskLogPayload<ExtArgs>, T, "upsert">, never, ExtArgs>
+
+
+    /**
+     * Count the number of SpoilageRiskLogs.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SpoilageRiskLogCountArgs} args - Arguments to filter SpoilageRiskLogs to count.
+     * @example
+     * // Count the number of SpoilageRiskLogs
+     * const count = await prisma.spoilageRiskLog.count({
+     *   where: {
+     *     // ... the filter for the SpoilageRiskLogs we want to count
+     *   }
+     * })
+    **/
+    count<T extends SpoilageRiskLogCountArgs>(
+      args?: Subset<T, SpoilageRiskLogCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], SpoilageRiskLogCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a SpoilageRiskLog.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SpoilageRiskLogAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends SpoilageRiskLogAggregateArgs>(args: Subset<T, SpoilageRiskLogAggregateArgs>): Prisma.PrismaPromise<GetSpoilageRiskLogAggregateType<T>>
+
+    /**
+     * Group by SpoilageRiskLog.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SpoilageRiskLogGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends SpoilageRiskLogGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: SpoilageRiskLogGroupByArgs['orderBy'] }
+        : { orderBy?: SpoilageRiskLogGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, SpoilageRiskLogGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetSpoilageRiskLogGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the SpoilageRiskLog model
+   */
+  readonly fields: SpoilageRiskLogFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for SpoilageRiskLog.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__SpoilageRiskLogClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    listing<T extends ProduceListingDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ProduceListingDefaultArgs<ExtArgs>>): Prisma__ProduceListingClient<$Result.GetResult<Prisma.$ProduceListingPayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the SpoilageRiskLog model
+   */ 
+  interface SpoilageRiskLogFieldRefs {
+    readonly id: FieldRef<"SpoilageRiskLog", 'String'>
+    readonly listingId: FieldRef<"SpoilageRiskLog", 'String'>
+    readonly previousBand: FieldRef<"SpoilageRiskLog", 'SpoilageRiskBand'>
+    readonly newBand: FieldRef<"SpoilageRiskLog", 'SpoilageRiskBand'>
+    readonly riskScore: FieldRef<"SpoilageRiskLog", 'Float'>
+    readonly hoursUntilExpiry: FieldRef<"SpoilageRiskLog", 'Float'>
+    readonly remainingKg: FieldRef<"SpoilageRiskLog", 'Float'>
+    readonly calculatedAt: FieldRef<"SpoilageRiskLog", 'DateTime'>
+    readonly triggeredFlashSale: FieldRef<"SpoilageRiskLog", 'Boolean'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * SpoilageRiskLog findUnique
+   */
+  export type SpoilageRiskLogFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SpoilageRiskLog
+     */
+    select?: SpoilageRiskLogSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SpoilageRiskLogInclude<ExtArgs> | null
+    /**
+     * Filter, which SpoilageRiskLog to fetch.
+     */
+    where: SpoilageRiskLogWhereUniqueInput
+  }
+
+  /**
+   * SpoilageRiskLog findUniqueOrThrow
+   */
+  export type SpoilageRiskLogFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SpoilageRiskLog
+     */
+    select?: SpoilageRiskLogSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SpoilageRiskLogInclude<ExtArgs> | null
+    /**
+     * Filter, which SpoilageRiskLog to fetch.
+     */
+    where: SpoilageRiskLogWhereUniqueInput
+  }
+
+  /**
+   * SpoilageRiskLog findFirst
+   */
+  export type SpoilageRiskLogFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SpoilageRiskLog
+     */
+    select?: SpoilageRiskLogSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SpoilageRiskLogInclude<ExtArgs> | null
+    /**
+     * Filter, which SpoilageRiskLog to fetch.
+     */
+    where?: SpoilageRiskLogWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of SpoilageRiskLogs to fetch.
+     */
+    orderBy?: SpoilageRiskLogOrderByWithRelationInput | SpoilageRiskLogOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for SpoilageRiskLogs.
+     */
+    cursor?: SpoilageRiskLogWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` SpoilageRiskLogs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` SpoilageRiskLogs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of SpoilageRiskLogs.
+     */
+    distinct?: SpoilageRiskLogScalarFieldEnum | SpoilageRiskLogScalarFieldEnum[]
+  }
+
+  /**
+   * SpoilageRiskLog findFirstOrThrow
+   */
+  export type SpoilageRiskLogFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SpoilageRiskLog
+     */
+    select?: SpoilageRiskLogSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SpoilageRiskLogInclude<ExtArgs> | null
+    /**
+     * Filter, which SpoilageRiskLog to fetch.
+     */
+    where?: SpoilageRiskLogWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of SpoilageRiskLogs to fetch.
+     */
+    orderBy?: SpoilageRiskLogOrderByWithRelationInput | SpoilageRiskLogOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for SpoilageRiskLogs.
+     */
+    cursor?: SpoilageRiskLogWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` SpoilageRiskLogs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` SpoilageRiskLogs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of SpoilageRiskLogs.
+     */
+    distinct?: SpoilageRiskLogScalarFieldEnum | SpoilageRiskLogScalarFieldEnum[]
+  }
+
+  /**
+   * SpoilageRiskLog findMany
+   */
+  export type SpoilageRiskLogFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SpoilageRiskLog
+     */
+    select?: SpoilageRiskLogSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SpoilageRiskLogInclude<ExtArgs> | null
+    /**
+     * Filter, which SpoilageRiskLogs to fetch.
+     */
+    where?: SpoilageRiskLogWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of SpoilageRiskLogs to fetch.
+     */
+    orderBy?: SpoilageRiskLogOrderByWithRelationInput | SpoilageRiskLogOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing SpoilageRiskLogs.
+     */
+    cursor?: SpoilageRiskLogWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` SpoilageRiskLogs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` SpoilageRiskLogs.
+     */
+    skip?: number
+    distinct?: SpoilageRiskLogScalarFieldEnum | SpoilageRiskLogScalarFieldEnum[]
+  }
+
+  /**
+   * SpoilageRiskLog create
+   */
+  export type SpoilageRiskLogCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SpoilageRiskLog
+     */
+    select?: SpoilageRiskLogSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SpoilageRiskLogInclude<ExtArgs> | null
+    /**
+     * The data needed to create a SpoilageRiskLog.
+     */
+    data: XOR<SpoilageRiskLogCreateInput, SpoilageRiskLogUncheckedCreateInput>
+  }
+
+  /**
+   * SpoilageRiskLog createMany
+   */
+  export type SpoilageRiskLogCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many SpoilageRiskLogs.
+     */
+    data: SpoilageRiskLogCreateManyInput | SpoilageRiskLogCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * SpoilageRiskLog createManyAndReturn
+   */
+  export type SpoilageRiskLogCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SpoilageRiskLog
+     */
+    select?: SpoilageRiskLogSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * The data used to create many SpoilageRiskLogs.
+     */
+    data: SpoilageRiskLogCreateManyInput | SpoilageRiskLogCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SpoilageRiskLogIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * SpoilageRiskLog update
+   */
+  export type SpoilageRiskLogUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SpoilageRiskLog
+     */
+    select?: SpoilageRiskLogSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SpoilageRiskLogInclude<ExtArgs> | null
+    /**
+     * The data needed to update a SpoilageRiskLog.
+     */
+    data: XOR<SpoilageRiskLogUpdateInput, SpoilageRiskLogUncheckedUpdateInput>
+    /**
+     * Choose, which SpoilageRiskLog to update.
+     */
+    where: SpoilageRiskLogWhereUniqueInput
+  }
+
+  /**
+   * SpoilageRiskLog updateMany
+   */
+  export type SpoilageRiskLogUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update SpoilageRiskLogs.
+     */
+    data: XOR<SpoilageRiskLogUpdateManyMutationInput, SpoilageRiskLogUncheckedUpdateManyInput>
+    /**
+     * Filter which SpoilageRiskLogs to update
+     */
+    where?: SpoilageRiskLogWhereInput
+  }
+
+  /**
+   * SpoilageRiskLog upsert
+   */
+  export type SpoilageRiskLogUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SpoilageRiskLog
+     */
+    select?: SpoilageRiskLogSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SpoilageRiskLogInclude<ExtArgs> | null
+    /**
+     * The filter to search for the SpoilageRiskLog to update in case it exists.
+     */
+    where: SpoilageRiskLogWhereUniqueInput
+    /**
+     * In case the SpoilageRiskLog found by the `where` argument doesn't exist, create a new SpoilageRiskLog with this data.
+     */
+    create: XOR<SpoilageRiskLogCreateInput, SpoilageRiskLogUncheckedCreateInput>
+    /**
+     * In case the SpoilageRiskLog was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<SpoilageRiskLogUpdateInput, SpoilageRiskLogUncheckedUpdateInput>
+  }
+
+  /**
+   * SpoilageRiskLog delete
+   */
+  export type SpoilageRiskLogDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SpoilageRiskLog
+     */
+    select?: SpoilageRiskLogSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SpoilageRiskLogInclude<ExtArgs> | null
+    /**
+     * Filter which SpoilageRiskLog to delete.
+     */
+    where: SpoilageRiskLogWhereUniqueInput
+  }
+
+  /**
+   * SpoilageRiskLog deleteMany
+   */
+  export type SpoilageRiskLogDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which SpoilageRiskLogs to delete
+     */
+    where?: SpoilageRiskLogWhereInput
+  }
+
+  /**
+   * SpoilageRiskLog without action
+   */
+  export type SpoilageRiskLogDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SpoilageRiskLog
+     */
+    select?: SpoilageRiskLogSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SpoilageRiskLogInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model FlashSale
+   */
+
+  export type AggregateFlashSale = {
+    _count: FlashSaleCountAggregateOutputType | null
+    _avg: FlashSaleAvgAggregateOutputType | null
+    _sum: FlashSaleSumAggregateOutputType | null
+    _min: FlashSaleMinAggregateOutputType | null
+    _max: FlashSaleMaxAggregateOutputType | null
+  }
+
+  export type FlashSaleAvgAggregateOutputType = {
+    originalPricePerKg: number | null
+    discountPercent: number | null
+    flashPricePerKg: number | null
+    quantityKg: number | null
+    soldKg: number | null
+    riskScore: number | null
+    notificationsSent: number | null
+    buyersClaimed: number | null
+  }
+
+  export type FlashSaleSumAggregateOutputType = {
+    originalPricePerKg: number | null
+    discountPercent: number | null
+    flashPricePerKg: number | null
+    quantityKg: number | null
+    soldKg: number | null
+    riskScore: number | null
+    notificationsSent: number | null
+    buyersClaimed: number | null
+  }
+
+  export type FlashSaleMinAggregateOutputType = {
+    id: string | null
+    listingId: string | null
+    farmerId: string | null
+    originalPricePerKg: number | null
+    discountPercent: number | null
+    flashPricePerKg: number | null
+    quantityKg: number | null
+    soldKg: number | null
+    riskBand: $Enums.SpoilageRiskBand | null
+    riskScore: number | null
+    status: $Enums.FlashSaleStatus | null
+    expiresAt: Date | null
+    farmerApproved: boolean | null
+    cancelledAt: Date | null
+    cancelReason: string | null
+    notificationsSent: number | null
+    buyersClaimed: number | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type FlashSaleMaxAggregateOutputType = {
+    id: string | null
+    listingId: string | null
+    farmerId: string | null
+    originalPricePerKg: number | null
+    discountPercent: number | null
+    flashPricePerKg: number | null
+    quantityKg: number | null
+    soldKg: number | null
+    riskBand: $Enums.SpoilageRiskBand | null
+    riskScore: number | null
+    status: $Enums.FlashSaleStatus | null
+    expiresAt: Date | null
+    farmerApproved: boolean | null
+    cancelledAt: Date | null
+    cancelReason: string | null
+    notificationsSent: number | null
+    buyersClaimed: number | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type FlashSaleCountAggregateOutputType = {
+    id: number
+    listingId: number
+    farmerId: number
+    originalPricePerKg: number
+    discountPercent: number
+    flashPricePerKg: number
+    quantityKg: number
+    soldKg: number
+    riskBand: number
+    riskScore: number
+    status: number
+    expiresAt: number
+    farmerApproved: number
+    cancelledAt: number
+    cancelReason: number
+    notificationsSent: number
+    buyersClaimed: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type FlashSaleAvgAggregateInputType = {
+    originalPricePerKg?: true
+    discountPercent?: true
+    flashPricePerKg?: true
+    quantityKg?: true
+    soldKg?: true
+    riskScore?: true
+    notificationsSent?: true
+    buyersClaimed?: true
+  }
+
+  export type FlashSaleSumAggregateInputType = {
+    originalPricePerKg?: true
+    discountPercent?: true
+    flashPricePerKg?: true
+    quantityKg?: true
+    soldKg?: true
+    riskScore?: true
+    notificationsSent?: true
+    buyersClaimed?: true
+  }
+
+  export type FlashSaleMinAggregateInputType = {
+    id?: true
+    listingId?: true
+    farmerId?: true
+    originalPricePerKg?: true
+    discountPercent?: true
+    flashPricePerKg?: true
+    quantityKg?: true
+    soldKg?: true
+    riskBand?: true
+    riskScore?: true
+    status?: true
+    expiresAt?: true
+    farmerApproved?: true
+    cancelledAt?: true
+    cancelReason?: true
+    notificationsSent?: true
+    buyersClaimed?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type FlashSaleMaxAggregateInputType = {
+    id?: true
+    listingId?: true
+    farmerId?: true
+    originalPricePerKg?: true
+    discountPercent?: true
+    flashPricePerKg?: true
+    quantityKg?: true
+    soldKg?: true
+    riskBand?: true
+    riskScore?: true
+    status?: true
+    expiresAt?: true
+    farmerApproved?: true
+    cancelledAt?: true
+    cancelReason?: true
+    notificationsSent?: true
+    buyersClaimed?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type FlashSaleCountAggregateInputType = {
+    id?: true
+    listingId?: true
+    farmerId?: true
+    originalPricePerKg?: true
+    discountPercent?: true
+    flashPricePerKg?: true
+    quantityKg?: true
+    soldKg?: true
+    riskBand?: true
+    riskScore?: true
+    status?: true
+    expiresAt?: true
+    farmerApproved?: true
+    cancelledAt?: true
+    cancelReason?: true
+    notificationsSent?: true
+    buyersClaimed?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type FlashSaleAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which FlashSale to aggregate.
+     */
+    where?: FlashSaleWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FlashSales to fetch.
+     */
+    orderBy?: FlashSaleOrderByWithRelationInput | FlashSaleOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: FlashSaleWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FlashSales from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FlashSales.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned FlashSales
+    **/
+    _count?: true | FlashSaleCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: FlashSaleAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: FlashSaleSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: FlashSaleMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: FlashSaleMaxAggregateInputType
+  }
+
+  export type GetFlashSaleAggregateType<T extends FlashSaleAggregateArgs> = {
+        [P in keyof T & keyof AggregateFlashSale]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateFlashSale[P]>
+      : GetScalarType<T[P], AggregateFlashSale[P]>
+  }
+
+
+
+
+  export type FlashSaleGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: FlashSaleWhereInput
+    orderBy?: FlashSaleOrderByWithAggregationInput | FlashSaleOrderByWithAggregationInput[]
+    by: FlashSaleScalarFieldEnum[] | FlashSaleScalarFieldEnum
+    having?: FlashSaleScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: FlashSaleCountAggregateInputType | true
+    _avg?: FlashSaleAvgAggregateInputType
+    _sum?: FlashSaleSumAggregateInputType
+    _min?: FlashSaleMinAggregateInputType
+    _max?: FlashSaleMaxAggregateInputType
+  }
+
+  export type FlashSaleGroupByOutputType = {
+    id: string
+    listingId: string
+    farmerId: string
+    originalPricePerKg: number
+    discountPercent: number
+    flashPricePerKg: number
+    quantityKg: number
+    soldKg: number
+    riskBand: $Enums.SpoilageRiskBand
+    riskScore: number
+    status: $Enums.FlashSaleStatus
+    expiresAt: Date
+    farmerApproved: boolean
+    cancelledAt: Date | null
+    cancelReason: string | null
+    notificationsSent: number
+    buyersClaimed: number
+    createdAt: Date
+    updatedAt: Date
+    _count: FlashSaleCountAggregateOutputType | null
+    _avg: FlashSaleAvgAggregateOutputType | null
+    _sum: FlashSaleSumAggregateOutputType | null
+    _min: FlashSaleMinAggregateOutputType | null
+    _max: FlashSaleMaxAggregateOutputType | null
+  }
+
+  type GetFlashSaleGroupByPayload<T extends FlashSaleGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<FlashSaleGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof FlashSaleGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], FlashSaleGroupByOutputType[P]>
+            : GetScalarType<T[P], FlashSaleGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type FlashSaleSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    listingId?: boolean
+    farmerId?: boolean
+    originalPricePerKg?: boolean
+    discountPercent?: boolean
+    flashPricePerKg?: boolean
+    quantityKg?: boolean
+    soldKg?: boolean
+    riskBand?: boolean
+    riskScore?: boolean
+    status?: boolean
+    expiresAt?: boolean
+    farmerApproved?: boolean
+    cancelledAt?: boolean
+    cancelReason?: boolean
+    notificationsSent?: boolean
+    buyersClaimed?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    listing?: boolean | ProduceListingDefaultArgs<ExtArgs>
+    farmer?: boolean | UserDefaultArgs<ExtArgs>
+    claims?: boolean | FlashSale$claimsArgs<ExtArgs>
+    notifications?: boolean | FlashSale$notificationsArgs<ExtArgs>
+    _count?: boolean | FlashSaleCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["flashSale"]>
+
+  export type FlashSaleSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    listingId?: boolean
+    farmerId?: boolean
+    originalPricePerKg?: boolean
+    discountPercent?: boolean
+    flashPricePerKg?: boolean
+    quantityKg?: boolean
+    soldKg?: boolean
+    riskBand?: boolean
+    riskScore?: boolean
+    status?: boolean
+    expiresAt?: boolean
+    farmerApproved?: boolean
+    cancelledAt?: boolean
+    cancelReason?: boolean
+    notificationsSent?: boolean
+    buyersClaimed?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    listing?: boolean | ProduceListingDefaultArgs<ExtArgs>
+    farmer?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["flashSale"]>
+
+  export type FlashSaleSelectScalar = {
+    id?: boolean
+    listingId?: boolean
+    farmerId?: boolean
+    originalPricePerKg?: boolean
+    discountPercent?: boolean
+    flashPricePerKg?: boolean
+    quantityKg?: boolean
+    soldKg?: boolean
+    riskBand?: boolean
+    riskScore?: boolean
+    status?: boolean
+    expiresAt?: boolean
+    farmerApproved?: boolean
+    cancelledAt?: boolean
+    cancelReason?: boolean
+    notificationsSent?: boolean
+    buyersClaimed?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type FlashSaleInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    listing?: boolean | ProduceListingDefaultArgs<ExtArgs>
+    farmer?: boolean | UserDefaultArgs<ExtArgs>
+    claims?: boolean | FlashSale$claimsArgs<ExtArgs>
+    notifications?: boolean | FlashSale$notificationsArgs<ExtArgs>
+    _count?: boolean | FlashSaleCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type FlashSaleIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    listing?: boolean | ProduceListingDefaultArgs<ExtArgs>
+    farmer?: boolean | UserDefaultArgs<ExtArgs>
+  }
+
+  export type $FlashSalePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "FlashSale"
+    objects: {
+      listing: Prisma.$ProduceListingPayload<ExtArgs>
+      farmer: Prisma.$UserPayload<ExtArgs>
+      claims: Prisma.$FlashSaleClaimPayload<ExtArgs>[]
+      notifications: Prisma.$FlashSaleNotificationPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      listingId: string
+      farmerId: string
+      originalPricePerKg: number
+      discountPercent: number
+      flashPricePerKg: number
+      quantityKg: number
+      soldKg: number
+      riskBand: $Enums.SpoilageRiskBand
+      riskScore: number
+      status: $Enums.FlashSaleStatus
+      expiresAt: Date
+      farmerApproved: boolean
+      cancelledAt: Date | null
+      cancelReason: string | null
+      notificationsSent: number
+      buyersClaimed: number
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["flashSale"]>
+    composites: {}
+  }
+
+  type FlashSaleGetPayload<S extends boolean | null | undefined | FlashSaleDefaultArgs> = $Result.GetResult<Prisma.$FlashSalePayload, S>
+
+  type FlashSaleCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<FlashSaleFindManyArgs, 'select' | 'include' | 'distinct'> & {
+      select?: FlashSaleCountAggregateInputType | true
+    }
+
+  export interface FlashSaleDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['FlashSale'], meta: { name: 'FlashSale' } }
+    /**
+     * Find zero or one FlashSale that matches the filter.
+     * @param {FlashSaleFindUniqueArgs} args - Arguments to find a FlashSale
+     * @example
+     * // Get one FlashSale
+     * const flashSale = await prisma.flashSale.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends FlashSaleFindUniqueArgs>(args: SelectSubset<T, FlashSaleFindUniqueArgs<ExtArgs>>): Prisma__FlashSaleClient<$Result.GetResult<Prisma.$FlashSalePayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
+
+    /**
+     * Find one FlashSale that matches the filter or throw an error with `error.code='P2025'` 
+     * if no matches were found.
+     * @param {FlashSaleFindUniqueOrThrowArgs} args - Arguments to find a FlashSale
+     * @example
+     * // Get one FlashSale
+     * const flashSale = await prisma.flashSale.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends FlashSaleFindUniqueOrThrowArgs>(args: SelectSubset<T, FlashSaleFindUniqueOrThrowArgs<ExtArgs>>): Prisma__FlashSaleClient<$Result.GetResult<Prisma.$FlashSalePayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
+
+    /**
+     * Find the first FlashSale that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FlashSaleFindFirstArgs} args - Arguments to find a FlashSale
+     * @example
+     * // Get one FlashSale
+     * const flashSale = await prisma.flashSale.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends FlashSaleFindFirstArgs>(args?: SelectSubset<T, FlashSaleFindFirstArgs<ExtArgs>>): Prisma__FlashSaleClient<$Result.GetResult<Prisma.$FlashSalePayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
+
+    /**
+     * Find the first FlashSale that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FlashSaleFindFirstOrThrowArgs} args - Arguments to find a FlashSale
+     * @example
+     * // Get one FlashSale
+     * const flashSale = await prisma.flashSale.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends FlashSaleFindFirstOrThrowArgs>(args?: SelectSubset<T, FlashSaleFindFirstOrThrowArgs<ExtArgs>>): Prisma__FlashSaleClient<$Result.GetResult<Prisma.$FlashSalePayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
+
+    /**
+     * Find zero or more FlashSales that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FlashSaleFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all FlashSales
+     * const flashSales = await prisma.flashSale.findMany()
+     * 
+     * // Get first 10 FlashSales
+     * const flashSales = await prisma.flashSale.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const flashSaleWithIdOnly = await prisma.flashSale.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends FlashSaleFindManyArgs>(args?: SelectSubset<T, FlashSaleFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FlashSalePayload<ExtArgs>, T, "findMany">>
+
+    /**
+     * Create a FlashSale.
+     * @param {FlashSaleCreateArgs} args - Arguments to create a FlashSale.
+     * @example
+     * // Create one FlashSale
+     * const FlashSale = await prisma.flashSale.create({
+     *   data: {
+     *     // ... data to create a FlashSale
+     *   }
+     * })
+     * 
+     */
+    create<T extends FlashSaleCreateArgs>(args: SelectSubset<T, FlashSaleCreateArgs<ExtArgs>>): Prisma__FlashSaleClient<$Result.GetResult<Prisma.$FlashSalePayload<ExtArgs>, T, "create">, never, ExtArgs>
+
+    /**
+     * Create many FlashSales.
+     * @param {FlashSaleCreateManyArgs} args - Arguments to create many FlashSales.
+     * @example
+     * // Create many FlashSales
+     * const flashSale = await prisma.flashSale.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends FlashSaleCreateManyArgs>(args?: SelectSubset<T, FlashSaleCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many FlashSales and returns the data saved in the database.
+     * @param {FlashSaleCreateManyAndReturnArgs} args - Arguments to create many FlashSales.
+     * @example
+     * // Create many FlashSales
+     * const flashSale = await prisma.flashSale.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many FlashSales and only return the `id`
+     * const flashSaleWithIdOnly = await prisma.flashSale.createManyAndReturn({ 
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends FlashSaleCreateManyAndReturnArgs>(args?: SelectSubset<T, FlashSaleCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FlashSalePayload<ExtArgs>, T, "createManyAndReturn">>
+
+    /**
+     * Delete a FlashSale.
+     * @param {FlashSaleDeleteArgs} args - Arguments to delete one FlashSale.
+     * @example
+     * // Delete one FlashSale
+     * const FlashSale = await prisma.flashSale.delete({
+     *   where: {
+     *     // ... filter to delete one FlashSale
+     *   }
+     * })
+     * 
+     */
+    delete<T extends FlashSaleDeleteArgs>(args: SelectSubset<T, FlashSaleDeleteArgs<ExtArgs>>): Prisma__FlashSaleClient<$Result.GetResult<Prisma.$FlashSalePayload<ExtArgs>, T, "delete">, never, ExtArgs>
+
+    /**
+     * Update one FlashSale.
+     * @param {FlashSaleUpdateArgs} args - Arguments to update one FlashSale.
+     * @example
+     * // Update one FlashSale
+     * const flashSale = await prisma.flashSale.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends FlashSaleUpdateArgs>(args: SelectSubset<T, FlashSaleUpdateArgs<ExtArgs>>): Prisma__FlashSaleClient<$Result.GetResult<Prisma.$FlashSalePayload<ExtArgs>, T, "update">, never, ExtArgs>
+
+    /**
+     * Delete zero or more FlashSales.
+     * @param {FlashSaleDeleteManyArgs} args - Arguments to filter FlashSales to delete.
+     * @example
+     * // Delete a few FlashSales
+     * const { count } = await prisma.flashSale.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends FlashSaleDeleteManyArgs>(args?: SelectSubset<T, FlashSaleDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more FlashSales.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FlashSaleUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many FlashSales
+     * const flashSale = await prisma.flashSale.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends FlashSaleUpdateManyArgs>(args: SelectSubset<T, FlashSaleUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one FlashSale.
+     * @param {FlashSaleUpsertArgs} args - Arguments to update or create a FlashSale.
+     * @example
+     * // Update or create a FlashSale
+     * const flashSale = await prisma.flashSale.upsert({
+     *   create: {
+     *     // ... data to create a FlashSale
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the FlashSale we want to update
+     *   }
+     * })
+     */
+    upsert<T extends FlashSaleUpsertArgs>(args: SelectSubset<T, FlashSaleUpsertArgs<ExtArgs>>): Prisma__FlashSaleClient<$Result.GetResult<Prisma.$FlashSalePayload<ExtArgs>, T, "upsert">, never, ExtArgs>
+
+
+    /**
+     * Count the number of FlashSales.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FlashSaleCountArgs} args - Arguments to filter FlashSales to count.
+     * @example
+     * // Count the number of FlashSales
+     * const count = await prisma.flashSale.count({
+     *   where: {
+     *     // ... the filter for the FlashSales we want to count
+     *   }
+     * })
+    **/
+    count<T extends FlashSaleCountArgs>(
+      args?: Subset<T, FlashSaleCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], FlashSaleCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a FlashSale.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FlashSaleAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends FlashSaleAggregateArgs>(args: Subset<T, FlashSaleAggregateArgs>): Prisma.PrismaPromise<GetFlashSaleAggregateType<T>>
+
+    /**
+     * Group by FlashSale.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FlashSaleGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends FlashSaleGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: FlashSaleGroupByArgs['orderBy'] }
+        : { orderBy?: FlashSaleGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, FlashSaleGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetFlashSaleGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the FlashSale model
+   */
+  readonly fields: FlashSaleFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for FlashSale.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__FlashSaleClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    listing<T extends ProduceListingDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ProduceListingDefaultArgs<ExtArgs>>): Prisma__ProduceListingClient<$Result.GetResult<Prisma.$ProduceListingPayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
+    farmer<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
+    claims<T extends FlashSale$claimsArgs<ExtArgs> = {}>(args?: Subset<T, FlashSale$claimsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FlashSaleClaimPayload<ExtArgs>, T, "findMany"> | Null>
+    notifications<T extends FlashSale$notificationsArgs<ExtArgs> = {}>(args?: Subset<T, FlashSale$notificationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FlashSaleNotificationPayload<ExtArgs>, T, "findMany"> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the FlashSale model
+   */ 
+  interface FlashSaleFieldRefs {
+    readonly id: FieldRef<"FlashSale", 'String'>
+    readonly listingId: FieldRef<"FlashSale", 'String'>
+    readonly farmerId: FieldRef<"FlashSale", 'String'>
+    readonly originalPricePerKg: FieldRef<"FlashSale", 'Float'>
+    readonly discountPercent: FieldRef<"FlashSale", 'Float'>
+    readonly flashPricePerKg: FieldRef<"FlashSale", 'Float'>
+    readonly quantityKg: FieldRef<"FlashSale", 'Float'>
+    readonly soldKg: FieldRef<"FlashSale", 'Float'>
+    readonly riskBand: FieldRef<"FlashSale", 'SpoilageRiskBand'>
+    readonly riskScore: FieldRef<"FlashSale", 'Float'>
+    readonly status: FieldRef<"FlashSale", 'FlashSaleStatus'>
+    readonly expiresAt: FieldRef<"FlashSale", 'DateTime'>
+    readonly farmerApproved: FieldRef<"FlashSale", 'Boolean'>
+    readonly cancelledAt: FieldRef<"FlashSale", 'DateTime'>
+    readonly cancelReason: FieldRef<"FlashSale", 'String'>
+    readonly notificationsSent: FieldRef<"FlashSale", 'Int'>
+    readonly buyersClaimed: FieldRef<"FlashSale", 'Int'>
+    readonly createdAt: FieldRef<"FlashSale", 'DateTime'>
+    readonly updatedAt: FieldRef<"FlashSale", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * FlashSale findUnique
+   */
+  export type FlashSaleFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FlashSale
+     */
+    select?: FlashSaleSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FlashSaleInclude<ExtArgs> | null
+    /**
+     * Filter, which FlashSale to fetch.
+     */
+    where: FlashSaleWhereUniqueInput
+  }
+
+  /**
+   * FlashSale findUniqueOrThrow
+   */
+  export type FlashSaleFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FlashSale
+     */
+    select?: FlashSaleSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FlashSaleInclude<ExtArgs> | null
+    /**
+     * Filter, which FlashSale to fetch.
+     */
+    where: FlashSaleWhereUniqueInput
+  }
+
+  /**
+   * FlashSale findFirst
+   */
+  export type FlashSaleFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FlashSale
+     */
+    select?: FlashSaleSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FlashSaleInclude<ExtArgs> | null
+    /**
+     * Filter, which FlashSale to fetch.
+     */
+    where?: FlashSaleWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FlashSales to fetch.
+     */
+    orderBy?: FlashSaleOrderByWithRelationInput | FlashSaleOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for FlashSales.
+     */
+    cursor?: FlashSaleWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FlashSales from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FlashSales.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of FlashSales.
+     */
+    distinct?: FlashSaleScalarFieldEnum | FlashSaleScalarFieldEnum[]
+  }
+
+  /**
+   * FlashSale findFirstOrThrow
+   */
+  export type FlashSaleFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FlashSale
+     */
+    select?: FlashSaleSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FlashSaleInclude<ExtArgs> | null
+    /**
+     * Filter, which FlashSale to fetch.
+     */
+    where?: FlashSaleWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FlashSales to fetch.
+     */
+    orderBy?: FlashSaleOrderByWithRelationInput | FlashSaleOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for FlashSales.
+     */
+    cursor?: FlashSaleWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FlashSales from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FlashSales.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of FlashSales.
+     */
+    distinct?: FlashSaleScalarFieldEnum | FlashSaleScalarFieldEnum[]
+  }
+
+  /**
+   * FlashSale findMany
+   */
+  export type FlashSaleFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FlashSale
+     */
+    select?: FlashSaleSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FlashSaleInclude<ExtArgs> | null
+    /**
+     * Filter, which FlashSales to fetch.
+     */
+    where?: FlashSaleWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FlashSales to fetch.
+     */
+    orderBy?: FlashSaleOrderByWithRelationInput | FlashSaleOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing FlashSales.
+     */
+    cursor?: FlashSaleWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FlashSales from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FlashSales.
+     */
+    skip?: number
+    distinct?: FlashSaleScalarFieldEnum | FlashSaleScalarFieldEnum[]
+  }
+
+  /**
+   * FlashSale create
+   */
+  export type FlashSaleCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FlashSale
+     */
+    select?: FlashSaleSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FlashSaleInclude<ExtArgs> | null
+    /**
+     * The data needed to create a FlashSale.
+     */
+    data: XOR<FlashSaleCreateInput, FlashSaleUncheckedCreateInput>
+  }
+
+  /**
+   * FlashSale createMany
+   */
+  export type FlashSaleCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many FlashSales.
+     */
+    data: FlashSaleCreateManyInput | FlashSaleCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * FlashSale createManyAndReturn
+   */
+  export type FlashSaleCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FlashSale
+     */
+    select?: FlashSaleSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * The data used to create many FlashSales.
+     */
+    data: FlashSaleCreateManyInput | FlashSaleCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FlashSaleIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * FlashSale update
+   */
+  export type FlashSaleUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FlashSale
+     */
+    select?: FlashSaleSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FlashSaleInclude<ExtArgs> | null
+    /**
+     * The data needed to update a FlashSale.
+     */
+    data: XOR<FlashSaleUpdateInput, FlashSaleUncheckedUpdateInput>
+    /**
+     * Choose, which FlashSale to update.
+     */
+    where: FlashSaleWhereUniqueInput
+  }
+
+  /**
+   * FlashSale updateMany
+   */
+  export type FlashSaleUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update FlashSales.
+     */
+    data: XOR<FlashSaleUpdateManyMutationInput, FlashSaleUncheckedUpdateManyInput>
+    /**
+     * Filter which FlashSales to update
+     */
+    where?: FlashSaleWhereInput
+  }
+
+  /**
+   * FlashSale upsert
+   */
+  export type FlashSaleUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FlashSale
+     */
+    select?: FlashSaleSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FlashSaleInclude<ExtArgs> | null
+    /**
+     * The filter to search for the FlashSale to update in case it exists.
+     */
+    where: FlashSaleWhereUniqueInput
+    /**
+     * In case the FlashSale found by the `where` argument doesn't exist, create a new FlashSale with this data.
+     */
+    create: XOR<FlashSaleCreateInput, FlashSaleUncheckedCreateInput>
+    /**
+     * In case the FlashSale was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<FlashSaleUpdateInput, FlashSaleUncheckedUpdateInput>
+  }
+
+  /**
+   * FlashSale delete
+   */
+  export type FlashSaleDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FlashSale
+     */
+    select?: FlashSaleSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FlashSaleInclude<ExtArgs> | null
+    /**
+     * Filter which FlashSale to delete.
+     */
+    where: FlashSaleWhereUniqueInput
+  }
+
+  /**
+   * FlashSale deleteMany
+   */
+  export type FlashSaleDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which FlashSales to delete
+     */
+    where?: FlashSaleWhereInput
+  }
+
+  /**
+   * FlashSale.claims
+   */
+  export type FlashSale$claimsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FlashSaleClaim
+     */
+    select?: FlashSaleClaimSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FlashSaleClaimInclude<ExtArgs> | null
+    where?: FlashSaleClaimWhereInput
+    orderBy?: FlashSaleClaimOrderByWithRelationInput | FlashSaleClaimOrderByWithRelationInput[]
+    cursor?: FlashSaleClaimWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: FlashSaleClaimScalarFieldEnum | FlashSaleClaimScalarFieldEnum[]
+  }
+
+  /**
+   * FlashSale.notifications
+   */
+  export type FlashSale$notificationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FlashSaleNotification
+     */
+    select?: FlashSaleNotificationSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FlashSaleNotificationInclude<ExtArgs> | null
+    where?: FlashSaleNotificationWhereInput
+    orderBy?: FlashSaleNotificationOrderByWithRelationInput | FlashSaleNotificationOrderByWithRelationInput[]
+    cursor?: FlashSaleNotificationWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: FlashSaleNotificationScalarFieldEnum | FlashSaleNotificationScalarFieldEnum[]
+  }
+
+  /**
+   * FlashSale without action
+   */
+  export type FlashSaleDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FlashSale
+     */
+    select?: FlashSaleSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FlashSaleInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model FlashSaleClaim
+   */
+
+  export type AggregateFlashSaleClaim = {
+    _count: FlashSaleClaimCountAggregateOutputType | null
+    _avg: FlashSaleClaimAvgAggregateOutputType | null
+    _sum: FlashSaleClaimSumAggregateOutputType | null
+    _min: FlashSaleClaimMinAggregateOutputType | null
+    _max: FlashSaleClaimMaxAggregateOutputType | null
+  }
+
+  export type FlashSaleClaimAvgAggregateOutputType = {
+    quantityKg: number | null
+    pricePerKg: number | null
+    totalPrice: number | null
+  }
+
+  export type FlashSaleClaimSumAggregateOutputType = {
+    quantityKg: number | null
+    pricePerKg: number | null
+    totalPrice: number | null
+  }
+
+  export type FlashSaleClaimMinAggregateOutputType = {
+    id: string | null
+    flashSaleId: string | null
+    buyerId: string | null
+    quantityKg: number | null
+    pricePerKg: number | null
+    totalPrice: number | null
+    orderId: string | null
+    status: $Enums.FlashSaleClaimStatus | null
+    claimedAt: Date | null
+    expiresAt: Date | null
+  }
+
+  export type FlashSaleClaimMaxAggregateOutputType = {
+    id: string | null
+    flashSaleId: string | null
+    buyerId: string | null
+    quantityKg: number | null
+    pricePerKg: number | null
+    totalPrice: number | null
+    orderId: string | null
+    status: $Enums.FlashSaleClaimStatus | null
+    claimedAt: Date | null
+    expiresAt: Date | null
+  }
+
+  export type FlashSaleClaimCountAggregateOutputType = {
+    id: number
+    flashSaleId: number
+    buyerId: number
+    quantityKg: number
+    pricePerKg: number
+    totalPrice: number
+    orderId: number
+    status: number
+    claimedAt: number
+    expiresAt: number
+    _all: number
+  }
+
+
+  export type FlashSaleClaimAvgAggregateInputType = {
+    quantityKg?: true
+    pricePerKg?: true
+    totalPrice?: true
+  }
+
+  export type FlashSaleClaimSumAggregateInputType = {
+    quantityKg?: true
+    pricePerKg?: true
+    totalPrice?: true
+  }
+
+  export type FlashSaleClaimMinAggregateInputType = {
+    id?: true
+    flashSaleId?: true
+    buyerId?: true
+    quantityKg?: true
+    pricePerKg?: true
+    totalPrice?: true
+    orderId?: true
+    status?: true
+    claimedAt?: true
+    expiresAt?: true
+  }
+
+  export type FlashSaleClaimMaxAggregateInputType = {
+    id?: true
+    flashSaleId?: true
+    buyerId?: true
+    quantityKg?: true
+    pricePerKg?: true
+    totalPrice?: true
+    orderId?: true
+    status?: true
+    claimedAt?: true
+    expiresAt?: true
+  }
+
+  export type FlashSaleClaimCountAggregateInputType = {
+    id?: true
+    flashSaleId?: true
+    buyerId?: true
+    quantityKg?: true
+    pricePerKg?: true
+    totalPrice?: true
+    orderId?: true
+    status?: true
+    claimedAt?: true
+    expiresAt?: true
+    _all?: true
+  }
+
+  export type FlashSaleClaimAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which FlashSaleClaim to aggregate.
+     */
+    where?: FlashSaleClaimWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FlashSaleClaims to fetch.
+     */
+    orderBy?: FlashSaleClaimOrderByWithRelationInput | FlashSaleClaimOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: FlashSaleClaimWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FlashSaleClaims from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FlashSaleClaims.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned FlashSaleClaims
+    **/
+    _count?: true | FlashSaleClaimCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: FlashSaleClaimAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: FlashSaleClaimSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: FlashSaleClaimMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: FlashSaleClaimMaxAggregateInputType
+  }
+
+  export type GetFlashSaleClaimAggregateType<T extends FlashSaleClaimAggregateArgs> = {
+        [P in keyof T & keyof AggregateFlashSaleClaim]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateFlashSaleClaim[P]>
+      : GetScalarType<T[P], AggregateFlashSaleClaim[P]>
+  }
+
+
+
+
+  export type FlashSaleClaimGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: FlashSaleClaimWhereInput
+    orderBy?: FlashSaleClaimOrderByWithAggregationInput | FlashSaleClaimOrderByWithAggregationInput[]
+    by: FlashSaleClaimScalarFieldEnum[] | FlashSaleClaimScalarFieldEnum
+    having?: FlashSaleClaimScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: FlashSaleClaimCountAggregateInputType | true
+    _avg?: FlashSaleClaimAvgAggregateInputType
+    _sum?: FlashSaleClaimSumAggregateInputType
+    _min?: FlashSaleClaimMinAggregateInputType
+    _max?: FlashSaleClaimMaxAggregateInputType
+  }
+
+  export type FlashSaleClaimGroupByOutputType = {
+    id: string
+    flashSaleId: string
+    buyerId: string
+    quantityKg: number
+    pricePerKg: number
+    totalPrice: number
+    orderId: string | null
+    status: $Enums.FlashSaleClaimStatus
+    claimedAt: Date
+    expiresAt: Date
+    _count: FlashSaleClaimCountAggregateOutputType | null
+    _avg: FlashSaleClaimAvgAggregateOutputType | null
+    _sum: FlashSaleClaimSumAggregateOutputType | null
+    _min: FlashSaleClaimMinAggregateOutputType | null
+    _max: FlashSaleClaimMaxAggregateOutputType | null
+  }
+
+  type GetFlashSaleClaimGroupByPayload<T extends FlashSaleClaimGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<FlashSaleClaimGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof FlashSaleClaimGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], FlashSaleClaimGroupByOutputType[P]>
+            : GetScalarType<T[P], FlashSaleClaimGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type FlashSaleClaimSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    flashSaleId?: boolean
+    buyerId?: boolean
+    quantityKg?: boolean
+    pricePerKg?: boolean
+    totalPrice?: boolean
+    orderId?: boolean
+    status?: boolean
+    claimedAt?: boolean
+    expiresAt?: boolean
+    flashSale?: boolean | FlashSaleDefaultArgs<ExtArgs>
+    buyer?: boolean | UserDefaultArgs<ExtArgs>
+    order?: boolean | FlashSaleClaim$orderArgs<ExtArgs>
+  }, ExtArgs["result"]["flashSaleClaim"]>
+
+  export type FlashSaleClaimSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    flashSaleId?: boolean
+    buyerId?: boolean
+    quantityKg?: boolean
+    pricePerKg?: boolean
+    totalPrice?: boolean
+    orderId?: boolean
+    status?: boolean
+    claimedAt?: boolean
+    expiresAt?: boolean
+    flashSale?: boolean | FlashSaleDefaultArgs<ExtArgs>
+    buyer?: boolean | UserDefaultArgs<ExtArgs>
+    order?: boolean | FlashSaleClaim$orderArgs<ExtArgs>
+  }, ExtArgs["result"]["flashSaleClaim"]>
+
+  export type FlashSaleClaimSelectScalar = {
+    id?: boolean
+    flashSaleId?: boolean
+    buyerId?: boolean
+    quantityKg?: boolean
+    pricePerKg?: boolean
+    totalPrice?: boolean
+    orderId?: boolean
+    status?: boolean
+    claimedAt?: boolean
+    expiresAt?: boolean
+  }
+
+  export type FlashSaleClaimInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    flashSale?: boolean | FlashSaleDefaultArgs<ExtArgs>
+    buyer?: boolean | UserDefaultArgs<ExtArgs>
+    order?: boolean | FlashSaleClaim$orderArgs<ExtArgs>
+  }
+  export type FlashSaleClaimIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    flashSale?: boolean | FlashSaleDefaultArgs<ExtArgs>
+    buyer?: boolean | UserDefaultArgs<ExtArgs>
+    order?: boolean | FlashSaleClaim$orderArgs<ExtArgs>
+  }
+
+  export type $FlashSaleClaimPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "FlashSaleClaim"
+    objects: {
+      flashSale: Prisma.$FlashSalePayload<ExtArgs>
+      buyer: Prisma.$UserPayload<ExtArgs>
+      order: Prisma.$OrderPayload<ExtArgs> | null
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      flashSaleId: string
+      buyerId: string
+      quantityKg: number
+      pricePerKg: number
+      totalPrice: number
+      orderId: string | null
+      status: $Enums.FlashSaleClaimStatus
+      claimedAt: Date
+      expiresAt: Date
+    }, ExtArgs["result"]["flashSaleClaim"]>
+    composites: {}
+  }
+
+  type FlashSaleClaimGetPayload<S extends boolean | null | undefined | FlashSaleClaimDefaultArgs> = $Result.GetResult<Prisma.$FlashSaleClaimPayload, S>
+
+  type FlashSaleClaimCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<FlashSaleClaimFindManyArgs, 'select' | 'include' | 'distinct'> & {
+      select?: FlashSaleClaimCountAggregateInputType | true
+    }
+
+  export interface FlashSaleClaimDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['FlashSaleClaim'], meta: { name: 'FlashSaleClaim' } }
+    /**
+     * Find zero or one FlashSaleClaim that matches the filter.
+     * @param {FlashSaleClaimFindUniqueArgs} args - Arguments to find a FlashSaleClaim
+     * @example
+     * // Get one FlashSaleClaim
+     * const flashSaleClaim = await prisma.flashSaleClaim.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends FlashSaleClaimFindUniqueArgs>(args: SelectSubset<T, FlashSaleClaimFindUniqueArgs<ExtArgs>>): Prisma__FlashSaleClaimClient<$Result.GetResult<Prisma.$FlashSaleClaimPayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
+
+    /**
+     * Find one FlashSaleClaim that matches the filter or throw an error with `error.code='P2025'` 
+     * if no matches were found.
+     * @param {FlashSaleClaimFindUniqueOrThrowArgs} args - Arguments to find a FlashSaleClaim
+     * @example
+     * // Get one FlashSaleClaim
+     * const flashSaleClaim = await prisma.flashSaleClaim.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends FlashSaleClaimFindUniqueOrThrowArgs>(args: SelectSubset<T, FlashSaleClaimFindUniqueOrThrowArgs<ExtArgs>>): Prisma__FlashSaleClaimClient<$Result.GetResult<Prisma.$FlashSaleClaimPayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
+
+    /**
+     * Find the first FlashSaleClaim that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FlashSaleClaimFindFirstArgs} args - Arguments to find a FlashSaleClaim
+     * @example
+     * // Get one FlashSaleClaim
+     * const flashSaleClaim = await prisma.flashSaleClaim.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends FlashSaleClaimFindFirstArgs>(args?: SelectSubset<T, FlashSaleClaimFindFirstArgs<ExtArgs>>): Prisma__FlashSaleClaimClient<$Result.GetResult<Prisma.$FlashSaleClaimPayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
+
+    /**
+     * Find the first FlashSaleClaim that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FlashSaleClaimFindFirstOrThrowArgs} args - Arguments to find a FlashSaleClaim
+     * @example
+     * // Get one FlashSaleClaim
+     * const flashSaleClaim = await prisma.flashSaleClaim.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends FlashSaleClaimFindFirstOrThrowArgs>(args?: SelectSubset<T, FlashSaleClaimFindFirstOrThrowArgs<ExtArgs>>): Prisma__FlashSaleClaimClient<$Result.GetResult<Prisma.$FlashSaleClaimPayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
+
+    /**
+     * Find zero or more FlashSaleClaims that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FlashSaleClaimFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all FlashSaleClaims
+     * const flashSaleClaims = await prisma.flashSaleClaim.findMany()
+     * 
+     * // Get first 10 FlashSaleClaims
+     * const flashSaleClaims = await prisma.flashSaleClaim.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const flashSaleClaimWithIdOnly = await prisma.flashSaleClaim.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends FlashSaleClaimFindManyArgs>(args?: SelectSubset<T, FlashSaleClaimFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FlashSaleClaimPayload<ExtArgs>, T, "findMany">>
+
+    /**
+     * Create a FlashSaleClaim.
+     * @param {FlashSaleClaimCreateArgs} args - Arguments to create a FlashSaleClaim.
+     * @example
+     * // Create one FlashSaleClaim
+     * const FlashSaleClaim = await prisma.flashSaleClaim.create({
+     *   data: {
+     *     // ... data to create a FlashSaleClaim
+     *   }
+     * })
+     * 
+     */
+    create<T extends FlashSaleClaimCreateArgs>(args: SelectSubset<T, FlashSaleClaimCreateArgs<ExtArgs>>): Prisma__FlashSaleClaimClient<$Result.GetResult<Prisma.$FlashSaleClaimPayload<ExtArgs>, T, "create">, never, ExtArgs>
+
+    /**
+     * Create many FlashSaleClaims.
+     * @param {FlashSaleClaimCreateManyArgs} args - Arguments to create many FlashSaleClaims.
+     * @example
+     * // Create many FlashSaleClaims
+     * const flashSaleClaim = await prisma.flashSaleClaim.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends FlashSaleClaimCreateManyArgs>(args?: SelectSubset<T, FlashSaleClaimCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many FlashSaleClaims and returns the data saved in the database.
+     * @param {FlashSaleClaimCreateManyAndReturnArgs} args - Arguments to create many FlashSaleClaims.
+     * @example
+     * // Create many FlashSaleClaims
+     * const flashSaleClaim = await prisma.flashSaleClaim.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many FlashSaleClaims and only return the `id`
+     * const flashSaleClaimWithIdOnly = await prisma.flashSaleClaim.createManyAndReturn({ 
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends FlashSaleClaimCreateManyAndReturnArgs>(args?: SelectSubset<T, FlashSaleClaimCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FlashSaleClaimPayload<ExtArgs>, T, "createManyAndReturn">>
+
+    /**
+     * Delete a FlashSaleClaim.
+     * @param {FlashSaleClaimDeleteArgs} args - Arguments to delete one FlashSaleClaim.
+     * @example
+     * // Delete one FlashSaleClaim
+     * const FlashSaleClaim = await prisma.flashSaleClaim.delete({
+     *   where: {
+     *     // ... filter to delete one FlashSaleClaim
+     *   }
+     * })
+     * 
+     */
+    delete<T extends FlashSaleClaimDeleteArgs>(args: SelectSubset<T, FlashSaleClaimDeleteArgs<ExtArgs>>): Prisma__FlashSaleClaimClient<$Result.GetResult<Prisma.$FlashSaleClaimPayload<ExtArgs>, T, "delete">, never, ExtArgs>
+
+    /**
+     * Update one FlashSaleClaim.
+     * @param {FlashSaleClaimUpdateArgs} args - Arguments to update one FlashSaleClaim.
+     * @example
+     * // Update one FlashSaleClaim
+     * const flashSaleClaim = await prisma.flashSaleClaim.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends FlashSaleClaimUpdateArgs>(args: SelectSubset<T, FlashSaleClaimUpdateArgs<ExtArgs>>): Prisma__FlashSaleClaimClient<$Result.GetResult<Prisma.$FlashSaleClaimPayload<ExtArgs>, T, "update">, never, ExtArgs>
+
+    /**
+     * Delete zero or more FlashSaleClaims.
+     * @param {FlashSaleClaimDeleteManyArgs} args - Arguments to filter FlashSaleClaims to delete.
+     * @example
+     * // Delete a few FlashSaleClaims
+     * const { count } = await prisma.flashSaleClaim.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends FlashSaleClaimDeleteManyArgs>(args?: SelectSubset<T, FlashSaleClaimDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more FlashSaleClaims.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FlashSaleClaimUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many FlashSaleClaims
+     * const flashSaleClaim = await prisma.flashSaleClaim.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends FlashSaleClaimUpdateManyArgs>(args: SelectSubset<T, FlashSaleClaimUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one FlashSaleClaim.
+     * @param {FlashSaleClaimUpsertArgs} args - Arguments to update or create a FlashSaleClaim.
+     * @example
+     * // Update or create a FlashSaleClaim
+     * const flashSaleClaim = await prisma.flashSaleClaim.upsert({
+     *   create: {
+     *     // ... data to create a FlashSaleClaim
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the FlashSaleClaim we want to update
+     *   }
+     * })
+     */
+    upsert<T extends FlashSaleClaimUpsertArgs>(args: SelectSubset<T, FlashSaleClaimUpsertArgs<ExtArgs>>): Prisma__FlashSaleClaimClient<$Result.GetResult<Prisma.$FlashSaleClaimPayload<ExtArgs>, T, "upsert">, never, ExtArgs>
+
+
+    /**
+     * Count the number of FlashSaleClaims.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FlashSaleClaimCountArgs} args - Arguments to filter FlashSaleClaims to count.
+     * @example
+     * // Count the number of FlashSaleClaims
+     * const count = await prisma.flashSaleClaim.count({
+     *   where: {
+     *     // ... the filter for the FlashSaleClaims we want to count
+     *   }
+     * })
+    **/
+    count<T extends FlashSaleClaimCountArgs>(
+      args?: Subset<T, FlashSaleClaimCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], FlashSaleClaimCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a FlashSaleClaim.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FlashSaleClaimAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends FlashSaleClaimAggregateArgs>(args: Subset<T, FlashSaleClaimAggregateArgs>): Prisma.PrismaPromise<GetFlashSaleClaimAggregateType<T>>
+
+    /**
+     * Group by FlashSaleClaim.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FlashSaleClaimGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends FlashSaleClaimGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: FlashSaleClaimGroupByArgs['orderBy'] }
+        : { orderBy?: FlashSaleClaimGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, FlashSaleClaimGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetFlashSaleClaimGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the FlashSaleClaim model
+   */
+  readonly fields: FlashSaleClaimFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for FlashSaleClaim.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__FlashSaleClaimClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    flashSale<T extends FlashSaleDefaultArgs<ExtArgs> = {}>(args?: Subset<T, FlashSaleDefaultArgs<ExtArgs>>): Prisma__FlashSaleClient<$Result.GetResult<Prisma.$FlashSalePayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
+    buyer<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
+    order<T extends FlashSaleClaim$orderArgs<ExtArgs> = {}>(args?: Subset<T, FlashSaleClaim$orderArgs<ExtArgs>>): Prisma__OrderClient<$Result.GetResult<Prisma.$OrderPayload<ExtArgs>, T, "findUniqueOrThrow"> | null, null, ExtArgs>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the FlashSaleClaim model
+   */ 
+  interface FlashSaleClaimFieldRefs {
+    readonly id: FieldRef<"FlashSaleClaim", 'String'>
+    readonly flashSaleId: FieldRef<"FlashSaleClaim", 'String'>
+    readonly buyerId: FieldRef<"FlashSaleClaim", 'String'>
+    readonly quantityKg: FieldRef<"FlashSaleClaim", 'Float'>
+    readonly pricePerKg: FieldRef<"FlashSaleClaim", 'Float'>
+    readonly totalPrice: FieldRef<"FlashSaleClaim", 'Float'>
+    readonly orderId: FieldRef<"FlashSaleClaim", 'String'>
+    readonly status: FieldRef<"FlashSaleClaim", 'FlashSaleClaimStatus'>
+    readonly claimedAt: FieldRef<"FlashSaleClaim", 'DateTime'>
+    readonly expiresAt: FieldRef<"FlashSaleClaim", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * FlashSaleClaim findUnique
+   */
+  export type FlashSaleClaimFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FlashSaleClaim
+     */
+    select?: FlashSaleClaimSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FlashSaleClaimInclude<ExtArgs> | null
+    /**
+     * Filter, which FlashSaleClaim to fetch.
+     */
+    where: FlashSaleClaimWhereUniqueInput
+  }
+
+  /**
+   * FlashSaleClaim findUniqueOrThrow
+   */
+  export type FlashSaleClaimFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FlashSaleClaim
+     */
+    select?: FlashSaleClaimSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FlashSaleClaimInclude<ExtArgs> | null
+    /**
+     * Filter, which FlashSaleClaim to fetch.
+     */
+    where: FlashSaleClaimWhereUniqueInput
+  }
+
+  /**
+   * FlashSaleClaim findFirst
+   */
+  export type FlashSaleClaimFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FlashSaleClaim
+     */
+    select?: FlashSaleClaimSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FlashSaleClaimInclude<ExtArgs> | null
+    /**
+     * Filter, which FlashSaleClaim to fetch.
+     */
+    where?: FlashSaleClaimWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FlashSaleClaims to fetch.
+     */
+    orderBy?: FlashSaleClaimOrderByWithRelationInput | FlashSaleClaimOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for FlashSaleClaims.
+     */
+    cursor?: FlashSaleClaimWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FlashSaleClaims from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FlashSaleClaims.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of FlashSaleClaims.
+     */
+    distinct?: FlashSaleClaimScalarFieldEnum | FlashSaleClaimScalarFieldEnum[]
+  }
+
+  /**
+   * FlashSaleClaim findFirstOrThrow
+   */
+  export type FlashSaleClaimFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FlashSaleClaim
+     */
+    select?: FlashSaleClaimSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FlashSaleClaimInclude<ExtArgs> | null
+    /**
+     * Filter, which FlashSaleClaim to fetch.
+     */
+    where?: FlashSaleClaimWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FlashSaleClaims to fetch.
+     */
+    orderBy?: FlashSaleClaimOrderByWithRelationInput | FlashSaleClaimOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for FlashSaleClaims.
+     */
+    cursor?: FlashSaleClaimWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FlashSaleClaims from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FlashSaleClaims.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of FlashSaleClaims.
+     */
+    distinct?: FlashSaleClaimScalarFieldEnum | FlashSaleClaimScalarFieldEnum[]
+  }
+
+  /**
+   * FlashSaleClaim findMany
+   */
+  export type FlashSaleClaimFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FlashSaleClaim
+     */
+    select?: FlashSaleClaimSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FlashSaleClaimInclude<ExtArgs> | null
+    /**
+     * Filter, which FlashSaleClaims to fetch.
+     */
+    where?: FlashSaleClaimWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FlashSaleClaims to fetch.
+     */
+    orderBy?: FlashSaleClaimOrderByWithRelationInput | FlashSaleClaimOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing FlashSaleClaims.
+     */
+    cursor?: FlashSaleClaimWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FlashSaleClaims from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FlashSaleClaims.
+     */
+    skip?: number
+    distinct?: FlashSaleClaimScalarFieldEnum | FlashSaleClaimScalarFieldEnum[]
+  }
+
+  /**
+   * FlashSaleClaim create
+   */
+  export type FlashSaleClaimCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FlashSaleClaim
+     */
+    select?: FlashSaleClaimSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FlashSaleClaimInclude<ExtArgs> | null
+    /**
+     * The data needed to create a FlashSaleClaim.
+     */
+    data: XOR<FlashSaleClaimCreateInput, FlashSaleClaimUncheckedCreateInput>
+  }
+
+  /**
+   * FlashSaleClaim createMany
+   */
+  export type FlashSaleClaimCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many FlashSaleClaims.
+     */
+    data: FlashSaleClaimCreateManyInput | FlashSaleClaimCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * FlashSaleClaim createManyAndReturn
+   */
+  export type FlashSaleClaimCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FlashSaleClaim
+     */
+    select?: FlashSaleClaimSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * The data used to create many FlashSaleClaims.
+     */
+    data: FlashSaleClaimCreateManyInput | FlashSaleClaimCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FlashSaleClaimIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * FlashSaleClaim update
+   */
+  export type FlashSaleClaimUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FlashSaleClaim
+     */
+    select?: FlashSaleClaimSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FlashSaleClaimInclude<ExtArgs> | null
+    /**
+     * The data needed to update a FlashSaleClaim.
+     */
+    data: XOR<FlashSaleClaimUpdateInput, FlashSaleClaimUncheckedUpdateInput>
+    /**
+     * Choose, which FlashSaleClaim to update.
+     */
+    where: FlashSaleClaimWhereUniqueInput
+  }
+
+  /**
+   * FlashSaleClaim updateMany
+   */
+  export type FlashSaleClaimUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update FlashSaleClaims.
+     */
+    data: XOR<FlashSaleClaimUpdateManyMutationInput, FlashSaleClaimUncheckedUpdateManyInput>
+    /**
+     * Filter which FlashSaleClaims to update
+     */
+    where?: FlashSaleClaimWhereInput
+  }
+
+  /**
+   * FlashSaleClaim upsert
+   */
+  export type FlashSaleClaimUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FlashSaleClaim
+     */
+    select?: FlashSaleClaimSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FlashSaleClaimInclude<ExtArgs> | null
+    /**
+     * The filter to search for the FlashSaleClaim to update in case it exists.
+     */
+    where: FlashSaleClaimWhereUniqueInput
+    /**
+     * In case the FlashSaleClaim found by the `where` argument doesn't exist, create a new FlashSaleClaim with this data.
+     */
+    create: XOR<FlashSaleClaimCreateInput, FlashSaleClaimUncheckedCreateInput>
+    /**
+     * In case the FlashSaleClaim was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<FlashSaleClaimUpdateInput, FlashSaleClaimUncheckedUpdateInput>
+  }
+
+  /**
+   * FlashSaleClaim delete
+   */
+  export type FlashSaleClaimDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FlashSaleClaim
+     */
+    select?: FlashSaleClaimSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FlashSaleClaimInclude<ExtArgs> | null
+    /**
+     * Filter which FlashSaleClaim to delete.
+     */
+    where: FlashSaleClaimWhereUniqueInput
+  }
+
+  /**
+   * FlashSaleClaim deleteMany
+   */
+  export type FlashSaleClaimDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which FlashSaleClaims to delete
+     */
+    where?: FlashSaleClaimWhereInput
+  }
+
+  /**
+   * FlashSaleClaim.order
+   */
+  export type FlashSaleClaim$orderArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Order
+     */
+    select?: OrderSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: OrderInclude<ExtArgs> | null
+    where?: OrderWhereInput
+  }
+
+  /**
+   * FlashSaleClaim without action
+   */
+  export type FlashSaleClaimDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FlashSaleClaim
+     */
+    select?: FlashSaleClaimSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FlashSaleClaimInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model FlashSaleNotification
+   */
+
+  export type AggregateFlashSaleNotification = {
+    _count: FlashSaleNotificationCountAggregateOutputType | null
+    _min: FlashSaleNotificationMinAggregateOutputType | null
+    _max: FlashSaleNotificationMaxAggregateOutputType | null
+  }
+
+  export type FlashSaleNotificationMinAggregateOutputType = {
+    id: string | null
+    flashSaleId: string | null
+    buyerId: string | null
+    channel: $Enums.NotificationChannel | null
+    status: $Enums.FlashSaleNotificationStatus | null
+    sentAt: Date | null
+    clickedAt: Date | null
+  }
+
+  export type FlashSaleNotificationMaxAggregateOutputType = {
+    id: string | null
+    flashSaleId: string | null
+    buyerId: string | null
+    channel: $Enums.NotificationChannel | null
+    status: $Enums.FlashSaleNotificationStatus | null
+    sentAt: Date | null
+    clickedAt: Date | null
+  }
+
+  export type FlashSaleNotificationCountAggregateOutputType = {
+    id: number
+    flashSaleId: number
+    buyerId: number
+    channel: number
+    status: number
+    sentAt: number
+    clickedAt: number
+    _all: number
+  }
+
+
+  export type FlashSaleNotificationMinAggregateInputType = {
+    id?: true
+    flashSaleId?: true
+    buyerId?: true
+    channel?: true
+    status?: true
+    sentAt?: true
+    clickedAt?: true
+  }
+
+  export type FlashSaleNotificationMaxAggregateInputType = {
+    id?: true
+    flashSaleId?: true
+    buyerId?: true
+    channel?: true
+    status?: true
+    sentAt?: true
+    clickedAt?: true
+  }
+
+  export type FlashSaleNotificationCountAggregateInputType = {
+    id?: true
+    flashSaleId?: true
+    buyerId?: true
+    channel?: true
+    status?: true
+    sentAt?: true
+    clickedAt?: true
+    _all?: true
+  }
+
+  export type FlashSaleNotificationAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which FlashSaleNotification to aggregate.
+     */
+    where?: FlashSaleNotificationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FlashSaleNotifications to fetch.
+     */
+    orderBy?: FlashSaleNotificationOrderByWithRelationInput | FlashSaleNotificationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: FlashSaleNotificationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FlashSaleNotifications from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FlashSaleNotifications.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned FlashSaleNotifications
+    **/
+    _count?: true | FlashSaleNotificationCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: FlashSaleNotificationMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: FlashSaleNotificationMaxAggregateInputType
+  }
+
+  export type GetFlashSaleNotificationAggregateType<T extends FlashSaleNotificationAggregateArgs> = {
+        [P in keyof T & keyof AggregateFlashSaleNotification]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateFlashSaleNotification[P]>
+      : GetScalarType<T[P], AggregateFlashSaleNotification[P]>
+  }
+
+
+
+
+  export type FlashSaleNotificationGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: FlashSaleNotificationWhereInput
+    orderBy?: FlashSaleNotificationOrderByWithAggregationInput | FlashSaleNotificationOrderByWithAggregationInput[]
+    by: FlashSaleNotificationScalarFieldEnum[] | FlashSaleNotificationScalarFieldEnum
+    having?: FlashSaleNotificationScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: FlashSaleNotificationCountAggregateInputType | true
+    _min?: FlashSaleNotificationMinAggregateInputType
+    _max?: FlashSaleNotificationMaxAggregateInputType
+  }
+
+  export type FlashSaleNotificationGroupByOutputType = {
+    id: string
+    flashSaleId: string
+    buyerId: string
+    channel: $Enums.NotificationChannel
+    status: $Enums.FlashSaleNotificationStatus
+    sentAt: Date | null
+    clickedAt: Date | null
+    _count: FlashSaleNotificationCountAggregateOutputType | null
+    _min: FlashSaleNotificationMinAggregateOutputType | null
+    _max: FlashSaleNotificationMaxAggregateOutputType | null
+  }
+
+  type GetFlashSaleNotificationGroupByPayload<T extends FlashSaleNotificationGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<FlashSaleNotificationGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof FlashSaleNotificationGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], FlashSaleNotificationGroupByOutputType[P]>
+            : GetScalarType<T[P], FlashSaleNotificationGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type FlashSaleNotificationSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    flashSaleId?: boolean
+    buyerId?: boolean
+    channel?: boolean
+    status?: boolean
+    sentAt?: boolean
+    clickedAt?: boolean
+    flashSale?: boolean | FlashSaleDefaultArgs<ExtArgs>
+    buyer?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["flashSaleNotification"]>
+
+  export type FlashSaleNotificationSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    flashSaleId?: boolean
+    buyerId?: boolean
+    channel?: boolean
+    status?: boolean
+    sentAt?: boolean
+    clickedAt?: boolean
+    flashSale?: boolean | FlashSaleDefaultArgs<ExtArgs>
+    buyer?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["flashSaleNotification"]>
+
+  export type FlashSaleNotificationSelectScalar = {
+    id?: boolean
+    flashSaleId?: boolean
+    buyerId?: boolean
+    channel?: boolean
+    status?: boolean
+    sentAt?: boolean
+    clickedAt?: boolean
+  }
+
+  export type FlashSaleNotificationInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    flashSale?: boolean | FlashSaleDefaultArgs<ExtArgs>
+    buyer?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type FlashSaleNotificationIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    flashSale?: boolean | FlashSaleDefaultArgs<ExtArgs>
+    buyer?: boolean | UserDefaultArgs<ExtArgs>
+  }
+
+  export type $FlashSaleNotificationPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "FlashSaleNotification"
+    objects: {
+      flashSale: Prisma.$FlashSalePayload<ExtArgs>
+      buyer: Prisma.$UserPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      flashSaleId: string
+      buyerId: string
+      channel: $Enums.NotificationChannel
+      status: $Enums.FlashSaleNotificationStatus
+      sentAt: Date | null
+      clickedAt: Date | null
+    }, ExtArgs["result"]["flashSaleNotification"]>
+    composites: {}
+  }
+
+  type FlashSaleNotificationGetPayload<S extends boolean | null | undefined | FlashSaleNotificationDefaultArgs> = $Result.GetResult<Prisma.$FlashSaleNotificationPayload, S>
+
+  type FlashSaleNotificationCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<FlashSaleNotificationFindManyArgs, 'select' | 'include' | 'distinct'> & {
+      select?: FlashSaleNotificationCountAggregateInputType | true
+    }
+
+  export interface FlashSaleNotificationDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['FlashSaleNotification'], meta: { name: 'FlashSaleNotification' } }
+    /**
+     * Find zero or one FlashSaleNotification that matches the filter.
+     * @param {FlashSaleNotificationFindUniqueArgs} args - Arguments to find a FlashSaleNotification
+     * @example
+     * // Get one FlashSaleNotification
+     * const flashSaleNotification = await prisma.flashSaleNotification.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends FlashSaleNotificationFindUniqueArgs>(args: SelectSubset<T, FlashSaleNotificationFindUniqueArgs<ExtArgs>>): Prisma__FlashSaleNotificationClient<$Result.GetResult<Prisma.$FlashSaleNotificationPayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
+
+    /**
+     * Find one FlashSaleNotification that matches the filter or throw an error with `error.code='P2025'` 
+     * if no matches were found.
+     * @param {FlashSaleNotificationFindUniqueOrThrowArgs} args - Arguments to find a FlashSaleNotification
+     * @example
+     * // Get one FlashSaleNotification
+     * const flashSaleNotification = await prisma.flashSaleNotification.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends FlashSaleNotificationFindUniqueOrThrowArgs>(args: SelectSubset<T, FlashSaleNotificationFindUniqueOrThrowArgs<ExtArgs>>): Prisma__FlashSaleNotificationClient<$Result.GetResult<Prisma.$FlashSaleNotificationPayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
+
+    /**
+     * Find the first FlashSaleNotification that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FlashSaleNotificationFindFirstArgs} args - Arguments to find a FlashSaleNotification
+     * @example
+     * // Get one FlashSaleNotification
+     * const flashSaleNotification = await prisma.flashSaleNotification.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends FlashSaleNotificationFindFirstArgs>(args?: SelectSubset<T, FlashSaleNotificationFindFirstArgs<ExtArgs>>): Prisma__FlashSaleNotificationClient<$Result.GetResult<Prisma.$FlashSaleNotificationPayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
+
+    /**
+     * Find the first FlashSaleNotification that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FlashSaleNotificationFindFirstOrThrowArgs} args - Arguments to find a FlashSaleNotification
+     * @example
+     * // Get one FlashSaleNotification
+     * const flashSaleNotification = await prisma.flashSaleNotification.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends FlashSaleNotificationFindFirstOrThrowArgs>(args?: SelectSubset<T, FlashSaleNotificationFindFirstOrThrowArgs<ExtArgs>>): Prisma__FlashSaleNotificationClient<$Result.GetResult<Prisma.$FlashSaleNotificationPayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
+
+    /**
+     * Find zero or more FlashSaleNotifications that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FlashSaleNotificationFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all FlashSaleNotifications
+     * const flashSaleNotifications = await prisma.flashSaleNotification.findMany()
+     * 
+     * // Get first 10 FlashSaleNotifications
+     * const flashSaleNotifications = await prisma.flashSaleNotification.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const flashSaleNotificationWithIdOnly = await prisma.flashSaleNotification.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends FlashSaleNotificationFindManyArgs>(args?: SelectSubset<T, FlashSaleNotificationFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FlashSaleNotificationPayload<ExtArgs>, T, "findMany">>
+
+    /**
+     * Create a FlashSaleNotification.
+     * @param {FlashSaleNotificationCreateArgs} args - Arguments to create a FlashSaleNotification.
+     * @example
+     * // Create one FlashSaleNotification
+     * const FlashSaleNotification = await prisma.flashSaleNotification.create({
+     *   data: {
+     *     // ... data to create a FlashSaleNotification
+     *   }
+     * })
+     * 
+     */
+    create<T extends FlashSaleNotificationCreateArgs>(args: SelectSubset<T, FlashSaleNotificationCreateArgs<ExtArgs>>): Prisma__FlashSaleNotificationClient<$Result.GetResult<Prisma.$FlashSaleNotificationPayload<ExtArgs>, T, "create">, never, ExtArgs>
+
+    /**
+     * Create many FlashSaleNotifications.
+     * @param {FlashSaleNotificationCreateManyArgs} args - Arguments to create many FlashSaleNotifications.
+     * @example
+     * // Create many FlashSaleNotifications
+     * const flashSaleNotification = await prisma.flashSaleNotification.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends FlashSaleNotificationCreateManyArgs>(args?: SelectSubset<T, FlashSaleNotificationCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many FlashSaleNotifications and returns the data saved in the database.
+     * @param {FlashSaleNotificationCreateManyAndReturnArgs} args - Arguments to create many FlashSaleNotifications.
+     * @example
+     * // Create many FlashSaleNotifications
+     * const flashSaleNotification = await prisma.flashSaleNotification.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many FlashSaleNotifications and only return the `id`
+     * const flashSaleNotificationWithIdOnly = await prisma.flashSaleNotification.createManyAndReturn({ 
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends FlashSaleNotificationCreateManyAndReturnArgs>(args?: SelectSubset<T, FlashSaleNotificationCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FlashSaleNotificationPayload<ExtArgs>, T, "createManyAndReturn">>
+
+    /**
+     * Delete a FlashSaleNotification.
+     * @param {FlashSaleNotificationDeleteArgs} args - Arguments to delete one FlashSaleNotification.
+     * @example
+     * // Delete one FlashSaleNotification
+     * const FlashSaleNotification = await prisma.flashSaleNotification.delete({
+     *   where: {
+     *     // ... filter to delete one FlashSaleNotification
+     *   }
+     * })
+     * 
+     */
+    delete<T extends FlashSaleNotificationDeleteArgs>(args: SelectSubset<T, FlashSaleNotificationDeleteArgs<ExtArgs>>): Prisma__FlashSaleNotificationClient<$Result.GetResult<Prisma.$FlashSaleNotificationPayload<ExtArgs>, T, "delete">, never, ExtArgs>
+
+    /**
+     * Update one FlashSaleNotification.
+     * @param {FlashSaleNotificationUpdateArgs} args - Arguments to update one FlashSaleNotification.
+     * @example
+     * // Update one FlashSaleNotification
+     * const flashSaleNotification = await prisma.flashSaleNotification.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends FlashSaleNotificationUpdateArgs>(args: SelectSubset<T, FlashSaleNotificationUpdateArgs<ExtArgs>>): Prisma__FlashSaleNotificationClient<$Result.GetResult<Prisma.$FlashSaleNotificationPayload<ExtArgs>, T, "update">, never, ExtArgs>
+
+    /**
+     * Delete zero or more FlashSaleNotifications.
+     * @param {FlashSaleNotificationDeleteManyArgs} args - Arguments to filter FlashSaleNotifications to delete.
+     * @example
+     * // Delete a few FlashSaleNotifications
+     * const { count } = await prisma.flashSaleNotification.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends FlashSaleNotificationDeleteManyArgs>(args?: SelectSubset<T, FlashSaleNotificationDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more FlashSaleNotifications.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FlashSaleNotificationUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many FlashSaleNotifications
+     * const flashSaleNotification = await prisma.flashSaleNotification.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends FlashSaleNotificationUpdateManyArgs>(args: SelectSubset<T, FlashSaleNotificationUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one FlashSaleNotification.
+     * @param {FlashSaleNotificationUpsertArgs} args - Arguments to update or create a FlashSaleNotification.
+     * @example
+     * // Update or create a FlashSaleNotification
+     * const flashSaleNotification = await prisma.flashSaleNotification.upsert({
+     *   create: {
+     *     // ... data to create a FlashSaleNotification
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the FlashSaleNotification we want to update
+     *   }
+     * })
+     */
+    upsert<T extends FlashSaleNotificationUpsertArgs>(args: SelectSubset<T, FlashSaleNotificationUpsertArgs<ExtArgs>>): Prisma__FlashSaleNotificationClient<$Result.GetResult<Prisma.$FlashSaleNotificationPayload<ExtArgs>, T, "upsert">, never, ExtArgs>
+
+
+    /**
+     * Count the number of FlashSaleNotifications.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FlashSaleNotificationCountArgs} args - Arguments to filter FlashSaleNotifications to count.
+     * @example
+     * // Count the number of FlashSaleNotifications
+     * const count = await prisma.flashSaleNotification.count({
+     *   where: {
+     *     // ... the filter for the FlashSaleNotifications we want to count
+     *   }
+     * })
+    **/
+    count<T extends FlashSaleNotificationCountArgs>(
+      args?: Subset<T, FlashSaleNotificationCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], FlashSaleNotificationCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a FlashSaleNotification.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FlashSaleNotificationAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends FlashSaleNotificationAggregateArgs>(args: Subset<T, FlashSaleNotificationAggregateArgs>): Prisma.PrismaPromise<GetFlashSaleNotificationAggregateType<T>>
+
+    /**
+     * Group by FlashSaleNotification.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FlashSaleNotificationGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends FlashSaleNotificationGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: FlashSaleNotificationGroupByArgs['orderBy'] }
+        : { orderBy?: FlashSaleNotificationGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, FlashSaleNotificationGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetFlashSaleNotificationGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the FlashSaleNotification model
+   */
+  readonly fields: FlashSaleNotificationFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for FlashSaleNotification.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__FlashSaleNotificationClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    flashSale<T extends FlashSaleDefaultArgs<ExtArgs> = {}>(args?: Subset<T, FlashSaleDefaultArgs<ExtArgs>>): Prisma__FlashSaleClient<$Result.GetResult<Prisma.$FlashSalePayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
+    buyer<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the FlashSaleNotification model
+   */ 
+  interface FlashSaleNotificationFieldRefs {
+    readonly id: FieldRef<"FlashSaleNotification", 'String'>
+    readonly flashSaleId: FieldRef<"FlashSaleNotification", 'String'>
+    readonly buyerId: FieldRef<"FlashSaleNotification", 'String'>
+    readonly channel: FieldRef<"FlashSaleNotification", 'NotificationChannel'>
+    readonly status: FieldRef<"FlashSaleNotification", 'FlashSaleNotificationStatus'>
+    readonly sentAt: FieldRef<"FlashSaleNotification", 'DateTime'>
+    readonly clickedAt: FieldRef<"FlashSaleNotification", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * FlashSaleNotification findUnique
+   */
+  export type FlashSaleNotificationFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FlashSaleNotification
+     */
+    select?: FlashSaleNotificationSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FlashSaleNotificationInclude<ExtArgs> | null
+    /**
+     * Filter, which FlashSaleNotification to fetch.
+     */
+    where: FlashSaleNotificationWhereUniqueInput
+  }
+
+  /**
+   * FlashSaleNotification findUniqueOrThrow
+   */
+  export type FlashSaleNotificationFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FlashSaleNotification
+     */
+    select?: FlashSaleNotificationSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FlashSaleNotificationInclude<ExtArgs> | null
+    /**
+     * Filter, which FlashSaleNotification to fetch.
+     */
+    where: FlashSaleNotificationWhereUniqueInput
+  }
+
+  /**
+   * FlashSaleNotification findFirst
+   */
+  export type FlashSaleNotificationFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FlashSaleNotification
+     */
+    select?: FlashSaleNotificationSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FlashSaleNotificationInclude<ExtArgs> | null
+    /**
+     * Filter, which FlashSaleNotification to fetch.
+     */
+    where?: FlashSaleNotificationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FlashSaleNotifications to fetch.
+     */
+    orderBy?: FlashSaleNotificationOrderByWithRelationInput | FlashSaleNotificationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for FlashSaleNotifications.
+     */
+    cursor?: FlashSaleNotificationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FlashSaleNotifications from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FlashSaleNotifications.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of FlashSaleNotifications.
+     */
+    distinct?: FlashSaleNotificationScalarFieldEnum | FlashSaleNotificationScalarFieldEnum[]
+  }
+
+  /**
+   * FlashSaleNotification findFirstOrThrow
+   */
+  export type FlashSaleNotificationFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FlashSaleNotification
+     */
+    select?: FlashSaleNotificationSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FlashSaleNotificationInclude<ExtArgs> | null
+    /**
+     * Filter, which FlashSaleNotification to fetch.
+     */
+    where?: FlashSaleNotificationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FlashSaleNotifications to fetch.
+     */
+    orderBy?: FlashSaleNotificationOrderByWithRelationInput | FlashSaleNotificationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for FlashSaleNotifications.
+     */
+    cursor?: FlashSaleNotificationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FlashSaleNotifications from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FlashSaleNotifications.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of FlashSaleNotifications.
+     */
+    distinct?: FlashSaleNotificationScalarFieldEnum | FlashSaleNotificationScalarFieldEnum[]
+  }
+
+  /**
+   * FlashSaleNotification findMany
+   */
+  export type FlashSaleNotificationFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FlashSaleNotification
+     */
+    select?: FlashSaleNotificationSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FlashSaleNotificationInclude<ExtArgs> | null
+    /**
+     * Filter, which FlashSaleNotifications to fetch.
+     */
+    where?: FlashSaleNotificationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FlashSaleNotifications to fetch.
+     */
+    orderBy?: FlashSaleNotificationOrderByWithRelationInput | FlashSaleNotificationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing FlashSaleNotifications.
+     */
+    cursor?: FlashSaleNotificationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FlashSaleNotifications from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FlashSaleNotifications.
+     */
+    skip?: number
+    distinct?: FlashSaleNotificationScalarFieldEnum | FlashSaleNotificationScalarFieldEnum[]
+  }
+
+  /**
+   * FlashSaleNotification create
+   */
+  export type FlashSaleNotificationCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FlashSaleNotification
+     */
+    select?: FlashSaleNotificationSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FlashSaleNotificationInclude<ExtArgs> | null
+    /**
+     * The data needed to create a FlashSaleNotification.
+     */
+    data: XOR<FlashSaleNotificationCreateInput, FlashSaleNotificationUncheckedCreateInput>
+  }
+
+  /**
+   * FlashSaleNotification createMany
+   */
+  export type FlashSaleNotificationCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many FlashSaleNotifications.
+     */
+    data: FlashSaleNotificationCreateManyInput | FlashSaleNotificationCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * FlashSaleNotification createManyAndReturn
+   */
+  export type FlashSaleNotificationCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FlashSaleNotification
+     */
+    select?: FlashSaleNotificationSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * The data used to create many FlashSaleNotifications.
+     */
+    data: FlashSaleNotificationCreateManyInput | FlashSaleNotificationCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FlashSaleNotificationIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * FlashSaleNotification update
+   */
+  export type FlashSaleNotificationUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FlashSaleNotification
+     */
+    select?: FlashSaleNotificationSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FlashSaleNotificationInclude<ExtArgs> | null
+    /**
+     * The data needed to update a FlashSaleNotification.
+     */
+    data: XOR<FlashSaleNotificationUpdateInput, FlashSaleNotificationUncheckedUpdateInput>
+    /**
+     * Choose, which FlashSaleNotification to update.
+     */
+    where: FlashSaleNotificationWhereUniqueInput
+  }
+
+  /**
+   * FlashSaleNotification updateMany
+   */
+  export type FlashSaleNotificationUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update FlashSaleNotifications.
+     */
+    data: XOR<FlashSaleNotificationUpdateManyMutationInput, FlashSaleNotificationUncheckedUpdateManyInput>
+    /**
+     * Filter which FlashSaleNotifications to update
+     */
+    where?: FlashSaleNotificationWhereInput
+  }
+
+  /**
+   * FlashSaleNotification upsert
+   */
+  export type FlashSaleNotificationUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FlashSaleNotification
+     */
+    select?: FlashSaleNotificationSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FlashSaleNotificationInclude<ExtArgs> | null
+    /**
+     * The filter to search for the FlashSaleNotification to update in case it exists.
+     */
+    where: FlashSaleNotificationWhereUniqueInput
+    /**
+     * In case the FlashSaleNotification found by the `where` argument doesn't exist, create a new FlashSaleNotification with this data.
+     */
+    create: XOR<FlashSaleNotificationCreateInput, FlashSaleNotificationUncheckedCreateInput>
+    /**
+     * In case the FlashSaleNotification was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<FlashSaleNotificationUpdateInput, FlashSaleNotificationUncheckedUpdateInput>
+  }
+
+  /**
+   * FlashSaleNotification delete
+   */
+  export type FlashSaleNotificationDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FlashSaleNotification
+     */
+    select?: FlashSaleNotificationSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FlashSaleNotificationInclude<ExtArgs> | null
+    /**
+     * Filter which FlashSaleNotification to delete.
+     */
+    where: FlashSaleNotificationWhereUniqueInput
+  }
+
+  /**
+   * FlashSaleNotification deleteMany
+   */
+  export type FlashSaleNotificationDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which FlashSaleNotifications to delete
+     */
+    where?: FlashSaleNotificationWhereInput
+  }
+
+  /**
+   * FlashSaleNotification without action
+   */
+  export type FlashSaleNotificationDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FlashSaleNotification
+     */
+    select?: FlashSaleNotificationSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FlashSaleNotificationInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -30911,7 +35895,9 @@ export namespace Prisma {
     lastUssdActivity: 'lastUssdActivity',
     lockoutUntil: 'lockoutUntil',
     createdAt: 'createdAt',
-    updatedAt: 'updatedAt'
+    updatedAt: 'updatedAt',
+    flashSaleOptOut: 'flashSaleOptOut',
+    flashSaleRadius: 'flashSaleRadius'
   };
 
   export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
@@ -30979,7 +35965,11 @@ export namespace Prisma {
     createdAt: 'createdAt',
     updatedAt: 'updatedAt',
     source: 'source',
-    plantingLogId: 'plantingLogId'
+    plantingLogId: 'plantingLogId',
+    currentRiskBand: 'currentRiskBand',
+    currentRiskScore: 'currentRiskScore',
+    lastRiskCalculatedAt: 'lastRiskCalculatedAt',
+    activeFlashSaleId: 'activeFlashSaleId'
   };
 
   export type ProduceListingScalarFieldEnum = (typeof ProduceListingScalarFieldEnum)[keyof typeof ProduceListingScalarFieldEnum]
@@ -31320,6 +36310,75 @@ export namespace Prisma {
   export type BuyerCropAlertScalarFieldEnum = (typeof BuyerCropAlertScalarFieldEnum)[keyof typeof BuyerCropAlertScalarFieldEnum]
 
 
+  export const SpoilageRiskLogScalarFieldEnum: {
+    id: 'id',
+    listingId: 'listingId',
+    previousBand: 'previousBand',
+    newBand: 'newBand',
+    riskScore: 'riskScore',
+    hoursUntilExpiry: 'hoursUntilExpiry',
+    remainingKg: 'remainingKg',
+    calculatedAt: 'calculatedAt',
+    triggeredFlashSale: 'triggeredFlashSale'
+  };
+
+  export type SpoilageRiskLogScalarFieldEnum = (typeof SpoilageRiskLogScalarFieldEnum)[keyof typeof SpoilageRiskLogScalarFieldEnum]
+
+
+  export const FlashSaleScalarFieldEnum: {
+    id: 'id',
+    listingId: 'listingId',
+    farmerId: 'farmerId',
+    originalPricePerKg: 'originalPricePerKg',
+    discountPercent: 'discountPercent',
+    flashPricePerKg: 'flashPricePerKg',
+    quantityKg: 'quantityKg',
+    soldKg: 'soldKg',
+    riskBand: 'riskBand',
+    riskScore: 'riskScore',
+    status: 'status',
+    expiresAt: 'expiresAt',
+    farmerApproved: 'farmerApproved',
+    cancelledAt: 'cancelledAt',
+    cancelReason: 'cancelReason',
+    notificationsSent: 'notificationsSent',
+    buyersClaimed: 'buyersClaimed',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type FlashSaleScalarFieldEnum = (typeof FlashSaleScalarFieldEnum)[keyof typeof FlashSaleScalarFieldEnum]
+
+
+  export const FlashSaleClaimScalarFieldEnum: {
+    id: 'id',
+    flashSaleId: 'flashSaleId',
+    buyerId: 'buyerId',
+    quantityKg: 'quantityKg',
+    pricePerKg: 'pricePerKg',
+    totalPrice: 'totalPrice',
+    orderId: 'orderId',
+    status: 'status',
+    claimedAt: 'claimedAt',
+    expiresAt: 'expiresAt'
+  };
+
+  export type FlashSaleClaimScalarFieldEnum = (typeof FlashSaleClaimScalarFieldEnum)[keyof typeof FlashSaleClaimScalarFieldEnum]
+
+
+  export const FlashSaleNotificationScalarFieldEnum: {
+    id: 'id',
+    flashSaleId: 'flashSaleId',
+    buyerId: 'buyerId',
+    channel: 'channel',
+    status: 'status',
+    sentAt: 'sentAt',
+    clickedAt: 'clickedAt'
+  };
+
+  export type FlashSaleNotificationScalarFieldEnum = (typeof FlashSaleNotificationScalarFieldEnum)[keyof typeof FlashSaleNotificationScalarFieldEnum]
+
+
   export const SortOrder: {
     asc: 'asc',
     desc: 'desc'
@@ -31521,6 +36580,20 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'SpoilageRiskBand'
+   */
+  export type EnumSpoilageRiskBandFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'SpoilageRiskBand'>
+    
+
+
+  /**
+   * Reference to a field of type 'SpoilageRiskBand[]'
+   */
+  export type ListEnumSpoilageRiskBandFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'SpoilageRiskBand[]'>
+    
+
+
+  /**
    * Reference to a field of type 'TraceEventType'
    */
   export type EnumTraceEventTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'TraceEventType'>
@@ -31623,6 +36696,62 @@ export namespace Prisma {
    */
   export type ListEnumCoOpStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'CoOpStatus[]'>
     
+
+
+  /**
+   * Reference to a field of type 'FlashSaleStatus'
+   */
+  export type EnumFlashSaleStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'FlashSaleStatus'>
+    
+
+
+  /**
+   * Reference to a field of type 'FlashSaleStatus[]'
+   */
+  export type ListEnumFlashSaleStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'FlashSaleStatus[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'FlashSaleClaimStatus'
+   */
+  export type EnumFlashSaleClaimStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'FlashSaleClaimStatus'>
+    
+
+
+  /**
+   * Reference to a field of type 'FlashSaleClaimStatus[]'
+   */
+  export type ListEnumFlashSaleClaimStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'FlashSaleClaimStatus[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'NotificationChannel'
+   */
+  export type EnumNotificationChannelFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'NotificationChannel'>
+    
+
+
+  /**
+   * Reference to a field of type 'NotificationChannel[]'
+   */
+  export type ListEnumNotificationChannelFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'NotificationChannel[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'FlashSaleNotificationStatus'
+   */
+  export type EnumFlashSaleNotificationStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'FlashSaleNotificationStatus'>
+    
+
+
+  /**
+   * Reference to a field of type 'FlashSaleNotificationStatus[]'
+   */
+  export type ListEnumFlashSaleNotificationStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'FlashSaleNotificationStatus[]'>
+    
   /**
    * Deep Input Types
    */
@@ -31649,6 +36778,8 @@ export namespace Prisma {
     lockoutUntil?: DateTimeNullableFilter<"User"> | Date | string | null
     createdAt?: DateTimeFilter<"User"> | Date | string
     updatedAt?: DateTimeFilter<"User"> | Date | string
+    flashSaleOptOut?: BoolFilter<"User"> | boolean
+    flashSaleRadius?: IntFilter<"User"> | number
     farmerProfile?: XOR<FarmerProfileNullableRelationFilter, FarmerProfileWhereInput> | null
     buyerProfile?: XOR<BuyerProfileNullableRelationFilter, BuyerProfileWhereInput> | null
     transportProfile?: XOR<TransportProfileNullableRelationFilter, TransportProfileWhereInput> | null
@@ -31671,6 +36802,9 @@ export namespace Prisma {
     createdCoOps?: CoOpGroupListRelationFilter
     coOpContributions?: CoOpMemberListRelationFilter
     cropAlerts?: BuyerCropAlertListRelationFilter
+    flashSalesCreated?: FlashSaleListRelationFilter
+    flashSaleClaims?: FlashSaleClaimListRelationFilter
+    flashSaleNotifications?: FlashSaleNotificationListRelationFilter
   }
 
   export type UserOrderByWithRelationInput = {
@@ -31691,6 +36825,8 @@ export namespace Prisma {
     lockoutUntil?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    flashSaleOptOut?: SortOrder
+    flashSaleRadius?: SortOrder
     farmerProfile?: FarmerProfileOrderByWithRelationInput
     buyerProfile?: BuyerProfileOrderByWithRelationInput
     transportProfile?: TransportProfileOrderByWithRelationInput
@@ -31713,6 +36849,9 @@ export namespace Prisma {
     createdCoOps?: CoOpGroupOrderByRelationAggregateInput
     coOpContributions?: CoOpMemberOrderByRelationAggregateInput
     cropAlerts?: BuyerCropAlertOrderByRelationAggregateInput
+    flashSalesCreated?: FlashSaleOrderByRelationAggregateInput
+    flashSaleClaims?: FlashSaleClaimOrderByRelationAggregateInput
+    flashSaleNotifications?: FlashSaleNotificationOrderByRelationAggregateInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -31736,6 +36875,8 @@ export namespace Prisma {
     lockoutUntil?: DateTimeNullableFilter<"User"> | Date | string | null
     createdAt?: DateTimeFilter<"User"> | Date | string
     updatedAt?: DateTimeFilter<"User"> | Date | string
+    flashSaleOptOut?: BoolFilter<"User"> | boolean
+    flashSaleRadius?: IntFilter<"User"> | number
     farmerProfile?: XOR<FarmerProfileNullableRelationFilter, FarmerProfileWhereInput> | null
     buyerProfile?: XOR<BuyerProfileNullableRelationFilter, BuyerProfileWhereInput> | null
     transportProfile?: XOR<TransportProfileNullableRelationFilter, TransportProfileWhereInput> | null
@@ -31758,6 +36899,9 @@ export namespace Prisma {
     createdCoOps?: CoOpGroupListRelationFilter
     coOpContributions?: CoOpMemberListRelationFilter
     cropAlerts?: BuyerCropAlertListRelationFilter
+    flashSalesCreated?: FlashSaleListRelationFilter
+    flashSaleClaims?: FlashSaleClaimListRelationFilter
+    flashSaleNotifications?: FlashSaleNotificationListRelationFilter
   }, "id" | "phone">
 
   export type UserOrderByWithAggregationInput = {
@@ -31778,6 +36922,8 @@ export namespace Prisma {
     lockoutUntil?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    flashSaleOptOut?: SortOrder
+    flashSaleRadius?: SortOrder
     _count?: UserCountOrderByAggregateInput
     _avg?: UserAvgOrderByAggregateInput
     _max?: UserMaxOrderByAggregateInput
@@ -31806,6 +36952,8 @@ export namespace Prisma {
     lockoutUntil?: DateTimeNullableWithAggregatesFilter<"User"> | Date | string | null
     createdAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
+    flashSaleOptOut?: BoolWithAggregatesFilter<"User"> | boolean
+    flashSaleRadius?: IntWithAggregatesFilter<"User"> | number
   }
 
   export type FarmerProfileWhereInput = {
@@ -32052,6 +37200,10 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"ProduceListing"> | Date | string
     source?: EnumCreationSourceFilter<"ProduceListing"> | $Enums.CreationSource
     plantingLogId?: StringNullableFilter<"ProduceListing"> | string | null
+    currentRiskBand?: EnumSpoilageRiskBandFilter<"ProduceListing"> | $Enums.SpoilageRiskBand
+    currentRiskScore?: FloatFilter<"ProduceListing"> | number
+    lastRiskCalculatedAt?: DateTimeNullableFilter<"ProduceListing"> | Date | string | null
+    activeFlashSaleId?: StringNullableFilter<"ProduceListing"> | string | null
     farmer?: XOR<UserRelationFilter, UserWhereInput>
     orders?: OrderListRelationFilter
     traceability?: XOR<TraceabilityRecordNullableRelationFilter, TraceabilityRecordWhereInput> | null
@@ -32059,6 +37211,8 @@ export namespace Prisma {
     preOrders?: PreOrderListRelationFilter
     coOps?: CoOpGroupListRelationFilter
     plantingLog?: XOR<PlantingLogNullableRelationFilter, PlantingLogWhereInput> | null
+    spoilageRiskLogs?: SpoilageRiskLogListRelationFilter
+    flashSale?: XOR<FlashSaleNullableRelationFilter, FlashSaleWhereInput> | null
   }
 
   export type ProduceListingOrderByWithRelationInput = {
@@ -32081,6 +37235,10 @@ export namespace Prisma {
     updatedAt?: SortOrder
     source?: SortOrder
     plantingLogId?: SortOrderInput | SortOrder
+    currentRiskBand?: SortOrder
+    currentRiskScore?: SortOrder
+    lastRiskCalculatedAt?: SortOrderInput | SortOrder
+    activeFlashSaleId?: SortOrderInput | SortOrder
     farmer?: UserOrderByWithRelationInput
     orders?: OrderOrderByRelationAggregateInput
     traceability?: TraceabilityRecordOrderByWithRelationInput
@@ -32088,6 +37246,8 @@ export namespace Prisma {
     preOrders?: PreOrderOrderByRelationAggregateInput
     coOps?: CoOpGroupOrderByRelationAggregateInput
     plantingLog?: PlantingLogOrderByWithRelationInput
+    spoilageRiskLogs?: SpoilageRiskLogOrderByRelationAggregateInput
+    flashSale?: FlashSaleOrderByWithRelationInput
   }
 
   export type ProduceListingWhereUniqueInput = Prisma.AtLeast<{
@@ -32113,6 +37273,10 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"ProduceListing"> | Date | string
     source?: EnumCreationSourceFilter<"ProduceListing"> | $Enums.CreationSource
     plantingLogId?: StringNullableFilter<"ProduceListing"> | string | null
+    currentRiskBand?: EnumSpoilageRiskBandFilter<"ProduceListing"> | $Enums.SpoilageRiskBand
+    currentRiskScore?: FloatFilter<"ProduceListing"> | number
+    lastRiskCalculatedAt?: DateTimeNullableFilter<"ProduceListing"> | Date | string | null
+    activeFlashSaleId?: StringNullableFilter<"ProduceListing"> | string | null
     farmer?: XOR<UserRelationFilter, UserWhereInput>
     orders?: OrderListRelationFilter
     traceability?: XOR<TraceabilityRecordNullableRelationFilter, TraceabilityRecordWhereInput> | null
@@ -32120,6 +37284,8 @@ export namespace Prisma {
     preOrders?: PreOrderListRelationFilter
     coOps?: CoOpGroupListRelationFilter
     plantingLog?: XOR<PlantingLogNullableRelationFilter, PlantingLogWhereInput> | null
+    spoilageRiskLogs?: SpoilageRiskLogListRelationFilter
+    flashSale?: XOR<FlashSaleNullableRelationFilter, FlashSaleWhereInput> | null
   }, "id" | "batchCode">
 
   export type ProduceListingOrderByWithAggregationInput = {
@@ -32142,6 +37308,10 @@ export namespace Prisma {
     updatedAt?: SortOrder
     source?: SortOrder
     plantingLogId?: SortOrderInput | SortOrder
+    currentRiskBand?: SortOrder
+    currentRiskScore?: SortOrder
+    lastRiskCalculatedAt?: SortOrderInput | SortOrder
+    activeFlashSaleId?: SortOrderInput | SortOrder
     _count?: ProduceListingCountOrderByAggregateInput
     _avg?: ProduceListingAvgOrderByAggregateInput
     _max?: ProduceListingMaxOrderByAggregateInput
@@ -32172,6 +37342,10 @@ export namespace Prisma {
     updatedAt?: DateTimeWithAggregatesFilter<"ProduceListing"> | Date | string
     source?: EnumCreationSourceWithAggregatesFilter<"ProduceListing"> | $Enums.CreationSource
     plantingLogId?: StringNullableWithAggregatesFilter<"ProduceListing"> | string | null
+    currentRiskBand?: EnumSpoilageRiskBandWithAggregatesFilter<"ProduceListing"> | $Enums.SpoilageRiskBand
+    currentRiskScore?: FloatWithAggregatesFilter<"ProduceListing"> | number
+    lastRiskCalculatedAt?: DateTimeNullableWithAggregatesFilter<"ProduceListing"> | Date | string | null
+    activeFlashSaleId?: StringNullableWithAggregatesFilter<"ProduceListing"> | string | null
   }
 
   export type TraceabilityRecordWhereInput = {
@@ -32347,6 +37521,7 @@ export namespace Prisma {
     messages?: MessageListRelationFilter
     preOrder?: XOR<PreOrderNullableRelationFilter, PreOrderWhereInput> | null
     coOpMember?: XOR<CoOpMemberNullableRelationFilter, CoOpMemberWhereInput> | null
+    flashSaleClaims?: FlashSaleClaimListRelationFilter
   }
 
   export type OrderOrderByWithRelationInput = {
@@ -32369,6 +37544,7 @@ export namespace Prisma {
     messages?: MessageOrderByRelationAggregateInput
     preOrder?: PreOrderOrderByWithRelationInput
     coOpMember?: CoOpMemberOrderByWithRelationInput
+    flashSaleClaims?: FlashSaleClaimOrderByRelationAggregateInput
   }
 
   export type OrderWhereUniqueInput = Prisma.AtLeast<{
@@ -32394,6 +37570,7 @@ export namespace Prisma {
     messages?: MessageListRelationFilter
     preOrder?: XOR<PreOrderNullableRelationFilter, PreOrderWhereInput> | null
     coOpMember?: XOR<CoOpMemberNullableRelationFilter, CoOpMemberWhereInput> | null
+    flashSaleClaims?: FlashSaleClaimListRelationFilter
   }, "id">
 
   export type OrderOrderByWithAggregationInput = {
@@ -33925,6 +39102,376 @@ export namespace Prisma {
     updatedAt?: DateTimeWithAggregatesFilter<"BuyerCropAlert"> | Date | string
   }
 
+  export type SpoilageRiskLogWhereInput = {
+    AND?: SpoilageRiskLogWhereInput | SpoilageRiskLogWhereInput[]
+    OR?: SpoilageRiskLogWhereInput[]
+    NOT?: SpoilageRiskLogWhereInput | SpoilageRiskLogWhereInput[]
+    id?: StringFilter<"SpoilageRiskLog"> | string
+    listingId?: StringFilter<"SpoilageRiskLog"> | string
+    previousBand?: EnumSpoilageRiskBandNullableFilter<"SpoilageRiskLog"> | $Enums.SpoilageRiskBand | null
+    newBand?: EnumSpoilageRiskBandFilter<"SpoilageRiskLog"> | $Enums.SpoilageRiskBand
+    riskScore?: FloatFilter<"SpoilageRiskLog"> | number
+    hoursUntilExpiry?: FloatFilter<"SpoilageRiskLog"> | number
+    remainingKg?: FloatFilter<"SpoilageRiskLog"> | number
+    calculatedAt?: DateTimeFilter<"SpoilageRiskLog"> | Date | string
+    triggeredFlashSale?: BoolFilter<"SpoilageRiskLog"> | boolean
+    listing?: XOR<ProduceListingRelationFilter, ProduceListingWhereInput>
+  }
+
+  export type SpoilageRiskLogOrderByWithRelationInput = {
+    id?: SortOrder
+    listingId?: SortOrder
+    previousBand?: SortOrderInput | SortOrder
+    newBand?: SortOrder
+    riskScore?: SortOrder
+    hoursUntilExpiry?: SortOrder
+    remainingKg?: SortOrder
+    calculatedAt?: SortOrder
+    triggeredFlashSale?: SortOrder
+    listing?: ProduceListingOrderByWithRelationInput
+  }
+
+  export type SpoilageRiskLogWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: SpoilageRiskLogWhereInput | SpoilageRiskLogWhereInput[]
+    OR?: SpoilageRiskLogWhereInput[]
+    NOT?: SpoilageRiskLogWhereInput | SpoilageRiskLogWhereInput[]
+    listingId?: StringFilter<"SpoilageRiskLog"> | string
+    previousBand?: EnumSpoilageRiskBandNullableFilter<"SpoilageRiskLog"> | $Enums.SpoilageRiskBand | null
+    newBand?: EnumSpoilageRiskBandFilter<"SpoilageRiskLog"> | $Enums.SpoilageRiskBand
+    riskScore?: FloatFilter<"SpoilageRiskLog"> | number
+    hoursUntilExpiry?: FloatFilter<"SpoilageRiskLog"> | number
+    remainingKg?: FloatFilter<"SpoilageRiskLog"> | number
+    calculatedAt?: DateTimeFilter<"SpoilageRiskLog"> | Date | string
+    triggeredFlashSale?: BoolFilter<"SpoilageRiskLog"> | boolean
+    listing?: XOR<ProduceListingRelationFilter, ProduceListingWhereInput>
+  }, "id">
+
+  export type SpoilageRiskLogOrderByWithAggregationInput = {
+    id?: SortOrder
+    listingId?: SortOrder
+    previousBand?: SortOrderInput | SortOrder
+    newBand?: SortOrder
+    riskScore?: SortOrder
+    hoursUntilExpiry?: SortOrder
+    remainingKg?: SortOrder
+    calculatedAt?: SortOrder
+    triggeredFlashSale?: SortOrder
+    _count?: SpoilageRiskLogCountOrderByAggregateInput
+    _avg?: SpoilageRiskLogAvgOrderByAggregateInput
+    _max?: SpoilageRiskLogMaxOrderByAggregateInput
+    _min?: SpoilageRiskLogMinOrderByAggregateInput
+    _sum?: SpoilageRiskLogSumOrderByAggregateInput
+  }
+
+  export type SpoilageRiskLogScalarWhereWithAggregatesInput = {
+    AND?: SpoilageRiskLogScalarWhereWithAggregatesInput | SpoilageRiskLogScalarWhereWithAggregatesInput[]
+    OR?: SpoilageRiskLogScalarWhereWithAggregatesInput[]
+    NOT?: SpoilageRiskLogScalarWhereWithAggregatesInput | SpoilageRiskLogScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"SpoilageRiskLog"> | string
+    listingId?: StringWithAggregatesFilter<"SpoilageRiskLog"> | string
+    previousBand?: EnumSpoilageRiskBandNullableWithAggregatesFilter<"SpoilageRiskLog"> | $Enums.SpoilageRiskBand | null
+    newBand?: EnumSpoilageRiskBandWithAggregatesFilter<"SpoilageRiskLog"> | $Enums.SpoilageRiskBand
+    riskScore?: FloatWithAggregatesFilter<"SpoilageRiskLog"> | number
+    hoursUntilExpiry?: FloatWithAggregatesFilter<"SpoilageRiskLog"> | number
+    remainingKg?: FloatWithAggregatesFilter<"SpoilageRiskLog"> | number
+    calculatedAt?: DateTimeWithAggregatesFilter<"SpoilageRiskLog"> | Date | string
+    triggeredFlashSale?: BoolWithAggregatesFilter<"SpoilageRiskLog"> | boolean
+  }
+
+  export type FlashSaleWhereInput = {
+    AND?: FlashSaleWhereInput | FlashSaleWhereInput[]
+    OR?: FlashSaleWhereInput[]
+    NOT?: FlashSaleWhereInput | FlashSaleWhereInput[]
+    id?: StringFilter<"FlashSale"> | string
+    listingId?: StringFilter<"FlashSale"> | string
+    farmerId?: StringFilter<"FlashSale"> | string
+    originalPricePerKg?: FloatFilter<"FlashSale"> | number
+    discountPercent?: FloatFilter<"FlashSale"> | number
+    flashPricePerKg?: FloatFilter<"FlashSale"> | number
+    quantityKg?: FloatFilter<"FlashSale"> | number
+    soldKg?: FloatFilter<"FlashSale"> | number
+    riskBand?: EnumSpoilageRiskBandFilter<"FlashSale"> | $Enums.SpoilageRiskBand
+    riskScore?: FloatFilter<"FlashSale"> | number
+    status?: EnumFlashSaleStatusFilter<"FlashSale"> | $Enums.FlashSaleStatus
+    expiresAt?: DateTimeFilter<"FlashSale"> | Date | string
+    farmerApproved?: BoolFilter<"FlashSale"> | boolean
+    cancelledAt?: DateTimeNullableFilter<"FlashSale"> | Date | string | null
+    cancelReason?: StringNullableFilter<"FlashSale"> | string | null
+    notificationsSent?: IntFilter<"FlashSale"> | number
+    buyersClaimed?: IntFilter<"FlashSale"> | number
+    createdAt?: DateTimeFilter<"FlashSale"> | Date | string
+    updatedAt?: DateTimeFilter<"FlashSale"> | Date | string
+    listing?: XOR<ProduceListingRelationFilter, ProduceListingWhereInput>
+    farmer?: XOR<UserRelationFilter, UserWhereInput>
+    claims?: FlashSaleClaimListRelationFilter
+    notifications?: FlashSaleNotificationListRelationFilter
+  }
+
+  export type FlashSaleOrderByWithRelationInput = {
+    id?: SortOrder
+    listingId?: SortOrder
+    farmerId?: SortOrder
+    originalPricePerKg?: SortOrder
+    discountPercent?: SortOrder
+    flashPricePerKg?: SortOrder
+    quantityKg?: SortOrder
+    soldKg?: SortOrder
+    riskBand?: SortOrder
+    riskScore?: SortOrder
+    status?: SortOrder
+    expiresAt?: SortOrder
+    farmerApproved?: SortOrder
+    cancelledAt?: SortOrderInput | SortOrder
+    cancelReason?: SortOrderInput | SortOrder
+    notificationsSent?: SortOrder
+    buyersClaimed?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    listing?: ProduceListingOrderByWithRelationInput
+    farmer?: UserOrderByWithRelationInput
+    claims?: FlashSaleClaimOrderByRelationAggregateInput
+    notifications?: FlashSaleNotificationOrderByRelationAggregateInput
+  }
+
+  export type FlashSaleWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    listingId?: string
+    AND?: FlashSaleWhereInput | FlashSaleWhereInput[]
+    OR?: FlashSaleWhereInput[]
+    NOT?: FlashSaleWhereInput | FlashSaleWhereInput[]
+    farmerId?: StringFilter<"FlashSale"> | string
+    originalPricePerKg?: FloatFilter<"FlashSale"> | number
+    discountPercent?: FloatFilter<"FlashSale"> | number
+    flashPricePerKg?: FloatFilter<"FlashSale"> | number
+    quantityKg?: FloatFilter<"FlashSale"> | number
+    soldKg?: FloatFilter<"FlashSale"> | number
+    riskBand?: EnumSpoilageRiskBandFilter<"FlashSale"> | $Enums.SpoilageRiskBand
+    riskScore?: FloatFilter<"FlashSale"> | number
+    status?: EnumFlashSaleStatusFilter<"FlashSale"> | $Enums.FlashSaleStatus
+    expiresAt?: DateTimeFilter<"FlashSale"> | Date | string
+    farmerApproved?: BoolFilter<"FlashSale"> | boolean
+    cancelledAt?: DateTimeNullableFilter<"FlashSale"> | Date | string | null
+    cancelReason?: StringNullableFilter<"FlashSale"> | string | null
+    notificationsSent?: IntFilter<"FlashSale"> | number
+    buyersClaimed?: IntFilter<"FlashSale"> | number
+    createdAt?: DateTimeFilter<"FlashSale"> | Date | string
+    updatedAt?: DateTimeFilter<"FlashSale"> | Date | string
+    listing?: XOR<ProduceListingRelationFilter, ProduceListingWhereInput>
+    farmer?: XOR<UserRelationFilter, UserWhereInput>
+    claims?: FlashSaleClaimListRelationFilter
+    notifications?: FlashSaleNotificationListRelationFilter
+  }, "id" | "listingId">
+
+  export type FlashSaleOrderByWithAggregationInput = {
+    id?: SortOrder
+    listingId?: SortOrder
+    farmerId?: SortOrder
+    originalPricePerKg?: SortOrder
+    discountPercent?: SortOrder
+    flashPricePerKg?: SortOrder
+    quantityKg?: SortOrder
+    soldKg?: SortOrder
+    riskBand?: SortOrder
+    riskScore?: SortOrder
+    status?: SortOrder
+    expiresAt?: SortOrder
+    farmerApproved?: SortOrder
+    cancelledAt?: SortOrderInput | SortOrder
+    cancelReason?: SortOrderInput | SortOrder
+    notificationsSent?: SortOrder
+    buyersClaimed?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: FlashSaleCountOrderByAggregateInput
+    _avg?: FlashSaleAvgOrderByAggregateInput
+    _max?: FlashSaleMaxOrderByAggregateInput
+    _min?: FlashSaleMinOrderByAggregateInput
+    _sum?: FlashSaleSumOrderByAggregateInput
+  }
+
+  export type FlashSaleScalarWhereWithAggregatesInput = {
+    AND?: FlashSaleScalarWhereWithAggregatesInput | FlashSaleScalarWhereWithAggregatesInput[]
+    OR?: FlashSaleScalarWhereWithAggregatesInput[]
+    NOT?: FlashSaleScalarWhereWithAggregatesInput | FlashSaleScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"FlashSale"> | string
+    listingId?: StringWithAggregatesFilter<"FlashSale"> | string
+    farmerId?: StringWithAggregatesFilter<"FlashSale"> | string
+    originalPricePerKg?: FloatWithAggregatesFilter<"FlashSale"> | number
+    discountPercent?: FloatWithAggregatesFilter<"FlashSale"> | number
+    flashPricePerKg?: FloatWithAggregatesFilter<"FlashSale"> | number
+    quantityKg?: FloatWithAggregatesFilter<"FlashSale"> | number
+    soldKg?: FloatWithAggregatesFilter<"FlashSale"> | number
+    riskBand?: EnumSpoilageRiskBandWithAggregatesFilter<"FlashSale"> | $Enums.SpoilageRiskBand
+    riskScore?: FloatWithAggregatesFilter<"FlashSale"> | number
+    status?: EnumFlashSaleStatusWithAggregatesFilter<"FlashSale"> | $Enums.FlashSaleStatus
+    expiresAt?: DateTimeWithAggregatesFilter<"FlashSale"> | Date | string
+    farmerApproved?: BoolWithAggregatesFilter<"FlashSale"> | boolean
+    cancelledAt?: DateTimeNullableWithAggregatesFilter<"FlashSale"> | Date | string | null
+    cancelReason?: StringNullableWithAggregatesFilter<"FlashSale"> | string | null
+    notificationsSent?: IntWithAggregatesFilter<"FlashSale"> | number
+    buyersClaimed?: IntWithAggregatesFilter<"FlashSale"> | number
+    createdAt?: DateTimeWithAggregatesFilter<"FlashSale"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"FlashSale"> | Date | string
+  }
+
+  export type FlashSaleClaimWhereInput = {
+    AND?: FlashSaleClaimWhereInput | FlashSaleClaimWhereInput[]
+    OR?: FlashSaleClaimWhereInput[]
+    NOT?: FlashSaleClaimWhereInput | FlashSaleClaimWhereInput[]
+    id?: StringFilter<"FlashSaleClaim"> | string
+    flashSaleId?: StringFilter<"FlashSaleClaim"> | string
+    buyerId?: StringFilter<"FlashSaleClaim"> | string
+    quantityKg?: FloatFilter<"FlashSaleClaim"> | number
+    pricePerKg?: FloatFilter<"FlashSaleClaim"> | number
+    totalPrice?: FloatFilter<"FlashSaleClaim"> | number
+    orderId?: StringNullableFilter<"FlashSaleClaim"> | string | null
+    status?: EnumFlashSaleClaimStatusFilter<"FlashSaleClaim"> | $Enums.FlashSaleClaimStatus
+    claimedAt?: DateTimeFilter<"FlashSaleClaim"> | Date | string
+    expiresAt?: DateTimeFilter<"FlashSaleClaim"> | Date | string
+    flashSale?: XOR<FlashSaleRelationFilter, FlashSaleWhereInput>
+    buyer?: XOR<UserRelationFilter, UserWhereInput>
+    order?: XOR<OrderNullableRelationFilter, OrderWhereInput> | null
+  }
+
+  export type FlashSaleClaimOrderByWithRelationInput = {
+    id?: SortOrder
+    flashSaleId?: SortOrder
+    buyerId?: SortOrder
+    quantityKg?: SortOrder
+    pricePerKg?: SortOrder
+    totalPrice?: SortOrder
+    orderId?: SortOrderInput | SortOrder
+    status?: SortOrder
+    claimedAt?: SortOrder
+    expiresAt?: SortOrder
+    flashSale?: FlashSaleOrderByWithRelationInput
+    buyer?: UserOrderByWithRelationInput
+    order?: OrderOrderByWithRelationInput
+  }
+
+  export type FlashSaleClaimWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    flashSaleId_buyerId?: FlashSaleClaimFlashSaleIdBuyerIdCompoundUniqueInput
+    AND?: FlashSaleClaimWhereInput | FlashSaleClaimWhereInput[]
+    OR?: FlashSaleClaimWhereInput[]
+    NOT?: FlashSaleClaimWhereInput | FlashSaleClaimWhereInput[]
+    flashSaleId?: StringFilter<"FlashSaleClaim"> | string
+    buyerId?: StringFilter<"FlashSaleClaim"> | string
+    quantityKg?: FloatFilter<"FlashSaleClaim"> | number
+    pricePerKg?: FloatFilter<"FlashSaleClaim"> | number
+    totalPrice?: FloatFilter<"FlashSaleClaim"> | number
+    orderId?: StringNullableFilter<"FlashSaleClaim"> | string | null
+    status?: EnumFlashSaleClaimStatusFilter<"FlashSaleClaim"> | $Enums.FlashSaleClaimStatus
+    claimedAt?: DateTimeFilter<"FlashSaleClaim"> | Date | string
+    expiresAt?: DateTimeFilter<"FlashSaleClaim"> | Date | string
+    flashSale?: XOR<FlashSaleRelationFilter, FlashSaleWhereInput>
+    buyer?: XOR<UserRelationFilter, UserWhereInput>
+    order?: XOR<OrderNullableRelationFilter, OrderWhereInput> | null
+  }, "id" | "flashSaleId_buyerId">
+
+  export type FlashSaleClaimOrderByWithAggregationInput = {
+    id?: SortOrder
+    flashSaleId?: SortOrder
+    buyerId?: SortOrder
+    quantityKg?: SortOrder
+    pricePerKg?: SortOrder
+    totalPrice?: SortOrder
+    orderId?: SortOrderInput | SortOrder
+    status?: SortOrder
+    claimedAt?: SortOrder
+    expiresAt?: SortOrder
+    _count?: FlashSaleClaimCountOrderByAggregateInput
+    _avg?: FlashSaleClaimAvgOrderByAggregateInput
+    _max?: FlashSaleClaimMaxOrderByAggregateInput
+    _min?: FlashSaleClaimMinOrderByAggregateInput
+    _sum?: FlashSaleClaimSumOrderByAggregateInput
+  }
+
+  export type FlashSaleClaimScalarWhereWithAggregatesInput = {
+    AND?: FlashSaleClaimScalarWhereWithAggregatesInput | FlashSaleClaimScalarWhereWithAggregatesInput[]
+    OR?: FlashSaleClaimScalarWhereWithAggregatesInput[]
+    NOT?: FlashSaleClaimScalarWhereWithAggregatesInput | FlashSaleClaimScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"FlashSaleClaim"> | string
+    flashSaleId?: StringWithAggregatesFilter<"FlashSaleClaim"> | string
+    buyerId?: StringWithAggregatesFilter<"FlashSaleClaim"> | string
+    quantityKg?: FloatWithAggregatesFilter<"FlashSaleClaim"> | number
+    pricePerKg?: FloatWithAggregatesFilter<"FlashSaleClaim"> | number
+    totalPrice?: FloatWithAggregatesFilter<"FlashSaleClaim"> | number
+    orderId?: StringNullableWithAggregatesFilter<"FlashSaleClaim"> | string | null
+    status?: EnumFlashSaleClaimStatusWithAggregatesFilter<"FlashSaleClaim"> | $Enums.FlashSaleClaimStatus
+    claimedAt?: DateTimeWithAggregatesFilter<"FlashSaleClaim"> | Date | string
+    expiresAt?: DateTimeWithAggregatesFilter<"FlashSaleClaim"> | Date | string
+  }
+
+  export type FlashSaleNotificationWhereInput = {
+    AND?: FlashSaleNotificationWhereInput | FlashSaleNotificationWhereInput[]
+    OR?: FlashSaleNotificationWhereInput[]
+    NOT?: FlashSaleNotificationWhereInput | FlashSaleNotificationWhereInput[]
+    id?: StringFilter<"FlashSaleNotification"> | string
+    flashSaleId?: StringFilter<"FlashSaleNotification"> | string
+    buyerId?: StringFilter<"FlashSaleNotification"> | string
+    channel?: EnumNotificationChannelFilter<"FlashSaleNotification"> | $Enums.NotificationChannel
+    status?: EnumFlashSaleNotificationStatusFilter<"FlashSaleNotification"> | $Enums.FlashSaleNotificationStatus
+    sentAt?: DateTimeNullableFilter<"FlashSaleNotification"> | Date | string | null
+    clickedAt?: DateTimeNullableFilter<"FlashSaleNotification"> | Date | string | null
+    flashSale?: XOR<FlashSaleRelationFilter, FlashSaleWhereInput>
+    buyer?: XOR<UserRelationFilter, UserWhereInput>
+  }
+
+  export type FlashSaleNotificationOrderByWithRelationInput = {
+    id?: SortOrder
+    flashSaleId?: SortOrder
+    buyerId?: SortOrder
+    channel?: SortOrder
+    status?: SortOrder
+    sentAt?: SortOrderInput | SortOrder
+    clickedAt?: SortOrderInput | SortOrder
+    flashSale?: FlashSaleOrderByWithRelationInput
+    buyer?: UserOrderByWithRelationInput
+  }
+
+  export type FlashSaleNotificationWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: FlashSaleNotificationWhereInput | FlashSaleNotificationWhereInput[]
+    OR?: FlashSaleNotificationWhereInput[]
+    NOT?: FlashSaleNotificationWhereInput | FlashSaleNotificationWhereInput[]
+    flashSaleId?: StringFilter<"FlashSaleNotification"> | string
+    buyerId?: StringFilter<"FlashSaleNotification"> | string
+    channel?: EnumNotificationChannelFilter<"FlashSaleNotification"> | $Enums.NotificationChannel
+    status?: EnumFlashSaleNotificationStatusFilter<"FlashSaleNotification"> | $Enums.FlashSaleNotificationStatus
+    sentAt?: DateTimeNullableFilter<"FlashSaleNotification"> | Date | string | null
+    clickedAt?: DateTimeNullableFilter<"FlashSaleNotification"> | Date | string | null
+    flashSale?: XOR<FlashSaleRelationFilter, FlashSaleWhereInput>
+    buyer?: XOR<UserRelationFilter, UserWhereInput>
+  }, "id">
+
+  export type FlashSaleNotificationOrderByWithAggregationInput = {
+    id?: SortOrder
+    flashSaleId?: SortOrder
+    buyerId?: SortOrder
+    channel?: SortOrder
+    status?: SortOrder
+    sentAt?: SortOrderInput | SortOrder
+    clickedAt?: SortOrderInput | SortOrder
+    _count?: FlashSaleNotificationCountOrderByAggregateInput
+    _max?: FlashSaleNotificationMaxOrderByAggregateInput
+    _min?: FlashSaleNotificationMinOrderByAggregateInput
+  }
+
+  export type FlashSaleNotificationScalarWhereWithAggregatesInput = {
+    AND?: FlashSaleNotificationScalarWhereWithAggregatesInput | FlashSaleNotificationScalarWhereWithAggregatesInput[]
+    OR?: FlashSaleNotificationScalarWhereWithAggregatesInput[]
+    NOT?: FlashSaleNotificationScalarWhereWithAggregatesInput | FlashSaleNotificationScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"FlashSaleNotification"> | string
+    flashSaleId?: StringWithAggregatesFilter<"FlashSaleNotification"> | string
+    buyerId?: StringWithAggregatesFilter<"FlashSaleNotification"> | string
+    channel?: EnumNotificationChannelWithAggregatesFilter<"FlashSaleNotification"> | $Enums.NotificationChannel
+    status?: EnumFlashSaleNotificationStatusWithAggregatesFilter<"FlashSaleNotification"> | $Enums.FlashSaleNotificationStatus
+    sentAt?: DateTimeNullableWithAggregatesFilter<"FlashSaleNotification"> | Date | string | null
+    clickedAt?: DateTimeNullableWithAggregatesFilter<"FlashSaleNotification"> | Date | string | null
+  }
+
   export type UserCreateInput = {
     id?: string
     phone: string
@@ -33943,6 +39490,8 @@ export namespace Prisma {
     lockoutUntil?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    flashSaleOptOut?: boolean
+    flashSaleRadius?: number
     farmerProfile?: FarmerProfileCreateNestedOneWithoutUserInput
     buyerProfile?: BuyerProfileCreateNestedOneWithoutUserInput
     transportProfile?: TransportProfileCreateNestedOneWithoutUserInput
@@ -33965,6 +39514,9 @@ export namespace Prisma {
     createdCoOps?: CoOpGroupCreateNestedManyWithoutCreatorInput
     coOpContributions?: CoOpMemberCreateNestedManyWithoutBuyerInput
     cropAlerts?: BuyerCropAlertCreateNestedManyWithoutBuyerInput
+    flashSalesCreated?: FlashSaleCreateNestedManyWithoutFarmerInput
+    flashSaleClaims?: FlashSaleClaimCreateNestedManyWithoutBuyerInput
+    flashSaleNotifications?: FlashSaleNotificationCreateNestedManyWithoutBuyerInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -33985,6 +39537,8 @@ export namespace Prisma {
     lockoutUntil?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    flashSaleOptOut?: boolean
+    flashSaleRadius?: number
     farmerProfile?: FarmerProfileUncheckedCreateNestedOneWithoutUserInput
     buyerProfile?: BuyerProfileUncheckedCreateNestedOneWithoutUserInput
     transportProfile?: TransportProfileUncheckedCreateNestedOneWithoutUserInput
@@ -34007,6 +39561,9 @@ export namespace Prisma {
     createdCoOps?: CoOpGroupUncheckedCreateNestedManyWithoutCreatorInput
     coOpContributions?: CoOpMemberUncheckedCreateNestedManyWithoutBuyerInput
     cropAlerts?: BuyerCropAlertUncheckedCreateNestedManyWithoutBuyerInput
+    flashSalesCreated?: FlashSaleUncheckedCreateNestedManyWithoutFarmerInput
+    flashSaleClaims?: FlashSaleClaimUncheckedCreateNestedManyWithoutBuyerInput
+    flashSaleNotifications?: FlashSaleNotificationUncheckedCreateNestedManyWithoutBuyerInput
   }
 
   export type UserUpdateInput = {
@@ -34027,6 +39584,8 @@ export namespace Prisma {
     lockoutUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    flashSaleOptOut?: BoolFieldUpdateOperationsInput | boolean
+    flashSaleRadius?: IntFieldUpdateOperationsInput | number
     farmerProfile?: FarmerProfileUpdateOneWithoutUserNestedInput
     buyerProfile?: BuyerProfileUpdateOneWithoutUserNestedInput
     transportProfile?: TransportProfileUpdateOneWithoutUserNestedInput
@@ -34049,6 +39608,9 @@ export namespace Prisma {
     createdCoOps?: CoOpGroupUpdateManyWithoutCreatorNestedInput
     coOpContributions?: CoOpMemberUpdateManyWithoutBuyerNestedInput
     cropAlerts?: BuyerCropAlertUpdateManyWithoutBuyerNestedInput
+    flashSalesCreated?: FlashSaleUpdateManyWithoutFarmerNestedInput
+    flashSaleClaims?: FlashSaleClaimUpdateManyWithoutBuyerNestedInput
+    flashSaleNotifications?: FlashSaleNotificationUpdateManyWithoutBuyerNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -34069,6 +39631,8 @@ export namespace Prisma {
     lockoutUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    flashSaleOptOut?: BoolFieldUpdateOperationsInput | boolean
+    flashSaleRadius?: IntFieldUpdateOperationsInput | number
     farmerProfile?: FarmerProfileUncheckedUpdateOneWithoutUserNestedInput
     buyerProfile?: BuyerProfileUncheckedUpdateOneWithoutUserNestedInput
     transportProfile?: TransportProfileUncheckedUpdateOneWithoutUserNestedInput
@@ -34091,6 +39655,9 @@ export namespace Prisma {
     createdCoOps?: CoOpGroupUncheckedUpdateManyWithoutCreatorNestedInput
     coOpContributions?: CoOpMemberUncheckedUpdateManyWithoutBuyerNestedInput
     cropAlerts?: BuyerCropAlertUncheckedUpdateManyWithoutBuyerNestedInput
+    flashSalesCreated?: FlashSaleUncheckedUpdateManyWithoutFarmerNestedInput
+    flashSaleClaims?: FlashSaleClaimUncheckedUpdateManyWithoutBuyerNestedInput
+    flashSaleNotifications?: FlashSaleNotificationUncheckedUpdateManyWithoutBuyerNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -34111,6 +39678,8 @@ export namespace Prisma {
     lockoutUntil?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    flashSaleOptOut?: boolean
+    flashSaleRadius?: number
   }
 
   export type UserUpdateManyMutationInput = {
@@ -34131,6 +39700,8 @@ export namespace Prisma {
     lockoutUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    flashSaleOptOut?: BoolFieldUpdateOperationsInput | boolean
+    flashSaleRadius?: IntFieldUpdateOperationsInput | number
   }
 
   export type UserUncheckedUpdateManyInput = {
@@ -34151,6 +39722,8 @@ export namespace Prisma {
     lockoutUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    flashSaleOptOut?: BoolFieldUpdateOperationsInput | boolean
+    flashSaleRadius?: IntFieldUpdateOperationsInput | number
   }
 
   export type FarmerProfileCreateInput = {
@@ -34406,6 +39979,10 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     source?: $Enums.CreationSource
+    currentRiskBand?: $Enums.SpoilageRiskBand
+    currentRiskScore?: number
+    lastRiskCalculatedAt?: Date | string | null
+    activeFlashSaleId?: string | null
     farmer: UserCreateNestedOneWithoutListingsInput
     orders?: OrderCreateNestedManyWithoutListingInput
     traceability?: TraceabilityRecordCreateNestedOneWithoutListingInput
@@ -34413,6 +39990,8 @@ export namespace Prisma {
     preOrders?: PreOrderCreateNestedManyWithoutMatchedListingInput
     coOps?: CoOpGroupCreateNestedManyWithoutListingInput
     plantingLog?: PlantingLogCreateNestedOneWithoutListingsInput
+    spoilageRiskLogs?: SpoilageRiskLogCreateNestedManyWithoutListingInput
+    flashSale?: FlashSaleCreateNestedOneWithoutListingInput
   }
 
   export type ProduceListingUncheckedCreateInput = {
@@ -34435,11 +40014,17 @@ export namespace Prisma {
     updatedAt?: Date | string
     source?: $Enums.CreationSource
     plantingLogId?: string | null
+    currentRiskBand?: $Enums.SpoilageRiskBand
+    currentRiskScore?: number
+    lastRiskCalculatedAt?: Date | string | null
+    activeFlashSaleId?: string | null
     orders?: OrderUncheckedCreateNestedManyWithoutListingInput
     traceability?: TraceabilityRecordUncheckedCreateNestedOneWithoutListingInput
     traceEvents?: TraceEventUncheckedCreateNestedManyWithoutListingInput
     preOrders?: PreOrderUncheckedCreateNestedManyWithoutMatchedListingInput
     coOps?: CoOpGroupUncheckedCreateNestedManyWithoutListingInput
+    spoilageRiskLogs?: SpoilageRiskLogUncheckedCreateNestedManyWithoutListingInput
+    flashSale?: FlashSaleUncheckedCreateNestedOneWithoutListingInput
   }
 
   export type ProduceListingUpdateInput = {
@@ -34460,6 +40045,10 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     source?: EnumCreationSourceFieldUpdateOperationsInput | $Enums.CreationSource
+    currentRiskBand?: EnumSpoilageRiskBandFieldUpdateOperationsInput | $Enums.SpoilageRiskBand
+    currentRiskScore?: FloatFieldUpdateOperationsInput | number
+    lastRiskCalculatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    activeFlashSaleId?: NullableStringFieldUpdateOperationsInput | string | null
     farmer?: UserUpdateOneRequiredWithoutListingsNestedInput
     orders?: OrderUpdateManyWithoutListingNestedInput
     traceability?: TraceabilityRecordUpdateOneWithoutListingNestedInput
@@ -34467,6 +40056,8 @@ export namespace Prisma {
     preOrders?: PreOrderUpdateManyWithoutMatchedListingNestedInput
     coOps?: CoOpGroupUpdateManyWithoutListingNestedInput
     plantingLog?: PlantingLogUpdateOneWithoutListingsNestedInput
+    spoilageRiskLogs?: SpoilageRiskLogUpdateManyWithoutListingNestedInput
+    flashSale?: FlashSaleUpdateOneWithoutListingNestedInput
   }
 
   export type ProduceListingUncheckedUpdateInput = {
@@ -34489,11 +40080,17 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     source?: EnumCreationSourceFieldUpdateOperationsInput | $Enums.CreationSource
     plantingLogId?: NullableStringFieldUpdateOperationsInput | string | null
+    currentRiskBand?: EnumSpoilageRiskBandFieldUpdateOperationsInput | $Enums.SpoilageRiskBand
+    currentRiskScore?: FloatFieldUpdateOperationsInput | number
+    lastRiskCalculatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    activeFlashSaleId?: NullableStringFieldUpdateOperationsInput | string | null
     orders?: OrderUncheckedUpdateManyWithoutListingNestedInput
     traceability?: TraceabilityRecordUncheckedUpdateOneWithoutListingNestedInput
     traceEvents?: TraceEventUncheckedUpdateManyWithoutListingNestedInput
     preOrders?: PreOrderUncheckedUpdateManyWithoutMatchedListingNestedInput
     coOps?: CoOpGroupUncheckedUpdateManyWithoutListingNestedInput
+    spoilageRiskLogs?: SpoilageRiskLogUncheckedUpdateManyWithoutListingNestedInput
+    flashSale?: FlashSaleUncheckedUpdateOneWithoutListingNestedInput
   }
 
   export type ProduceListingCreateManyInput = {
@@ -34516,6 +40113,10 @@ export namespace Prisma {
     updatedAt?: Date | string
     source?: $Enums.CreationSource
     plantingLogId?: string | null
+    currentRiskBand?: $Enums.SpoilageRiskBand
+    currentRiskScore?: number
+    lastRiskCalculatedAt?: Date | string | null
+    activeFlashSaleId?: string | null
   }
 
   export type ProduceListingUpdateManyMutationInput = {
@@ -34536,6 +40137,10 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     source?: EnumCreationSourceFieldUpdateOperationsInput | $Enums.CreationSource
+    currentRiskBand?: EnumSpoilageRiskBandFieldUpdateOperationsInput | $Enums.SpoilageRiskBand
+    currentRiskScore?: FloatFieldUpdateOperationsInput | number
+    lastRiskCalculatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    activeFlashSaleId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type ProduceListingUncheckedUpdateManyInput = {
@@ -34558,6 +40163,10 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     source?: EnumCreationSourceFieldUpdateOperationsInput | $Enums.CreationSource
     plantingLogId?: NullableStringFieldUpdateOperationsInput | string | null
+    currentRiskBand?: EnumSpoilageRiskBandFieldUpdateOperationsInput | $Enums.SpoilageRiskBand
+    currentRiskScore?: FloatFieldUpdateOperationsInput | number
+    lastRiskCalculatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    activeFlashSaleId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type TraceabilityRecordCreateInput = {
@@ -34736,6 +40345,7 @@ export namespace Prisma {
     messages?: MessageCreateNestedManyWithoutOrderInput
     preOrder?: PreOrderCreateNestedOneWithoutFulfilledOrderInput
     coOpMember?: CoOpMemberCreateNestedOneWithoutOrderInput
+    flashSaleClaims?: FlashSaleClaimCreateNestedManyWithoutOrderInput
   }
 
   export type OrderUncheckedCreateInput = {
@@ -34756,6 +40366,7 @@ export namespace Prisma {
     messages?: MessageUncheckedCreateNestedManyWithoutOrderInput
     preOrder?: PreOrderUncheckedCreateNestedOneWithoutFulfilledOrderInput
     coOpMember?: CoOpMemberUncheckedCreateNestedOneWithoutOrderInput
+    flashSaleClaims?: FlashSaleClaimUncheckedCreateNestedManyWithoutOrderInput
   }
 
   export type OrderUpdateInput = {
@@ -34776,6 +40387,7 @@ export namespace Prisma {
     messages?: MessageUpdateManyWithoutOrderNestedInput
     preOrder?: PreOrderUpdateOneWithoutFulfilledOrderNestedInput
     coOpMember?: CoOpMemberUpdateOneWithoutOrderNestedInput
+    flashSaleClaims?: FlashSaleClaimUpdateManyWithoutOrderNestedInput
   }
 
   export type OrderUncheckedUpdateInput = {
@@ -34796,6 +40408,7 @@ export namespace Prisma {
     messages?: MessageUncheckedUpdateManyWithoutOrderNestedInput
     preOrder?: PreOrderUncheckedUpdateOneWithoutFulfilledOrderNestedInput
     coOpMember?: CoOpMemberUncheckedUpdateOneWithoutOrderNestedInput
+    flashSaleClaims?: FlashSaleClaimUncheckedUpdateManyWithoutOrderNestedInput
   }
 
   export type OrderCreateManyInput = {
@@ -36466,6 +42079,405 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type SpoilageRiskLogCreateInput = {
+    id?: string
+    previousBand?: $Enums.SpoilageRiskBand | null
+    newBand: $Enums.SpoilageRiskBand
+    riskScore: number
+    hoursUntilExpiry: number
+    remainingKg: number
+    calculatedAt?: Date | string
+    triggeredFlashSale?: boolean
+    listing: ProduceListingCreateNestedOneWithoutSpoilageRiskLogsInput
+  }
+
+  export type SpoilageRiskLogUncheckedCreateInput = {
+    id?: string
+    listingId: string
+    previousBand?: $Enums.SpoilageRiskBand | null
+    newBand: $Enums.SpoilageRiskBand
+    riskScore: number
+    hoursUntilExpiry: number
+    remainingKg: number
+    calculatedAt?: Date | string
+    triggeredFlashSale?: boolean
+  }
+
+  export type SpoilageRiskLogUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    previousBand?: NullableEnumSpoilageRiskBandFieldUpdateOperationsInput | $Enums.SpoilageRiskBand | null
+    newBand?: EnumSpoilageRiskBandFieldUpdateOperationsInput | $Enums.SpoilageRiskBand
+    riskScore?: FloatFieldUpdateOperationsInput | number
+    hoursUntilExpiry?: FloatFieldUpdateOperationsInput | number
+    remainingKg?: FloatFieldUpdateOperationsInput | number
+    calculatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    triggeredFlashSale?: BoolFieldUpdateOperationsInput | boolean
+    listing?: ProduceListingUpdateOneRequiredWithoutSpoilageRiskLogsNestedInput
+  }
+
+  export type SpoilageRiskLogUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    listingId?: StringFieldUpdateOperationsInput | string
+    previousBand?: NullableEnumSpoilageRiskBandFieldUpdateOperationsInput | $Enums.SpoilageRiskBand | null
+    newBand?: EnumSpoilageRiskBandFieldUpdateOperationsInput | $Enums.SpoilageRiskBand
+    riskScore?: FloatFieldUpdateOperationsInput | number
+    hoursUntilExpiry?: FloatFieldUpdateOperationsInput | number
+    remainingKg?: FloatFieldUpdateOperationsInput | number
+    calculatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    triggeredFlashSale?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type SpoilageRiskLogCreateManyInput = {
+    id?: string
+    listingId: string
+    previousBand?: $Enums.SpoilageRiskBand | null
+    newBand: $Enums.SpoilageRiskBand
+    riskScore: number
+    hoursUntilExpiry: number
+    remainingKg: number
+    calculatedAt?: Date | string
+    triggeredFlashSale?: boolean
+  }
+
+  export type SpoilageRiskLogUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    previousBand?: NullableEnumSpoilageRiskBandFieldUpdateOperationsInput | $Enums.SpoilageRiskBand | null
+    newBand?: EnumSpoilageRiskBandFieldUpdateOperationsInput | $Enums.SpoilageRiskBand
+    riskScore?: FloatFieldUpdateOperationsInput | number
+    hoursUntilExpiry?: FloatFieldUpdateOperationsInput | number
+    remainingKg?: FloatFieldUpdateOperationsInput | number
+    calculatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    triggeredFlashSale?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type SpoilageRiskLogUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    listingId?: StringFieldUpdateOperationsInput | string
+    previousBand?: NullableEnumSpoilageRiskBandFieldUpdateOperationsInput | $Enums.SpoilageRiskBand | null
+    newBand?: EnumSpoilageRiskBandFieldUpdateOperationsInput | $Enums.SpoilageRiskBand
+    riskScore?: FloatFieldUpdateOperationsInput | number
+    hoursUntilExpiry?: FloatFieldUpdateOperationsInput | number
+    remainingKg?: FloatFieldUpdateOperationsInput | number
+    calculatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    triggeredFlashSale?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type FlashSaleCreateInput = {
+    id?: string
+    originalPricePerKg: number
+    discountPercent: number
+    flashPricePerKg: number
+    quantityKg: number
+    soldKg?: number
+    riskBand: $Enums.SpoilageRiskBand
+    riskScore: number
+    status?: $Enums.FlashSaleStatus
+    expiresAt: Date | string
+    farmerApproved?: boolean
+    cancelledAt?: Date | string | null
+    cancelReason?: string | null
+    notificationsSent?: number
+    buyersClaimed?: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    listing: ProduceListingCreateNestedOneWithoutFlashSaleInput
+    farmer: UserCreateNestedOneWithoutFlashSalesCreatedInput
+    claims?: FlashSaleClaimCreateNestedManyWithoutFlashSaleInput
+    notifications?: FlashSaleNotificationCreateNestedManyWithoutFlashSaleInput
+  }
+
+  export type FlashSaleUncheckedCreateInput = {
+    id?: string
+    listingId: string
+    farmerId: string
+    originalPricePerKg: number
+    discountPercent: number
+    flashPricePerKg: number
+    quantityKg: number
+    soldKg?: number
+    riskBand: $Enums.SpoilageRiskBand
+    riskScore: number
+    status?: $Enums.FlashSaleStatus
+    expiresAt: Date | string
+    farmerApproved?: boolean
+    cancelledAt?: Date | string | null
+    cancelReason?: string | null
+    notificationsSent?: number
+    buyersClaimed?: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    claims?: FlashSaleClaimUncheckedCreateNestedManyWithoutFlashSaleInput
+    notifications?: FlashSaleNotificationUncheckedCreateNestedManyWithoutFlashSaleInput
+  }
+
+  export type FlashSaleUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    originalPricePerKg?: FloatFieldUpdateOperationsInput | number
+    discountPercent?: FloatFieldUpdateOperationsInput | number
+    flashPricePerKg?: FloatFieldUpdateOperationsInput | number
+    quantityKg?: FloatFieldUpdateOperationsInput | number
+    soldKg?: FloatFieldUpdateOperationsInput | number
+    riskBand?: EnumSpoilageRiskBandFieldUpdateOperationsInput | $Enums.SpoilageRiskBand
+    riskScore?: FloatFieldUpdateOperationsInput | number
+    status?: EnumFlashSaleStatusFieldUpdateOperationsInput | $Enums.FlashSaleStatus
+    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    farmerApproved?: BoolFieldUpdateOperationsInput | boolean
+    cancelledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    cancelReason?: NullableStringFieldUpdateOperationsInput | string | null
+    notificationsSent?: IntFieldUpdateOperationsInput | number
+    buyersClaimed?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    listing?: ProduceListingUpdateOneRequiredWithoutFlashSaleNestedInput
+    farmer?: UserUpdateOneRequiredWithoutFlashSalesCreatedNestedInput
+    claims?: FlashSaleClaimUpdateManyWithoutFlashSaleNestedInput
+    notifications?: FlashSaleNotificationUpdateManyWithoutFlashSaleNestedInput
+  }
+
+  export type FlashSaleUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    listingId?: StringFieldUpdateOperationsInput | string
+    farmerId?: StringFieldUpdateOperationsInput | string
+    originalPricePerKg?: FloatFieldUpdateOperationsInput | number
+    discountPercent?: FloatFieldUpdateOperationsInput | number
+    flashPricePerKg?: FloatFieldUpdateOperationsInput | number
+    quantityKg?: FloatFieldUpdateOperationsInput | number
+    soldKg?: FloatFieldUpdateOperationsInput | number
+    riskBand?: EnumSpoilageRiskBandFieldUpdateOperationsInput | $Enums.SpoilageRiskBand
+    riskScore?: FloatFieldUpdateOperationsInput | number
+    status?: EnumFlashSaleStatusFieldUpdateOperationsInput | $Enums.FlashSaleStatus
+    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    farmerApproved?: BoolFieldUpdateOperationsInput | boolean
+    cancelledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    cancelReason?: NullableStringFieldUpdateOperationsInput | string | null
+    notificationsSent?: IntFieldUpdateOperationsInput | number
+    buyersClaimed?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    claims?: FlashSaleClaimUncheckedUpdateManyWithoutFlashSaleNestedInput
+    notifications?: FlashSaleNotificationUncheckedUpdateManyWithoutFlashSaleNestedInput
+  }
+
+  export type FlashSaleCreateManyInput = {
+    id?: string
+    listingId: string
+    farmerId: string
+    originalPricePerKg: number
+    discountPercent: number
+    flashPricePerKg: number
+    quantityKg: number
+    soldKg?: number
+    riskBand: $Enums.SpoilageRiskBand
+    riskScore: number
+    status?: $Enums.FlashSaleStatus
+    expiresAt: Date | string
+    farmerApproved?: boolean
+    cancelledAt?: Date | string | null
+    cancelReason?: string | null
+    notificationsSent?: number
+    buyersClaimed?: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type FlashSaleUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    originalPricePerKg?: FloatFieldUpdateOperationsInput | number
+    discountPercent?: FloatFieldUpdateOperationsInput | number
+    flashPricePerKg?: FloatFieldUpdateOperationsInput | number
+    quantityKg?: FloatFieldUpdateOperationsInput | number
+    soldKg?: FloatFieldUpdateOperationsInput | number
+    riskBand?: EnumSpoilageRiskBandFieldUpdateOperationsInput | $Enums.SpoilageRiskBand
+    riskScore?: FloatFieldUpdateOperationsInput | number
+    status?: EnumFlashSaleStatusFieldUpdateOperationsInput | $Enums.FlashSaleStatus
+    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    farmerApproved?: BoolFieldUpdateOperationsInput | boolean
+    cancelledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    cancelReason?: NullableStringFieldUpdateOperationsInput | string | null
+    notificationsSent?: IntFieldUpdateOperationsInput | number
+    buyersClaimed?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FlashSaleUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    listingId?: StringFieldUpdateOperationsInput | string
+    farmerId?: StringFieldUpdateOperationsInput | string
+    originalPricePerKg?: FloatFieldUpdateOperationsInput | number
+    discountPercent?: FloatFieldUpdateOperationsInput | number
+    flashPricePerKg?: FloatFieldUpdateOperationsInput | number
+    quantityKg?: FloatFieldUpdateOperationsInput | number
+    soldKg?: FloatFieldUpdateOperationsInput | number
+    riskBand?: EnumSpoilageRiskBandFieldUpdateOperationsInput | $Enums.SpoilageRiskBand
+    riskScore?: FloatFieldUpdateOperationsInput | number
+    status?: EnumFlashSaleStatusFieldUpdateOperationsInput | $Enums.FlashSaleStatus
+    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    farmerApproved?: BoolFieldUpdateOperationsInput | boolean
+    cancelledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    cancelReason?: NullableStringFieldUpdateOperationsInput | string | null
+    notificationsSent?: IntFieldUpdateOperationsInput | number
+    buyersClaimed?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FlashSaleClaimCreateInput = {
+    id?: string
+    quantityKg: number
+    pricePerKg: number
+    totalPrice: number
+    status: $Enums.FlashSaleClaimStatus
+    claimedAt?: Date | string
+    expiresAt: Date | string
+    flashSale: FlashSaleCreateNestedOneWithoutClaimsInput
+    buyer: UserCreateNestedOneWithoutFlashSaleClaimsInput
+    order?: OrderCreateNestedOneWithoutFlashSaleClaimsInput
+  }
+
+  export type FlashSaleClaimUncheckedCreateInput = {
+    id?: string
+    flashSaleId: string
+    buyerId: string
+    quantityKg: number
+    pricePerKg: number
+    totalPrice: number
+    orderId?: string | null
+    status: $Enums.FlashSaleClaimStatus
+    claimedAt?: Date | string
+    expiresAt: Date | string
+  }
+
+  export type FlashSaleClaimUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    quantityKg?: FloatFieldUpdateOperationsInput | number
+    pricePerKg?: FloatFieldUpdateOperationsInput | number
+    totalPrice?: FloatFieldUpdateOperationsInput | number
+    status?: EnumFlashSaleClaimStatusFieldUpdateOperationsInput | $Enums.FlashSaleClaimStatus
+    claimedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    flashSale?: FlashSaleUpdateOneRequiredWithoutClaimsNestedInput
+    buyer?: UserUpdateOneRequiredWithoutFlashSaleClaimsNestedInput
+    order?: OrderUpdateOneWithoutFlashSaleClaimsNestedInput
+  }
+
+  export type FlashSaleClaimUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    flashSaleId?: StringFieldUpdateOperationsInput | string
+    buyerId?: StringFieldUpdateOperationsInput | string
+    quantityKg?: FloatFieldUpdateOperationsInput | number
+    pricePerKg?: FloatFieldUpdateOperationsInput | number
+    totalPrice?: FloatFieldUpdateOperationsInput | number
+    orderId?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumFlashSaleClaimStatusFieldUpdateOperationsInput | $Enums.FlashSaleClaimStatus
+    claimedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FlashSaleClaimCreateManyInput = {
+    id?: string
+    flashSaleId: string
+    buyerId: string
+    quantityKg: number
+    pricePerKg: number
+    totalPrice: number
+    orderId?: string | null
+    status: $Enums.FlashSaleClaimStatus
+    claimedAt?: Date | string
+    expiresAt: Date | string
+  }
+
+  export type FlashSaleClaimUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    quantityKg?: FloatFieldUpdateOperationsInput | number
+    pricePerKg?: FloatFieldUpdateOperationsInput | number
+    totalPrice?: FloatFieldUpdateOperationsInput | number
+    status?: EnumFlashSaleClaimStatusFieldUpdateOperationsInput | $Enums.FlashSaleClaimStatus
+    claimedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FlashSaleClaimUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    flashSaleId?: StringFieldUpdateOperationsInput | string
+    buyerId?: StringFieldUpdateOperationsInput | string
+    quantityKg?: FloatFieldUpdateOperationsInput | number
+    pricePerKg?: FloatFieldUpdateOperationsInput | number
+    totalPrice?: FloatFieldUpdateOperationsInput | number
+    orderId?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumFlashSaleClaimStatusFieldUpdateOperationsInput | $Enums.FlashSaleClaimStatus
+    claimedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FlashSaleNotificationCreateInput = {
+    id?: string
+    channel: $Enums.NotificationChannel
+    status?: $Enums.FlashSaleNotificationStatus
+    sentAt?: Date | string | null
+    clickedAt?: Date | string | null
+    flashSale: FlashSaleCreateNestedOneWithoutNotificationsInput
+    buyer: UserCreateNestedOneWithoutFlashSaleNotificationsInput
+  }
+
+  export type FlashSaleNotificationUncheckedCreateInput = {
+    id?: string
+    flashSaleId: string
+    buyerId: string
+    channel: $Enums.NotificationChannel
+    status?: $Enums.FlashSaleNotificationStatus
+    sentAt?: Date | string | null
+    clickedAt?: Date | string | null
+  }
+
+  export type FlashSaleNotificationUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    channel?: EnumNotificationChannelFieldUpdateOperationsInput | $Enums.NotificationChannel
+    status?: EnumFlashSaleNotificationStatusFieldUpdateOperationsInput | $Enums.FlashSaleNotificationStatus
+    sentAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    clickedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    flashSale?: FlashSaleUpdateOneRequiredWithoutNotificationsNestedInput
+    buyer?: UserUpdateOneRequiredWithoutFlashSaleNotificationsNestedInput
+  }
+
+  export type FlashSaleNotificationUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    flashSaleId?: StringFieldUpdateOperationsInput | string
+    buyerId?: StringFieldUpdateOperationsInput | string
+    channel?: EnumNotificationChannelFieldUpdateOperationsInput | $Enums.NotificationChannel
+    status?: EnumFlashSaleNotificationStatusFieldUpdateOperationsInput | $Enums.FlashSaleNotificationStatus
+    sentAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    clickedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type FlashSaleNotificationCreateManyInput = {
+    id?: string
+    flashSaleId: string
+    buyerId: string
+    channel: $Enums.NotificationChannel
+    status?: $Enums.FlashSaleNotificationStatus
+    sentAt?: Date | string | null
+    clickedAt?: Date | string | null
+  }
+
+  export type FlashSaleNotificationUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    channel?: EnumNotificationChannelFieldUpdateOperationsInput | $Enums.NotificationChannel
+    status?: EnumFlashSaleNotificationStatusFieldUpdateOperationsInput | $Enums.FlashSaleNotificationStatus
+    sentAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    clickedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type FlashSaleNotificationUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    flashSaleId?: StringFieldUpdateOperationsInput | string
+    buyerId?: StringFieldUpdateOperationsInput | string
+    channel?: EnumNotificationChannelFieldUpdateOperationsInput | $Enums.NotificationChannel
+    status?: EnumFlashSaleNotificationStatusFieldUpdateOperationsInput | $Enums.FlashSaleNotificationStatus
+    sentAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    clickedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
   export type StringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -36539,6 +42551,17 @@ export namespace Prisma {
     gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     not?: NestedDateTimeFilter<$PrismaModel> | Date | string
+  }
+
+  export type IntFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntFilter<$PrismaModel> | number
   }
 
   export type FarmerProfileNullableRelationFilter = {
@@ -36657,6 +42680,24 @@ export namespace Prisma {
     none?: BuyerCropAlertWhereInput
   }
 
+  export type FlashSaleListRelationFilter = {
+    every?: FlashSaleWhereInput
+    some?: FlashSaleWhereInput
+    none?: FlashSaleWhereInput
+  }
+
+  export type FlashSaleClaimListRelationFilter = {
+    every?: FlashSaleClaimWhereInput
+    some?: FlashSaleClaimWhereInput
+    none?: FlashSaleClaimWhereInput
+  }
+
+  export type FlashSaleNotificationListRelationFilter = {
+    every?: FlashSaleNotificationWhereInput
+    some?: FlashSaleNotificationWhereInput
+    none?: FlashSaleNotificationWhereInput
+  }
+
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
@@ -36726,6 +42767,18 @@ export namespace Prisma {
     _count?: SortOrder
   }
 
+  export type FlashSaleOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type FlashSaleClaimOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type FlashSaleNotificationOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
   export type UserCountOrderByAggregateInput = {
     id?: SortOrder
     phone?: SortOrder
@@ -36744,11 +42797,14 @@ export namespace Prisma {
     lockoutUntil?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    flashSaleOptOut?: SortOrder
+    flashSaleRadius?: SortOrder
   }
 
   export type UserAvgOrderByAggregateInput = {
     latitude?: SortOrder
     longitude?: SortOrder
+    flashSaleRadius?: SortOrder
   }
 
   export type UserMaxOrderByAggregateInput = {
@@ -36769,6 +42825,8 @@ export namespace Prisma {
     lockoutUntil?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    flashSaleOptOut?: SortOrder
+    flashSaleRadius?: SortOrder
   }
 
   export type UserMinOrderByAggregateInput = {
@@ -36789,11 +42847,14 @@ export namespace Prisma {
     lockoutUntil?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    flashSaleOptOut?: SortOrder
+    flashSaleRadius?: SortOrder
   }
 
   export type UserSumOrderByAggregateInput = {
     latitude?: SortOrder
     longitude?: SortOrder
+    flashSaleRadius?: SortOrder
   }
 
   export type StringWithAggregatesFilter<$PrismaModel = never> = {
@@ -36894,6 +42955,22 @@ export namespace Prisma {
     _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
+  export type IntWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedIntFilter<$PrismaModel>
+    _min?: NestedIntFilter<$PrismaModel>
+    _max?: NestedIntFilter<$PrismaModel>
+  }
+
   export type StringNullableListFilter<$PrismaModel = never> = {
     equals?: string[] | ListStringFieldRefInput<$PrismaModel> | null
     has?: string | StringFieldRefInput<$PrismaModel> | null
@@ -36911,17 +42988,6 @@ export namespace Prisma {
     gt?: number | FloatFieldRefInput<$PrismaModel>
     gte?: number | FloatFieldRefInput<$PrismaModel>
     not?: NestedFloatFilter<$PrismaModel> | number
-  }
-
-  export type IntFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[] | ListIntFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntFilter<$PrismaModel> | number
   }
 
   export type UserRelationFilter = {
@@ -36986,22 +43052,6 @@ export namespace Prisma {
     _sum?: NestedFloatFilter<$PrismaModel>
     _min?: NestedFloatFilter<$PrismaModel>
     _max?: NestedFloatFilter<$PrismaModel>
-  }
-
-  export type IntWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[] | ListIntFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
-    _count?: NestedIntFilter<$PrismaModel>
-    _avg?: NestedFloatFilter<$PrismaModel>
-    _sum?: NestedIntFilter<$PrismaModel>
-    _min?: NestedIntFilter<$PrismaModel>
-    _max?: NestedIntFilter<$PrismaModel>
   }
 
   export type EnumBusinessTypeFilter<$PrismaModel = never> = {
@@ -37142,6 +43192,13 @@ export namespace Prisma {
     not?: NestedEnumCreationSourceFilter<$PrismaModel> | $Enums.CreationSource
   }
 
+  export type EnumSpoilageRiskBandFilter<$PrismaModel = never> = {
+    equals?: $Enums.SpoilageRiskBand | EnumSpoilageRiskBandFieldRefInput<$PrismaModel>
+    in?: $Enums.SpoilageRiskBand[] | ListEnumSpoilageRiskBandFieldRefInput<$PrismaModel>
+    notIn?: $Enums.SpoilageRiskBand[] | ListEnumSpoilageRiskBandFieldRefInput<$PrismaModel>
+    not?: NestedEnumSpoilageRiskBandFilter<$PrismaModel> | $Enums.SpoilageRiskBand
+  }
+
   export type TraceabilityRecordNullableRelationFilter = {
     is?: TraceabilityRecordWhereInput | null
     isNot?: TraceabilityRecordWhereInput | null
@@ -37150,6 +43207,21 @@ export namespace Prisma {
   export type PlantingLogNullableRelationFilter = {
     is?: PlantingLogWhereInput | null
     isNot?: PlantingLogWhereInput | null
+  }
+
+  export type SpoilageRiskLogListRelationFilter = {
+    every?: SpoilageRiskLogWhereInput
+    some?: SpoilageRiskLogWhereInput
+    none?: SpoilageRiskLogWhereInput
+  }
+
+  export type FlashSaleNullableRelationFilter = {
+    is?: FlashSaleWhereInput | null
+    isNot?: FlashSaleWhereInput | null
+  }
+
+  export type SpoilageRiskLogOrderByRelationAggregateInput = {
+    _count?: SortOrder
   }
 
   export type ProduceListingCountOrderByAggregateInput = {
@@ -37172,6 +43244,10 @@ export namespace Prisma {
     updatedAt?: SortOrder
     source?: SortOrder
     plantingLogId?: SortOrder
+    currentRiskBand?: SortOrder
+    currentRiskScore?: SortOrder
+    lastRiskCalculatedAt?: SortOrder
+    activeFlashSaleId?: SortOrder
   }
 
   export type ProduceListingAvgOrderByAggregateInput = {
@@ -37180,6 +43256,7 @@ export namespace Prisma {
     pricePerKg?: SortOrder
     latitude?: SortOrder
     longitude?: SortOrder
+    currentRiskScore?: SortOrder
   }
 
   export type ProduceListingMaxOrderByAggregateInput = {
@@ -37201,6 +43278,10 @@ export namespace Prisma {
     updatedAt?: SortOrder
     source?: SortOrder
     plantingLogId?: SortOrder
+    currentRiskBand?: SortOrder
+    currentRiskScore?: SortOrder
+    lastRiskCalculatedAt?: SortOrder
+    activeFlashSaleId?: SortOrder
   }
 
   export type ProduceListingMinOrderByAggregateInput = {
@@ -37222,6 +43303,10 @@ export namespace Prisma {
     updatedAt?: SortOrder
     source?: SortOrder
     plantingLogId?: SortOrder
+    currentRiskBand?: SortOrder
+    currentRiskScore?: SortOrder
+    lastRiskCalculatedAt?: SortOrder
+    activeFlashSaleId?: SortOrder
   }
 
   export type ProduceListingSumOrderByAggregateInput = {
@@ -37230,6 +43315,7 @@ export namespace Prisma {
     pricePerKg?: SortOrder
     latitude?: SortOrder
     longitude?: SortOrder
+    currentRiskScore?: SortOrder
   }
 
   export type EnumCropTypeWithAggregatesFilter<$PrismaModel = never> = {
@@ -37270,6 +43356,16 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumCreationSourceFilter<$PrismaModel>
     _max?: NestedEnumCreationSourceFilter<$PrismaModel>
+  }
+
+  export type EnumSpoilageRiskBandWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.SpoilageRiskBand | EnumSpoilageRiskBandFieldRefInput<$PrismaModel>
+    in?: $Enums.SpoilageRiskBand[] | ListEnumSpoilageRiskBandFieldRefInput<$PrismaModel>
+    notIn?: $Enums.SpoilageRiskBand[] | ListEnumSpoilageRiskBandFieldRefInput<$PrismaModel>
+    not?: NestedEnumSpoilageRiskBandWithAggregatesFilter<$PrismaModel> | $Enums.SpoilageRiskBand
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumSpoilageRiskBandFilter<$PrismaModel>
+    _max?: NestedEnumSpoilageRiskBandFilter<$PrismaModel>
   }
 
   export type ProduceListingRelationFilter = {
@@ -38484,6 +44580,318 @@ export namespace Prisma {
     maxPricePerKg?: SortOrder
   }
 
+  export type EnumSpoilageRiskBandNullableFilter<$PrismaModel = never> = {
+    equals?: $Enums.SpoilageRiskBand | EnumSpoilageRiskBandFieldRefInput<$PrismaModel> | null
+    in?: $Enums.SpoilageRiskBand[] | ListEnumSpoilageRiskBandFieldRefInput<$PrismaModel> | null
+    notIn?: $Enums.SpoilageRiskBand[] | ListEnumSpoilageRiskBandFieldRefInput<$PrismaModel> | null
+    not?: NestedEnumSpoilageRiskBandNullableFilter<$PrismaModel> | $Enums.SpoilageRiskBand | null
+  }
+
+  export type SpoilageRiskLogCountOrderByAggregateInput = {
+    id?: SortOrder
+    listingId?: SortOrder
+    previousBand?: SortOrder
+    newBand?: SortOrder
+    riskScore?: SortOrder
+    hoursUntilExpiry?: SortOrder
+    remainingKg?: SortOrder
+    calculatedAt?: SortOrder
+    triggeredFlashSale?: SortOrder
+  }
+
+  export type SpoilageRiskLogAvgOrderByAggregateInput = {
+    riskScore?: SortOrder
+    hoursUntilExpiry?: SortOrder
+    remainingKg?: SortOrder
+  }
+
+  export type SpoilageRiskLogMaxOrderByAggregateInput = {
+    id?: SortOrder
+    listingId?: SortOrder
+    previousBand?: SortOrder
+    newBand?: SortOrder
+    riskScore?: SortOrder
+    hoursUntilExpiry?: SortOrder
+    remainingKg?: SortOrder
+    calculatedAt?: SortOrder
+    triggeredFlashSale?: SortOrder
+  }
+
+  export type SpoilageRiskLogMinOrderByAggregateInput = {
+    id?: SortOrder
+    listingId?: SortOrder
+    previousBand?: SortOrder
+    newBand?: SortOrder
+    riskScore?: SortOrder
+    hoursUntilExpiry?: SortOrder
+    remainingKg?: SortOrder
+    calculatedAt?: SortOrder
+    triggeredFlashSale?: SortOrder
+  }
+
+  export type SpoilageRiskLogSumOrderByAggregateInput = {
+    riskScore?: SortOrder
+    hoursUntilExpiry?: SortOrder
+    remainingKg?: SortOrder
+  }
+
+  export type EnumSpoilageRiskBandNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.SpoilageRiskBand | EnumSpoilageRiskBandFieldRefInput<$PrismaModel> | null
+    in?: $Enums.SpoilageRiskBand[] | ListEnumSpoilageRiskBandFieldRefInput<$PrismaModel> | null
+    notIn?: $Enums.SpoilageRiskBand[] | ListEnumSpoilageRiskBandFieldRefInput<$PrismaModel> | null
+    not?: NestedEnumSpoilageRiskBandNullableWithAggregatesFilter<$PrismaModel> | $Enums.SpoilageRiskBand | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedEnumSpoilageRiskBandNullableFilter<$PrismaModel>
+    _max?: NestedEnumSpoilageRiskBandNullableFilter<$PrismaModel>
+  }
+
+  export type EnumFlashSaleStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.FlashSaleStatus | EnumFlashSaleStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.FlashSaleStatus[] | ListEnumFlashSaleStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.FlashSaleStatus[] | ListEnumFlashSaleStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumFlashSaleStatusFilter<$PrismaModel> | $Enums.FlashSaleStatus
+  }
+
+  export type FlashSaleCountOrderByAggregateInput = {
+    id?: SortOrder
+    listingId?: SortOrder
+    farmerId?: SortOrder
+    originalPricePerKg?: SortOrder
+    discountPercent?: SortOrder
+    flashPricePerKg?: SortOrder
+    quantityKg?: SortOrder
+    soldKg?: SortOrder
+    riskBand?: SortOrder
+    riskScore?: SortOrder
+    status?: SortOrder
+    expiresAt?: SortOrder
+    farmerApproved?: SortOrder
+    cancelledAt?: SortOrder
+    cancelReason?: SortOrder
+    notificationsSent?: SortOrder
+    buyersClaimed?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type FlashSaleAvgOrderByAggregateInput = {
+    originalPricePerKg?: SortOrder
+    discountPercent?: SortOrder
+    flashPricePerKg?: SortOrder
+    quantityKg?: SortOrder
+    soldKg?: SortOrder
+    riskScore?: SortOrder
+    notificationsSent?: SortOrder
+    buyersClaimed?: SortOrder
+  }
+
+  export type FlashSaleMaxOrderByAggregateInput = {
+    id?: SortOrder
+    listingId?: SortOrder
+    farmerId?: SortOrder
+    originalPricePerKg?: SortOrder
+    discountPercent?: SortOrder
+    flashPricePerKg?: SortOrder
+    quantityKg?: SortOrder
+    soldKg?: SortOrder
+    riskBand?: SortOrder
+    riskScore?: SortOrder
+    status?: SortOrder
+    expiresAt?: SortOrder
+    farmerApproved?: SortOrder
+    cancelledAt?: SortOrder
+    cancelReason?: SortOrder
+    notificationsSent?: SortOrder
+    buyersClaimed?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type FlashSaleMinOrderByAggregateInput = {
+    id?: SortOrder
+    listingId?: SortOrder
+    farmerId?: SortOrder
+    originalPricePerKg?: SortOrder
+    discountPercent?: SortOrder
+    flashPricePerKg?: SortOrder
+    quantityKg?: SortOrder
+    soldKg?: SortOrder
+    riskBand?: SortOrder
+    riskScore?: SortOrder
+    status?: SortOrder
+    expiresAt?: SortOrder
+    farmerApproved?: SortOrder
+    cancelledAt?: SortOrder
+    cancelReason?: SortOrder
+    notificationsSent?: SortOrder
+    buyersClaimed?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type FlashSaleSumOrderByAggregateInput = {
+    originalPricePerKg?: SortOrder
+    discountPercent?: SortOrder
+    flashPricePerKg?: SortOrder
+    quantityKg?: SortOrder
+    soldKg?: SortOrder
+    riskScore?: SortOrder
+    notificationsSent?: SortOrder
+    buyersClaimed?: SortOrder
+  }
+
+  export type EnumFlashSaleStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.FlashSaleStatus | EnumFlashSaleStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.FlashSaleStatus[] | ListEnumFlashSaleStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.FlashSaleStatus[] | ListEnumFlashSaleStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumFlashSaleStatusWithAggregatesFilter<$PrismaModel> | $Enums.FlashSaleStatus
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumFlashSaleStatusFilter<$PrismaModel>
+    _max?: NestedEnumFlashSaleStatusFilter<$PrismaModel>
+  }
+
+  export type EnumFlashSaleClaimStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.FlashSaleClaimStatus | EnumFlashSaleClaimStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.FlashSaleClaimStatus[] | ListEnumFlashSaleClaimStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.FlashSaleClaimStatus[] | ListEnumFlashSaleClaimStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumFlashSaleClaimStatusFilter<$PrismaModel> | $Enums.FlashSaleClaimStatus
+  }
+
+  export type FlashSaleRelationFilter = {
+    is?: FlashSaleWhereInput
+    isNot?: FlashSaleWhereInput
+  }
+
+  export type FlashSaleClaimFlashSaleIdBuyerIdCompoundUniqueInput = {
+    flashSaleId: string
+    buyerId: string
+  }
+
+  export type FlashSaleClaimCountOrderByAggregateInput = {
+    id?: SortOrder
+    flashSaleId?: SortOrder
+    buyerId?: SortOrder
+    quantityKg?: SortOrder
+    pricePerKg?: SortOrder
+    totalPrice?: SortOrder
+    orderId?: SortOrder
+    status?: SortOrder
+    claimedAt?: SortOrder
+    expiresAt?: SortOrder
+  }
+
+  export type FlashSaleClaimAvgOrderByAggregateInput = {
+    quantityKg?: SortOrder
+    pricePerKg?: SortOrder
+    totalPrice?: SortOrder
+  }
+
+  export type FlashSaleClaimMaxOrderByAggregateInput = {
+    id?: SortOrder
+    flashSaleId?: SortOrder
+    buyerId?: SortOrder
+    quantityKg?: SortOrder
+    pricePerKg?: SortOrder
+    totalPrice?: SortOrder
+    orderId?: SortOrder
+    status?: SortOrder
+    claimedAt?: SortOrder
+    expiresAt?: SortOrder
+  }
+
+  export type FlashSaleClaimMinOrderByAggregateInput = {
+    id?: SortOrder
+    flashSaleId?: SortOrder
+    buyerId?: SortOrder
+    quantityKg?: SortOrder
+    pricePerKg?: SortOrder
+    totalPrice?: SortOrder
+    orderId?: SortOrder
+    status?: SortOrder
+    claimedAt?: SortOrder
+    expiresAt?: SortOrder
+  }
+
+  export type FlashSaleClaimSumOrderByAggregateInput = {
+    quantityKg?: SortOrder
+    pricePerKg?: SortOrder
+    totalPrice?: SortOrder
+  }
+
+  export type EnumFlashSaleClaimStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.FlashSaleClaimStatus | EnumFlashSaleClaimStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.FlashSaleClaimStatus[] | ListEnumFlashSaleClaimStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.FlashSaleClaimStatus[] | ListEnumFlashSaleClaimStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumFlashSaleClaimStatusWithAggregatesFilter<$PrismaModel> | $Enums.FlashSaleClaimStatus
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumFlashSaleClaimStatusFilter<$PrismaModel>
+    _max?: NestedEnumFlashSaleClaimStatusFilter<$PrismaModel>
+  }
+
+  export type EnumNotificationChannelFilter<$PrismaModel = never> = {
+    equals?: $Enums.NotificationChannel | EnumNotificationChannelFieldRefInput<$PrismaModel>
+    in?: $Enums.NotificationChannel[] | ListEnumNotificationChannelFieldRefInput<$PrismaModel>
+    notIn?: $Enums.NotificationChannel[] | ListEnumNotificationChannelFieldRefInput<$PrismaModel>
+    not?: NestedEnumNotificationChannelFilter<$PrismaModel> | $Enums.NotificationChannel
+  }
+
+  export type EnumFlashSaleNotificationStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.FlashSaleNotificationStatus | EnumFlashSaleNotificationStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.FlashSaleNotificationStatus[] | ListEnumFlashSaleNotificationStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.FlashSaleNotificationStatus[] | ListEnumFlashSaleNotificationStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumFlashSaleNotificationStatusFilter<$PrismaModel> | $Enums.FlashSaleNotificationStatus
+  }
+
+  export type FlashSaleNotificationCountOrderByAggregateInput = {
+    id?: SortOrder
+    flashSaleId?: SortOrder
+    buyerId?: SortOrder
+    channel?: SortOrder
+    status?: SortOrder
+    sentAt?: SortOrder
+    clickedAt?: SortOrder
+  }
+
+  export type FlashSaleNotificationMaxOrderByAggregateInput = {
+    id?: SortOrder
+    flashSaleId?: SortOrder
+    buyerId?: SortOrder
+    channel?: SortOrder
+    status?: SortOrder
+    sentAt?: SortOrder
+    clickedAt?: SortOrder
+  }
+
+  export type FlashSaleNotificationMinOrderByAggregateInput = {
+    id?: SortOrder
+    flashSaleId?: SortOrder
+    buyerId?: SortOrder
+    channel?: SortOrder
+    status?: SortOrder
+    sentAt?: SortOrder
+    clickedAt?: SortOrder
+  }
+
+  export type EnumNotificationChannelWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.NotificationChannel | EnumNotificationChannelFieldRefInput<$PrismaModel>
+    in?: $Enums.NotificationChannel[] | ListEnumNotificationChannelFieldRefInput<$PrismaModel>
+    notIn?: $Enums.NotificationChannel[] | ListEnumNotificationChannelFieldRefInput<$PrismaModel>
+    not?: NestedEnumNotificationChannelWithAggregatesFilter<$PrismaModel> | $Enums.NotificationChannel
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumNotificationChannelFilter<$PrismaModel>
+    _max?: NestedEnumNotificationChannelFilter<$PrismaModel>
+  }
+
+  export type EnumFlashSaleNotificationStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.FlashSaleNotificationStatus | EnumFlashSaleNotificationStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.FlashSaleNotificationStatus[] | ListEnumFlashSaleNotificationStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.FlashSaleNotificationStatus[] | ListEnumFlashSaleNotificationStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumFlashSaleNotificationStatusWithAggregatesFilter<$PrismaModel> | $Enums.FlashSaleNotificationStatus
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumFlashSaleNotificationStatusFilter<$PrismaModel>
+    _max?: NestedEnumFlashSaleNotificationStatusFilter<$PrismaModel>
+  }
+
   export type FarmerProfileCreateNestedOneWithoutUserInput = {
     create?: XOR<FarmerProfileCreateWithoutUserInput, FarmerProfileUncheckedCreateWithoutUserInput>
     connectOrCreate?: FarmerProfileCreateOrConnectWithoutUserInput
@@ -38632,6 +45040,27 @@ export namespace Prisma {
     connectOrCreate?: BuyerCropAlertCreateOrConnectWithoutBuyerInput | BuyerCropAlertCreateOrConnectWithoutBuyerInput[]
     createMany?: BuyerCropAlertCreateManyBuyerInputEnvelope
     connect?: BuyerCropAlertWhereUniqueInput | BuyerCropAlertWhereUniqueInput[]
+  }
+
+  export type FlashSaleCreateNestedManyWithoutFarmerInput = {
+    create?: XOR<FlashSaleCreateWithoutFarmerInput, FlashSaleUncheckedCreateWithoutFarmerInput> | FlashSaleCreateWithoutFarmerInput[] | FlashSaleUncheckedCreateWithoutFarmerInput[]
+    connectOrCreate?: FlashSaleCreateOrConnectWithoutFarmerInput | FlashSaleCreateOrConnectWithoutFarmerInput[]
+    createMany?: FlashSaleCreateManyFarmerInputEnvelope
+    connect?: FlashSaleWhereUniqueInput | FlashSaleWhereUniqueInput[]
+  }
+
+  export type FlashSaleClaimCreateNestedManyWithoutBuyerInput = {
+    create?: XOR<FlashSaleClaimCreateWithoutBuyerInput, FlashSaleClaimUncheckedCreateWithoutBuyerInput> | FlashSaleClaimCreateWithoutBuyerInput[] | FlashSaleClaimUncheckedCreateWithoutBuyerInput[]
+    connectOrCreate?: FlashSaleClaimCreateOrConnectWithoutBuyerInput | FlashSaleClaimCreateOrConnectWithoutBuyerInput[]
+    createMany?: FlashSaleClaimCreateManyBuyerInputEnvelope
+    connect?: FlashSaleClaimWhereUniqueInput | FlashSaleClaimWhereUniqueInput[]
+  }
+
+  export type FlashSaleNotificationCreateNestedManyWithoutBuyerInput = {
+    create?: XOR<FlashSaleNotificationCreateWithoutBuyerInput, FlashSaleNotificationUncheckedCreateWithoutBuyerInput> | FlashSaleNotificationCreateWithoutBuyerInput[] | FlashSaleNotificationUncheckedCreateWithoutBuyerInput[]
+    connectOrCreate?: FlashSaleNotificationCreateOrConnectWithoutBuyerInput | FlashSaleNotificationCreateOrConnectWithoutBuyerInput[]
+    createMany?: FlashSaleNotificationCreateManyBuyerInputEnvelope
+    connect?: FlashSaleNotificationWhereUniqueInput | FlashSaleNotificationWhereUniqueInput[]
   }
 
   export type FarmerProfileUncheckedCreateNestedOneWithoutUserInput = {
@@ -38784,6 +45213,27 @@ export namespace Prisma {
     connect?: BuyerCropAlertWhereUniqueInput | BuyerCropAlertWhereUniqueInput[]
   }
 
+  export type FlashSaleUncheckedCreateNestedManyWithoutFarmerInput = {
+    create?: XOR<FlashSaleCreateWithoutFarmerInput, FlashSaleUncheckedCreateWithoutFarmerInput> | FlashSaleCreateWithoutFarmerInput[] | FlashSaleUncheckedCreateWithoutFarmerInput[]
+    connectOrCreate?: FlashSaleCreateOrConnectWithoutFarmerInput | FlashSaleCreateOrConnectWithoutFarmerInput[]
+    createMany?: FlashSaleCreateManyFarmerInputEnvelope
+    connect?: FlashSaleWhereUniqueInput | FlashSaleWhereUniqueInput[]
+  }
+
+  export type FlashSaleClaimUncheckedCreateNestedManyWithoutBuyerInput = {
+    create?: XOR<FlashSaleClaimCreateWithoutBuyerInput, FlashSaleClaimUncheckedCreateWithoutBuyerInput> | FlashSaleClaimCreateWithoutBuyerInput[] | FlashSaleClaimUncheckedCreateWithoutBuyerInput[]
+    connectOrCreate?: FlashSaleClaimCreateOrConnectWithoutBuyerInput | FlashSaleClaimCreateOrConnectWithoutBuyerInput[]
+    createMany?: FlashSaleClaimCreateManyBuyerInputEnvelope
+    connect?: FlashSaleClaimWhereUniqueInput | FlashSaleClaimWhereUniqueInput[]
+  }
+
+  export type FlashSaleNotificationUncheckedCreateNestedManyWithoutBuyerInput = {
+    create?: XOR<FlashSaleNotificationCreateWithoutBuyerInput, FlashSaleNotificationUncheckedCreateWithoutBuyerInput> | FlashSaleNotificationCreateWithoutBuyerInput[] | FlashSaleNotificationUncheckedCreateWithoutBuyerInput[]
+    connectOrCreate?: FlashSaleNotificationCreateOrConnectWithoutBuyerInput | FlashSaleNotificationCreateOrConnectWithoutBuyerInput[]
+    createMany?: FlashSaleNotificationCreateManyBuyerInputEnvelope
+    connect?: FlashSaleNotificationWhereUniqueInput | FlashSaleNotificationWhereUniqueInput[]
+  }
+
   export type StringFieldUpdateOperationsInput = {
     set?: string
   }
@@ -38814,6 +45264,14 @@ export namespace Prisma {
 
   export type DateTimeFieldUpdateOperationsInput = {
     set?: Date | string
+  }
+
+  export type IntFieldUpdateOperationsInput = {
+    set?: number
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
   }
 
   export type FarmerProfileUpdateOneWithoutUserNestedInput = {
@@ -39108,6 +45566,48 @@ export namespace Prisma {
     deleteMany?: BuyerCropAlertScalarWhereInput | BuyerCropAlertScalarWhereInput[]
   }
 
+  export type FlashSaleUpdateManyWithoutFarmerNestedInput = {
+    create?: XOR<FlashSaleCreateWithoutFarmerInput, FlashSaleUncheckedCreateWithoutFarmerInput> | FlashSaleCreateWithoutFarmerInput[] | FlashSaleUncheckedCreateWithoutFarmerInput[]
+    connectOrCreate?: FlashSaleCreateOrConnectWithoutFarmerInput | FlashSaleCreateOrConnectWithoutFarmerInput[]
+    upsert?: FlashSaleUpsertWithWhereUniqueWithoutFarmerInput | FlashSaleUpsertWithWhereUniqueWithoutFarmerInput[]
+    createMany?: FlashSaleCreateManyFarmerInputEnvelope
+    set?: FlashSaleWhereUniqueInput | FlashSaleWhereUniqueInput[]
+    disconnect?: FlashSaleWhereUniqueInput | FlashSaleWhereUniqueInput[]
+    delete?: FlashSaleWhereUniqueInput | FlashSaleWhereUniqueInput[]
+    connect?: FlashSaleWhereUniqueInput | FlashSaleWhereUniqueInput[]
+    update?: FlashSaleUpdateWithWhereUniqueWithoutFarmerInput | FlashSaleUpdateWithWhereUniqueWithoutFarmerInput[]
+    updateMany?: FlashSaleUpdateManyWithWhereWithoutFarmerInput | FlashSaleUpdateManyWithWhereWithoutFarmerInput[]
+    deleteMany?: FlashSaleScalarWhereInput | FlashSaleScalarWhereInput[]
+  }
+
+  export type FlashSaleClaimUpdateManyWithoutBuyerNestedInput = {
+    create?: XOR<FlashSaleClaimCreateWithoutBuyerInput, FlashSaleClaimUncheckedCreateWithoutBuyerInput> | FlashSaleClaimCreateWithoutBuyerInput[] | FlashSaleClaimUncheckedCreateWithoutBuyerInput[]
+    connectOrCreate?: FlashSaleClaimCreateOrConnectWithoutBuyerInput | FlashSaleClaimCreateOrConnectWithoutBuyerInput[]
+    upsert?: FlashSaleClaimUpsertWithWhereUniqueWithoutBuyerInput | FlashSaleClaimUpsertWithWhereUniqueWithoutBuyerInput[]
+    createMany?: FlashSaleClaimCreateManyBuyerInputEnvelope
+    set?: FlashSaleClaimWhereUniqueInput | FlashSaleClaimWhereUniqueInput[]
+    disconnect?: FlashSaleClaimWhereUniqueInput | FlashSaleClaimWhereUniqueInput[]
+    delete?: FlashSaleClaimWhereUniqueInput | FlashSaleClaimWhereUniqueInput[]
+    connect?: FlashSaleClaimWhereUniqueInput | FlashSaleClaimWhereUniqueInput[]
+    update?: FlashSaleClaimUpdateWithWhereUniqueWithoutBuyerInput | FlashSaleClaimUpdateWithWhereUniqueWithoutBuyerInput[]
+    updateMany?: FlashSaleClaimUpdateManyWithWhereWithoutBuyerInput | FlashSaleClaimUpdateManyWithWhereWithoutBuyerInput[]
+    deleteMany?: FlashSaleClaimScalarWhereInput | FlashSaleClaimScalarWhereInput[]
+  }
+
+  export type FlashSaleNotificationUpdateManyWithoutBuyerNestedInput = {
+    create?: XOR<FlashSaleNotificationCreateWithoutBuyerInput, FlashSaleNotificationUncheckedCreateWithoutBuyerInput> | FlashSaleNotificationCreateWithoutBuyerInput[] | FlashSaleNotificationUncheckedCreateWithoutBuyerInput[]
+    connectOrCreate?: FlashSaleNotificationCreateOrConnectWithoutBuyerInput | FlashSaleNotificationCreateOrConnectWithoutBuyerInput[]
+    upsert?: FlashSaleNotificationUpsertWithWhereUniqueWithoutBuyerInput | FlashSaleNotificationUpsertWithWhereUniqueWithoutBuyerInput[]
+    createMany?: FlashSaleNotificationCreateManyBuyerInputEnvelope
+    set?: FlashSaleNotificationWhereUniqueInput | FlashSaleNotificationWhereUniqueInput[]
+    disconnect?: FlashSaleNotificationWhereUniqueInput | FlashSaleNotificationWhereUniqueInput[]
+    delete?: FlashSaleNotificationWhereUniqueInput | FlashSaleNotificationWhereUniqueInput[]
+    connect?: FlashSaleNotificationWhereUniqueInput | FlashSaleNotificationWhereUniqueInput[]
+    update?: FlashSaleNotificationUpdateWithWhereUniqueWithoutBuyerInput | FlashSaleNotificationUpdateWithWhereUniqueWithoutBuyerInput[]
+    updateMany?: FlashSaleNotificationUpdateManyWithWhereWithoutBuyerInput | FlashSaleNotificationUpdateManyWithWhereWithoutBuyerInput[]
+    deleteMany?: FlashSaleNotificationScalarWhereInput | FlashSaleNotificationScalarWhereInput[]
+  }
+
   export type FarmerProfileUncheckedUpdateOneWithoutUserNestedInput = {
     create?: XOR<FarmerProfileCreateWithoutUserInput, FarmerProfileUncheckedCreateWithoutUserInput>
     connectOrCreate?: FarmerProfileCreateOrConnectWithoutUserInput
@@ -39400,6 +45900,48 @@ export namespace Prisma {
     deleteMany?: BuyerCropAlertScalarWhereInput | BuyerCropAlertScalarWhereInput[]
   }
 
+  export type FlashSaleUncheckedUpdateManyWithoutFarmerNestedInput = {
+    create?: XOR<FlashSaleCreateWithoutFarmerInput, FlashSaleUncheckedCreateWithoutFarmerInput> | FlashSaleCreateWithoutFarmerInput[] | FlashSaleUncheckedCreateWithoutFarmerInput[]
+    connectOrCreate?: FlashSaleCreateOrConnectWithoutFarmerInput | FlashSaleCreateOrConnectWithoutFarmerInput[]
+    upsert?: FlashSaleUpsertWithWhereUniqueWithoutFarmerInput | FlashSaleUpsertWithWhereUniqueWithoutFarmerInput[]
+    createMany?: FlashSaleCreateManyFarmerInputEnvelope
+    set?: FlashSaleWhereUniqueInput | FlashSaleWhereUniqueInput[]
+    disconnect?: FlashSaleWhereUniqueInput | FlashSaleWhereUniqueInput[]
+    delete?: FlashSaleWhereUniqueInput | FlashSaleWhereUniqueInput[]
+    connect?: FlashSaleWhereUniqueInput | FlashSaleWhereUniqueInput[]
+    update?: FlashSaleUpdateWithWhereUniqueWithoutFarmerInput | FlashSaleUpdateWithWhereUniqueWithoutFarmerInput[]
+    updateMany?: FlashSaleUpdateManyWithWhereWithoutFarmerInput | FlashSaleUpdateManyWithWhereWithoutFarmerInput[]
+    deleteMany?: FlashSaleScalarWhereInput | FlashSaleScalarWhereInput[]
+  }
+
+  export type FlashSaleClaimUncheckedUpdateManyWithoutBuyerNestedInput = {
+    create?: XOR<FlashSaleClaimCreateWithoutBuyerInput, FlashSaleClaimUncheckedCreateWithoutBuyerInput> | FlashSaleClaimCreateWithoutBuyerInput[] | FlashSaleClaimUncheckedCreateWithoutBuyerInput[]
+    connectOrCreate?: FlashSaleClaimCreateOrConnectWithoutBuyerInput | FlashSaleClaimCreateOrConnectWithoutBuyerInput[]
+    upsert?: FlashSaleClaimUpsertWithWhereUniqueWithoutBuyerInput | FlashSaleClaimUpsertWithWhereUniqueWithoutBuyerInput[]
+    createMany?: FlashSaleClaimCreateManyBuyerInputEnvelope
+    set?: FlashSaleClaimWhereUniqueInput | FlashSaleClaimWhereUniqueInput[]
+    disconnect?: FlashSaleClaimWhereUniqueInput | FlashSaleClaimWhereUniqueInput[]
+    delete?: FlashSaleClaimWhereUniqueInput | FlashSaleClaimWhereUniqueInput[]
+    connect?: FlashSaleClaimWhereUniqueInput | FlashSaleClaimWhereUniqueInput[]
+    update?: FlashSaleClaimUpdateWithWhereUniqueWithoutBuyerInput | FlashSaleClaimUpdateWithWhereUniqueWithoutBuyerInput[]
+    updateMany?: FlashSaleClaimUpdateManyWithWhereWithoutBuyerInput | FlashSaleClaimUpdateManyWithWhereWithoutBuyerInput[]
+    deleteMany?: FlashSaleClaimScalarWhereInput | FlashSaleClaimScalarWhereInput[]
+  }
+
+  export type FlashSaleNotificationUncheckedUpdateManyWithoutBuyerNestedInput = {
+    create?: XOR<FlashSaleNotificationCreateWithoutBuyerInput, FlashSaleNotificationUncheckedCreateWithoutBuyerInput> | FlashSaleNotificationCreateWithoutBuyerInput[] | FlashSaleNotificationUncheckedCreateWithoutBuyerInput[]
+    connectOrCreate?: FlashSaleNotificationCreateOrConnectWithoutBuyerInput | FlashSaleNotificationCreateOrConnectWithoutBuyerInput[]
+    upsert?: FlashSaleNotificationUpsertWithWhereUniqueWithoutBuyerInput | FlashSaleNotificationUpsertWithWhereUniqueWithoutBuyerInput[]
+    createMany?: FlashSaleNotificationCreateManyBuyerInputEnvelope
+    set?: FlashSaleNotificationWhereUniqueInput | FlashSaleNotificationWhereUniqueInput[]
+    disconnect?: FlashSaleNotificationWhereUniqueInput | FlashSaleNotificationWhereUniqueInput[]
+    delete?: FlashSaleNotificationWhereUniqueInput | FlashSaleNotificationWhereUniqueInput[]
+    connect?: FlashSaleNotificationWhereUniqueInput | FlashSaleNotificationWhereUniqueInput[]
+    update?: FlashSaleNotificationUpdateWithWhereUniqueWithoutBuyerInput | FlashSaleNotificationUpdateWithWhereUniqueWithoutBuyerInput[]
+    updateMany?: FlashSaleNotificationUpdateManyWithWhereWithoutBuyerInput | FlashSaleNotificationUpdateManyWithWhereWithoutBuyerInput[]
+    deleteMany?: FlashSaleNotificationScalarWhereInput | FlashSaleNotificationScalarWhereInput[]
+  }
+
   export type FarmerProfileCreateprimaryCropsInput = {
     set: string[]
   }
@@ -39416,14 +45958,6 @@ export namespace Prisma {
   }
 
   export type FloatFieldUpdateOperationsInput = {
-    set?: number
-    increment?: number
-    decrement?: number
-    multiply?: number
-    divide?: number
-  }
-
-  export type IntFieldUpdateOperationsInput = {
     set?: number
     increment?: number
     decrement?: number
@@ -39521,6 +46055,19 @@ export namespace Prisma {
     connect?: PlantingLogWhereUniqueInput
   }
 
+  export type SpoilageRiskLogCreateNestedManyWithoutListingInput = {
+    create?: XOR<SpoilageRiskLogCreateWithoutListingInput, SpoilageRiskLogUncheckedCreateWithoutListingInput> | SpoilageRiskLogCreateWithoutListingInput[] | SpoilageRiskLogUncheckedCreateWithoutListingInput[]
+    connectOrCreate?: SpoilageRiskLogCreateOrConnectWithoutListingInput | SpoilageRiskLogCreateOrConnectWithoutListingInput[]
+    createMany?: SpoilageRiskLogCreateManyListingInputEnvelope
+    connect?: SpoilageRiskLogWhereUniqueInput | SpoilageRiskLogWhereUniqueInput[]
+  }
+
+  export type FlashSaleCreateNestedOneWithoutListingInput = {
+    create?: XOR<FlashSaleCreateWithoutListingInput, FlashSaleUncheckedCreateWithoutListingInput>
+    connectOrCreate?: FlashSaleCreateOrConnectWithoutListingInput
+    connect?: FlashSaleWhereUniqueInput
+  }
+
   export type OrderUncheckedCreateNestedManyWithoutListingInput = {
     create?: XOR<OrderCreateWithoutListingInput, OrderUncheckedCreateWithoutListingInput> | OrderCreateWithoutListingInput[] | OrderUncheckedCreateWithoutListingInput[]
     connectOrCreate?: OrderCreateOrConnectWithoutListingInput | OrderCreateOrConnectWithoutListingInput[]
@@ -39555,6 +46102,19 @@ export namespace Prisma {
     connect?: CoOpGroupWhereUniqueInput | CoOpGroupWhereUniqueInput[]
   }
 
+  export type SpoilageRiskLogUncheckedCreateNestedManyWithoutListingInput = {
+    create?: XOR<SpoilageRiskLogCreateWithoutListingInput, SpoilageRiskLogUncheckedCreateWithoutListingInput> | SpoilageRiskLogCreateWithoutListingInput[] | SpoilageRiskLogUncheckedCreateWithoutListingInput[]
+    connectOrCreate?: SpoilageRiskLogCreateOrConnectWithoutListingInput | SpoilageRiskLogCreateOrConnectWithoutListingInput[]
+    createMany?: SpoilageRiskLogCreateManyListingInputEnvelope
+    connect?: SpoilageRiskLogWhereUniqueInput | SpoilageRiskLogWhereUniqueInput[]
+  }
+
+  export type FlashSaleUncheckedCreateNestedOneWithoutListingInput = {
+    create?: XOR<FlashSaleCreateWithoutListingInput, FlashSaleUncheckedCreateWithoutListingInput>
+    connectOrCreate?: FlashSaleCreateOrConnectWithoutListingInput
+    connect?: FlashSaleWhereUniqueInput
+  }
+
   export type EnumCropTypeFieldUpdateOperationsInput = {
     set?: $Enums.CropType
   }
@@ -39574,6 +46134,10 @@ export namespace Prisma {
 
   export type EnumCreationSourceFieldUpdateOperationsInput = {
     set?: $Enums.CreationSource
+  }
+
+  export type EnumSpoilageRiskBandFieldUpdateOperationsInput = {
+    set?: $Enums.SpoilageRiskBand
   }
 
   export type UserUpdateOneRequiredWithoutListingsNestedInput = {
@@ -39660,6 +46224,30 @@ export namespace Prisma {
     update?: XOR<XOR<PlantingLogUpdateToOneWithWhereWithoutListingsInput, PlantingLogUpdateWithoutListingsInput>, PlantingLogUncheckedUpdateWithoutListingsInput>
   }
 
+  export type SpoilageRiskLogUpdateManyWithoutListingNestedInput = {
+    create?: XOR<SpoilageRiskLogCreateWithoutListingInput, SpoilageRiskLogUncheckedCreateWithoutListingInput> | SpoilageRiskLogCreateWithoutListingInput[] | SpoilageRiskLogUncheckedCreateWithoutListingInput[]
+    connectOrCreate?: SpoilageRiskLogCreateOrConnectWithoutListingInput | SpoilageRiskLogCreateOrConnectWithoutListingInput[]
+    upsert?: SpoilageRiskLogUpsertWithWhereUniqueWithoutListingInput | SpoilageRiskLogUpsertWithWhereUniqueWithoutListingInput[]
+    createMany?: SpoilageRiskLogCreateManyListingInputEnvelope
+    set?: SpoilageRiskLogWhereUniqueInput | SpoilageRiskLogWhereUniqueInput[]
+    disconnect?: SpoilageRiskLogWhereUniqueInput | SpoilageRiskLogWhereUniqueInput[]
+    delete?: SpoilageRiskLogWhereUniqueInput | SpoilageRiskLogWhereUniqueInput[]
+    connect?: SpoilageRiskLogWhereUniqueInput | SpoilageRiskLogWhereUniqueInput[]
+    update?: SpoilageRiskLogUpdateWithWhereUniqueWithoutListingInput | SpoilageRiskLogUpdateWithWhereUniqueWithoutListingInput[]
+    updateMany?: SpoilageRiskLogUpdateManyWithWhereWithoutListingInput | SpoilageRiskLogUpdateManyWithWhereWithoutListingInput[]
+    deleteMany?: SpoilageRiskLogScalarWhereInput | SpoilageRiskLogScalarWhereInput[]
+  }
+
+  export type FlashSaleUpdateOneWithoutListingNestedInput = {
+    create?: XOR<FlashSaleCreateWithoutListingInput, FlashSaleUncheckedCreateWithoutListingInput>
+    connectOrCreate?: FlashSaleCreateOrConnectWithoutListingInput
+    upsert?: FlashSaleUpsertWithoutListingInput
+    disconnect?: FlashSaleWhereInput | boolean
+    delete?: FlashSaleWhereInput | boolean
+    connect?: FlashSaleWhereUniqueInput
+    update?: XOR<XOR<FlashSaleUpdateToOneWithWhereWithoutListingInput, FlashSaleUpdateWithoutListingInput>, FlashSaleUncheckedUpdateWithoutListingInput>
+  }
+
   export type OrderUncheckedUpdateManyWithoutListingNestedInput = {
     create?: XOR<OrderCreateWithoutListingInput, OrderUncheckedCreateWithoutListingInput> | OrderCreateWithoutListingInput[] | OrderUncheckedCreateWithoutListingInput[]
     connectOrCreate?: OrderCreateOrConnectWithoutListingInput | OrderCreateOrConnectWithoutListingInput[]
@@ -39724,6 +46312,30 @@ export namespace Prisma {
     update?: CoOpGroupUpdateWithWhereUniqueWithoutListingInput | CoOpGroupUpdateWithWhereUniqueWithoutListingInput[]
     updateMany?: CoOpGroupUpdateManyWithWhereWithoutListingInput | CoOpGroupUpdateManyWithWhereWithoutListingInput[]
     deleteMany?: CoOpGroupScalarWhereInput | CoOpGroupScalarWhereInput[]
+  }
+
+  export type SpoilageRiskLogUncheckedUpdateManyWithoutListingNestedInput = {
+    create?: XOR<SpoilageRiskLogCreateWithoutListingInput, SpoilageRiskLogUncheckedCreateWithoutListingInput> | SpoilageRiskLogCreateWithoutListingInput[] | SpoilageRiskLogUncheckedCreateWithoutListingInput[]
+    connectOrCreate?: SpoilageRiskLogCreateOrConnectWithoutListingInput | SpoilageRiskLogCreateOrConnectWithoutListingInput[]
+    upsert?: SpoilageRiskLogUpsertWithWhereUniqueWithoutListingInput | SpoilageRiskLogUpsertWithWhereUniqueWithoutListingInput[]
+    createMany?: SpoilageRiskLogCreateManyListingInputEnvelope
+    set?: SpoilageRiskLogWhereUniqueInput | SpoilageRiskLogWhereUniqueInput[]
+    disconnect?: SpoilageRiskLogWhereUniqueInput | SpoilageRiskLogWhereUniqueInput[]
+    delete?: SpoilageRiskLogWhereUniqueInput | SpoilageRiskLogWhereUniqueInput[]
+    connect?: SpoilageRiskLogWhereUniqueInput | SpoilageRiskLogWhereUniqueInput[]
+    update?: SpoilageRiskLogUpdateWithWhereUniqueWithoutListingInput | SpoilageRiskLogUpdateWithWhereUniqueWithoutListingInput[]
+    updateMany?: SpoilageRiskLogUpdateManyWithWhereWithoutListingInput | SpoilageRiskLogUpdateManyWithWhereWithoutListingInput[]
+    deleteMany?: SpoilageRiskLogScalarWhereInput | SpoilageRiskLogScalarWhereInput[]
+  }
+
+  export type FlashSaleUncheckedUpdateOneWithoutListingNestedInput = {
+    create?: XOR<FlashSaleCreateWithoutListingInput, FlashSaleUncheckedCreateWithoutListingInput>
+    connectOrCreate?: FlashSaleCreateOrConnectWithoutListingInput
+    upsert?: FlashSaleUpsertWithoutListingInput
+    disconnect?: FlashSaleWhereInput | boolean
+    delete?: FlashSaleWhereInput | boolean
+    connect?: FlashSaleWhereUniqueInput
+    update?: XOR<XOR<FlashSaleUpdateToOneWithWhereWithoutListingInput, FlashSaleUpdateWithoutListingInput>, FlashSaleUncheckedUpdateWithoutListingInput>
   }
 
   export type TraceabilityRecordCreateinputsUsedInput = {
@@ -39836,6 +46448,13 @@ export namespace Prisma {
     connect?: CoOpMemberWhereUniqueInput
   }
 
+  export type FlashSaleClaimCreateNestedManyWithoutOrderInput = {
+    create?: XOR<FlashSaleClaimCreateWithoutOrderInput, FlashSaleClaimUncheckedCreateWithoutOrderInput> | FlashSaleClaimCreateWithoutOrderInput[] | FlashSaleClaimUncheckedCreateWithoutOrderInput[]
+    connectOrCreate?: FlashSaleClaimCreateOrConnectWithoutOrderInput | FlashSaleClaimCreateOrConnectWithoutOrderInput[]
+    createMany?: FlashSaleClaimCreateManyOrderInputEnvelope
+    connect?: FlashSaleClaimWhereUniqueInput | FlashSaleClaimWhereUniqueInput[]
+  }
+
   export type DeliveryRequestUncheckedCreateNestedOneWithoutOrderInput = {
     create?: XOR<DeliveryRequestCreateWithoutOrderInput, DeliveryRequestUncheckedCreateWithoutOrderInput>
     connectOrCreate?: DeliveryRequestCreateOrConnectWithoutOrderInput
@@ -39866,6 +46485,13 @@ export namespace Prisma {
     create?: XOR<CoOpMemberCreateWithoutOrderInput, CoOpMemberUncheckedCreateWithoutOrderInput>
     connectOrCreate?: CoOpMemberCreateOrConnectWithoutOrderInput
     connect?: CoOpMemberWhereUniqueInput
+  }
+
+  export type FlashSaleClaimUncheckedCreateNestedManyWithoutOrderInput = {
+    create?: XOR<FlashSaleClaimCreateWithoutOrderInput, FlashSaleClaimUncheckedCreateWithoutOrderInput> | FlashSaleClaimCreateWithoutOrderInput[] | FlashSaleClaimUncheckedCreateWithoutOrderInput[]
+    connectOrCreate?: FlashSaleClaimCreateOrConnectWithoutOrderInput | FlashSaleClaimCreateOrConnectWithoutOrderInput[]
+    createMany?: FlashSaleClaimCreateManyOrderInputEnvelope
+    connect?: FlashSaleClaimWhereUniqueInput | FlashSaleClaimWhereUniqueInput[]
   }
 
   export type EnumOrderStatusFieldUpdateOperationsInput = {
@@ -39950,6 +46576,20 @@ export namespace Prisma {
     update?: XOR<XOR<CoOpMemberUpdateToOneWithWhereWithoutOrderInput, CoOpMemberUpdateWithoutOrderInput>, CoOpMemberUncheckedUpdateWithoutOrderInput>
   }
 
+  export type FlashSaleClaimUpdateManyWithoutOrderNestedInput = {
+    create?: XOR<FlashSaleClaimCreateWithoutOrderInput, FlashSaleClaimUncheckedCreateWithoutOrderInput> | FlashSaleClaimCreateWithoutOrderInput[] | FlashSaleClaimUncheckedCreateWithoutOrderInput[]
+    connectOrCreate?: FlashSaleClaimCreateOrConnectWithoutOrderInput | FlashSaleClaimCreateOrConnectWithoutOrderInput[]
+    upsert?: FlashSaleClaimUpsertWithWhereUniqueWithoutOrderInput | FlashSaleClaimUpsertWithWhereUniqueWithoutOrderInput[]
+    createMany?: FlashSaleClaimCreateManyOrderInputEnvelope
+    set?: FlashSaleClaimWhereUniqueInput | FlashSaleClaimWhereUniqueInput[]
+    disconnect?: FlashSaleClaimWhereUniqueInput | FlashSaleClaimWhereUniqueInput[]
+    delete?: FlashSaleClaimWhereUniqueInput | FlashSaleClaimWhereUniqueInput[]
+    connect?: FlashSaleClaimWhereUniqueInput | FlashSaleClaimWhereUniqueInput[]
+    update?: FlashSaleClaimUpdateWithWhereUniqueWithoutOrderInput | FlashSaleClaimUpdateWithWhereUniqueWithoutOrderInput[]
+    updateMany?: FlashSaleClaimUpdateManyWithWhereWithoutOrderInput | FlashSaleClaimUpdateManyWithWhereWithoutOrderInput[]
+    deleteMany?: FlashSaleClaimScalarWhereInput | FlashSaleClaimScalarWhereInput[]
+  }
+
   export type DeliveryRequestUncheckedUpdateOneWithoutOrderNestedInput = {
     create?: XOR<DeliveryRequestCreateWithoutOrderInput, DeliveryRequestUncheckedCreateWithoutOrderInput>
     connectOrCreate?: DeliveryRequestCreateOrConnectWithoutOrderInput
@@ -40006,6 +46646,20 @@ export namespace Prisma {
     delete?: CoOpMemberWhereInput | boolean
     connect?: CoOpMemberWhereUniqueInput
     update?: XOR<XOR<CoOpMemberUpdateToOneWithWhereWithoutOrderInput, CoOpMemberUpdateWithoutOrderInput>, CoOpMemberUncheckedUpdateWithoutOrderInput>
+  }
+
+  export type FlashSaleClaimUncheckedUpdateManyWithoutOrderNestedInput = {
+    create?: XOR<FlashSaleClaimCreateWithoutOrderInput, FlashSaleClaimUncheckedCreateWithoutOrderInput> | FlashSaleClaimCreateWithoutOrderInput[] | FlashSaleClaimUncheckedCreateWithoutOrderInput[]
+    connectOrCreate?: FlashSaleClaimCreateOrConnectWithoutOrderInput | FlashSaleClaimCreateOrConnectWithoutOrderInput[]
+    upsert?: FlashSaleClaimUpsertWithWhereUniqueWithoutOrderInput | FlashSaleClaimUpsertWithWhereUniqueWithoutOrderInput[]
+    createMany?: FlashSaleClaimCreateManyOrderInputEnvelope
+    set?: FlashSaleClaimWhereUniqueInput | FlashSaleClaimWhereUniqueInput[]
+    disconnect?: FlashSaleClaimWhereUniqueInput | FlashSaleClaimWhereUniqueInput[]
+    delete?: FlashSaleClaimWhereUniqueInput | FlashSaleClaimWhereUniqueInput[]
+    connect?: FlashSaleClaimWhereUniqueInput | FlashSaleClaimWhereUniqueInput[]
+    update?: FlashSaleClaimUpdateWithWhereUniqueWithoutOrderInput | FlashSaleClaimUpdateWithWhereUniqueWithoutOrderInput[]
+    updateMany?: FlashSaleClaimUpdateManyWithWhereWithoutOrderInput | FlashSaleClaimUpdateManyWithWhereWithoutOrderInput[]
+    deleteMany?: FlashSaleClaimScalarWhereInput | FlashSaleClaimScalarWhereInput[]
   }
 
   export type OrderCreateNestedOneWithoutDeliveryRequestInput = {
@@ -40512,6 +47166,224 @@ export namespace Prisma {
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutCropAlertsInput, UserUpdateWithoutCropAlertsInput>, UserUncheckedUpdateWithoutCropAlertsInput>
   }
 
+  export type ProduceListingCreateNestedOneWithoutSpoilageRiskLogsInput = {
+    create?: XOR<ProduceListingCreateWithoutSpoilageRiskLogsInput, ProduceListingUncheckedCreateWithoutSpoilageRiskLogsInput>
+    connectOrCreate?: ProduceListingCreateOrConnectWithoutSpoilageRiskLogsInput
+    connect?: ProduceListingWhereUniqueInput
+  }
+
+  export type NullableEnumSpoilageRiskBandFieldUpdateOperationsInput = {
+    set?: $Enums.SpoilageRiskBand | null
+  }
+
+  export type ProduceListingUpdateOneRequiredWithoutSpoilageRiskLogsNestedInput = {
+    create?: XOR<ProduceListingCreateWithoutSpoilageRiskLogsInput, ProduceListingUncheckedCreateWithoutSpoilageRiskLogsInput>
+    connectOrCreate?: ProduceListingCreateOrConnectWithoutSpoilageRiskLogsInput
+    upsert?: ProduceListingUpsertWithoutSpoilageRiskLogsInput
+    connect?: ProduceListingWhereUniqueInput
+    update?: XOR<XOR<ProduceListingUpdateToOneWithWhereWithoutSpoilageRiskLogsInput, ProduceListingUpdateWithoutSpoilageRiskLogsInput>, ProduceListingUncheckedUpdateWithoutSpoilageRiskLogsInput>
+  }
+
+  export type ProduceListingCreateNestedOneWithoutFlashSaleInput = {
+    create?: XOR<ProduceListingCreateWithoutFlashSaleInput, ProduceListingUncheckedCreateWithoutFlashSaleInput>
+    connectOrCreate?: ProduceListingCreateOrConnectWithoutFlashSaleInput
+    connect?: ProduceListingWhereUniqueInput
+  }
+
+  export type UserCreateNestedOneWithoutFlashSalesCreatedInput = {
+    create?: XOR<UserCreateWithoutFlashSalesCreatedInput, UserUncheckedCreateWithoutFlashSalesCreatedInput>
+    connectOrCreate?: UserCreateOrConnectWithoutFlashSalesCreatedInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type FlashSaleClaimCreateNestedManyWithoutFlashSaleInput = {
+    create?: XOR<FlashSaleClaimCreateWithoutFlashSaleInput, FlashSaleClaimUncheckedCreateWithoutFlashSaleInput> | FlashSaleClaimCreateWithoutFlashSaleInput[] | FlashSaleClaimUncheckedCreateWithoutFlashSaleInput[]
+    connectOrCreate?: FlashSaleClaimCreateOrConnectWithoutFlashSaleInput | FlashSaleClaimCreateOrConnectWithoutFlashSaleInput[]
+    createMany?: FlashSaleClaimCreateManyFlashSaleInputEnvelope
+    connect?: FlashSaleClaimWhereUniqueInput | FlashSaleClaimWhereUniqueInput[]
+  }
+
+  export type FlashSaleNotificationCreateNestedManyWithoutFlashSaleInput = {
+    create?: XOR<FlashSaleNotificationCreateWithoutFlashSaleInput, FlashSaleNotificationUncheckedCreateWithoutFlashSaleInput> | FlashSaleNotificationCreateWithoutFlashSaleInput[] | FlashSaleNotificationUncheckedCreateWithoutFlashSaleInput[]
+    connectOrCreate?: FlashSaleNotificationCreateOrConnectWithoutFlashSaleInput | FlashSaleNotificationCreateOrConnectWithoutFlashSaleInput[]
+    createMany?: FlashSaleNotificationCreateManyFlashSaleInputEnvelope
+    connect?: FlashSaleNotificationWhereUniqueInput | FlashSaleNotificationWhereUniqueInput[]
+  }
+
+  export type FlashSaleClaimUncheckedCreateNestedManyWithoutFlashSaleInput = {
+    create?: XOR<FlashSaleClaimCreateWithoutFlashSaleInput, FlashSaleClaimUncheckedCreateWithoutFlashSaleInput> | FlashSaleClaimCreateWithoutFlashSaleInput[] | FlashSaleClaimUncheckedCreateWithoutFlashSaleInput[]
+    connectOrCreate?: FlashSaleClaimCreateOrConnectWithoutFlashSaleInput | FlashSaleClaimCreateOrConnectWithoutFlashSaleInput[]
+    createMany?: FlashSaleClaimCreateManyFlashSaleInputEnvelope
+    connect?: FlashSaleClaimWhereUniqueInput | FlashSaleClaimWhereUniqueInput[]
+  }
+
+  export type FlashSaleNotificationUncheckedCreateNestedManyWithoutFlashSaleInput = {
+    create?: XOR<FlashSaleNotificationCreateWithoutFlashSaleInput, FlashSaleNotificationUncheckedCreateWithoutFlashSaleInput> | FlashSaleNotificationCreateWithoutFlashSaleInput[] | FlashSaleNotificationUncheckedCreateWithoutFlashSaleInput[]
+    connectOrCreate?: FlashSaleNotificationCreateOrConnectWithoutFlashSaleInput | FlashSaleNotificationCreateOrConnectWithoutFlashSaleInput[]
+    createMany?: FlashSaleNotificationCreateManyFlashSaleInputEnvelope
+    connect?: FlashSaleNotificationWhereUniqueInput | FlashSaleNotificationWhereUniqueInput[]
+  }
+
+  export type EnumFlashSaleStatusFieldUpdateOperationsInput = {
+    set?: $Enums.FlashSaleStatus
+  }
+
+  export type ProduceListingUpdateOneRequiredWithoutFlashSaleNestedInput = {
+    create?: XOR<ProduceListingCreateWithoutFlashSaleInput, ProduceListingUncheckedCreateWithoutFlashSaleInput>
+    connectOrCreate?: ProduceListingCreateOrConnectWithoutFlashSaleInput
+    upsert?: ProduceListingUpsertWithoutFlashSaleInput
+    connect?: ProduceListingWhereUniqueInput
+    update?: XOR<XOR<ProduceListingUpdateToOneWithWhereWithoutFlashSaleInput, ProduceListingUpdateWithoutFlashSaleInput>, ProduceListingUncheckedUpdateWithoutFlashSaleInput>
+  }
+
+  export type UserUpdateOneRequiredWithoutFlashSalesCreatedNestedInput = {
+    create?: XOR<UserCreateWithoutFlashSalesCreatedInput, UserUncheckedCreateWithoutFlashSalesCreatedInput>
+    connectOrCreate?: UserCreateOrConnectWithoutFlashSalesCreatedInput
+    upsert?: UserUpsertWithoutFlashSalesCreatedInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutFlashSalesCreatedInput, UserUpdateWithoutFlashSalesCreatedInput>, UserUncheckedUpdateWithoutFlashSalesCreatedInput>
+  }
+
+  export type FlashSaleClaimUpdateManyWithoutFlashSaleNestedInput = {
+    create?: XOR<FlashSaleClaimCreateWithoutFlashSaleInput, FlashSaleClaimUncheckedCreateWithoutFlashSaleInput> | FlashSaleClaimCreateWithoutFlashSaleInput[] | FlashSaleClaimUncheckedCreateWithoutFlashSaleInput[]
+    connectOrCreate?: FlashSaleClaimCreateOrConnectWithoutFlashSaleInput | FlashSaleClaimCreateOrConnectWithoutFlashSaleInput[]
+    upsert?: FlashSaleClaimUpsertWithWhereUniqueWithoutFlashSaleInput | FlashSaleClaimUpsertWithWhereUniqueWithoutFlashSaleInput[]
+    createMany?: FlashSaleClaimCreateManyFlashSaleInputEnvelope
+    set?: FlashSaleClaimWhereUniqueInput | FlashSaleClaimWhereUniqueInput[]
+    disconnect?: FlashSaleClaimWhereUniqueInput | FlashSaleClaimWhereUniqueInput[]
+    delete?: FlashSaleClaimWhereUniqueInput | FlashSaleClaimWhereUniqueInput[]
+    connect?: FlashSaleClaimWhereUniqueInput | FlashSaleClaimWhereUniqueInput[]
+    update?: FlashSaleClaimUpdateWithWhereUniqueWithoutFlashSaleInput | FlashSaleClaimUpdateWithWhereUniqueWithoutFlashSaleInput[]
+    updateMany?: FlashSaleClaimUpdateManyWithWhereWithoutFlashSaleInput | FlashSaleClaimUpdateManyWithWhereWithoutFlashSaleInput[]
+    deleteMany?: FlashSaleClaimScalarWhereInput | FlashSaleClaimScalarWhereInput[]
+  }
+
+  export type FlashSaleNotificationUpdateManyWithoutFlashSaleNestedInput = {
+    create?: XOR<FlashSaleNotificationCreateWithoutFlashSaleInput, FlashSaleNotificationUncheckedCreateWithoutFlashSaleInput> | FlashSaleNotificationCreateWithoutFlashSaleInput[] | FlashSaleNotificationUncheckedCreateWithoutFlashSaleInput[]
+    connectOrCreate?: FlashSaleNotificationCreateOrConnectWithoutFlashSaleInput | FlashSaleNotificationCreateOrConnectWithoutFlashSaleInput[]
+    upsert?: FlashSaleNotificationUpsertWithWhereUniqueWithoutFlashSaleInput | FlashSaleNotificationUpsertWithWhereUniqueWithoutFlashSaleInput[]
+    createMany?: FlashSaleNotificationCreateManyFlashSaleInputEnvelope
+    set?: FlashSaleNotificationWhereUniqueInput | FlashSaleNotificationWhereUniqueInput[]
+    disconnect?: FlashSaleNotificationWhereUniqueInput | FlashSaleNotificationWhereUniqueInput[]
+    delete?: FlashSaleNotificationWhereUniqueInput | FlashSaleNotificationWhereUniqueInput[]
+    connect?: FlashSaleNotificationWhereUniqueInput | FlashSaleNotificationWhereUniqueInput[]
+    update?: FlashSaleNotificationUpdateWithWhereUniqueWithoutFlashSaleInput | FlashSaleNotificationUpdateWithWhereUniqueWithoutFlashSaleInput[]
+    updateMany?: FlashSaleNotificationUpdateManyWithWhereWithoutFlashSaleInput | FlashSaleNotificationUpdateManyWithWhereWithoutFlashSaleInput[]
+    deleteMany?: FlashSaleNotificationScalarWhereInput | FlashSaleNotificationScalarWhereInput[]
+  }
+
+  export type FlashSaleClaimUncheckedUpdateManyWithoutFlashSaleNestedInput = {
+    create?: XOR<FlashSaleClaimCreateWithoutFlashSaleInput, FlashSaleClaimUncheckedCreateWithoutFlashSaleInput> | FlashSaleClaimCreateWithoutFlashSaleInput[] | FlashSaleClaimUncheckedCreateWithoutFlashSaleInput[]
+    connectOrCreate?: FlashSaleClaimCreateOrConnectWithoutFlashSaleInput | FlashSaleClaimCreateOrConnectWithoutFlashSaleInput[]
+    upsert?: FlashSaleClaimUpsertWithWhereUniqueWithoutFlashSaleInput | FlashSaleClaimUpsertWithWhereUniqueWithoutFlashSaleInput[]
+    createMany?: FlashSaleClaimCreateManyFlashSaleInputEnvelope
+    set?: FlashSaleClaimWhereUniqueInput | FlashSaleClaimWhereUniqueInput[]
+    disconnect?: FlashSaleClaimWhereUniqueInput | FlashSaleClaimWhereUniqueInput[]
+    delete?: FlashSaleClaimWhereUniqueInput | FlashSaleClaimWhereUniqueInput[]
+    connect?: FlashSaleClaimWhereUniqueInput | FlashSaleClaimWhereUniqueInput[]
+    update?: FlashSaleClaimUpdateWithWhereUniqueWithoutFlashSaleInput | FlashSaleClaimUpdateWithWhereUniqueWithoutFlashSaleInput[]
+    updateMany?: FlashSaleClaimUpdateManyWithWhereWithoutFlashSaleInput | FlashSaleClaimUpdateManyWithWhereWithoutFlashSaleInput[]
+    deleteMany?: FlashSaleClaimScalarWhereInput | FlashSaleClaimScalarWhereInput[]
+  }
+
+  export type FlashSaleNotificationUncheckedUpdateManyWithoutFlashSaleNestedInput = {
+    create?: XOR<FlashSaleNotificationCreateWithoutFlashSaleInput, FlashSaleNotificationUncheckedCreateWithoutFlashSaleInput> | FlashSaleNotificationCreateWithoutFlashSaleInput[] | FlashSaleNotificationUncheckedCreateWithoutFlashSaleInput[]
+    connectOrCreate?: FlashSaleNotificationCreateOrConnectWithoutFlashSaleInput | FlashSaleNotificationCreateOrConnectWithoutFlashSaleInput[]
+    upsert?: FlashSaleNotificationUpsertWithWhereUniqueWithoutFlashSaleInput | FlashSaleNotificationUpsertWithWhereUniqueWithoutFlashSaleInput[]
+    createMany?: FlashSaleNotificationCreateManyFlashSaleInputEnvelope
+    set?: FlashSaleNotificationWhereUniqueInput | FlashSaleNotificationWhereUniqueInput[]
+    disconnect?: FlashSaleNotificationWhereUniqueInput | FlashSaleNotificationWhereUniqueInput[]
+    delete?: FlashSaleNotificationWhereUniqueInput | FlashSaleNotificationWhereUniqueInput[]
+    connect?: FlashSaleNotificationWhereUniqueInput | FlashSaleNotificationWhereUniqueInput[]
+    update?: FlashSaleNotificationUpdateWithWhereUniqueWithoutFlashSaleInput | FlashSaleNotificationUpdateWithWhereUniqueWithoutFlashSaleInput[]
+    updateMany?: FlashSaleNotificationUpdateManyWithWhereWithoutFlashSaleInput | FlashSaleNotificationUpdateManyWithWhereWithoutFlashSaleInput[]
+    deleteMany?: FlashSaleNotificationScalarWhereInput | FlashSaleNotificationScalarWhereInput[]
+  }
+
+  export type FlashSaleCreateNestedOneWithoutClaimsInput = {
+    create?: XOR<FlashSaleCreateWithoutClaimsInput, FlashSaleUncheckedCreateWithoutClaimsInput>
+    connectOrCreate?: FlashSaleCreateOrConnectWithoutClaimsInput
+    connect?: FlashSaleWhereUniqueInput
+  }
+
+  export type UserCreateNestedOneWithoutFlashSaleClaimsInput = {
+    create?: XOR<UserCreateWithoutFlashSaleClaimsInput, UserUncheckedCreateWithoutFlashSaleClaimsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutFlashSaleClaimsInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type OrderCreateNestedOneWithoutFlashSaleClaimsInput = {
+    create?: XOR<OrderCreateWithoutFlashSaleClaimsInput, OrderUncheckedCreateWithoutFlashSaleClaimsInput>
+    connectOrCreate?: OrderCreateOrConnectWithoutFlashSaleClaimsInput
+    connect?: OrderWhereUniqueInput
+  }
+
+  export type EnumFlashSaleClaimStatusFieldUpdateOperationsInput = {
+    set?: $Enums.FlashSaleClaimStatus
+  }
+
+  export type FlashSaleUpdateOneRequiredWithoutClaimsNestedInput = {
+    create?: XOR<FlashSaleCreateWithoutClaimsInput, FlashSaleUncheckedCreateWithoutClaimsInput>
+    connectOrCreate?: FlashSaleCreateOrConnectWithoutClaimsInput
+    upsert?: FlashSaleUpsertWithoutClaimsInput
+    connect?: FlashSaleWhereUniqueInput
+    update?: XOR<XOR<FlashSaleUpdateToOneWithWhereWithoutClaimsInput, FlashSaleUpdateWithoutClaimsInput>, FlashSaleUncheckedUpdateWithoutClaimsInput>
+  }
+
+  export type UserUpdateOneRequiredWithoutFlashSaleClaimsNestedInput = {
+    create?: XOR<UserCreateWithoutFlashSaleClaimsInput, UserUncheckedCreateWithoutFlashSaleClaimsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutFlashSaleClaimsInput
+    upsert?: UserUpsertWithoutFlashSaleClaimsInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutFlashSaleClaimsInput, UserUpdateWithoutFlashSaleClaimsInput>, UserUncheckedUpdateWithoutFlashSaleClaimsInput>
+  }
+
+  export type OrderUpdateOneWithoutFlashSaleClaimsNestedInput = {
+    create?: XOR<OrderCreateWithoutFlashSaleClaimsInput, OrderUncheckedCreateWithoutFlashSaleClaimsInput>
+    connectOrCreate?: OrderCreateOrConnectWithoutFlashSaleClaimsInput
+    upsert?: OrderUpsertWithoutFlashSaleClaimsInput
+    disconnect?: OrderWhereInput | boolean
+    delete?: OrderWhereInput | boolean
+    connect?: OrderWhereUniqueInput
+    update?: XOR<XOR<OrderUpdateToOneWithWhereWithoutFlashSaleClaimsInput, OrderUpdateWithoutFlashSaleClaimsInput>, OrderUncheckedUpdateWithoutFlashSaleClaimsInput>
+  }
+
+  export type FlashSaleCreateNestedOneWithoutNotificationsInput = {
+    create?: XOR<FlashSaleCreateWithoutNotificationsInput, FlashSaleUncheckedCreateWithoutNotificationsInput>
+    connectOrCreate?: FlashSaleCreateOrConnectWithoutNotificationsInput
+    connect?: FlashSaleWhereUniqueInput
+  }
+
+  export type UserCreateNestedOneWithoutFlashSaleNotificationsInput = {
+    create?: XOR<UserCreateWithoutFlashSaleNotificationsInput, UserUncheckedCreateWithoutFlashSaleNotificationsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutFlashSaleNotificationsInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type EnumNotificationChannelFieldUpdateOperationsInput = {
+    set?: $Enums.NotificationChannel
+  }
+
+  export type EnumFlashSaleNotificationStatusFieldUpdateOperationsInput = {
+    set?: $Enums.FlashSaleNotificationStatus
+  }
+
+  export type FlashSaleUpdateOneRequiredWithoutNotificationsNestedInput = {
+    create?: XOR<FlashSaleCreateWithoutNotificationsInput, FlashSaleUncheckedCreateWithoutNotificationsInput>
+    connectOrCreate?: FlashSaleCreateOrConnectWithoutNotificationsInput
+    upsert?: FlashSaleUpsertWithoutNotificationsInput
+    connect?: FlashSaleWhereUniqueInput
+    update?: XOR<XOR<FlashSaleUpdateToOneWithWhereWithoutNotificationsInput, FlashSaleUpdateWithoutNotificationsInput>, FlashSaleUncheckedUpdateWithoutNotificationsInput>
+  }
+
+  export type UserUpdateOneRequiredWithoutFlashSaleNotificationsNestedInput = {
+    create?: XOR<UserCreateWithoutFlashSaleNotificationsInput, UserUncheckedCreateWithoutFlashSaleNotificationsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutFlashSaleNotificationsInput
+    upsert?: UserUpsertWithoutFlashSaleNotificationsInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutFlashSaleNotificationsInput, UserUpdateWithoutFlashSaleNotificationsInput>, UserUncheckedUpdateWithoutFlashSaleNotificationsInput>
+  }
+
   export type NestedStringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -40585,6 +47457,17 @@ export namespace Prisma {
     not?: NestedDateTimeFilter<$PrismaModel> | Date | string
   }
 
+  export type NestedIntFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntFilter<$PrismaModel> | number
+  }
+
   export type NestedStringWithAggregatesFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -40600,17 +47483,6 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedStringFilter<$PrismaModel>
     _max?: NestedStringFilter<$PrismaModel>
-  }
-
-  export type NestedIntFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[] | ListIntFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntFilter<$PrismaModel> | number
   }
 
   export type NestedEnumRoleWithAggregatesFilter<$PrismaModel = never> = {
@@ -40703,6 +47575,22 @@ export namespace Prisma {
     _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
+  export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedIntFilter<$PrismaModel>
+    _min?: NestedIntFilter<$PrismaModel>
+    _max?: NestedIntFilter<$PrismaModel>
+  }
+
   export type NestedFloatFilter<$PrismaModel = never> = {
     equals?: number | FloatFieldRefInput<$PrismaModel>
     in?: number[] | ListFloatFieldRefInput<$PrismaModel>
@@ -40728,22 +47616,6 @@ export namespace Prisma {
     _sum?: NestedFloatFilter<$PrismaModel>
     _min?: NestedFloatFilter<$PrismaModel>
     _max?: NestedFloatFilter<$PrismaModel>
-  }
-
-  export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[] | ListIntFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
-    _count?: NestedIntFilter<$PrismaModel>
-    _avg?: NestedFloatFilter<$PrismaModel>
-    _sum?: NestedIntFilter<$PrismaModel>
-    _min?: NestedIntFilter<$PrismaModel>
-    _max?: NestedIntFilter<$PrismaModel>
   }
 
   export type NestedEnumBusinessTypeFilter<$PrismaModel = never> = {
@@ -40791,6 +47663,13 @@ export namespace Prisma {
     not?: NestedEnumCreationSourceFilter<$PrismaModel> | $Enums.CreationSource
   }
 
+  export type NestedEnumSpoilageRiskBandFilter<$PrismaModel = never> = {
+    equals?: $Enums.SpoilageRiskBand | EnumSpoilageRiskBandFieldRefInput<$PrismaModel>
+    in?: $Enums.SpoilageRiskBand[] | ListEnumSpoilageRiskBandFieldRefInput<$PrismaModel>
+    notIn?: $Enums.SpoilageRiskBand[] | ListEnumSpoilageRiskBandFieldRefInput<$PrismaModel>
+    not?: NestedEnumSpoilageRiskBandFilter<$PrismaModel> | $Enums.SpoilageRiskBand
+  }
+
   export type NestedEnumCropTypeWithAggregatesFilter<$PrismaModel = never> = {
     equals?: $Enums.CropType | EnumCropTypeFieldRefInput<$PrismaModel>
     in?: $Enums.CropType[] | ListEnumCropTypeFieldRefInput<$PrismaModel>
@@ -40829,6 +47708,16 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumCreationSourceFilter<$PrismaModel>
     _max?: NestedEnumCreationSourceFilter<$PrismaModel>
+  }
+
+  export type NestedEnumSpoilageRiskBandWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.SpoilageRiskBand | EnumSpoilageRiskBandFieldRefInput<$PrismaModel>
+    in?: $Enums.SpoilageRiskBand[] | ListEnumSpoilageRiskBandFieldRefInput<$PrismaModel>
+    notIn?: $Enums.SpoilageRiskBand[] | ListEnumSpoilageRiskBandFieldRefInput<$PrismaModel>
+    not?: NestedEnumSpoilageRiskBandWithAggregatesFilter<$PrismaModel> | $Enums.SpoilageRiskBand
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumSpoilageRiskBandFilter<$PrismaModel>
+    _max?: NestedEnumSpoilageRiskBandFilter<$PrismaModel>
   }
 
   export type NestedEnumTraceEventTypeFilter<$PrismaModel = never> = {
@@ -40994,6 +47883,91 @@ export namespace Prisma {
     _max?: NestedEnumCoOpStatusFilter<$PrismaModel>
   }
 
+  export type NestedEnumSpoilageRiskBandNullableFilter<$PrismaModel = never> = {
+    equals?: $Enums.SpoilageRiskBand | EnumSpoilageRiskBandFieldRefInput<$PrismaModel> | null
+    in?: $Enums.SpoilageRiskBand[] | ListEnumSpoilageRiskBandFieldRefInput<$PrismaModel> | null
+    notIn?: $Enums.SpoilageRiskBand[] | ListEnumSpoilageRiskBandFieldRefInput<$PrismaModel> | null
+    not?: NestedEnumSpoilageRiskBandNullableFilter<$PrismaModel> | $Enums.SpoilageRiskBand | null
+  }
+
+  export type NestedEnumSpoilageRiskBandNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.SpoilageRiskBand | EnumSpoilageRiskBandFieldRefInput<$PrismaModel> | null
+    in?: $Enums.SpoilageRiskBand[] | ListEnumSpoilageRiskBandFieldRefInput<$PrismaModel> | null
+    notIn?: $Enums.SpoilageRiskBand[] | ListEnumSpoilageRiskBandFieldRefInput<$PrismaModel> | null
+    not?: NestedEnumSpoilageRiskBandNullableWithAggregatesFilter<$PrismaModel> | $Enums.SpoilageRiskBand | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedEnumSpoilageRiskBandNullableFilter<$PrismaModel>
+    _max?: NestedEnumSpoilageRiskBandNullableFilter<$PrismaModel>
+  }
+
+  export type NestedEnumFlashSaleStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.FlashSaleStatus | EnumFlashSaleStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.FlashSaleStatus[] | ListEnumFlashSaleStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.FlashSaleStatus[] | ListEnumFlashSaleStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumFlashSaleStatusFilter<$PrismaModel> | $Enums.FlashSaleStatus
+  }
+
+  export type NestedEnumFlashSaleStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.FlashSaleStatus | EnumFlashSaleStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.FlashSaleStatus[] | ListEnumFlashSaleStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.FlashSaleStatus[] | ListEnumFlashSaleStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumFlashSaleStatusWithAggregatesFilter<$PrismaModel> | $Enums.FlashSaleStatus
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumFlashSaleStatusFilter<$PrismaModel>
+    _max?: NestedEnumFlashSaleStatusFilter<$PrismaModel>
+  }
+
+  export type NestedEnumFlashSaleClaimStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.FlashSaleClaimStatus | EnumFlashSaleClaimStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.FlashSaleClaimStatus[] | ListEnumFlashSaleClaimStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.FlashSaleClaimStatus[] | ListEnumFlashSaleClaimStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumFlashSaleClaimStatusFilter<$PrismaModel> | $Enums.FlashSaleClaimStatus
+  }
+
+  export type NestedEnumFlashSaleClaimStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.FlashSaleClaimStatus | EnumFlashSaleClaimStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.FlashSaleClaimStatus[] | ListEnumFlashSaleClaimStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.FlashSaleClaimStatus[] | ListEnumFlashSaleClaimStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumFlashSaleClaimStatusWithAggregatesFilter<$PrismaModel> | $Enums.FlashSaleClaimStatus
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumFlashSaleClaimStatusFilter<$PrismaModel>
+    _max?: NestedEnumFlashSaleClaimStatusFilter<$PrismaModel>
+  }
+
+  export type NestedEnumNotificationChannelFilter<$PrismaModel = never> = {
+    equals?: $Enums.NotificationChannel | EnumNotificationChannelFieldRefInput<$PrismaModel>
+    in?: $Enums.NotificationChannel[] | ListEnumNotificationChannelFieldRefInput<$PrismaModel>
+    notIn?: $Enums.NotificationChannel[] | ListEnumNotificationChannelFieldRefInput<$PrismaModel>
+    not?: NestedEnumNotificationChannelFilter<$PrismaModel> | $Enums.NotificationChannel
+  }
+
+  export type NestedEnumFlashSaleNotificationStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.FlashSaleNotificationStatus | EnumFlashSaleNotificationStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.FlashSaleNotificationStatus[] | ListEnumFlashSaleNotificationStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.FlashSaleNotificationStatus[] | ListEnumFlashSaleNotificationStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumFlashSaleNotificationStatusFilter<$PrismaModel> | $Enums.FlashSaleNotificationStatus
+  }
+
+  export type NestedEnumNotificationChannelWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.NotificationChannel | EnumNotificationChannelFieldRefInput<$PrismaModel>
+    in?: $Enums.NotificationChannel[] | ListEnumNotificationChannelFieldRefInput<$PrismaModel>
+    notIn?: $Enums.NotificationChannel[] | ListEnumNotificationChannelFieldRefInput<$PrismaModel>
+    not?: NestedEnumNotificationChannelWithAggregatesFilter<$PrismaModel> | $Enums.NotificationChannel
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumNotificationChannelFilter<$PrismaModel>
+    _max?: NestedEnumNotificationChannelFilter<$PrismaModel>
+  }
+
+  export type NestedEnumFlashSaleNotificationStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.FlashSaleNotificationStatus | EnumFlashSaleNotificationStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.FlashSaleNotificationStatus[] | ListEnumFlashSaleNotificationStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.FlashSaleNotificationStatus[] | ListEnumFlashSaleNotificationStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumFlashSaleNotificationStatusWithAggregatesFilter<$PrismaModel> | $Enums.FlashSaleNotificationStatus
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumFlashSaleNotificationStatusFilter<$PrismaModel>
+    _max?: NestedEnumFlashSaleNotificationStatusFilter<$PrismaModel>
+  }
+
   export type FarmerProfileCreateWithoutUserInput = {
     id?: string
     farmSizeAcres?: number | null
@@ -41089,12 +48063,18 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     source?: $Enums.CreationSource
+    currentRiskBand?: $Enums.SpoilageRiskBand
+    currentRiskScore?: number
+    lastRiskCalculatedAt?: Date | string | null
+    activeFlashSaleId?: string | null
     orders?: OrderCreateNestedManyWithoutListingInput
     traceability?: TraceabilityRecordCreateNestedOneWithoutListingInput
     traceEvents?: TraceEventCreateNestedManyWithoutListingInput
     preOrders?: PreOrderCreateNestedManyWithoutMatchedListingInput
     coOps?: CoOpGroupCreateNestedManyWithoutListingInput
     plantingLog?: PlantingLogCreateNestedOneWithoutListingsInput
+    spoilageRiskLogs?: SpoilageRiskLogCreateNestedManyWithoutListingInput
+    flashSale?: FlashSaleCreateNestedOneWithoutListingInput
   }
 
   export type ProduceListingUncheckedCreateWithoutFarmerInput = {
@@ -41116,11 +48096,17 @@ export namespace Prisma {
     updatedAt?: Date | string
     source?: $Enums.CreationSource
     plantingLogId?: string | null
+    currentRiskBand?: $Enums.SpoilageRiskBand
+    currentRiskScore?: number
+    lastRiskCalculatedAt?: Date | string | null
+    activeFlashSaleId?: string | null
     orders?: OrderUncheckedCreateNestedManyWithoutListingInput
     traceability?: TraceabilityRecordUncheckedCreateNestedOneWithoutListingInput
     traceEvents?: TraceEventUncheckedCreateNestedManyWithoutListingInput
     preOrders?: PreOrderUncheckedCreateNestedManyWithoutMatchedListingInput
     coOps?: CoOpGroupUncheckedCreateNestedManyWithoutListingInput
+    spoilageRiskLogs?: SpoilageRiskLogUncheckedCreateNestedManyWithoutListingInput
+    flashSale?: FlashSaleUncheckedCreateNestedOneWithoutListingInput
   }
 
   export type ProduceListingCreateOrConnectWithoutFarmerInput = {
@@ -41150,6 +48136,7 @@ export namespace Prisma {
     messages?: MessageCreateNestedManyWithoutOrderInput
     preOrder?: PreOrderCreateNestedOneWithoutFulfilledOrderInput
     coOpMember?: CoOpMemberCreateNestedOneWithoutOrderInput
+    flashSaleClaims?: FlashSaleClaimCreateNestedManyWithoutOrderInput
   }
 
   export type OrderUncheckedCreateWithoutBuyerInput = {
@@ -41169,6 +48156,7 @@ export namespace Prisma {
     messages?: MessageUncheckedCreateNestedManyWithoutOrderInput
     preOrder?: PreOrderUncheckedCreateNestedOneWithoutFulfilledOrderInput
     coOpMember?: CoOpMemberUncheckedCreateNestedOneWithoutOrderInput
+    flashSaleClaims?: FlashSaleClaimUncheckedCreateNestedManyWithoutOrderInput
   }
 
   export type OrderCreateOrConnectWithoutBuyerInput = {
@@ -41764,6 +48752,124 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type FlashSaleCreateWithoutFarmerInput = {
+    id?: string
+    originalPricePerKg: number
+    discountPercent: number
+    flashPricePerKg: number
+    quantityKg: number
+    soldKg?: number
+    riskBand: $Enums.SpoilageRiskBand
+    riskScore: number
+    status?: $Enums.FlashSaleStatus
+    expiresAt: Date | string
+    farmerApproved?: boolean
+    cancelledAt?: Date | string | null
+    cancelReason?: string | null
+    notificationsSent?: number
+    buyersClaimed?: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    listing: ProduceListingCreateNestedOneWithoutFlashSaleInput
+    claims?: FlashSaleClaimCreateNestedManyWithoutFlashSaleInput
+    notifications?: FlashSaleNotificationCreateNestedManyWithoutFlashSaleInput
+  }
+
+  export type FlashSaleUncheckedCreateWithoutFarmerInput = {
+    id?: string
+    listingId: string
+    originalPricePerKg: number
+    discountPercent: number
+    flashPricePerKg: number
+    quantityKg: number
+    soldKg?: number
+    riskBand: $Enums.SpoilageRiskBand
+    riskScore: number
+    status?: $Enums.FlashSaleStatus
+    expiresAt: Date | string
+    farmerApproved?: boolean
+    cancelledAt?: Date | string | null
+    cancelReason?: string | null
+    notificationsSent?: number
+    buyersClaimed?: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    claims?: FlashSaleClaimUncheckedCreateNestedManyWithoutFlashSaleInput
+    notifications?: FlashSaleNotificationUncheckedCreateNestedManyWithoutFlashSaleInput
+  }
+
+  export type FlashSaleCreateOrConnectWithoutFarmerInput = {
+    where: FlashSaleWhereUniqueInput
+    create: XOR<FlashSaleCreateWithoutFarmerInput, FlashSaleUncheckedCreateWithoutFarmerInput>
+  }
+
+  export type FlashSaleCreateManyFarmerInputEnvelope = {
+    data: FlashSaleCreateManyFarmerInput | FlashSaleCreateManyFarmerInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type FlashSaleClaimCreateWithoutBuyerInput = {
+    id?: string
+    quantityKg: number
+    pricePerKg: number
+    totalPrice: number
+    status: $Enums.FlashSaleClaimStatus
+    claimedAt?: Date | string
+    expiresAt: Date | string
+    flashSale: FlashSaleCreateNestedOneWithoutClaimsInput
+    order?: OrderCreateNestedOneWithoutFlashSaleClaimsInput
+  }
+
+  export type FlashSaleClaimUncheckedCreateWithoutBuyerInput = {
+    id?: string
+    flashSaleId: string
+    quantityKg: number
+    pricePerKg: number
+    totalPrice: number
+    orderId?: string | null
+    status: $Enums.FlashSaleClaimStatus
+    claimedAt?: Date | string
+    expiresAt: Date | string
+  }
+
+  export type FlashSaleClaimCreateOrConnectWithoutBuyerInput = {
+    where: FlashSaleClaimWhereUniqueInput
+    create: XOR<FlashSaleClaimCreateWithoutBuyerInput, FlashSaleClaimUncheckedCreateWithoutBuyerInput>
+  }
+
+  export type FlashSaleClaimCreateManyBuyerInputEnvelope = {
+    data: FlashSaleClaimCreateManyBuyerInput | FlashSaleClaimCreateManyBuyerInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type FlashSaleNotificationCreateWithoutBuyerInput = {
+    id?: string
+    channel: $Enums.NotificationChannel
+    status?: $Enums.FlashSaleNotificationStatus
+    sentAt?: Date | string | null
+    clickedAt?: Date | string | null
+    flashSale: FlashSaleCreateNestedOneWithoutNotificationsInput
+  }
+
+  export type FlashSaleNotificationUncheckedCreateWithoutBuyerInput = {
+    id?: string
+    flashSaleId: string
+    channel: $Enums.NotificationChannel
+    status?: $Enums.FlashSaleNotificationStatus
+    sentAt?: Date | string | null
+    clickedAt?: Date | string | null
+  }
+
+  export type FlashSaleNotificationCreateOrConnectWithoutBuyerInput = {
+    where: FlashSaleNotificationWhereUniqueInput
+    create: XOR<FlashSaleNotificationCreateWithoutBuyerInput, FlashSaleNotificationUncheckedCreateWithoutBuyerInput>
+  }
+
+  export type FlashSaleNotificationCreateManyBuyerInputEnvelope = {
+    data: FlashSaleNotificationCreateManyBuyerInput | FlashSaleNotificationCreateManyBuyerInput[]
+    skipDuplicates?: boolean
+  }
+
   export type FarmerProfileUpsertWithoutUserInput = {
     update: XOR<FarmerProfileUpdateWithoutUserInput, FarmerProfileUncheckedUpdateWithoutUserInput>
     create: XOR<FarmerProfileCreateWithoutUserInput, FarmerProfileUncheckedCreateWithoutUserInput>
@@ -41898,6 +49004,10 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"ProduceListing"> | Date | string
     source?: EnumCreationSourceFilter<"ProduceListing"> | $Enums.CreationSource
     plantingLogId?: StringNullableFilter<"ProduceListing"> | string | null
+    currentRiskBand?: EnumSpoilageRiskBandFilter<"ProduceListing"> | $Enums.SpoilageRiskBand
+    currentRiskScore?: FloatFilter<"ProduceListing"> | number
+    lastRiskCalculatedAt?: DateTimeNullableFilter<"ProduceListing"> | Date | string | null
+    activeFlashSaleId?: StringNullableFilter<"ProduceListing"> | string | null
   }
 
   export type OrderUpsertWithWhereUniqueWithoutBuyerInput = {
@@ -42452,6 +49562,108 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"BuyerCropAlert"> | Date | string
   }
 
+  export type FlashSaleUpsertWithWhereUniqueWithoutFarmerInput = {
+    where: FlashSaleWhereUniqueInput
+    update: XOR<FlashSaleUpdateWithoutFarmerInput, FlashSaleUncheckedUpdateWithoutFarmerInput>
+    create: XOR<FlashSaleCreateWithoutFarmerInput, FlashSaleUncheckedCreateWithoutFarmerInput>
+  }
+
+  export type FlashSaleUpdateWithWhereUniqueWithoutFarmerInput = {
+    where: FlashSaleWhereUniqueInput
+    data: XOR<FlashSaleUpdateWithoutFarmerInput, FlashSaleUncheckedUpdateWithoutFarmerInput>
+  }
+
+  export type FlashSaleUpdateManyWithWhereWithoutFarmerInput = {
+    where: FlashSaleScalarWhereInput
+    data: XOR<FlashSaleUpdateManyMutationInput, FlashSaleUncheckedUpdateManyWithoutFarmerInput>
+  }
+
+  export type FlashSaleScalarWhereInput = {
+    AND?: FlashSaleScalarWhereInput | FlashSaleScalarWhereInput[]
+    OR?: FlashSaleScalarWhereInput[]
+    NOT?: FlashSaleScalarWhereInput | FlashSaleScalarWhereInput[]
+    id?: StringFilter<"FlashSale"> | string
+    listingId?: StringFilter<"FlashSale"> | string
+    farmerId?: StringFilter<"FlashSale"> | string
+    originalPricePerKg?: FloatFilter<"FlashSale"> | number
+    discountPercent?: FloatFilter<"FlashSale"> | number
+    flashPricePerKg?: FloatFilter<"FlashSale"> | number
+    quantityKg?: FloatFilter<"FlashSale"> | number
+    soldKg?: FloatFilter<"FlashSale"> | number
+    riskBand?: EnumSpoilageRiskBandFilter<"FlashSale"> | $Enums.SpoilageRiskBand
+    riskScore?: FloatFilter<"FlashSale"> | number
+    status?: EnumFlashSaleStatusFilter<"FlashSale"> | $Enums.FlashSaleStatus
+    expiresAt?: DateTimeFilter<"FlashSale"> | Date | string
+    farmerApproved?: BoolFilter<"FlashSale"> | boolean
+    cancelledAt?: DateTimeNullableFilter<"FlashSale"> | Date | string | null
+    cancelReason?: StringNullableFilter<"FlashSale"> | string | null
+    notificationsSent?: IntFilter<"FlashSale"> | number
+    buyersClaimed?: IntFilter<"FlashSale"> | number
+    createdAt?: DateTimeFilter<"FlashSale"> | Date | string
+    updatedAt?: DateTimeFilter<"FlashSale"> | Date | string
+  }
+
+  export type FlashSaleClaimUpsertWithWhereUniqueWithoutBuyerInput = {
+    where: FlashSaleClaimWhereUniqueInput
+    update: XOR<FlashSaleClaimUpdateWithoutBuyerInput, FlashSaleClaimUncheckedUpdateWithoutBuyerInput>
+    create: XOR<FlashSaleClaimCreateWithoutBuyerInput, FlashSaleClaimUncheckedCreateWithoutBuyerInput>
+  }
+
+  export type FlashSaleClaimUpdateWithWhereUniqueWithoutBuyerInput = {
+    where: FlashSaleClaimWhereUniqueInput
+    data: XOR<FlashSaleClaimUpdateWithoutBuyerInput, FlashSaleClaimUncheckedUpdateWithoutBuyerInput>
+  }
+
+  export type FlashSaleClaimUpdateManyWithWhereWithoutBuyerInput = {
+    where: FlashSaleClaimScalarWhereInput
+    data: XOR<FlashSaleClaimUpdateManyMutationInput, FlashSaleClaimUncheckedUpdateManyWithoutBuyerInput>
+  }
+
+  export type FlashSaleClaimScalarWhereInput = {
+    AND?: FlashSaleClaimScalarWhereInput | FlashSaleClaimScalarWhereInput[]
+    OR?: FlashSaleClaimScalarWhereInput[]
+    NOT?: FlashSaleClaimScalarWhereInput | FlashSaleClaimScalarWhereInput[]
+    id?: StringFilter<"FlashSaleClaim"> | string
+    flashSaleId?: StringFilter<"FlashSaleClaim"> | string
+    buyerId?: StringFilter<"FlashSaleClaim"> | string
+    quantityKg?: FloatFilter<"FlashSaleClaim"> | number
+    pricePerKg?: FloatFilter<"FlashSaleClaim"> | number
+    totalPrice?: FloatFilter<"FlashSaleClaim"> | number
+    orderId?: StringNullableFilter<"FlashSaleClaim"> | string | null
+    status?: EnumFlashSaleClaimStatusFilter<"FlashSaleClaim"> | $Enums.FlashSaleClaimStatus
+    claimedAt?: DateTimeFilter<"FlashSaleClaim"> | Date | string
+    expiresAt?: DateTimeFilter<"FlashSaleClaim"> | Date | string
+  }
+
+  export type FlashSaleNotificationUpsertWithWhereUniqueWithoutBuyerInput = {
+    where: FlashSaleNotificationWhereUniqueInput
+    update: XOR<FlashSaleNotificationUpdateWithoutBuyerInput, FlashSaleNotificationUncheckedUpdateWithoutBuyerInput>
+    create: XOR<FlashSaleNotificationCreateWithoutBuyerInput, FlashSaleNotificationUncheckedCreateWithoutBuyerInput>
+  }
+
+  export type FlashSaleNotificationUpdateWithWhereUniqueWithoutBuyerInput = {
+    where: FlashSaleNotificationWhereUniqueInput
+    data: XOR<FlashSaleNotificationUpdateWithoutBuyerInput, FlashSaleNotificationUncheckedUpdateWithoutBuyerInput>
+  }
+
+  export type FlashSaleNotificationUpdateManyWithWhereWithoutBuyerInput = {
+    where: FlashSaleNotificationScalarWhereInput
+    data: XOR<FlashSaleNotificationUpdateManyMutationInput, FlashSaleNotificationUncheckedUpdateManyWithoutBuyerInput>
+  }
+
+  export type FlashSaleNotificationScalarWhereInput = {
+    AND?: FlashSaleNotificationScalarWhereInput | FlashSaleNotificationScalarWhereInput[]
+    OR?: FlashSaleNotificationScalarWhereInput[]
+    NOT?: FlashSaleNotificationScalarWhereInput | FlashSaleNotificationScalarWhereInput[]
+    id?: StringFilter<"FlashSaleNotification"> | string
+    flashSaleId?: StringFilter<"FlashSaleNotification"> | string
+    buyerId?: StringFilter<"FlashSaleNotification"> | string
+    channel?: EnumNotificationChannelFilter<"FlashSaleNotification"> | $Enums.NotificationChannel
+    status?: EnumFlashSaleNotificationStatusFilter<"FlashSaleNotification"> | $Enums.FlashSaleNotificationStatus
+    sentAt?: DateTimeNullableFilter<"FlashSaleNotification"> | Date | string | null
+    clickedAt?: DateTimeNullableFilter<"FlashSaleNotification"> | Date | string | null
+  }
+
   export type UserCreateWithoutFarmerProfileInput = {
     id?: string
     phone: string
@@ -42470,6 +49682,8 @@ export namespace Prisma {
     lockoutUntil?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    flashSaleOptOut?: boolean
+    flashSaleRadius?: number
     buyerProfile?: BuyerProfileCreateNestedOneWithoutUserInput
     transportProfile?: TransportProfileCreateNestedOneWithoutUserInput
     listings?: ProduceListingCreateNestedManyWithoutFarmerInput
@@ -42491,6 +49705,9 @@ export namespace Prisma {
     createdCoOps?: CoOpGroupCreateNestedManyWithoutCreatorInput
     coOpContributions?: CoOpMemberCreateNestedManyWithoutBuyerInput
     cropAlerts?: BuyerCropAlertCreateNestedManyWithoutBuyerInput
+    flashSalesCreated?: FlashSaleCreateNestedManyWithoutFarmerInput
+    flashSaleClaims?: FlashSaleClaimCreateNestedManyWithoutBuyerInput
+    flashSaleNotifications?: FlashSaleNotificationCreateNestedManyWithoutBuyerInput
   }
 
   export type UserUncheckedCreateWithoutFarmerProfileInput = {
@@ -42511,6 +49728,8 @@ export namespace Prisma {
     lockoutUntil?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    flashSaleOptOut?: boolean
+    flashSaleRadius?: number
     buyerProfile?: BuyerProfileUncheckedCreateNestedOneWithoutUserInput
     transportProfile?: TransportProfileUncheckedCreateNestedOneWithoutUserInput
     listings?: ProduceListingUncheckedCreateNestedManyWithoutFarmerInput
@@ -42532,6 +49751,9 @@ export namespace Prisma {
     createdCoOps?: CoOpGroupUncheckedCreateNestedManyWithoutCreatorInput
     coOpContributions?: CoOpMemberUncheckedCreateNestedManyWithoutBuyerInput
     cropAlerts?: BuyerCropAlertUncheckedCreateNestedManyWithoutBuyerInput
+    flashSalesCreated?: FlashSaleUncheckedCreateNestedManyWithoutFarmerInput
+    flashSaleClaims?: FlashSaleClaimUncheckedCreateNestedManyWithoutBuyerInput
+    flashSaleNotifications?: FlashSaleNotificationUncheckedCreateNestedManyWithoutBuyerInput
   }
 
   export type UserCreateOrConnectWithoutFarmerProfileInput = {
@@ -42568,6 +49790,8 @@ export namespace Prisma {
     lockoutUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    flashSaleOptOut?: BoolFieldUpdateOperationsInput | boolean
+    flashSaleRadius?: IntFieldUpdateOperationsInput | number
     buyerProfile?: BuyerProfileUpdateOneWithoutUserNestedInput
     transportProfile?: TransportProfileUpdateOneWithoutUserNestedInput
     listings?: ProduceListingUpdateManyWithoutFarmerNestedInput
@@ -42589,6 +49813,9 @@ export namespace Prisma {
     createdCoOps?: CoOpGroupUpdateManyWithoutCreatorNestedInput
     coOpContributions?: CoOpMemberUpdateManyWithoutBuyerNestedInput
     cropAlerts?: BuyerCropAlertUpdateManyWithoutBuyerNestedInput
+    flashSalesCreated?: FlashSaleUpdateManyWithoutFarmerNestedInput
+    flashSaleClaims?: FlashSaleClaimUpdateManyWithoutBuyerNestedInput
+    flashSaleNotifications?: FlashSaleNotificationUpdateManyWithoutBuyerNestedInput
   }
 
   export type UserUncheckedUpdateWithoutFarmerProfileInput = {
@@ -42609,6 +49836,8 @@ export namespace Prisma {
     lockoutUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    flashSaleOptOut?: BoolFieldUpdateOperationsInput | boolean
+    flashSaleRadius?: IntFieldUpdateOperationsInput | number
     buyerProfile?: BuyerProfileUncheckedUpdateOneWithoutUserNestedInput
     transportProfile?: TransportProfileUncheckedUpdateOneWithoutUserNestedInput
     listings?: ProduceListingUncheckedUpdateManyWithoutFarmerNestedInput
@@ -42630,6 +49859,9 @@ export namespace Prisma {
     createdCoOps?: CoOpGroupUncheckedUpdateManyWithoutCreatorNestedInput
     coOpContributions?: CoOpMemberUncheckedUpdateManyWithoutBuyerNestedInput
     cropAlerts?: BuyerCropAlertUncheckedUpdateManyWithoutBuyerNestedInput
+    flashSalesCreated?: FlashSaleUncheckedUpdateManyWithoutFarmerNestedInput
+    flashSaleClaims?: FlashSaleClaimUncheckedUpdateManyWithoutBuyerNestedInput
+    flashSaleNotifications?: FlashSaleNotificationUncheckedUpdateManyWithoutBuyerNestedInput
   }
 
   export type UserCreateWithoutBuyerProfileInput = {
@@ -42650,6 +49882,8 @@ export namespace Prisma {
     lockoutUntil?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    flashSaleOptOut?: boolean
+    flashSaleRadius?: number
     farmerProfile?: FarmerProfileCreateNestedOneWithoutUserInput
     transportProfile?: TransportProfileCreateNestedOneWithoutUserInput
     listings?: ProduceListingCreateNestedManyWithoutFarmerInput
@@ -42671,6 +49905,9 @@ export namespace Prisma {
     createdCoOps?: CoOpGroupCreateNestedManyWithoutCreatorInput
     coOpContributions?: CoOpMemberCreateNestedManyWithoutBuyerInput
     cropAlerts?: BuyerCropAlertCreateNestedManyWithoutBuyerInput
+    flashSalesCreated?: FlashSaleCreateNestedManyWithoutFarmerInput
+    flashSaleClaims?: FlashSaleClaimCreateNestedManyWithoutBuyerInput
+    flashSaleNotifications?: FlashSaleNotificationCreateNestedManyWithoutBuyerInput
   }
 
   export type UserUncheckedCreateWithoutBuyerProfileInput = {
@@ -42691,6 +49928,8 @@ export namespace Prisma {
     lockoutUntil?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    flashSaleOptOut?: boolean
+    flashSaleRadius?: number
     farmerProfile?: FarmerProfileUncheckedCreateNestedOneWithoutUserInput
     transportProfile?: TransportProfileUncheckedCreateNestedOneWithoutUserInput
     listings?: ProduceListingUncheckedCreateNestedManyWithoutFarmerInput
@@ -42712,6 +49951,9 @@ export namespace Prisma {
     createdCoOps?: CoOpGroupUncheckedCreateNestedManyWithoutCreatorInput
     coOpContributions?: CoOpMemberUncheckedCreateNestedManyWithoutBuyerInput
     cropAlerts?: BuyerCropAlertUncheckedCreateNestedManyWithoutBuyerInput
+    flashSalesCreated?: FlashSaleUncheckedCreateNestedManyWithoutFarmerInput
+    flashSaleClaims?: FlashSaleClaimUncheckedCreateNestedManyWithoutBuyerInput
+    flashSaleNotifications?: FlashSaleNotificationUncheckedCreateNestedManyWithoutBuyerInput
   }
 
   export type UserCreateOrConnectWithoutBuyerProfileInput = {
@@ -42748,6 +49990,8 @@ export namespace Prisma {
     lockoutUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    flashSaleOptOut?: BoolFieldUpdateOperationsInput | boolean
+    flashSaleRadius?: IntFieldUpdateOperationsInput | number
     farmerProfile?: FarmerProfileUpdateOneWithoutUserNestedInput
     transportProfile?: TransportProfileUpdateOneWithoutUserNestedInput
     listings?: ProduceListingUpdateManyWithoutFarmerNestedInput
@@ -42769,6 +50013,9 @@ export namespace Prisma {
     createdCoOps?: CoOpGroupUpdateManyWithoutCreatorNestedInput
     coOpContributions?: CoOpMemberUpdateManyWithoutBuyerNestedInput
     cropAlerts?: BuyerCropAlertUpdateManyWithoutBuyerNestedInput
+    flashSalesCreated?: FlashSaleUpdateManyWithoutFarmerNestedInput
+    flashSaleClaims?: FlashSaleClaimUpdateManyWithoutBuyerNestedInput
+    flashSaleNotifications?: FlashSaleNotificationUpdateManyWithoutBuyerNestedInput
   }
 
   export type UserUncheckedUpdateWithoutBuyerProfileInput = {
@@ -42789,6 +50036,8 @@ export namespace Prisma {
     lockoutUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    flashSaleOptOut?: BoolFieldUpdateOperationsInput | boolean
+    flashSaleRadius?: IntFieldUpdateOperationsInput | number
     farmerProfile?: FarmerProfileUncheckedUpdateOneWithoutUserNestedInput
     transportProfile?: TransportProfileUncheckedUpdateOneWithoutUserNestedInput
     listings?: ProduceListingUncheckedUpdateManyWithoutFarmerNestedInput
@@ -42810,6 +50059,9 @@ export namespace Prisma {
     createdCoOps?: CoOpGroupUncheckedUpdateManyWithoutCreatorNestedInput
     coOpContributions?: CoOpMemberUncheckedUpdateManyWithoutBuyerNestedInput
     cropAlerts?: BuyerCropAlertUncheckedUpdateManyWithoutBuyerNestedInput
+    flashSalesCreated?: FlashSaleUncheckedUpdateManyWithoutFarmerNestedInput
+    flashSaleClaims?: FlashSaleClaimUncheckedUpdateManyWithoutBuyerNestedInput
+    flashSaleNotifications?: FlashSaleNotificationUncheckedUpdateManyWithoutBuyerNestedInput
   }
 
   export type UserCreateWithoutTransportProfileInput = {
@@ -42830,6 +50082,8 @@ export namespace Prisma {
     lockoutUntil?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    flashSaleOptOut?: boolean
+    flashSaleRadius?: number
     farmerProfile?: FarmerProfileCreateNestedOneWithoutUserInput
     buyerProfile?: BuyerProfileCreateNestedOneWithoutUserInput
     listings?: ProduceListingCreateNestedManyWithoutFarmerInput
@@ -42851,6 +50105,9 @@ export namespace Prisma {
     createdCoOps?: CoOpGroupCreateNestedManyWithoutCreatorInput
     coOpContributions?: CoOpMemberCreateNestedManyWithoutBuyerInput
     cropAlerts?: BuyerCropAlertCreateNestedManyWithoutBuyerInput
+    flashSalesCreated?: FlashSaleCreateNestedManyWithoutFarmerInput
+    flashSaleClaims?: FlashSaleClaimCreateNestedManyWithoutBuyerInput
+    flashSaleNotifications?: FlashSaleNotificationCreateNestedManyWithoutBuyerInput
   }
 
   export type UserUncheckedCreateWithoutTransportProfileInput = {
@@ -42871,6 +50128,8 @@ export namespace Prisma {
     lockoutUntil?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    flashSaleOptOut?: boolean
+    flashSaleRadius?: number
     farmerProfile?: FarmerProfileUncheckedCreateNestedOneWithoutUserInput
     buyerProfile?: BuyerProfileUncheckedCreateNestedOneWithoutUserInput
     listings?: ProduceListingUncheckedCreateNestedManyWithoutFarmerInput
@@ -42892,6 +50151,9 @@ export namespace Prisma {
     createdCoOps?: CoOpGroupUncheckedCreateNestedManyWithoutCreatorInput
     coOpContributions?: CoOpMemberUncheckedCreateNestedManyWithoutBuyerInput
     cropAlerts?: BuyerCropAlertUncheckedCreateNestedManyWithoutBuyerInput
+    flashSalesCreated?: FlashSaleUncheckedCreateNestedManyWithoutFarmerInput
+    flashSaleClaims?: FlashSaleClaimUncheckedCreateNestedManyWithoutBuyerInput
+    flashSaleNotifications?: FlashSaleNotificationUncheckedCreateNestedManyWithoutBuyerInput
   }
 
   export type UserCreateOrConnectWithoutTransportProfileInput = {
@@ -42928,6 +50190,8 @@ export namespace Prisma {
     lockoutUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    flashSaleOptOut?: BoolFieldUpdateOperationsInput | boolean
+    flashSaleRadius?: IntFieldUpdateOperationsInput | number
     farmerProfile?: FarmerProfileUpdateOneWithoutUserNestedInput
     buyerProfile?: BuyerProfileUpdateOneWithoutUserNestedInput
     listings?: ProduceListingUpdateManyWithoutFarmerNestedInput
@@ -42949,6 +50213,9 @@ export namespace Prisma {
     createdCoOps?: CoOpGroupUpdateManyWithoutCreatorNestedInput
     coOpContributions?: CoOpMemberUpdateManyWithoutBuyerNestedInput
     cropAlerts?: BuyerCropAlertUpdateManyWithoutBuyerNestedInput
+    flashSalesCreated?: FlashSaleUpdateManyWithoutFarmerNestedInput
+    flashSaleClaims?: FlashSaleClaimUpdateManyWithoutBuyerNestedInput
+    flashSaleNotifications?: FlashSaleNotificationUpdateManyWithoutBuyerNestedInput
   }
 
   export type UserUncheckedUpdateWithoutTransportProfileInput = {
@@ -42969,6 +50236,8 @@ export namespace Prisma {
     lockoutUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    flashSaleOptOut?: BoolFieldUpdateOperationsInput | boolean
+    flashSaleRadius?: IntFieldUpdateOperationsInput | number
     farmerProfile?: FarmerProfileUncheckedUpdateOneWithoutUserNestedInput
     buyerProfile?: BuyerProfileUncheckedUpdateOneWithoutUserNestedInput
     listings?: ProduceListingUncheckedUpdateManyWithoutFarmerNestedInput
@@ -42990,6 +50259,9 @@ export namespace Prisma {
     createdCoOps?: CoOpGroupUncheckedUpdateManyWithoutCreatorNestedInput
     coOpContributions?: CoOpMemberUncheckedUpdateManyWithoutBuyerNestedInput
     cropAlerts?: BuyerCropAlertUncheckedUpdateManyWithoutBuyerNestedInput
+    flashSalesCreated?: FlashSaleUncheckedUpdateManyWithoutFarmerNestedInput
+    flashSaleClaims?: FlashSaleClaimUncheckedUpdateManyWithoutBuyerNestedInput
+    flashSaleNotifications?: FlashSaleNotificationUncheckedUpdateManyWithoutBuyerNestedInput
   }
 
   export type UserCreateWithoutListingsInput = {
@@ -43010,6 +50282,8 @@ export namespace Prisma {
     lockoutUntil?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    flashSaleOptOut?: boolean
+    flashSaleRadius?: number
     farmerProfile?: FarmerProfileCreateNestedOneWithoutUserInput
     buyerProfile?: BuyerProfileCreateNestedOneWithoutUserInput
     transportProfile?: TransportProfileCreateNestedOneWithoutUserInput
@@ -43031,6 +50305,9 @@ export namespace Prisma {
     createdCoOps?: CoOpGroupCreateNestedManyWithoutCreatorInput
     coOpContributions?: CoOpMemberCreateNestedManyWithoutBuyerInput
     cropAlerts?: BuyerCropAlertCreateNestedManyWithoutBuyerInput
+    flashSalesCreated?: FlashSaleCreateNestedManyWithoutFarmerInput
+    flashSaleClaims?: FlashSaleClaimCreateNestedManyWithoutBuyerInput
+    flashSaleNotifications?: FlashSaleNotificationCreateNestedManyWithoutBuyerInput
   }
 
   export type UserUncheckedCreateWithoutListingsInput = {
@@ -43051,6 +50328,8 @@ export namespace Prisma {
     lockoutUntil?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    flashSaleOptOut?: boolean
+    flashSaleRadius?: number
     farmerProfile?: FarmerProfileUncheckedCreateNestedOneWithoutUserInput
     buyerProfile?: BuyerProfileUncheckedCreateNestedOneWithoutUserInput
     transportProfile?: TransportProfileUncheckedCreateNestedOneWithoutUserInput
@@ -43072,6 +50351,9 @@ export namespace Prisma {
     createdCoOps?: CoOpGroupUncheckedCreateNestedManyWithoutCreatorInput
     coOpContributions?: CoOpMemberUncheckedCreateNestedManyWithoutBuyerInput
     cropAlerts?: BuyerCropAlertUncheckedCreateNestedManyWithoutBuyerInput
+    flashSalesCreated?: FlashSaleUncheckedCreateNestedManyWithoutFarmerInput
+    flashSaleClaims?: FlashSaleClaimUncheckedCreateNestedManyWithoutBuyerInput
+    flashSaleNotifications?: FlashSaleNotificationUncheckedCreateNestedManyWithoutBuyerInput
   }
 
   export type UserCreateOrConnectWithoutListingsInput = {
@@ -43096,6 +50378,7 @@ export namespace Prisma {
     messages?: MessageCreateNestedManyWithoutOrderInput
     preOrder?: PreOrderCreateNestedOneWithoutFulfilledOrderInput
     coOpMember?: CoOpMemberCreateNestedOneWithoutOrderInput
+    flashSaleClaims?: FlashSaleClaimCreateNestedManyWithoutOrderInput
   }
 
   export type OrderUncheckedCreateWithoutListingInput = {
@@ -43115,6 +50398,7 @@ export namespace Prisma {
     messages?: MessageUncheckedCreateNestedManyWithoutOrderInput
     preOrder?: PreOrderUncheckedCreateNestedOneWithoutFulfilledOrderInput
     coOpMember?: CoOpMemberUncheckedCreateNestedOneWithoutOrderInput
+    flashSaleClaims?: FlashSaleClaimUncheckedCreateNestedManyWithoutOrderInput
   }
 
   export type OrderCreateOrConnectWithoutListingInput = {
@@ -43301,6 +50585,89 @@ export namespace Prisma {
     create: XOR<PlantingLogCreateWithoutListingsInput, PlantingLogUncheckedCreateWithoutListingsInput>
   }
 
+  export type SpoilageRiskLogCreateWithoutListingInput = {
+    id?: string
+    previousBand?: $Enums.SpoilageRiskBand | null
+    newBand: $Enums.SpoilageRiskBand
+    riskScore: number
+    hoursUntilExpiry: number
+    remainingKg: number
+    calculatedAt?: Date | string
+    triggeredFlashSale?: boolean
+  }
+
+  export type SpoilageRiskLogUncheckedCreateWithoutListingInput = {
+    id?: string
+    previousBand?: $Enums.SpoilageRiskBand | null
+    newBand: $Enums.SpoilageRiskBand
+    riskScore: number
+    hoursUntilExpiry: number
+    remainingKg: number
+    calculatedAt?: Date | string
+    triggeredFlashSale?: boolean
+  }
+
+  export type SpoilageRiskLogCreateOrConnectWithoutListingInput = {
+    where: SpoilageRiskLogWhereUniqueInput
+    create: XOR<SpoilageRiskLogCreateWithoutListingInput, SpoilageRiskLogUncheckedCreateWithoutListingInput>
+  }
+
+  export type SpoilageRiskLogCreateManyListingInputEnvelope = {
+    data: SpoilageRiskLogCreateManyListingInput | SpoilageRiskLogCreateManyListingInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type FlashSaleCreateWithoutListingInput = {
+    id?: string
+    originalPricePerKg: number
+    discountPercent: number
+    flashPricePerKg: number
+    quantityKg: number
+    soldKg?: number
+    riskBand: $Enums.SpoilageRiskBand
+    riskScore: number
+    status?: $Enums.FlashSaleStatus
+    expiresAt: Date | string
+    farmerApproved?: boolean
+    cancelledAt?: Date | string | null
+    cancelReason?: string | null
+    notificationsSent?: number
+    buyersClaimed?: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    farmer: UserCreateNestedOneWithoutFlashSalesCreatedInput
+    claims?: FlashSaleClaimCreateNestedManyWithoutFlashSaleInput
+    notifications?: FlashSaleNotificationCreateNestedManyWithoutFlashSaleInput
+  }
+
+  export type FlashSaleUncheckedCreateWithoutListingInput = {
+    id?: string
+    farmerId: string
+    originalPricePerKg: number
+    discountPercent: number
+    flashPricePerKg: number
+    quantityKg: number
+    soldKg?: number
+    riskBand: $Enums.SpoilageRiskBand
+    riskScore: number
+    status?: $Enums.FlashSaleStatus
+    expiresAt: Date | string
+    farmerApproved?: boolean
+    cancelledAt?: Date | string | null
+    cancelReason?: string | null
+    notificationsSent?: number
+    buyersClaimed?: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    claims?: FlashSaleClaimUncheckedCreateNestedManyWithoutFlashSaleInput
+    notifications?: FlashSaleNotificationUncheckedCreateNestedManyWithoutFlashSaleInput
+  }
+
+  export type FlashSaleCreateOrConnectWithoutListingInput = {
+    where: FlashSaleWhereUniqueInput
+    create: XOR<FlashSaleCreateWithoutListingInput, FlashSaleUncheckedCreateWithoutListingInput>
+  }
+
   export type UserUpsertWithoutListingsInput = {
     update: XOR<UserUpdateWithoutListingsInput, UserUncheckedUpdateWithoutListingsInput>
     create: XOR<UserCreateWithoutListingsInput, UserUncheckedCreateWithoutListingsInput>
@@ -43330,6 +50697,8 @@ export namespace Prisma {
     lockoutUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    flashSaleOptOut?: BoolFieldUpdateOperationsInput | boolean
+    flashSaleRadius?: IntFieldUpdateOperationsInput | number
     farmerProfile?: FarmerProfileUpdateOneWithoutUserNestedInput
     buyerProfile?: BuyerProfileUpdateOneWithoutUserNestedInput
     transportProfile?: TransportProfileUpdateOneWithoutUserNestedInput
@@ -43351,6 +50720,9 @@ export namespace Prisma {
     createdCoOps?: CoOpGroupUpdateManyWithoutCreatorNestedInput
     coOpContributions?: CoOpMemberUpdateManyWithoutBuyerNestedInput
     cropAlerts?: BuyerCropAlertUpdateManyWithoutBuyerNestedInput
+    flashSalesCreated?: FlashSaleUpdateManyWithoutFarmerNestedInput
+    flashSaleClaims?: FlashSaleClaimUpdateManyWithoutBuyerNestedInput
+    flashSaleNotifications?: FlashSaleNotificationUpdateManyWithoutBuyerNestedInput
   }
 
   export type UserUncheckedUpdateWithoutListingsInput = {
@@ -43371,6 +50743,8 @@ export namespace Prisma {
     lockoutUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    flashSaleOptOut?: BoolFieldUpdateOperationsInput | boolean
+    flashSaleRadius?: IntFieldUpdateOperationsInput | number
     farmerProfile?: FarmerProfileUncheckedUpdateOneWithoutUserNestedInput
     buyerProfile?: BuyerProfileUncheckedUpdateOneWithoutUserNestedInput
     transportProfile?: TransportProfileUncheckedUpdateOneWithoutUserNestedInput
@@ -43392,6 +50766,9 @@ export namespace Prisma {
     createdCoOps?: CoOpGroupUncheckedUpdateManyWithoutCreatorNestedInput
     coOpContributions?: CoOpMemberUncheckedUpdateManyWithoutBuyerNestedInput
     cropAlerts?: BuyerCropAlertUncheckedUpdateManyWithoutBuyerNestedInput
+    flashSalesCreated?: FlashSaleUncheckedUpdateManyWithoutFarmerNestedInput
+    flashSaleClaims?: FlashSaleClaimUncheckedUpdateManyWithoutBuyerNestedInput
+    flashSaleNotifications?: FlashSaleNotificationUncheckedUpdateManyWithoutBuyerNestedInput
   }
 
   export type OrderUpsertWithWhereUniqueWithoutListingInput = {
@@ -43528,6 +50905,94 @@ export namespace Prisma {
     inputs?: PlantingInputUncheckedUpdateManyWithoutPlantingLogNestedInput
   }
 
+  export type SpoilageRiskLogUpsertWithWhereUniqueWithoutListingInput = {
+    where: SpoilageRiskLogWhereUniqueInput
+    update: XOR<SpoilageRiskLogUpdateWithoutListingInput, SpoilageRiskLogUncheckedUpdateWithoutListingInput>
+    create: XOR<SpoilageRiskLogCreateWithoutListingInput, SpoilageRiskLogUncheckedCreateWithoutListingInput>
+  }
+
+  export type SpoilageRiskLogUpdateWithWhereUniqueWithoutListingInput = {
+    where: SpoilageRiskLogWhereUniqueInput
+    data: XOR<SpoilageRiskLogUpdateWithoutListingInput, SpoilageRiskLogUncheckedUpdateWithoutListingInput>
+  }
+
+  export type SpoilageRiskLogUpdateManyWithWhereWithoutListingInput = {
+    where: SpoilageRiskLogScalarWhereInput
+    data: XOR<SpoilageRiskLogUpdateManyMutationInput, SpoilageRiskLogUncheckedUpdateManyWithoutListingInput>
+  }
+
+  export type SpoilageRiskLogScalarWhereInput = {
+    AND?: SpoilageRiskLogScalarWhereInput | SpoilageRiskLogScalarWhereInput[]
+    OR?: SpoilageRiskLogScalarWhereInput[]
+    NOT?: SpoilageRiskLogScalarWhereInput | SpoilageRiskLogScalarWhereInput[]
+    id?: StringFilter<"SpoilageRiskLog"> | string
+    listingId?: StringFilter<"SpoilageRiskLog"> | string
+    previousBand?: EnumSpoilageRiskBandNullableFilter<"SpoilageRiskLog"> | $Enums.SpoilageRiskBand | null
+    newBand?: EnumSpoilageRiskBandFilter<"SpoilageRiskLog"> | $Enums.SpoilageRiskBand
+    riskScore?: FloatFilter<"SpoilageRiskLog"> | number
+    hoursUntilExpiry?: FloatFilter<"SpoilageRiskLog"> | number
+    remainingKg?: FloatFilter<"SpoilageRiskLog"> | number
+    calculatedAt?: DateTimeFilter<"SpoilageRiskLog"> | Date | string
+    triggeredFlashSale?: BoolFilter<"SpoilageRiskLog"> | boolean
+  }
+
+  export type FlashSaleUpsertWithoutListingInput = {
+    update: XOR<FlashSaleUpdateWithoutListingInput, FlashSaleUncheckedUpdateWithoutListingInput>
+    create: XOR<FlashSaleCreateWithoutListingInput, FlashSaleUncheckedCreateWithoutListingInput>
+    where?: FlashSaleWhereInput
+  }
+
+  export type FlashSaleUpdateToOneWithWhereWithoutListingInput = {
+    where?: FlashSaleWhereInput
+    data: XOR<FlashSaleUpdateWithoutListingInput, FlashSaleUncheckedUpdateWithoutListingInput>
+  }
+
+  export type FlashSaleUpdateWithoutListingInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    originalPricePerKg?: FloatFieldUpdateOperationsInput | number
+    discountPercent?: FloatFieldUpdateOperationsInput | number
+    flashPricePerKg?: FloatFieldUpdateOperationsInput | number
+    quantityKg?: FloatFieldUpdateOperationsInput | number
+    soldKg?: FloatFieldUpdateOperationsInput | number
+    riskBand?: EnumSpoilageRiskBandFieldUpdateOperationsInput | $Enums.SpoilageRiskBand
+    riskScore?: FloatFieldUpdateOperationsInput | number
+    status?: EnumFlashSaleStatusFieldUpdateOperationsInput | $Enums.FlashSaleStatus
+    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    farmerApproved?: BoolFieldUpdateOperationsInput | boolean
+    cancelledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    cancelReason?: NullableStringFieldUpdateOperationsInput | string | null
+    notificationsSent?: IntFieldUpdateOperationsInput | number
+    buyersClaimed?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    farmer?: UserUpdateOneRequiredWithoutFlashSalesCreatedNestedInput
+    claims?: FlashSaleClaimUpdateManyWithoutFlashSaleNestedInput
+    notifications?: FlashSaleNotificationUpdateManyWithoutFlashSaleNestedInput
+  }
+
+  export type FlashSaleUncheckedUpdateWithoutListingInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    farmerId?: StringFieldUpdateOperationsInput | string
+    originalPricePerKg?: FloatFieldUpdateOperationsInput | number
+    discountPercent?: FloatFieldUpdateOperationsInput | number
+    flashPricePerKg?: FloatFieldUpdateOperationsInput | number
+    quantityKg?: FloatFieldUpdateOperationsInput | number
+    soldKg?: FloatFieldUpdateOperationsInput | number
+    riskBand?: EnumSpoilageRiskBandFieldUpdateOperationsInput | $Enums.SpoilageRiskBand
+    riskScore?: FloatFieldUpdateOperationsInput | number
+    status?: EnumFlashSaleStatusFieldUpdateOperationsInput | $Enums.FlashSaleStatus
+    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    farmerApproved?: BoolFieldUpdateOperationsInput | boolean
+    cancelledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    cancelReason?: NullableStringFieldUpdateOperationsInput | string | null
+    notificationsSent?: IntFieldUpdateOperationsInput | number
+    buyersClaimed?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    claims?: FlashSaleClaimUncheckedUpdateManyWithoutFlashSaleNestedInput
+    notifications?: FlashSaleNotificationUncheckedUpdateManyWithoutFlashSaleNestedInput
+  }
+
   export type ProduceListingCreateWithoutTraceabilityInput = {
     id?: string
     cropType: $Enums.CropType
@@ -43546,12 +51011,18 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     source?: $Enums.CreationSource
+    currentRiskBand?: $Enums.SpoilageRiskBand
+    currentRiskScore?: number
+    lastRiskCalculatedAt?: Date | string | null
+    activeFlashSaleId?: string | null
     farmer: UserCreateNestedOneWithoutListingsInput
     orders?: OrderCreateNestedManyWithoutListingInput
     traceEvents?: TraceEventCreateNestedManyWithoutListingInput
     preOrders?: PreOrderCreateNestedManyWithoutMatchedListingInput
     coOps?: CoOpGroupCreateNestedManyWithoutListingInput
     plantingLog?: PlantingLogCreateNestedOneWithoutListingsInput
+    spoilageRiskLogs?: SpoilageRiskLogCreateNestedManyWithoutListingInput
+    flashSale?: FlashSaleCreateNestedOneWithoutListingInput
   }
 
   export type ProduceListingUncheckedCreateWithoutTraceabilityInput = {
@@ -43574,10 +51045,16 @@ export namespace Prisma {
     updatedAt?: Date | string
     source?: $Enums.CreationSource
     plantingLogId?: string | null
+    currentRiskBand?: $Enums.SpoilageRiskBand
+    currentRiskScore?: number
+    lastRiskCalculatedAt?: Date | string | null
+    activeFlashSaleId?: string | null
     orders?: OrderUncheckedCreateNestedManyWithoutListingInput
     traceEvents?: TraceEventUncheckedCreateNestedManyWithoutListingInput
     preOrders?: PreOrderUncheckedCreateNestedManyWithoutMatchedListingInput
     coOps?: CoOpGroupUncheckedCreateNestedManyWithoutListingInput
+    spoilageRiskLogs?: SpoilageRiskLogUncheckedCreateNestedManyWithoutListingInput
+    flashSale?: FlashSaleUncheckedCreateNestedOneWithoutListingInput
   }
 
   export type ProduceListingCreateOrConnectWithoutTraceabilityInput = {
@@ -43614,12 +51091,18 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     source?: EnumCreationSourceFieldUpdateOperationsInput | $Enums.CreationSource
+    currentRiskBand?: EnumSpoilageRiskBandFieldUpdateOperationsInput | $Enums.SpoilageRiskBand
+    currentRiskScore?: FloatFieldUpdateOperationsInput | number
+    lastRiskCalculatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    activeFlashSaleId?: NullableStringFieldUpdateOperationsInput | string | null
     farmer?: UserUpdateOneRequiredWithoutListingsNestedInput
     orders?: OrderUpdateManyWithoutListingNestedInput
     traceEvents?: TraceEventUpdateManyWithoutListingNestedInput
     preOrders?: PreOrderUpdateManyWithoutMatchedListingNestedInput
     coOps?: CoOpGroupUpdateManyWithoutListingNestedInput
     plantingLog?: PlantingLogUpdateOneWithoutListingsNestedInput
+    spoilageRiskLogs?: SpoilageRiskLogUpdateManyWithoutListingNestedInput
+    flashSale?: FlashSaleUpdateOneWithoutListingNestedInput
   }
 
   export type ProduceListingUncheckedUpdateWithoutTraceabilityInput = {
@@ -43642,10 +51125,16 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     source?: EnumCreationSourceFieldUpdateOperationsInput | $Enums.CreationSource
     plantingLogId?: NullableStringFieldUpdateOperationsInput | string | null
+    currentRiskBand?: EnumSpoilageRiskBandFieldUpdateOperationsInput | $Enums.SpoilageRiskBand
+    currentRiskScore?: FloatFieldUpdateOperationsInput | number
+    lastRiskCalculatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    activeFlashSaleId?: NullableStringFieldUpdateOperationsInput | string | null
     orders?: OrderUncheckedUpdateManyWithoutListingNestedInput
     traceEvents?: TraceEventUncheckedUpdateManyWithoutListingNestedInput
     preOrders?: PreOrderUncheckedUpdateManyWithoutMatchedListingNestedInput
     coOps?: CoOpGroupUncheckedUpdateManyWithoutListingNestedInput
+    spoilageRiskLogs?: SpoilageRiskLogUncheckedUpdateManyWithoutListingNestedInput
+    flashSale?: FlashSaleUncheckedUpdateOneWithoutListingNestedInput
   }
 
   export type ProduceListingCreateWithoutTraceEventsInput = {
@@ -43666,12 +51155,18 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     source?: $Enums.CreationSource
+    currentRiskBand?: $Enums.SpoilageRiskBand
+    currentRiskScore?: number
+    lastRiskCalculatedAt?: Date | string | null
+    activeFlashSaleId?: string | null
     farmer: UserCreateNestedOneWithoutListingsInput
     orders?: OrderCreateNestedManyWithoutListingInput
     traceability?: TraceabilityRecordCreateNestedOneWithoutListingInput
     preOrders?: PreOrderCreateNestedManyWithoutMatchedListingInput
     coOps?: CoOpGroupCreateNestedManyWithoutListingInput
     plantingLog?: PlantingLogCreateNestedOneWithoutListingsInput
+    spoilageRiskLogs?: SpoilageRiskLogCreateNestedManyWithoutListingInput
+    flashSale?: FlashSaleCreateNestedOneWithoutListingInput
   }
 
   export type ProduceListingUncheckedCreateWithoutTraceEventsInput = {
@@ -43694,10 +51189,16 @@ export namespace Prisma {
     updatedAt?: Date | string
     source?: $Enums.CreationSource
     plantingLogId?: string | null
+    currentRiskBand?: $Enums.SpoilageRiskBand
+    currentRiskScore?: number
+    lastRiskCalculatedAt?: Date | string | null
+    activeFlashSaleId?: string | null
     orders?: OrderUncheckedCreateNestedManyWithoutListingInput
     traceability?: TraceabilityRecordUncheckedCreateNestedOneWithoutListingInput
     preOrders?: PreOrderUncheckedCreateNestedManyWithoutMatchedListingInput
     coOps?: CoOpGroupUncheckedCreateNestedManyWithoutListingInput
+    spoilageRiskLogs?: SpoilageRiskLogUncheckedCreateNestedManyWithoutListingInput
+    flashSale?: FlashSaleUncheckedCreateNestedOneWithoutListingInput
   }
 
   export type ProduceListingCreateOrConnectWithoutTraceEventsInput = {
@@ -43723,6 +51224,8 @@ export namespace Prisma {
     lockoutUntil?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    flashSaleOptOut?: boolean
+    flashSaleRadius?: number
     farmerProfile?: FarmerProfileCreateNestedOneWithoutUserInput
     buyerProfile?: BuyerProfileCreateNestedOneWithoutUserInput
     transportProfile?: TransportProfileCreateNestedOneWithoutUserInput
@@ -43744,6 +51247,9 @@ export namespace Prisma {
     createdCoOps?: CoOpGroupCreateNestedManyWithoutCreatorInput
     coOpContributions?: CoOpMemberCreateNestedManyWithoutBuyerInput
     cropAlerts?: BuyerCropAlertCreateNestedManyWithoutBuyerInput
+    flashSalesCreated?: FlashSaleCreateNestedManyWithoutFarmerInput
+    flashSaleClaims?: FlashSaleClaimCreateNestedManyWithoutBuyerInput
+    flashSaleNotifications?: FlashSaleNotificationCreateNestedManyWithoutBuyerInput
   }
 
   export type UserUncheckedCreateWithoutRecordedTraceEventsInput = {
@@ -43764,6 +51270,8 @@ export namespace Prisma {
     lockoutUntil?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    flashSaleOptOut?: boolean
+    flashSaleRadius?: number
     farmerProfile?: FarmerProfileUncheckedCreateNestedOneWithoutUserInput
     buyerProfile?: BuyerProfileUncheckedCreateNestedOneWithoutUserInput
     transportProfile?: TransportProfileUncheckedCreateNestedOneWithoutUserInput
@@ -43785,6 +51293,9 @@ export namespace Prisma {
     createdCoOps?: CoOpGroupUncheckedCreateNestedManyWithoutCreatorInput
     coOpContributions?: CoOpMemberUncheckedCreateNestedManyWithoutBuyerInput
     cropAlerts?: BuyerCropAlertUncheckedCreateNestedManyWithoutBuyerInput
+    flashSalesCreated?: FlashSaleUncheckedCreateNestedManyWithoutFarmerInput
+    flashSaleClaims?: FlashSaleClaimUncheckedCreateNestedManyWithoutBuyerInput
+    flashSaleNotifications?: FlashSaleNotificationUncheckedCreateNestedManyWithoutBuyerInput
   }
 
   export type UserCreateOrConnectWithoutRecordedTraceEventsInput = {
@@ -43821,12 +51332,18 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     source?: EnumCreationSourceFieldUpdateOperationsInput | $Enums.CreationSource
+    currentRiskBand?: EnumSpoilageRiskBandFieldUpdateOperationsInput | $Enums.SpoilageRiskBand
+    currentRiskScore?: FloatFieldUpdateOperationsInput | number
+    lastRiskCalculatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    activeFlashSaleId?: NullableStringFieldUpdateOperationsInput | string | null
     farmer?: UserUpdateOneRequiredWithoutListingsNestedInput
     orders?: OrderUpdateManyWithoutListingNestedInput
     traceability?: TraceabilityRecordUpdateOneWithoutListingNestedInput
     preOrders?: PreOrderUpdateManyWithoutMatchedListingNestedInput
     coOps?: CoOpGroupUpdateManyWithoutListingNestedInput
     plantingLog?: PlantingLogUpdateOneWithoutListingsNestedInput
+    spoilageRiskLogs?: SpoilageRiskLogUpdateManyWithoutListingNestedInput
+    flashSale?: FlashSaleUpdateOneWithoutListingNestedInput
   }
 
   export type ProduceListingUncheckedUpdateWithoutTraceEventsInput = {
@@ -43849,10 +51366,16 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     source?: EnumCreationSourceFieldUpdateOperationsInput | $Enums.CreationSource
     plantingLogId?: NullableStringFieldUpdateOperationsInput | string | null
+    currentRiskBand?: EnumSpoilageRiskBandFieldUpdateOperationsInput | $Enums.SpoilageRiskBand
+    currentRiskScore?: FloatFieldUpdateOperationsInput | number
+    lastRiskCalculatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    activeFlashSaleId?: NullableStringFieldUpdateOperationsInput | string | null
     orders?: OrderUncheckedUpdateManyWithoutListingNestedInput
     traceability?: TraceabilityRecordUncheckedUpdateOneWithoutListingNestedInput
     preOrders?: PreOrderUncheckedUpdateManyWithoutMatchedListingNestedInput
     coOps?: CoOpGroupUncheckedUpdateManyWithoutListingNestedInput
+    spoilageRiskLogs?: SpoilageRiskLogUncheckedUpdateManyWithoutListingNestedInput
+    flashSale?: FlashSaleUncheckedUpdateOneWithoutListingNestedInput
   }
 
   export type UserUpsertWithoutRecordedTraceEventsInput = {
@@ -43884,6 +51407,8 @@ export namespace Prisma {
     lockoutUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    flashSaleOptOut?: BoolFieldUpdateOperationsInput | boolean
+    flashSaleRadius?: IntFieldUpdateOperationsInput | number
     farmerProfile?: FarmerProfileUpdateOneWithoutUserNestedInput
     buyerProfile?: BuyerProfileUpdateOneWithoutUserNestedInput
     transportProfile?: TransportProfileUpdateOneWithoutUserNestedInput
@@ -43905,6 +51430,9 @@ export namespace Prisma {
     createdCoOps?: CoOpGroupUpdateManyWithoutCreatorNestedInput
     coOpContributions?: CoOpMemberUpdateManyWithoutBuyerNestedInput
     cropAlerts?: BuyerCropAlertUpdateManyWithoutBuyerNestedInput
+    flashSalesCreated?: FlashSaleUpdateManyWithoutFarmerNestedInput
+    flashSaleClaims?: FlashSaleClaimUpdateManyWithoutBuyerNestedInput
+    flashSaleNotifications?: FlashSaleNotificationUpdateManyWithoutBuyerNestedInput
   }
 
   export type UserUncheckedUpdateWithoutRecordedTraceEventsInput = {
@@ -43925,6 +51453,8 @@ export namespace Prisma {
     lockoutUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    flashSaleOptOut?: BoolFieldUpdateOperationsInput | boolean
+    flashSaleRadius?: IntFieldUpdateOperationsInput | number
     farmerProfile?: FarmerProfileUncheckedUpdateOneWithoutUserNestedInput
     buyerProfile?: BuyerProfileUncheckedUpdateOneWithoutUserNestedInput
     transportProfile?: TransportProfileUncheckedUpdateOneWithoutUserNestedInput
@@ -43946,6 +51476,9 @@ export namespace Prisma {
     createdCoOps?: CoOpGroupUncheckedUpdateManyWithoutCreatorNestedInput
     coOpContributions?: CoOpMemberUncheckedUpdateManyWithoutBuyerNestedInput
     cropAlerts?: BuyerCropAlertUncheckedUpdateManyWithoutBuyerNestedInput
+    flashSalesCreated?: FlashSaleUncheckedUpdateManyWithoutFarmerNestedInput
+    flashSaleClaims?: FlashSaleClaimUncheckedUpdateManyWithoutBuyerNestedInput
+    flashSaleNotifications?: FlashSaleNotificationUncheckedUpdateManyWithoutBuyerNestedInput
   }
 
   export type UserCreateWithoutOrdersInput = {
@@ -43966,6 +51499,8 @@ export namespace Prisma {
     lockoutUntil?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    flashSaleOptOut?: boolean
+    flashSaleRadius?: number
     farmerProfile?: FarmerProfileCreateNestedOneWithoutUserInput
     buyerProfile?: BuyerProfileCreateNestedOneWithoutUserInput
     transportProfile?: TransportProfileCreateNestedOneWithoutUserInput
@@ -43987,6 +51522,9 @@ export namespace Prisma {
     createdCoOps?: CoOpGroupCreateNestedManyWithoutCreatorInput
     coOpContributions?: CoOpMemberCreateNestedManyWithoutBuyerInput
     cropAlerts?: BuyerCropAlertCreateNestedManyWithoutBuyerInput
+    flashSalesCreated?: FlashSaleCreateNestedManyWithoutFarmerInput
+    flashSaleClaims?: FlashSaleClaimCreateNestedManyWithoutBuyerInput
+    flashSaleNotifications?: FlashSaleNotificationCreateNestedManyWithoutBuyerInput
   }
 
   export type UserUncheckedCreateWithoutOrdersInput = {
@@ -44007,6 +51545,8 @@ export namespace Prisma {
     lockoutUntil?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    flashSaleOptOut?: boolean
+    flashSaleRadius?: number
     farmerProfile?: FarmerProfileUncheckedCreateNestedOneWithoutUserInput
     buyerProfile?: BuyerProfileUncheckedCreateNestedOneWithoutUserInput
     transportProfile?: TransportProfileUncheckedCreateNestedOneWithoutUserInput
@@ -44028,6 +51568,9 @@ export namespace Prisma {
     createdCoOps?: CoOpGroupUncheckedCreateNestedManyWithoutCreatorInput
     coOpContributions?: CoOpMemberUncheckedCreateNestedManyWithoutBuyerInput
     cropAlerts?: BuyerCropAlertUncheckedCreateNestedManyWithoutBuyerInput
+    flashSalesCreated?: FlashSaleUncheckedCreateNestedManyWithoutFarmerInput
+    flashSaleClaims?: FlashSaleClaimUncheckedCreateNestedManyWithoutBuyerInput
+    flashSaleNotifications?: FlashSaleNotificationUncheckedCreateNestedManyWithoutBuyerInput
   }
 
   export type UserCreateOrConnectWithoutOrdersInput = {
@@ -44053,12 +51596,18 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     source?: $Enums.CreationSource
+    currentRiskBand?: $Enums.SpoilageRiskBand
+    currentRiskScore?: number
+    lastRiskCalculatedAt?: Date | string | null
+    activeFlashSaleId?: string | null
     farmer: UserCreateNestedOneWithoutListingsInput
     traceability?: TraceabilityRecordCreateNestedOneWithoutListingInput
     traceEvents?: TraceEventCreateNestedManyWithoutListingInput
     preOrders?: PreOrderCreateNestedManyWithoutMatchedListingInput
     coOps?: CoOpGroupCreateNestedManyWithoutListingInput
     plantingLog?: PlantingLogCreateNestedOneWithoutListingsInput
+    spoilageRiskLogs?: SpoilageRiskLogCreateNestedManyWithoutListingInput
+    flashSale?: FlashSaleCreateNestedOneWithoutListingInput
   }
 
   export type ProduceListingUncheckedCreateWithoutOrdersInput = {
@@ -44081,10 +51630,16 @@ export namespace Prisma {
     updatedAt?: Date | string
     source?: $Enums.CreationSource
     plantingLogId?: string | null
+    currentRiskBand?: $Enums.SpoilageRiskBand
+    currentRiskScore?: number
+    lastRiskCalculatedAt?: Date | string | null
+    activeFlashSaleId?: string | null
     traceability?: TraceabilityRecordUncheckedCreateNestedOneWithoutListingInput
     traceEvents?: TraceEventUncheckedCreateNestedManyWithoutListingInput
     preOrders?: PreOrderUncheckedCreateNestedManyWithoutMatchedListingInput
     coOps?: CoOpGroupUncheckedCreateNestedManyWithoutListingInput
+    spoilageRiskLogs?: SpoilageRiskLogUncheckedCreateNestedManyWithoutListingInput
+    flashSale?: FlashSaleUncheckedCreateNestedOneWithoutListingInput
   }
 
   export type ProduceListingCreateOrConnectWithoutOrdersInput = {
@@ -44277,6 +51832,40 @@ export namespace Prisma {
     create: XOR<CoOpMemberCreateWithoutOrderInput, CoOpMemberUncheckedCreateWithoutOrderInput>
   }
 
+  export type FlashSaleClaimCreateWithoutOrderInput = {
+    id?: string
+    quantityKg: number
+    pricePerKg: number
+    totalPrice: number
+    status: $Enums.FlashSaleClaimStatus
+    claimedAt?: Date | string
+    expiresAt: Date | string
+    flashSale: FlashSaleCreateNestedOneWithoutClaimsInput
+    buyer: UserCreateNestedOneWithoutFlashSaleClaimsInput
+  }
+
+  export type FlashSaleClaimUncheckedCreateWithoutOrderInput = {
+    id?: string
+    flashSaleId: string
+    buyerId: string
+    quantityKg: number
+    pricePerKg: number
+    totalPrice: number
+    status: $Enums.FlashSaleClaimStatus
+    claimedAt?: Date | string
+    expiresAt: Date | string
+  }
+
+  export type FlashSaleClaimCreateOrConnectWithoutOrderInput = {
+    where: FlashSaleClaimWhereUniqueInput
+    create: XOR<FlashSaleClaimCreateWithoutOrderInput, FlashSaleClaimUncheckedCreateWithoutOrderInput>
+  }
+
+  export type FlashSaleClaimCreateManyOrderInputEnvelope = {
+    data: FlashSaleClaimCreateManyOrderInput | FlashSaleClaimCreateManyOrderInput[]
+    skipDuplicates?: boolean
+  }
+
   export type UserUpsertWithoutOrdersInput = {
     update: XOR<UserUpdateWithoutOrdersInput, UserUncheckedUpdateWithoutOrdersInput>
     create: XOR<UserCreateWithoutOrdersInput, UserUncheckedCreateWithoutOrdersInput>
@@ -44306,6 +51895,8 @@ export namespace Prisma {
     lockoutUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    flashSaleOptOut?: BoolFieldUpdateOperationsInput | boolean
+    flashSaleRadius?: IntFieldUpdateOperationsInput | number
     farmerProfile?: FarmerProfileUpdateOneWithoutUserNestedInput
     buyerProfile?: BuyerProfileUpdateOneWithoutUserNestedInput
     transportProfile?: TransportProfileUpdateOneWithoutUserNestedInput
@@ -44327,6 +51918,9 @@ export namespace Prisma {
     createdCoOps?: CoOpGroupUpdateManyWithoutCreatorNestedInput
     coOpContributions?: CoOpMemberUpdateManyWithoutBuyerNestedInput
     cropAlerts?: BuyerCropAlertUpdateManyWithoutBuyerNestedInput
+    flashSalesCreated?: FlashSaleUpdateManyWithoutFarmerNestedInput
+    flashSaleClaims?: FlashSaleClaimUpdateManyWithoutBuyerNestedInput
+    flashSaleNotifications?: FlashSaleNotificationUpdateManyWithoutBuyerNestedInput
   }
 
   export type UserUncheckedUpdateWithoutOrdersInput = {
@@ -44347,6 +51941,8 @@ export namespace Prisma {
     lockoutUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    flashSaleOptOut?: BoolFieldUpdateOperationsInput | boolean
+    flashSaleRadius?: IntFieldUpdateOperationsInput | number
     farmerProfile?: FarmerProfileUncheckedUpdateOneWithoutUserNestedInput
     buyerProfile?: BuyerProfileUncheckedUpdateOneWithoutUserNestedInput
     transportProfile?: TransportProfileUncheckedUpdateOneWithoutUserNestedInput
@@ -44368,6 +51964,9 @@ export namespace Prisma {
     createdCoOps?: CoOpGroupUncheckedUpdateManyWithoutCreatorNestedInput
     coOpContributions?: CoOpMemberUncheckedUpdateManyWithoutBuyerNestedInput
     cropAlerts?: BuyerCropAlertUncheckedUpdateManyWithoutBuyerNestedInput
+    flashSalesCreated?: FlashSaleUncheckedUpdateManyWithoutFarmerNestedInput
+    flashSaleClaims?: FlashSaleClaimUncheckedUpdateManyWithoutBuyerNestedInput
+    flashSaleNotifications?: FlashSaleNotificationUncheckedUpdateManyWithoutBuyerNestedInput
   }
 
   export type ProduceListingUpsertWithoutOrdersInput = {
@@ -44399,12 +51998,18 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     source?: EnumCreationSourceFieldUpdateOperationsInput | $Enums.CreationSource
+    currentRiskBand?: EnumSpoilageRiskBandFieldUpdateOperationsInput | $Enums.SpoilageRiskBand
+    currentRiskScore?: FloatFieldUpdateOperationsInput | number
+    lastRiskCalculatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    activeFlashSaleId?: NullableStringFieldUpdateOperationsInput | string | null
     farmer?: UserUpdateOneRequiredWithoutListingsNestedInput
     traceability?: TraceabilityRecordUpdateOneWithoutListingNestedInput
     traceEvents?: TraceEventUpdateManyWithoutListingNestedInput
     preOrders?: PreOrderUpdateManyWithoutMatchedListingNestedInput
     coOps?: CoOpGroupUpdateManyWithoutListingNestedInput
     plantingLog?: PlantingLogUpdateOneWithoutListingsNestedInput
+    spoilageRiskLogs?: SpoilageRiskLogUpdateManyWithoutListingNestedInput
+    flashSale?: FlashSaleUpdateOneWithoutListingNestedInput
   }
 
   export type ProduceListingUncheckedUpdateWithoutOrdersInput = {
@@ -44427,10 +52032,16 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     source?: EnumCreationSourceFieldUpdateOperationsInput | $Enums.CreationSource
     plantingLogId?: NullableStringFieldUpdateOperationsInput | string | null
+    currentRiskBand?: EnumSpoilageRiskBandFieldUpdateOperationsInput | $Enums.SpoilageRiskBand
+    currentRiskScore?: FloatFieldUpdateOperationsInput | number
+    lastRiskCalculatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    activeFlashSaleId?: NullableStringFieldUpdateOperationsInput | string | null
     traceability?: TraceabilityRecordUncheckedUpdateOneWithoutListingNestedInput
     traceEvents?: TraceEventUncheckedUpdateManyWithoutListingNestedInput
     preOrders?: PreOrderUncheckedUpdateManyWithoutMatchedListingNestedInput
     coOps?: CoOpGroupUncheckedUpdateManyWithoutListingNestedInput
+    spoilageRiskLogs?: SpoilageRiskLogUncheckedUpdateManyWithoutListingNestedInput
+    flashSale?: FlashSaleUncheckedUpdateOneWithoutListingNestedInput
   }
 
   export type DeliveryRequestUpsertWithoutOrderInput = {
@@ -44608,6 +52219,22 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type FlashSaleClaimUpsertWithWhereUniqueWithoutOrderInput = {
+    where: FlashSaleClaimWhereUniqueInput
+    update: XOR<FlashSaleClaimUpdateWithoutOrderInput, FlashSaleClaimUncheckedUpdateWithoutOrderInput>
+    create: XOR<FlashSaleClaimCreateWithoutOrderInput, FlashSaleClaimUncheckedCreateWithoutOrderInput>
+  }
+
+  export type FlashSaleClaimUpdateWithWhereUniqueWithoutOrderInput = {
+    where: FlashSaleClaimWhereUniqueInput
+    data: XOR<FlashSaleClaimUpdateWithoutOrderInput, FlashSaleClaimUncheckedUpdateWithoutOrderInput>
+  }
+
+  export type FlashSaleClaimUpdateManyWithWhereWithoutOrderInput = {
+    where: FlashSaleClaimScalarWhereInput
+    data: XOR<FlashSaleClaimUpdateManyMutationInput, FlashSaleClaimUncheckedUpdateManyWithoutOrderInput>
+  }
+
   export type OrderCreateWithoutDeliveryRequestInput = {
     id?: string
     quantityKg: number
@@ -44625,6 +52252,7 @@ export namespace Prisma {
     messages?: MessageCreateNestedManyWithoutOrderInput
     preOrder?: PreOrderCreateNestedOneWithoutFulfilledOrderInput
     coOpMember?: CoOpMemberCreateNestedOneWithoutOrderInput
+    flashSaleClaims?: FlashSaleClaimCreateNestedManyWithoutOrderInput
   }
 
   export type OrderUncheckedCreateWithoutDeliveryRequestInput = {
@@ -44644,6 +52272,7 @@ export namespace Prisma {
     messages?: MessageUncheckedCreateNestedManyWithoutOrderInput
     preOrder?: PreOrderUncheckedCreateNestedOneWithoutFulfilledOrderInput
     coOpMember?: CoOpMemberUncheckedCreateNestedOneWithoutOrderInput
+    flashSaleClaims?: FlashSaleClaimUncheckedCreateNestedManyWithoutOrderInput
   }
 
   export type OrderCreateOrConnectWithoutDeliveryRequestInput = {
@@ -44669,6 +52298,8 @@ export namespace Prisma {
     lockoutUntil?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    flashSaleOptOut?: boolean
+    flashSaleRadius?: number
     farmerProfile?: FarmerProfileCreateNestedOneWithoutUserInput
     buyerProfile?: BuyerProfileCreateNestedOneWithoutUserInput
     transportProfile?: TransportProfileCreateNestedOneWithoutUserInput
@@ -44690,6 +52321,9 @@ export namespace Prisma {
     createdCoOps?: CoOpGroupCreateNestedManyWithoutCreatorInput
     coOpContributions?: CoOpMemberCreateNestedManyWithoutBuyerInput
     cropAlerts?: BuyerCropAlertCreateNestedManyWithoutBuyerInput
+    flashSalesCreated?: FlashSaleCreateNestedManyWithoutFarmerInput
+    flashSaleClaims?: FlashSaleClaimCreateNestedManyWithoutBuyerInput
+    flashSaleNotifications?: FlashSaleNotificationCreateNestedManyWithoutBuyerInput
   }
 
   export type UserUncheckedCreateWithoutDeliveriesInput = {
@@ -44710,6 +52344,8 @@ export namespace Prisma {
     lockoutUntil?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    flashSaleOptOut?: boolean
+    flashSaleRadius?: number
     farmerProfile?: FarmerProfileUncheckedCreateNestedOneWithoutUserInput
     buyerProfile?: BuyerProfileUncheckedCreateNestedOneWithoutUserInput
     transportProfile?: TransportProfileUncheckedCreateNestedOneWithoutUserInput
@@ -44731,6 +52367,9 @@ export namespace Prisma {
     createdCoOps?: CoOpGroupUncheckedCreateNestedManyWithoutCreatorInput
     coOpContributions?: CoOpMemberUncheckedCreateNestedManyWithoutBuyerInput
     cropAlerts?: BuyerCropAlertUncheckedCreateNestedManyWithoutBuyerInput
+    flashSalesCreated?: FlashSaleUncheckedCreateNestedManyWithoutFarmerInput
+    flashSaleClaims?: FlashSaleClaimUncheckedCreateNestedManyWithoutBuyerInput
+    flashSaleNotifications?: FlashSaleNotificationUncheckedCreateNestedManyWithoutBuyerInput
   }
 
   export type UserCreateOrConnectWithoutDeliveriesInput = {
@@ -44766,6 +52405,7 @@ export namespace Prisma {
     messages?: MessageUpdateManyWithoutOrderNestedInput
     preOrder?: PreOrderUpdateOneWithoutFulfilledOrderNestedInput
     coOpMember?: CoOpMemberUpdateOneWithoutOrderNestedInput
+    flashSaleClaims?: FlashSaleClaimUpdateManyWithoutOrderNestedInput
   }
 
   export type OrderUncheckedUpdateWithoutDeliveryRequestInput = {
@@ -44785,6 +52425,7 @@ export namespace Prisma {
     messages?: MessageUncheckedUpdateManyWithoutOrderNestedInput
     preOrder?: PreOrderUncheckedUpdateOneWithoutFulfilledOrderNestedInput
     coOpMember?: CoOpMemberUncheckedUpdateOneWithoutOrderNestedInput
+    flashSaleClaims?: FlashSaleClaimUncheckedUpdateManyWithoutOrderNestedInput
   }
 
   export type UserUpsertWithoutDeliveriesInput = {
@@ -44816,6 +52457,8 @@ export namespace Prisma {
     lockoutUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    flashSaleOptOut?: BoolFieldUpdateOperationsInput | boolean
+    flashSaleRadius?: IntFieldUpdateOperationsInput | number
     farmerProfile?: FarmerProfileUpdateOneWithoutUserNestedInput
     buyerProfile?: BuyerProfileUpdateOneWithoutUserNestedInput
     transportProfile?: TransportProfileUpdateOneWithoutUserNestedInput
@@ -44837,6 +52480,9 @@ export namespace Prisma {
     createdCoOps?: CoOpGroupUpdateManyWithoutCreatorNestedInput
     coOpContributions?: CoOpMemberUpdateManyWithoutBuyerNestedInput
     cropAlerts?: BuyerCropAlertUpdateManyWithoutBuyerNestedInput
+    flashSalesCreated?: FlashSaleUpdateManyWithoutFarmerNestedInput
+    flashSaleClaims?: FlashSaleClaimUpdateManyWithoutBuyerNestedInput
+    flashSaleNotifications?: FlashSaleNotificationUpdateManyWithoutBuyerNestedInput
   }
 
   export type UserUncheckedUpdateWithoutDeliveriesInput = {
@@ -44857,6 +52503,8 @@ export namespace Prisma {
     lockoutUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    flashSaleOptOut?: BoolFieldUpdateOperationsInput | boolean
+    flashSaleRadius?: IntFieldUpdateOperationsInput | number
     farmerProfile?: FarmerProfileUncheckedUpdateOneWithoutUserNestedInput
     buyerProfile?: BuyerProfileUncheckedUpdateOneWithoutUserNestedInput
     transportProfile?: TransportProfileUncheckedUpdateOneWithoutUserNestedInput
@@ -44878,6 +52526,9 @@ export namespace Prisma {
     createdCoOps?: CoOpGroupUncheckedUpdateManyWithoutCreatorNestedInput
     coOpContributions?: CoOpMemberUncheckedUpdateManyWithoutBuyerNestedInput
     cropAlerts?: BuyerCropAlertUncheckedUpdateManyWithoutBuyerNestedInput
+    flashSalesCreated?: FlashSaleUncheckedUpdateManyWithoutFarmerNestedInput
+    flashSaleClaims?: FlashSaleClaimUncheckedUpdateManyWithoutBuyerNestedInput
+    flashSaleNotifications?: FlashSaleNotificationUncheckedUpdateManyWithoutBuyerNestedInput
   }
 
   export type UserCreateWithoutSentReviewsInput = {
@@ -44898,6 +52549,8 @@ export namespace Prisma {
     lockoutUntil?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    flashSaleOptOut?: boolean
+    flashSaleRadius?: number
     farmerProfile?: FarmerProfileCreateNestedOneWithoutUserInput
     buyerProfile?: BuyerProfileCreateNestedOneWithoutUserInput
     transportProfile?: TransportProfileCreateNestedOneWithoutUserInput
@@ -44919,6 +52572,9 @@ export namespace Prisma {
     createdCoOps?: CoOpGroupCreateNestedManyWithoutCreatorInput
     coOpContributions?: CoOpMemberCreateNestedManyWithoutBuyerInput
     cropAlerts?: BuyerCropAlertCreateNestedManyWithoutBuyerInput
+    flashSalesCreated?: FlashSaleCreateNestedManyWithoutFarmerInput
+    flashSaleClaims?: FlashSaleClaimCreateNestedManyWithoutBuyerInput
+    flashSaleNotifications?: FlashSaleNotificationCreateNestedManyWithoutBuyerInput
   }
 
   export type UserUncheckedCreateWithoutSentReviewsInput = {
@@ -44939,6 +52595,8 @@ export namespace Prisma {
     lockoutUntil?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    flashSaleOptOut?: boolean
+    flashSaleRadius?: number
     farmerProfile?: FarmerProfileUncheckedCreateNestedOneWithoutUserInput
     buyerProfile?: BuyerProfileUncheckedCreateNestedOneWithoutUserInput
     transportProfile?: TransportProfileUncheckedCreateNestedOneWithoutUserInput
@@ -44960,6 +52618,9 @@ export namespace Prisma {
     createdCoOps?: CoOpGroupUncheckedCreateNestedManyWithoutCreatorInput
     coOpContributions?: CoOpMemberUncheckedCreateNestedManyWithoutBuyerInput
     cropAlerts?: BuyerCropAlertUncheckedCreateNestedManyWithoutBuyerInput
+    flashSalesCreated?: FlashSaleUncheckedCreateNestedManyWithoutFarmerInput
+    flashSaleClaims?: FlashSaleClaimUncheckedCreateNestedManyWithoutBuyerInput
+    flashSaleNotifications?: FlashSaleNotificationUncheckedCreateNestedManyWithoutBuyerInput
   }
 
   export type UserCreateOrConnectWithoutSentReviewsInput = {
@@ -44985,6 +52646,8 @@ export namespace Prisma {
     lockoutUntil?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    flashSaleOptOut?: boolean
+    flashSaleRadius?: number
     farmerProfile?: FarmerProfileCreateNestedOneWithoutUserInput
     buyerProfile?: BuyerProfileCreateNestedOneWithoutUserInput
     transportProfile?: TransportProfileCreateNestedOneWithoutUserInput
@@ -45006,6 +52669,9 @@ export namespace Prisma {
     createdCoOps?: CoOpGroupCreateNestedManyWithoutCreatorInput
     coOpContributions?: CoOpMemberCreateNestedManyWithoutBuyerInput
     cropAlerts?: BuyerCropAlertCreateNestedManyWithoutBuyerInput
+    flashSalesCreated?: FlashSaleCreateNestedManyWithoutFarmerInput
+    flashSaleClaims?: FlashSaleClaimCreateNestedManyWithoutBuyerInput
+    flashSaleNotifications?: FlashSaleNotificationCreateNestedManyWithoutBuyerInput
   }
 
   export type UserUncheckedCreateWithoutReceivedReviewsInput = {
@@ -45026,6 +52692,8 @@ export namespace Prisma {
     lockoutUntil?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    flashSaleOptOut?: boolean
+    flashSaleRadius?: number
     farmerProfile?: FarmerProfileUncheckedCreateNestedOneWithoutUserInput
     buyerProfile?: BuyerProfileUncheckedCreateNestedOneWithoutUserInput
     transportProfile?: TransportProfileUncheckedCreateNestedOneWithoutUserInput
@@ -45047,6 +52715,9 @@ export namespace Prisma {
     createdCoOps?: CoOpGroupUncheckedCreateNestedManyWithoutCreatorInput
     coOpContributions?: CoOpMemberUncheckedCreateNestedManyWithoutBuyerInput
     cropAlerts?: BuyerCropAlertUncheckedCreateNestedManyWithoutBuyerInput
+    flashSalesCreated?: FlashSaleUncheckedCreateNestedManyWithoutFarmerInput
+    flashSaleClaims?: FlashSaleClaimUncheckedCreateNestedManyWithoutBuyerInput
+    flashSaleNotifications?: FlashSaleNotificationUncheckedCreateNestedManyWithoutBuyerInput
   }
 
   export type UserCreateOrConnectWithoutReceivedReviewsInput = {
@@ -45071,6 +52742,7 @@ export namespace Prisma {
     messages?: MessageCreateNestedManyWithoutOrderInput
     preOrder?: PreOrderCreateNestedOneWithoutFulfilledOrderInput
     coOpMember?: CoOpMemberCreateNestedOneWithoutOrderInput
+    flashSaleClaims?: FlashSaleClaimCreateNestedManyWithoutOrderInput
   }
 
   export type OrderUncheckedCreateWithoutReviewsInput = {
@@ -45090,6 +52762,7 @@ export namespace Prisma {
     messages?: MessageUncheckedCreateNestedManyWithoutOrderInput
     preOrder?: PreOrderUncheckedCreateNestedOneWithoutFulfilledOrderInput
     coOpMember?: CoOpMemberUncheckedCreateNestedOneWithoutOrderInput
+    flashSaleClaims?: FlashSaleClaimUncheckedCreateNestedManyWithoutOrderInput
   }
 
   export type OrderCreateOrConnectWithoutReviewsInput = {
@@ -45126,6 +52799,8 @@ export namespace Prisma {
     lockoutUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    flashSaleOptOut?: BoolFieldUpdateOperationsInput | boolean
+    flashSaleRadius?: IntFieldUpdateOperationsInput | number
     farmerProfile?: FarmerProfileUpdateOneWithoutUserNestedInput
     buyerProfile?: BuyerProfileUpdateOneWithoutUserNestedInput
     transportProfile?: TransportProfileUpdateOneWithoutUserNestedInput
@@ -45147,6 +52822,9 @@ export namespace Prisma {
     createdCoOps?: CoOpGroupUpdateManyWithoutCreatorNestedInput
     coOpContributions?: CoOpMemberUpdateManyWithoutBuyerNestedInput
     cropAlerts?: BuyerCropAlertUpdateManyWithoutBuyerNestedInput
+    flashSalesCreated?: FlashSaleUpdateManyWithoutFarmerNestedInput
+    flashSaleClaims?: FlashSaleClaimUpdateManyWithoutBuyerNestedInput
+    flashSaleNotifications?: FlashSaleNotificationUpdateManyWithoutBuyerNestedInput
   }
 
   export type UserUncheckedUpdateWithoutSentReviewsInput = {
@@ -45167,6 +52845,8 @@ export namespace Prisma {
     lockoutUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    flashSaleOptOut?: BoolFieldUpdateOperationsInput | boolean
+    flashSaleRadius?: IntFieldUpdateOperationsInput | number
     farmerProfile?: FarmerProfileUncheckedUpdateOneWithoutUserNestedInput
     buyerProfile?: BuyerProfileUncheckedUpdateOneWithoutUserNestedInput
     transportProfile?: TransportProfileUncheckedUpdateOneWithoutUserNestedInput
@@ -45188,6 +52868,9 @@ export namespace Prisma {
     createdCoOps?: CoOpGroupUncheckedUpdateManyWithoutCreatorNestedInput
     coOpContributions?: CoOpMemberUncheckedUpdateManyWithoutBuyerNestedInput
     cropAlerts?: BuyerCropAlertUncheckedUpdateManyWithoutBuyerNestedInput
+    flashSalesCreated?: FlashSaleUncheckedUpdateManyWithoutFarmerNestedInput
+    flashSaleClaims?: FlashSaleClaimUncheckedUpdateManyWithoutBuyerNestedInput
+    flashSaleNotifications?: FlashSaleNotificationUncheckedUpdateManyWithoutBuyerNestedInput
   }
 
   export type UserUpsertWithoutReceivedReviewsInput = {
@@ -45219,6 +52902,8 @@ export namespace Prisma {
     lockoutUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    flashSaleOptOut?: BoolFieldUpdateOperationsInput | boolean
+    flashSaleRadius?: IntFieldUpdateOperationsInput | number
     farmerProfile?: FarmerProfileUpdateOneWithoutUserNestedInput
     buyerProfile?: BuyerProfileUpdateOneWithoutUserNestedInput
     transportProfile?: TransportProfileUpdateOneWithoutUserNestedInput
@@ -45240,6 +52925,9 @@ export namespace Prisma {
     createdCoOps?: CoOpGroupUpdateManyWithoutCreatorNestedInput
     coOpContributions?: CoOpMemberUpdateManyWithoutBuyerNestedInput
     cropAlerts?: BuyerCropAlertUpdateManyWithoutBuyerNestedInput
+    flashSalesCreated?: FlashSaleUpdateManyWithoutFarmerNestedInput
+    flashSaleClaims?: FlashSaleClaimUpdateManyWithoutBuyerNestedInput
+    flashSaleNotifications?: FlashSaleNotificationUpdateManyWithoutBuyerNestedInput
   }
 
   export type UserUncheckedUpdateWithoutReceivedReviewsInput = {
@@ -45260,6 +52948,8 @@ export namespace Prisma {
     lockoutUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    flashSaleOptOut?: BoolFieldUpdateOperationsInput | boolean
+    flashSaleRadius?: IntFieldUpdateOperationsInput | number
     farmerProfile?: FarmerProfileUncheckedUpdateOneWithoutUserNestedInput
     buyerProfile?: BuyerProfileUncheckedUpdateOneWithoutUserNestedInput
     transportProfile?: TransportProfileUncheckedUpdateOneWithoutUserNestedInput
@@ -45281,6 +52971,9 @@ export namespace Prisma {
     createdCoOps?: CoOpGroupUncheckedUpdateManyWithoutCreatorNestedInput
     coOpContributions?: CoOpMemberUncheckedUpdateManyWithoutBuyerNestedInput
     cropAlerts?: BuyerCropAlertUncheckedUpdateManyWithoutBuyerNestedInput
+    flashSalesCreated?: FlashSaleUncheckedUpdateManyWithoutFarmerNestedInput
+    flashSaleClaims?: FlashSaleClaimUncheckedUpdateManyWithoutBuyerNestedInput
+    flashSaleNotifications?: FlashSaleNotificationUncheckedUpdateManyWithoutBuyerNestedInput
   }
 
   export type OrderUpsertWithoutReviewsInput = {
@@ -45311,6 +53004,7 @@ export namespace Prisma {
     messages?: MessageUpdateManyWithoutOrderNestedInput
     preOrder?: PreOrderUpdateOneWithoutFulfilledOrderNestedInput
     coOpMember?: CoOpMemberUpdateOneWithoutOrderNestedInput
+    flashSaleClaims?: FlashSaleClaimUpdateManyWithoutOrderNestedInput
   }
 
   export type OrderUncheckedUpdateWithoutReviewsInput = {
@@ -45330,6 +53024,7 @@ export namespace Prisma {
     messages?: MessageUncheckedUpdateManyWithoutOrderNestedInput
     preOrder?: PreOrderUncheckedUpdateOneWithoutFulfilledOrderNestedInput
     coOpMember?: CoOpMemberUncheckedUpdateOneWithoutOrderNestedInput
+    flashSaleClaims?: FlashSaleClaimUncheckedUpdateManyWithoutOrderNestedInput
   }
 
   export type UserCreateWithoutNotificationsInput = {
@@ -45350,6 +53045,8 @@ export namespace Prisma {
     lockoutUntil?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    flashSaleOptOut?: boolean
+    flashSaleRadius?: number
     farmerProfile?: FarmerProfileCreateNestedOneWithoutUserInput
     buyerProfile?: BuyerProfileCreateNestedOneWithoutUserInput
     transportProfile?: TransportProfileCreateNestedOneWithoutUserInput
@@ -45371,6 +53068,9 @@ export namespace Prisma {
     createdCoOps?: CoOpGroupCreateNestedManyWithoutCreatorInput
     coOpContributions?: CoOpMemberCreateNestedManyWithoutBuyerInput
     cropAlerts?: BuyerCropAlertCreateNestedManyWithoutBuyerInput
+    flashSalesCreated?: FlashSaleCreateNestedManyWithoutFarmerInput
+    flashSaleClaims?: FlashSaleClaimCreateNestedManyWithoutBuyerInput
+    flashSaleNotifications?: FlashSaleNotificationCreateNestedManyWithoutBuyerInput
   }
 
   export type UserUncheckedCreateWithoutNotificationsInput = {
@@ -45391,6 +53091,8 @@ export namespace Prisma {
     lockoutUntil?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    flashSaleOptOut?: boolean
+    flashSaleRadius?: number
     farmerProfile?: FarmerProfileUncheckedCreateNestedOneWithoutUserInput
     buyerProfile?: BuyerProfileUncheckedCreateNestedOneWithoutUserInput
     transportProfile?: TransportProfileUncheckedCreateNestedOneWithoutUserInput
@@ -45412,6 +53114,9 @@ export namespace Prisma {
     createdCoOps?: CoOpGroupUncheckedCreateNestedManyWithoutCreatorInput
     coOpContributions?: CoOpMemberUncheckedCreateNestedManyWithoutBuyerInput
     cropAlerts?: BuyerCropAlertUncheckedCreateNestedManyWithoutBuyerInput
+    flashSalesCreated?: FlashSaleUncheckedCreateNestedManyWithoutFarmerInput
+    flashSaleClaims?: FlashSaleClaimUncheckedCreateNestedManyWithoutBuyerInput
+    flashSaleNotifications?: FlashSaleNotificationUncheckedCreateNestedManyWithoutBuyerInput
   }
 
   export type UserCreateOrConnectWithoutNotificationsInput = {
@@ -45448,6 +53153,8 @@ export namespace Prisma {
     lockoutUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    flashSaleOptOut?: BoolFieldUpdateOperationsInput | boolean
+    flashSaleRadius?: IntFieldUpdateOperationsInput | number
     farmerProfile?: FarmerProfileUpdateOneWithoutUserNestedInput
     buyerProfile?: BuyerProfileUpdateOneWithoutUserNestedInput
     transportProfile?: TransportProfileUpdateOneWithoutUserNestedInput
@@ -45469,6 +53176,9 @@ export namespace Prisma {
     createdCoOps?: CoOpGroupUpdateManyWithoutCreatorNestedInput
     coOpContributions?: CoOpMemberUpdateManyWithoutBuyerNestedInput
     cropAlerts?: BuyerCropAlertUpdateManyWithoutBuyerNestedInput
+    flashSalesCreated?: FlashSaleUpdateManyWithoutFarmerNestedInput
+    flashSaleClaims?: FlashSaleClaimUpdateManyWithoutBuyerNestedInput
+    flashSaleNotifications?: FlashSaleNotificationUpdateManyWithoutBuyerNestedInput
   }
 
   export type UserUncheckedUpdateWithoutNotificationsInput = {
@@ -45489,6 +53199,8 @@ export namespace Prisma {
     lockoutUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    flashSaleOptOut?: BoolFieldUpdateOperationsInput | boolean
+    flashSaleRadius?: IntFieldUpdateOperationsInput | number
     farmerProfile?: FarmerProfileUncheckedUpdateOneWithoutUserNestedInput
     buyerProfile?: BuyerProfileUncheckedUpdateOneWithoutUserNestedInput
     transportProfile?: TransportProfileUncheckedUpdateOneWithoutUserNestedInput
@@ -45510,6 +53222,9 @@ export namespace Prisma {
     createdCoOps?: CoOpGroupUncheckedUpdateManyWithoutCreatorNestedInput
     coOpContributions?: CoOpMemberUncheckedUpdateManyWithoutBuyerNestedInput
     cropAlerts?: BuyerCropAlertUncheckedUpdateManyWithoutBuyerNestedInput
+    flashSalesCreated?: FlashSaleUncheckedUpdateManyWithoutFarmerNestedInput
+    flashSaleClaims?: FlashSaleClaimUncheckedUpdateManyWithoutBuyerNestedInput
+    flashSaleNotifications?: FlashSaleNotificationUncheckedUpdateManyWithoutBuyerNestedInput
   }
 
   export type UserCreateWithoutSentMessagesInput = {
@@ -45530,6 +53245,8 @@ export namespace Prisma {
     lockoutUntil?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    flashSaleOptOut?: boolean
+    flashSaleRadius?: number
     farmerProfile?: FarmerProfileCreateNestedOneWithoutUserInput
     buyerProfile?: BuyerProfileCreateNestedOneWithoutUserInput
     transportProfile?: TransportProfileCreateNestedOneWithoutUserInput
@@ -45551,6 +53268,9 @@ export namespace Prisma {
     createdCoOps?: CoOpGroupCreateNestedManyWithoutCreatorInput
     coOpContributions?: CoOpMemberCreateNestedManyWithoutBuyerInput
     cropAlerts?: BuyerCropAlertCreateNestedManyWithoutBuyerInput
+    flashSalesCreated?: FlashSaleCreateNestedManyWithoutFarmerInput
+    flashSaleClaims?: FlashSaleClaimCreateNestedManyWithoutBuyerInput
+    flashSaleNotifications?: FlashSaleNotificationCreateNestedManyWithoutBuyerInput
   }
 
   export type UserUncheckedCreateWithoutSentMessagesInput = {
@@ -45571,6 +53291,8 @@ export namespace Prisma {
     lockoutUntil?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    flashSaleOptOut?: boolean
+    flashSaleRadius?: number
     farmerProfile?: FarmerProfileUncheckedCreateNestedOneWithoutUserInput
     buyerProfile?: BuyerProfileUncheckedCreateNestedOneWithoutUserInput
     transportProfile?: TransportProfileUncheckedCreateNestedOneWithoutUserInput
@@ -45592,6 +53314,9 @@ export namespace Prisma {
     createdCoOps?: CoOpGroupUncheckedCreateNestedManyWithoutCreatorInput
     coOpContributions?: CoOpMemberUncheckedCreateNestedManyWithoutBuyerInput
     cropAlerts?: BuyerCropAlertUncheckedCreateNestedManyWithoutBuyerInput
+    flashSalesCreated?: FlashSaleUncheckedCreateNestedManyWithoutFarmerInput
+    flashSaleClaims?: FlashSaleClaimUncheckedCreateNestedManyWithoutBuyerInput
+    flashSaleNotifications?: FlashSaleNotificationUncheckedCreateNestedManyWithoutBuyerInput
   }
 
   export type UserCreateOrConnectWithoutSentMessagesInput = {
@@ -45617,6 +53342,8 @@ export namespace Prisma {
     lockoutUntil?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    flashSaleOptOut?: boolean
+    flashSaleRadius?: number
     farmerProfile?: FarmerProfileCreateNestedOneWithoutUserInput
     buyerProfile?: BuyerProfileCreateNestedOneWithoutUserInput
     transportProfile?: TransportProfileCreateNestedOneWithoutUserInput
@@ -45638,6 +53365,9 @@ export namespace Prisma {
     createdCoOps?: CoOpGroupCreateNestedManyWithoutCreatorInput
     coOpContributions?: CoOpMemberCreateNestedManyWithoutBuyerInput
     cropAlerts?: BuyerCropAlertCreateNestedManyWithoutBuyerInput
+    flashSalesCreated?: FlashSaleCreateNestedManyWithoutFarmerInput
+    flashSaleClaims?: FlashSaleClaimCreateNestedManyWithoutBuyerInput
+    flashSaleNotifications?: FlashSaleNotificationCreateNestedManyWithoutBuyerInput
   }
 
   export type UserUncheckedCreateWithoutReceivedMessagesInput = {
@@ -45658,6 +53388,8 @@ export namespace Prisma {
     lockoutUntil?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    flashSaleOptOut?: boolean
+    flashSaleRadius?: number
     farmerProfile?: FarmerProfileUncheckedCreateNestedOneWithoutUserInput
     buyerProfile?: BuyerProfileUncheckedCreateNestedOneWithoutUserInput
     transportProfile?: TransportProfileUncheckedCreateNestedOneWithoutUserInput
@@ -45679,6 +53411,9 @@ export namespace Prisma {
     createdCoOps?: CoOpGroupUncheckedCreateNestedManyWithoutCreatorInput
     coOpContributions?: CoOpMemberUncheckedCreateNestedManyWithoutBuyerInput
     cropAlerts?: BuyerCropAlertUncheckedCreateNestedManyWithoutBuyerInput
+    flashSalesCreated?: FlashSaleUncheckedCreateNestedManyWithoutFarmerInput
+    flashSaleClaims?: FlashSaleClaimUncheckedCreateNestedManyWithoutBuyerInput
+    flashSaleNotifications?: FlashSaleNotificationUncheckedCreateNestedManyWithoutBuyerInput
   }
 
   export type UserCreateOrConnectWithoutReceivedMessagesInput = {
@@ -45703,6 +53438,7 @@ export namespace Prisma {
     reviews?: ReviewCreateNestedManyWithoutOrderInput
     preOrder?: PreOrderCreateNestedOneWithoutFulfilledOrderInput
     coOpMember?: CoOpMemberCreateNestedOneWithoutOrderInput
+    flashSaleClaims?: FlashSaleClaimCreateNestedManyWithoutOrderInput
   }
 
   export type OrderUncheckedCreateWithoutMessagesInput = {
@@ -45722,6 +53458,7 @@ export namespace Prisma {
     reviews?: ReviewUncheckedCreateNestedManyWithoutOrderInput
     preOrder?: PreOrderUncheckedCreateNestedOneWithoutFulfilledOrderInput
     coOpMember?: CoOpMemberUncheckedCreateNestedOneWithoutOrderInput
+    flashSaleClaims?: FlashSaleClaimUncheckedCreateNestedManyWithoutOrderInput
   }
 
   export type OrderCreateOrConnectWithoutMessagesInput = {
@@ -45758,6 +53495,8 @@ export namespace Prisma {
     lockoutUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    flashSaleOptOut?: BoolFieldUpdateOperationsInput | boolean
+    flashSaleRadius?: IntFieldUpdateOperationsInput | number
     farmerProfile?: FarmerProfileUpdateOneWithoutUserNestedInput
     buyerProfile?: BuyerProfileUpdateOneWithoutUserNestedInput
     transportProfile?: TransportProfileUpdateOneWithoutUserNestedInput
@@ -45779,6 +53518,9 @@ export namespace Prisma {
     createdCoOps?: CoOpGroupUpdateManyWithoutCreatorNestedInput
     coOpContributions?: CoOpMemberUpdateManyWithoutBuyerNestedInput
     cropAlerts?: BuyerCropAlertUpdateManyWithoutBuyerNestedInput
+    flashSalesCreated?: FlashSaleUpdateManyWithoutFarmerNestedInput
+    flashSaleClaims?: FlashSaleClaimUpdateManyWithoutBuyerNestedInput
+    flashSaleNotifications?: FlashSaleNotificationUpdateManyWithoutBuyerNestedInput
   }
 
   export type UserUncheckedUpdateWithoutSentMessagesInput = {
@@ -45799,6 +53541,8 @@ export namespace Prisma {
     lockoutUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    flashSaleOptOut?: BoolFieldUpdateOperationsInput | boolean
+    flashSaleRadius?: IntFieldUpdateOperationsInput | number
     farmerProfile?: FarmerProfileUncheckedUpdateOneWithoutUserNestedInput
     buyerProfile?: BuyerProfileUncheckedUpdateOneWithoutUserNestedInput
     transportProfile?: TransportProfileUncheckedUpdateOneWithoutUserNestedInput
@@ -45820,6 +53564,9 @@ export namespace Prisma {
     createdCoOps?: CoOpGroupUncheckedUpdateManyWithoutCreatorNestedInput
     coOpContributions?: CoOpMemberUncheckedUpdateManyWithoutBuyerNestedInput
     cropAlerts?: BuyerCropAlertUncheckedUpdateManyWithoutBuyerNestedInput
+    flashSalesCreated?: FlashSaleUncheckedUpdateManyWithoutFarmerNestedInput
+    flashSaleClaims?: FlashSaleClaimUncheckedUpdateManyWithoutBuyerNestedInput
+    flashSaleNotifications?: FlashSaleNotificationUncheckedUpdateManyWithoutBuyerNestedInput
   }
 
   export type UserUpsertWithoutReceivedMessagesInput = {
@@ -45851,6 +53598,8 @@ export namespace Prisma {
     lockoutUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    flashSaleOptOut?: BoolFieldUpdateOperationsInput | boolean
+    flashSaleRadius?: IntFieldUpdateOperationsInput | number
     farmerProfile?: FarmerProfileUpdateOneWithoutUserNestedInput
     buyerProfile?: BuyerProfileUpdateOneWithoutUserNestedInput
     transportProfile?: TransportProfileUpdateOneWithoutUserNestedInput
@@ -45872,6 +53621,9 @@ export namespace Prisma {
     createdCoOps?: CoOpGroupUpdateManyWithoutCreatorNestedInput
     coOpContributions?: CoOpMemberUpdateManyWithoutBuyerNestedInput
     cropAlerts?: BuyerCropAlertUpdateManyWithoutBuyerNestedInput
+    flashSalesCreated?: FlashSaleUpdateManyWithoutFarmerNestedInput
+    flashSaleClaims?: FlashSaleClaimUpdateManyWithoutBuyerNestedInput
+    flashSaleNotifications?: FlashSaleNotificationUpdateManyWithoutBuyerNestedInput
   }
 
   export type UserUncheckedUpdateWithoutReceivedMessagesInput = {
@@ -45892,6 +53644,8 @@ export namespace Prisma {
     lockoutUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    flashSaleOptOut?: BoolFieldUpdateOperationsInput | boolean
+    flashSaleRadius?: IntFieldUpdateOperationsInput | number
     farmerProfile?: FarmerProfileUncheckedUpdateOneWithoutUserNestedInput
     buyerProfile?: BuyerProfileUncheckedUpdateOneWithoutUserNestedInput
     transportProfile?: TransportProfileUncheckedUpdateOneWithoutUserNestedInput
@@ -45913,6 +53667,9 @@ export namespace Prisma {
     createdCoOps?: CoOpGroupUncheckedUpdateManyWithoutCreatorNestedInput
     coOpContributions?: CoOpMemberUncheckedUpdateManyWithoutBuyerNestedInput
     cropAlerts?: BuyerCropAlertUncheckedUpdateManyWithoutBuyerNestedInput
+    flashSalesCreated?: FlashSaleUncheckedUpdateManyWithoutFarmerNestedInput
+    flashSaleClaims?: FlashSaleClaimUncheckedUpdateManyWithoutBuyerNestedInput
+    flashSaleNotifications?: FlashSaleNotificationUncheckedUpdateManyWithoutBuyerNestedInput
   }
 
   export type OrderUpsertWithoutMessagesInput = {
@@ -45943,6 +53700,7 @@ export namespace Prisma {
     reviews?: ReviewUpdateManyWithoutOrderNestedInput
     preOrder?: PreOrderUpdateOneWithoutFulfilledOrderNestedInput
     coOpMember?: CoOpMemberUpdateOneWithoutOrderNestedInput
+    flashSaleClaims?: FlashSaleClaimUpdateManyWithoutOrderNestedInput
   }
 
   export type OrderUncheckedUpdateWithoutMessagesInput = {
@@ -45962,6 +53720,7 @@ export namespace Prisma {
     reviews?: ReviewUncheckedUpdateManyWithoutOrderNestedInput
     preOrder?: PreOrderUncheckedUpdateOneWithoutFulfilledOrderNestedInput
     coOpMember?: CoOpMemberUncheckedUpdateOneWithoutOrderNestedInput
+    flashSaleClaims?: FlashSaleClaimUncheckedUpdateManyWithoutOrderNestedInput
   }
 
   export type UserCreateWithoutUssdSessionsInput = {
@@ -45982,6 +53741,8 @@ export namespace Prisma {
     lockoutUntil?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    flashSaleOptOut?: boolean
+    flashSaleRadius?: number
     farmerProfile?: FarmerProfileCreateNestedOneWithoutUserInput
     buyerProfile?: BuyerProfileCreateNestedOneWithoutUserInput
     transportProfile?: TransportProfileCreateNestedOneWithoutUserInput
@@ -46003,6 +53764,9 @@ export namespace Prisma {
     createdCoOps?: CoOpGroupCreateNestedManyWithoutCreatorInput
     coOpContributions?: CoOpMemberCreateNestedManyWithoutBuyerInput
     cropAlerts?: BuyerCropAlertCreateNestedManyWithoutBuyerInput
+    flashSalesCreated?: FlashSaleCreateNestedManyWithoutFarmerInput
+    flashSaleClaims?: FlashSaleClaimCreateNestedManyWithoutBuyerInput
+    flashSaleNotifications?: FlashSaleNotificationCreateNestedManyWithoutBuyerInput
   }
 
   export type UserUncheckedCreateWithoutUssdSessionsInput = {
@@ -46023,6 +53787,8 @@ export namespace Prisma {
     lockoutUntil?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    flashSaleOptOut?: boolean
+    flashSaleRadius?: number
     farmerProfile?: FarmerProfileUncheckedCreateNestedOneWithoutUserInput
     buyerProfile?: BuyerProfileUncheckedCreateNestedOneWithoutUserInput
     transportProfile?: TransportProfileUncheckedCreateNestedOneWithoutUserInput
@@ -46044,6 +53810,9 @@ export namespace Prisma {
     createdCoOps?: CoOpGroupUncheckedCreateNestedManyWithoutCreatorInput
     coOpContributions?: CoOpMemberUncheckedCreateNestedManyWithoutBuyerInput
     cropAlerts?: BuyerCropAlertUncheckedCreateNestedManyWithoutBuyerInput
+    flashSalesCreated?: FlashSaleUncheckedCreateNestedManyWithoutFarmerInput
+    flashSaleClaims?: FlashSaleClaimUncheckedCreateNestedManyWithoutBuyerInput
+    flashSaleNotifications?: FlashSaleNotificationUncheckedCreateNestedManyWithoutBuyerInput
   }
 
   export type UserCreateOrConnectWithoutUssdSessionsInput = {
@@ -46080,6 +53849,8 @@ export namespace Prisma {
     lockoutUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    flashSaleOptOut?: BoolFieldUpdateOperationsInput | boolean
+    flashSaleRadius?: IntFieldUpdateOperationsInput | number
     farmerProfile?: FarmerProfileUpdateOneWithoutUserNestedInput
     buyerProfile?: BuyerProfileUpdateOneWithoutUserNestedInput
     transportProfile?: TransportProfileUpdateOneWithoutUserNestedInput
@@ -46101,6 +53872,9 @@ export namespace Prisma {
     createdCoOps?: CoOpGroupUpdateManyWithoutCreatorNestedInput
     coOpContributions?: CoOpMemberUpdateManyWithoutBuyerNestedInput
     cropAlerts?: BuyerCropAlertUpdateManyWithoutBuyerNestedInput
+    flashSalesCreated?: FlashSaleUpdateManyWithoutFarmerNestedInput
+    flashSaleClaims?: FlashSaleClaimUpdateManyWithoutBuyerNestedInput
+    flashSaleNotifications?: FlashSaleNotificationUpdateManyWithoutBuyerNestedInput
   }
 
   export type UserUncheckedUpdateWithoutUssdSessionsInput = {
@@ -46121,6 +53895,8 @@ export namespace Prisma {
     lockoutUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    flashSaleOptOut?: BoolFieldUpdateOperationsInput | boolean
+    flashSaleRadius?: IntFieldUpdateOperationsInput | number
     farmerProfile?: FarmerProfileUncheckedUpdateOneWithoutUserNestedInput
     buyerProfile?: BuyerProfileUncheckedUpdateOneWithoutUserNestedInput
     transportProfile?: TransportProfileUncheckedUpdateOneWithoutUserNestedInput
@@ -46142,6 +53918,9 @@ export namespace Prisma {
     createdCoOps?: CoOpGroupUncheckedUpdateManyWithoutCreatorNestedInput
     coOpContributions?: CoOpMemberUncheckedUpdateManyWithoutBuyerNestedInput
     cropAlerts?: BuyerCropAlertUncheckedUpdateManyWithoutBuyerNestedInput
+    flashSalesCreated?: FlashSaleUncheckedUpdateManyWithoutFarmerNestedInput
+    flashSaleClaims?: FlashSaleClaimUncheckedUpdateManyWithoutBuyerNestedInput
+    flashSaleNotifications?: FlashSaleNotificationUncheckedUpdateManyWithoutBuyerNestedInput
   }
 
   export type UserCreateWithoutPreOrdersInput = {
@@ -46162,6 +53941,8 @@ export namespace Prisma {
     lockoutUntil?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    flashSaleOptOut?: boolean
+    flashSaleRadius?: number
     farmerProfile?: FarmerProfileCreateNestedOneWithoutUserInput
     buyerProfile?: BuyerProfileCreateNestedOneWithoutUserInput
     transportProfile?: TransportProfileCreateNestedOneWithoutUserInput
@@ -46183,6 +53964,9 @@ export namespace Prisma {
     createdCoOps?: CoOpGroupCreateNestedManyWithoutCreatorInput
     coOpContributions?: CoOpMemberCreateNestedManyWithoutBuyerInput
     cropAlerts?: BuyerCropAlertCreateNestedManyWithoutBuyerInput
+    flashSalesCreated?: FlashSaleCreateNestedManyWithoutFarmerInput
+    flashSaleClaims?: FlashSaleClaimCreateNestedManyWithoutBuyerInput
+    flashSaleNotifications?: FlashSaleNotificationCreateNestedManyWithoutBuyerInput
   }
 
   export type UserUncheckedCreateWithoutPreOrdersInput = {
@@ -46203,6 +53987,8 @@ export namespace Prisma {
     lockoutUntil?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    flashSaleOptOut?: boolean
+    flashSaleRadius?: number
     farmerProfile?: FarmerProfileUncheckedCreateNestedOneWithoutUserInput
     buyerProfile?: BuyerProfileUncheckedCreateNestedOneWithoutUserInput
     transportProfile?: TransportProfileUncheckedCreateNestedOneWithoutUserInput
@@ -46224,6 +54010,9 @@ export namespace Prisma {
     createdCoOps?: CoOpGroupUncheckedCreateNestedManyWithoutCreatorInput
     coOpContributions?: CoOpMemberUncheckedCreateNestedManyWithoutBuyerInput
     cropAlerts?: BuyerCropAlertUncheckedCreateNestedManyWithoutBuyerInput
+    flashSalesCreated?: FlashSaleUncheckedCreateNestedManyWithoutFarmerInput
+    flashSaleClaims?: FlashSaleClaimUncheckedCreateNestedManyWithoutBuyerInput
+    flashSaleNotifications?: FlashSaleNotificationUncheckedCreateNestedManyWithoutBuyerInput
   }
 
   export type UserCreateOrConnectWithoutPreOrdersInput = {
@@ -46249,12 +54038,18 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     source?: $Enums.CreationSource
+    currentRiskBand?: $Enums.SpoilageRiskBand
+    currentRiskScore?: number
+    lastRiskCalculatedAt?: Date | string | null
+    activeFlashSaleId?: string | null
     farmer: UserCreateNestedOneWithoutListingsInput
     orders?: OrderCreateNestedManyWithoutListingInput
     traceability?: TraceabilityRecordCreateNestedOneWithoutListingInput
     traceEvents?: TraceEventCreateNestedManyWithoutListingInput
     coOps?: CoOpGroupCreateNestedManyWithoutListingInput
     plantingLog?: PlantingLogCreateNestedOneWithoutListingsInput
+    spoilageRiskLogs?: SpoilageRiskLogCreateNestedManyWithoutListingInput
+    flashSale?: FlashSaleCreateNestedOneWithoutListingInput
   }
 
   export type ProduceListingUncheckedCreateWithoutPreOrdersInput = {
@@ -46277,10 +54072,16 @@ export namespace Prisma {
     updatedAt?: Date | string
     source?: $Enums.CreationSource
     plantingLogId?: string | null
+    currentRiskBand?: $Enums.SpoilageRiskBand
+    currentRiskScore?: number
+    lastRiskCalculatedAt?: Date | string | null
+    activeFlashSaleId?: string | null
     orders?: OrderUncheckedCreateNestedManyWithoutListingInput
     traceability?: TraceabilityRecordUncheckedCreateNestedOneWithoutListingInput
     traceEvents?: TraceEventUncheckedCreateNestedManyWithoutListingInput
     coOps?: CoOpGroupUncheckedCreateNestedManyWithoutListingInput
+    spoilageRiskLogs?: SpoilageRiskLogUncheckedCreateNestedManyWithoutListingInput
+    flashSale?: FlashSaleUncheckedCreateNestedOneWithoutListingInput
   }
 
   export type ProduceListingCreateOrConnectWithoutPreOrdersInput = {
@@ -46305,6 +54106,7 @@ export namespace Prisma {
     reviews?: ReviewCreateNestedManyWithoutOrderInput
     messages?: MessageCreateNestedManyWithoutOrderInput
     coOpMember?: CoOpMemberCreateNestedOneWithoutOrderInput
+    flashSaleClaims?: FlashSaleClaimCreateNestedManyWithoutOrderInput
   }
 
   export type OrderUncheckedCreateWithoutPreOrderInput = {
@@ -46324,6 +54126,7 @@ export namespace Prisma {
     reviews?: ReviewUncheckedCreateNestedManyWithoutOrderInput
     messages?: MessageUncheckedCreateNestedManyWithoutOrderInput
     coOpMember?: CoOpMemberUncheckedCreateNestedOneWithoutOrderInput
+    flashSaleClaims?: FlashSaleClaimUncheckedCreateNestedManyWithoutOrderInput
   }
 
   export type OrderCreateOrConnectWithoutPreOrderInput = {
@@ -46360,6 +54163,8 @@ export namespace Prisma {
     lockoutUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    flashSaleOptOut?: BoolFieldUpdateOperationsInput | boolean
+    flashSaleRadius?: IntFieldUpdateOperationsInput | number
     farmerProfile?: FarmerProfileUpdateOneWithoutUserNestedInput
     buyerProfile?: BuyerProfileUpdateOneWithoutUserNestedInput
     transportProfile?: TransportProfileUpdateOneWithoutUserNestedInput
@@ -46381,6 +54186,9 @@ export namespace Prisma {
     createdCoOps?: CoOpGroupUpdateManyWithoutCreatorNestedInput
     coOpContributions?: CoOpMemberUpdateManyWithoutBuyerNestedInput
     cropAlerts?: BuyerCropAlertUpdateManyWithoutBuyerNestedInput
+    flashSalesCreated?: FlashSaleUpdateManyWithoutFarmerNestedInput
+    flashSaleClaims?: FlashSaleClaimUpdateManyWithoutBuyerNestedInput
+    flashSaleNotifications?: FlashSaleNotificationUpdateManyWithoutBuyerNestedInput
   }
 
   export type UserUncheckedUpdateWithoutPreOrdersInput = {
@@ -46401,6 +54209,8 @@ export namespace Prisma {
     lockoutUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    flashSaleOptOut?: BoolFieldUpdateOperationsInput | boolean
+    flashSaleRadius?: IntFieldUpdateOperationsInput | number
     farmerProfile?: FarmerProfileUncheckedUpdateOneWithoutUserNestedInput
     buyerProfile?: BuyerProfileUncheckedUpdateOneWithoutUserNestedInput
     transportProfile?: TransportProfileUncheckedUpdateOneWithoutUserNestedInput
@@ -46422,6 +54232,9 @@ export namespace Prisma {
     createdCoOps?: CoOpGroupUncheckedUpdateManyWithoutCreatorNestedInput
     coOpContributions?: CoOpMemberUncheckedUpdateManyWithoutBuyerNestedInput
     cropAlerts?: BuyerCropAlertUncheckedUpdateManyWithoutBuyerNestedInput
+    flashSalesCreated?: FlashSaleUncheckedUpdateManyWithoutFarmerNestedInput
+    flashSaleClaims?: FlashSaleClaimUncheckedUpdateManyWithoutBuyerNestedInput
+    flashSaleNotifications?: FlashSaleNotificationUncheckedUpdateManyWithoutBuyerNestedInput
   }
 
   export type ProduceListingUpsertWithoutPreOrdersInput = {
@@ -46453,12 +54266,18 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     source?: EnumCreationSourceFieldUpdateOperationsInput | $Enums.CreationSource
+    currentRiskBand?: EnumSpoilageRiskBandFieldUpdateOperationsInput | $Enums.SpoilageRiskBand
+    currentRiskScore?: FloatFieldUpdateOperationsInput | number
+    lastRiskCalculatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    activeFlashSaleId?: NullableStringFieldUpdateOperationsInput | string | null
     farmer?: UserUpdateOneRequiredWithoutListingsNestedInput
     orders?: OrderUpdateManyWithoutListingNestedInput
     traceability?: TraceabilityRecordUpdateOneWithoutListingNestedInput
     traceEvents?: TraceEventUpdateManyWithoutListingNestedInput
     coOps?: CoOpGroupUpdateManyWithoutListingNestedInput
     plantingLog?: PlantingLogUpdateOneWithoutListingsNestedInput
+    spoilageRiskLogs?: SpoilageRiskLogUpdateManyWithoutListingNestedInput
+    flashSale?: FlashSaleUpdateOneWithoutListingNestedInput
   }
 
   export type ProduceListingUncheckedUpdateWithoutPreOrdersInput = {
@@ -46481,10 +54300,16 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     source?: EnumCreationSourceFieldUpdateOperationsInput | $Enums.CreationSource
     plantingLogId?: NullableStringFieldUpdateOperationsInput | string | null
+    currentRiskBand?: EnumSpoilageRiskBandFieldUpdateOperationsInput | $Enums.SpoilageRiskBand
+    currentRiskScore?: FloatFieldUpdateOperationsInput | number
+    lastRiskCalculatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    activeFlashSaleId?: NullableStringFieldUpdateOperationsInput | string | null
     orders?: OrderUncheckedUpdateManyWithoutListingNestedInput
     traceability?: TraceabilityRecordUncheckedUpdateOneWithoutListingNestedInput
     traceEvents?: TraceEventUncheckedUpdateManyWithoutListingNestedInput
     coOps?: CoOpGroupUncheckedUpdateManyWithoutListingNestedInput
+    spoilageRiskLogs?: SpoilageRiskLogUncheckedUpdateManyWithoutListingNestedInput
+    flashSale?: FlashSaleUncheckedUpdateOneWithoutListingNestedInput
   }
 
   export type OrderUpsertWithoutPreOrderInput = {
@@ -46515,6 +54340,7 @@ export namespace Prisma {
     reviews?: ReviewUpdateManyWithoutOrderNestedInput
     messages?: MessageUpdateManyWithoutOrderNestedInput
     coOpMember?: CoOpMemberUpdateOneWithoutOrderNestedInput
+    flashSaleClaims?: FlashSaleClaimUpdateManyWithoutOrderNestedInput
   }
 
   export type OrderUncheckedUpdateWithoutPreOrderInput = {
@@ -46534,6 +54360,7 @@ export namespace Prisma {
     reviews?: ReviewUncheckedUpdateManyWithoutOrderNestedInput
     messages?: MessageUncheckedUpdateManyWithoutOrderNestedInput
     coOpMember?: CoOpMemberUncheckedUpdateOneWithoutOrderNestedInput
+    flashSaleClaims?: FlashSaleClaimUncheckedUpdateManyWithoutOrderNestedInput
   }
 
   export type UserCreateWithoutPlantingLogsInput = {
@@ -46554,6 +54381,8 @@ export namespace Prisma {
     lockoutUntil?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    flashSaleOptOut?: boolean
+    flashSaleRadius?: number
     farmerProfile?: FarmerProfileCreateNestedOneWithoutUserInput
     buyerProfile?: BuyerProfileCreateNestedOneWithoutUserInput
     transportProfile?: TransportProfileCreateNestedOneWithoutUserInput
@@ -46575,6 +54404,9 @@ export namespace Prisma {
     createdCoOps?: CoOpGroupCreateNestedManyWithoutCreatorInput
     coOpContributions?: CoOpMemberCreateNestedManyWithoutBuyerInput
     cropAlerts?: BuyerCropAlertCreateNestedManyWithoutBuyerInput
+    flashSalesCreated?: FlashSaleCreateNestedManyWithoutFarmerInput
+    flashSaleClaims?: FlashSaleClaimCreateNestedManyWithoutBuyerInput
+    flashSaleNotifications?: FlashSaleNotificationCreateNestedManyWithoutBuyerInput
   }
 
   export type UserUncheckedCreateWithoutPlantingLogsInput = {
@@ -46595,6 +54427,8 @@ export namespace Prisma {
     lockoutUntil?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    flashSaleOptOut?: boolean
+    flashSaleRadius?: number
     farmerProfile?: FarmerProfileUncheckedCreateNestedOneWithoutUserInput
     buyerProfile?: BuyerProfileUncheckedCreateNestedOneWithoutUserInput
     transportProfile?: TransportProfileUncheckedCreateNestedOneWithoutUserInput
@@ -46616,6 +54450,9 @@ export namespace Prisma {
     createdCoOps?: CoOpGroupUncheckedCreateNestedManyWithoutCreatorInput
     coOpContributions?: CoOpMemberUncheckedCreateNestedManyWithoutBuyerInput
     cropAlerts?: BuyerCropAlertUncheckedCreateNestedManyWithoutBuyerInput
+    flashSalesCreated?: FlashSaleUncheckedCreateNestedManyWithoutFarmerInput
+    flashSaleClaims?: FlashSaleClaimUncheckedCreateNestedManyWithoutBuyerInput
+    flashSaleNotifications?: FlashSaleNotificationUncheckedCreateNestedManyWithoutBuyerInput
   }
 
   export type UserCreateOrConnectWithoutPlantingLogsInput = {
@@ -46673,12 +54510,18 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     source?: $Enums.CreationSource
+    currentRiskBand?: $Enums.SpoilageRiskBand
+    currentRiskScore?: number
+    lastRiskCalculatedAt?: Date | string | null
+    activeFlashSaleId?: string | null
     farmer: UserCreateNestedOneWithoutListingsInput
     orders?: OrderCreateNestedManyWithoutListingInput
     traceability?: TraceabilityRecordCreateNestedOneWithoutListingInput
     traceEvents?: TraceEventCreateNestedManyWithoutListingInput
     preOrders?: PreOrderCreateNestedManyWithoutMatchedListingInput
     coOps?: CoOpGroupCreateNestedManyWithoutListingInput
+    spoilageRiskLogs?: SpoilageRiskLogCreateNestedManyWithoutListingInput
+    flashSale?: FlashSaleCreateNestedOneWithoutListingInput
   }
 
   export type ProduceListingUncheckedCreateWithoutPlantingLogInput = {
@@ -46700,11 +54543,17 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     source?: $Enums.CreationSource
+    currentRiskBand?: $Enums.SpoilageRiskBand
+    currentRiskScore?: number
+    lastRiskCalculatedAt?: Date | string | null
+    activeFlashSaleId?: string | null
     orders?: OrderUncheckedCreateNestedManyWithoutListingInput
     traceability?: TraceabilityRecordUncheckedCreateNestedOneWithoutListingInput
     traceEvents?: TraceEventUncheckedCreateNestedManyWithoutListingInput
     preOrders?: PreOrderUncheckedCreateNestedManyWithoutMatchedListingInput
     coOps?: CoOpGroupUncheckedCreateNestedManyWithoutListingInput
+    spoilageRiskLogs?: SpoilageRiskLogUncheckedCreateNestedManyWithoutListingInput
+    flashSale?: FlashSaleUncheckedCreateNestedOneWithoutListingInput
   }
 
   export type ProduceListingCreateOrConnectWithoutPlantingLogInput = {
@@ -46746,6 +54595,8 @@ export namespace Prisma {
     lockoutUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    flashSaleOptOut?: BoolFieldUpdateOperationsInput | boolean
+    flashSaleRadius?: IntFieldUpdateOperationsInput | number
     farmerProfile?: FarmerProfileUpdateOneWithoutUserNestedInput
     buyerProfile?: BuyerProfileUpdateOneWithoutUserNestedInput
     transportProfile?: TransportProfileUpdateOneWithoutUserNestedInput
@@ -46767,6 +54618,9 @@ export namespace Prisma {
     createdCoOps?: CoOpGroupUpdateManyWithoutCreatorNestedInput
     coOpContributions?: CoOpMemberUpdateManyWithoutBuyerNestedInput
     cropAlerts?: BuyerCropAlertUpdateManyWithoutBuyerNestedInput
+    flashSalesCreated?: FlashSaleUpdateManyWithoutFarmerNestedInput
+    flashSaleClaims?: FlashSaleClaimUpdateManyWithoutBuyerNestedInput
+    flashSaleNotifications?: FlashSaleNotificationUpdateManyWithoutBuyerNestedInput
   }
 
   export type UserUncheckedUpdateWithoutPlantingLogsInput = {
@@ -46787,6 +54641,8 @@ export namespace Prisma {
     lockoutUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    flashSaleOptOut?: BoolFieldUpdateOperationsInput | boolean
+    flashSaleRadius?: IntFieldUpdateOperationsInput | number
     farmerProfile?: FarmerProfileUncheckedUpdateOneWithoutUserNestedInput
     buyerProfile?: BuyerProfileUncheckedUpdateOneWithoutUserNestedInput
     transportProfile?: TransportProfileUncheckedUpdateOneWithoutUserNestedInput
@@ -46808,6 +54664,9 @@ export namespace Prisma {
     createdCoOps?: CoOpGroupUncheckedUpdateManyWithoutCreatorNestedInput
     coOpContributions?: CoOpMemberUncheckedUpdateManyWithoutBuyerNestedInput
     cropAlerts?: BuyerCropAlertUncheckedUpdateManyWithoutBuyerNestedInput
+    flashSalesCreated?: FlashSaleUncheckedUpdateManyWithoutFarmerNestedInput
+    flashSaleClaims?: FlashSaleClaimUncheckedUpdateManyWithoutBuyerNestedInput
+    flashSaleNotifications?: FlashSaleNotificationUncheckedUpdateManyWithoutBuyerNestedInput
   }
 
   export type PlantingInputUpsertWithWhereUniqueWithoutPlantingLogInput = {
@@ -46951,6 +54810,8 @@ export namespace Prisma {
     lockoutUntil?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    flashSaleOptOut?: boolean
+    flashSaleRadius?: number
     farmerProfile?: FarmerProfileCreateNestedOneWithoutUserInput
     buyerProfile?: BuyerProfileCreateNestedOneWithoutUserInput
     transportProfile?: TransportProfileCreateNestedOneWithoutUserInput
@@ -46972,6 +54833,9 @@ export namespace Prisma {
     createdCoOps?: CoOpGroupCreateNestedManyWithoutCreatorInput
     coOpContributions?: CoOpMemberCreateNestedManyWithoutBuyerInput
     cropAlerts?: BuyerCropAlertCreateNestedManyWithoutBuyerInput
+    flashSalesCreated?: FlashSaleCreateNestedManyWithoutFarmerInput
+    flashSaleClaims?: FlashSaleClaimCreateNestedManyWithoutBuyerInput
+    flashSaleNotifications?: FlashSaleNotificationCreateNestedManyWithoutBuyerInput
   }
 
   export type UserUncheckedCreateWithoutAuditLogsInput = {
@@ -46992,6 +54856,8 @@ export namespace Prisma {
     lockoutUntil?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    flashSaleOptOut?: boolean
+    flashSaleRadius?: number
     farmerProfile?: FarmerProfileUncheckedCreateNestedOneWithoutUserInput
     buyerProfile?: BuyerProfileUncheckedCreateNestedOneWithoutUserInput
     transportProfile?: TransportProfileUncheckedCreateNestedOneWithoutUserInput
@@ -47013,6 +54879,9 @@ export namespace Prisma {
     createdCoOps?: CoOpGroupUncheckedCreateNestedManyWithoutCreatorInput
     coOpContributions?: CoOpMemberUncheckedCreateNestedManyWithoutBuyerInput
     cropAlerts?: BuyerCropAlertUncheckedCreateNestedManyWithoutBuyerInput
+    flashSalesCreated?: FlashSaleUncheckedCreateNestedManyWithoutFarmerInput
+    flashSaleClaims?: FlashSaleClaimUncheckedCreateNestedManyWithoutBuyerInput
+    flashSaleNotifications?: FlashSaleNotificationUncheckedCreateNestedManyWithoutBuyerInput
   }
 
   export type UserCreateOrConnectWithoutAuditLogsInput = {
@@ -47049,6 +54918,8 @@ export namespace Prisma {
     lockoutUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    flashSaleOptOut?: BoolFieldUpdateOperationsInput | boolean
+    flashSaleRadius?: IntFieldUpdateOperationsInput | number
     farmerProfile?: FarmerProfileUpdateOneWithoutUserNestedInput
     buyerProfile?: BuyerProfileUpdateOneWithoutUserNestedInput
     transportProfile?: TransportProfileUpdateOneWithoutUserNestedInput
@@ -47070,6 +54941,9 @@ export namespace Prisma {
     createdCoOps?: CoOpGroupUpdateManyWithoutCreatorNestedInput
     coOpContributions?: CoOpMemberUpdateManyWithoutBuyerNestedInput
     cropAlerts?: BuyerCropAlertUpdateManyWithoutBuyerNestedInput
+    flashSalesCreated?: FlashSaleUpdateManyWithoutFarmerNestedInput
+    flashSaleClaims?: FlashSaleClaimUpdateManyWithoutBuyerNestedInput
+    flashSaleNotifications?: FlashSaleNotificationUpdateManyWithoutBuyerNestedInput
   }
 
   export type UserUncheckedUpdateWithoutAuditLogsInput = {
@@ -47090,6 +54964,8 @@ export namespace Prisma {
     lockoutUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    flashSaleOptOut?: BoolFieldUpdateOperationsInput | boolean
+    flashSaleRadius?: IntFieldUpdateOperationsInput | number
     farmerProfile?: FarmerProfileUncheckedUpdateOneWithoutUserNestedInput
     buyerProfile?: BuyerProfileUncheckedUpdateOneWithoutUserNestedInput
     transportProfile?: TransportProfileUncheckedUpdateOneWithoutUserNestedInput
@@ -47111,6 +54987,9 @@ export namespace Prisma {
     createdCoOps?: CoOpGroupUncheckedUpdateManyWithoutCreatorNestedInput
     coOpContributions?: CoOpMemberUncheckedUpdateManyWithoutBuyerNestedInput
     cropAlerts?: BuyerCropAlertUncheckedUpdateManyWithoutBuyerNestedInput
+    flashSalesCreated?: FlashSaleUncheckedUpdateManyWithoutFarmerNestedInput
+    flashSaleClaims?: FlashSaleClaimUncheckedUpdateManyWithoutBuyerNestedInput
+    flashSaleNotifications?: FlashSaleNotificationUncheckedUpdateManyWithoutBuyerNestedInput
   }
 
   export type UserCreateWithoutConfigsUpdatedInput = {
@@ -47131,6 +55010,8 @@ export namespace Prisma {
     lockoutUntil?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    flashSaleOptOut?: boolean
+    flashSaleRadius?: number
     farmerProfile?: FarmerProfileCreateNestedOneWithoutUserInput
     buyerProfile?: BuyerProfileCreateNestedOneWithoutUserInput
     transportProfile?: TransportProfileCreateNestedOneWithoutUserInput
@@ -47152,6 +55033,9 @@ export namespace Prisma {
     createdCoOps?: CoOpGroupCreateNestedManyWithoutCreatorInput
     coOpContributions?: CoOpMemberCreateNestedManyWithoutBuyerInput
     cropAlerts?: BuyerCropAlertCreateNestedManyWithoutBuyerInput
+    flashSalesCreated?: FlashSaleCreateNestedManyWithoutFarmerInput
+    flashSaleClaims?: FlashSaleClaimCreateNestedManyWithoutBuyerInput
+    flashSaleNotifications?: FlashSaleNotificationCreateNestedManyWithoutBuyerInput
   }
 
   export type UserUncheckedCreateWithoutConfigsUpdatedInput = {
@@ -47172,6 +55056,8 @@ export namespace Prisma {
     lockoutUntil?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    flashSaleOptOut?: boolean
+    flashSaleRadius?: number
     farmerProfile?: FarmerProfileUncheckedCreateNestedOneWithoutUserInput
     buyerProfile?: BuyerProfileUncheckedCreateNestedOneWithoutUserInput
     transportProfile?: TransportProfileUncheckedCreateNestedOneWithoutUserInput
@@ -47193,6 +55079,9 @@ export namespace Prisma {
     createdCoOps?: CoOpGroupUncheckedCreateNestedManyWithoutCreatorInput
     coOpContributions?: CoOpMemberUncheckedCreateNestedManyWithoutBuyerInput
     cropAlerts?: BuyerCropAlertUncheckedCreateNestedManyWithoutBuyerInput
+    flashSalesCreated?: FlashSaleUncheckedCreateNestedManyWithoutFarmerInput
+    flashSaleClaims?: FlashSaleClaimUncheckedCreateNestedManyWithoutBuyerInput
+    flashSaleNotifications?: FlashSaleNotificationUncheckedCreateNestedManyWithoutBuyerInput
   }
 
   export type UserCreateOrConnectWithoutConfigsUpdatedInput = {
@@ -47229,6 +55118,8 @@ export namespace Prisma {
     lockoutUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    flashSaleOptOut?: BoolFieldUpdateOperationsInput | boolean
+    flashSaleRadius?: IntFieldUpdateOperationsInput | number
     farmerProfile?: FarmerProfileUpdateOneWithoutUserNestedInput
     buyerProfile?: BuyerProfileUpdateOneWithoutUserNestedInput
     transportProfile?: TransportProfileUpdateOneWithoutUserNestedInput
@@ -47250,6 +55141,9 @@ export namespace Prisma {
     createdCoOps?: CoOpGroupUpdateManyWithoutCreatorNestedInput
     coOpContributions?: CoOpMemberUpdateManyWithoutBuyerNestedInput
     cropAlerts?: BuyerCropAlertUpdateManyWithoutBuyerNestedInput
+    flashSalesCreated?: FlashSaleUpdateManyWithoutFarmerNestedInput
+    flashSaleClaims?: FlashSaleClaimUpdateManyWithoutBuyerNestedInput
+    flashSaleNotifications?: FlashSaleNotificationUpdateManyWithoutBuyerNestedInput
   }
 
   export type UserUncheckedUpdateWithoutConfigsUpdatedInput = {
@@ -47270,6 +55164,8 @@ export namespace Prisma {
     lockoutUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    flashSaleOptOut?: BoolFieldUpdateOperationsInput | boolean
+    flashSaleRadius?: IntFieldUpdateOperationsInput | number
     farmerProfile?: FarmerProfileUncheckedUpdateOneWithoutUserNestedInput
     buyerProfile?: BuyerProfileUncheckedUpdateOneWithoutUserNestedInput
     transportProfile?: TransportProfileUncheckedUpdateOneWithoutUserNestedInput
@@ -47291,6 +55187,9 @@ export namespace Prisma {
     createdCoOps?: CoOpGroupUncheckedUpdateManyWithoutCreatorNestedInput
     coOpContributions?: CoOpMemberUncheckedUpdateManyWithoutBuyerNestedInput
     cropAlerts?: BuyerCropAlertUncheckedUpdateManyWithoutBuyerNestedInput
+    flashSalesCreated?: FlashSaleUncheckedUpdateManyWithoutFarmerNestedInput
+    flashSaleClaims?: FlashSaleClaimUncheckedUpdateManyWithoutBuyerNestedInput
+    flashSaleNotifications?: FlashSaleNotificationUncheckedUpdateManyWithoutBuyerNestedInput
   }
 
   export type UserCreateWithoutBanInput = {
@@ -47311,6 +55210,8 @@ export namespace Prisma {
     lockoutUntil?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    flashSaleOptOut?: boolean
+    flashSaleRadius?: number
     farmerProfile?: FarmerProfileCreateNestedOneWithoutUserInput
     buyerProfile?: BuyerProfileCreateNestedOneWithoutUserInput
     transportProfile?: TransportProfileCreateNestedOneWithoutUserInput
@@ -47332,6 +55233,9 @@ export namespace Prisma {
     createdCoOps?: CoOpGroupCreateNestedManyWithoutCreatorInput
     coOpContributions?: CoOpMemberCreateNestedManyWithoutBuyerInput
     cropAlerts?: BuyerCropAlertCreateNestedManyWithoutBuyerInput
+    flashSalesCreated?: FlashSaleCreateNestedManyWithoutFarmerInput
+    flashSaleClaims?: FlashSaleClaimCreateNestedManyWithoutBuyerInput
+    flashSaleNotifications?: FlashSaleNotificationCreateNestedManyWithoutBuyerInput
   }
 
   export type UserUncheckedCreateWithoutBanInput = {
@@ -47352,6 +55256,8 @@ export namespace Prisma {
     lockoutUntil?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    flashSaleOptOut?: boolean
+    flashSaleRadius?: number
     farmerProfile?: FarmerProfileUncheckedCreateNestedOneWithoutUserInput
     buyerProfile?: BuyerProfileUncheckedCreateNestedOneWithoutUserInput
     transportProfile?: TransportProfileUncheckedCreateNestedOneWithoutUserInput
@@ -47373,6 +55279,9 @@ export namespace Prisma {
     createdCoOps?: CoOpGroupUncheckedCreateNestedManyWithoutCreatorInput
     coOpContributions?: CoOpMemberUncheckedCreateNestedManyWithoutBuyerInput
     cropAlerts?: BuyerCropAlertUncheckedCreateNestedManyWithoutBuyerInput
+    flashSalesCreated?: FlashSaleUncheckedCreateNestedManyWithoutFarmerInput
+    flashSaleClaims?: FlashSaleClaimUncheckedCreateNestedManyWithoutBuyerInput
+    flashSaleNotifications?: FlashSaleNotificationUncheckedCreateNestedManyWithoutBuyerInput
   }
 
   export type UserCreateOrConnectWithoutBanInput = {
@@ -47398,6 +55307,8 @@ export namespace Prisma {
     lockoutUntil?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    flashSaleOptOut?: boolean
+    flashSaleRadius?: number
     farmerProfile?: FarmerProfileCreateNestedOneWithoutUserInput
     buyerProfile?: BuyerProfileCreateNestedOneWithoutUserInput
     transportProfile?: TransportProfileCreateNestedOneWithoutUserInput
@@ -47419,6 +55330,9 @@ export namespace Prisma {
     createdCoOps?: CoOpGroupCreateNestedManyWithoutCreatorInput
     coOpContributions?: CoOpMemberCreateNestedManyWithoutBuyerInput
     cropAlerts?: BuyerCropAlertCreateNestedManyWithoutBuyerInput
+    flashSalesCreated?: FlashSaleCreateNestedManyWithoutFarmerInput
+    flashSaleClaims?: FlashSaleClaimCreateNestedManyWithoutBuyerInput
+    flashSaleNotifications?: FlashSaleNotificationCreateNestedManyWithoutBuyerInput
   }
 
   export type UserUncheckedCreateWithoutBansIssuedInput = {
@@ -47439,6 +55353,8 @@ export namespace Prisma {
     lockoutUntil?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    flashSaleOptOut?: boolean
+    flashSaleRadius?: number
     farmerProfile?: FarmerProfileUncheckedCreateNestedOneWithoutUserInput
     buyerProfile?: BuyerProfileUncheckedCreateNestedOneWithoutUserInput
     transportProfile?: TransportProfileUncheckedCreateNestedOneWithoutUserInput
@@ -47460,6 +55376,9 @@ export namespace Prisma {
     createdCoOps?: CoOpGroupUncheckedCreateNestedManyWithoutCreatorInput
     coOpContributions?: CoOpMemberUncheckedCreateNestedManyWithoutBuyerInput
     cropAlerts?: BuyerCropAlertUncheckedCreateNestedManyWithoutBuyerInput
+    flashSalesCreated?: FlashSaleUncheckedCreateNestedManyWithoutFarmerInput
+    flashSaleClaims?: FlashSaleClaimUncheckedCreateNestedManyWithoutBuyerInput
+    flashSaleNotifications?: FlashSaleNotificationUncheckedCreateNestedManyWithoutBuyerInput
   }
 
   export type UserCreateOrConnectWithoutBansIssuedInput = {
@@ -47496,6 +55415,8 @@ export namespace Prisma {
     lockoutUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    flashSaleOptOut?: BoolFieldUpdateOperationsInput | boolean
+    flashSaleRadius?: IntFieldUpdateOperationsInput | number
     farmerProfile?: FarmerProfileUpdateOneWithoutUserNestedInput
     buyerProfile?: BuyerProfileUpdateOneWithoutUserNestedInput
     transportProfile?: TransportProfileUpdateOneWithoutUserNestedInput
@@ -47517,6 +55438,9 @@ export namespace Prisma {
     createdCoOps?: CoOpGroupUpdateManyWithoutCreatorNestedInput
     coOpContributions?: CoOpMemberUpdateManyWithoutBuyerNestedInput
     cropAlerts?: BuyerCropAlertUpdateManyWithoutBuyerNestedInput
+    flashSalesCreated?: FlashSaleUpdateManyWithoutFarmerNestedInput
+    flashSaleClaims?: FlashSaleClaimUpdateManyWithoutBuyerNestedInput
+    flashSaleNotifications?: FlashSaleNotificationUpdateManyWithoutBuyerNestedInput
   }
 
   export type UserUncheckedUpdateWithoutBanInput = {
@@ -47537,6 +55461,8 @@ export namespace Prisma {
     lockoutUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    flashSaleOptOut?: BoolFieldUpdateOperationsInput | boolean
+    flashSaleRadius?: IntFieldUpdateOperationsInput | number
     farmerProfile?: FarmerProfileUncheckedUpdateOneWithoutUserNestedInput
     buyerProfile?: BuyerProfileUncheckedUpdateOneWithoutUserNestedInput
     transportProfile?: TransportProfileUncheckedUpdateOneWithoutUserNestedInput
@@ -47558,6 +55484,9 @@ export namespace Prisma {
     createdCoOps?: CoOpGroupUncheckedUpdateManyWithoutCreatorNestedInput
     coOpContributions?: CoOpMemberUncheckedUpdateManyWithoutBuyerNestedInput
     cropAlerts?: BuyerCropAlertUncheckedUpdateManyWithoutBuyerNestedInput
+    flashSalesCreated?: FlashSaleUncheckedUpdateManyWithoutFarmerNestedInput
+    flashSaleClaims?: FlashSaleClaimUncheckedUpdateManyWithoutBuyerNestedInput
+    flashSaleNotifications?: FlashSaleNotificationUncheckedUpdateManyWithoutBuyerNestedInput
   }
 
   export type UserUpsertWithoutBansIssuedInput = {
@@ -47589,6 +55518,8 @@ export namespace Prisma {
     lockoutUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    flashSaleOptOut?: BoolFieldUpdateOperationsInput | boolean
+    flashSaleRadius?: IntFieldUpdateOperationsInput | number
     farmerProfile?: FarmerProfileUpdateOneWithoutUserNestedInput
     buyerProfile?: BuyerProfileUpdateOneWithoutUserNestedInput
     transportProfile?: TransportProfileUpdateOneWithoutUserNestedInput
@@ -47610,6 +55541,9 @@ export namespace Prisma {
     createdCoOps?: CoOpGroupUpdateManyWithoutCreatorNestedInput
     coOpContributions?: CoOpMemberUpdateManyWithoutBuyerNestedInput
     cropAlerts?: BuyerCropAlertUpdateManyWithoutBuyerNestedInput
+    flashSalesCreated?: FlashSaleUpdateManyWithoutFarmerNestedInput
+    flashSaleClaims?: FlashSaleClaimUpdateManyWithoutBuyerNestedInput
+    flashSaleNotifications?: FlashSaleNotificationUpdateManyWithoutBuyerNestedInput
   }
 
   export type UserUncheckedUpdateWithoutBansIssuedInput = {
@@ -47630,6 +55564,8 @@ export namespace Prisma {
     lockoutUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    flashSaleOptOut?: BoolFieldUpdateOperationsInput | boolean
+    flashSaleRadius?: IntFieldUpdateOperationsInput | number
     farmerProfile?: FarmerProfileUncheckedUpdateOneWithoutUserNestedInput
     buyerProfile?: BuyerProfileUncheckedUpdateOneWithoutUserNestedInput
     transportProfile?: TransportProfileUncheckedUpdateOneWithoutUserNestedInput
@@ -47651,6 +55587,9 @@ export namespace Prisma {
     createdCoOps?: CoOpGroupUncheckedUpdateManyWithoutCreatorNestedInput
     coOpContributions?: CoOpMemberUncheckedUpdateManyWithoutBuyerNestedInput
     cropAlerts?: BuyerCropAlertUncheckedUpdateManyWithoutBuyerNestedInput
+    flashSalesCreated?: FlashSaleUncheckedUpdateManyWithoutFarmerNestedInput
+    flashSaleClaims?: FlashSaleClaimUncheckedUpdateManyWithoutBuyerNestedInput
+    flashSaleNotifications?: FlashSaleNotificationUncheckedUpdateManyWithoutBuyerNestedInput
   }
 
   export type ProduceListingCreateWithoutCoOpsInput = {
@@ -47671,12 +55610,18 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     source?: $Enums.CreationSource
+    currentRiskBand?: $Enums.SpoilageRiskBand
+    currentRiskScore?: number
+    lastRiskCalculatedAt?: Date | string | null
+    activeFlashSaleId?: string | null
     farmer: UserCreateNestedOneWithoutListingsInput
     orders?: OrderCreateNestedManyWithoutListingInput
     traceability?: TraceabilityRecordCreateNestedOneWithoutListingInput
     traceEvents?: TraceEventCreateNestedManyWithoutListingInput
     preOrders?: PreOrderCreateNestedManyWithoutMatchedListingInput
     plantingLog?: PlantingLogCreateNestedOneWithoutListingsInput
+    spoilageRiskLogs?: SpoilageRiskLogCreateNestedManyWithoutListingInput
+    flashSale?: FlashSaleCreateNestedOneWithoutListingInput
   }
 
   export type ProduceListingUncheckedCreateWithoutCoOpsInput = {
@@ -47699,10 +55644,16 @@ export namespace Prisma {
     updatedAt?: Date | string
     source?: $Enums.CreationSource
     plantingLogId?: string | null
+    currentRiskBand?: $Enums.SpoilageRiskBand
+    currentRiskScore?: number
+    lastRiskCalculatedAt?: Date | string | null
+    activeFlashSaleId?: string | null
     orders?: OrderUncheckedCreateNestedManyWithoutListingInput
     traceability?: TraceabilityRecordUncheckedCreateNestedOneWithoutListingInput
     traceEvents?: TraceEventUncheckedCreateNestedManyWithoutListingInput
     preOrders?: PreOrderUncheckedCreateNestedManyWithoutMatchedListingInput
+    spoilageRiskLogs?: SpoilageRiskLogUncheckedCreateNestedManyWithoutListingInput
+    flashSale?: FlashSaleUncheckedCreateNestedOneWithoutListingInput
   }
 
   export type ProduceListingCreateOrConnectWithoutCoOpsInput = {
@@ -47728,6 +55679,8 @@ export namespace Prisma {
     lockoutUntil?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    flashSaleOptOut?: boolean
+    flashSaleRadius?: number
     farmerProfile?: FarmerProfileCreateNestedOneWithoutUserInput
     buyerProfile?: BuyerProfileCreateNestedOneWithoutUserInput
     transportProfile?: TransportProfileCreateNestedOneWithoutUserInput
@@ -47749,6 +55702,9 @@ export namespace Prisma {
     ussdSessions?: UssdSessionCreateNestedManyWithoutUserInput
     coOpContributions?: CoOpMemberCreateNestedManyWithoutBuyerInput
     cropAlerts?: BuyerCropAlertCreateNestedManyWithoutBuyerInput
+    flashSalesCreated?: FlashSaleCreateNestedManyWithoutFarmerInput
+    flashSaleClaims?: FlashSaleClaimCreateNestedManyWithoutBuyerInput
+    flashSaleNotifications?: FlashSaleNotificationCreateNestedManyWithoutBuyerInput
   }
 
   export type UserUncheckedCreateWithoutCreatedCoOpsInput = {
@@ -47769,6 +55725,8 @@ export namespace Prisma {
     lockoutUntil?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    flashSaleOptOut?: boolean
+    flashSaleRadius?: number
     farmerProfile?: FarmerProfileUncheckedCreateNestedOneWithoutUserInput
     buyerProfile?: BuyerProfileUncheckedCreateNestedOneWithoutUserInput
     transportProfile?: TransportProfileUncheckedCreateNestedOneWithoutUserInput
@@ -47790,6 +55748,9 @@ export namespace Prisma {
     ussdSessions?: UssdSessionUncheckedCreateNestedManyWithoutUserInput
     coOpContributions?: CoOpMemberUncheckedCreateNestedManyWithoutBuyerInput
     cropAlerts?: BuyerCropAlertUncheckedCreateNestedManyWithoutBuyerInput
+    flashSalesCreated?: FlashSaleUncheckedCreateNestedManyWithoutFarmerInput
+    flashSaleClaims?: FlashSaleClaimUncheckedCreateNestedManyWithoutBuyerInput
+    flashSaleNotifications?: FlashSaleNotificationUncheckedCreateNestedManyWithoutBuyerInput
   }
 
   export type UserCreateOrConnectWithoutCreatedCoOpsInput = {
@@ -47860,12 +55821,18 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     source?: EnumCreationSourceFieldUpdateOperationsInput | $Enums.CreationSource
+    currentRiskBand?: EnumSpoilageRiskBandFieldUpdateOperationsInput | $Enums.SpoilageRiskBand
+    currentRiskScore?: FloatFieldUpdateOperationsInput | number
+    lastRiskCalculatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    activeFlashSaleId?: NullableStringFieldUpdateOperationsInput | string | null
     farmer?: UserUpdateOneRequiredWithoutListingsNestedInput
     orders?: OrderUpdateManyWithoutListingNestedInput
     traceability?: TraceabilityRecordUpdateOneWithoutListingNestedInput
     traceEvents?: TraceEventUpdateManyWithoutListingNestedInput
     preOrders?: PreOrderUpdateManyWithoutMatchedListingNestedInput
     plantingLog?: PlantingLogUpdateOneWithoutListingsNestedInput
+    spoilageRiskLogs?: SpoilageRiskLogUpdateManyWithoutListingNestedInput
+    flashSale?: FlashSaleUpdateOneWithoutListingNestedInput
   }
 
   export type ProduceListingUncheckedUpdateWithoutCoOpsInput = {
@@ -47888,10 +55855,16 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     source?: EnumCreationSourceFieldUpdateOperationsInput | $Enums.CreationSource
     plantingLogId?: NullableStringFieldUpdateOperationsInput | string | null
+    currentRiskBand?: EnumSpoilageRiskBandFieldUpdateOperationsInput | $Enums.SpoilageRiskBand
+    currentRiskScore?: FloatFieldUpdateOperationsInput | number
+    lastRiskCalculatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    activeFlashSaleId?: NullableStringFieldUpdateOperationsInput | string | null
     orders?: OrderUncheckedUpdateManyWithoutListingNestedInput
     traceability?: TraceabilityRecordUncheckedUpdateOneWithoutListingNestedInput
     traceEvents?: TraceEventUncheckedUpdateManyWithoutListingNestedInput
     preOrders?: PreOrderUncheckedUpdateManyWithoutMatchedListingNestedInput
+    spoilageRiskLogs?: SpoilageRiskLogUncheckedUpdateManyWithoutListingNestedInput
+    flashSale?: FlashSaleUncheckedUpdateOneWithoutListingNestedInput
   }
 
   export type UserUpsertWithoutCreatedCoOpsInput = {
@@ -47923,6 +55896,8 @@ export namespace Prisma {
     lockoutUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    flashSaleOptOut?: BoolFieldUpdateOperationsInput | boolean
+    flashSaleRadius?: IntFieldUpdateOperationsInput | number
     farmerProfile?: FarmerProfileUpdateOneWithoutUserNestedInput
     buyerProfile?: BuyerProfileUpdateOneWithoutUserNestedInput
     transportProfile?: TransportProfileUpdateOneWithoutUserNestedInput
@@ -47944,6 +55919,9 @@ export namespace Prisma {
     ussdSessions?: UssdSessionUpdateManyWithoutUserNestedInput
     coOpContributions?: CoOpMemberUpdateManyWithoutBuyerNestedInput
     cropAlerts?: BuyerCropAlertUpdateManyWithoutBuyerNestedInput
+    flashSalesCreated?: FlashSaleUpdateManyWithoutFarmerNestedInput
+    flashSaleClaims?: FlashSaleClaimUpdateManyWithoutBuyerNestedInput
+    flashSaleNotifications?: FlashSaleNotificationUpdateManyWithoutBuyerNestedInput
   }
 
   export type UserUncheckedUpdateWithoutCreatedCoOpsInput = {
@@ -47964,6 +55942,8 @@ export namespace Prisma {
     lockoutUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    flashSaleOptOut?: BoolFieldUpdateOperationsInput | boolean
+    flashSaleRadius?: IntFieldUpdateOperationsInput | number
     farmerProfile?: FarmerProfileUncheckedUpdateOneWithoutUserNestedInput
     buyerProfile?: BuyerProfileUncheckedUpdateOneWithoutUserNestedInput
     transportProfile?: TransportProfileUncheckedUpdateOneWithoutUserNestedInput
@@ -47985,6 +55965,9 @@ export namespace Prisma {
     ussdSessions?: UssdSessionUncheckedUpdateManyWithoutUserNestedInput
     coOpContributions?: CoOpMemberUncheckedUpdateManyWithoutBuyerNestedInput
     cropAlerts?: BuyerCropAlertUncheckedUpdateManyWithoutBuyerNestedInput
+    flashSalesCreated?: FlashSaleUncheckedUpdateManyWithoutFarmerNestedInput
+    flashSaleClaims?: FlashSaleClaimUncheckedUpdateManyWithoutBuyerNestedInput
+    flashSaleNotifications?: FlashSaleNotificationUncheckedUpdateManyWithoutBuyerNestedInput
   }
 
   export type CoOpMemberUpsertWithWhereUniqueWithoutCoOpGroupInput = {
@@ -48050,6 +56033,8 @@ export namespace Prisma {
     lockoutUntil?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    flashSaleOptOut?: boolean
+    flashSaleRadius?: number
     farmerProfile?: FarmerProfileCreateNestedOneWithoutUserInput
     buyerProfile?: BuyerProfileCreateNestedOneWithoutUserInput
     transportProfile?: TransportProfileCreateNestedOneWithoutUserInput
@@ -48071,6 +56056,9 @@ export namespace Prisma {
     ussdSessions?: UssdSessionCreateNestedManyWithoutUserInput
     createdCoOps?: CoOpGroupCreateNestedManyWithoutCreatorInput
     cropAlerts?: BuyerCropAlertCreateNestedManyWithoutBuyerInput
+    flashSalesCreated?: FlashSaleCreateNestedManyWithoutFarmerInput
+    flashSaleClaims?: FlashSaleClaimCreateNestedManyWithoutBuyerInput
+    flashSaleNotifications?: FlashSaleNotificationCreateNestedManyWithoutBuyerInput
   }
 
   export type UserUncheckedCreateWithoutCoOpContributionsInput = {
@@ -48091,6 +56079,8 @@ export namespace Prisma {
     lockoutUntil?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    flashSaleOptOut?: boolean
+    flashSaleRadius?: number
     farmerProfile?: FarmerProfileUncheckedCreateNestedOneWithoutUserInput
     buyerProfile?: BuyerProfileUncheckedCreateNestedOneWithoutUserInput
     transportProfile?: TransportProfileUncheckedCreateNestedOneWithoutUserInput
@@ -48112,6 +56102,9 @@ export namespace Prisma {
     ussdSessions?: UssdSessionUncheckedCreateNestedManyWithoutUserInput
     createdCoOps?: CoOpGroupUncheckedCreateNestedManyWithoutCreatorInput
     cropAlerts?: BuyerCropAlertUncheckedCreateNestedManyWithoutBuyerInput
+    flashSalesCreated?: FlashSaleUncheckedCreateNestedManyWithoutFarmerInput
+    flashSaleClaims?: FlashSaleClaimUncheckedCreateNestedManyWithoutBuyerInput
+    flashSaleNotifications?: FlashSaleNotificationUncheckedCreateNestedManyWithoutBuyerInput
   }
 
   export type UserCreateOrConnectWithoutCoOpContributionsInput = {
@@ -48136,6 +56129,7 @@ export namespace Prisma {
     reviews?: ReviewCreateNestedManyWithoutOrderInput
     messages?: MessageCreateNestedManyWithoutOrderInput
     preOrder?: PreOrderCreateNestedOneWithoutFulfilledOrderInput
+    flashSaleClaims?: FlashSaleClaimCreateNestedManyWithoutOrderInput
   }
 
   export type OrderUncheckedCreateWithoutCoOpMemberInput = {
@@ -48155,6 +56149,7 @@ export namespace Prisma {
     reviews?: ReviewUncheckedCreateNestedManyWithoutOrderInput
     messages?: MessageUncheckedCreateNestedManyWithoutOrderInput
     preOrder?: PreOrderUncheckedCreateNestedOneWithoutFulfilledOrderInput
+    flashSaleClaims?: FlashSaleClaimUncheckedCreateNestedManyWithoutOrderInput
   }
 
   export type OrderCreateOrConnectWithoutCoOpMemberInput = {
@@ -48226,6 +56221,8 @@ export namespace Prisma {
     lockoutUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    flashSaleOptOut?: BoolFieldUpdateOperationsInput | boolean
+    flashSaleRadius?: IntFieldUpdateOperationsInput | number
     farmerProfile?: FarmerProfileUpdateOneWithoutUserNestedInput
     buyerProfile?: BuyerProfileUpdateOneWithoutUserNestedInput
     transportProfile?: TransportProfileUpdateOneWithoutUserNestedInput
@@ -48247,6 +56244,9 @@ export namespace Prisma {
     ussdSessions?: UssdSessionUpdateManyWithoutUserNestedInput
     createdCoOps?: CoOpGroupUpdateManyWithoutCreatorNestedInput
     cropAlerts?: BuyerCropAlertUpdateManyWithoutBuyerNestedInput
+    flashSalesCreated?: FlashSaleUpdateManyWithoutFarmerNestedInput
+    flashSaleClaims?: FlashSaleClaimUpdateManyWithoutBuyerNestedInput
+    flashSaleNotifications?: FlashSaleNotificationUpdateManyWithoutBuyerNestedInput
   }
 
   export type UserUncheckedUpdateWithoutCoOpContributionsInput = {
@@ -48267,6 +56267,8 @@ export namespace Prisma {
     lockoutUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    flashSaleOptOut?: BoolFieldUpdateOperationsInput | boolean
+    flashSaleRadius?: IntFieldUpdateOperationsInput | number
     farmerProfile?: FarmerProfileUncheckedUpdateOneWithoutUserNestedInput
     buyerProfile?: BuyerProfileUncheckedUpdateOneWithoutUserNestedInput
     transportProfile?: TransportProfileUncheckedUpdateOneWithoutUserNestedInput
@@ -48288,6 +56290,9 @@ export namespace Prisma {
     ussdSessions?: UssdSessionUncheckedUpdateManyWithoutUserNestedInput
     createdCoOps?: CoOpGroupUncheckedUpdateManyWithoutCreatorNestedInput
     cropAlerts?: BuyerCropAlertUncheckedUpdateManyWithoutBuyerNestedInput
+    flashSalesCreated?: FlashSaleUncheckedUpdateManyWithoutFarmerNestedInput
+    flashSaleClaims?: FlashSaleClaimUncheckedUpdateManyWithoutBuyerNestedInput
+    flashSaleNotifications?: FlashSaleNotificationUncheckedUpdateManyWithoutBuyerNestedInput
   }
 
   export type OrderUpsertWithoutCoOpMemberInput = {
@@ -48318,6 +56323,7 @@ export namespace Prisma {
     reviews?: ReviewUpdateManyWithoutOrderNestedInput
     messages?: MessageUpdateManyWithoutOrderNestedInput
     preOrder?: PreOrderUpdateOneWithoutFulfilledOrderNestedInput
+    flashSaleClaims?: FlashSaleClaimUpdateManyWithoutOrderNestedInput
   }
 
   export type OrderUncheckedUpdateWithoutCoOpMemberInput = {
@@ -48337,6 +56343,7 @@ export namespace Prisma {
     reviews?: ReviewUncheckedUpdateManyWithoutOrderNestedInput
     messages?: MessageUncheckedUpdateManyWithoutOrderNestedInput
     preOrder?: PreOrderUncheckedUpdateOneWithoutFulfilledOrderNestedInput
+    flashSaleClaims?: FlashSaleClaimUncheckedUpdateManyWithoutOrderNestedInput
   }
 
   export type UserCreateWithoutCropAlertsInput = {
@@ -48357,6 +56364,8 @@ export namespace Prisma {
     lockoutUntil?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    flashSaleOptOut?: boolean
+    flashSaleRadius?: number
     farmerProfile?: FarmerProfileCreateNestedOneWithoutUserInput
     buyerProfile?: BuyerProfileCreateNestedOneWithoutUserInput
     transportProfile?: TransportProfileCreateNestedOneWithoutUserInput
@@ -48378,6 +56387,9 @@ export namespace Prisma {
     ussdSessions?: UssdSessionCreateNestedManyWithoutUserInput
     createdCoOps?: CoOpGroupCreateNestedManyWithoutCreatorInput
     coOpContributions?: CoOpMemberCreateNestedManyWithoutBuyerInput
+    flashSalesCreated?: FlashSaleCreateNestedManyWithoutFarmerInput
+    flashSaleClaims?: FlashSaleClaimCreateNestedManyWithoutBuyerInput
+    flashSaleNotifications?: FlashSaleNotificationCreateNestedManyWithoutBuyerInput
   }
 
   export type UserUncheckedCreateWithoutCropAlertsInput = {
@@ -48398,6 +56410,8 @@ export namespace Prisma {
     lockoutUntil?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    flashSaleOptOut?: boolean
+    flashSaleRadius?: number
     farmerProfile?: FarmerProfileUncheckedCreateNestedOneWithoutUserInput
     buyerProfile?: BuyerProfileUncheckedCreateNestedOneWithoutUserInput
     transportProfile?: TransportProfileUncheckedCreateNestedOneWithoutUserInput
@@ -48419,6 +56433,9 @@ export namespace Prisma {
     ussdSessions?: UssdSessionUncheckedCreateNestedManyWithoutUserInput
     createdCoOps?: CoOpGroupUncheckedCreateNestedManyWithoutCreatorInput
     coOpContributions?: CoOpMemberUncheckedCreateNestedManyWithoutBuyerInput
+    flashSalesCreated?: FlashSaleUncheckedCreateNestedManyWithoutFarmerInput
+    flashSaleClaims?: FlashSaleClaimUncheckedCreateNestedManyWithoutBuyerInput
+    flashSaleNotifications?: FlashSaleNotificationUncheckedCreateNestedManyWithoutBuyerInput
   }
 
   export type UserCreateOrConnectWithoutCropAlertsInput = {
@@ -48455,6 +56472,8 @@ export namespace Prisma {
     lockoutUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    flashSaleOptOut?: BoolFieldUpdateOperationsInput | boolean
+    flashSaleRadius?: IntFieldUpdateOperationsInput | number
     farmerProfile?: FarmerProfileUpdateOneWithoutUserNestedInput
     buyerProfile?: BuyerProfileUpdateOneWithoutUserNestedInput
     transportProfile?: TransportProfileUpdateOneWithoutUserNestedInput
@@ -48476,6 +56495,9 @@ export namespace Prisma {
     ussdSessions?: UssdSessionUpdateManyWithoutUserNestedInput
     createdCoOps?: CoOpGroupUpdateManyWithoutCreatorNestedInput
     coOpContributions?: CoOpMemberUpdateManyWithoutBuyerNestedInput
+    flashSalesCreated?: FlashSaleUpdateManyWithoutFarmerNestedInput
+    flashSaleClaims?: FlashSaleClaimUpdateManyWithoutBuyerNestedInput
+    flashSaleNotifications?: FlashSaleNotificationUpdateManyWithoutBuyerNestedInput
   }
 
   export type UserUncheckedUpdateWithoutCropAlertsInput = {
@@ -48496,6 +56518,8 @@ export namespace Prisma {
     lockoutUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    flashSaleOptOut?: BoolFieldUpdateOperationsInput | boolean
+    flashSaleRadius?: IntFieldUpdateOperationsInput | number
     farmerProfile?: FarmerProfileUncheckedUpdateOneWithoutUserNestedInput
     buyerProfile?: BuyerProfileUncheckedUpdateOneWithoutUserNestedInput
     transportProfile?: TransportProfileUncheckedUpdateOneWithoutUserNestedInput
@@ -48517,6 +56541,1303 @@ export namespace Prisma {
     ussdSessions?: UssdSessionUncheckedUpdateManyWithoutUserNestedInput
     createdCoOps?: CoOpGroupUncheckedUpdateManyWithoutCreatorNestedInput
     coOpContributions?: CoOpMemberUncheckedUpdateManyWithoutBuyerNestedInput
+    flashSalesCreated?: FlashSaleUncheckedUpdateManyWithoutFarmerNestedInput
+    flashSaleClaims?: FlashSaleClaimUncheckedUpdateManyWithoutBuyerNestedInput
+    flashSaleNotifications?: FlashSaleNotificationUncheckedUpdateManyWithoutBuyerNestedInput
+  }
+
+  export type ProduceListingCreateWithoutSpoilageRiskLogsInput = {
+    id?: string
+    cropType: $Enums.CropType
+    quantityKg: number
+    remainingKg: number
+    pricePerKg: number
+    images?: ProduceListingCreateimagesInput | string[]
+    harvestDate: Date | string
+    expiryEstimate?: Date | string | null
+    qualityGrade?: $Enums.QualityGrade
+    qualityGradeSource?: string
+    status?: $Enums.ListingStatus
+    latitude: number
+    longitude: number
+    batchCode: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    source?: $Enums.CreationSource
+    currentRiskBand?: $Enums.SpoilageRiskBand
+    currentRiskScore?: number
+    lastRiskCalculatedAt?: Date | string | null
+    activeFlashSaleId?: string | null
+    farmer: UserCreateNestedOneWithoutListingsInput
+    orders?: OrderCreateNestedManyWithoutListingInput
+    traceability?: TraceabilityRecordCreateNestedOneWithoutListingInput
+    traceEvents?: TraceEventCreateNestedManyWithoutListingInput
+    preOrders?: PreOrderCreateNestedManyWithoutMatchedListingInput
+    coOps?: CoOpGroupCreateNestedManyWithoutListingInput
+    plantingLog?: PlantingLogCreateNestedOneWithoutListingsInput
+    flashSale?: FlashSaleCreateNestedOneWithoutListingInput
+  }
+
+  export type ProduceListingUncheckedCreateWithoutSpoilageRiskLogsInput = {
+    id?: string
+    farmerId: string
+    cropType: $Enums.CropType
+    quantityKg: number
+    remainingKg: number
+    pricePerKg: number
+    images?: ProduceListingCreateimagesInput | string[]
+    harvestDate: Date | string
+    expiryEstimate?: Date | string | null
+    qualityGrade?: $Enums.QualityGrade
+    qualityGradeSource?: string
+    status?: $Enums.ListingStatus
+    latitude: number
+    longitude: number
+    batchCode: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    source?: $Enums.CreationSource
+    plantingLogId?: string | null
+    currentRiskBand?: $Enums.SpoilageRiskBand
+    currentRiskScore?: number
+    lastRiskCalculatedAt?: Date | string | null
+    activeFlashSaleId?: string | null
+    orders?: OrderUncheckedCreateNestedManyWithoutListingInput
+    traceability?: TraceabilityRecordUncheckedCreateNestedOneWithoutListingInput
+    traceEvents?: TraceEventUncheckedCreateNestedManyWithoutListingInput
+    preOrders?: PreOrderUncheckedCreateNestedManyWithoutMatchedListingInput
+    coOps?: CoOpGroupUncheckedCreateNestedManyWithoutListingInput
+    flashSale?: FlashSaleUncheckedCreateNestedOneWithoutListingInput
+  }
+
+  export type ProduceListingCreateOrConnectWithoutSpoilageRiskLogsInput = {
+    where: ProduceListingWhereUniqueInput
+    create: XOR<ProduceListingCreateWithoutSpoilageRiskLogsInput, ProduceListingUncheckedCreateWithoutSpoilageRiskLogsInput>
+  }
+
+  export type ProduceListingUpsertWithoutSpoilageRiskLogsInput = {
+    update: XOR<ProduceListingUpdateWithoutSpoilageRiskLogsInput, ProduceListingUncheckedUpdateWithoutSpoilageRiskLogsInput>
+    create: XOR<ProduceListingCreateWithoutSpoilageRiskLogsInput, ProduceListingUncheckedCreateWithoutSpoilageRiskLogsInput>
+    where?: ProduceListingWhereInput
+  }
+
+  export type ProduceListingUpdateToOneWithWhereWithoutSpoilageRiskLogsInput = {
+    where?: ProduceListingWhereInput
+    data: XOR<ProduceListingUpdateWithoutSpoilageRiskLogsInput, ProduceListingUncheckedUpdateWithoutSpoilageRiskLogsInput>
+  }
+
+  export type ProduceListingUpdateWithoutSpoilageRiskLogsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    cropType?: EnumCropTypeFieldUpdateOperationsInput | $Enums.CropType
+    quantityKg?: FloatFieldUpdateOperationsInput | number
+    remainingKg?: FloatFieldUpdateOperationsInput | number
+    pricePerKg?: FloatFieldUpdateOperationsInput | number
+    images?: ProduceListingUpdateimagesInput | string[]
+    harvestDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    expiryEstimate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    qualityGrade?: EnumQualityGradeFieldUpdateOperationsInput | $Enums.QualityGrade
+    qualityGradeSource?: StringFieldUpdateOperationsInput | string
+    status?: EnumListingStatusFieldUpdateOperationsInput | $Enums.ListingStatus
+    latitude?: FloatFieldUpdateOperationsInput | number
+    longitude?: FloatFieldUpdateOperationsInput | number
+    batchCode?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    source?: EnumCreationSourceFieldUpdateOperationsInput | $Enums.CreationSource
+    currentRiskBand?: EnumSpoilageRiskBandFieldUpdateOperationsInput | $Enums.SpoilageRiskBand
+    currentRiskScore?: FloatFieldUpdateOperationsInput | number
+    lastRiskCalculatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    activeFlashSaleId?: NullableStringFieldUpdateOperationsInput | string | null
+    farmer?: UserUpdateOneRequiredWithoutListingsNestedInput
+    orders?: OrderUpdateManyWithoutListingNestedInput
+    traceability?: TraceabilityRecordUpdateOneWithoutListingNestedInput
+    traceEvents?: TraceEventUpdateManyWithoutListingNestedInput
+    preOrders?: PreOrderUpdateManyWithoutMatchedListingNestedInput
+    coOps?: CoOpGroupUpdateManyWithoutListingNestedInput
+    plantingLog?: PlantingLogUpdateOneWithoutListingsNestedInput
+    flashSale?: FlashSaleUpdateOneWithoutListingNestedInput
+  }
+
+  export type ProduceListingUncheckedUpdateWithoutSpoilageRiskLogsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    farmerId?: StringFieldUpdateOperationsInput | string
+    cropType?: EnumCropTypeFieldUpdateOperationsInput | $Enums.CropType
+    quantityKg?: FloatFieldUpdateOperationsInput | number
+    remainingKg?: FloatFieldUpdateOperationsInput | number
+    pricePerKg?: FloatFieldUpdateOperationsInput | number
+    images?: ProduceListingUpdateimagesInput | string[]
+    harvestDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    expiryEstimate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    qualityGrade?: EnumQualityGradeFieldUpdateOperationsInput | $Enums.QualityGrade
+    qualityGradeSource?: StringFieldUpdateOperationsInput | string
+    status?: EnumListingStatusFieldUpdateOperationsInput | $Enums.ListingStatus
+    latitude?: FloatFieldUpdateOperationsInput | number
+    longitude?: FloatFieldUpdateOperationsInput | number
+    batchCode?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    source?: EnumCreationSourceFieldUpdateOperationsInput | $Enums.CreationSource
+    plantingLogId?: NullableStringFieldUpdateOperationsInput | string | null
+    currentRiskBand?: EnumSpoilageRiskBandFieldUpdateOperationsInput | $Enums.SpoilageRiskBand
+    currentRiskScore?: FloatFieldUpdateOperationsInput | number
+    lastRiskCalculatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    activeFlashSaleId?: NullableStringFieldUpdateOperationsInput | string | null
+    orders?: OrderUncheckedUpdateManyWithoutListingNestedInput
+    traceability?: TraceabilityRecordUncheckedUpdateOneWithoutListingNestedInput
+    traceEvents?: TraceEventUncheckedUpdateManyWithoutListingNestedInput
+    preOrders?: PreOrderUncheckedUpdateManyWithoutMatchedListingNestedInput
+    coOps?: CoOpGroupUncheckedUpdateManyWithoutListingNestedInput
+    flashSale?: FlashSaleUncheckedUpdateOneWithoutListingNestedInput
+  }
+
+  export type ProduceListingCreateWithoutFlashSaleInput = {
+    id?: string
+    cropType: $Enums.CropType
+    quantityKg: number
+    remainingKg: number
+    pricePerKg: number
+    images?: ProduceListingCreateimagesInput | string[]
+    harvestDate: Date | string
+    expiryEstimate?: Date | string | null
+    qualityGrade?: $Enums.QualityGrade
+    qualityGradeSource?: string
+    status?: $Enums.ListingStatus
+    latitude: number
+    longitude: number
+    batchCode: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    source?: $Enums.CreationSource
+    currentRiskBand?: $Enums.SpoilageRiskBand
+    currentRiskScore?: number
+    lastRiskCalculatedAt?: Date | string | null
+    activeFlashSaleId?: string | null
+    farmer: UserCreateNestedOneWithoutListingsInput
+    orders?: OrderCreateNestedManyWithoutListingInput
+    traceability?: TraceabilityRecordCreateNestedOneWithoutListingInput
+    traceEvents?: TraceEventCreateNestedManyWithoutListingInput
+    preOrders?: PreOrderCreateNestedManyWithoutMatchedListingInput
+    coOps?: CoOpGroupCreateNestedManyWithoutListingInput
+    plantingLog?: PlantingLogCreateNestedOneWithoutListingsInput
+    spoilageRiskLogs?: SpoilageRiskLogCreateNestedManyWithoutListingInput
+  }
+
+  export type ProduceListingUncheckedCreateWithoutFlashSaleInput = {
+    id?: string
+    farmerId: string
+    cropType: $Enums.CropType
+    quantityKg: number
+    remainingKg: number
+    pricePerKg: number
+    images?: ProduceListingCreateimagesInput | string[]
+    harvestDate: Date | string
+    expiryEstimate?: Date | string | null
+    qualityGrade?: $Enums.QualityGrade
+    qualityGradeSource?: string
+    status?: $Enums.ListingStatus
+    latitude: number
+    longitude: number
+    batchCode: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    source?: $Enums.CreationSource
+    plantingLogId?: string | null
+    currentRiskBand?: $Enums.SpoilageRiskBand
+    currentRiskScore?: number
+    lastRiskCalculatedAt?: Date | string | null
+    activeFlashSaleId?: string | null
+    orders?: OrderUncheckedCreateNestedManyWithoutListingInput
+    traceability?: TraceabilityRecordUncheckedCreateNestedOneWithoutListingInput
+    traceEvents?: TraceEventUncheckedCreateNestedManyWithoutListingInput
+    preOrders?: PreOrderUncheckedCreateNestedManyWithoutMatchedListingInput
+    coOps?: CoOpGroupUncheckedCreateNestedManyWithoutListingInput
+    spoilageRiskLogs?: SpoilageRiskLogUncheckedCreateNestedManyWithoutListingInput
+  }
+
+  export type ProduceListingCreateOrConnectWithoutFlashSaleInput = {
+    where: ProduceListingWhereUniqueInput
+    create: XOR<ProduceListingCreateWithoutFlashSaleInput, ProduceListingUncheckedCreateWithoutFlashSaleInput>
+  }
+
+  export type UserCreateWithoutFlashSalesCreatedInput = {
+    id?: string
+    phone: string
+    name: string
+    role: $Enums.Role
+    latitude?: number | null
+    longitude?: number | null
+    region?: string | null
+    district?: string | null
+    isVerified?: boolean
+    passwordHash?: string | null
+    preferredLanguage?: string
+    ussdPin?: string | null
+    ussdPinSetAt?: Date | string | null
+    lastUssdActivity?: Date | string | null
+    lockoutUntil?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    flashSaleOptOut?: boolean
+    flashSaleRadius?: number
+    farmerProfile?: FarmerProfileCreateNestedOneWithoutUserInput
+    buyerProfile?: BuyerProfileCreateNestedOneWithoutUserInput
+    transportProfile?: TransportProfileCreateNestedOneWithoutUserInput
+    listings?: ProduceListingCreateNestedManyWithoutFarmerInput
+    orders?: OrderCreateNestedManyWithoutBuyerInput
+    deliveries?: DeliveryRequestCreateNestedManyWithoutTransportProviderInput
+    sentReviews?: ReviewCreateNestedManyWithoutFromUserInput
+    receivedReviews?: ReviewCreateNestedManyWithoutToUserInput
+    notifications?: NotificationCreateNestedManyWithoutUserInput
+    sentMessages?: MessageCreateNestedManyWithoutFromUserInput
+    receivedMessages?: MessageCreateNestedManyWithoutToUserInput
+    recordedTraceEvents?: TraceEventCreateNestedManyWithoutRecordedByUserInput
+    preOrders?: PreOrderCreateNestedManyWithoutBuyerInput
+    plantingLogs?: PlantingLogCreateNestedManyWithoutFarmerInput
+    auditLogs?: AuditLogCreateNestedManyWithoutActorInput
+    configsUpdated?: SystemConfigCreateNestedManyWithoutUpdaterInput
+    ban?: UserBanCreateNestedOneWithoutUserInput
+    bansIssued?: UserBanCreateNestedManyWithoutBannerInput
+    ussdSessions?: UssdSessionCreateNestedManyWithoutUserInput
+    createdCoOps?: CoOpGroupCreateNestedManyWithoutCreatorInput
+    coOpContributions?: CoOpMemberCreateNestedManyWithoutBuyerInput
+    cropAlerts?: BuyerCropAlertCreateNestedManyWithoutBuyerInput
+    flashSaleClaims?: FlashSaleClaimCreateNestedManyWithoutBuyerInput
+    flashSaleNotifications?: FlashSaleNotificationCreateNestedManyWithoutBuyerInput
+  }
+
+  export type UserUncheckedCreateWithoutFlashSalesCreatedInput = {
+    id?: string
+    phone: string
+    name: string
+    role: $Enums.Role
+    latitude?: number | null
+    longitude?: number | null
+    region?: string | null
+    district?: string | null
+    isVerified?: boolean
+    passwordHash?: string | null
+    preferredLanguage?: string
+    ussdPin?: string | null
+    ussdPinSetAt?: Date | string | null
+    lastUssdActivity?: Date | string | null
+    lockoutUntil?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    flashSaleOptOut?: boolean
+    flashSaleRadius?: number
+    farmerProfile?: FarmerProfileUncheckedCreateNestedOneWithoutUserInput
+    buyerProfile?: BuyerProfileUncheckedCreateNestedOneWithoutUserInput
+    transportProfile?: TransportProfileUncheckedCreateNestedOneWithoutUserInput
+    listings?: ProduceListingUncheckedCreateNestedManyWithoutFarmerInput
+    orders?: OrderUncheckedCreateNestedManyWithoutBuyerInput
+    deliveries?: DeliveryRequestUncheckedCreateNestedManyWithoutTransportProviderInput
+    sentReviews?: ReviewUncheckedCreateNestedManyWithoutFromUserInput
+    receivedReviews?: ReviewUncheckedCreateNestedManyWithoutToUserInput
+    notifications?: NotificationUncheckedCreateNestedManyWithoutUserInput
+    sentMessages?: MessageUncheckedCreateNestedManyWithoutFromUserInput
+    receivedMessages?: MessageUncheckedCreateNestedManyWithoutToUserInput
+    recordedTraceEvents?: TraceEventUncheckedCreateNestedManyWithoutRecordedByUserInput
+    preOrders?: PreOrderUncheckedCreateNestedManyWithoutBuyerInput
+    plantingLogs?: PlantingLogUncheckedCreateNestedManyWithoutFarmerInput
+    auditLogs?: AuditLogUncheckedCreateNestedManyWithoutActorInput
+    configsUpdated?: SystemConfigUncheckedCreateNestedManyWithoutUpdaterInput
+    ban?: UserBanUncheckedCreateNestedOneWithoutUserInput
+    bansIssued?: UserBanUncheckedCreateNestedManyWithoutBannerInput
+    ussdSessions?: UssdSessionUncheckedCreateNestedManyWithoutUserInput
+    createdCoOps?: CoOpGroupUncheckedCreateNestedManyWithoutCreatorInput
+    coOpContributions?: CoOpMemberUncheckedCreateNestedManyWithoutBuyerInput
+    cropAlerts?: BuyerCropAlertUncheckedCreateNestedManyWithoutBuyerInput
+    flashSaleClaims?: FlashSaleClaimUncheckedCreateNestedManyWithoutBuyerInput
+    flashSaleNotifications?: FlashSaleNotificationUncheckedCreateNestedManyWithoutBuyerInput
+  }
+
+  export type UserCreateOrConnectWithoutFlashSalesCreatedInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutFlashSalesCreatedInput, UserUncheckedCreateWithoutFlashSalesCreatedInput>
+  }
+
+  export type FlashSaleClaimCreateWithoutFlashSaleInput = {
+    id?: string
+    quantityKg: number
+    pricePerKg: number
+    totalPrice: number
+    status: $Enums.FlashSaleClaimStatus
+    claimedAt?: Date | string
+    expiresAt: Date | string
+    buyer: UserCreateNestedOneWithoutFlashSaleClaimsInput
+    order?: OrderCreateNestedOneWithoutFlashSaleClaimsInput
+  }
+
+  export type FlashSaleClaimUncheckedCreateWithoutFlashSaleInput = {
+    id?: string
+    buyerId: string
+    quantityKg: number
+    pricePerKg: number
+    totalPrice: number
+    orderId?: string | null
+    status: $Enums.FlashSaleClaimStatus
+    claimedAt?: Date | string
+    expiresAt: Date | string
+  }
+
+  export type FlashSaleClaimCreateOrConnectWithoutFlashSaleInput = {
+    where: FlashSaleClaimWhereUniqueInput
+    create: XOR<FlashSaleClaimCreateWithoutFlashSaleInput, FlashSaleClaimUncheckedCreateWithoutFlashSaleInput>
+  }
+
+  export type FlashSaleClaimCreateManyFlashSaleInputEnvelope = {
+    data: FlashSaleClaimCreateManyFlashSaleInput | FlashSaleClaimCreateManyFlashSaleInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type FlashSaleNotificationCreateWithoutFlashSaleInput = {
+    id?: string
+    channel: $Enums.NotificationChannel
+    status?: $Enums.FlashSaleNotificationStatus
+    sentAt?: Date | string | null
+    clickedAt?: Date | string | null
+    buyer: UserCreateNestedOneWithoutFlashSaleNotificationsInput
+  }
+
+  export type FlashSaleNotificationUncheckedCreateWithoutFlashSaleInput = {
+    id?: string
+    buyerId: string
+    channel: $Enums.NotificationChannel
+    status?: $Enums.FlashSaleNotificationStatus
+    sentAt?: Date | string | null
+    clickedAt?: Date | string | null
+  }
+
+  export type FlashSaleNotificationCreateOrConnectWithoutFlashSaleInput = {
+    where: FlashSaleNotificationWhereUniqueInput
+    create: XOR<FlashSaleNotificationCreateWithoutFlashSaleInput, FlashSaleNotificationUncheckedCreateWithoutFlashSaleInput>
+  }
+
+  export type FlashSaleNotificationCreateManyFlashSaleInputEnvelope = {
+    data: FlashSaleNotificationCreateManyFlashSaleInput | FlashSaleNotificationCreateManyFlashSaleInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type ProduceListingUpsertWithoutFlashSaleInput = {
+    update: XOR<ProduceListingUpdateWithoutFlashSaleInput, ProduceListingUncheckedUpdateWithoutFlashSaleInput>
+    create: XOR<ProduceListingCreateWithoutFlashSaleInput, ProduceListingUncheckedCreateWithoutFlashSaleInput>
+    where?: ProduceListingWhereInput
+  }
+
+  export type ProduceListingUpdateToOneWithWhereWithoutFlashSaleInput = {
+    where?: ProduceListingWhereInput
+    data: XOR<ProduceListingUpdateWithoutFlashSaleInput, ProduceListingUncheckedUpdateWithoutFlashSaleInput>
+  }
+
+  export type ProduceListingUpdateWithoutFlashSaleInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    cropType?: EnumCropTypeFieldUpdateOperationsInput | $Enums.CropType
+    quantityKg?: FloatFieldUpdateOperationsInput | number
+    remainingKg?: FloatFieldUpdateOperationsInput | number
+    pricePerKg?: FloatFieldUpdateOperationsInput | number
+    images?: ProduceListingUpdateimagesInput | string[]
+    harvestDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    expiryEstimate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    qualityGrade?: EnumQualityGradeFieldUpdateOperationsInput | $Enums.QualityGrade
+    qualityGradeSource?: StringFieldUpdateOperationsInput | string
+    status?: EnumListingStatusFieldUpdateOperationsInput | $Enums.ListingStatus
+    latitude?: FloatFieldUpdateOperationsInput | number
+    longitude?: FloatFieldUpdateOperationsInput | number
+    batchCode?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    source?: EnumCreationSourceFieldUpdateOperationsInput | $Enums.CreationSource
+    currentRiskBand?: EnumSpoilageRiskBandFieldUpdateOperationsInput | $Enums.SpoilageRiskBand
+    currentRiskScore?: FloatFieldUpdateOperationsInput | number
+    lastRiskCalculatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    activeFlashSaleId?: NullableStringFieldUpdateOperationsInput | string | null
+    farmer?: UserUpdateOneRequiredWithoutListingsNestedInput
+    orders?: OrderUpdateManyWithoutListingNestedInput
+    traceability?: TraceabilityRecordUpdateOneWithoutListingNestedInput
+    traceEvents?: TraceEventUpdateManyWithoutListingNestedInput
+    preOrders?: PreOrderUpdateManyWithoutMatchedListingNestedInput
+    coOps?: CoOpGroupUpdateManyWithoutListingNestedInput
+    plantingLog?: PlantingLogUpdateOneWithoutListingsNestedInput
+    spoilageRiskLogs?: SpoilageRiskLogUpdateManyWithoutListingNestedInput
+  }
+
+  export type ProduceListingUncheckedUpdateWithoutFlashSaleInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    farmerId?: StringFieldUpdateOperationsInput | string
+    cropType?: EnumCropTypeFieldUpdateOperationsInput | $Enums.CropType
+    quantityKg?: FloatFieldUpdateOperationsInput | number
+    remainingKg?: FloatFieldUpdateOperationsInput | number
+    pricePerKg?: FloatFieldUpdateOperationsInput | number
+    images?: ProduceListingUpdateimagesInput | string[]
+    harvestDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    expiryEstimate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    qualityGrade?: EnumQualityGradeFieldUpdateOperationsInput | $Enums.QualityGrade
+    qualityGradeSource?: StringFieldUpdateOperationsInput | string
+    status?: EnumListingStatusFieldUpdateOperationsInput | $Enums.ListingStatus
+    latitude?: FloatFieldUpdateOperationsInput | number
+    longitude?: FloatFieldUpdateOperationsInput | number
+    batchCode?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    source?: EnumCreationSourceFieldUpdateOperationsInput | $Enums.CreationSource
+    plantingLogId?: NullableStringFieldUpdateOperationsInput | string | null
+    currentRiskBand?: EnumSpoilageRiskBandFieldUpdateOperationsInput | $Enums.SpoilageRiskBand
+    currentRiskScore?: FloatFieldUpdateOperationsInput | number
+    lastRiskCalculatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    activeFlashSaleId?: NullableStringFieldUpdateOperationsInput | string | null
+    orders?: OrderUncheckedUpdateManyWithoutListingNestedInput
+    traceability?: TraceabilityRecordUncheckedUpdateOneWithoutListingNestedInput
+    traceEvents?: TraceEventUncheckedUpdateManyWithoutListingNestedInput
+    preOrders?: PreOrderUncheckedUpdateManyWithoutMatchedListingNestedInput
+    coOps?: CoOpGroupUncheckedUpdateManyWithoutListingNestedInput
+    spoilageRiskLogs?: SpoilageRiskLogUncheckedUpdateManyWithoutListingNestedInput
+  }
+
+  export type UserUpsertWithoutFlashSalesCreatedInput = {
+    update: XOR<UserUpdateWithoutFlashSalesCreatedInput, UserUncheckedUpdateWithoutFlashSalesCreatedInput>
+    create: XOR<UserCreateWithoutFlashSalesCreatedInput, UserUncheckedCreateWithoutFlashSalesCreatedInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutFlashSalesCreatedInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutFlashSalesCreatedInput, UserUncheckedUpdateWithoutFlashSalesCreatedInput>
+  }
+
+  export type UserUpdateWithoutFlashSalesCreatedInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    latitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    longitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    region?: NullableStringFieldUpdateOperationsInput | string | null
+    district?: NullableStringFieldUpdateOperationsInput | string | null
+    isVerified?: BoolFieldUpdateOperationsInput | boolean
+    passwordHash?: NullableStringFieldUpdateOperationsInput | string | null
+    preferredLanguage?: StringFieldUpdateOperationsInput | string
+    ussdPin?: NullableStringFieldUpdateOperationsInput | string | null
+    ussdPinSetAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lastUssdActivity?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lockoutUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    flashSaleOptOut?: BoolFieldUpdateOperationsInput | boolean
+    flashSaleRadius?: IntFieldUpdateOperationsInput | number
+    farmerProfile?: FarmerProfileUpdateOneWithoutUserNestedInput
+    buyerProfile?: BuyerProfileUpdateOneWithoutUserNestedInput
+    transportProfile?: TransportProfileUpdateOneWithoutUserNestedInput
+    listings?: ProduceListingUpdateManyWithoutFarmerNestedInput
+    orders?: OrderUpdateManyWithoutBuyerNestedInput
+    deliveries?: DeliveryRequestUpdateManyWithoutTransportProviderNestedInput
+    sentReviews?: ReviewUpdateManyWithoutFromUserNestedInput
+    receivedReviews?: ReviewUpdateManyWithoutToUserNestedInput
+    notifications?: NotificationUpdateManyWithoutUserNestedInput
+    sentMessages?: MessageUpdateManyWithoutFromUserNestedInput
+    receivedMessages?: MessageUpdateManyWithoutToUserNestedInput
+    recordedTraceEvents?: TraceEventUpdateManyWithoutRecordedByUserNestedInput
+    preOrders?: PreOrderUpdateManyWithoutBuyerNestedInput
+    plantingLogs?: PlantingLogUpdateManyWithoutFarmerNestedInput
+    auditLogs?: AuditLogUpdateManyWithoutActorNestedInput
+    configsUpdated?: SystemConfigUpdateManyWithoutUpdaterNestedInput
+    ban?: UserBanUpdateOneWithoutUserNestedInput
+    bansIssued?: UserBanUpdateManyWithoutBannerNestedInput
+    ussdSessions?: UssdSessionUpdateManyWithoutUserNestedInput
+    createdCoOps?: CoOpGroupUpdateManyWithoutCreatorNestedInput
+    coOpContributions?: CoOpMemberUpdateManyWithoutBuyerNestedInput
+    cropAlerts?: BuyerCropAlertUpdateManyWithoutBuyerNestedInput
+    flashSaleClaims?: FlashSaleClaimUpdateManyWithoutBuyerNestedInput
+    flashSaleNotifications?: FlashSaleNotificationUpdateManyWithoutBuyerNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutFlashSalesCreatedInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    latitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    longitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    region?: NullableStringFieldUpdateOperationsInput | string | null
+    district?: NullableStringFieldUpdateOperationsInput | string | null
+    isVerified?: BoolFieldUpdateOperationsInput | boolean
+    passwordHash?: NullableStringFieldUpdateOperationsInput | string | null
+    preferredLanguage?: StringFieldUpdateOperationsInput | string
+    ussdPin?: NullableStringFieldUpdateOperationsInput | string | null
+    ussdPinSetAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lastUssdActivity?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lockoutUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    flashSaleOptOut?: BoolFieldUpdateOperationsInput | boolean
+    flashSaleRadius?: IntFieldUpdateOperationsInput | number
+    farmerProfile?: FarmerProfileUncheckedUpdateOneWithoutUserNestedInput
+    buyerProfile?: BuyerProfileUncheckedUpdateOneWithoutUserNestedInput
+    transportProfile?: TransportProfileUncheckedUpdateOneWithoutUserNestedInput
+    listings?: ProduceListingUncheckedUpdateManyWithoutFarmerNestedInput
+    orders?: OrderUncheckedUpdateManyWithoutBuyerNestedInput
+    deliveries?: DeliveryRequestUncheckedUpdateManyWithoutTransportProviderNestedInput
+    sentReviews?: ReviewUncheckedUpdateManyWithoutFromUserNestedInput
+    receivedReviews?: ReviewUncheckedUpdateManyWithoutToUserNestedInput
+    notifications?: NotificationUncheckedUpdateManyWithoutUserNestedInput
+    sentMessages?: MessageUncheckedUpdateManyWithoutFromUserNestedInput
+    receivedMessages?: MessageUncheckedUpdateManyWithoutToUserNestedInput
+    recordedTraceEvents?: TraceEventUncheckedUpdateManyWithoutRecordedByUserNestedInput
+    preOrders?: PreOrderUncheckedUpdateManyWithoutBuyerNestedInput
+    plantingLogs?: PlantingLogUncheckedUpdateManyWithoutFarmerNestedInput
+    auditLogs?: AuditLogUncheckedUpdateManyWithoutActorNestedInput
+    configsUpdated?: SystemConfigUncheckedUpdateManyWithoutUpdaterNestedInput
+    ban?: UserBanUncheckedUpdateOneWithoutUserNestedInput
+    bansIssued?: UserBanUncheckedUpdateManyWithoutBannerNestedInput
+    ussdSessions?: UssdSessionUncheckedUpdateManyWithoutUserNestedInput
+    createdCoOps?: CoOpGroupUncheckedUpdateManyWithoutCreatorNestedInput
+    coOpContributions?: CoOpMemberUncheckedUpdateManyWithoutBuyerNestedInput
+    cropAlerts?: BuyerCropAlertUncheckedUpdateManyWithoutBuyerNestedInput
+    flashSaleClaims?: FlashSaleClaimUncheckedUpdateManyWithoutBuyerNestedInput
+    flashSaleNotifications?: FlashSaleNotificationUncheckedUpdateManyWithoutBuyerNestedInput
+  }
+
+  export type FlashSaleClaimUpsertWithWhereUniqueWithoutFlashSaleInput = {
+    where: FlashSaleClaimWhereUniqueInput
+    update: XOR<FlashSaleClaimUpdateWithoutFlashSaleInput, FlashSaleClaimUncheckedUpdateWithoutFlashSaleInput>
+    create: XOR<FlashSaleClaimCreateWithoutFlashSaleInput, FlashSaleClaimUncheckedCreateWithoutFlashSaleInput>
+  }
+
+  export type FlashSaleClaimUpdateWithWhereUniqueWithoutFlashSaleInput = {
+    where: FlashSaleClaimWhereUniqueInput
+    data: XOR<FlashSaleClaimUpdateWithoutFlashSaleInput, FlashSaleClaimUncheckedUpdateWithoutFlashSaleInput>
+  }
+
+  export type FlashSaleClaimUpdateManyWithWhereWithoutFlashSaleInput = {
+    where: FlashSaleClaimScalarWhereInput
+    data: XOR<FlashSaleClaimUpdateManyMutationInput, FlashSaleClaimUncheckedUpdateManyWithoutFlashSaleInput>
+  }
+
+  export type FlashSaleNotificationUpsertWithWhereUniqueWithoutFlashSaleInput = {
+    where: FlashSaleNotificationWhereUniqueInput
+    update: XOR<FlashSaleNotificationUpdateWithoutFlashSaleInput, FlashSaleNotificationUncheckedUpdateWithoutFlashSaleInput>
+    create: XOR<FlashSaleNotificationCreateWithoutFlashSaleInput, FlashSaleNotificationUncheckedCreateWithoutFlashSaleInput>
+  }
+
+  export type FlashSaleNotificationUpdateWithWhereUniqueWithoutFlashSaleInput = {
+    where: FlashSaleNotificationWhereUniqueInput
+    data: XOR<FlashSaleNotificationUpdateWithoutFlashSaleInput, FlashSaleNotificationUncheckedUpdateWithoutFlashSaleInput>
+  }
+
+  export type FlashSaleNotificationUpdateManyWithWhereWithoutFlashSaleInput = {
+    where: FlashSaleNotificationScalarWhereInput
+    data: XOR<FlashSaleNotificationUpdateManyMutationInput, FlashSaleNotificationUncheckedUpdateManyWithoutFlashSaleInput>
+  }
+
+  export type FlashSaleCreateWithoutClaimsInput = {
+    id?: string
+    originalPricePerKg: number
+    discountPercent: number
+    flashPricePerKg: number
+    quantityKg: number
+    soldKg?: number
+    riskBand: $Enums.SpoilageRiskBand
+    riskScore: number
+    status?: $Enums.FlashSaleStatus
+    expiresAt: Date | string
+    farmerApproved?: boolean
+    cancelledAt?: Date | string | null
+    cancelReason?: string | null
+    notificationsSent?: number
+    buyersClaimed?: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    listing: ProduceListingCreateNestedOneWithoutFlashSaleInput
+    farmer: UserCreateNestedOneWithoutFlashSalesCreatedInput
+    notifications?: FlashSaleNotificationCreateNestedManyWithoutFlashSaleInput
+  }
+
+  export type FlashSaleUncheckedCreateWithoutClaimsInput = {
+    id?: string
+    listingId: string
+    farmerId: string
+    originalPricePerKg: number
+    discountPercent: number
+    flashPricePerKg: number
+    quantityKg: number
+    soldKg?: number
+    riskBand: $Enums.SpoilageRiskBand
+    riskScore: number
+    status?: $Enums.FlashSaleStatus
+    expiresAt: Date | string
+    farmerApproved?: boolean
+    cancelledAt?: Date | string | null
+    cancelReason?: string | null
+    notificationsSent?: number
+    buyersClaimed?: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    notifications?: FlashSaleNotificationUncheckedCreateNestedManyWithoutFlashSaleInput
+  }
+
+  export type FlashSaleCreateOrConnectWithoutClaimsInput = {
+    where: FlashSaleWhereUniqueInput
+    create: XOR<FlashSaleCreateWithoutClaimsInput, FlashSaleUncheckedCreateWithoutClaimsInput>
+  }
+
+  export type UserCreateWithoutFlashSaleClaimsInput = {
+    id?: string
+    phone: string
+    name: string
+    role: $Enums.Role
+    latitude?: number | null
+    longitude?: number | null
+    region?: string | null
+    district?: string | null
+    isVerified?: boolean
+    passwordHash?: string | null
+    preferredLanguage?: string
+    ussdPin?: string | null
+    ussdPinSetAt?: Date | string | null
+    lastUssdActivity?: Date | string | null
+    lockoutUntil?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    flashSaleOptOut?: boolean
+    flashSaleRadius?: number
+    farmerProfile?: FarmerProfileCreateNestedOneWithoutUserInput
+    buyerProfile?: BuyerProfileCreateNestedOneWithoutUserInput
+    transportProfile?: TransportProfileCreateNestedOneWithoutUserInput
+    listings?: ProduceListingCreateNestedManyWithoutFarmerInput
+    orders?: OrderCreateNestedManyWithoutBuyerInput
+    deliveries?: DeliveryRequestCreateNestedManyWithoutTransportProviderInput
+    sentReviews?: ReviewCreateNestedManyWithoutFromUserInput
+    receivedReviews?: ReviewCreateNestedManyWithoutToUserInput
+    notifications?: NotificationCreateNestedManyWithoutUserInput
+    sentMessages?: MessageCreateNestedManyWithoutFromUserInput
+    receivedMessages?: MessageCreateNestedManyWithoutToUserInput
+    recordedTraceEvents?: TraceEventCreateNestedManyWithoutRecordedByUserInput
+    preOrders?: PreOrderCreateNestedManyWithoutBuyerInput
+    plantingLogs?: PlantingLogCreateNestedManyWithoutFarmerInput
+    auditLogs?: AuditLogCreateNestedManyWithoutActorInput
+    configsUpdated?: SystemConfigCreateNestedManyWithoutUpdaterInput
+    ban?: UserBanCreateNestedOneWithoutUserInput
+    bansIssued?: UserBanCreateNestedManyWithoutBannerInput
+    ussdSessions?: UssdSessionCreateNestedManyWithoutUserInput
+    createdCoOps?: CoOpGroupCreateNestedManyWithoutCreatorInput
+    coOpContributions?: CoOpMemberCreateNestedManyWithoutBuyerInput
+    cropAlerts?: BuyerCropAlertCreateNestedManyWithoutBuyerInput
+    flashSalesCreated?: FlashSaleCreateNestedManyWithoutFarmerInput
+    flashSaleNotifications?: FlashSaleNotificationCreateNestedManyWithoutBuyerInput
+  }
+
+  export type UserUncheckedCreateWithoutFlashSaleClaimsInput = {
+    id?: string
+    phone: string
+    name: string
+    role: $Enums.Role
+    latitude?: number | null
+    longitude?: number | null
+    region?: string | null
+    district?: string | null
+    isVerified?: boolean
+    passwordHash?: string | null
+    preferredLanguage?: string
+    ussdPin?: string | null
+    ussdPinSetAt?: Date | string | null
+    lastUssdActivity?: Date | string | null
+    lockoutUntil?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    flashSaleOptOut?: boolean
+    flashSaleRadius?: number
+    farmerProfile?: FarmerProfileUncheckedCreateNestedOneWithoutUserInput
+    buyerProfile?: BuyerProfileUncheckedCreateNestedOneWithoutUserInput
+    transportProfile?: TransportProfileUncheckedCreateNestedOneWithoutUserInput
+    listings?: ProduceListingUncheckedCreateNestedManyWithoutFarmerInput
+    orders?: OrderUncheckedCreateNestedManyWithoutBuyerInput
+    deliveries?: DeliveryRequestUncheckedCreateNestedManyWithoutTransportProviderInput
+    sentReviews?: ReviewUncheckedCreateNestedManyWithoutFromUserInput
+    receivedReviews?: ReviewUncheckedCreateNestedManyWithoutToUserInput
+    notifications?: NotificationUncheckedCreateNestedManyWithoutUserInput
+    sentMessages?: MessageUncheckedCreateNestedManyWithoutFromUserInput
+    receivedMessages?: MessageUncheckedCreateNestedManyWithoutToUserInput
+    recordedTraceEvents?: TraceEventUncheckedCreateNestedManyWithoutRecordedByUserInput
+    preOrders?: PreOrderUncheckedCreateNestedManyWithoutBuyerInput
+    plantingLogs?: PlantingLogUncheckedCreateNestedManyWithoutFarmerInput
+    auditLogs?: AuditLogUncheckedCreateNestedManyWithoutActorInput
+    configsUpdated?: SystemConfigUncheckedCreateNestedManyWithoutUpdaterInput
+    ban?: UserBanUncheckedCreateNestedOneWithoutUserInput
+    bansIssued?: UserBanUncheckedCreateNestedManyWithoutBannerInput
+    ussdSessions?: UssdSessionUncheckedCreateNestedManyWithoutUserInput
+    createdCoOps?: CoOpGroupUncheckedCreateNestedManyWithoutCreatorInput
+    coOpContributions?: CoOpMemberUncheckedCreateNestedManyWithoutBuyerInput
+    cropAlerts?: BuyerCropAlertUncheckedCreateNestedManyWithoutBuyerInput
+    flashSalesCreated?: FlashSaleUncheckedCreateNestedManyWithoutFarmerInput
+    flashSaleNotifications?: FlashSaleNotificationUncheckedCreateNestedManyWithoutBuyerInput
+  }
+
+  export type UserCreateOrConnectWithoutFlashSaleClaimsInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutFlashSaleClaimsInput, UserUncheckedCreateWithoutFlashSaleClaimsInput>
+  }
+
+  export type OrderCreateWithoutFlashSaleClaimsInput = {
+    id?: string
+    quantityKg: number
+    totalPrice: number
+    status?: $Enums.OrderStatus
+    paymentStatus?: $Enums.PaymentStatus
+    paystackReference?: string | null
+    depositCredit?: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    source?: $Enums.CreationSource
+    buyer: UserCreateNestedOneWithoutOrdersInput
+    listing: ProduceListingCreateNestedOneWithoutOrdersInput
+    deliveryRequest?: DeliveryRequestCreateNestedOneWithoutOrderInput
+    reviews?: ReviewCreateNestedManyWithoutOrderInput
+    messages?: MessageCreateNestedManyWithoutOrderInput
+    preOrder?: PreOrderCreateNestedOneWithoutFulfilledOrderInput
+    coOpMember?: CoOpMemberCreateNestedOneWithoutOrderInput
+  }
+
+  export type OrderUncheckedCreateWithoutFlashSaleClaimsInput = {
+    id?: string
+    buyerId: string
+    listingId: string
+    quantityKg: number
+    totalPrice: number
+    status?: $Enums.OrderStatus
+    paymentStatus?: $Enums.PaymentStatus
+    paystackReference?: string | null
+    depositCredit?: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    source?: $Enums.CreationSource
+    deliveryRequest?: DeliveryRequestUncheckedCreateNestedOneWithoutOrderInput
+    reviews?: ReviewUncheckedCreateNestedManyWithoutOrderInput
+    messages?: MessageUncheckedCreateNestedManyWithoutOrderInput
+    preOrder?: PreOrderUncheckedCreateNestedOneWithoutFulfilledOrderInput
+    coOpMember?: CoOpMemberUncheckedCreateNestedOneWithoutOrderInput
+  }
+
+  export type OrderCreateOrConnectWithoutFlashSaleClaimsInput = {
+    where: OrderWhereUniqueInput
+    create: XOR<OrderCreateWithoutFlashSaleClaimsInput, OrderUncheckedCreateWithoutFlashSaleClaimsInput>
+  }
+
+  export type FlashSaleUpsertWithoutClaimsInput = {
+    update: XOR<FlashSaleUpdateWithoutClaimsInput, FlashSaleUncheckedUpdateWithoutClaimsInput>
+    create: XOR<FlashSaleCreateWithoutClaimsInput, FlashSaleUncheckedCreateWithoutClaimsInput>
+    where?: FlashSaleWhereInput
+  }
+
+  export type FlashSaleUpdateToOneWithWhereWithoutClaimsInput = {
+    where?: FlashSaleWhereInput
+    data: XOR<FlashSaleUpdateWithoutClaimsInput, FlashSaleUncheckedUpdateWithoutClaimsInput>
+  }
+
+  export type FlashSaleUpdateWithoutClaimsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    originalPricePerKg?: FloatFieldUpdateOperationsInput | number
+    discountPercent?: FloatFieldUpdateOperationsInput | number
+    flashPricePerKg?: FloatFieldUpdateOperationsInput | number
+    quantityKg?: FloatFieldUpdateOperationsInput | number
+    soldKg?: FloatFieldUpdateOperationsInput | number
+    riskBand?: EnumSpoilageRiskBandFieldUpdateOperationsInput | $Enums.SpoilageRiskBand
+    riskScore?: FloatFieldUpdateOperationsInput | number
+    status?: EnumFlashSaleStatusFieldUpdateOperationsInput | $Enums.FlashSaleStatus
+    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    farmerApproved?: BoolFieldUpdateOperationsInput | boolean
+    cancelledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    cancelReason?: NullableStringFieldUpdateOperationsInput | string | null
+    notificationsSent?: IntFieldUpdateOperationsInput | number
+    buyersClaimed?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    listing?: ProduceListingUpdateOneRequiredWithoutFlashSaleNestedInput
+    farmer?: UserUpdateOneRequiredWithoutFlashSalesCreatedNestedInput
+    notifications?: FlashSaleNotificationUpdateManyWithoutFlashSaleNestedInput
+  }
+
+  export type FlashSaleUncheckedUpdateWithoutClaimsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    listingId?: StringFieldUpdateOperationsInput | string
+    farmerId?: StringFieldUpdateOperationsInput | string
+    originalPricePerKg?: FloatFieldUpdateOperationsInput | number
+    discountPercent?: FloatFieldUpdateOperationsInput | number
+    flashPricePerKg?: FloatFieldUpdateOperationsInput | number
+    quantityKg?: FloatFieldUpdateOperationsInput | number
+    soldKg?: FloatFieldUpdateOperationsInput | number
+    riskBand?: EnumSpoilageRiskBandFieldUpdateOperationsInput | $Enums.SpoilageRiskBand
+    riskScore?: FloatFieldUpdateOperationsInput | number
+    status?: EnumFlashSaleStatusFieldUpdateOperationsInput | $Enums.FlashSaleStatus
+    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    farmerApproved?: BoolFieldUpdateOperationsInput | boolean
+    cancelledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    cancelReason?: NullableStringFieldUpdateOperationsInput | string | null
+    notificationsSent?: IntFieldUpdateOperationsInput | number
+    buyersClaimed?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    notifications?: FlashSaleNotificationUncheckedUpdateManyWithoutFlashSaleNestedInput
+  }
+
+  export type UserUpsertWithoutFlashSaleClaimsInput = {
+    update: XOR<UserUpdateWithoutFlashSaleClaimsInput, UserUncheckedUpdateWithoutFlashSaleClaimsInput>
+    create: XOR<UserCreateWithoutFlashSaleClaimsInput, UserUncheckedCreateWithoutFlashSaleClaimsInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutFlashSaleClaimsInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutFlashSaleClaimsInput, UserUncheckedUpdateWithoutFlashSaleClaimsInput>
+  }
+
+  export type UserUpdateWithoutFlashSaleClaimsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    latitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    longitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    region?: NullableStringFieldUpdateOperationsInput | string | null
+    district?: NullableStringFieldUpdateOperationsInput | string | null
+    isVerified?: BoolFieldUpdateOperationsInput | boolean
+    passwordHash?: NullableStringFieldUpdateOperationsInput | string | null
+    preferredLanguage?: StringFieldUpdateOperationsInput | string
+    ussdPin?: NullableStringFieldUpdateOperationsInput | string | null
+    ussdPinSetAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lastUssdActivity?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lockoutUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    flashSaleOptOut?: BoolFieldUpdateOperationsInput | boolean
+    flashSaleRadius?: IntFieldUpdateOperationsInput | number
+    farmerProfile?: FarmerProfileUpdateOneWithoutUserNestedInput
+    buyerProfile?: BuyerProfileUpdateOneWithoutUserNestedInput
+    transportProfile?: TransportProfileUpdateOneWithoutUserNestedInput
+    listings?: ProduceListingUpdateManyWithoutFarmerNestedInput
+    orders?: OrderUpdateManyWithoutBuyerNestedInput
+    deliveries?: DeliveryRequestUpdateManyWithoutTransportProviderNestedInput
+    sentReviews?: ReviewUpdateManyWithoutFromUserNestedInput
+    receivedReviews?: ReviewUpdateManyWithoutToUserNestedInput
+    notifications?: NotificationUpdateManyWithoutUserNestedInput
+    sentMessages?: MessageUpdateManyWithoutFromUserNestedInput
+    receivedMessages?: MessageUpdateManyWithoutToUserNestedInput
+    recordedTraceEvents?: TraceEventUpdateManyWithoutRecordedByUserNestedInput
+    preOrders?: PreOrderUpdateManyWithoutBuyerNestedInput
+    plantingLogs?: PlantingLogUpdateManyWithoutFarmerNestedInput
+    auditLogs?: AuditLogUpdateManyWithoutActorNestedInput
+    configsUpdated?: SystemConfigUpdateManyWithoutUpdaterNestedInput
+    ban?: UserBanUpdateOneWithoutUserNestedInput
+    bansIssued?: UserBanUpdateManyWithoutBannerNestedInput
+    ussdSessions?: UssdSessionUpdateManyWithoutUserNestedInput
+    createdCoOps?: CoOpGroupUpdateManyWithoutCreatorNestedInput
+    coOpContributions?: CoOpMemberUpdateManyWithoutBuyerNestedInput
+    cropAlerts?: BuyerCropAlertUpdateManyWithoutBuyerNestedInput
+    flashSalesCreated?: FlashSaleUpdateManyWithoutFarmerNestedInput
+    flashSaleNotifications?: FlashSaleNotificationUpdateManyWithoutBuyerNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutFlashSaleClaimsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    latitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    longitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    region?: NullableStringFieldUpdateOperationsInput | string | null
+    district?: NullableStringFieldUpdateOperationsInput | string | null
+    isVerified?: BoolFieldUpdateOperationsInput | boolean
+    passwordHash?: NullableStringFieldUpdateOperationsInput | string | null
+    preferredLanguage?: StringFieldUpdateOperationsInput | string
+    ussdPin?: NullableStringFieldUpdateOperationsInput | string | null
+    ussdPinSetAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lastUssdActivity?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lockoutUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    flashSaleOptOut?: BoolFieldUpdateOperationsInput | boolean
+    flashSaleRadius?: IntFieldUpdateOperationsInput | number
+    farmerProfile?: FarmerProfileUncheckedUpdateOneWithoutUserNestedInput
+    buyerProfile?: BuyerProfileUncheckedUpdateOneWithoutUserNestedInput
+    transportProfile?: TransportProfileUncheckedUpdateOneWithoutUserNestedInput
+    listings?: ProduceListingUncheckedUpdateManyWithoutFarmerNestedInput
+    orders?: OrderUncheckedUpdateManyWithoutBuyerNestedInput
+    deliveries?: DeliveryRequestUncheckedUpdateManyWithoutTransportProviderNestedInput
+    sentReviews?: ReviewUncheckedUpdateManyWithoutFromUserNestedInput
+    receivedReviews?: ReviewUncheckedUpdateManyWithoutToUserNestedInput
+    notifications?: NotificationUncheckedUpdateManyWithoutUserNestedInput
+    sentMessages?: MessageUncheckedUpdateManyWithoutFromUserNestedInput
+    receivedMessages?: MessageUncheckedUpdateManyWithoutToUserNestedInput
+    recordedTraceEvents?: TraceEventUncheckedUpdateManyWithoutRecordedByUserNestedInput
+    preOrders?: PreOrderUncheckedUpdateManyWithoutBuyerNestedInput
+    plantingLogs?: PlantingLogUncheckedUpdateManyWithoutFarmerNestedInput
+    auditLogs?: AuditLogUncheckedUpdateManyWithoutActorNestedInput
+    configsUpdated?: SystemConfigUncheckedUpdateManyWithoutUpdaterNestedInput
+    ban?: UserBanUncheckedUpdateOneWithoutUserNestedInput
+    bansIssued?: UserBanUncheckedUpdateManyWithoutBannerNestedInput
+    ussdSessions?: UssdSessionUncheckedUpdateManyWithoutUserNestedInput
+    createdCoOps?: CoOpGroupUncheckedUpdateManyWithoutCreatorNestedInput
+    coOpContributions?: CoOpMemberUncheckedUpdateManyWithoutBuyerNestedInput
+    cropAlerts?: BuyerCropAlertUncheckedUpdateManyWithoutBuyerNestedInput
+    flashSalesCreated?: FlashSaleUncheckedUpdateManyWithoutFarmerNestedInput
+    flashSaleNotifications?: FlashSaleNotificationUncheckedUpdateManyWithoutBuyerNestedInput
+  }
+
+  export type OrderUpsertWithoutFlashSaleClaimsInput = {
+    update: XOR<OrderUpdateWithoutFlashSaleClaimsInput, OrderUncheckedUpdateWithoutFlashSaleClaimsInput>
+    create: XOR<OrderCreateWithoutFlashSaleClaimsInput, OrderUncheckedCreateWithoutFlashSaleClaimsInput>
+    where?: OrderWhereInput
+  }
+
+  export type OrderUpdateToOneWithWhereWithoutFlashSaleClaimsInput = {
+    where?: OrderWhereInput
+    data: XOR<OrderUpdateWithoutFlashSaleClaimsInput, OrderUncheckedUpdateWithoutFlashSaleClaimsInput>
+  }
+
+  export type OrderUpdateWithoutFlashSaleClaimsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    quantityKg?: FloatFieldUpdateOperationsInput | number
+    totalPrice?: FloatFieldUpdateOperationsInput | number
+    status?: EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
+    paymentStatus?: EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
+    paystackReference?: NullableStringFieldUpdateOperationsInput | string | null
+    depositCredit?: FloatFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    source?: EnumCreationSourceFieldUpdateOperationsInput | $Enums.CreationSource
+    buyer?: UserUpdateOneRequiredWithoutOrdersNestedInput
+    listing?: ProduceListingUpdateOneRequiredWithoutOrdersNestedInput
+    deliveryRequest?: DeliveryRequestUpdateOneWithoutOrderNestedInput
+    reviews?: ReviewUpdateManyWithoutOrderNestedInput
+    messages?: MessageUpdateManyWithoutOrderNestedInput
+    preOrder?: PreOrderUpdateOneWithoutFulfilledOrderNestedInput
+    coOpMember?: CoOpMemberUpdateOneWithoutOrderNestedInput
+  }
+
+  export type OrderUncheckedUpdateWithoutFlashSaleClaimsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    buyerId?: StringFieldUpdateOperationsInput | string
+    listingId?: StringFieldUpdateOperationsInput | string
+    quantityKg?: FloatFieldUpdateOperationsInput | number
+    totalPrice?: FloatFieldUpdateOperationsInput | number
+    status?: EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
+    paymentStatus?: EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
+    paystackReference?: NullableStringFieldUpdateOperationsInput | string | null
+    depositCredit?: FloatFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    source?: EnumCreationSourceFieldUpdateOperationsInput | $Enums.CreationSource
+    deliveryRequest?: DeliveryRequestUncheckedUpdateOneWithoutOrderNestedInput
+    reviews?: ReviewUncheckedUpdateManyWithoutOrderNestedInput
+    messages?: MessageUncheckedUpdateManyWithoutOrderNestedInput
+    preOrder?: PreOrderUncheckedUpdateOneWithoutFulfilledOrderNestedInput
+    coOpMember?: CoOpMemberUncheckedUpdateOneWithoutOrderNestedInput
+  }
+
+  export type FlashSaleCreateWithoutNotificationsInput = {
+    id?: string
+    originalPricePerKg: number
+    discountPercent: number
+    flashPricePerKg: number
+    quantityKg: number
+    soldKg?: number
+    riskBand: $Enums.SpoilageRiskBand
+    riskScore: number
+    status?: $Enums.FlashSaleStatus
+    expiresAt: Date | string
+    farmerApproved?: boolean
+    cancelledAt?: Date | string | null
+    cancelReason?: string | null
+    notificationsSent?: number
+    buyersClaimed?: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    listing: ProduceListingCreateNestedOneWithoutFlashSaleInput
+    farmer: UserCreateNestedOneWithoutFlashSalesCreatedInput
+    claims?: FlashSaleClaimCreateNestedManyWithoutFlashSaleInput
+  }
+
+  export type FlashSaleUncheckedCreateWithoutNotificationsInput = {
+    id?: string
+    listingId: string
+    farmerId: string
+    originalPricePerKg: number
+    discountPercent: number
+    flashPricePerKg: number
+    quantityKg: number
+    soldKg?: number
+    riskBand: $Enums.SpoilageRiskBand
+    riskScore: number
+    status?: $Enums.FlashSaleStatus
+    expiresAt: Date | string
+    farmerApproved?: boolean
+    cancelledAt?: Date | string | null
+    cancelReason?: string | null
+    notificationsSent?: number
+    buyersClaimed?: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    claims?: FlashSaleClaimUncheckedCreateNestedManyWithoutFlashSaleInput
+  }
+
+  export type FlashSaleCreateOrConnectWithoutNotificationsInput = {
+    where: FlashSaleWhereUniqueInput
+    create: XOR<FlashSaleCreateWithoutNotificationsInput, FlashSaleUncheckedCreateWithoutNotificationsInput>
+  }
+
+  export type UserCreateWithoutFlashSaleNotificationsInput = {
+    id?: string
+    phone: string
+    name: string
+    role: $Enums.Role
+    latitude?: number | null
+    longitude?: number | null
+    region?: string | null
+    district?: string | null
+    isVerified?: boolean
+    passwordHash?: string | null
+    preferredLanguage?: string
+    ussdPin?: string | null
+    ussdPinSetAt?: Date | string | null
+    lastUssdActivity?: Date | string | null
+    lockoutUntil?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    flashSaleOptOut?: boolean
+    flashSaleRadius?: number
+    farmerProfile?: FarmerProfileCreateNestedOneWithoutUserInput
+    buyerProfile?: BuyerProfileCreateNestedOneWithoutUserInput
+    transportProfile?: TransportProfileCreateNestedOneWithoutUserInput
+    listings?: ProduceListingCreateNestedManyWithoutFarmerInput
+    orders?: OrderCreateNestedManyWithoutBuyerInput
+    deliveries?: DeliveryRequestCreateNestedManyWithoutTransportProviderInput
+    sentReviews?: ReviewCreateNestedManyWithoutFromUserInput
+    receivedReviews?: ReviewCreateNestedManyWithoutToUserInput
+    notifications?: NotificationCreateNestedManyWithoutUserInput
+    sentMessages?: MessageCreateNestedManyWithoutFromUserInput
+    receivedMessages?: MessageCreateNestedManyWithoutToUserInput
+    recordedTraceEvents?: TraceEventCreateNestedManyWithoutRecordedByUserInput
+    preOrders?: PreOrderCreateNestedManyWithoutBuyerInput
+    plantingLogs?: PlantingLogCreateNestedManyWithoutFarmerInput
+    auditLogs?: AuditLogCreateNestedManyWithoutActorInput
+    configsUpdated?: SystemConfigCreateNestedManyWithoutUpdaterInput
+    ban?: UserBanCreateNestedOneWithoutUserInput
+    bansIssued?: UserBanCreateNestedManyWithoutBannerInput
+    ussdSessions?: UssdSessionCreateNestedManyWithoutUserInput
+    createdCoOps?: CoOpGroupCreateNestedManyWithoutCreatorInput
+    coOpContributions?: CoOpMemberCreateNestedManyWithoutBuyerInput
+    cropAlerts?: BuyerCropAlertCreateNestedManyWithoutBuyerInput
+    flashSalesCreated?: FlashSaleCreateNestedManyWithoutFarmerInput
+    flashSaleClaims?: FlashSaleClaimCreateNestedManyWithoutBuyerInput
+  }
+
+  export type UserUncheckedCreateWithoutFlashSaleNotificationsInput = {
+    id?: string
+    phone: string
+    name: string
+    role: $Enums.Role
+    latitude?: number | null
+    longitude?: number | null
+    region?: string | null
+    district?: string | null
+    isVerified?: boolean
+    passwordHash?: string | null
+    preferredLanguage?: string
+    ussdPin?: string | null
+    ussdPinSetAt?: Date | string | null
+    lastUssdActivity?: Date | string | null
+    lockoutUntil?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    flashSaleOptOut?: boolean
+    flashSaleRadius?: number
+    farmerProfile?: FarmerProfileUncheckedCreateNestedOneWithoutUserInput
+    buyerProfile?: BuyerProfileUncheckedCreateNestedOneWithoutUserInput
+    transportProfile?: TransportProfileUncheckedCreateNestedOneWithoutUserInput
+    listings?: ProduceListingUncheckedCreateNestedManyWithoutFarmerInput
+    orders?: OrderUncheckedCreateNestedManyWithoutBuyerInput
+    deliveries?: DeliveryRequestUncheckedCreateNestedManyWithoutTransportProviderInput
+    sentReviews?: ReviewUncheckedCreateNestedManyWithoutFromUserInput
+    receivedReviews?: ReviewUncheckedCreateNestedManyWithoutToUserInput
+    notifications?: NotificationUncheckedCreateNestedManyWithoutUserInput
+    sentMessages?: MessageUncheckedCreateNestedManyWithoutFromUserInput
+    receivedMessages?: MessageUncheckedCreateNestedManyWithoutToUserInput
+    recordedTraceEvents?: TraceEventUncheckedCreateNestedManyWithoutRecordedByUserInput
+    preOrders?: PreOrderUncheckedCreateNestedManyWithoutBuyerInput
+    plantingLogs?: PlantingLogUncheckedCreateNestedManyWithoutFarmerInput
+    auditLogs?: AuditLogUncheckedCreateNestedManyWithoutActorInput
+    configsUpdated?: SystemConfigUncheckedCreateNestedManyWithoutUpdaterInput
+    ban?: UserBanUncheckedCreateNestedOneWithoutUserInput
+    bansIssued?: UserBanUncheckedCreateNestedManyWithoutBannerInput
+    ussdSessions?: UssdSessionUncheckedCreateNestedManyWithoutUserInput
+    createdCoOps?: CoOpGroupUncheckedCreateNestedManyWithoutCreatorInput
+    coOpContributions?: CoOpMemberUncheckedCreateNestedManyWithoutBuyerInput
+    cropAlerts?: BuyerCropAlertUncheckedCreateNestedManyWithoutBuyerInput
+    flashSalesCreated?: FlashSaleUncheckedCreateNestedManyWithoutFarmerInput
+    flashSaleClaims?: FlashSaleClaimUncheckedCreateNestedManyWithoutBuyerInput
+  }
+
+  export type UserCreateOrConnectWithoutFlashSaleNotificationsInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutFlashSaleNotificationsInput, UserUncheckedCreateWithoutFlashSaleNotificationsInput>
+  }
+
+  export type FlashSaleUpsertWithoutNotificationsInput = {
+    update: XOR<FlashSaleUpdateWithoutNotificationsInput, FlashSaleUncheckedUpdateWithoutNotificationsInput>
+    create: XOR<FlashSaleCreateWithoutNotificationsInput, FlashSaleUncheckedCreateWithoutNotificationsInput>
+    where?: FlashSaleWhereInput
+  }
+
+  export type FlashSaleUpdateToOneWithWhereWithoutNotificationsInput = {
+    where?: FlashSaleWhereInput
+    data: XOR<FlashSaleUpdateWithoutNotificationsInput, FlashSaleUncheckedUpdateWithoutNotificationsInput>
+  }
+
+  export type FlashSaleUpdateWithoutNotificationsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    originalPricePerKg?: FloatFieldUpdateOperationsInput | number
+    discountPercent?: FloatFieldUpdateOperationsInput | number
+    flashPricePerKg?: FloatFieldUpdateOperationsInput | number
+    quantityKg?: FloatFieldUpdateOperationsInput | number
+    soldKg?: FloatFieldUpdateOperationsInput | number
+    riskBand?: EnumSpoilageRiskBandFieldUpdateOperationsInput | $Enums.SpoilageRiskBand
+    riskScore?: FloatFieldUpdateOperationsInput | number
+    status?: EnumFlashSaleStatusFieldUpdateOperationsInput | $Enums.FlashSaleStatus
+    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    farmerApproved?: BoolFieldUpdateOperationsInput | boolean
+    cancelledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    cancelReason?: NullableStringFieldUpdateOperationsInput | string | null
+    notificationsSent?: IntFieldUpdateOperationsInput | number
+    buyersClaimed?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    listing?: ProduceListingUpdateOneRequiredWithoutFlashSaleNestedInput
+    farmer?: UserUpdateOneRequiredWithoutFlashSalesCreatedNestedInput
+    claims?: FlashSaleClaimUpdateManyWithoutFlashSaleNestedInput
+  }
+
+  export type FlashSaleUncheckedUpdateWithoutNotificationsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    listingId?: StringFieldUpdateOperationsInput | string
+    farmerId?: StringFieldUpdateOperationsInput | string
+    originalPricePerKg?: FloatFieldUpdateOperationsInput | number
+    discountPercent?: FloatFieldUpdateOperationsInput | number
+    flashPricePerKg?: FloatFieldUpdateOperationsInput | number
+    quantityKg?: FloatFieldUpdateOperationsInput | number
+    soldKg?: FloatFieldUpdateOperationsInput | number
+    riskBand?: EnumSpoilageRiskBandFieldUpdateOperationsInput | $Enums.SpoilageRiskBand
+    riskScore?: FloatFieldUpdateOperationsInput | number
+    status?: EnumFlashSaleStatusFieldUpdateOperationsInput | $Enums.FlashSaleStatus
+    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    farmerApproved?: BoolFieldUpdateOperationsInput | boolean
+    cancelledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    cancelReason?: NullableStringFieldUpdateOperationsInput | string | null
+    notificationsSent?: IntFieldUpdateOperationsInput | number
+    buyersClaimed?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    claims?: FlashSaleClaimUncheckedUpdateManyWithoutFlashSaleNestedInput
+  }
+
+  export type UserUpsertWithoutFlashSaleNotificationsInput = {
+    update: XOR<UserUpdateWithoutFlashSaleNotificationsInput, UserUncheckedUpdateWithoutFlashSaleNotificationsInput>
+    create: XOR<UserCreateWithoutFlashSaleNotificationsInput, UserUncheckedCreateWithoutFlashSaleNotificationsInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutFlashSaleNotificationsInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutFlashSaleNotificationsInput, UserUncheckedUpdateWithoutFlashSaleNotificationsInput>
+  }
+
+  export type UserUpdateWithoutFlashSaleNotificationsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    latitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    longitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    region?: NullableStringFieldUpdateOperationsInput | string | null
+    district?: NullableStringFieldUpdateOperationsInput | string | null
+    isVerified?: BoolFieldUpdateOperationsInput | boolean
+    passwordHash?: NullableStringFieldUpdateOperationsInput | string | null
+    preferredLanguage?: StringFieldUpdateOperationsInput | string
+    ussdPin?: NullableStringFieldUpdateOperationsInput | string | null
+    ussdPinSetAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lastUssdActivity?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lockoutUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    flashSaleOptOut?: BoolFieldUpdateOperationsInput | boolean
+    flashSaleRadius?: IntFieldUpdateOperationsInput | number
+    farmerProfile?: FarmerProfileUpdateOneWithoutUserNestedInput
+    buyerProfile?: BuyerProfileUpdateOneWithoutUserNestedInput
+    transportProfile?: TransportProfileUpdateOneWithoutUserNestedInput
+    listings?: ProduceListingUpdateManyWithoutFarmerNestedInput
+    orders?: OrderUpdateManyWithoutBuyerNestedInput
+    deliveries?: DeliveryRequestUpdateManyWithoutTransportProviderNestedInput
+    sentReviews?: ReviewUpdateManyWithoutFromUserNestedInput
+    receivedReviews?: ReviewUpdateManyWithoutToUserNestedInput
+    notifications?: NotificationUpdateManyWithoutUserNestedInput
+    sentMessages?: MessageUpdateManyWithoutFromUserNestedInput
+    receivedMessages?: MessageUpdateManyWithoutToUserNestedInput
+    recordedTraceEvents?: TraceEventUpdateManyWithoutRecordedByUserNestedInput
+    preOrders?: PreOrderUpdateManyWithoutBuyerNestedInput
+    plantingLogs?: PlantingLogUpdateManyWithoutFarmerNestedInput
+    auditLogs?: AuditLogUpdateManyWithoutActorNestedInput
+    configsUpdated?: SystemConfigUpdateManyWithoutUpdaterNestedInput
+    ban?: UserBanUpdateOneWithoutUserNestedInput
+    bansIssued?: UserBanUpdateManyWithoutBannerNestedInput
+    ussdSessions?: UssdSessionUpdateManyWithoutUserNestedInput
+    createdCoOps?: CoOpGroupUpdateManyWithoutCreatorNestedInput
+    coOpContributions?: CoOpMemberUpdateManyWithoutBuyerNestedInput
+    cropAlerts?: BuyerCropAlertUpdateManyWithoutBuyerNestedInput
+    flashSalesCreated?: FlashSaleUpdateManyWithoutFarmerNestedInput
+    flashSaleClaims?: FlashSaleClaimUpdateManyWithoutBuyerNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutFlashSaleNotificationsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    latitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    longitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    region?: NullableStringFieldUpdateOperationsInput | string | null
+    district?: NullableStringFieldUpdateOperationsInput | string | null
+    isVerified?: BoolFieldUpdateOperationsInput | boolean
+    passwordHash?: NullableStringFieldUpdateOperationsInput | string | null
+    preferredLanguage?: StringFieldUpdateOperationsInput | string
+    ussdPin?: NullableStringFieldUpdateOperationsInput | string | null
+    ussdPinSetAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lastUssdActivity?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lockoutUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    flashSaleOptOut?: BoolFieldUpdateOperationsInput | boolean
+    flashSaleRadius?: IntFieldUpdateOperationsInput | number
+    farmerProfile?: FarmerProfileUncheckedUpdateOneWithoutUserNestedInput
+    buyerProfile?: BuyerProfileUncheckedUpdateOneWithoutUserNestedInput
+    transportProfile?: TransportProfileUncheckedUpdateOneWithoutUserNestedInput
+    listings?: ProduceListingUncheckedUpdateManyWithoutFarmerNestedInput
+    orders?: OrderUncheckedUpdateManyWithoutBuyerNestedInput
+    deliveries?: DeliveryRequestUncheckedUpdateManyWithoutTransportProviderNestedInput
+    sentReviews?: ReviewUncheckedUpdateManyWithoutFromUserNestedInput
+    receivedReviews?: ReviewUncheckedUpdateManyWithoutToUserNestedInput
+    notifications?: NotificationUncheckedUpdateManyWithoutUserNestedInput
+    sentMessages?: MessageUncheckedUpdateManyWithoutFromUserNestedInput
+    receivedMessages?: MessageUncheckedUpdateManyWithoutToUserNestedInput
+    recordedTraceEvents?: TraceEventUncheckedUpdateManyWithoutRecordedByUserNestedInput
+    preOrders?: PreOrderUncheckedUpdateManyWithoutBuyerNestedInput
+    plantingLogs?: PlantingLogUncheckedUpdateManyWithoutFarmerNestedInput
+    auditLogs?: AuditLogUncheckedUpdateManyWithoutActorNestedInput
+    configsUpdated?: SystemConfigUncheckedUpdateManyWithoutUpdaterNestedInput
+    ban?: UserBanUncheckedUpdateOneWithoutUserNestedInput
+    bansIssued?: UserBanUncheckedUpdateManyWithoutBannerNestedInput
+    ussdSessions?: UssdSessionUncheckedUpdateManyWithoutUserNestedInput
+    createdCoOps?: CoOpGroupUncheckedUpdateManyWithoutCreatorNestedInput
+    coOpContributions?: CoOpMemberUncheckedUpdateManyWithoutBuyerNestedInput
+    cropAlerts?: BuyerCropAlertUncheckedUpdateManyWithoutBuyerNestedInput
+    flashSalesCreated?: FlashSaleUncheckedUpdateManyWithoutFarmerNestedInput
+    flashSaleClaims?: FlashSaleClaimUncheckedUpdateManyWithoutBuyerNestedInput
   }
 
   export type ProduceListingCreateManyFarmerInput = {
@@ -48538,6 +57859,10 @@ export namespace Prisma {
     updatedAt?: Date | string
     source?: $Enums.CreationSource
     plantingLogId?: string | null
+    currentRiskBand?: $Enums.SpoilageRiskBand
+    currentRiskScore?: number
+    lastRiskCalculatedAt?: Date | string | null
+    activeFlashSaleId?: string | null
   }
 
   export type OrderCreateManyBuyerInput = {
@@ -48751,6 +58076,48 @@ export namespace Prisma {
     updatedAt?: Date | string
   }
 
+  export type FlashSaleCreateManyFarmerInput = {
+    id?: string
+    listingId: string
+    originalPricePerKg: number
+    discountPercent: number
+    flashPricePerKg: number
+    quantityKg: number
+    soldKg?: number
+    riskBand: $Enums.SpoilageRiskBand
+    riskScore: number
+    status?: $Enums.FlashSaleStatus
+    expiresAt: Date | string
+    farmerApproved?: boolean
+    cancelledAt?: Date | string | null
+    cancelReason?: string | null
+    notificationsSent?: number
+    buyersClaimed?: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type FlashSaleClaimCreateManyBuyerInput = {
+    id?: string
+    flashSaleId: string
+    quantityKg: number
+    pricePerKg: number
+    totalPrice: number
+    orderId?: string | null
+    status: $Enums.FlashSaleClaimStatus
+    claimedAt?: Date | string
+    expiresAt: Date | string
+  }
+
+  export type FlashSaleNotificationCreateManyBuyerInput = {
+    id?: string
+    flashSaleId: string
+    channel: $Enums.NotificationChannel
+    status?: $Enums.FlashSaleNotificationStatus
+    sentAt?: Date | string | null
+    clickedAt?: Date | string | null
+  }
+
   export type ProduceListingUpdateWithoutFarmerInput = {
     id?: StringFieldUpdateOperationsInput | string
     cropType?: EnumCropTypeFieldUpdateOperationsInput | $Enums.CropType
@@ -48769,12 +58136,18 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     source?: EnumCreationSourceFieldUpdateOperationsInput | $Enums.CreationSource
+    currentRiskBand?: EnumSpoilageRiskBandFieldUpdateOperationsInput | $Enums.SpoilageRiskBand
+    currentRiskScore?: FloatFieldUpdateOperationsInput | number
+    lastRiskCalculatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    activeFlashSaleId?: NullableStringFieldUpdateOperationsInput | string | null
     orders?: OrderUpdateManyWithoutListingNestedInput
     traceability?: TraceabilityRecordUpdateOneWithoutListingNestedInput
     traceEvents?: TraceEventUpdateManyWithoutListingNestedInput
     preOrders?: PreOrderUpdateManyWithoutMatchedListingNestedInput
     coOps?: CoOpGroupUpdateManyWithoutListingNestedInput
     plantingLog?: PlantingLogUpdateOneWithoutListingsNestedInput
+    spoilageRiskLogs?: SpoilageRiskLogUpdateManyWithoutListingNestedInput
+    flashSale?: FlashSaleUpdateOneWithoutListingNestedInput
   }
 
   export type ProduceListingUncheckedUpdateWithoutFarmerInput = {
@@ -48796,11 +58169,17 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     source?: EnumCreationSourceFieldUpdateOperationsInput | $Enums.CreationSource
     plantingLogId?: NullableStringFieldUpdateOperationsInput | string | null
+    currentRiskBand?: EnumSpoilageRiskBandFieldUpdateOperationsInput | $Enums.SpoilageRiskBand
+    currentRiskScore?: FloatFieldUpdateOperationsInput | number
+    lastRiskCalculatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    activeFlashSaleId?: NullableStringFieldUpdateOperationsInput | string | null
     orders?: OrderUncheckedUpdateManyWithoutListingNestedInput
     traceability?: TraceabilityRecordUncheckedUpdateOneWithoutListingNestedInput
     traceEvents?: TraceEventUncheckedUpdateManyWithoutListingNestedInput
     preOrders?: PreOrderUncheckedUpdateManyWithoutMatchedListingNestedInput
     coOps?: CoOpGroupUncheckedUpdateManyWithoutListingNestedInput
+    spoilageRiskLogs?: SpoilageRiskLogUncheckedUpdateManyWithoutListingNestedInput
+    flashSale?: FlashSaleUncheckedUpdateOneWithoutListingNestedInput
   }
 
   export type ProduceListingUncheckedUpdateManyWithoutFarmerInput = {
@@ -48822,6 +58201,10 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     source?: EnumCreationSourceFieldUpdateOperationsInput | $Enums.CreationSource
     plantingLogId?: NullableStringFieldUpdateOperationsInput | string | null
+    currentRiskBand?: EnumSpoilageRiskBandFieldUpdateOperationsInput | $Enums.SpoilageRiskBand
+    currentRiskScore?: FloatFieldUpdateOperationsInput | number
+    lastRiskCalculatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    activeFlashSaleId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type OrderUpdateWithoutBuyerInput = {
@@ -48841,6 +58224,7 @@ export namespace Prisma {
     messages?: MessageUpdateManyWithoutOrderNestedInput
     preOrder?: PreOrderUpdateOneWithoutFulfilledOrderNestedInput
     coOpMember?: CoOpMemberUpdateOneWithoutOrderNestedInput
+    flashSaleClaims?: FlashSaleClaimUpdateManyWithoutOrderNestedInput
   }
 
   export type OrderUncheckedUpdateWithoutBuyerInput = {
@@ -48860,6 +58244,7 @@ export namespace Prisma {
     messages?: MessageUncheckedUpdateManyWithoutOrderNestedInput
     preOrder?: PreOrderUncheckedUpdateOneWithoutFulfilledOrderNestedInput
     coOpMember?: CoOpMemberUncheckedUpdateOneWithoutOrderNestedInput
+    flashSaleClaims?: FlashSaleClaimUncheckedUpdateManyWithoutOrderNestedInput
   }
 
   export type OrderUncheckedUpdateManyWithoutBuyerInput = {
@@ -49473,6 +58858,136 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type FlashSaleUpdateWithoutFarmerInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    originalPricePerKg?: FloatFieldUpdateOperationsInput | number
+    discountPercent?: FloatFieldUpdateOperationsInput | number
+    flashPricePerKg?: FloatFieldUpdateOperationsInput | number
+    quantityKg?: FloatFieldUpdateOperationsInput | number
+    soldKg?: FloatFieldUpdateOperationsInput | number
+    riskBand?: EnumSpoilageRiskBandFieldUpdateOperationsInput | $Enums.SpoilageRiskBand
+    riskScore?: FloatFieldUpdateOperationsInput | number
+    status?: EnumFlashSaleStatusFieldUpdateOperationsInput | $Enums.FlashSaleStatus
+    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    farmerApproved?: BoolFieldUpdateOperationsInput | boolean
+    cancelledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    cancelReason?: NullableStringFieldUpdateOperationsInput | string | null
+    notificationsSent?: IntFieldUpdateOperationsInput | number
+    buyersClaimed?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    listing?: ProduceListingUpdateOneRequiredWithoutFlashSaleNestedInput
+    claims?: FlashSaleClaimUpdateManyWithoutFlashSaleNestedInput
+    notifications?: FlashSaleNotificationUpdateManyWithoutFlashSaleNestedInput
+  }
+
+  export type FlashSaleUncheckedUpdateWithoutFarmerInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    listingId?: StringFieldUpdateOperationsInput | string
+    originalPricePerKg?: FloatFieldUpdateOperationsInput | number
+    discountPercent?: FloatFieldUpdateOperationsInput | number
+    flashPricePerKg?: FloatFieldUpdateOperationsInput | number
+    quantityKg?: FloatFieldUpdateOperationsInput | number
+    soldKg?: FloatFieldUpdateOperationsInput | number
+    riskBand?: EnumSpoilageRiskBandFieldUpdateOperationsInput | $Enums.SpoilageRiskBand
+    riskScore?: FloatFieldUpdateOperationsInput | number
+    status?: EnumFlashSaleStatusFieldUpdateOperationsInput | $Enums.FlashSaleStatus
+    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    farmerApproved?: BoolFieldUpdateOperationsInput | boolean
+    cancelledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    cancelReason?: NullableStringFieldUpdateOperationsInput | string | null
+    notificationsSent?: IntFieldUpdateOperationsInput | number
+    buyersClaimed?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    claims?: FlashSaleClaimUncheckedUpdateManyWithoutFlashSaleNestedInput
+    notifications?: FlashSaleNotificationUncheckedUpdateManyWithoutFlashSaleNestedInput
+  }
+
+  export type FlashSaleUncheckedUpdateManyWithoutFarmerInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    listingId?: StringFieldUpdateOperationsInput | string
+    originalPricePerKg?: FloatFieldUpdateOperationsInput | number
+    discountPercent?: FloatFieldUpdateOperationsInput | number
+    flashPricePerKg?: FloatFieldUpdateOperationsInput | number
+    quantityKg?: FloatFieldUpdateOperationsInput | number
+    soldKg?: FloatFieldUpdateOperationsInput | number
+    riskBand?: EnumSpoilageRiskBandFieldUpdateOperationsInput | $Enums.SpoilageRiskBand
+    riskScore?: FloatFieldUpdateOperationsInput | number
+    status?: EnumFlashSaleStatusFieldUpdateOperationsInput | $Enums.FlashSaleStatus
+    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    farmerApproved?: BoolFieldUpdateOperationsInput | boolean
+    cancelledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    cancelReason?: NullableStringFieldUpdateOperationsInput | string | null
+    notificationsSent?: IntFieldUpdateOperationsInput | number
+    buyersClaimed?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FlashSaleClaimUpdateWithoutBuyerInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    quantityKg?: FloatFieldUpdateOperationsInput | number
+    pricePerKg?: FloatFieldUpdateOperationsInput | number
+    totalPrice?: FloatFieldUpdateOperationsInput | number
+    status?: EnumFlashSaleClaimStatusFieldUpdateOperationsInput | $Enums.FlashSaleClaimStatus
+    claimedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    flashSale?: FlashSaleUpdateOneRequiredWithoutClaimsNestedInput
+    order?: OrderUpdateOneWithoutFlashSaleClaimsNestedInput
+  }
+
+  export type FlashSaleClaimUncheckedUpdateWithoutBuyerInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    flashSaleId?: StringFieldUpdateOperationsInput | string
+    quantityKg?: FloatFieldUpdateOperationsInput | number
+    pricePerKg?: FloatFieldUpdateOperationsInput | number
+    totalPrice?: FloatFieldUpdateOperationsInput | number
+    orderId?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumFlashSaleClaimStatusFieldUpdateOperationsInput | $Enums.FlashSaleClaimStatus
+    claimedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FlashSaleClaimUncheckedUpdateManyWithoutBuyerInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    flashSaleId?: StringFieldUpdateOperationsInput | string
+    quantityKg?: FloatFieldUpdateOperationsInput | number
+    pricePerKg?: FloatFieldUpdateOperationsInput | number
+    totalPrice?: FloatFieldUpdateOperationsInput | number
+    orderId?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumFlashSaleClaimStatusFieldUpdateOperationsInput | $Enums.FlashSaleClaimStatus
+    claimedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FlashSaleNotificationUpdateWithoutBuyerInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    channel?: EnumNotificationChannelFieldUpdateOperationsInput | $Enums.NotificationChannel
+    status?: EnumFlashSaleNotificationStatusFieldUpdateOperationsInput | $Enums.FlashSaleNotificationStatus
+    sentAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    clickedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    flashSale?: FlashSaleUpdateOneRequiredWithoutNotificationsNestedInput
+  }
+
+  export type FlashSaleNotificationUncheckedUpdateWithoutBuyerInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    flashSaleId?: StringFieldUpdateOperationsInput | string
+    channel?: EnumNotificationChannelFieldUpdateOperationsInput | $Enums.NotificationChannel
+    status?: EnumFlashSaleNotificationStatusFieldUpdateOperationsInput | $Enums.FlashSaleNotificationStatus
+    sentAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    clickedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type FlashSaleNotificationUncheckedUpdateManyWithoutBuyerInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    flashSaleId?: StringFieldUpdateOperationsInput | string
+    channel?: EnumNotificationChannelFieldUpdateOperationsInput | $Enums.NotificationChannel
+    status?: EnumFlashSaleNotificationStatusFieldUpdateOperationsInput | $Enums.FlashSaleNotificationStatus
+    sentAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    clickedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
   export type OrderCreateManyListingInput = {
     id?: string
     buyerId: string
@@ -49529,6 +59044,17 @@ export namespace Prisma {
     updatedAt?: Date | string
   }
 
+  export type SpoilageRiskLogCreateManyListingInput = {
+    id?: string
+    previousBand?: $Enums.SpoilageRiskBand | null
+    newBand: $Enums.SpoilageRiskBand
+    riskScore: number
+    hoursUntilExpiry: number
+    remainingKg: number
+    calculatedAt?: Date | string
+    triggeredFlashSale?: boolean
+  }
+
   export type OrderUpdateWithoutListingInput = {
     id?: StringFieldUpdateOperationsInput | string
     quantityKg?: FloatFieldUpdateOperationsInput | number
@@ -49546,6 +59072,7 @@ export namespace Prisma {
     messages?: MessageUpdateManyWithoutOrderNestedInput
     preOrder?: PreOrderUpdateOneWithoutFulfilledOrderNestedInput
     coOpMember?: CoOpMemberUpdateOneWithoutOrderNestedInput
+    flashSaleClaims?: FlashSaleClaimUpdateManyWithoutOrderNestedInput
   }
 
   export type OrderUncheckedUpdateWithoutListingInput = {
@@ -49565,6 +59092,7 @@ export namespace Prisma {
     messages?: MessageUncheckedUpdateManyWithoutOrderNestedInput
     preOrder?: PreOrderUncheckedUpdateOneWithoutFulfilledOrderNestedInput
     coOpMember?: CoOpMemberUncheckedUpdateOneWithoutOrderNestedInput
+    flashSaleClaims?: FlashSaleClaimUncheckedUpdateManyWithoutOrderNestedInput
   }
 
   export type OrderUncheckedUpdateManyWithoutListingInput = {
@@ -49709,6 +59237,39 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type SpoilageRiskLogUpdateWithoutListingInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    previousBand?: NullableEnumSpoilageRiskBandFieldUpdateOperationsInput | $Enums.SpoilageRiskBand | null
+    newBand?: EnumSpoilageRiskBandFieldUpdateOperationsInput | $Enums.SpoilageRiskBand
+    riskScore?: FloatFieldUpdateOperationsInput | number
+    hoursUntilExpiry?: FloatFieldUpdateOperationsInput | number
+    remainingKg?: FloatFieldUpdateOperationsInput | number
+    calculatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    triggeredFlashSale?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type SpoilageRiskLogUncheckedUpdateWithoutListingInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    previousBand?: NullableEnumSpoilageRiskBandFieldUpdateOperationsInput | $Enums.SpoilageRiskBand | null
+    newBand?: EnumSpoilageRiskBandFieldUpdateOperationsInput | $Enums.SpoilageRiskBand
+    riskScore?: FloatFieldUpdateOperationsInput | number
+    hoursUntilExpiry?: FloatFieldUpdateOperationsInput | number
+    remainingKg?: FloatFieldUpdateOperationsInput | number
+    calculatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    triggeredFlashSale?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type SpoilageRiskLogUncheckedUpdateManyWithoutListingInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    previousBand?: NullableEnumSpoilageRiskBandFieldUpdateOperationsInput | $Enums.SpoilageRiskBand | null
+    newBand?: EnumSpoilageRiskBandFieldUpdateOperationsInput | $Enums.SpoilageRiskBand
+    riskScore?: FloatFieldUpdateOperationsInput | number
+    hoursUntilExpiry?: FloatFieldUpdateOperationsInput | number
+    remainingKg?: FloatFieldUpdateOperationsInput | number
+    calculatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    triggeredFlashSale?: BoolFieldUpdateOperationsInput | boolean
+  }
+
   export type ReviewCreateManyOrderInput = {
     id?: string
     fromUserId: string
@@ -49727,6 +59288,18 @@ export namespace Prisma {
     isRead?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
+  }
+
+  export type FlashSaleClaimCreateManyOrderInput = {
+    id?: string
+    flashSaleId: string
+    buyerId: string
+    quantityKg: number
+    pricePerKg: number
+    totalPrice: number
+    status: $Enums.FlashSaleClaimStatus
+    claimedAt?: Date | string
+    expiresAt: Date | string
   }
 
   export type ReviewUpdateWithoutOrderInput = {
@@ -49789,6 +59362,42 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type FlashSaleClaimUpdateWithoutOrderInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    quantityKg?: FloatFieldUpdateOperationsInput | number
+    pricePerKg?: FloatFieldUpdateOperationsInput | number
+    totalPrice?: FloatFieldUpdateOperationsInput | number
+    status?: EnumFlashSaleClaimStatusFieldUpdateOperationsInput | $Enums.FlashSaleClaimStatus
+    claimedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    flashSale?: FlashSaleUpdateOneRequiredWithoutClaimsNestedInput
+    buyer?: UserUpdateOneRequiredWithoutFlashSaleClaimsNestedInput
+  }
+
+  export type FlashSaleClaimUncheckedUpdateWithoutOrderInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    flashSaleId?: StringFieldUpdateOperationsInput | string
+    buyerId?: StringFieldUpdateOperationsInput | string
+    quantityKg?: FloatFieldUpdateOperationsInput | number
+    pricePerKg?: FloatFieldUpdateOperationsInput | number
+    totalPrice?: FloatFieldUpdateOperationsInput | number
+    status?: EnumFlashSaleClaimStatusFieldUpdateOperationsInput | $Enums.FlashSaleClaimStatus
+    claimedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FlashSaleClaimUncheckedUpdateManyWithoutOrderInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    flashSaleId?: StringFieldUpdateOperationsInput | string
+    buyerId?: StringFieldUpdateOperationsInput | string
+    quantityKg?: FloatFieldUpdateOperationsInput | number
+    pricePerKg?: FloatFieldUpdateOperationsInput | number
+    totalPrice?: FloatFieldUpdateOperationsInput | number
+    status?: EnumFlashSaleClaimStatusFieldUpdateOperationsInput | $Enums.FlashSaleClaimStatus
+    claimedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type PlantingInputCreateManyPlantingLogInput = {
     id?: string
     type: string
@@ -49819,6 +59428,10 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     source?: $Enums.CreationSource
+    currentRiskBand?: $Enums.SpoilageRiskBand
+    currentRiskScore?: number
+    lastRiskCalculatedAt?: Date | string | null
+    activeFlashSaleId?: string | null
   }
 
   export type PlantingInputUpdateWithoutPlantingLogInput = {
@@ -49872,12 +59485,18 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     source?: EnumCreationSourceFieldUpdateOperationsInput | $Enums.CreationSource
+    currentRiskBand?: EnumSpoilageRiskBandFieldUpdateOperationsInput | $Enums.SpoilageRiskBand
+    currentRiskScore?: FloatFieldUpdateOperationsInput | number
+    lastRiskCalculatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    activeFlashSaleId?: NullableStringFieldUpdateOperationsInput | string | null
     farmer?: UserUpdateOneRequiredWithoutListingsNestedInput
     orders?: OrderUpdateManyWithoutListingNestedInput
     traceability?: TraceabilityRecordUpdateOneWithoutListingNestedInput
     traceEvents?: TraceEventUpdateManyWithoutListingNestedInput
     preOrders?: PreOrderUpdateManyWithoutMatchedListingNestedInput
     coOps?: CoOpGroupUpdateManyWithoutListingNestedInput
+    spoilageRiskLogs?: SpoilageRiskLogUpdateManyWithoutListingNestedInput
+    flashSale?: FlashSaleUpdateOneWithoutListingNestedInput
   }
 
   export type ProduceListingUncheckedUpdateWithoutPlantingLogInput = {
@@ -49899,11 +59518,17 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     source?: EnumCreationSourceFieldUpdateOperationsInput | $Enums.CreationSource
+    currentRiskBand?: EnumSpoilageRiskBandFieldUpdateOperationsInput | $Enums.SpoilageRiskBand
+    currentRiskScore?: FloatFieldUpdateOperationsInput | number
+    lastRiskCalculatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    activeFlashSaleId?: NullableStringFieldUpdateOperationsInput | string | null
     orders?: OrderUncheckedUpdateManyWithoutListingNestedInput
     traceability?: TraceabilityRecordUncheckedUpdateOneWithoutListingNestedInput
     traceEvents?: TraceEventUncheckedUpdateManyWithoutListingNestedInput
     preOrders?: PreOrderUncheckedUpdateManyWithoutMatchedListingNestedInput
     coOps?: CoOpGroupUncheckedUpdateManyWithoutListingNestedInput
+    spoilageRiskLogs?: SpoilageRiskLogUncheckedUpdateManyWithoutListingNestedInput
+    flashSale?: FlashSaleUncheckedUpdateOneWithoutListingNestedInput
   }
 
   export type ProduceListingUncheckedUpdateManyWithoutPlantingLogInput = {
@@ -49925,6 +59550,10 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     source?: EnumCreationSourceFieldUpdateOperationsInput | $Enums.CreationSource
+    currentRiskBand?: EnumSpoilageRiskBandFieldUpdateOperationsInput | $Enums.SpoilageRiskBand
+    currentRiskScore?: FloatFieldUpdateOperationsInput | number
+    lastRiskCalculatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    activeFlashSaleId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type CoOpMemberCreateManyCoOpGroupInput = {
@@ -49975,6 +59604,90 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type FlashSaleClaimCreateManyFlashSaleInput = {
+    id?: string
+    buyerId: string
+    quantityKg: number
+    pricePerKg: number
+    totalPrice: number
+    orderId?: string | null
+    status: $Enums.FlashSaleClaimStatus
+    claimedAt?: Date | string
+    expiresAt: Date | string
+  }
+
+  export type FlashSaleNotificationCreateManyFlashSaleInput = {
+    id?: string
+    buyerId: string
+    channel: $Enums.NotificationChannel
+    status?: $Enums.FlashSaleNotificationStatus
+    sentAt?: Date | string | null
+    clickedAt?: Date | string | null
+  }
+
+  export type FlashSaleClaimUpdateWithoutFlashSaleInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    quantityKg?: FloatFieldUpdateOperationsInput | number
+    pricePerKg?: FloatFieldUpdateOperationsInput | number
+    totalPrice?: FloatFieldUpdateOperationsInput | number
+    status?: EnumFlashSaleClaimStatusFieldUpdateOperationsInput | $Enums.FlashSaleClaimStatus
+    claimedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    buyer?: UserUpdateOneRequiredWithoutFlashSaleClaimsNestedInput
+    order?: OrderUpdateOneWithoutFlashSaleClaimsNestedInput
+  }
+
+  export type FlashSaleClaimUncheckedUpdateWithoutFlashSaleInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    buyerId?: StringFieldUpdateOperationsInput | string
+    quantityKg?: FloatFieldUpdateOperationsInput | number
+    pricePerKg?: FloatFieldUpdateOperationsInput | number
+    totalPrice?: FloatFieldUpdateOperationsInput | number
+    orderId?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumFlashSaleClaimStatusFieldUpdateOperationsInput | $Enums.FlashSaleClaimStatus
+    claimedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FlashSaleClaimUncheckedUpdateManyWithoutFlashSaleInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    buyerId?: StringFieldUpdateOperationsInput | string
+    quantityKg?: FloatFieldUpdateOperationsInput | number
+    pricePerKg?: FloatFieldUpdateOperationsInput | number
+    totalPrice?: FloatFieldUpdateOperationsInput | number
+    orderId?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumFlashSaleClaimStatusFieldUpdateOperationsInput | $Enums.FlashSaleClaimStatus
+    claimedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FlashSaleNotificationUpdateWithoutFlashSaleInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    channel?: EnumNotificationChannelFieldUpdateOperationsInput | $Enums.NotificationChannel
+    status?: EnumFlashSaleNotificationStatusFieldUpdateOperationsInput | $Enums.FlashSaleNotificationStatus
+    sentAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    clickedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    buyer?: UserUpdateOneRequiredWithoutFlashSaleNotificationsNestedInput
+  }
+
+  export type FlashSaleNotificationUncheckedUpdateWithoutFlashSaleInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    buyerId?: StringFieldUpdateOperationsInput | string
+    channel?: EnumNotificationChannelFieldUpdateOperationsInput | $Enums.NotificationChannel
+    status?: EnumFlashSaleNotificationStatusFieldUpdateOperationsInput | $Enums.FlashSaleNotificationStatus
+    sentAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    clickedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type FlashSaleNotificationUncheckedUpdateManyWithoutFlashSaleInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    buyerId?: StringFieldUpdateOperationsInput | string
+    channel?: EnumNotificationChannelFieldUpdateOperationsInput | $Enums.NotificationChannel
+    status?: EnumFlashSaleNotificationStatusFieldUpdateOperationsInput | $Enums.FlashSaleNotificationStatus
+    sentAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    clickedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
 
 
   /**
@@ -50000,6 +59713,10 @@ export namespace Prisma {
      * @deprecated Use CoOpGroupCountOutputTypeDefaultArgs instead
      */
     export type CoOpGroupCountOutputTypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = CoOpGroupCountOutputTypeDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use FlashSaleCountOutputTypeDefaultArgs instead
+     */
+    export type FlashSaleCountOutputTypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = FlashSaleCountOutputTypeDefaultArgs<ExtArgs>
     /**
      * @deprecated Use UserDefaultArgs instead
      */
@@ -50104,6 +59821,22 @@ export namespace Prisma {
      * @deprecated Use BuyerCropAlertDefaultArgs instead
      */
     export type BuyerCropAlertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = BuyerCropAlertDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use SpoilageRiskLogDefaultArgs instead
+     */
+    export type SpoilageRiskLogArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = SpoilageRiskLogDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use FlashSaleDefaultArgs instead
+     */
+    export type FlashSaleArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = FlashSaleDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use FlashSaleClaimDefaultArgs instead
+     */
+    export type FlashSaleClaimArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = FlashSaleClaimDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use FlashSaleNotificationDefaultArgs instead
+     */
+    export type FlashSaleNotificationArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = FlashSaleNotificationDefaultArgs<ExtArgs>
 
   /**
    * Batch Payload for updateMany & deleteMany & createMany

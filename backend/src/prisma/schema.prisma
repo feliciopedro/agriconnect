@@ -131,6 +131,13 @@ model User {
   coOpContributions  CoOpMember[]       @relation("CoOpContributions")
   cropAlerts         BuyerCropAlert[]   @relation("BuyerCropAlerts")
 
+  flashSaleOptOut    Boolean            @default(false)
+  flashSaleRadius    Int                @default(20)
+
+  flashSalesCreated  FlashSale[]        @relation("FarmerFlashSales")
+  flashSaleClaims    FlashSaleClaim[]   @relation("BuyerFlashSaleClaims")
+  flashSaleNotifications FlashSaleNotification[] @relation("BuyerFlashSaleNotifications")
+
   @@index([role])
   @@index([latitude, longitude])
 }
@@ -204,11 +211,20 @@ model ProduceListing {
   plantingLogId      String?
   plantingLog        PlantingLog?        @relation(fields: [plantingLogId], references: [id], onDelete: SetNull)
 
+  currentRiskBand    SpoilageRiskBand    @default(LOW)
+  currentRiskScore   Float               @default(0)
+  lastRiskCalculatedAt DateTime?
+  activeFlashSaleId  String?
+
+  spoilageRiskLogs   SpoilageRiskLog[]   @relation("ProduceListingRiskLogs")
+  flashSale          FlashSale?          @relation("ProduceListingFlashSale")
+
   @@index([cropType, status])
   @@index([latitude, longitude])
   @@index([farmerId])
   @@index([status])
   @@index([plantingLogId])
+  @@index([currentRiskBand, status])
 }
 
 // TraceabilityRecord: 1:1 details for quality audits
@@ -263,6 +279,7 @@ model Order {
   messages          Message[]
   preOrder          PreOrder?        @relation("PreOrderOrder")
   coOpMember        CoOpMember?      @relation("CoOpMemberOrder")
+  flashSaleClaims   FlashSaleClaim[] @relation("OrderFlashSaleClaims")
 
   @@index([buyerId])
   @@index([listingId])
@@ -621,3 +638,122 @@ model BuyerCropAlert {
   @@index([buyerId])
   @@index([cropType, isActive])
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// SPOILAGE MITIGATION & FLASH SALES
+// ─────────────────────────────────────────────────────────────────────────────
+
+enum SpoilageRiskBand {
+  LOW
+  MEDIUM
+  HIGH
+  CRITICAL
+}
+
+enum FlashSaleStatus {
+  ACTIVE
+  SOLD
+  EXPIRED
+  CANCELLED
+}
+
+enum FlashSaleNotificationStatus {
+  QUEUED
+  SENT
+  FAILED
+  CLICKED
+}
+
+enum FlashSaleClaimStatus {
+  PENDING
+  CONFIRMED
+  EXPIRED
+  CANCELLED
+}
+
+enum NotificationChannel {
+  IN_APP
+  SMS
+  PUSH
+}
+
+model SpoilageRiskLog {
+  id                 String            @id @default(uuid())
+  listingId          String
+  listing            ProduceListing    @relation("ProduceListingRiskLogs", fields: [listingId], references: [id], onDelete: Cascade)
+  previousBand       SpoilageRiskBand?
+  newBand            SpoilageRiskBand
+  riskScore          Float
+  hoursUntilExpiry   Float
+  remainingKg        Float
+  calculatedAt       DateTime          @default(now())
+  triggeredFlashSale Boolean           @default(false)
+
+  @@index([listingId, calculatedAt])
+  @@index([newBand, calculatedAt])
+}
+
+model FlashSale {
+  id                 String                  @id @default(uuid())
+  listingId          String                  @unique
+  listing            ProduceListing          @relation("ProduceListingFlashSale", fields: [listingId], references: [id], onDelete: Cascade)
+  farmerId           String
+  farmer             User                    @relation("FarmerFlashSales", fields: [farmerId], references: [id], onDelete: Cascade)
+  originalPricePerKg Float
+  discountPercent    Float
+  flashPricePerKg    Float
+  quantityKg         Float
+  soldKg             Float                   @default(0)
+  riskBand           SpoilageRiskBand
+  riskScore          Float
+  status             FlashSaleStatus         @default(ACTIVE)
+  expiresAt          DateTime
+  farmerApproved     Boolean                 @default(false)
+  cancelledAt        DateTime?
+  cancelReason       String?
+  notificationsSent  Int                     @default(0)
+  buyersClaimed      Int                     @default(0)
+  createdAt          DateTime                @default(now())
+  updatedAt          DateTime                @updatedAt
+  claims             FlashSaleClaim[]        @relation("FlashSaleClaims")
+  notifications      FlashSaleNotification[] @relation("FlashSaleNotifications")
+
+  @@index([status, expiresAt])
+  @@index([farmerId])
+}
+
+model FlashSaleClaim {
+  id          String               @id @default(uuid())
+  flashSaleId String
+  flashSale   FlashSale            @relation("FlashSaleClaims", fields: [flashSaleId], references: [id], onDelete: Cascade)
+  buyerId     String
+  buyer       User                 @relation("BuyerFlashSaleClaims", fields: [buyerId], references: [id], onDelete: Cascade)
+  quantityKg  Float
+  pricePerKg  Float
+  totalPrice  Float
+  orderId     String?
+  order       Order?               @relation("OrderFlashSaleClaims", fields: [orderId], references: [id], onDelete: SetNull)
+  status      FlashSaleClaimStatus
+  claimedAt   DateTime             @default(now())
+  expiresAt   DateTime
+
+  @@index([flashSaleId])
+  @@index([buyerId])
+  @@unique([flashSaleId, buyerId])
+}
+
+model FlashSaleNotification {
+  id          String                      @id @default(uuid())
+  flashSaleId String
+  flashSale   FlashSale                   @relation("FlashSaleNotifications", fields: [flashSaleId], references: [id], onDelete: Cascade)
+  buyerId     String
+  buyer       User                        @relation("BuyerFlashSaleNotifications", fields: [buyerId], references: [id], onDelete: Cascade)
+  channel     NotificationChannel
+  status      FlashSaleNotificationStatus @default(QUEUED)
+  sentAt      DateTime?
+  clickedAt   DateTime?
+
+  @@index([flashSaleId])
+  @@index([buyerId])
+}
+
