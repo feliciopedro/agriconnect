@@ -148,3 +148,5 @@ export interface HealthCheckResponse {
     };
   };
 }
+
+export * from './flashSale.types';
