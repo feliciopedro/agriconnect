@@ -157,7 +157,7 @@ async function run() {
   // Finalize PDF
   doc.end();
 
-  await new Promise((resolve) => writeStream.on('finish', resolve));
+  await new Promise<void>((resolve) => writeStream.on('finish', () => resolve()));
   
   const stats = fs.statSync(outputPath);
   console.log('\n====================================');
