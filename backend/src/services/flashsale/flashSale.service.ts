@@ -41,6 +41,11 @@ export class FlashSaleService {
       throw createError('A flash sale is already active for this listing', 'CONFLICT', 409);
     }
 
+    // Clear out any old inactive flash sale records (expired/cancelled/sold) for this listing
+    await (prisma as any).flashSale.deleteMany({
+      where: { listingId }
+    });
+
     const risk = SpoilageRiskService.calculateRiskScore(listing);
 
     if (triggerSource === 'AUTO_JOB' && risk.band !== 'HIGH' && risk.band !== 'CRITICAL') {

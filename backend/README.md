@@ -364,3 +364,34 @@ Every route that accepts a body, query params, or URL params validates them with
 ### Mock Mode
 
 Both Paystack and Africa's Talking integrations fall back to console logging (no real HTTP calls) when their respective API keys contain the substring `mock`. This lets you run the entire server locally without any external credentials.
+
+---
+
+## Scheduled Jobs
+
+AgriConnect uses scheduled background processes to calculate crop spoilage risk scores, trigger auto flash sales, and manage stale claims/listings.
+
+### Recommended Production Cron Schedules
+- **Risk Scoring Job**: Run every 2 hours (`0 */2 * * *`)
+  - Evaluates active produce listings, updates current spoilage risk levels, and automatically lists high-risk crops at discounted flash prices.
+- **Expiry Job**: Run every 15 minutes (`*/15 * * * *`)
+  - Clears stale pending reservations/claims, terminates expired flash sale campaigns, and auto-expires old listings.
+
+### Triggering Jobs manually (MVP Demo)
+For the MVP, these jobs are exposed as endpoints to trigger manually:
+- **POST `/api/jobs/risk-scoring`** (Admin / SuperAdmin)
+- **POST `/api/jobs/expiry`** (Admin / SuperAdmin)
+- **GET `/api/jobs/risk-scoring/status`** (SuperAdmin telemetry)
+
+### Production Setup
+For production deployments, install `node-cron` or configure a dedicated worker/scheduler process:
+```typescript
+import cron from 'node-cron';
+import { SpoilageJobService } from './services/flashsale/spoilageJob.service';
+
+// Calculate risk levels and auto-trigger sales every 2 hours
+cron.schedule('0 */2 * * *', () => SpoilageJobService.runRiskScoringJob());
+
+// Release claims and expire listings every 15 minutes
+cron.schedule('*/15 * * * *', () => SpoilageJobService.runExpiryJob());
+```
