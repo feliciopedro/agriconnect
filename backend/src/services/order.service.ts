@@ -38,13 +38,23 @@ export class OrderService {
         throw createError('Listing is no longer available for orders', 'LISTING_UNAVAILABLE', 400);
       }
 
-      // 2. Decrement listing stock atomically
-      const updatedListing = await tx.produceListing.update({
-        where: { id: listingId },
-        data: {
-          remainingKg: { decrement: quantityKg },
-        },
-      });
+      // 2. Decrement listing stock atomically (bypass if source is FLASH_SALE)
+      let updatedListing;
+      if (source === 'FLASH_SALE') {
+        updatedListing = await tx.produceListing.findUnique({
+          where: { id: listingId },
+        });
+        if (!updatedListing) {
+          throw createError('Produce listing not found', 'LISTING_NOT_FOUND', 404);
+        }
+      } else {
+        updatedListing = await tx.produceListing.update({
+          where: { id: listingId },
+          data: {
+            remainingKg: { decrement: quantityKg },
+          },
+        });
+      }
 
       // 3. Assert stock sufficiency (roll back if negative result)
       if (updatedListing.remainingKg < 0) {
@@ -67,7 +77,19 @@ export class OrderService {
       }
 
       // 5. Create Order
-      const totalPrice = parseFloat((quantityKg * listing.pricePerKg).toFixed(2));
+      let price = listing.pricePerKg;
+      if (source === 'FLASH_SALE') {
+        const flashSale = await (tx as any).flashSale.findFirst({
+          where: {
+            listingId: listingId,
+            status: { in: ['ACTIVE', 'SOLD'] }
+          }
+        });
+        if (flashSale) {
+          price = flashSale.flashPricePerKg;
+        }
+      }
+      const totalPrice = parseFloat((quantityKg * price).toFixed(2));
       const order = await tx.order.create({
         data: {
           buyerId,

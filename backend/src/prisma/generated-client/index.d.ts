@@ -225,7 +225,8 @@ export type ListingStatus = (typeof ListingStatus)[keyof typeof ListingStatus]
 export const CreationSource: {
   WEB: 'WEB',
   USSD: 'USSD',
-  SMS: 'SMS'
+  SMS: 'SMS',
+  FLASH_SALE: 'FLASH_SALE'
 };
 
 export type CreationSource = (typeof CreationSource)[keyof typeof CreationSource]

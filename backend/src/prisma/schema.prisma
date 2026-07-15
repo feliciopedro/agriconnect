@@ -83,6 +83,7 @@ enum CreationSource {
   WEB
   USSD
   SMS
+  FLASH_SALE
 }
 
 // User: unified table for all system users

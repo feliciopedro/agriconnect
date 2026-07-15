@@ -604,7 +604,8 @@ exports.ListingStatus = exports.$Enums.ListingStatus = {
 exports.CreationSource = exports.$Enums.CreationSource = {
   WEB: 'WEB',
   USSD: 'USSD',
-  SMS: 'SMS'
+  SMS: 'SMS',
+  FLASH_SALE: 'FLASH_SALE'
 };
 
 exports.SpoilageRiskBand = exports.$Enums.SpoilageRiskBand = {
