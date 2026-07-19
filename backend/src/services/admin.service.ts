@@ -161,8 +161,8 @@ export class AdminService {
       throw createError('User not found', 'USER_NOT_FOUND', 404);
     }
 
-    return await prisma.$transaction(async (tx) => {
-      const updated = await tx.user.update({
+    const updated = await prisma.$transaction(async (tx) => {
+      const updatedUser = await tx.user.update({
         where: { id: userId },
         data: { isVerified: true },
       });
@@ -171,12 +171,25 @@ export class AdminService {
         userId,
         'ACCOUNT_VERIFIED',
         'Your account has been verified on AgriConnect',
-        false,
+        true,
         tx
       );
 
-      return updated;
+      return updatedUser;
     });
+
+    if (user.phone) {
+      try {
+        const { SmsOutboundService } = require('./ussd/smsOutbound.service');
+        await SmsOutboundService.sendSms(user.phone, 'account_verified', {
+          name: user.name || 'User',
+        });
+      } catch (err) {
+        console.error('Failed to send account verified SMS via SmsOutboundService:', err);
+      }
+    }
+
+    return updated;
   }
 
   /**

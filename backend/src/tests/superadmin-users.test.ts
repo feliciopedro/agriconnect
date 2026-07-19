@@ -30,6 +30,10 @@ jest.mock('../prisma/client', () => ({
     notification: {
       create: jest.fn().mockResolvedValue({}),
     },
+    ussdShortMessage: {
+      create: jest.fn().mockResolvedValue({ id: 'sms-1' }),
+      update: jest.fn().mockResolvedValue({}),
+    },
   },
 }));
 
@@ -199,8 +203,13 @@ describe('SuperAdminUserManagementService', () => {
   });
 
   describe('forceVerifyUser', () => {
-    it('sets isVerified to true', async () => {
-      (prisma.user.findUnique as jest.Mock).mockResolvedValue({ id: 'u1', isVerified: false });
+    it('sets isVerified to true and dispatches SMS notification', async () => {
+      (prisma.user.findUnique as jest.Mock).mockResolvedValue({
+        id: 'u1',
+        name: 'Verified User',
+        phone: '+233241234567',
+        isVerified: false,
+      });
       (prisma.user.update as jest.Mock).mockResolvedValue({ id: 'u1', isVerified: true });
 
       const result = await SuperAdminUserManagementService.forceVerifyUser('sa-1', 'u1');
@@ -209,6 +218,18 @@ describe('SuperAdminUserManagementService', () => {
       expect(prisma.user.update).toHaveBeenCalledWith({
         where: { id: 'u1' },
         data: { isVerified: true },
+      });
+      expect(prisma.notification.create).toHaveBeenCalledWith({
+        data: expect.objectContaining({
+          userId: 'u1',
+          type: 'ACCOUNT_VERIFIED',
+        }),
+      });
+      expect(prisma.ussdShortMessage.create).toHaveBeenCalledWith({
+        data: expect.objectContaining({
+          toPhone: '+233241234567',
+          triggerAction: 'account_verified',
+        }),
       });
     });
   });

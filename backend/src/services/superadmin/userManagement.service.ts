@@ -453,8 +453,19 @@ export class SuperAdminUserManagementService {
       userId,
       'ACCOUNT_VERIFIED',
       'Your account has been verified by the administrator.',
-      false
+      true
     );
+
+    if (targetUser.phone) {
+      try {
+        const { SmsOutboundService } = require('../ussd/smsOutbound.service');
+        await SmsOutboundService.sendSms(targetUser.phone, 'account_verified', {
+          name: targetUser.name || 'User',
+        });
+      } catch (err) {
+        console.error('Failed to send force verify SMS via SmsOutboundService:', err);
+      }
+    }
 
     await AuditLogService.log({
       actorId,

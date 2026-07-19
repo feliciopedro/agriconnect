@@ -66,6 +66,7 @@ export const T = {
     flash_sale_expired_partial: "Your flash sale sold {soldKg}kg out of {totalKg}kg. {remainingKg}kg is still available at the original price.",
     flash_sale_cancelled_buyer: "The flash sale you claimed was cancelled by the farmer. Your claim has been released.",
     flash_sale_approved_farmer: "You have approved the flash sale. Buyers are being notified.",
+    account_verified: "AgriConnect: Your account has been verified by the administrator. You now have full access to trading and marketplace features.",
   },
   tw: {
     welcome:         "Akwaaba AgriConnect",
@@ -125,6 +126,7 @@ export const T = {
     welcome_new: "Akwaaba AgriConnect! Wo din foforo sɛ {role}. Twa *920*11# start. PIN: {pin}.",
     lang_changed: "AgriConnect: Kasa sesaa {lang}. Twa *920*11# to continue.",
     otp_code: "Wo AgriConnect verification code yi ne: {code}. Ɛkora bema sima 5.",
+    account_verified: "AgriConnect: Admin agye w'akawnt tom. Seesei wubumi adawurabɔ na woatɔ nneɛma nyinaa.",
   },
   ew: {
     welcome:         "Woezon AfriConnect",
@@ -184,6 +186,7 @@ export const T = {
     welcome_new: "Woezon AgriConnect! Wo ŋkɔ le anyi sɛ {role}. Fɔ *920*11# na dze egɔme. PIN: {pin}.",
     lang_changed: "AgriConnect: Gbe sesaa {lang}. Fɔ *920*11# na dze egɔme.",
     otp_code: "Wo AgriConnect verification code enye: {code}. Enye na aɖabaƒoƒo 5.",
+    account_verified: "AgriConnect: Wɔɖo kpe wò akawnt dzi. Fieyiyi ŋu dɔwɔnuwo katã le asiwò fifia.",
   },
   ha: {
     welcome:         "Barka da zuwa AgriConnect",
@@ -243,6 +246,7 @@ export const T = {
     welcome_new: "Barka da zuwa AgriConnect! Sunanka a matsayin {role}. Kira *920*11# don farawa. PIN: {pin}.",
     lang_changed: "AgriConnect: An canza harshe zuwa {lang}. Kira *920*11# don ci gaba.",
     otp_code: "Lambar tabbatarwa na AgriConnect dinka shine: {code}. Yana da aiki na mintuna 5.",
+    account_verified: "AgriConnect: An tabbatar da asusunku ta hanyar gudanarwa. Yanzu zaku iya amfani da duk sassan kasuwa.",
   },
 };
 
