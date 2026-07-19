@@ -115,13 +115,25 @@ export const LoginPage: React.FC = () => {
     },
   });
 
+  const normalizePhoneInput = (raw: string): string => {
+    const digits = raw.replace(/\D/g, '');
+    if (digits.startsWith('233') && digits.length === 12) {
+      return `+${digits}`;
+    }
+    if (digits.startsWith('0') && digits.length === 10) {
+      return `+233${digits.substring(1)}`;
+    }
+    if (digits.length === 9) {
+      return `+233${digits}`;
+    }
+    return raw.startsWith('+') ? raw : `+233${raw.replace(/^0+/, '')}`;
+  };
+
   const handleSendOtp = (e: React.FormEvent) => {
     e.preventDefault();
     if (!phone) return;
 
-    const cleanPhone = phone.trim().replace(/^0+/, '');
-    const fullPhone = `+233${cleanPhone}`;
-
+    const fullPhone = normalizePhoneInput(phone.trim());
     requestOtpMutation.mutate(fullPhone);
   };
 
@@ -129,9 +141,7 @@ export const LoginPage: React.FC = () => {
     e.preventDefault();
     if (!phone || !password) return;
 
-    const cleanPhone = phone.trim().replace(/^0+/, '');
-    const fullPhone = `+233${cleanPhone}`;
-
+    const fullPhone = normalizePhoneInput(phone.trim());
     loginPasswordMutation.mutate({ fullPhone, password });
   };
 
