@@ -338,6 +338,8 @@ exports.Prisma.UssdAuditLogScalarFieldEnum = {
   systemResponse: 'systemResponse',
   action: 'action',
   metadata: 'metadata',
+  previousHash: 'previousHash',
+  hash: 'hash',
   timestamp: 'timestamp'
 };
 
@@ -409,6 +411,8 @@ exports.Prisma.AuditLogScalarFieldEnum = {
   metadata: 'metadata',
   ipAddress: 'ipAddress',
   userAgent: 'userAgent',
+  previousHash: 'previousHash',
+  hash: 'hash',
   timestamp: 'timestamp'
 };
 

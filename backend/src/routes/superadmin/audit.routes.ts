@@ -10,6 +10,7 @@ router.use(authenticateToken);
 router.use(requireSuperAdmin());
 
 router.get('/', SuperAdminAuditController.getAuditLogs);
+router.get('/verify', SuperAdminAuditController.verifyAuditIntegrity);
 router.get('/user/:userId', SuperAdminAuditController.getAuditLogsForUser);
 
 export default router;

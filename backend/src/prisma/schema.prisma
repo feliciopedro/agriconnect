@@ -420,6 +420,8 @@ model UssdAuditLog {
   systemResponse String
   action         String?
   metadata       Json?
+  previousHash   String?
+  hash           String?
   timestamp      DateTime @default(now())
 
   @@index([phone, timestamp])
@@ -532,17 +534,19 @@ model PlantingInput {
 // ─────────────────────────────────────────────────────────────────────────────
 
 model AuditLog {
-  id         String   @id @default(uuid())
-  actorId    String
-  actor      User     @relation("UserAuditLogs", fields: [actorId], references: [id], onDelete: Cascade)
-  actorRole  Role
-  action     String
-  targetType String?
-  targetId   String?
-  metadata   Json?
-  ipAddress  String?
-  userAgent  String?
-  timestamp  DateTime @default(now())
+  id           String   @id @default(uuid())
+  actorId      String
+  actor        User     @relation("UserAuditLogs", fields: [actorId], references: [id], onDelete: Restrict)
+  actorRole    Role
+  action       String
+  targetType   String?
+  targetId     String?
+  metadata     Json?
+  ipAddress    String?
+  userAgent    String?
+  previousHash String?
+  hash         String?
+  timestamp    DateTime @default(now())
 
   @@index([actorId])
   @@index([action])

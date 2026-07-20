@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
 import { SuperAdminAuditService } from '../../services/superadmin/audit.service';
+import { AuditLogService } from '../../services/audit.service';
 
 export class SuperAdminAuditController {
   public static async getAuditLogs(req: Request, res: Response) {
@@ -36,5 +37,11 @@ export class SuperAdminAuditController {
     const { userId } = req.params;
     const logs = await SuperAdminAuditService.getAuditLogsForUser(userId);
     res.json(logs);
+  }
+
+  public static async verifyAuditIntegrity(req: Request, res: Response) {
+    const limit = req.query.limit ? parseInt(req.query.limit as string) : 1000;
+    const integrityReport = await AuditLogService.verifyIntegrity(limit);
+    res.json(integrityReport);
   }
 }

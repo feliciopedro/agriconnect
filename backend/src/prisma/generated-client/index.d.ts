@@ -19540,6 +19540,8 @@ export namespace Prisma {
     userInput: string | null
     systemResponse: string | null
     action: string | null
+    previousHash: string | null
+    hash: string | null
     timestamp: Date | null
   }
 
@@ -19553,6 +19555,8 @@ export namespace Prisma {
     userInput: string | null
     systemResponse: string | null
     action: string | null
+    previousHash: string | null
+    hash: string | null
     timestamp: Date | null
   }
 
@@ -19567,6 +19571,8 @@ export namespace Prisma {
     systemResponse: number
     action: number
     metadata: number
+    previousHash: number
+    hash: number
     timestamp: number
     _all: number
   }
@@ -19582,6 +19588,8 @@ export namespace Prisma {
     userInput?: true
     systemResponse?: true
     action?: true
+    previousHash?: true
+    hash?: true
     timestamp?: true
   }
 
@@ -19595,6 +19603,8 @@ export namespace Prisma {
     userInput?: true
     systemResponse?: true
     action?: true
+    previousHash?: true
+    hash?: true
     timestamp?: true
   }
 
@@ -19609,6 +19619,8 @@ export namespace Prisma {
     systemResponse?: true
     action?: true
     metadata?: true
+    previousHash?: true
+    hash?: true
     timestamp?: true
     _all?: true
   }
@@ -19696,6 +19708,8 @@ export namespace Prisma {
     systemResponse: string
     action: string | null
     metadata: JsonValue | null
+    previousHash: string | null
+    hash: string | null
     timestamp: Date
     _count: UssdAuditLogCountAggregateOutputType | null
     _min: UssdAuditLogMinAggregateOutputType | null
@@ -19727,6 +19741,8 @@ export namespace Prisma {
     systemResponse?: boolean
     action?: boolean
     metadata?: boolean
+    previousHash?: boolean
+    hash?: boolean
     timestamp?: boolean
   }, ExtArgs["result"]["ussdAuditLog"]>
 
@@ -19741,6 +19757,8 @@ export namespace Prisma {
     systemResponse?: boolean
     action?: boolean
     metadata?: boolean
+    previousHash?: boolean
+    hash?: boolean
     timestamp?: boolean
   }, ExtArgs["result"]["ussdAuditLog"]>
 
@@ -19755,6 +19773,8 @@ export namespace Prisma {
     systemResponse?: boolean
     action?: boolean
     metadata?: boolean
+    previousHash?: boolean
+    hash?: boolean
     timestamp?: boolean
   }
 
@@ -19773,6 +19793,8 @@ export namespace Prisma {
       systemResponse: string
       action: string | null
       metadata: Prisma.JsonValue | null
+      previousHash: string | null
+      hash: string | null
       timestamp: Date
     }, ExtArgs["result"]["ussdAuditLog"]>
     composites: {}
@@ -20177,6 +20199,8 @@ export namespace Prisma {
     readonly systemResponse: FieldRef<"UssdAuditLog", 'String'>
     readonly action: FieldRef<"UssdAuditLog", 'String'>
     readonly metadata: FieldRef<"UssdAuditLog", 'Json'>
+    readonly previousHash: FieldRef<"UssdAuditLog", 'String'>
+    readonly hash: FieldRef<"UssdAuditLog", 'String'>
     readonly timestamp: FieldRef<"UssdAuditLog", 'DateTime'>
   }
     
@@ -24714,6 +24738,8 @@ export namespace Prisma {
     targetId: string | null
     ipAddress: string | null
     userAgent: string | null
+    previousHash: string | null
+    hash: string | null
     timestamp: Date | null
   }
 
@@ -24726,6 +24752,8 @@ export namespace Prisma {
     targetId: string | null
     ipAddress: string | null
     userAgent: string | null
+    previousHash: string | null
+    hash: string | null
     timestamp: Date | null
   }
 
@@ -24739,6 +24767,8 @@ export namespace Prisma {
     metadata: number
     ipAddress: number
     userAgent: number
+    previousHash: number
+    hash: number
     timestamp: number
     _all: number
   }
@@ -24753,6 +24783,8 @@ export namespace Prisma {
     targetId?: true
     ipAddress?: true
     userAgent?: true
+    previousHash?: true
+    hash?: true
     timestamp?: true
   }
 
@@ -24765,6 +24797,8 @@ export namespace Prisma {
     targetId?: true
     ipAddress?: true
     userAgent?: true
+    previousHash?: true
+    hash?: true
     timestamp?: true
   }
 
@@ -24778,6 +24812,8 @@ export namespace Prisma {
     metadata?: true
     ipAddress?: true
     userAgent?: true
+    previousHash?: true
+    hash?: true
     timestamp?: true
     _all?: true
   }
@@ -24864,6 +24900,8 @@ export namespace Prisma {
     metadata: JsonValue | null
     ipAddress: string | null
     userAgent: string | null
+    previousHash: string | null
+    hash: string | null
     timestamp: Date
     _count: AuditLogCountAggregateOutputType | null
     _min: AuditLogMinAggregateOutputType | null
@@ -24894,6 +24932,8 @@ export namespace Prisma {
     metadata?: boolean
     ipAddress?: boolean
     userAgent?: boolean
+    previousHash?: boolean
+    hash?: boolean
     timestamp?: boolean
     actor?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["auditLog"]>
@@ -24908,6 +24948,8 @@ export namespace Prisma {
     metadata?: boolean
     ipAddress?: boolean
     userAgent?: boolean
+    previousHash?: boolean
+    hash?: boolean
     timestamp?: boolean
     actor?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["auditLog"]>
@@ -24922,6 +24964,8 @@ export namespace Prisma {
     metadata?: boolean
     ipAddress?: boolean
     userAgent?: boolean
+    previousHash?: boolean
+    hash?: boolean
     timestamp?: boolean
   }
 
@@ -24947,6 +24991,8 @@ export namespace Prisma {
       metadata: Prisma.JsonValue | null
       ipAddress: string | null
       userAgent: string | null
+      previousHash: string | null
+      hash: string | null
       timestamp: Date
     }, ExtArgs["result"]["auditLog"]>
     composites: {}
@@ -25351,6 +25397,8 @@ export namespace Prisma {
     readonly metadata: FieldRef<"AuditLog", 'Json'>
     readonly ipAddress: FieldRef<"AuditLog", 'String'>
     readonly userAgent: FieldRef<"AuditLog", 'String'>
+    readonly previousHash: FieldRef<"AuditLog", 'String'>
+    readonly hash: FieldRef<"AuditLog", 'String'>
     readonly timestamp: FieldRef<"AuditLog", 'DateTime'>
   }
     
@@ -36137,6 +36185,8 @@ export namespace Prisma {
     systemResponse: 'systemResponse',
     action: 'action',
     metadata: 'metadata',
+    previousHash: 'previousHash',
+    hash: 'hash',
     timestamp: 'timestamp'
   };
 
@@ -36223,6 +36273,8 @@ export namespace Prisma {
     metadata: 'metadata',
     ipAddress: 'ipAddress',
     userAgent: 'userAgent',
+    previousHash: 'previousHash',
+    hash: 'hash',
     timestamp: 'timestamp'
   };
 
@@ -38158,6 +38210,8 @@ export namespace Prisma {
     systemResponse?: StringFilter<"UssdAuditLog"> | string
     action?: StringNullableFilter<"UssdAuditLog"> | string | null
     metadata?: JsonNullableFilter<"UssdAuditLog">
+    previousHash?: StringNullableFilter<"UssdAuditLog"> | string | null
+    hash?: StringNullableFilter<"UssdAuditLog"> | string | null
     timestamp?: DateTimeFilter<"UssdAuditLog"> | Date | string
   }
 
@@ -38172,6 +38226,8 @@ export namespace Prisma {
     systemResponse?: SortOrder
     action?: SortOrderInput | SortOrder
     metadata?: SortOrderInput | SortOrder
+    previousHash?: SortOrderInput | SortOrder
+    hash?: SortOrderInput | SortOrder
     timestamp?: SortOrder
   }
 
@@ -38189,6 +38245,8 @@ export namespace Prisma {
     systemResponse?: StringFilter<"UssdAuditLog"> | string
     action?: StringNullableFilter<"UssdAuditLog"> | string | null
     metadata?: JsonNullableFilter<"UssdAuditLog">
+    previousHash?: StringNullableFilter<"UssdAuditLog"> | string | null
+    hash?: StringNullableFilter<"UssdAuditLog"> | string | null
     timestamp?: DateTimeFilter<"UssdAuditLog"> | Date | string
   }, "id">
 
@@ -38203,6 +38261,8 @@ export namespace Prisma {
     systemResponse?: SortOrder
     action?: SortOrderInput | SortOrder
     metadata?: SortOrderInput | SortOrder
+    previousHash?: SortOrderInput | SortOrder
+    hash?: SortOrderInput | SortOrder
     timestamp?: SortOrder
     _count?: UssdAuditLogCountOrderByAggregateInput
     _max?: UssdAuditLogMaxOrderByAggregateInput
@@ -38223,6 +38283,8 @@ export namespace Prisma {
     systemResponse?: StringWithAggregatesFilter<"UssdAuditLog"> | string
     action?: StringNullableWithAggregatesFilter<"UssdAuditLog"> | string | null
     metadata?: JsonNullableWithAggregatesFilter<"UssdAuditLog">
+    previousHash?: StringNullableWithAggregatesFilter<"UssdAuditLog"> | string | null
+    hash?: StringNullableWithAggregatesFilter<"UssdAuditLog"> | string | null
     timestamp?: DateTimeWithAggregatesFilter<"UssdAuditLog"> | Date | string
   }
 
@@ -38606,6 +38668,8 @@ export namespace Prisma {
     metadata?: JsonNullableFilter<"AuditLog">
     ipAddress?: StringNullableFilter<"AuditLog"> | string | null
     userAgent?: StringNullableFilter<"AuditLog"> | string | null
+    previousHash?: StringNullableFilter<"AuditLog"> | string | null
+    hash?: StringNullableFilter<"AuditLog"> | string | null
     timestamp?: DateTimeFilter<"AuditLog"> | Date | string
     actor?: XOR<UserRelationFilter, UserWhereInput>
   }
@@ -38620,6 +38684,8 @@ export namespace Prisma {
     metadata?: SortOrderInput | SortOrder
     ipAddress?: SortOrderInput | SortOrder
     userAgent?: SortOrderInput | SortOrder
+    previousHash?: SortOrderInput | SortOrder
+    hash?: SortOrderInput | SortOrder
     timestamp?: SortOrder
     actor?: UserOrderByWithRelationInput
   }
@@ -38637,6 +38703,8 @@ export namespace Prisma {
     metadata?: JsonNullableFilter<"AuditLog">
     ipAddress?: StringNullableFilter<"AuditLog"> | string | null
     userAgent?: StringNullableFilter<"AuditLog"> | string | null
+    previousHash?: StringNullableFilter<"AuditLog"> | string | null
+    hash?: StringNullableFilter<"AuditLog"> | string | null
     timestamp?: DateTimeFilter<"AuditLog"> | Date | string
     actor?: XOR<UserRelationFilter, UserWhereInput>
   }, "id">
@@ -38651,6 +38719,8 @@ export namespace Prisma {
     metadata?: SortOrderInput | SortOrder
     ipAddress?: SortOrderInput | SortOrder
     userAgent?: SortOrderInput | SortOrder
+    previousHash?: SortOrderInput | SortOrder
+    hash?: SortOrderInput | SortOrder
     timestamp?: SortOrder
     _count?: AuditLogCountOrderByAggregateInput
     _max?: AuditLogMaxOrderByAggregateInput
@@ -38670,6 +38740,8 @@ export namespace Prisma {
     metadata?: JsonNullableWithAggregatesFilter<"AuditLog">
     ipAddress?: StringNullableWithAggregatesFilter<"AuditLog"> | string | null
     userAgent?: StringNullableWithAggregatesFilter<"AuditLog"> | string | null
+    previousHash?: StringNullableWithAggregatesFilter<"AuditLog"> | string | null
+    hash?: StringNullableWithAggregatesFilter<"AuditLog"> | string | null
     timestamp?: DateTimeWithAggregatesFilter<"AuditLog"> | Date | string
   }
 
@@ -41051,6 +41123,8 @@ export namespace Prisma {
     systemResponse: string
     action?: string | null
     metadata?: NullableJsonNullValueInput | InputJsonValue
+    previousHash?: string | null
+    hash?: string | null
     timestamp?: Date | string
   }
 
@@ -41065,6 +41139,8 @@ export namespace Prisma {
     systemResponse: string
     action?: string | null
     metadata?: NullableJsonNullValueInput | InputJsonValue
+    previousHash?: string | null
+    hash?: string | null
     timestamp?: Date | string
   }
 
@@ -41079,6 +41155,8 @@ export namespace Prisma {
     systemResponse?: StringFieldUpdateOperationsInput | string
     action?: NullableStringFieldUpdateOperationsInput | string | null
     metadata?: NullableJsonNullValueInput | InputJsonValue
+    previousHash?: NullableStringFieldUpdateOperationsInput | string | null
+    hash?: NullableStringFieldUpdateOperationsInput | string | null
     timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -41093,6 +41171,8 @@ export namespace Prisma {
     systemResponse?: StringFieldUpdateOperationsInput | string
     action?: NullableStringFieldUpdateOperationsInput | string | null
     metadata?: NullableJsonNullValueInput | InputJsonValue
+    previousHash?: NullableStringFieldUpdateOperationsInput | string | null
+    hash?: NullableStringFieldUpdateOperationsInput | string | null
     timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -41107,6 +41187,8 @@ export namespace Prisma {
     systemResponse: string
     action?: string | null
     metadata?: NullableJsonNullValueInput | InputJsonValue
+    previousHash?: string | null
+    hash?: string | null
     timestamp?: Date | string
   }
 
@@ -41121,6 +41203,8 @@ export namespace Prisma {
     systemResponse?: StringFieldUpdateOperationsInput | string
     action?: NullableStringFieldUpdateOperationsInput | string | null
     metadata?: NullableJsonNullValueInput | InputJsonValue
+    previousHash?: NullableStringFieldUpdateOperationsInput | string | null
+    hash?: NullableStringFieldUpdateOperationsInput | string | null
     timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -41135,6 +41219,8 @@ export namespace Prisma {
     systemResponse?: StringFieldUpdateOperationsInput | string
     action?: NullableStringFieldUpdateOperationsInput | string | null
     metadata?: NullableJsonNullValueInput | InputJsonValue
+    previousHash?: NullableStringFieldUpdateOperationsInput | string | null
+    hash?: NullableStringFieldUpdateOperationsInput | string | null
     timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -41556,6 +41642,8 @@ export namespace Prisma {
     metadata?: NullableJsonNullValueInput | InputJsonValue
     ipAddress?: string | null
     userAgent?: string | null
+    previousHash?: string | null
+    hash?: string | null
     timestamp?: Date | string
     actor: UserCreateNestedOneWithoutAuditLogsInput
   }
@@ -41570,6 +41658,8 @@ export namespace Prisma {
     metadata?: NullableJsonNullValueInput | InputJsonValue
     ipAddress?: string | null
     userAgent?: string | null
+    previousHash?: string | null
+    hash?: string | null
     timestamp?: Date | string
   }
 
@@ -41582,6 +41672,8 @@ export namespace Prisma {
     metadata?: NullableJsonNullValueInput | InputJsonValue
     ipAddress?: NullableStringFieldUpdateOperationsInput | string | null
     userAgent?: NullableStringFieldUpdateOperationsInput | string | null
+    previousHash?: NullableStringFieldUpdateOperationsInput | string | null
+    hash?: NullableStringFieldUpdateOperationsInput | string | null
     timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
     actor?: UserUpdateOneRequiredWithoutAuditLogsNestedInput
   }
@@ -41596,6 +41688,8 @@ export namespace Prisma {
     metadata?: NullableJsonNullValueInput | InputJsonValue
     ipAddress?: NullableStringFieldUpdateOperationsInput | string | null
     userAgent?: NullableStringFieldUpdateOperationsInput | string | null
+    previousHash?: NullableStringFieldUpdateOperationsInput | string | null
+    hash?: NullableStringFieldUpdateOperationsInput | string | null
     timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -41609,6 +41703,8 @@ export namespace Prisma {
     metadata?: NullableJsonNullValueInput | InputJsonValue
     ipAddress?: string | null
     userAgent?: string | null
+    previousHash?: string | null
+    hash?: string | null
     timestamp?: Date | string
   }
 
@@ -41621,6 +41717,8 @@ export namespace Prisma {
     metadata?: NullableJsonNullValueInput | InputJsonValue
     ipAddress?: NullableStringFieldUpdateOperationsInput | string | null
     userAgent?: NullableStringFieldUpdateOperationsInput | string | null
+    previousHash?: NullableStringFieldUpdateOperationsInput | string | null
+    hash?: NullableStringFieldUpdateOperationsInput | string | null
     timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -41634,6 +41732,8 @@ export namespace Prisma {
     metadata?: NullableJsonNullValueInput | InputJsonValue
     ipAddress?: NullableStringFieldUpdateOperationsInput | string | null
     userAgent?: NullableStringFieldUpdateOperationsInput | string | null
+    previousHash?: NullableStringFieldUpdateOperationsInput | string | null
+    hash?: NullableStringFieldUpdateOperationsInput | string | null
     timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -43995,6 +44095,8 @@ export namespace Prisma {
     systemResponse?: SortOrder
     action?: SortOrder
     metadata?: SortOrder
+    previousHash?: SortOrder
+    hash?: SortOrder
     timestamp?: SortOrder
   }
 
@@ -44008,6 +44110,8 @@ export namespace Prisma {
     userInput?: SortOrder
     systemResponse?: SortOrder
     action?: SortOrder
+    previousHash?: SortOrder
+    hash?: SortOrder
     timestamp?: SortOrder
   }
 
@@ -44021,6 +44125,8 @@ export namespace Prisma {
     userInput?: SortOrder
     systemResponse?: SortOrder
     action?: SortOrder
+    previousHash?: SortOrder
+    hash?: SortOrder
     timestamp?: SortOrder
   }
 
@@ -44300,6 +44406,8 @@ export namespace Prisma {
     metadata?: SortOrder
     ipAddress?: SortOrder
     userAgent?: SortOrder
+    previousHash?: SortOrder
+    hash?: SortOrder
     timestamp?: SortOrder
   }
 
@@ -44312,6 +44420,8 @@ export namespace Prisma {
     targetId?: SortOrder
     ipAddress?: SortOrder
     userAgent?: SortOrder
+    previousHash?: SortOrder
+    hash?: SortOrder
     timestamp?: SortOrder
   }
 
@@ -44324,6 +44434,8 @@ export namespace Prisma {
     targetId?: SortOrder
     ipAddress?: SortOrder
     userAgent?: SortOrder
+    previousHash?: SortOrder
+    hash?: SortOrder
     timestamp?: SortOrder
   }
 
@@ -48507,6 +48619,8 @@ export namespace Prisma {
     metadata?: NullableJsonNullValueInput | InputJsonValue
     ipAddress?: string | null
     userAgent?: string | null
+    previousHash?: string | null
+    hash?: string | null
     timestamp?: Date | string
   }
 
@@ -48519,6 +48633,8 @@ export namespace Prisma {
     metadata?: NullableJsonNullValueInput | InputJsonValue
     ipAddress?: string | null
     userAgent?: string | null
+    previousHash?: string | null
+    hash?: string | null
     timestamp?: Date | string
   }
 
@@ -49343,6 +49459,8 @@ export namespace Prisma {
     metadata?: JsonNullableFilter<"AuditLog">
     ipAddress?: StringNullableFilter<"AuditLog"> | string | null
     userAgent?: StringNullableFilter<"AuditLog"> | string | null
+    previousHash?: StringNullableFilter<"AuditLog"> | string | null
+    hash?: StringNullableFilter<"AuditLog"> | string | null
     timestamp?: DateTimeFilter<"AuditLog"> | Date | string
   }
 
@@ -58006,6 +58124,8 @@ export namespace Prisma {
     metadata?: NullableJsonNullValueInput | InputJsonValue
     ipAddress?: string | null
     userAgent?: string | null
+    previousHash?: string | null
+    hash?: string | null
     timestamp?: Date | string
   }
 
@@ -58626,6 +58746,8 @@ export namespace Prisma {
     metadata?: NullableJsonNullValueInput | InputJsonValue
     ipAddress?: NullableStringFieldUpdateOperationsInput | string | null
     userAgent?: NullableStringFieldUpdateOperationsInput | string | null
+    previousHash?: NullableStringFieldUpdateOperationsInput | string | null
+    hash?: NullableStringFieldUpdateOperationsInput | string | null
     timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -58638,6 +58760,8 @@ export namespace Prisma {
     metadata?: NullableJsonNullValueInput | InputJsonValue
     ipAddress?: NullableStringFieldUpdateOperationsInput | string | null
     userAgent?: NullableStringFieldUpdateOperationsInput | string | null
+    previousHash?: NullableStringFieldUpdateOperationsInput | string | null
+    hash?: NullableStringFieldUpdateOperationsInput | string | null
     timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -58650,6 +58774,8 @@ export namespace Prisma {
     metadata?: NullableJsonNullValueInput | InputJsonValue
     ipAddress?: NullableStringFieldUpdateOperationsInput | string | null
     userAgent?: NullableStringFieldUpdateOperationsInput | string | null
+    previousHash?: NullableStringFieldUpdateOperationsInput | string | null
+    hash?: NullableStringFieldUpdateOperationsInput | string | null
     timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 

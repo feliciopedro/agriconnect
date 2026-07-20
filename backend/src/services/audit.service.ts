@@ -1,3 +1,4 @@
+import crypto from 'crypto';
 import prisma from '../prisma/client';
 import { Prisma, Role } from '../prisma/generated-client';
 
@@ -17,9 +18,49 @@ export interface AuditLogData {
   userAgent?: string;
 }
 
+export interface AuditIntegrityResult {
+  isValid: boolean;
+  totalAudited: number;
+  violations: Array<{
+    logId: string;
+    action: string;
+    timestamp: Date;
+    reason: string;
+    expectedHash?: string;
+    actualHash?: string;
+  }>;
+}
+
 export class AuditLogService {
   /**
-   * Logs a new audit entry.
+   * Computes a SHA-256 cryptographic digest for an audit log record.
+   */
+  public static computeHash(entry: {
+    previousHash?: string | null;
+    actorId: string;
+    actorRole: string;
+    action: string;
+    targetType?: string | null;
+    targetId?: string | null;
+    metadata?: any;
+    timestamp?: Date | string;
+  }): string {
+    const payload = [
+      entry.previousHash || 'GENESIS',
+      entry.actorId,
+      entry.actorRole,
+      entry.action,
+      entry.targetType || '',
+      entry.targetId || '',
+      entry.metadata ? JSON.stringify(entry.metadata) : '',
+      entry.timestamp ? new Date(entry.timestamp).toISOString() : '',
+    ].join('|');
+
+    return crypto.createHash('sha256').update(payload).digest('hex');
+  }
+
+  /**
+   * Logs a new audit entry with cryptographic hash chaining.
    * Can be executed within a transaction block by passing the transaction client.
    */
   public static async log(
@@ -62,6 +103,34 @@ export class AuditLogService {
       };
     }
 
+    // Fetch previous log entry to establish cryptographic hash chain
+    let lastLog: { hash: string | null } | null = null;
+    if (client && (client as any).auditLog && typeof (client as any).auditLog.findFirst === 'function') {
+      lastLog = await (client as any).auditLog.findFirst({
+        orderBy: { timestamp: 'desc' },
+        select: { hash: true },
+      });
+    } else if (prisma && prisma.auditLog && typeof prisma.auditLog.findFirst === 'function') {
+      lastLog = await prisma.auditLog.findFirst({
+        orderBy: { timestamp: 'desc' },
+        select: { hash: true },
+      });
+    }
+
+    const previousHash = lastLog?.hash || 'GENESIS';
+    const timestamp = new Date();
+
+    const hash = AuditLogService.computeHash({
+      previousHash,
+      actorId,
+      actorRole: actorRole as string,
+      action: data.action,
+      targetType,
+      targetId,
+      metadata,
+      timestamp,
+    });
+
     await client.auditLog.create({
       data: {
         actorId,
@@ -72,8 +141,71 @@ export class AuditLogService {
         metadata: metadata ? (metadata as Prisma.InputJsonValue) : Prisma.JsonNull,
         ipAddress: data.ipAddress ?? null,
         userAgent: data.userAgent ?? null,
+        previousHash,
+        hash,
+        timestamp,
       },
     });
+  }
+
+  /**
+   * Verifies the cryptographic integrity of audit logs across the chain.
+   */
+  public static async verifyIntegrity(limit: number = 1000): Promise<AuditIntegrityResult> {
+    const logs = await prisma.auditLog.findMany({
+      orderBy: { timestamp: 'asc' },
+      take: limit,
+    });
+
+    const violations: AuditIntegrityResult['violations'] = [];
+    let priorHash = 'GENESIS';
+
+    for (const log of logs) {
+      // 1. Check if chain link to previous record is unbroken
+      if (log.previousHash && log.previousHash !== priorHash && priorHash !== 'GENESIS') {
+        violations.push({
+          logId: log.id,
+          action: log.action,
+          timestamp: log.timestamp,
+          reason: `Chain broken: previousHash (${log.previousHash}) does not match prior record hash (${priorHash})`,
+        });
+      }
+
+      // 2. Recompute SHA-256 digest to verify data tampering
+      if (log.hash) {
+        const expectedHash = AuditLogService.computeHash({
+          previousHash: log.previousHash,
+          actorId: log.actorId,
+          actorRole: log.actorRole,
+          action: log.action,
+          targetType: log.targetType,
+          targetId: log.targetId,
+          metadata: log.metadata,
+          timestamp: log.timestamp,
+        });
+
+        if (log.hash !== expectedHash) {
+          violations.push({
+            logId: log.id,
+            action: log.action,
+            timestamp: log.timestamp,
+            reason: `Data tampering detected: record hash mismatch`,
+            expectedHash,
+            actualHash: log.hash,
+          });
+        }
+      }
+
+      if (log.hash) {
+        priorHash = log.hash;
+      }
+    }
+
+    return {
+      isValid: violations.length === 0,
+      totalAudited: logs.length,
+      violations,
+    };
   }
 
   /**
@@ -130,3 +262,4 @@ export class AuditLogService {
     };
   }
 }
+

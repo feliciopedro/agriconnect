@@ -9,6 +9,7 @@ jest.mock('../prisma/client', () => ({
   default: {
     auditLog: {
       create: jest.fn(),
+      findFirst: jest.fn(),
       findMany: jest.fn(),
       count: jest.fn(),
     },
@@ -81,8 +82,9 @@ beforeEach(() => {
 });
 
 describe('AuditLogService', () => {
-  it('creates log database rows via log() method', async () => {
+  it('creates log database rows with cryptographic hash chaining via log() method', async () => {
     (prisma.user.findUnique as jest.Mock).mockResolvedValue({ id: 'user-01', role: 'FARMER' });
+    (prisma.auditLog.findFirst as jest.Mock).mockResolvedValue(null);
 
     await AuditLogService.log({
       userId: 'user-01',
@@ -94,17 +96,92 @@ describe('AuditLogService', () => {
     });
 
     expect(prisma.auditLog.create).toHaveBeenCalledWith({
-      data: {
+      data: expect.objectContaining({
         actorId: 'user-01',
         actorRole: 'FARMER',
         action: 'TEST',
         targetType: 'TestEntity',
         targetId: 'id-01',
         metadata: { oldValues: { status: 'OLD' }, newValues: { status: 'NEW' } },
-        ipAddress: null,
-        userAgent: null,
-      },
+        previousHash: 'GENESIS',
+        hash: expect.any(String),
+      }),
     });
+  });
+
+  it('verifies cryptographic log integrity and detects unbroken chains', async () => {
+    const timestamp = new Date('2026-07-20T10:00:00Z');
+    const hash1 = AuditLogService.computeHash({
+      previousHash: 'GENESIS',
+      actorId: 'user-01',
+      actorRole: 'ADMIN',
+      action: 'CREATE_USER',
+      timestamp,
+    });
+
+    const hash2 = AuditLogService.computeHash({
+      previousHash: hash1,
+      actorId: 'user-01',
+      actorRole: 'ADMIN',
+      action: 'UPDATE_CONFIG',
+      timestamp,
+    });
+
+    (prisma.auditLog.findMany as jest.Mock).mockResolvedValue([
+      {
+        id: 'log-1',
+        actorId: 'user-01',
+        actorRole: 'ADMIN',
+        action: 'CREATE_USER',
+        targetType: null,
+        targetId: null,
+        metadata: null,
+        previousHash: 'GENESIS',
+        hash: hash1,
+        timestamp,
+      },
+      {
+        id: 'log-2',
+        actorId: 'user-01',
+        actorRole: 'ADMIN',
+        action: 'UPDATE_CONFIG',
+        targetType: null,
+        targetId: null,
+        metadata: null,
+        previousHash: hash1,
+        hash: hash2,
+        timestamp,
+      },
+    ]);
+
+    const result = await AuditLogService.verifyIntegrity();
+    expect(result.isValid).toBe(true);
+    expect(result.totalAudited).toBe(2);
+    expect(result.violations.length).toBe(0);
+  });
+
+  it('detects record hash mismatches (tamper detection)', async () => {
+    const timestamp = new Date('2026-07-20T10:00:00Z');
+
+    (prisma.auditLog.findMany as jest.Mock).mockResolvedValue([
+      {
+        id: 'log-1',
+        actorId: 'user-01',
+        actorRole: 'ADMIN',
+        action: 'TAMPERED_ACTION',
+        targetType: null,
+        targetId: null,
+        metadata: null,
+        previousHash: 'GENESIS',
+        hash: 'invalid-tampered-sha256-hash',
+        timestamp,
+      },
+    ]);
+
+    const result = await AuditLogService.verifyIntegrity();
+    expect(result.isValid).toBe(false);
+    expect(result.violations.length).toBe(1);
+    expect(result.violations[0].reason).toContain('Data tampering detected');
   });
 
   it('retrieves logs with pagination and filters in getLogs()', async () => {
